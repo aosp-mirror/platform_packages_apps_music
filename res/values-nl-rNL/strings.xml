@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="NNNtracksdeleted"><xliff:g id="songs_to_delete">%s</xliff:g> nummers verwijderd</string>
+  <string name="NNNtrackstoplaylist">NNN nummers toegevoegd aan afspeellijst</string>
+  <string name="Nalbums"><xliff:g id="count">%d</xliff:g> albums</string>
+  <string name="Nsongs"><xliff:g id="count">%d</xliff:g> nummers</string>
+  <string name="add_to_playlist">Toevoegen aan speellijst</string>
+  <string name="albums_menu">Albums</string>
+  <string name="albums_title">Albums</string>
+  <string name="all_title">Alle media</string>
+  <string name="artists_title">Artiesten</string>
+  <string name="browse_menu">Artiesten</string>
+  <string name="create_playlist_create_text">Opslaan</string>
+  <string name="create_playlist_overwrite_text">Overschrijven</string>
+  <string name="delete_album_desc">het hele album \"<xliff:g id="album">%s</xliff:g>\"</string>
+  <string name="delete_artist_desc">alle nummers van <xliff:g id="artist">%s</xliff:g></string>
+  <string name="delete_confirm_button_text">Verwijderen</string>
+  <string name="delete_confirm_prompt"><xliff:g id="to_delete">%s</xliff:g> permanent van sd-kaart verwijderen?</string>
+  <string name="delete_item">Verwijderen</string>
+  <string name="delete_playlist_menu">Verwijderen</string>
+  <string name="durationformat"><xliff:g id="format">%2$d:%5$02d</xliff:g></string>
+  <string name="edit_playlist_menu">Bewerken</string>
+  <string name="emptyplaylist">De geselecteerde afspeellijst is leeg</string>
+  <string name="goto_playback">Afspelen</string>
+  <string name="goto_start">Bibliotheek</string>
+  <string name="mediapickerlabel">Muziek</string>
+  <string name="mediaplaybacklabel">Muziek</string>
+  <string name="movieviewlabel">Films</string>
+  <string name="musicbrowserlabel">Muziek</string>
+  <string name="musicsearch">Muziek</string>
+  <string name="musicsearchhint">Artiest, album of naam</string>
+  <string name="new_playlist">Nieuw\u2026</string>
+  <string name="new_playlist_name_template">Nieuwe afspeellijst <xliff:g id="number">%d</xliff:g></string>
+  <string name="no_albums_title">Geen albums</string>
+  <string name="no_playlists_title">Geen afspeellijsten</string>
+  <string name="no_tracks_title">Geen nummers</string>
+  <string name="no_videos_title">Geen video's</string>
+  <string name="nowplaying_title">Afspelen</string>
+  <string name="onealbum">1 album</string>
+  <string name="onesong">1 nummer</string>
+  <string name="party_shuffle">Feestvolgorde</string>
+  <string name="party_shuffle_off">Feestvolgorde uit</string>
+  <string name="partyshuffle_title">Feestvolgorde</string>
+  <string name="play_all">Alles afspelen</string>
+  <string name="play_selection">Afspelen</string>
+  <string name="playlists_menu">Afspeellijst</string>
+  <string name="playlists_title">Afspeellijst</string>
+  <string name="recentlyadded">Recent toegevoegd</string>
+  <string name="rename_playlist_menu">Naam wijzigen</string>
+  <string name="repeat_all_notif">Alle nummers herhalen</string>
+  <string name="repeat_current_notif">Huidig nummer herhalen</string>
+  <string name="repeat_off_notif">Herhalen staat uit</string>
+  <string name="ringtone_menu">Gebruiken als beltoon</string>
+  <string name="save_as_playlist">Opslaan als afspeellijst</string>
+  <string name="scanning">Sd-kaart wordt gescand\u2026</string>
+  <string name="sdcard_busy_title">Sd-kaart is bezet</string>
+  <string name="sdcard_error_title">Sd-kaartfout</string>
+  <string name="sdcard_missing_title">Geen sd-kaart</string>
+  <string name="search_title">Zoeken</string>
+  <string name="service_start_error_button">OK</string>
+  <string name="service_start_error_msg">Kan media-afspeelservice niet starten</string>
+  <string name="service_start_error_title">Fout</string>
+  <string name="shuffle_all">Alles willekeurig afspelen</string>
+  <string name="shuffle_off_notif">Willekeurig afspelen staat uit</string>
+  <string name="shuffle_on_notif">Willekeurig afspelen staat aan</string>
+  <string name="tracks_menu">Nummers</string>
+  <string name="tracks_title">Nummers</string>
+  <string name="unknown_album_name">Onbekend album</string>
+  <string name="unknown_artist_name">Onbekende artiest</string>
+  <string name="videobrowserlabel">Video's</string>
+  <string name="videos_title">Video's</string>
+  <string name="weekpicker_set">Gereed</string>
+  <string name="weekpicker_title">Tijd instellen</string>
+</resources>

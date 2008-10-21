@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="add_to_playlist">Add to playlist</string>
+  <string name="albums_menu">Albums</string>
+  <string name="albums_title">Albums</string>
+  <string name="all_title">All media</string>
+  <string name="artists_title">Artists</string>
+  <string name="browse_menu">Artists</string>
+  <string name="cancel">Cancel</string>
+  <string name="clear_playlist">Clear playlist</string>
+  <string name="create_playlist_create_text">Save</string>
+  <string name="create_playlist_overwrite_text">Overwrite</string>
+  <string name="delete_album_desc">the entire album \"<xliff:g id="album">%s</xliff:g>\"</string>
+  <string name="delete_artist_desc">all songs by <xliff:g id="artist">%s</xliff:g></string>
+  <string name="delete_confirm_button_text">OK</string>
+  <string name="delete_confirm_prompt">\"<xliff:g id="to_delete">%s</xliff:g>\" will be permanently deleted from the SD card.</string>
+  <string name="delete_item">Delete</string>
+  <string name="delete_playlist_menu">Delete</string>
+  <string name="durationformat"><xliff:g id="format">%2$d:%5$02d</xliff:g></string>
+  <string name="edit_playlist_menu">Edit</string>
+  <string name="emptyplaylist">Selected playlist is empty.</string>
+  <string name="goto_playback">Playback</string>
+  <string name="goto_start">Library</string>
+  <string name="loading_video">Loading video\u2026</string>
+  <string name="mediapickerlabel">Music</string>
+  <string name="mediaplaybacklabel">Music</string>
+  <string name="movieviewlabel">Movies</string>
+  <string name="musicbrowserlabel">Music</string>
+  <string name="musicsearch">Music</string>
+  <string name="musicsearchhint">Artist, album, or song name</string>
+  <string name="musicshortcutlabel">Music playlist</string>
+  <string name="new_playlist">New\u2026</string>
+  <string name="new_playlist_name_template">New playlist <xliff:g id="number">%d</xliff:g></string>
+  <string name="no_albums_title">No albums</string>
+  <string name="no_playlists_title">No playlists</string>
+  <string name="no_tracks_title">No songs</string>
+  <string name="no_videos_title">No videos</string>
+  <string name="nowplaying_title">Now playing</string>
+  <string name="onesong">1 song</string>
+  <string name="party_shuffle">Party shuffle</string>
+  <string name="party_shuffle_off">Party shuffle off</string>
+  <string name="partyshuffle_title">Party shuffle</string>
+  <string name="play_all">Play all</string>
+  <string name="play_selection">Play</string>
+  <string name="playback_failed">Sorry, the player does not support this type of audio file."</string>
+  <string name="playlist_deleted_message">Playlist deleted.</string>
+  <string name="playlist_renamed_message">Playlist renamed.</string>
+  <string name="playlists_menu">Playlists</string>
+  <string name="playlists_title">Playlists</string>
+  <string name="queue">Current playlist</string>
+  <string name="recentlyadded">Recently added</string>
+  <string name="remove_from_playlist">Remove from playlist</string>
+  <string name="rename_playlist_menu">Rename</string>
+  <string name="repeat_all_notif">Repeating all songs.</string>
+  <string name="repeat_current_notif">Repeating current song.</string>
+  <string name="repeat_off_notif">Repeat is off.</string>
+  <string name="ringtone_menu">Use as phone ringtone</string>
+  <string name="ringtone_menu_short">Use as ringtone</string>
+  <string name="ringtone_set">\"%s\" set as phone ringtone.</string>
+  <string name="save_as_playlist">Save as playlist</string>
+  <string name="scanning">Scanning SD card\u2026</string>
+  <string name="sdcard_busy_title">SD card is busy</string>
+  <string name="sdcard_error_title">SD card error</string>
+  <string name="sdcard_missing_title">No SD card</string>
+  <string name="search_title">Search</string>
+  <string name="service_start_error_button">OK</string>
+  <string name="service_start_error_msg">Sorry, the song could not be played.</string>
+  <string name="service_start_error_title">Playback problem</string>
+  <string name="shuffle_all">Shuffle all</string>
+  <string name="shuffle_off_notif">Shuffle is off.</string>
+  <string name="shuffle_on_notif">Shuffle is on.</string>
+  <string name="tracks_menu">Songs</string>
+  <string name="tracks_title">Songs</string>
+  <string name="unknown_album_name">Unknown album</string>
+  <string name="unknown_artist_name">Unknown artist</string>
+  <string name="videobrowserlabel">Videos</string>
+  <string name="videos_title">Videos</string>
+  <string name="weekpicker_set">Done</string>
+  <string name="weekpicker_title">Set time</string>
+</resources>

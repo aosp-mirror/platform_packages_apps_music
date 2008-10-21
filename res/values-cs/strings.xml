@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="NNNtracksdeleted">Bylo odstraněno <xliff:g id="songs_to_delete">%s</xliff:g> skladeb</string>
+  <string name="NNNtrackstoplaylist">Do seznamu stop bylo přidáno NNN skladeb</string>
+  <string name="Nalbums"><xliff:g id="count">%d</xliff:g> alb</string>
+  <string name="Nsongs"><xliff:g id="count">%d</xliff:g> skladeb</string>
+  <string name="add_to_playlist">Přidat do seznamu stop</string>
+  <string name="albums_menu">Alba</string>
+  <string name="albums_title">Alba</string>
+  <string name="all_title">Všechna média</string>
+  <string name="artists_title">Interpreti</string>
+  <string name="browse_menu">Interpreti</string>
+  <string name="create_playlist_create_text">Uložit</string>
+  <string name="create_playlist_overwrite_text">Přepsat</string>
+  <string name="delete_album_desc">celé album \"<xliff:g id="album">%s</xliff:g>\"</string>
+  <string name="delete_artist_desc">všechny skladby od interpreta <xliff:g id="artist">%s</xliff:g></string>
+  <string name="delete_confirm_button_text">Odstranit</string>
+  <string name="delete_confirm_prompt">Trvale odstranit <xliff:g id="to_delete">%s</xliff:g> z karty SD?</string>
+  <string name="delete_item">Odstranit</string>
+  <string name="delete_playlist_menu">Odstranit</string>
+  <string name="durationformat"><xliff:g id="format">%2$d:%5$02d</xliff:g></string>
+  <string name="edit_playlist_menu">Upravit</string>
+  <string name="emptyplaylist">Vybraný seznam stop je prázdný</string>
+  <string name="goto_playback">Přehrávání</string>
+  <string name="goto_start">Knihovna</string>
+  <string name="mediapickerlabel">Hudba</string>
+  <string name="mediaplaybacklabel">Hudba</string>
+  <string name="movieviewlabel">Filmy</string>
+  <string name="musicbrowserlabel">Hudba</string>
+  <string name="musicsearch">Hudba</string>
+  <string name="musicsearchhint">Interpret, album nebo název skladby</string>
+  <string name="new_playlist">Nový\u2026</string>
+  <string name="new_playlist_name_template">Nový seznam stop <xliff:g id="number">%d</xliff:g></string>
+  <string name="no_albums_title">Žádná alba</string>
+  <string name="no_playlists_title">Žádné seznamy stop</string>
+  <string name="no_tracks_title">Žádné skladby</string>
+  <string name="no_videos_title">Žádná videa</string>
+  <string name="nowplaying_title">Přehrávání</string>
+  <string name="onealbum">1 album</string>
+  <string name="onesong">1 skladba</string>
+  <string name="party_shuffle">Náhodné přehrávání</string>
+  <string name="party_shuffle_off">Náhodné přehrávání vypnuto</string>
+  <string name="partyshuffle_title">Náhodné přehrávání</string>
+  <string name="play_all">Přehrát vše</string>
+  <string name="play_selection">Přehrát</string>
+  <string name="playlists_menu">Seznamy stop</string>
+  <string name="playlists_title">Seznamy stop</string>
+  <string name="recentlyadded">Naposledy přidané</string>
+  <string name="rename_playlist_menu">Přejmenovat</string>
+  <string name="repeat_all_notif">Opakování všech skladeb</string>
+  <string name="repeat_current_notif">Opakování aktuální skladby</string>
+  <string name="repeat_off_notif">Opakování je vypnuto</string>
+  <string name="ringtone_menu">Použít jako vyzv. tón</string>
+  <string name="save_as_playlist">Uložit jako seznam stop</string>
+  <string name="scanning">Prohledávání karty SD\u2026</string>
+  <string name="sdcard_busy_title">Karta SD je zaneprázdněna</string>
+  <string name="sdcard_error_title">Chyba karty SD</string>
+  <string name="sdcard_missing_title">Karta SD chybí</string>
+  <string name="search_title">Hledat</string>
+  <string name="service_start_error_button">OK</string>
+  <string name="service_start_error_msg">Nelze spustit službu přehrávání médií</string>
+  <string name="service_start_error_title">Chyba</string>
+  <string name="shuffle_all">Náhodně vše</string>
+  <string name="shuffle_off_notif">Náhodné přehrávání je vypnuto</string>
+  <string name="shuffle_on_notif">Náhodné přehrávání je zapnuto</string>
+  <string name="tracks_menu">Skladby</string>
+  <string name="tracks_title">Skladby</string>
+  <string name="unknown_album_name">Neznámé album</string>
+  <string name="unknown_artist_name">Neznámý interpret</string>
+  <string name="videobrowserlabel">Videa</string>
+  <string name="videos_title">Videa</string>
+  <string name="weekpicker_set">Hotovo</string>
+  <string name="weekpicker_title">Nastavit čas</string>
+</resources>

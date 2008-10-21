@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="add_to_playlist">Zur Wiedergabeliste hinzufügen</string>
+  <string name="albums_menu">Alben</string>
+  <string name="albums_title">Alben</string>
+  <string name="all_title">Alle Medien</string>
+  <string name="artists_title">Künstler</string>
+  <string name="browse_menu">Interpreten</string>
+  <string name="cancel">Abbrechen</string>
+  <string name="clear_playlist">Wiedergabeliste löschen</string>
+  <string name="create_playlist_create_text">Speichern</string>
+  <string name="create_playlist_overwrite_text">Überschreiben</string>
+  <string name="delete_album_desc">das gesamte Album \"<xliff:g id="album">%s</xliff:g>\"</string>
+  <string name="delete_artist_desc">alle Lieder von <xliff:g id="artist">%s</xliff:g></string>
+  <string name="delete_confirm_button_text">OK</string>
+  <string name="delete_confirm_prompt">\"<xliff:g id="to_delete">%s</xliff:g>\" wird permanent aus der SD-Karte entfernt.</string>
+  <string name="delete_item">Löschen</string>
+  <string name="delete_playlist_menu">Löschen</string>
+  <string name="durationformat">
+					<xliff:g id="format">%2$d:%5$02d</xliff:g>
+				</string>
+  <string name="edit_playlist_menu">Bearbeiten</string>
+  <string name="emptyplaylist">Die ausgewählte Wiedergabeliste ist leer.</string>
+  <string name="goto_playback">Wiedergabe</string>
+  <string name="goto_start">Bibliothek</string>
+  <string name="loading_video">Lädt Video\u2026</string>
+  <string name="mediapickerlabel">Musik</string>
+  <string name="mediaplaybacklabel">Musik</string>
+  <string name="mediasearch">Suche nach %s mit:</string>
+  <string name="mediasearch_amazon">Amazon MP3</string>
+  <string name="mediasearch_google">Google</string>
+  <string name="mediasearch_youtube">YouTube</string>
+  <string name="movieviewlabel">Filme</string>
+  <string name="musicbrowserlabel">Musik</string>
+  <string name="musicsearch">Musik</string>
+  <string name="musicsearchhint">Künstler, Album oder Liedtitel</string>
+  <string name="musicshortcutlabel">Musikwiedergabeliste</string>
+  <string name="new_playlist">Neu</string>
+  <string name="new_playlist_name_template">Neue Wiedergabeliste <xliff:g id="number">%d</xliff:g></string>
+  <string name="no_albums_title">Keine Alben</string>
+  <string name="no_playlists_title">Keine Wiedergabelisten</string>
+  <string name="no_tracks_title">Keine Lieder</string>
+  <string name="no_videos_title">Keine Videos</string>
+  <string name="nowplaying_title">Aktuelle Wiedergabe</string>
+  <string name="onesong">1 Lied</string>
+  <string name="party_shuffle">Partymix</string>
+  <string name="party_shuffle_off">Partymix aus</string>
+  <string name="partyshuffle_title">Partymix</string>
+  <string name="play_all">Alle wiedergeben</string>
+  <string name="play_selection">Wiedergabe</string>
+  <string name="playback_failed">Der Player unterstützt diese Art von Audiodatei nicht."</string>
+  <string name="playlist_deleted_message">Wiedergabeliste gelöscht.</string>
+  <string name="playlist_renamed_message">Wiedergabeliste umbenannt.</string>
+  <string name="playlists_menu">Wiedergabelisten</string>
+  <string name="playlists_title">Wiedergabelisten</string>
+  <string name="queue">Aktuelle Wiedergabeliste</string>
+  <string name="recentlyadded">Zuletzt hinzugefügt</string>
+  <string name="remove_from_playlist">Aus Wiedergabeliste entfernen</string>
+  <string name="rename_playlist_menu">Umbenennen</string>
+  <string name="repeat_all_notif">Alle Lieder wiederholen.</string>
+  <string name="repeat_current_notif">Aktuelles Lied wiederholen.</string>
+  <string name="repeat_off_notif">Wiederholung aus.</string>
+  <string name="ringtone_menu">Als Telefonklingelton verwenden</string>
+  <string name="ringtone_menu_short">Als Klingelton verwenden</string>
+  <string name="ringtone_set">\"%s\" als Klingelton einrichten.</string>
+  <string name="save_as_playlist">Als Wiedergabeliste speichern</string>
+  <string name="scanning">SD-Karte durchsuchen\u2026</string>
+  <string name="sdcard_busy_message">Die SD-Karte wird derzeit benutzt. Um auf die Musik zuzugreifen, gehen Sie nach Startseite &gt; Einstellungen &gt; SD-Karte &amp; Telefonspeicher und heben Sie die Auswahl von \"Für USB-Speicher verwenden\" auf.</string>
+  <string name="sdcard_busy_title">SD-Karte wird benutzt</string>
+  <string name="sdcard_error_message">SD-Karten-Fehler.</string>
+  <string name="sdcard_error_title">SD-Karten-Fehler</string>
+  <string name="sdcard_missing_message">Keine SD-Karte.</string>
+  <string name="sdcard_missing_title">Keine SD-Karte</string>
+  <string name="search_title">Suchen</string>
+  <string name="service_start_error_button">OK</string>
+  <string name="service_start_error_msg">Das Lied konnte leider nicht wiedergegeben werden.</string>
+  <string name="service_start_error_title">Wiedergabeproblem</string>
+  <string name="shuffle_all">Alle zufällig wiedergeben</string>
+  <string name="shuffle_off_notif">Zufällige Wiedergabe aus.</string>
+  <string name="shuffle_on_notif">Zufällige Wiedergabe ein.</string>
+  <string name="streamloadingtext">Verbindet mit <xliff:g id="host">%s</xliff:g></string>
+  <string name="tracks_menu">Lieder</string>
+  <string name="tracks_title">Lieder</string>
+  <string name="unknown_album_name">Unbekanntes Album</string>
+  <string name="unknown_artist_name">Unbekannter Künstler</string>
+  <string name="videobrowserlabel">Videos</string>
+  <string name="videos_title">Videos</string>
+  <string name="weekpicker_set">Fertig</string>
+  <string name="weekpicker_title">Zeit einstellen</string>
+</resources>

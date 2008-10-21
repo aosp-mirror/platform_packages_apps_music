@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        package="com.android.music">
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application android:icon="@drawable/app_music"
+        android:label="@string/musicbrowserlabel"
+        android:taskAffinity="android.task.music"
+        android:allowTaskReparenting="true">
+        <activity android:name="MusicBrowserActivity"
+                android:theme="@android:style/Theme.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <receiver android:name="MediaButtonIntentReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
+        <!-- This is the "current music playing" panel, which has special
+             launch behavior.  We clear its task affinity, so it will not
+             be associated with the main media task and if launched
+             from a notification will not bring the rest of the media app
+             to the foreground.  We make it singleTask so that when others
+             launch it (such as media) we will launch in to our own task.
+             We set clearTaskOnLaunch because the user
+             can go to a playlist from this activity, so if they later return
+             to it we want it back in its initial state.  We exclude from
+             recents since this is accessible through a notification when
+             appropriate. -->
+        <activity android:name="MediaPlaybackActivity"
+                android:theme="@android:style/Theme.NoTitleBar"
+                android:label="@string/mediaplaybacklabel"
+                android:taskAffinity=""
+                android:launchMode="singleTask"
+                android:clearTaskOnLaunch="true"
+                android:excludeFromRecents="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="content"/>
+                <data android:scheme="file"/>
+                <data android:mimeType="audio/*"/>
+                <data android:mimeType="application/ogg"/>
+                <data android:mimeType="application/x-ogg"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.android.music.PLAYBACK_VIEWER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="StreamStarter" android:theme="@android:style/Theme.Dialog" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http" />
+                <data android:mimeType="audio/mp3"/>
+                <data android:mimeType="audio/x-mp3"/>
+                <data android:mimeType="audio/mpeg"/>
+                <data android:mimeType="audio/mp4"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="ArtistAlbumBrowserActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.PICK" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/artistalbum"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="AlbumBrowserActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.PICK" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/album"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="NowPlayingActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.PICK" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/nowplaying"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="TrackBrowserActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.EDIT" />
+                <action android:name="android.intent.action.PICK" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/track"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="QueryBrowserActivity"
+                android:theme="@android:style/Theme.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="PlaylistBrowserActivity" android:label="@string/musicbrowserlabel">
+            <intent-filter>
+                <action android:name="android.intent.action.PICK" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/playlist"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/playlist"/>
+            </intent-filter>
+        </activity>
+        <activity-alias android:name="PlaylistShortcutActivity"
+            android:targetActivity="PlaylistBrowserActivity"
+            android:label="@string/musicshortcutlabel">
+
+            <intent-filter>
+                <action android:name="android.intent.action.CREATE_SHORTCUT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity-alias>
+        <activity android:name="VideoBrowserActivity"
+            android:taskAffinity="android.task.video"
+            android:label="@string/videobrowserlabel"
+            android:icon="@drawable/app_video">
+            <intent-filter>
+                <action android:name="android.intent.action.PICK" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/video"/>
+            </intent-filter>
+<!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+-->
+        </activity>
+        <activity android:name="MediaPickerActivity" android:label="@string/mediapickerlabel">
+<!--
+            <intent-filter>
+                <action android:name="android.intent.action.PICK" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="media/*"/>
+                <data android:mimeType="audio/*"/>
+                <data android:mimeType="application/ogg"/>
+                <data android:mimeType="application/x-ogg"/>
+                <data android:mimeType="video/*"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.OPENABLE" />
+                <data android:mimeType="media/*"/>
+                <data android:mimeType="audio/*"/>
+                <data android:mimeType="application/ogg"/>
+                <data android:mimeType="application/x-ogg"/>
+                <data android:mimeType="video/*"/>
+            </intent-filter>
+-->
+        </activity>
+        <activity android:name="CreatePlaylist" android:theme="@android:style/Theme.Dialog" />
+        <activity android:name="RenamePlaylist" android:theme="@android:style/Theme.Dialog" />
+        <activity android:name="WeekSelector" android:theme="@android:style/Theme.Dialog" />
+        <activity android:name="DeleteItems" android:theme="@android:style/Theme.Dialog" />
+        <activity android:name="ScanningProgress" android:theme="@android:style/Theme.Dialog" />
+        <activity android:name="MovieView"
+                android:label="@string/movieviewlabel"
+                android:screenOrientation="sensor"
+                android:configChanges="orientation|keyboardHidden"
+                android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+                android:taskAffinity="android.task.video"
+                android:process=":MovieView" >
+             <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="rtsp" />
+             </intent-filter>
+             <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="video/*" />
+             </intent-filter>
+             <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http" />
+                <data android:mimeType="video/mp4" />
+                <data android:mimeType="video/3gp" />
+                <data android:mimeType="video/3gpp" />
+                <data android:mimeType="video/3gpp2" />
+             </intent-filter>
+        </activity>
+        <service android:name="MediaPlaybackService" android:exported="true" />
+    </application>
+</manifest>

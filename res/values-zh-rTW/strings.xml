@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="add_to_playlist">新增到播放清單</string>
+  <string name="albums_menu">專輯</string>
+  <string name="albums_title">專輯</string>
+  <string name="all_title">所有媒體</string>
+  <string name="artists_title">演出者</string>
+  <string name="browse_menu">演出者</string>
+  <string name="cancel">取消</string>
+  <string name="clear_playlist">清除播放清單</string>
+  <string name="create_playlist_create_text">儲存</string>
+  <string name="create_playlist_overwrite_text">覆寫</string>
+  <string name="delete_album_desc">整張專輯 \"<xliff:g id="album">%s</xliff:g>\"</string>
+  <string name="delete_artist_desc"><xliff:g id="artist">%s</xliff:g> 的所有歌曲</string>
+  <string name="delete_confirm_button_text">確定</string>
+  <string name="delete_confirm_prompt">將會永久從 SD 卡中刪除 \"<xliff:g id="to_delete">%s</xliff:g>\"。</string>
+  <string name="delete_item">刪除</string>
+  <string name="delete_playlist_menu">刪除</string>
+  <string name="durationformat">
+					<xliff:g id="format">%2$d:%5$02d</xliff:g>
+				</string>
+  <string name="edit_playlist_menu">編輯</string>
+  <string name="emptyplaylist">選取的播放清單空白。</string>
+  <string name="goto_playback">播放</string>
+  <string name="goto_start">媒體櫃</string>
+  <string name="loading_video">正在載入影片\u2026</string>
+  <string name="mediapickerlabel">音樂</string>
+  <string name="mediaplaybacklabel">音樂</string>
+  <string name="mediasearch">搜尋 %s 的工具：</string>
+  <string name="mediasearch_amazon">Amazon MP3</string>
+  <string name="mediasearch_google">Google</string>
+  <string name="mediasearch_youtube">YouTube</string>
+  <string name="movieviewlabel">電影</string>
+  <string name="musicbrowserlabel">音樂</string>
+  <string name="musicsearch">音樂</string>
+  <string name="musicsearchhint">演出者、專輯或歌曲名稱</string>
+  <string name="musicshortcutlabel">音樂播放清單</string>
+  <string name="new_playlist">新增</string>
+  <string name="new_playlist_name_template">新增播放清單 <xliff:g id="number">%d</xliff:g></string>
+  <string name="no_albums_title">無專輯</string>
+  <string name="no_playlists_title">無播放清單</string>
+  <string name="no_tracks_title">無歌曲</string>
+  <string name="no_videos_title">無影片</string>
+  <string name="nowplaying_title">現正播放</string>
+  <string name="onesong">1 首歌曲</string>
+  <string name="party_shuffle">派對隨機播放</string>
+  <string name="party_shuffle_off">關閉派對隨機播放</string>
+  <string name="partyshuffle_title">派對隨機播放</string>
+  <string name="play_all">全部播放</string>
+  <string name="play_selection">播放</string>
+  <string name="playback_failed">抱歉，播放器不支援此類型的音訊檔。"</string>
+  <string name="playlist_deleted_message">已經刪除播放清單。</string>
+  <string name="playlist_renamed_message">已經重新命名播放清單。</string>
+  <string name="playlists_menu">播放清單</string>
+  <string name="playlists_title">播放清單</string>
+  <string name="queue">目前的播放清單</string>
+  <string name="recentlyadded">最近新增</string>
+  <string name="remove_from_playlist">從播放清單移除</string>
+  <string name="rename_playlist_menu">重新命名</string>
+  <string name="repeat_all_notif">重複所有歌曲。</string>
+  <string name="repeat_current_notif">重複目前歌曲。</string>
+  <string name="repeat_off_notif">關閉重複。</string>
+  <string name="ringtone_menu">設為電話響鈴音調</string>
+  <string name="ringtone_menu_short">設為響鈴音調</string>
+  <string name="ringtone_set">\"%s\" 已經設為響鈴音調。</string>
+  <string name="save_as_playlist">儲存為播放清單</string>
+  <string name="scanning">正在掃描 SD 卡\u2026</string>
+  <string name="sdcard_busy_message">SD 卡忙碌中。若要存取音樂，請移至首頁 &gt; 設定 &gt; SD 卡與電話儲存空間，並清除 \"用於 USB 儲存\" 核取方塊。</string>
+  <string name="sdcard_busy_title">SD 卡忙碌中</string>
+  <string name="sdcard_error_message">SD 卡錯誤。</string>
+  <string name="sdcard_error_title">SD 卡錯誤</string>
+  <string name="sdcard_missing_message">無 SD 卡。</string>
+  <string name="sdcard_missing_title">無 SD 卡</string>
+  <string name="search_title">搜尋</string>
+  <string name="service_start_error_button">確定</string>
+  <string name="service_start_error_msg">抱歉，無法播放此歌曲。</string>
+  <string name="service_start_error_title">播放發生問題</string>
+  <string name="shuffle_all">全部隨機播放</string>
+  <string name="shuffle_off_notif">關閉隨機播放。</string>
+  <string name="shuffle_on_notif">開啟隨機播放。</string>
+  <string name="streamloadingtext">正在連線到 <xliff:g id="host">%s</xliff:g></string>
+  <string name="tracks_menu">歌曲</string>
+  <string name="tracks_title">歌曲</string>
+  <string name="unknown_album_name">無法辨識的專輯</string>
+  <string name="unknown_artist_name">無法辨識的演出者</string>
+  <string name="videobrowserlabel">影片</string>
+  <string name="videos_title">影片</string>
+  <string name="weekpicker_set">完成</string>
+  <string name="weekpicker_title">設定時間</string>
+</resources>

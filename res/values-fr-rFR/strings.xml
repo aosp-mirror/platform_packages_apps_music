@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="add_to_playlist">Ajouter à sélection</string>
+  <string name="albums_menu">Albums</string>
+  <string name="albums_title">Albums</string>
+  <string name="all_title">Tous les médias</string>
+  <string name="artists_title">Artistes</string>
+  <string name="browse_menu">Artistes</string>
+  <string name="cancel">Annuler</string>
+  <string name="clear_playlist">Effacer la sélection</string>
+  <string name="create_playlist_create_text">Enregistrer</string>
+  <string name="create_playlist_overwrite_text">Écraser</string>
+  <string name="delete_album_desc">l\'album entier \"<xliff:g id="album">%s</xliff:g>\"</string>
+  <string name="delete_artist_desc">toutes les chansons par <xliff:g id="artist">%s</xliff:g></string>
+  <string name="delete_confirm_button_text">OK</string>
+  <string name="delete_confirm_prompt">\"<xliff:g id="to_delete">%s</xliff:g>\" seront supprimés de manière permanente de la carte SD.</string>
+  <string name="delete_item">Supprimer</string>
+  <string name="delete_playlist_menu">Supprimer</string>
+  <string name="durationformat">
+					<xliff:g id="format">%2$d:%5$02d</xliff:g>
+				</string>
+  <string name="edit_playlist_menu">Modifier</string>
+  <string name="emptyplaylist">La sélection choisie est vide.</string>
+  <string name="goto_playback">Lecture</string>
+  <string name="goto_start">Bibliothèque</string>
+  <string name="loading_video">Chargement de la vidéo\u2026</string>
+  <string name="mediapickerlabel">Musique</string>
+  <string name="mediaplaybacklabel">Musique</string>
+  <string name="mediasearch">Rechercher %s en utilisant :</string>
+  <string name="mediasearch_amazon">Amazon MP3</string>
+  <string name="mediasearch_google">Google</string>
+  <string name="mediasearch_youtube">YouTube</string>
+  <string name="movieviewlabel">Films</string>
+  <string name="musicbrowserlabel">Musique</string>
+  <string name="musicsearch">Musique</string>
+  <string name="musicsearchhint">Artiste, album ou nom de chanson</string>
+  <string name="musicshortcutlabel">Sélection musicale</string>
+  <string name="new_playlist">Nouveau</string>
+  <string name="new_playlist_name_template">Nouvelle sélection <xliff:g id="number">%d</xliff:g></string>
+  <string name="no_albums_title">Aucun album</string>
+  <string name="no_playlists_title">Aucune sélection</string>
+  <string name="no_tracks_title">Aucune chanson</string>
+  <string name="no_videos_title">Aucune vidéo</string>
+  <string name="nowplaying_title">Lecture en cours</string>
+  <string name="onesong">1 chanson</string>
+  <string name="party_shuffle">Lecture aléatoire de fête</string>
+  <string name="party_shuffle_off">Lecture aléatoire de fête désactivée</string>
+  <string name="partyshuffle_title">Lecture aléatoire de fête</string>
+  <string name="play_all">Lire tout</string>
+  <string name="play_selection">Lecture</string>
+  <string name="playback_failed">Désolé, le lecteur ne prend pas en charge ce type de fichier audio."</string>
+  <string name="playlist_deleted_message">Sélection supprimée.</string>
+  <string name="playlist_renamed_message">Sélection renommée.</string>
+  <string name="playlists_menu">Sélections</string>
+  <string name="playlists_title">Sélections</string>
+  <string name="queue">Sélection actuelle</string>
+  <string name="recentlyadded">Récemment ajoutée</string>
+  <string name="remove_from_playlist">Supprimer de la sélection</string>
+  <string name="rename_playlist_menu">Renommer</string>
+  <string name="repeat_all_notif">Répéter toutes les chansons.</string>
+  <string name="repeat_current_notif">Répéter la chanson actuelle.</string>
+  <string name="repeat_off_notif">Répétition désactivée.</string>
+  <string name="ringtone_menu">Utiliser comme sonnerie du téléphone</string>
+  <string name="ringtone_menu_short">Utiliser comme sonnerie</string>
+  <string name="ringtone_set">\"%s\" défini comme sonnerie du téléphone.</string>
+  <string name="save_as_playlist">Enregistrer comme sélection</string>
+  <string name="scanning">Recherche de la carte SD\u2026</string>
+  <string name="sdcard_busy_message">Carte SD occupée. Pour accéder à votre musique, allez à Accueil &gt; Paramètres &gt;  Stockage du téléphone et carte SD et désélectionnez la case \"Utiliser pour le stockage USB\".</string>
+  <string name="sdcard_busy_title">Carte SD occupée</string>
+  <string name="sdcard_error_message">Erreur de carte SD.</string>
+  <string name="sdcard_error_title">Erreur de carte SD</string>
+  <string name="sdcard_missing_message">Pas de carte SD.</string>
+  <string name="sdcard_missing_title">Pas de carte SD</string>
+  <string name="search_title">Recherche</string>
+  <string name="service_start_error_button">OK</string>
+  <string name="service_start_error_msg">Désolé, la chanson n\'a pas pu être lue.</string>
+  <string name="service_start_error_title">Problème de lecture</string>
+  <string name="shuffle_all">Lecture aléatoire de tout</string>
+  <string name="shuffle_off_notif">Lecture aléatoire désactivée.</string>
+  <string name="shuffle_on_notif">Lecture aléatoire activée.</string>
+  <string name="streamloadingtext">Connexion à <xliff:g id="host">%s</xliff:g></string>
+  <string name="tracks_menu">Chansons</string>
+  <string name="tracks_title">Chansons</string>
+  <string name="unknown_album_name">Album inconnu</string>
+  <string name="unknown_artist_name">Artiste inconnu</string>
+  <string name="videobrowserlabel">Vidéos</string>
+  <string name="videos_title">Vidéos</string>
+  <string name="weekpicker_set">Terminé</string>
+  <string name="weekpicker_title">Définir l\'heure</string>
+</resources>

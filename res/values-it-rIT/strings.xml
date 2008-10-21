@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="add_to_playlist">Aggiungi a elenco di riproduzione</string>
+  <string name="albums_menu">Album</string>
+  <string name="albums_title">Album</string>
+  <string name="all_title">Tutti i supporti</string>
+  <string name="artists_title">Artisti</string>
+  <string name="browse_menu">Artisti</string>
+  <string name="cancel">Annulla</string>
+  <string name="clear_playlist">Cancella elenco di riproduzione</string>
+  <string name="create_playlist_create_text">Salva</string>
+  <string name="create_playlist_overwrite_text">Sovrascrivi</string>
+  <string name="delete_album_desc">l'intero album \"<xliff:g id="album">%s</xliff:g>\"</string>
+  <string name="delete_artist_desc">tutti i brani di <xliff:g id="artist">%s</xliff:g></string>
+  <string name="delete_confirm_button_text">OK</string>
+  <string name="delete_confirm_prompt">\"<xliff:g id="to_delete">%s</xliff:g>\" verrà eliminato in maniera permanente dalla scheda SD.</string>
+  <string name="delete_item">Elimina</string>
+  <string name="delete_playlist_menu">Elimina</string>
+  <string name="durationformat">
+					<xliff:g id="format">%2$d:%5$02d</xliff:g>
+				</string>
+  <string name="edit_playlist_menu">Modifica</string>
+  <string name="emptyplaylist">L'elenco di riproduzione selezionato è vuoto.</string>
+  <string name="goto_playback">Riproduzione</string>
+  <string name="goto_start">Catalogo</string>
+  <string name="loading_video">Caricamento del video in corso\u2026</string>
+  <string name="mediapickerlabel">Musica</string>
+  <string name="mediaplaybacklabel">Musica</string>
+  <string name="mediasearch">Ricerca %s utilizzando:</string>
+  <string name="mediasearch_amazon">Amazon MP3</string>
+  <string name="mediasearch_google">Google</string>
+  <string name="mediasearch_youtube">YouTube</string>
+  <string name="movieviewlabel">Filmati</string>
+  <string name="musicbrowserlabel">Musica</string>
+  <string name="musicsearch">Musica</string>
+  <string name="musicsearchhint">Nome artista, album o brano</string>
+  <string name="musicshortcutlabel">Elenco di riproduzione musicale</string>
+  <string name="new_playlist">Nuovo</string>
+  <string name="new_playlist_name_template">Nuovo elenco di riproduzione <xliff:g id="number">%d</xliff:g></string>
+  <string name="no_albums_title">Nessun album</string>
+  <string name="no_playlists_title">Nessun elenco di riproduzione</string>
+  <string name="no_tracks_title">Nessun brano</string>
+  <string name="no_videos_title">Nessun video</string>
+  <string name="nowplaying_title">In esecuzione</string>
+  <string name="onesong">Brano 1</string>
+  <string name="party_shuffle">Riproduzione casuale parziale</string>
+  <string name="party_shuffle_off">Riproduzione casuale parziale disattivata</string>
+  <string name="partyshuffle_title">Riproduzione casuale parziale</string>
+  <string name="play_all">Riproduci tutto</string>
+  <string name="play_selection">Riproduci</string>
+  <string name="playback_failed">Il lettore non supporta questo tipo di file audio."</string>
+  <string name="playlist_deleted_message">Elenco di riproduzione eliminato.</string>
+  <string name="playlist_renamed_message">Elenco di riproduzione rinominato.</string>
+  <string name="playlists_menu">Elenchi di riproduzione</string>
+  <string name="playlists_title">Elenchi di riproduzione</string>
+  <string name="queue">Elenco di riproduzione corrente</string>
+  <string name="recentlyadded">Aggiunto recentemente</string>
+  <string name="remove_from_playlist">Rimuovi da elenco di riproduzione</string>
+  <string name="rename_playlist_menu">Rinomina</string>
+  <string name="repeat_all_notif">Ripetizione di tutti i brani.</string>
+  <string name="repeat_current_notif">Ripetizione del bano corrente.</string>
+  <string name="repeat_off_notif">Ripetizione disattivata.</string>
+  <string name="ringtone_menu">Utilizzare come suoneria telefonica</string>
+  <string name="ringtone_menu_short">Utilizzare come suoneria</string>
+  <string name="ringtone_set">\"%s\" impostato come suoneria telefonica.</string>
+  <string name="save_as_playlist">Salva come elenco di riproduzione</string>
+  <string name="scanning">Scansione scheda SD\u2026</string>
+  <string name="sdcard_busy_message">Scheda SD occupata. Per accedere alla musica, andare su Home &gt; Impostazioni&gt; Scheda SD e memoria telefono e deselezionare la casella di controllo \"Usa per dispositivo di memorizzazione USB\".</string>
+  <string name="sdcard_busy_title">La scheda SD è occupata</string>
+  <string name="sdcard_error_message">Errore scheda SD.</string>
+  <string name="sdcard_error_title">Errore scheda SD</string>
+  <string name="sdcard_missing_message">Nessuna scheda SD.</string>
+  <string name="sdcard_missing_title">Nessuna scheda SD</string>
+  <string name="search_title">Cerca</string>
+  <string name="service_start_error_button">OK</string>
+  <string name="service_start_error_msg">Impossibile riprodurre il brano.</string>
+  <string name="service_start_error_title">Problema di riproduzione</string>
+  <string name="shuffle_all">Riproduzione casuale di tutto</string>
+  <string name="shuffle_off_notif">La riproduzione casuale è disattivata.</string>
+  <string name="shuffle_on_notif">La riproduzione casuale è attivata.</string>
+  <string name="streamloadingtext">Collegamento a <xliff:g id="host">%s</xliff:g></string>
+  <string name="tracks_menu">Brani</string>
+  <string name="tracks_title">Brani</string>
+  <string name="unknown_album_name">Album sconosciuto</string>
+  <string name="unknown_artist_name">Artista sconosciuto</string>
+  <string name="videobrowserlabel">Video</string>
+  <string name="videos_title">Video</string>
+  <string name="weekpicker_set">Completato</string>
+  <string name="weekpicker_title">Imposta ora</string>
+</resources>
