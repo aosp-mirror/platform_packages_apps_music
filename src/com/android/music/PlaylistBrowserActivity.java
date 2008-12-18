@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -121,6 +122,7 @@ public class PlaylistBrowserActivity extends ListActivity
         MusicUtils.unbindFromService(this);
         if (mPlaylistCursor != null) {
             mPlaylistCursor.close();
+            mPlaylistCursor = null;
         }        
         unregisterReceiver(mScanListener);
         super.onDestroy();
@@ -228,14 +230,16 @@ public class PlaylistBrowserActivity extends ListActivity
             menu.add(0, PLAY_SELECTION, 0, R.string.play_selection);
             menu.add(0, EDIT_PLAYLIST, 0, R.string.edit_playlist_menu);
             mPlaylistCursor.moveToPosition(mi.position);
-            menu.setHeaderTitle(mPlaylistCursor.getString(mPlaylistCursor.getColumnIndex(MediaStore.Audio.Playlists.NAME)));
+            menu.setHeaderTitle(mPlaylistCursor.getString(mPlaylistCursor.getColumnIndexOrThrow(
+                    MediaStore.Audio.Playlists.NAME)));
         } else {
             menu.add(0, PLAY_SELECTION, 0, R.string.play_selection);
             menu.add(0, DELETE_PLAYLIST, 0, R.string.delete_playlist_menu);
             menu.add(0, EDIT_PLAYLIST, 0, R.string.edit_playlist_menu);
             menu.add(0, RENAME_PLAYLIST, 0, R.string.rename_playlist_menu);
             mPlaylistCursor.moveToPosition(mi.position);
-            menu.setHeaderTitle(mPlaylistCursor.getString(mPlaylistCursor.getColumnIndex(MediaStore.Audio.Playlists.NAME)));
+            menu.setHeaderTitle(mPlaylistCursor.getString(mPlaylistCursor.getColumnIndexOrThrow(
+                    MediaStore.Audio.Playlists.NAME)));
         }
     }
 
@@ -251,9 +255,9 @@ public class PlaylistBrowserActivity extends ListActivity
                 }
                 break;
             case DELETE_PLAYLIST:
-                mPlaylistCursor.moveToPosition(mi.position);
-                mPlaylistCursor.deleteRow();
-                mPlaylistCursor.commitUpdates();
+                Uri uri = ContentUris.withAppendedId(
+                        MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI, mi.id);
+                getContentResolver().delete(uri, null, null);
                 Toast.makeText(this, R.string.playlist_deleted_message, Toast.LENGTH_SHORT).show();
                 if (mPlaylistCursor.getCount() == 0) {
                     setTitle(R.string.no_playlists_title);
@@ -402,7 +406,7 @@ public class PlaylistBrowserActivity extends ListActivity
         PlaylistListAdapter(Context context, int layout, Cursor cursor, String[] from, int[] to) {
             super(context, layout, cursor, from, to);
             
-            mTitleIdx = cursor.getColumnIndex(MediaStore.Audio.Playlists.NAME);
+            mTitleIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Playlists.NAME);
         }
 
         @Override

@@ -35,6 +35,9 @@
 
         <TextView android:id="@+id/trackname"
             android:textAppearance="?android:attr/textAppearanceMediumInverse"
+            android:focusable="true"
+            android:ellipsize="marquee"
+            android:singleLine="true"
             android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -42,6 +45,9 @@
         <TextView android:id="@+id/artistalbum"
             android:textAppearance="?android:attr/textAppearanceSmallInverse"
             android:layout_gravity="left"
+            android:maxLines="2"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>

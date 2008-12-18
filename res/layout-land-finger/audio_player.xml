@@ -80,10 +80,11 @@
 
                 <TextView android:id="@+id/artistname"
                     android:textSize="18sp"
-                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:textStyle="bold"
                     android:layout_gravity="center_vertical"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
@@ -104,10 +105,11 @@
 
                 <TextView android:id="@+id/albumname"
                     android:textSize="14sp"
-                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:textStyle="bold"
                     android:layout_gravity="center_vertical"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
@@ -128,10 +130,11 @@
 
                 <TextView android:id="@+id/trackname"
                     android:textSize="14sp"
-                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:textStyle="bold"
                     android:layout_gravity="center_vertical"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>

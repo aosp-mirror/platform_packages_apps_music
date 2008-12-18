@@ -68,6 +68,9 @@ public class MediaPickerActivity extends ListActivity implements MusicUtils.Defs
     public void onDestroy() {
         MusicUtils.unbindFromService(this);
         super.onDestroy();
+        if (mCursor != null) {
+            mCursor.close();
+        }
     }
 
     public void init() {
@@ -93,7 +96,8 @@ public class MediaPickerActivity extends ListActivity implements MusicUtils.Defs
     protected void onListItemClick(ListView l, View v, int position, long id)
     {
         mCursor.moveToPosition(position);
-        String type = mCursor.getString(mCursor.getColumnIndex(MediaStore.Audio.Media.MIME_TYPE));
+        String type = mCursor.getString(mCursor.getColumnIndexOrThrow(
+                MediaStore.Audio.Media.MIME_TYPE));
 
         String action = getIntent().getAction();
         if (Intent.ACTION_GET_CONTENT.equals(action)) {
@@ -102,10 +106,12 @@ public class MediaPickerActivity extends ListActivity implements MusicUtils.Defs
             long mediaId;
             if (type.startsWith("video")) {
                 uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                mediaId = mCursor.getLong(mCursor.getColumnIndex(MediaStore.Video.Media._ID));
+                mediaId = mCursor.getLong(mCursor.getColumnIndexOrThrow(
+                        MediaStore.Video.Media._ID));
             } else {
                 uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-                mediaId = mCursor.getLong(mCursor.getColumnIndex(MediaStore.Audio.Media._ID));
+                mediaId = mCursor.getLong(mCursor.getColumnIndexOrThrow(
+                        MediaStore.Audio.Media._ID));
             }
 
             setResult(RESULT_OK, new Intent().setData(ContentUris.withAppendedId(uri, mediaId)));
@@ -226,10 +232,10 @@ public class MediaPickerActivity extends ListActivity implements MusicUtils.Defs
         PickListAdapter(Context context, int layout, Cursor cursor, String[] from, int[] to) {
             super(context, layout, cursor, from, to);
 
-            mTitleIdx = cursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
-            mArtistIdx = cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
-            mAlbumIdx = cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM);
-            mMimeIdx = cursor.getColumnIndex(MediaStore.Audio.Media.MIME_TYPE);
+            mTitleIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE);
+            mArtistIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST);
+            mAlbumIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM);
+            mMimeIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.MIME_TYPE);
         }
         
         @Override

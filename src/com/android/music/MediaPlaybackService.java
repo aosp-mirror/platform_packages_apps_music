@@ -84,14 +84,16 @@ public class MediaPlaybackService extends Service {
     public static final String CMDNAME = "command";
     public static final String CMDTOGGLEPAUSE = "togglepause";
     public static final String CMDPAUSE = "pause";
+    public static final String CMDPREVIOUS = "previous";
     public static final String CMDNEXT = "next";
     
     private static final int PHONE_CHANGED = 1;
     private static final int TRACK_ENDED = 1;
     private static final int RELEASE_WAKELOCK = 2;
     private static final int SERVER_DIED = 3;
+    private static final int FADEIN = 4;
     private static final int MAX_HISTORY_SIZE = 10;
-
+    
     private MultiPlayer mPlayer;
     private String mFileToPlay;
     private PhoneStateIntentReceiver mPsir;
@@ -155,7 +157,7 @@ public class MediaPlaybackService extends Service {
                         if (mResumeAfterCall) {
                             // resume playback only if music was playing
                             // when the call was answered
-                            play();
+                            startAndFadeIn();
                             mResumeAfterCall = false;
                         }
                     }
@@ -165,11 +167,32 @@ public class MediaPlaybackService extends Service {
             }
         }
     };
-
+    
+    private void startAndFadeIn() {
+        mMediaplayerHandler.sendEmptyMessageDelayed(FADEIN, 10);
+    }
+    
     private Handler mMediaplayerHandler = new Handler() {
+        float mCurrentVolume = 1.0f;
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
+                case FADEIN:
+                    if (!isPlaying()) {
+                        mCurrentVolume = 0f;
+                        mPlayer.setVolume(mCurrentVolume);
+                        play();
+                        mMediaplayerHandler.sendEmptyMessageDelayed(FADEIN, 10);
+                    } else {
+                        mCurrentVolume += 0.01f;
+                        if (mCurrentVolume < 1.0f) {
+                            mMediaplayerHandler.sendEmptyMessageDelayed(FADEIN, 10);
+                        } else {
+                            mCurrentVolume = 1.0f;
+                        }
+                        mPlayer.setVolume(mCurrentVolume);
+                    }
+                    break;
                 case SERVER_DIED:
                     if (mWasPlaying) {
                         next(true);
@@ -206,6 +229,8 @@ public class MediaPlaybackService extends Service {
             String cmd = intent.getStringExtra("command");
             if (CMDNEXT.equals(cmd)) {
                 next(true);
+            } else if (CMDPREVIOUS.equals(cmd)) {
+                prev();
             } else if (CMDTOGGLEPAUSE.equals(cmd)) {
                 if (isPlaying()) {
                     pause();
@@ -251,6 +276,11 @@ public class MediaPlaybackService extends Service {
 
     @Override
     public void onDestroy() {
+        if (mCursor != null) {
+            mCursor.close();
+            mCursor = null;
+        }
+
         unregisterReceiver(mIntentReceiver);
         if (mUnmountReceiver != null) {
             unregisterReceiver(mUnmountReceiver);
@@ -442,6 +472,8 @@ public class MediaPlaybackService extends Service {
         String cmd = intent.getStringExtra("command");
         if (CMDNEXT.equals(cmd)) {
             next(true);
+        } else if (CMDPREVIOUS.equals(cmd)) {
+            prev();
         } else if (CMDTOGGLEPAUSE.equals(cmd)) {
             if (isPlaying()) {
                 pause();
@@ -867,19 +899,25 @@ public class MediaPlaybackService extends Service {
     
             RemoteViews views = new RemoteViews(getPackageName(), R.layout.statusbar);
             views.setImageViewResource(R.id.icon, R.drawable.stat_notify_musicplayer);
-            views.setTextViewText(R.id.trackname, getTrackName());
-            String artist = getArtistName();
-            if (artist == null || artist.equals(MediaFile.UNKNOWN_STRING)) {
-                artist = getString(R.string.unknown_artist_name);
+            if (getAudioId() < 0) {
+                // streaming
+                views.setTextViewText(R.id.trackname, getPath());
+                views.setTextViewText(R.id.artistalbum, null);
+            } else {
+                String artist = getArtistName();
+                views.setTextViewText(R.id.trackname, getTrackName());
+                if (artist == null || artist.equals(MediaFile.UNKNOWN_STRING)) {
+                    artist = getString(R.string.unknown_artist_name);
+                }
+                String album = getAlbumName();
+                if (album == null || album.equals(MediaFile.UNKNOWN_STRING)) {
+                    album = getString(R.string.unknown_album_name);
+                }
+                
+                views.setTextViewText(R.id.artistalbum,
+                        getString(R.string.notification_artist_album, artist, album)
+                        );
             }
-            String album = getAlbumName();
-            if (album == null || album.equals(MediaFile.UNKNOWN_STRING)) {
-                album = getString(R.string.unknown_album_name);
-            }
-            
-            views.setTextViewText(R.id.artistalbum,
-                    getString(R.string.notification_artist_album, artist, album)
-                    );
             
             Intent statusintent = new Intent("com.android.music.PLAYBACK_VIEWER");
             statusintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -1308,35 +1346,35 @@ public class MediaPlaybackService extends Service {
         if (mCursor == null) {
             return null;
         }
-        return mCursor.getString(mCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
+        return mCursor.getString(mCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST));
     }
     
     public int getArtistId() {
         if (mCursor == null) {
             return -1;
         }
-        return mCursor.getInt(mCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST_ID));
+        return mCursor.getInt(mCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST_ID));
     }
 
     public String getAlbumName() {
         if (mCursor == null) {
             return null;
         }
-        return mCursor.getString(mCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM));
+        return mCursor.getString(mCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM));
     }
 
     public int getAlbumId() {
         if (mCursor == null) {
             return -1;
         }
-        return mCursor.getInt(mCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID));
+        return mCursor.getInt(mCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID));
     }
 
     public String getTrackName() {
         if (mCursor == null) {
             return null;
         }
-        return mCursor.getString(mCursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
+        return mCursor.getString(mCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE));
     }
 
     
@@ -1513,6 +1551,10 @@ public class MediaPlaybackService extends Service {
         public long seek(long whereto) {
             mMediaPlayer.seekTo((int) whereto);
             return whereto;
+        }
+
+        public void setVolume(float vol) {
+            mMediaPlayer.setVolume(vol, vol);
         }
     }
 

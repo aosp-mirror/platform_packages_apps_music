@@ -34,8 +34,10 @@ import android.os.IBinder;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class MusicBrowserActivity extends Activity
@@ -87,10 +89,65 @@ public class MusicBrowserActivity extends Activity
         mTitle = (TextView) mNowPlayingView.findViewById(R.id.title);
         mArtist = (TextView) mNowPlayingView.findViewById(R.id.artist);
         
-        findViewById(R.id.browse_button).setOnClickListener(this);
-        findViewById(R.id.albums_button).setOnClickListener(this);
-        findViewById(R.id.tracks_button).setOnClickListener(this);
-        findViewById(R.id.playlists_button).setOnClickListener(this);
+        ImageButton b = (ImageButton) findViewById(R.id.browse_button); 
+        b.setOnClickListener(this);
+        b.setOnTouchListener(mMarqueeEnablerTouch);
+        b.setOnFocusChangeListener(mMarqueeEnablerFocus);
+        
+        b = (ImageButton) findViewById(R.id.albums_button);
+        b.setOnClickListener(this);
+        b.setOnTouchListener(mMarqueeEnablerTouch);
+        b.setOnFocusChangeListener(mMarqueeEnablerFocus);
+
+        b = (ImageButton) findViewById(R.id.tracks_button);
+        b.setOnClickListener(this);
+        b.setOnTouchListener(mMarqueeEnablerTouch);
+        b.setOnFocusChangeListener(mMarqueeEnablerFocus);
+
+        b = (ImageButton) findViewById(R.id.playlists_button);
+        b.setOnClickListener(this);
+        b.setOnTouchListener(mMarqueeEnablerTouch);
+        b.setOnFocusChangeListener(mMarqueeEnablerFocus);
+    }
+    
+    private View.OnTouchListener mMarqueeEnablerTouch = new View.OnTouchListener() {
+
+        public boolean onTouch(View v, MotionEvent event) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    doMarquee(v, true);
+                    break;
+                case MotionEvent.ACTION_CANCEL:
+                case MotionEvent.ACTION_UP:
+                    doMarquee(v, false);
+                    break;
+            }
+            return false;
+        }
+    };
+    
+    private View.OnFocusChangeListener mMarqueeEnablerFocus = new View.OnFocusChangeListener() {
+
+        public void onFocusChange(View v, boolean hasFocus) {
+            doMarquee(v, hasFocus);
+        }
+    };
+    
+    private void doMarquee(View v, boolean hasFocus) {
+        switch (v.getId()) {
+            case R.id.browse_button:
+                findViewById(R.id.artists_label).setSelected(hasFocus);
+                break;
+            case R.id.tracks_button:
+                findViewById(R.id.tracks_label).setSelected(hasFocus);
+                break;
+            case R.id.albums_button:
+                findViewById(R.id.albums_label).setSelected(hasFocus);
+                break;
+            case R.id.playlists_button:
+                findViewById(R.id.playlists_label).setSelected(hasFocus);
+                break;
+          }
     }
 
     private void updateMenu() {

@@ -65,6 +65,10 @@ public class CreatePlaylist extends Activity
         });
         
         String defaultname = icicle != null ? icicle.getString("defaultname") : makePlaylistName();
+        if (defaultname == null) {
+            finish();
+            return;
+        }
         String promptformat = getString(R.string.create_playlist_create_text_prompt);
         String prompt = String.format(promptformat, defaultname);
         mPrompt.setText(prompt);
@@ -131,6 +135,10 @@ public class CreatePlaylist extends Activity
             cols, whereclause, null,
             MediaStore.Audio.Playlists.NAME);
 
+        if (c == null) {
+            return null;
+        }
+        
         String suggestedname;
         suggestedname = String.format(template, num++);
         
@@ -171,7 +179,7 @@ public class CreatePlaylist extends Activity
                     values.put(MediaStore.Audio.Playlists.NAME, name);
                     uri = resolver.insert(MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI, values);
                 }
-                setResult(RESULT_OK, (new Intent()).setAction(uri.toString()));
+                setResult(RESULT_OK, (new Intent()).setData(uri));
                 finish();
             }
         }

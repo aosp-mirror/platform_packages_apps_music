@@ -16,15 +16,17 @@
 
 package com.android.music;
 
-import java.text.Collator;
-
 import android.app.ExpandableListActivity;
+import android.app.SearchManager;
+import android.content.AsyncQueryHandler;
+import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.BroadcastReceiver;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.database.CursorWrapper;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
@@ -43,11 +45,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
+import android.widget.CursorAdapter;
+import android.widget.CursorTreeAdapter;
+import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.SectionIndexer;
 import android.widget.SimpleCursorTreeAdapter;
 import android.widget.TextView;
+import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
+
+import java.text.Collator;
 
 
 public class ArtistAlbumBrowserActivity extends ExpandableListActivity
@@ -57,6 +65,10 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
     private String mCurrentArtistName;
     private String mCurrentAlbumId;
     private String mCurrentAlbumName;
+    private String mCurrentArtistNameForAlbum;
+    private MyQueryHandler mQueryHandler;
+    private String mFilterString = "";
+    private final static int SEARCH = CHILD_MENU_BASE;
 
     public ArtistAlbumBrowserActivity()
     {
@@ -83,7 +95,36 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         f.addDataScheme("file");
         registerReceiver(mScanListener, f);
 
-        init();
+        mQueryHandler = new MyQueryHandler(getContentResolver());
+        mArtistCursor = (Cursor) getLastNonConfigurationInstance();
+        if (mArtistCursor == null) {
+            //Log.i("@@@", "starting query");
+            setTitle(R.string.working_artists);
+            getArtistCursor(mQueryHandler);
+        } else {
+            init(mArtistCursor);
+            setTitle();
+        }
+    }
+
+    @Override
+    public Object onRetainNonConfigurationInstance() {
+        Cursor c = mArtistCursor;
+        mArtistCursor = null;
+        return c;
+    }
+    
+    class MyQueryHandler extends AsyncQueryHandler {
+        MyQueryHandler(ContentResolver res) {
+            super(res);
+        }
+        
+        @Override
+        protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
+            //Log.i("@@@", "query complete");
+            init(cursor);
+            setTitle();
+        }
     }
     
     @Override
@@ -103,6 +144,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         MusicUtils.unbindFromService(this);
         if (mArtistCursor != null) {
             mArtistCursor.close();
+            mArtistCursor = null;
         }
         unregisterReceiver(mScanListener);
         super.onDestroy();
@@ -138,8 +180,10 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
     };
     
     private Handler mReScanHandler = new Handler() {
+        @Override
         public void handleMessage(Message msg) {
-            init();
+            setTitle();
+            getArtistCursor(mQueryHandler);
             if (mArtistCursor == null) {
                 sendEmptyMessageDelayed(0, 1000);
             }
@@ -153,9 +197,9 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         super.onPause();
     }
     
-    public void init() {
+    public void init(Cursor c) {
 
-        mArtistCursor = getArtistCursor(null);
+        mArtistCursor = c;
 
         if (mArtistCursor == null) {
             MusicUtils.displayDatabaseError(this);
@@ -165,23 +209,35 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         setContentView(android.R.layout.expandable_list_content);
 
         // Map Cursor columns to views defined in media_list_item.xml
-        ArtistAlbumListAdapter adapter = new ArtistAlbumListAdapter(
-                this,
-                mArtistCursor,
-                R.layout.track_list_item_group,
-                new String[] {},
-                new int[] {},
-                R.layout.track_list_item_child,
-                new String[] {},
-                new int[] {});
-
-        setTitle(R.string.artists_title);
-        setListAdapter(adapter);
+        CursorTreeAdapter adapter = (CursorTreeAdapter) getExpandableListAdapter();
+        if (adapter == null) {
+            adapter = new ArtistAlbumListAdapter(
+                    this,
+                    mArtistCursor,
+                    R.layout.track_list_item_group,
+                    new String[] {},
+                    new int[] {},
+                    R.layout.track_list_item_child,
+                    new String[] {},
+                    new int[] {});
+            setListAdapter(adapter);
+        } else {
+            adapter.changeCursor(mArtistCursor);
+        }
         ExpandableListView lv = getExpandableListView();
+        lv.setFastScrollEnabled(true);
         lv.setOnCreateContextMenuListener(this);
         lv.setTextFilterEnabled(true);
     }
 
+    private void setTitle() {
+      if (mArtistCursor != null && mArtistCursor.getCount() > 0) {
+        setTitle(R.string.artists_title);
+    } else {
+        setTitle(R.string.no_artists_title);
+    }
+    }
+    
     @Override
     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
@@ -249,6 +305,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         SubMenu sub = menu.addSubMenu(0, ADD_TO_PLAYLIST, 0, R.string.add_to_playlist);
         MusicUtils.makePlaylistMenu(this, sub);
         menu.add(0, DELETE_ITEM, 0, R.string.delete_item);
+        menu.add(0, SEARCH, 0, R.string.search_title);
         
         ExpandableListContextMenuInfo mi = (ExpandableListContextMenuInfo) menuInfoIn;
         
@@ -279,6 +336,10 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             mCurrentArtistId = null;
             mCurrentAlbumId = Long.valueOf(mi.id).toString();
             mCurrentAlbumName = c.getString(c.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM));
+            gpos = gpos - getExpandableListView().getHeaderViewsCount();
+            mArtistCursor.moveToPosition(gpos);
+            mCurrentArtistNameForAlbum = mArtistCursor.getString(
+                    mArtistCursor.getColumnIndexOrThrow(MediaStore.Audio.Artists.ARTIST));
             menu.setHeaderTitle(mCurrentAlbumName);
         }
     }
@@ -344,10 +405,39 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
                 startActivityForResult(intent, -1);
                 return true;
             }
+            
+            case SEARCH:
+                doSearch();
+                return true;
         }
         return super.onContextItemSelected(item);
     }
 
+    void doSearch() {
+        CharSequence title = null;
+        String query = null;
+        
+        Intent i = new Intent();
+        i.setAction(MediaStore.INTENT_ACTION_MEDIA_SEARCH);
+        
+        if (mCurrentArtistId != null) {
+            title = mCurrentArtistName;
+            query = mCurrentArtistName;
+            i.putExtra(MediaStore.EXTRA_MEDIA_ARTIST, mCurrentArtistName);
+            i.putExtra(MediaStore.EXTRA_MEDIA_FOCUS, MediaStore.Audio.Artists.ENTRY_CONTENT_TYPE);
+        } else {
+            title = mCurrentAlbumName;
+            query = mCurrentArtistNameForAlbum + " " + mCurrentAlbumName;
+            i.putExtra(MediaStore.EXTRA_MEDIA_ARTIST, mCurrentArtistNameForAlbum);
+            i.putExtra(MediaStore.EXTRA_MEDIA_ALBUM, mCurrentAlbumName);
+            i.putExtra(MediaStore.EXTRA_MEDIA_FOCUS, MediaStore.Audio.Albums.ENTRY_CONTENT_TYPE);
+        }
+        title = getString(R.string.mediasearch, title);
+        i.putExtra(SearchManager.QUERY, query);
+
+        startActivity(Intent.createChooser(i, title));
+    }
+    
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         switch (requestCode) {
@@ -355,13 +445,13 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
                 if (resultCode == RESULT_CANCELED) {
                     finish();
                 } else {
-                    init();
+                    getArtistCursor(mQueryHandler);
                 }
                 break;
 
             case NEW_PLAYLIST:
                 if (resultCode == RESULT_OK) {
-                    Uri uri = Uri.parse(intent.getAction());
+                    Uri uri = intent.getData();
                     if (uri != null) {
                         int [] list = null;
                         if (mCurrentArtistId != null) {
@@ -376,15 +466,15 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         }
     }
 
-    private Cursor getArtistCursor(String filterstring) {
+    private Cursor getArtistCursor(AsyncQueryHandler async) {
 
         StringBuilder where = new StringBuilder();
         where.append(MediaStore.Audio.Artists.ARTIST + " != ''");
         
         // Add in the filtering constraints
         String [] keywords = null;
-        if (filterstring != null) {
-            String [] searchWords = filterstring.split(" ");
+        if (mFilterString != null) {
+            String [] searchWords = mFilterString.split(" ");
             keywords = new String[searchWords.length];
             Collator col = Collator.getInstance();
             col.setStrength(Collator.PRIMARY);
@@ -404,13 +494,18 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
                 MediaStore.Audio.Artists.NUMBER_OF_ALBUMS,
                 MediaStore.Audio.Artists.NUMBER_OF_TRACKS
         };
-        Cursor ret;
-        ret = MusicUtils.query(this, MediaStore.Audio.Artists.EXTERNAL_CONTENT_URI,
-                cols, whereclause , keywords, MediaStore.Audio.Artists.ARTIST_KEY);
+        Cursor ret = null;
+        if (async != null) {
+            async.startQuery(0, null, MediaStore.Audio.Artists.EXTERNAL_CONTENT_URI,
+                    cols, whereclause , keywords, MediaStore.Audio.Artists.ARTIST_KEY);
+        } else {
+            ret = MusicUtils.query(this, MediaStore.Audio.Artists.EXTERNAL_CONTENT_URI,
+                    cols, whereclause , keywords, MediaStore.Audio.Artists.ARTIST_KEY);
+        }
         return ret;
     }
     
-    class ArtistAlbumListAdapter extends SimpleCursorTreeAdapter {
+    class ArtistAlbumListAdapter extends SimpleCursorTreeAdapter implements SectionIndexer {
         
         private final Drawable mNowPlayingOverlay;
         private final BitmapDrawable mDefaultAlbumIcon;
@@ -418,12 +513,15 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         private final int mGroupArtistIdx;
         private final int mGroupAlbumIdx;
         private final int mGroupSongIdx;
+        private final Context mContext;
         private final Resources mResources;
         private final String mAlbumSongSeparator;
         private final String mUnknownAlbum;
         private final String mUnknownArtist;
         private final StringBuilder mBuffer = new StringBuilder();
         private final Object[] mFormatArgs = new Object[1];
+        private final Object[] mFormatArgs3 = new Object[3];
+        private final MusicAlphabetIndexer mIndexer;
         
         class ViewHolder {
             TextView line1;
@@ -448,10 +546,14 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             mGroupAlbumIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Artists.NUMBER_OF_ALBUMS);
             mGroupSongIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Artists.NUMBER_OF_TRACKS);
             
+            mContext = context;
             mResources = context.getResources();
             mAlbumSongSeparator = context.getString(R.string.albumsongseparator);
             mUnknownAlbum = context.getString(R.string.unknown_album_name);
             mUnknownArtist = context.getString(R.string.unknown_artist_name);
+            
+            mIndexer = new MusicAlphabetIndexer(cursor, mGroupArtistIdx, 
+                    mResources.getString(com.android.internal.R.string.fast_scroll_alphabet));
         }
 
         @Override
@@ -529,6 +631,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             vh.line1.setText(displayname);
 
             int numsongs = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.NUMBER_OF_SONGS));
+            int numartistsongs = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.NUMBER_OF_SONGS_FOR_ARTIST));
             int first = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.FIRST_YEAR));
             int last = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.LAST_YEAR));
 
@@ -541,12 +644,20 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             if (numsongs == 1) {
                 builder.append(context.getString(R.string.onesong));
             } else {
-                final Object[] args = mFormatArgs;
-                args[0] = numsongs;
-                builder.append(mResources.getQuantityString(R.plurals.Nsongs, numsongs, args));
+                if (numsongs == numartistsongs) {
+                    final Object[] args = mFormatArgs;
+                    args[0] = numsongs;
+                    builder.append(mResources.getQuantityString(R.plurals.Nsongs, numsongs, args));
+                } else {
+                    final Object[] args = mFormatArgs3;
+                    args[0] = numsongs;
+                    args[1] = numartistsongs;
+                    args[2] = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Artists.ARTIST));
+                    builder.append(mResources.getQuantityString(R.plurals.Nsongscomp, numsongs, args));
+                }
             }
             if (first != 0 && last != 0) {
-                builder.append(mAlbumSongSeparator);
+                builder.append("\n");
                 
                 builder.append(first);
                 if (first != last) {
@@ -560,7 +671,8 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             ImageView iv = vh.icon;
             // We don't actually need the path to the thumbnail file,
             // we just use it to see if there is album art or not
-            String art = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Albums.ALBUM_ART));
+            String art = cursor.getString(cursor.getColumnIndexOrThrow(
+                    MediaStore.Audio.Albums.ALBUM_ART));
             if (art == null || art.length() == 0) {
                 iv.setBackgroundDrawable(mDefaultAlbumIcon);
                 iv.setImageDrawable(null);
@@ -589,27 +701,84 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             String[] cols = new String[] {
                     MediaStore.Audio.Albums._ID,
                     MediaStore.Audio.Albums.ALBUM,
-                    MediaStore.Audio.Albums.ARTIST,
                     MediaStore.Audio.Albums.NUMBER_OF_SONGS,
+                    MediaStore.Audio.Albums.NUMBER_OF_SONGS_FOR_ARTIST,
                     MediaStore.Audio.Albums.FIRST_YEAR,
                     MediaStore.Audio.Albums.LAST_YEAR,
                     MediaStore.Audio.Albums.ALBUM_ART
             };
-            return MusicUtils.query(ArtistAlbumBrowserActivity.this,
+            Cursor c = MusicUtils.query(ArtistAlbumBrowserActivity.this,
                     MediaStore.Audio.Artists.Albums.getContentUri("external", id),
                     cols, null, null, MediaStore.Audio.Albums.DEFAULT_SORT_ORDER);
+            
+            class MyCursorWrapper extends CursorWrapper {
+                String mArtistName;
+                int mMagicColumnIdx;
+                MyCursorWrapper(Cursor c, String artist) {
+                    super(c);
+                    mArtistName = artist;
+                    if (MediaFile.UNKNOWN_STRING.equals(mArtistName)) {
+                        mArtistName = mUnknownArtist;
+                    }
+                    mMagicColumnIdx = c.getColumnCount();
+                }
+                
+                @Override
+                public String getString(int columnIndex) {
+                    if (columnIndex != mMagicColumnIdx) {
+                        return super.getString(columnIndex);
+                    }
+                    return mArtistName;
+                }
+                
+                @Override
+                public int getColumnIndexOrThrow(String name) {
+                    if (name.equals(MediaStore.Audio.Albums.ARTIST)) {
+                        return mMagicColumnIdx;
+                    }
+                    return super.getColumnIndexOrThrow(name); 
+                }
+                
+                @Override
+                public String getColumnName(int idx) {
+                    if (idx != mMagicColumnIdx) {
+                        return super.getColumnName(idx);
+                    }
+                    return MediaStore.Audio.Albums.ARTIST;
+                }
+                
+                @Override
+                public int getColumnCount() {
+                    return super.getColumnCount() + 1;
+                }
+            }
+            return new MyCursorWrapper(c, groupCursor.getString(mGroupArtistIdx));
         }
 
         @Override
         public void changeCursor(Cursor cursor) {
             super.changeCursor(cursor);
             mArtistCursor = cursor;
+            mIndexer.setCursor(cursor);
         }
+        
         @Override
         public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
-            return getArtistCursor(constraint.toString());
+            mFilterString = constraint.toString();
+            return getArtistCursor(null);
         }
 
+        public Object[] getSections() {
+            return mIndexer.getSections();
+        }
+        
+        public int getPositionForSection(int sectionIndex) {
+            return mIndexer.getPositionForSection(sectionIndex);
+        }
+        
+        public int getSectionForPosition(int position) {
+            return 0;
+        }
     }
     
     private Cursor mArtistCursor;

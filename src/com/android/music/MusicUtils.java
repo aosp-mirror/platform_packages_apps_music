@@ -80,8 +80,8 @@ public class MusicUtils {
         public final static int SHUFFLE_ALL = 9;
         public final static int DELETE_ITEM = 10;
         public final static int SCAN_DONE = 11;
-        public final static int CHILD_MENU_BASE = 12;
-        public final static int QUEUE = 13;
+        public final static int QUEUE = 12;
+        public final static int CHILD_MENU_BASE = 13; // this should be the last item
     }
     
     public static String makeAlbumsSongsLabel(Context context, int numalbums, int numsongs, boolean isUnknown) {
@@ -135,6 +135,11 @@ public class MusicUtils {
             return;
         }
         context.unbindService(sb);
+        if (sConnectionMap.isEmpty()) {
+            // presumably there is nobody interested in the service at this point,
+            // so don't hang on to the ServiceConnection
+            sService = null;
+        }
     }
 
     private static class ServiceBinder implements ServiceConnection {
@@ -223,8 +228,10 @@ public class MusicUtils {
         int len = cursor.getCount();
         int [] list = new int[len];
         cursor.moveToFirst();
-        int colidx = cursor.getColumnIndex(MediaStore.Audio.Playlists.Members.AUDIO_ID);
-        if (colidx < 0) {
+        int colidx = -1;
+        try {
+            colidx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Playlists.Members.AUDIO_ID);
+        } catch (IllegalArgumentException ex) {
             colidx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID);
         }
         for (int i = 0; i < len; i++) {
@@ -355,19 +362,9 @@ public class MusicUtils {
     }
 
     public static void clearPlaylist(Context context, int plid) {
-        final String[] ccols = new String[] { MediaStore.Audio.Playlists.Members._ID };
-        Cursor cursor = query(context, MediaStore.Audio.Playlists.Members.getContentUri("external", plid),
-                ccols, null, null, MediaStore.Audio.Playlists.Members.DEFAULT_SORT_ORDER);
         
-        if (cursor == null) {
-            return;
-        }
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            cursor.deleteRow();
-        }
-        cursor.commitUpdates();
-        cursor.close();
+        Uri uri = MediaStore.Audio.Playlists.Members.getContentUri("external", plid);
+        context.getContentResolver().delete(uri, null, null);
         return;
     }
     
@@ -426,7 +423,6 @@ public class MusicUtils {
                     c.moveToNext();
                 }
             }
-            c.commitUpdates();
             c.close();
         }
 
@@ -501,7 +497,6 @@ public class MusicUtils {
     
     public static boolean isMediaScannerScanning(Context context) {
         boolean result = false;
-        Uri uri = MediaStore.getMediaScannerUri();
         Cursor cursor = query(context, MediaStore.getMediaScannerUri(), 
                 new String [] { MediaStore.MEDIA_SCANNER_VOLUME }, null, null, null);
         if (cursor != null) {
@@ -795,7 +790,8 @@ public class MusicUtils {
                     // finally rescale to exactly the size we need
                     if (sBitmapOptionsCache.outWidth != w || sBitmapOptionsCache.outHeight != h) {
                         Bitmap tmp = Bitmap.createScaledBitmap(b, w, h, true);
-                        b.recycle();
+                        // Bitmap.createScaledBitmap() can return the same bitmap
+                        if (tmp != b) b.recycle();
                         b = tmp;
                     }
                 }

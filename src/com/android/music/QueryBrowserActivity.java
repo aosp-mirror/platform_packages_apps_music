@@ -18,9 +18,13 @@ package com.android.music;
 
 import android.app.ListActivity;
 import android.app.SearchManager;
+import android.content.AsyncQueryHandler;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import com.android.internal.database.ArrayListCursor;
+import com.android.music.TrackBrowserActivity.MyQueryHandler;
+
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.media.AudioManager;
@@ -52,7 +56,8 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
     private final static int PLAY_ALBUM = 5;
     private final static int EXPLORE_ALBUM = 6;
     private final static int REQUERY = 3;
-    private String mSearchString = null;
+    private MyQueryHandler mQueryHandler;
+    private String mFilterString = "";
 
     public QueryBrowserActivity()
     {
@@ -68,29 +73,57 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
         
         if (icicle == null) {
             Intent intent = getIntent();
-            mSearchString = intent.getStringExtra(SearchManager.QUERY);
+            mFilterString = intent.getStringExtra(SearchManager.QUERY);
         }
-        if (mSearchString == null) {
-            mSearchString = "";
+        if (mFilterString == null) {
+            mFilterString = "";
         }
-        init();
+
+        setContentView(R.layout.query_activity);
+        mTrackList = (ListView) findViewById(android.R.id.list);
+
+        mQueryHandler = new MyQueryHandler(getContentResolver());
+        mQueryCursor = (Cursor) getLastNonConfigurationInstance();
+        if (mQueryCursor == null) {
+            //Log.i("@@@", "starting query");
+            setTitle(R.string.working_songs);
+            getQueryCursor(mQueryHandler);
+        } else {
+            init(mQueryCursor);
+        }
     }
     
+    @Override
+    public Object onRetainNonConfigurationInstance() {
+        Cursor c = mQueryCursor;
+        mQueryCursor = null;
+        return c;
+    }
+    
+    class MyQueryHandler extends AsyncQueryHandler {
+        MyQueryHandler(ContentResolver res) {
+            super(res);
+        }
+        
+        @Override
+        protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
+            Log.i("@@@", "query complete");
+            init(cursor);
+        }
+    }
+
     @Override
     public void onDestroy() {
         MusicUtils.unbindFromService(this);
         super.onDestroy();
+        if (mQueryCursor != null) {
+            mQueryCursor.close();
+        }
     }
     
-    public void init() {
-        // Set the layout for this activity.  You can find it
-        // in assets/res/any/layout/media_picker_activity.xml
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.query_activity);
-        setTitle(R.string.search_title);
-        mTrackList = (ListView) findViewById(android.R.id.list);
+    public void init(Cursor c) {
 
-        mQueryCursor = getQueryCursor(mSearchString.length() == 0 ? "" : null);
+        mQueryCursor = c;
 
         ListView lv = getListView();
         lv.setTextFilterEnabled(true);
@@ -112,7 +145,7 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
 
         setListAdapter(adapter);
 
-        if (mSearchString.length() != 0) {
+        if (mFilterString.length() != 0) {
             // Hack. Can be removed once ListView supports starting filtering with a given string
             lv.setOnHierarchyChangeListener(mHierarchyListener);
         }
@@ -122,7 +155,7 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
         public void onChildViewAdded(View parent, View child) {
             ((ListView)parent).setOnHierarchyChangeListener(null);
             // need to do this here to be sure all the views have been initialized
-            startFilteringWithString(mSearchString);
+            startFilteringWithString(mFilterString);
         }
 
         public void onChildViewRemoved(View parent, View child) {
@@ -162,7 +195,8 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
         if (mQueryCursor.isBeforeFirst() || mQueryCursor.isAfterLast()) {
             return;
         }
-        String selectedType = mQueryCursor.getString(mQueryCursor.getColumnIndex(MediaStore.Audio.Media.MIME_TYPE));
+        String selectedType = mQueryCursor.getString(mQueryCursor.getColumnIndexOrThrow(
+                MediaStore.Audio.Media.MIME_TYPE));
         
         if ("artist".equals(selectedType)) {
             Intent intent = new Intent(Intent.ACTION_PICK);
@@ -195,7 +229,7 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
         return super.onOptionsItemSelected(item);
     }
 
-    private Cursor getQueryCursor(String filterstring) {
+    private Cursor getQueryCursor(AsyncQueryHandler async) {
         String[] ccols = new String[] {
                 "_id",   // this will be the artist, album or track ID
                 MediaStore.Audio.Media.MIME_TYPE, // mimetype of audio file, or "artist" or "album"
@@ -203,22 +237,17 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
                 "data1",
                 "data2"
         };
-        if (filterstring == null) {
-            ArrayList<ArrayList> placeholder = new ArrayList<ArrayList>();
-            ArrayList<Object> row = new ArrayList<Object>(5);
-            row.add(-1);
-            row.add("");
-            row.add("");
-            row.add("");
-            row.add("");
-            placeholder.add(row);
-            return new ArrayListCursor(ccols, placeholder);
-        }
+
         Uri search = Uri.parse("content://media/external/audio/" + 
-                SearchManager.SUGGEST_URI_PATH_QUERY + "/" + Uri.encode(filterstring));
+                SearchManager.SUGGEST_URI_PATH_QUERY + "/" + Uri.encode(mFilterString));
         
-        return MusicUtils.query(this, search, ccols, null, null, null);
-        
+        Cursor ret = null;
+        if (async != null) {
+            async.startQuery(0, null, search, ccols, null, null, null);
+        } else {
+            ret = MusicUtils.query(this, search, ccols, null, null, null);
+        }
+        return ret;
     }
     
     class QueryListAdapter extends SimpleCursorAdapter {
@@ -241,22 +270,24 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
             p.width = ViewGroup.LayoutParams.WRAP_CONTENT;
             p.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             
-            String mimetype = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.MIME_TYPE));
+            String mimetype = cursor.getString(cursor.getColumnIndexOrThrow(
+                    MediaStore.Audio.Media.MIME_TYPE));
             
             if (mimetype == null) {
                 mimetype = "audio/";
             }
             if (mimetype.equals("artist")) {
                 iv.setImageResource(R.drawable.ic_search_category_music_artist);
-                String name = cursor.getString(cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow(
+                        SearchManager.SUGGEST_COLUMN_TEXT_1));
                 String displayname = name;
                 if (name.equals(MediaFile.UNKNOWN_STRING)) {
                     displayname = context.getString(R.string.unknown_artist_name);
                 }
                 tv1.setText(displayname);
 
-                int numalbums = cursor.getInt(cursor.getColumnIndex("data1"));
-                int numsongs = cursor.getInt(cursor.getColumnIndex("data2"));
+                int numalbums = cursor.getInt(cursor.getColumnIndexOrThrow("data1"));
+                int numsongs = cursor.getInt(cursor.getColumnIndexOrThrow("data2"));
                 
                 String songs_albums = MusicUtils.makeAlbumsSongsLabel(context,
                         numalbums, numsongs, name.equals(MediaFile.UNKNOWN_STRING));
@@ -265,14 +296,15 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
             
             } else if (mimetype.equals("album")) {
                 iv.setImageResource(R.drawable.ic_search_category_music_album);
-                String name = cursor.getString(cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow(
+                        SearchManager.SUGGEST_COLUMN_TEXT_1));
                 String displayname = name;
                 if (name.equals(MediaFile.UNKNOWN_STRING)) {
                     displayname = context.getString(R.string.unknown_album_name);
                 }
                 tv1.setText(displayname);
                 
-                name = cursor.getString(cursor.getColumnIndex("data1"));
+                name = cursor.getString(cursor.getColumnIndexOrThrow("data1"));
                 displayname = name;
                 if (name.equals(MediaFile.UNKNOWN_STRING)) {
                     displayname = context.getString(R.string.unknown_artist_name);
@@ -283,14 +315,15 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
                     mimetype.equals("application/ogg") ||
                     mimetype.equals("application/x-ogg")) {
                 iv.setImageResource(R.drawable.ic_search_category_music_song);
-                String name = cursor.getString(cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow(
+                        SearchManager.SUGGEST_COLUMN_TEXT_1));
                 tv1.setText(name);
 
-                String displayname = cursor.getString(cursor.getColumnIndex("data1"));
+                String displayname = cursor.getString(cursor.getColumnIndexOrThrow("data1"));
                 if (name.equals(MediaFile.UNKNOWN_STRING)) {
                     displayname = context.getString(R.string.unknown_artist_name);
                 }
-                name = cursor.getString(cursor.getColumnIndex("data2"));
+                name = cursor.getString(cursor.getColumnIndexOrThrow("data2"));
                 if (name.equals(MediaFile.UNKNOWN_STRING)) {
                     name = context.getString(R.string.unknown_artist_name);
                 }
@@ -304,7 +337,8 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
         }
         @Override
         public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
-            return getQueryCursor(constraint.toString());
+            mFilterString = constraint.toString();
+            return getQueryCursor(null);
         }
     }
 

@@ -66,9 +66,7 @@ public class DeleteItems extends Activity
         String desc = b.getString("description");
         mItemList = b.getIntArray("items");
         
-        String promptformat = getString(R.string.delete_confirm_prompt);
-        String prompt = String.format(promptformat, desc);
-        mPrompt.setText(prompt);
+        mPrompt.setText(desc);
     }
     
     private View.OnClickListener mButtonClicked = new View.OnClickListener() {

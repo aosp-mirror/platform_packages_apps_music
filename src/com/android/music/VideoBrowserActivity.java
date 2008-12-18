@@ -51,8 +51,6 @@ public class VideoBrowserActivity extends ListActivity implements MusicUtils.Def
         // in assets/res/any/layout/media_picker_activity.xml
         setContentView(R.layout.media_picker_activity);
 
-        mTrackList = (ListView) findViewById(android.R.id.list);
-
         MakeCursor();
 
         if (mCursor == null) {
@@ -82,7 +80,7 @@ public class VideoBrowserActivity extends ListActivity implements MusicUtils.Def
     {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         mCursor.moveToPosition(position);
-        String type = mCursor.getString(mCursor.getColumnIndex(MediaStore.Video.Media.MIME_TYPE));
+        String type = mCursor.getString(mCursor.getColumnIndexOrThrow(MediaStore.Video.Media.MIME_TYPE));
         intent.setDataAndType(ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, id), type);
         
         startActivity(intent);
@@ -107,7 +105,6 @@ public class VideoBrowserActivity extends ListActivity implements MusicUtils.Def
         }
     }
 
-    private ListView mTrackList;
     private Cursor mCursor;
     private String mWhereClause;
     private String mSortOrder;

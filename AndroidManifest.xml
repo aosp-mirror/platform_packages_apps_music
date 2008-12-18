@@ -81,6 +81,7 @@
                 <data android:mimeType="audio/x-mp3"/>
                 <data android:mimeType="audio/mpeg"/>
                 <data android:mimeType="audio/mp4"/>
+                <data android:mimeType="audio/mp4a-latm"/>
             </intent-filter>
         </activity>
         <activity android:name="ArtistAlbumBrowserActivity">
@@ -186,35 +187,6 @@
         <activity android:name="WeekSelector" android:theme="@android:style/Theme.Dialog" />
         <activity android:name="DeleteItems" android:theme="@android:style/Theme.Dialog" />
         <activity android:name="ScanningProgress" android:theme="@android:style/Theme.Dialog" />
-        <activity android:name="MovieView"
-                android:label="@string/movieviewlabel"
-                android:screenOrientation="sensor"
-                android:configChanges="orientation|keyboardHidden"
-                android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
-                android:taskAffinity="android.task.video"
-                android:process=":MovieView" >
-             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="rtsp" />
-             </intent-filter>
-             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="video/*" />
-             </intent-filter>
-             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="http" />
-                <data android:mimeType="video/mp4" />
-                <data android:mimeType="video/3gp" />
-                <data android:mimeType="video/3gpp" />
-                <data android:mimeType="video/3gpp2" />
-             </intent-filter>
-        </activity>
         <service android:name="MediaPlaybackService" android:exported="true" />
     </application>
 </manifest>

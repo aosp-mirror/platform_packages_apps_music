@@ -17,12 +17,13 @@
 */
 -->
 
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Prompt in dialog when creating a playlist and the keyboard is closed. -->
     <string name="create_playlist_create_text_prompt">Open the keyboard to give your new Playlist a name, or select Save to name it \"%s\".</string>
 
-    <!-- When the entered name is the same as the old one, show this -->
-    <string name="rename_playlist_same_prompt">Open the keyboard to give playlist \"%s\" a new name.</string>
-    <!-- When the entered name is different, show this -->
-    <string name="rename_playlist_diff_prompt">Open the keyboard to give playlist \"%s\" a new name, or select Save to name it \"%s\".</string>
+    <!-- Prompt in dialog when renaming a playlist, and the entered name is the same as the old one. -->
+    <string name="rename_playlist_same_prompt">Open the keyboard to give playlist \"<xliff:g id="playlist">%s</xliff:g>\" a new name.</string>
+    <!-- Prompt in dialog when renaming a playlist, and the entered name is different from the old one. -->
+    <string name="rename_playlist_diff_prompt">Open the keyboard to give playlist \"<xliff:g id="playlist">%s</xliff:g>\" a new name, or select Save to name it \"%s\".</string>
 </resources>
 

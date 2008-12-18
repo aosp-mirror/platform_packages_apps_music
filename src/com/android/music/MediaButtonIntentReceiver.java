@@ -47,7 +47,7 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
                         Intent i = new Intent();
                         i.putExtra("autoshuffle", "true");
                         i.setClass(context, MusicBrowserActivity.class);
-                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         context.startActivity(i);
                         mLaunched = true;
                     }
@@ -72,21 +72,36 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
         // single quick press: pause/resume. 
         // double press: next track
         // long press: start auto-shuffle mode.
+        
+        String command = null;
+        switch (keycode) {
+            case KeyEvent.KEYCODE_HEADSETHOOK:
+            case KeyEvent.KEYCODE_PLAYPAUSE:
+                command = MediaPlaybackService.CMDTOGGLEPAUSE;
+                break;
+            case KeyEvent.KEYCODE_NEXTSONG:
+                command = MediaPlaybackService.CMDNEXT;
+                break;
+            case KeyEvent.KEYCODE_PREVIOUSSONG:
+                command = MediaPlaybackService.CMDPREVIOUS;
+                break;
+        }
 
-        if (keycode == KeyEvent.KEYCODE_HEADSETHOOK) {
+        if (command != null) {
             if (action == KeyEvent.ACTION_DOWN) {
                 if (!mDown) {
                     // only if this isn't a repeat event
                     
-                    // We're not using the original time of the event as the
-                    // base here, because in some cases it can take more than
-                    // one second for us to receive the event, in which case
-                    // we would go immediately to auto shuffle mode, even if
-                    // the user didn't long press.
-                    mHandler.sendMessageDelayed(
-                            mHandler.obtainMessage(MSG_LONGPRESS_TIMEOUT, context),
-                            LONG_PRESS_DELAY);
-
+                    if (MediaPlaybackService.CMDTOGGLEPAUSE.equals(command)) {
+                        // We're not using the original time of the event as the
+                        // base here, because in some cases it can take more than
+                        // one second for us to receive the event, in which case
+                        // we would go immediately to auto shuffle mode, even if
+                        // the user didn't long press.
+                        mHandler.sendMessageDelayed(
+                                mHandler.obtainMessage(MSG_LONGPRESS_TIMEOUT, context),
+                                LONG_PRESS_DELAY);
+                    }
                     
                     SharedPreferences pref = context.getSharedPreferences("Music", 
                             Context.MODE_WORLD_READABLE | Context.MODE_WORLD_WRITEABLE);
@@ -95,13 +110,12 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
                     // a command.
                     Intent i = new Intent(context, MediaPlaybackService.class);
                     i.setAction(MediaPlaybackService.SERVICECMD);
-                    if (eventtime - mLastClickTime < 300) {
+                    if (keycode == KeyEvent.KEYCODE_HEADSETHOOK && eventtime - mLastClickTime < 300) {
                         i.putExtra(MediaPlaybackService.CMDNAME, MediaPlaybackService.CMDNEXT);
                         context.startService(i);
                         mLastClickTime = 0;
                     } else {
-                        i.putExtra(MediaPlaybackService.CMDNAME,
-                                MediaPlaybackService.CMDTOGGLEPAUSE);
+                        i.putExtra(MediaPlaybackService.CMDNAME, command);
                         context.startService(i);
                         mLastClickTime = eventtime;
                     }

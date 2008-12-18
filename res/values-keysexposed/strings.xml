@@ -17,9 +17,12 @@
 */
 -->
 
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Prompt in dialog when creating a playlist. The user will enter the name of the playlist in a textfield underneath this prompt. -->
     <string name="create_playlist_create_text_prompt">Playlist name</string>
-    <string name="rename_playlist_same_prompt">Rename \"%s\" to</string>
-    <string name="rename_playlist_diff_prompt">Rename \"%s\" to</string>
+    <!-- Prompt in dialog when renaming a playlist, used when the current name and the new name are the same. The user will enter the new name of the playlist in a textfield underneath this prompt. -->
+    <string name="rename_playlist_same_prompt">Rename \"<xliff:g id="playlist">%s</xliff:g>\" to</string>
+    <!-- Prompt in dialog when renaming a playlist, used when the current name the new name are different. The user will enter the new name of the playlist in a textfield underneath this prompt. -->
+    <string name="rename_playlist_diff_prompt">Rename \"<xliff:g id="playlist">%s</xliff:g>\" to</string>
 </resources>
 

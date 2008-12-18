@@ -18,6 +18,7 @@ package com.android.music;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.SearchManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -39,6 +40,9 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
+import android.provider.MediaStore;
+import android.text.Layout;
+import android.text.TextUtils.TruncateAt;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -47,6 +51,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.SubMenu;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.Window;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.ImageButton;
@@ -57,7 +62,8 @@ import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
 
-public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs, View.OnTouchListener
+public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
+    View.OnTouchListener, View.OnLongClickListener
 {
     private static final int USE_AS_RINGTONE = CHILD_MENU_BASE;
     
@@ -105,15 +111,15 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs, 
 
         View v = (View)mArtistName.getParent(); 
         v.setOnTouchListener(this);
-        registerForContextMenu(v);
+        v.setOnLongClickListener(this);
 
         v = (View)mAlbumName.getParent();
         v.setOnTouchListener(this);
-        registerForContextMenu(v);
+        v.setOnLongClickListener(this);
 
         v = (View)mTrackName.getParent();
         v.setOnTouchListener(this);
-        registerForContextMenu(v);
+        v.setOnLongClickListener(this);
         
         mPrevButton = (RepeatingImageButton) findViewById(R.id.prev);
         mPrevButton.setOnClickListener(mPrevListener);
@@ -150,75 +156,149 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs, 
         }
     }
     
+    int mInitialX = -1;
+    int mLastX = -1;
+    int SLOP = ViewConfiguration.getTouchSlop();
+    int mTextWidth = 0;
+    int mViewWidth = 0;
+    boolean mDraggingLabel = false;
+    
+    TextView textViewForContainer(View v) {
+        View vv = v.findViewById(R.id.artistname);
+        if (vv != null) return (TextView) vv;
+        vv = v.findViewById(R.id.albumname);
+        if (vv != null) return (TextView) vv;
+        vv = v.findViewById(R.id.trackname);
+        if (vv != null) return (TextView) vv;
+        return null;
+    }
+    
     public boolean onTouch(View v, MotionEvent event) {
         int action = event.getAction();
+        TextView tv = textViewForContainer(v);
+        if (tv == null) {
+            return false;
+        }
         if (action == MotionEvent.ACTION_DOWN) {
             v.setBackgroundColor(0xff606060);
+            mInitialX = mLastX = (int) event.getX();
+            mDraggingLabel = false;
         } else if (action == MotionEvent.ACTION_UP ||
                 action == MotionEvent.ACTION_CANCEL) {
             v.setBackgroundColor(0);
+            if (mDraggingLabel) {
+                Message msg = mLabelScroller.obtainMessage(0, tv);
+                mLabelScroller.sendMessageDelayed(msg, 1000);
+            }
+        } else if (action == MotionEvent.ACTION_MOVE) {
+            if (mDraggingLabel) {
+                int scrollx = tv.getScrollX();
+                int x = (int) event.getX();
+                int delta = mLastX - x;
+                if (delta != 0) {
+                    mLastX = x;
+                    scrollx += delta;
+                    if (scrollx > mTextWidth) {
+                        // scrolled the text completely off the view to the left
+                        scrollx -= mTextWidth;
+                        scrollx -= mViewWidth;
+                    }
+                    if (scrollx < -mViewWidth) {
+                        // scrolled the text completely off the view to the right
+                        scrollx += mViewWidth;
+                        scrollx += mTextWidth;
+                    }
+                    tv.scrollTo(scrollx, 0);
+                }
+                return true;
+            }
+            int delta = mInitialX - (int) event.getX();
+            if (Math.abs(delta) > SLOP) {
+                // start moving
+                mLabelScroller.removeMessages(0, tv);
+                
+                // Only turn ellipsizing off when it's not already off, because it
+                // causes the scroll position to be reset to 0.
+                if (tv.getEllipsize() != null) {
+                    tv.setEllipsize(null);
+                }
+                Layout ll = tv.getLayout();
+                // layout might be null if the text just changed, or ellipsizing
+                // was just turned off
+                if (ll == null) {
+                    return false;
+                }
+                // get the non-ellipsized line width, to determine whether scrolling
+                // should even be allowed
+                mTextWidth = (int) tv.getLayout().getLineWidth(0);
+                mViewWidth = tv.getWidth();
+                if (mViewWidth > mTextWidth) {
+                    tv.setEllipsize(TruncateAt.END);
+                    v.cancelLongPress();
+                    return false;
+                }
+                mDraggingLabel = true;
+                tv.setHorizontalFadingEdgeEnabled(true);
+                v.cancelLongPress();
+                return true;
+            }
         }
         return false; 
     }
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfoIn) {
+    Handler mLabelScroller = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            TextView tv = (TextView) msg.obj;
+            int x = tv.getScrollX();
+            x = x * 3 / 4;
+            tv.scrollTo(x, 0);
+            if (x == 0) {
+                tv.setEllipsize(TruncateAt.END);
+            } else {
+                Message newmsg = obtainMessage(0, tv);
+                mLabelScroller.sendMessageDelayed(newmsg, 15);
+            }
+        }
+    };
+    
+    public boolean onLongClick(View view) {
 
-        /*
-         * A better way to do this would be to define a new "media search" intent (which
-         * would behave similar to a regular search intent), and have amazon, youtube, the
-         * browser and other suitable apps support it. Then we could just fire off the
-         * intent and let the user choose from the activity picker.
-         */
         CharSequence title = null;
+        String mime = null;
         String query = null;
+        
         CharSequence artist = mArtistName.getText();
         CharSequence album = mAlbumName.getText();
         CharSequence song = mTrackName.getText();
-        if (view.equals(mArtistName.getParent()) && artist.length() > 0) {
+        
+        if (view.equals(mArtistName.getParent())) {
             title = artist;
             query = artist.toString();
-        } else if (view.equals(mAlbumName.getParent()) &&
-                artist.length() > 0 && album.length() > 0) {
-            title = album ;
-            query = artist.toString() + " " + album.toString();
-        } else if (view.equals(mTrackName.getParent()) &&
-                artist.length() > 0 && song.length() > 0) {
+            mime = MediaStore.Audio.Artists.ENTRY_CONTENT_TYPE;
+        } else if (view.equals(mAlbumName.getParent())) {
+            title = album;
+            query = artist + " " + album;
+            mime = MediaStore.Audio.Albums.ENTRY_CONTENT_TYPE;
+        } else if (view.equals(mTrackName.getParent())) {
             title = song;
-            query = artist.toString() + " " + song.toString();
+            query = artist + " " + song;
+            mime = "audio/*"; // the specific type doesn't matter, so don't bother retrieving it
         } else {
-            return;
+            throw new RuntimeException("shouldn't be here");
         }
-        
         title = getString(R.string.mediasearch, title);
-        TextView tv = new TextView(this);
-        tv.setText(title);
-        tv.setTextSize(18);
-        tv.setPadding(8, 8, 8, 8);
-        menu.setHeaderView(tv);
-        //menu.setHeaderTitle(title);
-        
-        Intent i = new Intent();
-        i.setAction(Intent.ACTION_SEARCH);
-        i.setClassName("com.amazon.mp3", "com.amazon.mp3.android.client.SearchActivity");
-        i.putExtra("query", query);
-        PackageManager pm = getPackageManager();
-        ActivityInfo ai = i.resolveActivityInfo(pm, 0);
-        if ( ai != null) {
-            menu.add(R.string.mediasearch_amazon).setIntent(i);
-        }
-        
-        i = new Intent();
-        i.setAction(Intent.ACTION_WEB_SEARCH);
-        i.putExtra("query", query);
-        menu.add(R.string.mediasearch_google).setIntent(i);
 
-        i = new Intent();
-        i.setAction(Intent.ACTION_SEARCH);
-        i.setClassName("com.google.android.youtube", "com.google.android.youtube.QueryActivity");
-        i.putExtra("query", query);
-        menu.add(R.string.mediasearch_youtube).setIntent(i);
-        return;
+        Intent i = new Intent();
+        i.setAction(MediaStore.INTENT_ACTION_MEDIA_SEARCH);
+        i.putExtra(SearchManager.QUERY, query);
+        i.putExtra(MediaStore.EXTRA_MEDIA_ARTIST, artist);
+        i.putExtra(MediaStore.EXTRA_MEDIA_ALBUM, album);
+        i.putExtra(MediaStore.EXTRA_MEDIA_TITLE, song);
+        i.putExtra(MediaStore.EXTRA_MEDIA_FOCUS, mime);
+
+        startActivity(Intent.createChooser(i, title));
+        return true;
     }
 
     private OnSeekBarChangeListener mSeekListener = new OnSeekBarChangeListener() {
@@ -482,7 +562,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs, 
         }
         switch (requestCode) {
             case NEW_PLAYLIST:
-                Uri uri = Uri.parse(intent.getAction());
+                Uri uri = intent.getData();
                 if (uri != null) {
                     int [] list = new int[1];
                     list[0] = MusicUtils.getCurrentAudioId();
@@ -900,7 +980,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs, 
                     if (mService.getAudioId() >= 0 || mService.isPlaying() ||
                             mService.getPath() != null) {
                         // something is playing now, we're done
-                        if (mOneShot) {
+                        if (mOneShot || mService.getAudioId() < 0) {
                             mRepeatButton.setVisibility(View.INVISIBLE);
                             mShuffleButton.setVisibility(View.INVISIBLE);
                             mQueueButton.setVisibility(View.INVISIBLE);
@@ -1095,25 +1175,39 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs, 
             return;
         }
         try {
-            if (mService.getPath() == null) {
+            String path = mService.getPath();
+            if (path == null) {
                 finish();
                 return;
             }
-            String artistName = mService.getArtistName();
-            if (MediaFile.UNKNOWN_STRING.equals(artistName)) {
-                artistName = getString(R.string.unknown_artist_name);
+            
+            if (mService.getAudioId() < 0 && path.toLowerCase().startsWith("http://")) {
+                ((View) mArtistName.getParent()).setVisibility(View.INVISIBLE);
+                ((View) mAlbumName.getParent()).setVisibility(View.INVISIBLE);
+                mAlbum.setVisibility(View.GONE);
+                mTrackName.setText(path);
+                mAlbumArtHandler.removeMessages(GET_ALBUM_ART);
+                mAlbumArtHandler.obtainMessage(GET_ALBUM_ART, -1, 0).sendToTarget();
+            } else {
+                ((View) mArtistName.getParent()).setVisibility(View.VISIBLE);
+                ((View) mAlbumName.getParent()).setVisibility(View.VISIBLE);
+                String artistName = mService.getArtistName();
+                if (MediaFile.UNKNOWN_STRING.equals(artistName)) {
+                    artistName = getString(R.string.unknown_artist_name);
+                }
+                mArtistName.setText(artistName);
+                String albumName = mService.getAlbumName();
+                int albumid = mService.getAlbumId();
+                if (MediaFile.UNKNOWN_STRING.equals(albumName)) {
+                    albumName = getString(R.string.unknown_album_name);
+                    albumid = -1;
+                }
+                mAlbumName.setText(albumName);
+                mTrackName.setText(mService.getTrackName());
+                mAlbumArtHandler.removeMessages(GET_ALBUM_ART);
+                mAlbumArtHandler.obtainMessage(GET_ALBUM_ART, albumid, 0).sendToTarget();
+                mAlbum.setVisibility(View.VISIBLE);
             }
-            mArtistName.setText(artistName);
-            String albumName = mService.getAlbumName();
-            int albumid = mService.getAlbumId();
-            if (MediaFile.UNKNOWN_STRING.equals(albumName)) {
-                albumName = getString(R.string.unknown_album_name);
-                albumid = -1;
-            }
-            mAlbumName.setText(albumName);
-            mTrackName.setText(mService.getTrackName());
-            mAlbumArtHandler.removeMessages(GET_ALBUM_ART);
-            mAlbumArtHandler.obtainMessage(GET_ALBUM_ART, albumid, 0).sendToTarget();
             mDuration = mService.duration();
             mTotalTime.setText(MusicUtils.makeTimeString(this, mDuration / 1000));
         } catch (RemoteException ex) {

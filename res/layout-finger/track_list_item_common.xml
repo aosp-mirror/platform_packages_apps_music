@@ -43,13 +43,14 @@
         android:layout_alignWithParentIfMissing="true"
         android:layout_toRightOf="@id/icon"
         android:layout_toLeftOf="@id/duration"
-        android:ellipsize="end"
+        android:ellipsize="marquee"
         android:singleLine="true" />
 
     <TextView android:id="@+id/line2" android:visibility="visible"
         android:maxLines="2"
         android:ellipsize="end"
         android:paddingLeft="4dip"
+        android:scrollHorizontally="true"
         android:textSize="14sp"
         android:layout_below="@id/line1"
         android:layout_alignWithParentIfMissing="true"

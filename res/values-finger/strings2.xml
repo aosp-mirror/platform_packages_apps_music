@@ -18,8 +18,10 @@
 -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Do not translate. This is the separator character used when building the string that shows number of albums and songs. -->
     <string name="albumsongseparator">\n</string>
 
+    <!-- Used for the 2nd and 3rd line (artist and album) in the notification area item for the music app -->
     <string name="notification_artist_album"><xliff:g id="album">%2$s</xliff:g>\n<xliff:g id="artist">%1$s</xliff:g></string>
 </resources>
 

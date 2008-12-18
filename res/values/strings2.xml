@@ -18,6 +18,7 @@
 -->
 
 <resources>
+    <!-- Do not translate. This is the separator character used when building the string that shows number of albums and songs. -->
     <string name="albumsongseparator">, </string>
 </resources>
 
