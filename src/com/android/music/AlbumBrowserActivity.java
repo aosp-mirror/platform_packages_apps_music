@@ -64,8 +64,8 @@ public class AlbumBrowserActivity extends ListActivity
     private String mCurrentAlbumId;
     private String mCurrentAlbumName;
     private String mCurrentArtistNameForAlbum;
-    private MyQueryHandler mQueryHandler;
-    private String mFilterString = "";
+    private AlbumListAdapter mAdapter;
+    private boolean mAdapterSent;
     private final static int SEARCH = CHILD_MENU_BASE;
 
     public AlbumBrowserActivity()
@@ -94,38 +94,44 @@ public class AlbumBrowserActivity extends ListActivity
         f.addDataScheme("file");
         registerReceiver(mScanListener, f);
 
-        mQueryHandler = new MyQueryHandler(getContentResolver());
-        mAlbumCursor = (Cursor) getLastNonConfigurationInstance();
-        if (mAlbumCursor == null) {
+        setContentView(R.layout.media_picker_activity);
+        ListView lv = getListView();
+        lv.setFastScrollEnabled(true);
+        lv.setOnCreateContextMenuListener(this);
+        lv.setTextFilterEnabled(true);
+
+        mAdapter = (AlbumListAdapter) getLastNonConfigurationInstance();
+        if (mAdapter == null) {
             //Log.i("@@@", "starting query");
+            mAdapter = new AlbumListAdapter(
+                    getApplication(),
+                    this,
+                    R.layout.track_list_item,
+                    mAlbumCursor,
+                    new String[] {},
+                    new int[] {});
+            setListAdapter(mAdapter);
             setTitle(R.string.working_albums);
-            getAlbumCursor(mQueryHandler);
+            getAlbumCursor(mAdapter.getQueryHandler(), null);
         } else {
-            init(mAlbumCursor);
-            setTitle();
+            mAdapter.setActivity(this);
+            setListAdapter(mAdapter);
+            mAlbumCursor = mAdapter.getCursor();
+            if (mAlbumCursor != null) {
+                init(mAlbumCursor);
+                setTitle();
+            } else {
+                getAlbumCursor(mAdapter.getQueryHandler(), null);
+            }
         }
     }
 
     @Override
     public Object onRetainNonConfigurationInstance() {
-        Cursor c = mAlbumCursor;
-        mAlbumCursor = null;
-        return c;
+        mAdapterSent = true;
+        return mAdapter;
     }
     
-    class MyQueryHandler extends AsyncQueryHandler {
-        MyQueryHandler(ContentResolver res) {
-            super(res);
-        }
-        
-        @Override
-        protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
-            //Log.i("@@@", "query complete");
-            init(cursor);
-            setTitle();
-        }
-    }
-
     @Override
     public void onSaveInstanceState(Bundle outcicle) {
         // need to store the selected item so we don't lose it in case
@@ -139,9 +145,11 @@ public class AlbumBrowserActivity extends ListActivity
     @Override
     public void onDestroy() {
         MusicUtils.unbindFromService(this);
-        if (mAlbumCursor != null) {
-            mAlbumCursor.close();
-            mAlbumCursor = null;
+        if (!mAdapterSent) {
+            Cursor c = mAdapter.getCursor();
+            if (c != null) {
+                c.close();
+            }
         }
         unregisterReceiver(mScanListener);
         super.onDestroy();
@@ -180,10 +188,7 @@ public class AlbumBrowserActivity extends ListActivity
         @Override
         public void handleMessage(Message msg) {
             setTitle();
-            getAlbumCursor(mQueryHandler);
-            if (mAlbumCursor == null) {
-                sendEmptyMessageDelayed(0, 1000);
-            }
+            getAlbumCursor(mAdapter.getQueryHandler(), null);
         }
     };
 
@@ -196,43 +201,16 @@ public class AlbumBrowserActivity extends ListActivity
 
     public void init(Cursor c) {
 
-        mAlbumCursor = c;
-
-        /* The UI spec does not call for icons in the title bar
-        if (mArtistId != null) {
-            requestWindowFeature(Window.FEATURE_LEFT_ICON);
-        }
-        */
-        setContentView(R.layout.media_picker_activity);
-        /* The UI spec does not call for icons in the title bar
-        if (mArtistId != null) {
-            // this call needs to happen after setContentView
-            setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.person_title_icon);
-        }
-        */
+        mAdapter.changeCursor(c); // also sets mAlbumCursor
 
         if (mAlbumCursor == null) {
             MusicUtils.displayDatabaseError(this);
+            closeContextMenu();
+            mReScanHandler.sendEmptyMessageDelayed(0, 1000);
             return;
         }
-
-
-        // Map Cursor columns to views defined in media_list_item.xml
-        CursorAdapter adapter = (CursorAdapter) getListAdapter();
-        if (adapter == null) {
-            adapter = new AlbumListAdapter(
-                    this,
-                    R.layout.track_list_item,
-                    mAlbumCursor,
-                    new String[] {},
-                    new int[] {});
-            setListAdapter(adapter);
-        } else {
-            adapter.changeCursor(mAlbumCursor);
-        }
-        ListView lv = getListView();
-        lv.setOnCreateContextMenuListener(this);
-        lv.setTextFilterEnabled(true);
+        
+        MusicUtils.hideDatabaseError(this);
     }
 
     private void setTitle() {
@@ -344,7 +322,7 @@ public class AlbumBrowserActivity extends ListActivity
                 if (resultCode == RESULT_CANCELED) {
                     finish();
                 } else {
-                    getAlbumCursor(mQueryHandler);
+                    getAlbumCursor(mAdapter.getQueryHandler(), null);
                 }
                 break;
 
@@ -419,14 +397,14 @@ public class AlbumBrowserActivity extends ListActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private Cursor getAlbumCursor(AsyncQueryHandler async) {
+    private Cursor getAlbumCursor(AsyncQueryHandler async, String filter) {
         StringBuilder where = new StringBuilder();
         where.append(MediaStore.Audio.Albums.ALBUM + " != ''");
         
         // Add in the filtering constraints
         String [] keywords = null;
-        if (mFilterString != null) {
-            String [] searchWords = mFilterString.split(" ");
+        if (filter != null) {
+            String [] searchWords = filter.split(" ");
             keywords = new String[searchWords.length];
             Collator col = Collator.getInstance();
             col.setStrength(Collator.PRIMARY);
@@ -476,21 +454,23 @@ public class AlbumBrowserActivity extends ListActivity
         return ret;
     }
     
-    class AlbumListAdapter extends SimpleCursorAdapter implements SectionIndexer {
+    static class AlbumListAdapter extends SimpleCursorAdapter implements SectionIndexer {
         
         private final Drawable mNowPlayingOverlay;
         private final BitmapDrawable mDefaultAlbumIcon;
-        private final int mAlbumIdx;
-        private final int mArtistIdx;
-        private final int mNumSongsIdx;
-        private final int mAlbumArtIndex;
+        private int mAlbumIdx;
+        private int mArtistIdx;
+        private int mNumSongsIdx;
+        private int mAlbumArtIndex;
         private final Resources mResources;
         private final StringBuilder mStringBuilder = new StringBuilder();
         private final String mUnknownAlbum;
         private final String mUnknownArtist;
         private final String mAlbumSongSeparator;
         private final Object[] mFormatArgs = new Object[1];
-        private final AlphabetIndexer mIndexer;
+        private AlphabetIndexer mIndexer;
+        private AlbumBrowserActivity mActivity;
+        private AsyncQueryHandler mQueryHandler;
         
         class ViewHolder {
             TextView line1;
@@ -500,14 +480,31 @@ public class AlbumBrowserActivity extends ListActivity
             ImageView icon;
         }
 
-        AlbumListAdapter(Context context, int layout, Cursor cursor, String[] from, int[] to) {
+        class QueryHandler extends AsyncQueryHandler {
+            QueryHandler(ContentResolver res) {
+                super(res);
+            }
+            
+            @Override
+            protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
+                //Log.i("@@@", "query complete");
+                mActivity.init(cursor);
+                mActivity.setTitle();
+            }
+        }
+
+        AlbumListAdapter(Context context, AlbumBrowserActivity currentactivity,
+                int layout, Cursor cursor, String[] from, int[] to) {
             super(context, layout, cursor, from, to);
 
+            mActivity = currentactivity;
+            mQueryHandler = new QueryHandler(context.getContentResolver());
+            
             mUnknownAlbum = context.getString(R.string.unknown_album_name);
             mUnknownArtist = context.getString(R.string.unknown_artist_name);
             mAlbumSongSeparator = context.getString(R.string.albumsongseparator);
 
-            Resources r = getResources();
+            Resources r = context.getResources();
             mNowPlayingOverlay = r.getDrawable(R.drawable.indicator_ic_mp_playing_list);
 
             Bitmap b = BitmapFactory.decodeResource(r, R.drawable.albumart_mp_unknown_list);
@@ -515,15 +512,32 @@ public class AlbumBrowserActivity extends ListActivity
             // no filter or dither, it's a lot faster and we can't tell the difference
             mDefaultAlbumIcon.setFilterBitmap(false);
             mDefaultAlbumIcon.setDither(false);
-            mAlbumIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM);
-            mArtistIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ARTIST);
-            mNumSongsIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.NUMBER_OF_SONGS);
-            mAlbumArtIndex = cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM_ART);
-            
+            getColumnIndices(cursor);
             mResources = context.getResources();
-            
-            mIndexer = new MusicAlphabetIndexer(cursor, mAlbumIdx, mResources.getString(
-                    com.android.internal.R.string.fast_scroll_alphabet));
+        }
+
+        private void getColumnIndices(Cursor cursor) {
+            if (cursor != null) {
+                mAlbumIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM);
+                mArtistIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ARTIST);
+                mNumSongsIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.NUMBER_OF_SONGS);
+                mAlbumArtIndex = cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM_ART);
+                
+                if (mIndexer != null) {
+                    mIndexer.setCursor(cursor);
+                } else {
+                    mIndexer = new MusicAlphabetIndexer(cursor, mAlbumIdx, mResources.getString(
+                            com.android.internal.R.string.fast_scroll_alphabet));
+                }
+            }
+        }
+        
+        public void setActivity(AlbumBrowserActivity newactivity) {
+            mActivity = newactivity;
+        }
+        
+        public AsyncQueryHandler getQueryHandler() {
+            return mQueryHandler;
         }
 
         @Override
@@ -597,15 +611,16 @@ public class AlbumBrowserActivity extends ListActivity
         
         @Override
         public void changeCursor(Cursor cursor) {
-            super.changeCursor(cursor);
-            mAlbumCursor = cursor;
-            mIndexer.setCursor(cursor);
+            if (cursor != mActivity.mAlbumCursor) {
+                mActivity.mAlbumCursor = cursor;
+                getColumnIndices(cursor);
+                super.changeCursor(cursor);
+            }
         }
         
         @Override
         public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
-            mFilterString = constraint.toString();
-            return getAlbumCursor(null);
+            return mActivity.getAlbumCursor(null, constraint.toString());
         }
         
         public Object[] getSections() {

@@ -75,6 +75,9 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
         
         String command = null;
         switch (keycode) {
+            case KeyEvent.KEYCODE_STOP:
+                command = MediaPlaybackService.CMDPAUSE;
+                break;
             case KeyEvent.KEYCODE_HEADSETHOOK:
             case KeyEvent.KEYCODE_PLAYPAUSE:
                 command = MediaPlaybackService.CMDTOGGLEPAUSE;

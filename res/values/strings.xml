@@ -260,5 +260,16 @@
     <string name="working_albums">Albums\u2026</string>
     <!-- Shown in the title bar while the list of songs is being retrieved in the background -->
     <string name="working_songs">Songs\u2026</string>
+    
+    <!-- Shown in the music picker while loading the music database. -->
+    <string name="loading">Loading</string>
+    <!-- Menu in music picker to sort the list by track/song name. -->
+    <string name="sort_by_track">Tracks</string>
+    <!-- Menu in music picker to sort the list by album name. -->
+    <string name="sort_by_album">Albums</string>
+    <!-- Menu in music picker to sort the list by artist name. -->
+    <string name="sort_by_artist">Artists</string>
+    <!--  Title of the music picker activity. -->
+    <string name="music_picker_title">Select music track</string>
 </resources>
 

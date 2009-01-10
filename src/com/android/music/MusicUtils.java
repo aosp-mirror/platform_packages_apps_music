@@ -59,6 +59,7 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.SubMenu;
+import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -533,7 +534,8 @@ public class MusicUtils {
         int title = R.string.sdcard_error_title;
         int message = R.string.sdcard_error_message;
         
-        if (status.equals(Environment.MEDIA_SHARED)) {
+        if (status.equals(Environment.MEDIA_SHARED) ||
+                status.equals(Environment.MEDIA_UNMOUNTED)) {
             title = R.string.sdcard_busy_title;
             message = R.string.sdcard_busy_message;
         } else if (status.equals(Environment.MEDIA_REMOVED)) {
@@ -553,13 +555,35 @@ public class MusicUtils {
         }
 
         a.setTitle(title);
-        if (a instanceof ExpandableListActivity) {
-            a.setContentView(R.layout.no_sd_card_expanding);
-        } else {
-            a.setContentView(R.layout.no_sd_card);
+        View v = a.findViewById(R.id.sd_message);
+        if (v != null) {
+            v.setVisibility(View.VISIBLE);
+        }
+        v = a.findViewById(R.id.sd_icon);
+        if (v != null) {
+            v.setVisibility(View.VISIBLE);
+        }
+        v = a.findViewById(android.R.id.list);
+        if (v != null) {
+            v.setVisibility(View.GONE);
         }
         TextView tv = (TextView) a.findViewById(R.id.sd_message);
         tv.setText(message);
+    }
+    
+    public static void hideDatabaseError(Activity a) {
+        View v = a.findViewById(R.id.sd_message);
+        if (v != null) {
+            v.setVisibility(View.GONE);
+        }
+        v = a.findViewById(R.id.sd_icon);
+        if (v != null) {
+            v.setVisibility(View.GONE);
+        }
+        v = a.findViewById(android.R.id.list);
+        if (v != null) {
+            v.setVisibility(View.VISIBLE);
+        }
     }
 
     static protected Uri getContentURIForPath(String path) {
@@ -915,7 +939,7 @@ public class MusicUtils {
             try {
                 return file.createNewFile();
             } catch(IOException ioe) {
-                Log.e(TAG, "File creation failed", ioe);
+                Log.d(TAG, "File creation failed for " + path);
             }
             return false;
         }

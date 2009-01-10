@@ -465,7 +465,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 menu.add(0, PARTY_SHUFFLE, 0, R.string.party_shuffle); // icon will be set in onPrepareOptionsMenu()
             }
             SubMenu sub = menu.addSubMenu(0, ADD_TO_PLAYLIST, 0,
-                    R.string.add_to_playlist).setIcon(R.drawable.ic_menu_add);
+                    R.string.add_to_playlist).setIcon(android.R.drawable.ic_menu_add);
             MusicUtils.makePlaylistMenu(this, sub);
             menu.add(0, USE_AS_RINGTONE, 0, R.string.ringtone_menu_short).setIcon(R.drawable.ic_menu_set_as_ringtone);
             menu.add(0, DELETE_ITEM, 0, R.string.delete_item).setIcon(R.drawable.ic_menu_delete);
