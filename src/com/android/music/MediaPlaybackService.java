@@ -126,6 +126,7 @@ public class MediaPlaybackService extends Service {
     private boolean mServiceInUse = false;
     private boolean mResumeAfterCall = false;
     private boolean mWasPlaying = false;
+    private boolean mQuietMode = false;
     
     private SharedPreferences mPreferences;
     // We use this to distinguish between different cards when saving/restoring playlists.
@@ -423,7 +424,9 @@ public class MediaPlaybackService extends Service {
             //   the "current" file, goes to the next and: playback starts on its
             //   own, potentially at some random inconvenient time.
             mOpenFailedCounter = 20;
+            mQuietMode = true;
             openCurrent();
+            mQuietMode = false;
             if (!mPlayer.isInitialized()) {
                 // couldn't restore the saved state
                 mPlayListLen = 0;
@@ -877,7 +880,9 @@ public class MediaPlaybackService extends Service {
                 if (! mPlayer.isInitialized() && mOpenFailedCounter != 0) {
                     // need to make sure we only shows this once
                     mOpenFailedCounter = 0;
-                    Toast.makeText(this, R.string.playback_failed, Toast.LENGTH_SHORT).show();
+                    if (!mQuietMode) {
+                        Toast.makeText(this, R.string.playback_failed, Toast.LENGTH_SHORT).show();
+                    }
                 }
             } else {
                 mOpenFailedCounter = 0;

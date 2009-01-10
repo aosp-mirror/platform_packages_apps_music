@@ -80,8 +80,17 @@ public class TrackBrowserActivity extends ListActivity
     private String mCurrentTrackName;
     private String mCurrentAlbumName;
     private String mCurrentArtistNameForAlbum;
-    private MyQueryHandler mQueryHandler;
-    private String mFilterString = "";
+    private ListView mTrackList;
+    private Cursor mTrackCursor;
+    private TrackListAdapter mAdapter;
+    private boolean mAdapterSent = false;
+    private String mAlbumId;
+    private String mArtistId;
+    private String mPlaylist;
+    private String mGenre;
+    private String mSortOrder;
+    private int mSelectedPosition;
+    private long mSelectedId;
 
     public TrackBrowserActivity()
     {
@@ -139,43 +148,62 @@ public class TrackBrowserActivity extends ListActivity
 
         IntentFilter f = new IntentFilter();
         f.addAction(Intent.ACTION_MEDIA_SCANNER_STARTED);
+        f.addAction(Intent.ACTION_MEDIA_SCANNER_FINISHED);
         f.addAction(Intent.ACTION_MEDIA_UNMOUNTED);
         f.addDataScheme("file");
         registerReceiver(mScanListener, f);
 
         setContentView(R.layout.media_picker_activity);
-        mQueryHandler = new MyQueryHandler(getContentResolver());
-        mTrackCursor = (Cursor) getLastNonConfigurationInstance();
-        if (mTrackCursor == null) {
-            //Log.i("@@@", "starting query");
-            setTitle(R.string.working_songs);
-            getTrackCursor(mQueryHandler);
+        mTrackList = getListView();
+        mTrackList.setOnCreateContextMenuListener(this);
+        if (mEditMode) {
+            //((TouchInterceptor) mTrackList).setDragListener(mDragListener);
+            ((TouchInterceptor) mTrackList).setDropListener(mDropListener);
+            ((TouchInterceptor) mTrackList).setRemoveListener(mRemoveListener);
+            mTrackList.setCacheColorHint(0);
         } else {
-            init(mTrackCursor);
-            setTitle();
+            mTrackList.setTextFilterEnabled(true);
+        }
+        mAdapter = (TrackListAdapter) getLastNonConfigurationInstance();
+        if (mAdapter == null) {
+            //Log.i("@@@", "starting query");
+            mAdapter = new TrackListAdapter(
+                    getApplication(), // need to use application context to avoid leaks
+                    this,
+                    mEditMode ? R.layout.edit_track_list_item : R.layout.track_list_item,
+                    null, // cursor
+                    new String[] {},
+                    new int[] {},
+                    "nowplaying".equals(mPlaylist),
+                    mPlaylist != null);
+            setListAdapter(mAdapter);
+            setTitle(R.string.working_songs);
+            getTrackCursor(mAdapter.getQueryHandler(), null);
+        } else {
+            mAdapter.setActivity(this);
+            setListAdapter(mAdapter);
+            mTrackCursor = mAdapter.getCursor();
+            // If mTrackCursor is null, this can be because it doesn't have
+            // a cursor yet (because the initial query that sets its cursor
+            // is still in progress), or because the query failed.
+            // In order to not flash the error dialog at the user for the
+            // first case, simply retry the query when the cursor is null.
+            // Worst case, we end up doing the same query twice.
+            if (mTrackCursor != null) {
+                init(mTrackCursor);
+            } else {
+                setTitle(R.string.working_songs);
+                getTrackCursor(mAdapter.getQueryHandler(), null);
+            }
         }
     }
     
     @Override
     public Object onRetainNonConfigurationInstance() {
-        Cursor c = mTrackCursor;
-        mTrackCursor = null;
-        return c;
+        TrackListAdapter a = mAdapter;
+        mAdapterSent = true;
+        return a;
     }
-    
-    class MyQueryHandler extends AsyncQueryHandler {
-        MyQueryHandler(ContentResolver res) {
-            super(res);
-        }
-        
-        @Override
-        protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
-            //Log.i("@@@", "query complete");
-            init(cursor);
-            setTitle();
-        }
-    }
-    
     
     @Override
     public void onDestroy() {
@@ -189,9 +217,14 @@ public class TrackBrowserActivity extends ListActivity
         } catch (IllegalArgumentException ex) {
             // we end up here in case we never registered the listeners
         }
-        if (mTrackCursor != null) {
-            mTrackCursor.close();
-            mTrackCursor = null;
+        
+        // if we didn't send the adapter off to another activity, we should
+        // close the cursor
+        if (!mAdapterSent) {
+            Cursor c = mAdapter.getCursor();
+            if (c != null) {
+                c.close();
+            }
         }
         unregisterReceiver(mScanListener);
         super.onDestroy();
@@ -212,24 +245,29 @@ public class TrackBrowserActivity extends ListActivity
     }
     
     /*
-     * This listener gets called when the media scanner starts up, and when the
-     * sd card is unmounted.
+     * This listener gets called when the media scanner starts up or finishes, and
+     * when the sd card is unmounted.
      */
     private BroadcastReceiver mScanListener = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            MusicUtils.setSpinnerState(TrackBrowserActivity.this);
+            String action = intent.getAction();
+            if (Intent.ACTION_MEDIA_SCANNER_STARTED.equals(action) ||
+                    Intent.ACTION_MEDIA_SCANNER_FINISHED.equals(action)) {
+                MusicUtils.setSpinnerState(TrackBrowserActivity.this);
+            }
             mReScanHandler.sendEmptyMessage(0);
         }
     };
     
     private Handler mReScanHandler = new Handler() {
+        @Override
         public void handleMessage(Message msg) {
             setTitle();
-            getTrackCursor(mQueryHandler);
-            if (mTrackCursor == null) {
-                sendEmptyMessageDelayed(0, 1000);
-            }
+            getTrackCursor(mAdapter.getQueryHandler(), null);
+            // if the query results in a null cursor, onQueryComplete() will
+            // call init(), which will post a delayed message to this handler
+            // in order to try again.
         }
     };
     
@@ -248,39 +286,17 @@ public class TrackBrowserActivity extends ListActivity
     
     public void init(Cursor newCursor) {
 
-        mTrackCursor = newCursor;
+        mAdapter.changeCursor(newCursor); // also sets mTrackCursor
         
-        setContentView(R.layout.media_picker_activity);
-        mTrackList = (ListView) findViewById(android.R.id.list);
-        if (mEditMode) {
-            //((TouchInterceptor) mTrackList).setDragListener(mDragListener);
-            ((TouchInterceptor) mTrackList).setDropListener(mDropListener);
-            ((TouchInterceptor) mTrackList).setRemoveListener(mRemoveListener);
-        }
-
         if (mTrackCursor == null) {
             MusicUtils.displayDatabaseError(this);
+            closeContextMenu();
+            mReScanHandler.sendEmptyMessageDelayed(0, 1000);
             return;
         }
-
-
-        TrackListAdapter adapter = new TrackListAdapter(
-                this,
-                mEditMode ? R.layout.edit_track_list_item : R.layout.track_list_item,
-                mTrackCursor,
-                new String[] {},
-                new int[] {},
-                "nowplaying".equals(mPlaylist),
-                mPlaylist != null);
-
+        
+        MusicUtils.hideDatabaseError(this);
         setTitle();
-        setListAdapter(adapter);
-        ListView lv = getListView();
-        lv.setOnCreateContextMenuListener(this);
-        lv.setCacheColorHint(0);
-        if (!mEditMode) {
-            lv.setTextFilterEnabled(true);
-        }
 
         // When showing the queue, position the selection on the currently playing track
         // Otherwise, position the selection on the first matching artist, if any
@@ -770,7 +786,7 @@ public class TrackBrowserActivity extends ListActivity
                 .setVisible(MusicUtils.isMusicLoaded());
         menu.add(0, SHUFFLE_ALL, 0, R.string.shuffle_all).setIcon(R.drawable.ic_menu_shuffle);
         if (mPlaylist != null) {
-            menu.add(0, SAVE_AS_PLAYLIST, 0, R.string.save_as_playlist).setIcon(R.drawable.ic_menu_save);
+            menu.add(0, SAVE_AS_PLAYLIST, 0, R.string.save_as_playlist).setIcon(android.R.drawable.ic_menu_save);
             if (mPlaylist.equals("nowplaying")) {
                 menu.add(0, CLEAR_PLAYLIST, 0, R.string.clear_playlist).setIcon(R.drawable.ic_menu_clear_playlist);
             }
@@ -834,7 +850,7 @@ public class TrackBrowserActivity extends ListActivity
                 if (resultCode == RESULT_CANCELED) {
                     finish();
                 } else {
-                    getTrackCursor(mQueryHandler);
+                    getTrackCursor(mAdapter.getQueryHandler(), null);
                 }
                 break;
                 
@@ -861,7 +877,7 @@ public class TrackBrowserActivity extends ListActivity
         }
     }
     
-    private Cursor getTrackCursor(AsyncQueryHandler async) {
+    private Cursor getTrackCursor(AsyncQueryHandler async, String filter) {
         Cursor ret = null;
         mSortOrder = MediaStore.Audio.Media.TITLE_KEY;
         StringBuilder where = new StringBuilder();
@@ -869,8 +885,8 @@ public class TrackBrowserActivity extends ListActivity
         
         // Add in the filtering constraints
         String [] keywords = null;
-        if (mFilterString != null) {
-            String [] searchWords = mFilterString.split(" ");
+        if (filter != null) {
+            String [] searchWords = filter.split(" ");
             keywords = new String[searchWords.length];
             Collator col = Collator.getInstance();
             col.setStrength(Collator.PRIMARY);
@@ -1177,14 +1193,14 @@ public class TrackBrowserActivity extends ListActivity
         private IMediaPlaybackService mService;
     }
     
-    class TrackListAdapter extends SimpleCursorAdapter implements SectionIndexer {
+    static class TrackListAdapter extends SimpleCursorAdapter implements SectionIndexer {
         boolean mIsNowPlaying;
         boolean mDisableNowPlayingIndicator;
 
-        final int mTitleIdx;
-        final int mArtistIdx;
-        final int mAlbumIdx;
-        final int mDurationIdx;
+        int mTitleIdx;
+        int mArtistIdx;
+        int mAlbumIdx;
+        int mDurationIdx;
         int mAudioIdIdx;
 
         private final StringBuilder mBuilder = new StringBuilder();
@@ -1192,7 +1208,9 @@ public class TrackBrowserActivity extends ListActivity
         private final String mUnknownAlbum;
         
         private AlphabetIndexer mIndexer;
-        private String mAlphabet;
+        
+        private TrackBrowserActivity mActivity = null;
+        private AsyncQueryHandler mQueryHandler;
         
         class ViewHolder {
             TextView line1;
@@ -1202,30 +1220,62 @@ public class TrackBrowserActivity extends ListActivity
             CharArrayBuffer buffer1;
             char [] buffer2;
         }
+
+        class QueryHandler extends AsyncQueryHandler {
+            QueryHandler(ContentResolver res) {
+                super(res);
+            }
+            
+            @Override
+            protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
+                //Log.i("@@@", "query complete: " + cursor.getCount() + "   " + mActivity);
+                mActivity.init(cursor);
+            }
+        }
         
-        TrackListAdapter(Context context, int layout, Cursor cursor, String[] from, int[] to,
+        TrackListAdapter(Context context, TrackBrowserActivity currentactivity,
+                int layout, Cursor cursor, String[] from, int[] to,
                 boolean isnowplaying, boolean disablenowplayingindicator) {
             super(context, layout, cursor, from, to);
+            mActivity = currentactivity;
+            getColumnIndices(cursor);
             mIsNowPlaying = isnowplaying;
             mDisableNowPlayingIndicator = disablenowplayingindicator;
             mUnknownArtist = context.getString(R.string.unknown_artist_name);
             mUnknownAlbum = context.getString(R.string.unknown_album_name);
             
-            mTitleIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE);
-            mArtistIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST);
-            mAlbumIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM);
-            mDurationIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION);
-            try {
-                mAudioIdIdx = cursor.getColumnIndexOrThrow(
-                        MediaStore.Audio.Playlists.Members.AUDIO_ID);
-            } catch (IllegalArgumentException ex) {
-                mAudioIdIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID);
-            }
-            if (!mEditMode) {
-                mAlphabet = context.getString(
-                        com.android.internal.R.string.fast_scroll_alphabet);
-            
-                mIndexer = new MusicAlphabetIndexer(cursor, mTitleIdx, mAlphabet);
+            mQueryHandler = new QueryHandler(context.getContentResolver());
+        }
+        
+        public void setActivity(TrackBrowserActivity newactivity) {
+            mActivity = newactivity;
+        }
+        
+        public AsyncQueryHandler getQueryHandler() {
+            return mQueryHandler;
+        }
+        
+        private void getColumnIndices(Cursor cursor) {
+            if (cursor != null) {
+                mTitleIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE);
+                mArtistIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST);
+                mAlbumIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM);
+                mDurationIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION);
+                try {
+                    mAudioIdIdx = cursor.getColumnIndexOrThrow(
+                            MediaStore.Audio.Playlists.Members.AUDIO_ID);
+                } catch (IllegalArgumentException ex) {
+                    mAudioIdIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID);
+                }
+                
+                if (mIndexer != null) {
+                    mIndexer.setCursor(cursor);
+                } else if (!mActivity.mEditMode) {
+                    String alpha = mActivity.getString(
+                            com.android.internal.R.string.fast_scroll_alphabet);
+                
+                    mIndexer = new MusicAlphabetIndexer(cursor, mTitleIdx, alpha);
+                }
             }
         }
 
@@ -1233,7 +1283,7 @@ public class TrackBrowserActivity extends ListActivity
         public View newView(Context context, Cursor cursor, ViewGroup parent) {
             View v = super.newView(context, cursor, parent);
             ImageView iv = (ImageView) v.findViewById(R.id.icon);
-            if (mEditMode) {
+            if (mActivity.mEditMode) {
                 iv.setVisibility(View.VISIBLE);
                 iv.setImageResource(R.drawable.ic_mp_move);
                 ViewGroup.LayoutParams p = iv.getLayoutParams();
@@ -1315,7 +1365,7 @@ public class TrackBrowserActivity extends ListActivity
             // a song appears in a playlist more than once, and you're in edit-playlist
             // mode. In that case, both items will have the "now playing" indicator.
             // For this reason, we don't show the play indicator at all when in edit
-            // playlist mode (except when you're viewing the "current playlists",
+            // playlist mode (except when you're viewing the "current playlist",
             // which is not really a playlist)
             if ( (mIsNowPlaying && cursor.getPosition() == id) ||
                  (!mIsNowPlaying && !mDisableNowPlayingIndicator && cursor.getInt(mAudioIdIdx) == id)) {
@@ -1328,17 +1378,16 @@ public class TrackBrowserActivity extends ListActivity
         
         @Override
         public void changeCursor(Cursor cursor) {
-            super.changeCursor(cursor);
-            mTrackCursor = cursor;
-            if (mIndexer != null) {
-                mIndexer.setCursor(cursor);
+            if (cursor != mActivity.mTrackCursor) {
+                mActivity.mTrackCursor = cursor;
+                super.changeCursor(cursor);
+                getColumnIndices(cursor);
             }
         }
         
         @Override
         public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
-            mFilterString = constraint.toString();
-            return getTrackCursor(null);
+            return mActivity.getTrackCursor(null, constraint.toString());
         }
         
         // SectionIndexer methods
@@ -1360,15 +1409,5 @@ public class TrackBrowserActivity extends ListActivity
             return 0;
         }        
     }
-
-    private ListView mTrackList;
-    private Cursor mTrackCursor;
-    private String mAlbumId;
-    private String mArtistId;
-    private String mPlaylist;
-    private String mGenre;
-    private String mSortOrder;
-    private int mSelectedPosition;
-    private long mSelectedId;
 }
 

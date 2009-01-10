@@ -19,11 +19,11 @@ package com.android.music;
 import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.AsyncQueryHandler;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import com.android.internal.database.ArrayListCursor;
-import com.android.music.TrackBrowserActivity.MyQueryHandler;
+import android.content.IntentFilter;
 
 import android.database.Cursor;
 import android.database.DatabaseUtils;
@@ -31,7 +31,10 @@ import android.media.AudioManager;
 import android.media.MediaFile;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -56,7 +59,8 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
     private final static int PLAY_ALBUM = 5;
     private final static int EXPLORE_ALBUM = 6;
     private final static int REQUERY = 3;
-    private MyQueryHandler mQueryHandler;
+    private QueryListAdapter mAdapter;
+    private boolean mAdapterSent;
     private String mFilterString = "";
 
     public QueryBrowserActivity()
@@ -75,114 +79,114 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
             Intent intent = getIntent();
             mFilterString = intent.getStringExtra(SearchManager.QUERY);
         }
-        if (mFilterString == null) {
-            mFilterString = "";
-        }
+
+        IntentFilter f = new IntentFilter();
+        f.addAction(Intent.ACTION_MEDIA_SCANNER_STARTED);
+        f.addAction(Intent.ACTION_MEDIA_UNMOUNTED);
+        f.addDataScheme("file");
+        registerReceiver(mScanListener, f);
 
         setContentView(R.layout.query_activity);
-        mTrackList = (ListView) findViewById(android.R.id.list);
-
-        mQueryHandler = new MyQueryHandler(getContentResolver());
-        mQueryCursor = (Cursor) getLastNonConfigurationInstance();
-        if (mQueryCursor == null) {
-            //Log.i("@@@", "starting query");
-            setTitle(R.string.working_songs);
-            getQueryCursor(mQueryHandler);
+        mTrackList = getListView();
+        mTrackList.setTextFilterEnabled(true);
+        mAdapter = (QueryListAdapter) getLastNonConfigurationInstance();
+        if (mAdapter == null) {
+            mAdapter = new QueryListAdapter(
+                    getApplication(),
+                    this,
+                    R.layout.track_list_item,
+                    null, // cursor
+                    new String[] {},
+                    new int[] {});
+            setListAdapter(mAdapter);
+            getQueryCursor(mAdapter.getQueryHandler(), mFilterString);
         } else {
-            init(mQueryCursor);
+            mAdapter.setActivity(this);
+            setListAdapter(mAdapter);
+            mQueryCursor = mAdapter.getCursor();
+            if (mQueryCursor != null) {
+                init(mQueryCursor);
+            } else {
+                getQueryCursor(mAdapter.getQueryHandler(), mFilterString);
+            }
         }
     }
     
     @Override
     public Object onRetainNonConfigurationInstance() {
-        Cursor c = mQueryCursor;
-        mQueryCursor = null;
-        return c;
+        mAdapterSent = true;
+        return mAdapter;
     }
     
-    class MyQueryHandler extends AsyncQueryHandler {
-        MyQueryHandler(ContentResolver res) {
-            super(res);
-        }
-        
-        @Override
-        protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
-            Log.i("@@@", "query complete");
-            init(cursor);
-        }
+    @Override
+    public void onPause() {
+        mReScanHandler.removeCallbacksAndMessages(null);
+        super.onPause();
     }
 
     @Override
     public void onDestroy() {
         MusicUtils.unbindFromService(this);
+        unregisterReceiver(mScanListener);
         super.onDestroy();
-        if (mQueryCursor != null) {
-            mQueryCursor.close();
+        if (!mAdapterSent) {
+            Cursor c = mAdapter.getCursor();
+            if (c != null) {
+                c.close();
+            }
+        }
+    }
+    
+    /*
+     * This listener gets called when the media scanner starts up, and when the
+     * sd card is unmounted.
+     */
+    private BroadcastReceiver mScanListener = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            MusicUtils.setSpinnerState(QueryBrowserActivity.this);
+            mReScanHandler.sendEmptyMessage(0);
+        }
+    };
+    
+    private Handler mReScanHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            getQueryCursor(mAdapter.getQueryHandler(), null);
+            // if the query results in a null cursor, onQueryComplete() will
+            // call init(), which will post a delayed message to this handler
+            // in order to try again.
+        }
+    };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        switch (requestCode) {
+            case SCAN_DONE:
+                if (resultCode == RESULT_CANCELED) {
+                    finish();
+                } else {
+                    getQueryCursor(mAdapter.getQueryHandler(), null);
+                }
+                break;
         }
     }
     
     public void init(Cursor c) {
-
-        mQueryCursor = c;
-
-        ListView lv = getListView();
-        lv.setTextFilterEnabled(true);
         
+        mAdapter.changeCursor(c);
+
         if (mQueryCursor == null) {
             MusicUtils.displayDatabaseError(this);
             setListAdapter(null);
-            lv.setFocusable(false);
+            mReScanHandler.sendEmptyMessageDelayed(0, 1000);
             return;
         }
+        MusicUtils.hideDatabaseError(this);
 
-        // Map Cursor columns to views defined in media_list_item.xml
-        QueryListAdapter adapter = new QueryListAdapter(
-                this,
-                R.layout.track_list_item,
-                mQueryCursor,
-                new String[] {},
-                new int[] {});
-
-        setListAdapter(adapter);
-
-        if (mFilterString.length() != 0) {
-            // Hack. Can be removed once ListView supports starting filtering with a given string
-            lv.setOnHierarchyChangeListener(mHierarchyListener);
-        }
-    }
-    
-    OnHierarchyChangeListener mHierarchyListener = new OnHierarchyChangeListener() {
-        public void onChildViewAdded(View parent, View child) {
-            ((ListView)parent).setOnHierarchyChangeListener(null);
-            // need to do this here to be sure all the views have been initialized
-            startFilteringWithString(mFilterString);
-        }
-
-        public void onChildViewRemoved(View parent, View child) {
-        }
-    };
-
-    private KeyEvent eventForChar(char c) {
-        int code = -1;
-        if (c >= 'a' && c <= 'z') {
-            code = KeyEvent.KEYCODE_A + (c - 'a');
-        } else if (c >= 'A' && c <= 'Z') {
-            code = KeyEvent.KEYCODE_A + (c - 'A');
-        } else if (c >= '0' && c <= '9') {
-            code = KeyEvent.KEYCODE_0 + (c - '0');
-        }
-        if (code != -1) {
-            return new KeyEvent(KeyEvent.ACTION_DOWN, code);
-        }
-        return null;
-    }
-    private void startFilteringWithString(String filterstring) {
-        ListView lv = getListView();
-        for (int i = 0; i < filterstring.length(); i++) {
-            KeyEvent event = eventForChar(filterstring.charAt(i));
-            if (event != null) {
-                lv.onKeyDown(event.getKeyCode(), event);
-            }
+        if (!TextUtils.isEmpty(mFilterString)) {
+            mTrackList.setFilterText(mFilterString);
+            mFilterString = null;
         }
     }
     
@@ -229,7 +233,10 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
         return super.onOptionsItemSelected(item);
     }
 
-    private Cursor getQueryCursor(AsyncQueryHandler async) {
+    private Cursor getQueryCursor(AsyncQueryHandler async, String filter) {
+        if (filter == null) {
+            filter = "";
+        }
         String[] ccols = new String[] {
                 "_id",   // this will be the artist, album or track ID
                 MediaStore.Audio.Media.MIME_TYPE, // mimetype of audio file, or "artist" or "album"
@@ -239,7 +246,7 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
         };
 
         Uri search = Uri.parse("content://media/external/audio/" + 
-                SearchManager.SUGGEST_URI_PATH_QUERY + "/" + Uri.encode(mFilterString));
+                SearchManager.SUGGEST_URI_PATH_QUERY + "/" + Uri.encode(filter));
         
         Cursor ret = null;
         if (async != null) {
@@ -250,9 +257,34 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
         return ret;
     }
     
-    class QueryListAdapter extends SimpleCursorAdapter {
-        QueryListAdapter(Context context, int layout, Cursor cursor, String[] from, int[] to) {
+    static class QueryListAdapter extends SimpleCursorAdapter {
+        private QueryBrowserActivity mActivity = null;
+        private AsyncQueryHandler mQueryHandler;
+
+        class QueryHandler extends AsyncQueryHandler {
+            QueryHandler(ContentResolver res) {
+                super(res);
+            }
+            
+            @Override
+            protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
+                mActivity.init(cursor);
+            }
+        }
+
+        QueryListAdapter(Context context, QueryBrowserActivity currentactivity,
+                int layout, Cursor cursor, String[] from, int[] to) {
             super(context, layout, cursor, from, to);
+            mActivity = currentactivity;
+            mQueryHandler = new QueryHandler(context.getContentResolver());
+        }
+
+        public void setActivity(QueryBrowserActivity newactivity) {
+            mActivity = newactivity;
+        }
+        
+        public AsyncQueryHandler getQueryHandler() {
+            return mQueryHandler;
         }
 
         @Override
@@ -332,13 +364,14 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
         }
         @Override
         public void changeCursor(Cursor cursor) {
-            super.changeCursor(cursor);
-            mQueryCursor = cursor;
+            if (cursor != mActivity.mQueryCursor) {
+                mActivity.mQueryCursor = cursor;
+                super.changeCursor(cursor);
+            }
         }
         @Override
         public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
-            mFilterString = constraint.toString();
-            return getQueryCursor(null);
+            return mActivity.getQueryCursor(null, constraint.toString());
         }
     }
 

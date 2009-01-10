@@ -20,8 +20,10 @@ import java.text.Collator;
 import java.util.ArrayList;
 
 import android.app.ListActivity;
+import android.content.AsyncQueryHandler;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
@@ -29,6 +31,8 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 
 import com.android.internal.database.ArrayListCursor;
+import com.android.music.TrackBrowserActivity.TrackListAdapter;
+
 import android.database.Cursor;
 import android.database.MergeCursor;
 import android.media.AudioManager;
@@ -62,6 +66,8 @@ public class PlaylistBrowserActivity extends ListActivity
     private static final int CHANGE_WEEKS = CHILD_MENU_BASE + 4;
     private static final long RECENTLY_ADDED_PLAYLIST = -1;
     private static final long ALL_SONGS_PLAYLIST = -2;
+    private PlaylistListAdapter mAdapter;
+    boolean mAdapterSent;
 
     private boolean mCreateShortcut;
 
@@ -112,17 +118,58 @@ public class PlaylistBrowserActivity extends ListActivity
         f.addDataScheme("file");
         registerReceiver(mScanListener, f);
 
-        init();
+        setContentView(R.layout.media_picker_activity);
+        ListView lv = getListView();
+        lv.setOnCreateContextMenuListener(this);
+        lv.setTextFilterEnabled(true);
+
+        mAdapter = (PlaylistListAdapter) getLastNonConfigurationInstance();
+        if (mAdapter == null) {
+            //Log.i("@@@", "starting query");
+            mAdapter = new PlaylistListAdapter(
+                    getApplication(),
+                    this,
+                    R.layout.track_list_item,
+                    mPlaylistCursor,
+                    new String[] { MediaStore.Audio.Playlists.NAME},
+                    new int[] { android.R.id.text1 });
+            setListAdapter(mAdapter);
+            //setTitle(R.string.working_playlists);
+            getPlaylistCursor(mAdapter.getQueryHandler(), null);
+        } else {
+            mAdapter.setActivity(this);
+            setListAdapter(mAdapter);
+            mPlaylistCursor = mAdapter.getCursor();
+            // If mPlaylistCursor is null, this can be because it doesn't have
+            // a cursor yet (because the initial query that sets its cursor
+            // is still in progress), or because the query failed.
+            // In order to not flash the error dialog at the user for the
+            // first case, simply retry the query when the cursor is null.
+            // Worst case, we end up doing the same query twice.
+            if (mPlaylistCursor != null) {
+                init(mPlaylistCursor);
+            } else {
+                //setTitle(R.string.working_playlists);
+                getPlaylistCursor(mAdapter.getQueryHandler(), null);
+            }
+        }
     }
     
-    
+    @Override
+    public Object onRetainNonConfigurationInstance() {
+        PlaylistListAdapter a = mAdapter;
+        mAdapterSent = true;
+        return a;
+    }
     
     @Override
     public void onDestroy() {
         MusicUtils.unbindFromService(this);
-        if (mPlaylistCursor != null) {
-            mPlaylistCursor.close();
-            mPlaylistCursor = null;
+        if (!mAdapterSent) {
+            Cursor c = mAdapter.getCursor();
+            if (c != null) {
+                c.close();
+            }
         }        
         unregisterReceiver(mScanListener);
         super.onDestroy();
@@ -149,46 +196,33 @@ public class PlaylistBrowserActivity extends ListActivity
     
     private Handler mReScanHandler = new Handler() {
         public void handleMessage(Message msg) {
-            init();
-            if (mPlaylistCursor == null) {
-                sendEmptyMessageDelayed(0, 1000);
-            }
+            setTitle();
+            getPlaylistCursor(mAdapter.getQueryHandler(), null);
         }
     };
-    public void init() {
+    public void init(Cursor cursor) {
 
-        mPlaylistCursor = getPlaylistCursor(null);
+        mAdapter.changeCursor(cursor);
 
         if (mPlaylistCursor == null) {
             MusicUtils.displayDatabaseError(this);
-            setContentView(R.layout.no_sd_card);
+            closeContextMenu();
+            mReScanHandler.sendEmptyMessageDelayed(0, 1000);
             return;
         }
 
-        setContentView(R.layout.media_picker_activity);
+        MusicUtils.hideDatabaseError(this);
+        setTitle();
+    }
 
-        if (mPlaylistCursor.getCount() > 0) {
-            mPlaylistCursor.moveToFirst();
-
+    private void setTitle() {
+        if (mPlaylistCursor != null && mPlaylistCursor.moveToFirst()) {
             setTitle(R.string.playlists_title);
         } else {
             setTitle(R.string.no_playlists_title);
         }
-
-        // Map Cursor columns to views defined in media_list_item.xml
-        PlaylistListAdapter adapter = new PlaylistListAdapter(
-                this,
-                R.layout.track_list_item,
-                mPlaylistCursor,
-                new String[] { MediaStore.Audio.Playlists.NAME},
-                new int[] { android.R.id.text1 });
-
-        setListAdapter(adapter);
-        ListView lv = getListView();
-        lv.setOnCreateContextMenuListener(this);
-        lv.setTextFilterEnabled(true);
     }
-
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mCreateShortcut) {
@@ -293,7 +327,7 @@ public class PlaylistBrowserActivity extends ListActivity
                 if (resultCode == RESULT_CANCELED) {
                     finish();
                 } else {
-                    init();
+                    getPlaylistCursor(mAdapter.getQueryHandler(), null);
                 }
                 break;
         }
@@ -347,11 +381,12 @@ public class PlaylistBrowserActivity extends ListActivity
         MusicUtils.playAll(this, list, 0);
     }
     
-    private Cursor getPlaylistCursor(String filterstring) {
-        String[] cols = new String[] {
-                MediaStore.Audio.Playlists._ID,
-                MediaStore.Audio.Playlists.NAME
-        };
+    String[] mCols = new String[] {
+            MediaStore.Audio.Playlists._ID,
+            MediaStore.Audio.Playlists.NAME
+    };
+
+    private Cursor getPlaylistCursor(AsyncQueryHandler async, String filterstring) {
 
         StringBuilder where = new StringBuilder();
         where.append(MediaStore.Audio.Playlists.NAME + " != ''");
@@ -374,12 +409,27 @@ public class PlaylistBrowserActivity extends ListActivity
         
         String whereclause = where.toString();
         
-        Cursor results = MusicUtils.query(this, MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI,
-            cols, whereclause, keywords,
-            MediaStore.Audio.Playlists.NAME);
         
-        if (results == null) {
+        if (async != null) {
+            async.startQuery(0, null, MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI,
+                    mCols, whereclause, keywords, MediaStore.Audio.Playlists.NAME);
             return null;
+        }
+        Cursor c = null;
+        c = MusicUtils.query(this, MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI,
+                mCols, whereclause, keywords, MediaStore.Audio.Playlists.NAME);
+        
+        return mergedCursor(c);
+    }
+    
+    private Cursor mergedCursor(Cursor c) {
+        if (c == null) {
+            return null;
+        }
+        if (c instanceof MergeCursor) {
+            // this shouldn't happen, but fail gracefully
+            Log.d("PlaylistBrowserActivity", "Already wrapped");
+            return c;
         }
         ArrayList<ArrayList> autoplaylists = new ArrayList<ArrayList>();
         if (mCreateShortcut) {
@@ -393,20 +443,51 @@ public class PlaylistBrowserActivity extends ListActivity
         recent.add(getString(R.string.recentlyadded));
         autoplaylists.add(recent);
 
-        ArrayListCursor autoplaylistscursor = new ArrayListCursor(cols, autoplaylists);
+        ArrayListCursor autoplaylistscursor = new ArrayListCursor(mCols, autoplaylists);
         
-        Cursor c = new MergeCursor(new Cursor [] {autoplaylistscursor, results});
-        
-        return c;
+        Cursor cc = new MergeCursor(new Cursor [] {autoplaylistscursor, c});
+        return cc;
     }
     
-    class PlaylistListAdapter extends SimpleCursorAdapter {
+    static class PlaylistListAdapter extends SimpleCursorAdapter {
         int mTitleIdx;
+        private PlaylistBrowserActivity mActivity = null;
+        private AsyncQueryHandler mQueryHandler;
 
-        PlaylistListAdapter(Context context, int layout, Cursor cursor, String[] from, int[] to) {
-            super(context, layout, cursor, from, to);
+        class QueryHandler extends AsyncQueryHandler {
+            QueryHandler(ContentResolver res) {
+                super(res);
+            }
             
-            mTitleIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Playlists.NAME);
+            @Override
+            protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
+                //Log.i("@@@", "query complete: " + cursor.getCount() + "   " + mActivity);
+                if (cursor != null) {
+                    cursor = mActivity.mergedCursor(cursor);
+                }
+                mActivity.init(cursor);
+            }
+        }
+
+        PlaylistListAdapter(Context context, PlaylistBrowserActivity currentactivity,
+                int layout, Cursor cursor, String[] from, int[] to) {
+            super(context, layout, cursor, from, to);
+            mActivity = currentactivity;
+            getColumnIndices(cursor);
+            mQueryHandler = new QueryHandler(context.getContentResolver());
+        }
+        private void getColumnIndices(Cursor cursor) {
+            if (cursor != null) {
+                mTitleIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Playlists.NAME);
+            }
+        }
+
+        public void setActivity(PlaylistBrowserActivity newactivity) {
+            mActivity = newactivity;
+        }
+        
+        public AsyncQueryHandler getQueryHandler() {
+            return mQueryHandler;
         }
 
         @Override
@@ -429,12 +510,16 @@ public class PlaylistBrowserActivity extends ListActivity
 
         @Override
         public void changeCursor(Cursor cursor) {
-            super.changeCursor(cursor);
-            mPlaylistCursor = cursor;
+            if (cursor != mActivity.mPlaylistCursor) {
+                mActivity.mPlaylistCursor = cursor;
+                super.changeCursor(cursor);
+                getColumnIndices(cursor);
+            }
         }
+        
         @Override
         public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
-            return getPlaylistCursor(constraint.toString());
+            return mActivity.getPlaylistCursor(null, constraint.toString());
         }
     }
     
