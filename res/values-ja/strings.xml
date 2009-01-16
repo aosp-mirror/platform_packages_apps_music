@@ -5,7 +5,9 @@
   <plurals name="Nsongs">
     <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g>曲"</item>
   </plurals>
-    <!-- no translation found for Nsongscomp:other (435193531562326448) -->
+  <plurals name="Nsongscomp">
+    <item quantity="other">"全<xliff:g id="COUNT_0">%d</xliff:g>曲。<xliff:g id="COUNT_FOR_ARTIST_1">%d</xliff:g>×<xliff:g id="COUNT_FOR_ARTIST_2">%s</xliff:g>"</item>
+  </plurals>
   <plurals name="Nalbums">
     <item quantity="one">"アルバム1枚"</item>
     <item quantity="other">"アルバム<xliff:g id="COUNT">%d</xliff:g>枚"</item>
@@ -40,10 +42,10 @@
     <string name="browse_menu">"アーティスト"</string>
     <string name="search_title">"検索"</string>
     <string name="no_artists_title">"アーティストなし"</string>
-    <string name="no_albums_title">"アルバムがない"</string>
-    <string name="no_tracks_title">"曲がない"</string>
-    <string name="no_videos_title">"動画がない"</string>
-    <string name="no_playlists_title">"再生リストがない"</string>
+    <string name="no_albums_title">"アルバムなし"</string>
+    <string name="no_tracks_title">"曲なし"</string>
+    <string name="no_videos_title">"動画なし"</string>
+    <string name="no_playlists_title">"再生リストなし"</string>
     <string name="delete_playlist_menu">"削除"</string>
     <string name="edit_playlist_menu">"編集"</string>
     <string name="rename_playlist_menu">"名前を変更"</string>
@@ -109,10 +111,17 @@
     <string name="remove_from_playlist">"再生リストから削除"</string>
     <string name="streamloadingtext">"<xliff:g id="HOST">%s</xliff:g>に接続中"</string>
     <string name="mediasearch">"%sの検索:"</string>
-    <!-- no translation found for working_artists (8678357432732156580) -->
+    <string name="working_artists">"アーティスト..."</string>
+    <string name="working_albums">"アルバム..."</string>
+    <string name="working_songs">"曲..."</string>
+    <!-- no translation found for loading (3267924133697717662) -->
     <skip />
-    <!-- no translation found for working_albums (8713273699401457426) -->
+    <!-- no translation found for sort_by_track (7662999005554152565) -->
     <skip />
-    <!-- no translation found for working_songs (2201491972050410684) -->
+    <!-- no translation found for sort_by_album (2912837715658975248) -->
+    <skip />
+    <!-- no translation found for sort_by_artist (4607024967813199992) -->
+    <skip />
+    <!-- no translation found for music_picker_title (1561623486324013570) -->
     <skip />
 </resources>

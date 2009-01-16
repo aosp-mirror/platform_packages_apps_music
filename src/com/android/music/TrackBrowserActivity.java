@@ -358,6 +358,9 @@ public class TrackBrowserActivity extends ListActivity
                     }    
                     cursor.deactivate();
                 }
+                if (fancyName.equals(MediaFile.UNKNOWN_STRING)) {
+                    fancyName = getString(R.string.unknown_album_name);
+                }
             } else if (mPlaylist != null) {
                 if (mPlaylist.equals("nowplaying")) {
                     if (MusicUtils.getCurrentShuffleMode() == MediaPlaybackService.SHUFFLE_AUTO) {
@@ -941,6 +944,9 @@ public class TrackBrowserActivity extends ListActivity
             if (mAlbumId != null) {
                 where.append(" AND " + MediaStore.Audio.Media.ALBUM_ID + "=" + mAlbumId);
                 mSortOrder = MediaStore.Audio.Media.TRACK + ", " + mSortOrder;
+            }
+            if (mArtistId != null) {
+                where.append(" AND " + MediaStore.Audio.Media.ARTIST_ID + "=" + mArtistId);
             }
             where.append(" AND " + MediaStore.Audio.Media.IS_MUSIC + "=1");
             if (async != null) {

@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="onesong">"1 chanson"</string>
+    <string name="onesong">"1 chanson"</string>
   <plurals name="Nsongs">
-    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> chansons"</item>
+    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> chansons"</item>
   </plurals>
-    <!-- no translation found for Nsongscomp:other (435193531562326448) -->
+  <plurals name="Nsongscomp">
+    <item quantity="other">"<xliff:g id="COUNT_0">%d</xliff:g> chansons au total, <xliff:g id="COUNT_FOR_ARTIST_1">%d</xliff:g> de <xliff:g id="COUNT_FOR_ARTIST_2">%s</xliff:g>"</item>
+  </plurals>
   <plurals name="Nalbums">
-    <item quantity="one">"1 album"</item>
-    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> albums"</item>
+    <item quantity="one">"1 album"</item>
+    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> albums"</item>
   </plurals>
     <string name="goto_start">"Médiathèque"</string>
     <string name="goto_playback">"Lecture"</string>
     <string name="party_shuffle">"Lecture aléatoire"</string>
     <string name="party_shuffle_off">"La lecture aléatoire est désactivée."</string>
-    <string name="delete_item">"Effacer"</string>
-    <string name="shuffle_all">"Tout aléatoire"</string>
+    <string name="delete_item">"Supprimer"</string>
+    <string name="shuffle_all">"Lecture aléatoire de toutes les chansons"</string>
     <string name="play_all">"Tout lire"</string>
-    <string name="delete_artist_desc">"Toutes les chansons de <xliff:g id="ARTIST">%s</xliff:g> seront définitivement effacées de la carte SD."</string>
-    <string name="delete_album_desc">"L\'album \"<xliff:g id="ALBUM">%s</xliff:g>\" tout entier sera définitivement effacé de la carte SD."</string>
-    <string name="delete_song_desc">"La chanson \"<xliff:g id="SONG">%s</xliff:g>\" sera définitivement effacée de la carte SD."</string>
+    <string name="delete_artist_desc">"Toutes les chansons de <xliff:g id="ARTIST">%s</xliff:g> seront définitivement supprimées de la carte SD."</string>
+    <string name="delete_album_desc">"L\' intégralité de l\'album \"<xliff:g id="ALBUM">%s</xliff:g>\" sera définitivement supprimé de la carte SD."</string>
+    <string name="delete_song_desc">"La chanson \"<xliff:g id="SONG">%s</xliff:g>\" sera définitivement supprimée de la carte SD."</string>
     <string name="delete_confirm_button_text">"OK"</string>
   <plurals name="NNNtracksdeleted">
-    <item quantity="one">"1 chanson a été effacée."</item>
-    <item quantity="other">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> chansons ont été effacées."</item>
+    <item quantity="one">"1 chanson a été supprimée."</item>
+    <item quantity="other">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> chansons ont été supprimées."</item>
   </plurals>
     <string name="scanning">"Lecture de la carte SD..."</string>
     <string name="nowplaying_title">"En écoute"</string>
@@ -35,41 +37,41 @@
     <string name="tracks_title">"Chansons"</string>
     <string name="playlists_menu">"Listes de lecture"</string>
     <string name="playlists_title">"Listes de lecture"</string>
-    <string name="videos_title">"Clips vidéo"</string>
+    <string name="videos_title">"Vidéos"</string>
     <string name="all_title">"Tous les médias"</string>
     <string name="browse_menu">"Artistes"</string>
     <string name="search_title">"Recherche"</string>
     <string name="no_artists_title">"Aucun artiste trouvé"</string>
     <string name="no_albums_title">"Aucun album trouvé"</string>
     <string name="no_tracks_title">"Aucune chanson"</string>
-    <string name="no_videos_title">"Aucun clip vidéo trouvé"</string>
+    <string name="no_videos_title">"Aucune vidéo trouvée"</string>
     <string name="no_playlists_title">"Aucune liste de lecture trouvée"</string>
-    <string name="delete_playlist_menu">"Effacer"</string>
+    <string name="delete_playlist_menu">"Supprimer"</string>
     <string name="edit_playlist_menu">"Modifier"</string>
     <string name="rename_playlist_menu">"Renommer"</string>
-    <string name="playlist_deleted_message">"La liste de lecture a été effacée."</string>
+    <string name="playlist_deleted_message">"La liste de lecture a été supprimée."</string>
     <string name="playlist_renamed_message">"La liste de lecture a été renommée."</string>
     <string name="recentlyadded">"Ajoutés récemment"</string>
     <string name="sdcard_missing_title">"Aucune carte SD trouvée"</string>
     <string name="sdcard_missing_message">"Aucune carte SD n\'est insérée dans votre téléphone."</string>
     <string name="sdcard_busy_title">"Carte SD non disponible"</string>
-    <string name="sdcard_busy_message">"Désolé, la carte SD n\'est pas disponible."</string>
+    <string name="sdcard_busy_message">"Désolé, votre carte SD n\'est pas disponible."</string>
     <string name="sdcard_error_title">"Erreur de carte SD"</string>
     <string name="sdcard_error_message">"Une erreur s\'est produite sur votre carte SD."</string>
     <string name="unknown_artist_name">"Artiste inconnu"</string>
     <string name="unknown_album_name">"Album inconnu"</string>
-    <string name="shuffle_on_notif">"Le mode aléatoire est activé."</string>
+    <string name="shuffle_on_notif">"La lecture aléatoire est activé."</string>
     <string name="shuffle_off_notif">"Le mode aléatoire est désactivé."</string>
     <string name="repeat_off_notif">"La lecture en boucle est désactivée."</string>
-    <string name="repeat_current_notif">"Lecture en boucle de la chanson en écoute."</string>
-    <string name="repeat_all_notif">"Lecture en boucle de toutes les chansons."</string>
-    <string name="ringtone_menu">"Utiliser en tant que sonnerie du téléphone"</string>
+    <string name="repeat_current_notif">"Lecture en boucle de la chanson en écoute"</string>
+    <string name="repeat_all_notif">"Lecture en boucle de toutes les chansons"</string>
+    <string name="ringtone_menu">"Utiliser comme sonnerie du téléphone"</string>
     <string name="ringtone_menu_short">"Utiliser comme sonnerie"</string>
-    <string name="ringtone_set">"\"%s\" a été réglé comme sonnerie."</string>
+    <string name="ringtone_set">"\"%s\" a été défini comme sonnerie."</string>
     <string name="play_selection">"Lire"</string>
     <string name="add_to_playlist">"Ajouter à la liste de lecture"</string>
     <string name="queue">"Liste de lecture actuelle"</string>
-    <string name="new_playlist">"Nouv."</string>
+    <string name="new_playlist">"Nouveau"</string>
     <string name="new_playlist_name_template">"Nouvelle liste de lecture <xliff:g id="NUMBER">%d</xliff:g>"</string>
   <plurals name="NNNtrackstoplaylist">
     <item quantity="one">"1 chanson a été ajoutée à la liste de lecture."</item>
@@ -82,39 +84,36 @@
     <string name="service_start_error_msg">"Désolé, la chanson n\'a pas pu être lue."</string>
     <string name="service_start_error_button">"OK"</string>
   <string-array name="weeklist">
-    <item>"1 semaine"</item>
-    <item>"2 semaines"</item>
-    <item>"3 semaines"</item>
-    <item>"4 semaines"</item>
-    <item>"5 semaines"</item>
-    <item>"6 semaines"</item>
-    <item>"7 semaines"</item>
-    <item>"8 semaines"</item>
-    <item>"9 semaines"</item>
-    <item>"10 semaines"</item>
-    <item>"11 semaines"</item>
-    <item>"12 semaines"</item>
+    <item>"1 semaine"</item>
+    <item>"2 semaines"</item>
+    <item>"3 semaines"</item>
+    <item>"4 semaines"</item>
+    <item>"5 semaines"</item>
+    <item>"6 semaines"</item>
+    <item>"7 semaines"</item>
+    <item>"8 semaines"</item>
+    <item>"9 semaines"</item>
+    <item>"10 semaines"</item>
+    <item>"11 semaines"</item>
+    <item>"12 semaines"</item>
   </string-array>
     <string name="weekpicker_set">"Terminé"</string>
-    <string name="weekpicker_title">"Régler la durée"</string>
+    <string name="weekpicker_title">"Définir la durée"</string>
     <string name="save_as_playlist">"Enregistrer en tant que liste de lecture"</string>
     <string name="clear_playlist">"Effacer la liste de lecture"</string>
     <string name="musicbrowserlabel">"Musique"</string>
     <string name="musicshortcutlabel">"Liste de lecture musicale"</string>
     <string name="mediaplaybacklabel">"Musique"</string>
-    <string name="videobrowserlabel">"Clips vidéo"</string>
+    <string name="videobrowserlabel">"Vidéos"</string>
     <string name="mediapickerlabel">"Musique"</string>
     <string name="playback_failed">"Désolé, le lecteur ne prend pas en charge ce type de fichier audio."</string>
     <string name="cancel">"Annuler"</string>
     <string name="remove_from_playlist">"Supprimer de la liste de lecture"</string>
     <string name="streamloadingtext">"Connexion à <xliff:g id="HOST">%s</xliff:g>"</string>
-    <string name="mediasearch">"Chercher %s avec :"</string>
-    <!-- no translation found for working_artists (8678357432732156580) -->
-    <skip />
-    <!-- no translation found for working_albums (8713273699401457426) -->
-    <skip />
-    <!-- no translation found for working_songs (2201491972050410684) -->
-    <skip />
+    <string name="mediasearch">"Rechercher %s à l\'aide de :"</string>
+    <string name="working_artists">"Artistes…"</string>
+    <string name="working_albums">"Albums…"</string>
+    <string name="working_songs">"Chansons…"</string>
     <!-- no translation found for loading (3267924133697717662) -->
     <skip />
     <!-- no translation found for sort_by_track (7662999005554152565) -->
