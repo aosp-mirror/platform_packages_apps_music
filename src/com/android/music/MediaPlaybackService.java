@@ -1235,9 +1235,12 @@ public class MediaPlaybackService extends Service {
                     if (mPlayPos >= mPlayListLen) {
                         mPlayPos = 0;
                     }
+                    boolean wasPlaying = isPlaying();
                     stop(false);
                     openCurrent();
-                    play();
+                    if (wasPlaying) {
+                        play();
+                    }
                 }
             }
             notifyChange(QUEUE_CHANGED);

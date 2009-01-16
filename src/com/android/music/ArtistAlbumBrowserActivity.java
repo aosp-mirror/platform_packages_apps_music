@@ -237,9 +237,14 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setDataAndType(Uri.EMPTY, "vnd.android.cursor.dir/track");
         intent.putExtra("album", mCurrentAlbumId);
-        mArtistCursor.moveToPosition(groupPosition);
-        mCurrentArtistId = Long.valueOf(id).toString();
-        intent.putExtra("artist", mCurrentArtistId);
+        Cursor c = (Cursor) getExpandableListAdapter().getChild(groupPosition, childPosition);
+        String album = c.getString(c.getColumnIndex(MediaStore.Audio.Albums.ALBUM));
+        if (album.equals(MediaFile.UNKNOWN_STRING)) {
+            // unknown album, so we should include the artist ID to limit the songs to songs only by that artist 
+            mArtistCursor.moveToPosition(groupPosition);
+            mCurrentArtistId = mArtistCursor.getString(mArtistCursor.getColumnIndex(MediaStore.Audio.Artists._ID));
+            intent.putExtra("artist", mCurrentArtistId);
+        }
         startActivity(intent);
         return true;
     }
@@ -650,7 +655,8 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
 
             String name = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM));
             String displayname = name;
-            if (name.equals(MediaFile.UNKNOWN_STRING)) {
+            boolean unknown = name.equals(MediaFile.UNKNOWN_STRING); 
+            if (unknown) {
                 displayname = mUnknownAlbum;
             }
             vh.line1.setText(displayname);
@@ -666,6 +672,10 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
 
             final StringBuilder builder = mBuffer;
             builder.delete(0, builder.length());
+            if (unknown) {
+                numsongs = numartistsongs;
+            }
+              
             if (numsongs == 1) {
                 builder.append(context.getString(R.string.onesong));
             } else {
@@ -681,7 +691,10 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
                     builder.append(mResources.getQuantityString(R.plurals.Nsongscomp, numsongs, args));
                 }
             }
-            if (first != 0 && last != 0) {
+            // If this is the unknown album, we don't really have any information about the year,
+            // since the year info is be for the entire collection of unknown album songs, not
+            // just the ones belonging to this artist.
+            if (!unknown && first != 0 && last != 0) {
                 builder.append("\n");
                 
                 builder.append(first);

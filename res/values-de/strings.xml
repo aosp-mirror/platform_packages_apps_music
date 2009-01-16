@@ -5,7 +5,9 @@
   <plurals name="Nsongs">
     <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> Titel"</item>
   </plurals>
-    <!-- no translation found for Nsongscomp:other (435193531562326448) -->
+  <plurals name="Nsongscomp">
+    <item quantity="other">"<xliff:g id="COUNT_0">%d</xliff:g> Lieder insgesamt, <xliff:g id="COUNT_FOR_ARTIST_1">%d</xliff:g> bis <xliff:g id="COUNT_FOR_ARTIST_2">%s</xliff:g>"</item>
+  </plurals>
   <plurals name="Nalbums">
     <item quantity="one">"1 Album"</item>
     <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> Alben"</item>
@@ -19,8 +21,7 @@
     <string name="play_all">"Alle wiedergeben"</string>
     <string name="delete_artist_desc">"Alle Titel von <xliff:g id="ARTIST">%s</xliff:g> werden endgültig von der SD-Karte gelöscht."</string>
     <string name="delete_album_desc">"Das gesamte Album \"<xliff:g id="ALBUM">%s</xliff:g>\" wird endgültig von der SD-Karte gelöscht."</string>
-    <!-- no translation found for delete_song_desc (1856800468541831408) -->
-    <skip />
+    <string name="delete_song_desc">"\"<xliff:g id="SONG">%s</xliff:g>\" wird endgültig von der SD-Karte gelöscht."</string>
     <string name="delete_confirm_button_text">"OK"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one">"1 Titel wurde gelöscht."</item>
@@ -110,10 +111,17 @@
     <string name="remove_from_playlist">"Von Playlist entfernen"</string>
     <string name="streamloadingtext">"Verbindung mit <xliff:g id="HOST">%s</xliff:g> wird hergestellt"</string>
     <string name="mediasearch">"Nach %s suchen mithilfe von:"</string>
-    <!-- no translation found for working_artists (8678357432732156580) -->
+    <string name="working_artists">"Künstler…"</string>
+    <string name="working_albums">"Alben…"</string>
+    <string name="working_songs">"Lieder…"</string>
+    <!-- no translation found for loading (3267924133697717662) -->
     <skip />
-    <!-- no translation found for working_albums (8713273699401457426) -->
+    <!-- no translation found for sort_by_track (7662999005554152565) -->
     <skip />
-    <!-- no translation found for working_songs (2201491972050410684) -->
+    <!-- no translation found for sort_by_album (2912837715658975248) -->
+    <skip />
+    <!-- no translation found for sort_by_artist (4607024967813199992) -->
+    <skip />
+    <!-- no translation found for music_picker_title (1561623486324013570) -->
     <skip />
 </resources>

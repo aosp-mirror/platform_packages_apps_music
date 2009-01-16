@@ -5,7 +5,9 @@
   <plurals name="Nsongs">
     <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> brani"</item>
   </plurals>
-    <!-- no translation found for Nsongscomp:other (435193531562326448) -->
+  <plurals name="Nsongscomp">
+    <item quantity="other">"<xliff:g id="COUNT_0">%d</xliff:g> brani totali, <xliff:g id="COUNT_FOR_ARTIST_1">%d</xliff:g> di <xliff:g id="COUNT_FOR_ARTIST_2">%s</xliff:g>"</item>
+  </plurals>
   <plurals name="Nalbums">
     <item quantity="one">"1 album"</item>
     <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> album"</item>
@@ -109,12 +111,9 @@
     <string name="remove_from_playlist">"Rimuovi da playlist"</string>
     <string name="streamloadingtext">"Connessione a <xliff:g id="HOST">%s</xliff:g>"</string>
     <string name="mediasearch">"Cerca %s con:"</string>
-    <!-- no translation found for working_artists (8678357432732156580) -->
-    <skip />
-    <!-- no translation found for working_albums (8713273699401457426) -->
-    <skip />
-    <!-- no translation found for working_songs (2201491972050410684) -->
-    <skip />
+    <string name="working_artists">"Artisti…"</string>
+    <string name="working_albums">"Album…"</string>
+    <string name="working_songs">"Brani…"</string>
     <!-- no translation found for loading (3267924133697717662) -->
     <skip />
     <!-- no translation found for sort_by_track (7662999005554152565) -->
