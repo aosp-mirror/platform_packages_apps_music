@@ -702,7 +702,8 @@ public class MediaPlaybackService extends Service {
     /**
      * Replaces the current playlist with a new list,
      * and prepares for starting playback at the specified
-     * position in the list.
+     * position in the list, or a random position if the
+     * specified position is 0.
      * @param list The new list of tracks.
      */
     public void open(int [] list, int position) {
@@ -711,7 +712,11 @@ public class MediaPlaybackService extends Service {
                 mShuffleMode = SHUFFLE_NORMAL;
             }
             addToPlayList(list, -1);
-            mPlayPos = position;
+            if (position >= 0) {
+                mPlayPos = position;
+            } else {
+                mPlayPos = mRand.nextInt(mPlayListLen);
+            }
             mHistory.clear();
 
             openCurrent();
@@ -1351,38 +1356,48 @@ public class MediaPlaybackService extends Service {
     }
 
     public String getArtistName() {
-        if (mCursor == null) {
-            return null;
+        synchronized(this) {
+            if (mCursor == null) {
+                return null;
+            }
+            return mCursor.getString(mCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST));
         }
-        return mCursor.getString(mCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST));
     }
     
     public int getArtistId() {
-        if (mCursor == null) {
-            return -1;
+        synchronized (this) {
+            if (mCursor == null) {
+                return -1;
+            }
+            return mCursor.getInt(mCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST_ID));
         }
-        return mCursor.getInt(mCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST_ID));
     }
 
     public String getAlbumName() {
-        if (mCursor == null) {
-            return null;
+        synchronized (this) {
+            if (mCursor == null) {
+                return null;
+            }
+            return mCursor.getString(mCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM));
         }
-        return mCursor.getString(mCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM));
     }
 
     public int getAlbumId() {
-        if (mCursor == null) {
-            return -1;
+        synchronized (this) {
+            if (mCursor == null) {
+                return -1;
+            }
+            return mCursor.getInt(mCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID));
         }
-        return mCursor.getInt(mCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID));
     }
 
     public String getTrackName() {
-        if (mCursor == null) {
-            return null;
+        synchronized (this) {
+            if (mCursor == null) {
+                return null;
+            }
+            return mCursor.getString(mCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE));
         }
-        return mCursor.getString(mCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE));
     }
 
     
@@ -1395,7 +1410,6 @@ public class MediaPlaybackService extends Service {
         if (mPlayer.isInitialized()) {
             return mPlayer.duration();
         }
-        // TODO: when the MIDI engine supports it, return MIDI duration.
         return -1;
     }
 

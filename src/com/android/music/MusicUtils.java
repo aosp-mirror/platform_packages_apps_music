@@ -669,7 +669,7 @@ public class MusicUtils {
             if (position < 0) {
                 position = 0;
             }
-            sService.open(list, position);
+            sService.open(list, force_shuffle ? -1 : position);
             sService.play();
         } catch (RemoteException ex) {
         } finally {
@@ -970,6 +970,9 @@ public class MusicUtils {
                         }
                     }
                 } catch (RemoteException ex) {
+                    return null;
+                } catch (NullPointerException ex) {
+                    return null;
                 }
             }
             if (uri == null) {
