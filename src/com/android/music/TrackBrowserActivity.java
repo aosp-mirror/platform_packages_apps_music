@@ -531,14 +531,12 @@ public class TrackBrowserActivity extends ListActivity
                     mDeletedOneRow = false;
                     return;
                 }
-                mTrackCursor.close();
-                mTrackCursor = new NowPlayingCursor(MusicUtils.sService, mCursorCols);
-                if (mTrackCursor.getCount() == 0) {
+                Cursor c = new NowPlayingCursor(MusicUtils.sService, mCursorCols);
+                if (c.getCount() == 0) {
                     finish();
                     return;
                 }
-                ((TrackListAdapter)getListAdapter()).changeCursor(mTrackCursor);
-                getListView().invalidateViews();
+                mAdapter.changeCursor(c);
             }
         }
     };
