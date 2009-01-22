@@ -273,6 +273,11 @@ public class MediaPlaybackService extends Service {
         PowerManager pm = (PowerManager)getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, this.getClass().getName());
         mWakeLock.setReferenceCounted(false);
+
+        // If the service was idle, but got killed before it stopped itself, the
+        // system will relaunch it. Make sure it gets stopped again in that case.
+        Message msg = mDelayedStopHandler.obtainMessage();
+        mDelayedStopHandler.sendMessageDelayed(msg, IDLE_DELAY);
     }
 
     @Override
@@ -528,7 +533,7 @@ public class MediaPlaybackService extends Service {
                     || mMediaplayerHandler.hasMessages(TRACK_ENDED)) {
                 return;
             }
-            // save the queue again, because it might have change
+            // save the queue again, because it might have changed
             // since the user exited the music app (because of
             // party-shuffle or because the play-position changed)
             saveQueue(true);
