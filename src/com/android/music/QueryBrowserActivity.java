@@ -99,7 +99,12 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
                     new String[] {},
                     new int[] {});
             setListAdapter(mAdapter);
-            getQueryCursor(mAdapter.getQueryHandler(), mFilterString);
+            if (TextUtils.isEmpty(mFilterString)) {
+                getQueryCursor(mAdapter.getQueryHandler(), null);
+            } else {
+                mTrackList.setFilterText(mFilterString);
+                mFilterString = null;
+            }
         } else {
             mAdapter.setActivity(this);
             setListAdapter(mAdapter);
@@ -183,11 +188,6 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
             return;
         }
         MusicUtils.hideDatabaseError(this);
-
-        if (!TextUtils.isEmpty(mFilterString)) {
-            mTrackList.setFilterText(mFilterString);
-            mFilterString = null;
-        }
     }
     
     @Override

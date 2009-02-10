@@ -18,40 +18,45 @@
 -->
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- icon is used for albumart, the grabber in edit playlist mode, and the playlist icon in the list of playlists -->
     <ImageView android:id="@+id/icon"
         android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="4dip"
-        android:layout_width="60px"
-        android:layout_height="60px"/>
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
-    <TextView android:id="@+id/duration" android:textSize="14sp" android:textColor="#ffe0d090"
+    <TextView android:id="@+id/duration"
+        android:textSize="12sp"
+        android:textColor="?android:attr/textColorTertiary"
+        android:textStyle="bold"
         android:paddingLeft="4dip"
-        android:paddingRight="5dip"
+        android:paddingRight="11dip"
         android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/line1"
         android:singleLine="true" />
 
+    <!-- The height is set to half the height of the parent, which is 64 dip -->
     <TextView android:id="@+id/line1"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
-        android:paddingLeft="4dip"
+        android:paddingLeft="9dip"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="true"
         android:layout_toRightOf="@id/icon"
         android:layout_toLeftOf="@id/duration"
         android:ellipsize="marquee"
         android:singleLine="true" />
 
+    <!-- The height is set to half the height of the parent, which is 64 dip -->
     <TextView android:id="@+id/line2" android:visibility="visible"
-        android:maxLines="2"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:singleLine="true"
         android:ellipsize="end"
-        android:paddingLeft="4dip"
+        android:paddingLeft="9dip"
         android:scrollHorizontally="true"
-        android:textSize="14sp"
         android:layout_below="@id/line1"
         android:layout_alignWithParentIfMissing="true"
         android:layout_toRightOf="@id/icon"
@@ -62,8 +67,9 @@
     <ImageView android:id="@+id/play_indicator"
         android:layout_alignParentRight="true"
         android:layout_alignBottom="@id/line2"
+        android:layout_below="@id/duration"        
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="6dip" />
+        android:layout_marginRight="12dip" />
 
 </merge>

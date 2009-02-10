@@ -56,18 +56,20 @@ public class TouchInterceptor extends ListView {
     private int mRemoveMode = -1;
     private Rect mTempRect = new Rect();
     private Bitmap mDragBitmap;
+    private final int mTouchSlop;
 
     public TouchInterceptor(Context context, AttributeSet attrs) {
         super(context, attrs);
         SharedPreferences pref = context.getSharedPreferences("Music", 3);
         mRemoveMode = pref.getInt("deletemode", -1);
+        mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
     }
     
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         if (mRemoveListener != null && mGestureDetector == null) {
             if (mRemoveMode == FLING) {
-                mGestureDetector = new GestureDetector(new SimpleOnGestureListener() {
+                mGestureDetector = new GestureDetector(getContext(), new SimpleOnGestureListener() {
                     @Override
                     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
                             float velocityY) {
@@ -114,7 +116,7 @@ public class TouchInterceptor extends ListView {
                         mDragPos = itemnum;
                         mFirstDragPos = mDragPos;
                         mHeight = getHeight();
-                        int touchSlop = ViewConfiguration.getTouchSlop();
+                        int touchSlop = mTouchSlop;
                         mUpperBound = Math.min(y - touchSlop, mHeight / 3);
                         mLowerBound = Math.max(y + touchSlop, mHeight * 2 /3);
                         return false;

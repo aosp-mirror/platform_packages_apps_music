@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2008 The Android Open Source Project
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,10 +13,9 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true" android:drawable="@drawable/btn_music_pressed" />
-    <item android:state_focused="true" android:state_pressed="false" android:drawable="@drawable/btn_music_highlight" />
-    <item android:drawable="@drawable/btn_music_normal" />
-</selector>
-
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="create_playlist_create_text_prompt">"재생 목록 이름"</string>
+    <string name="rename_playlist_same_prompt">"\'<xliff:g id="PLAYLIST">%s</xliff:g>\'을(를) 다음으로 변경"</string>
+    <string name="rename_playlist_diff_prompt">"\'<xliff:g id="PLAYLIST">%s</xliff:g>\'을(를) 다음으로 변경"</string>
+</resources>

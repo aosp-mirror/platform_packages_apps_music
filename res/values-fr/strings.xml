@@ -55,8 +55,6 @@
     <string name="all_title">"Tous les médias"</string>
     <string name="browse_menu">"Artistes"</string>
     <string name="search_title">"Recherche"</string>
-    <string name="no_artists_title">"Aucun artiste trouvé"</string>
-    <string name="no_albums_title">"Aucun album trouvé"</string>
     <string name="no_tracks_title">"Aucune chanson"</string>
     <string name="no_videos_title">"Aucune vidéo trouvée"</string>
     <string name="no_playlists_title">"Aucune liste de lecture trouvée"</string>
@@ -66,6 +64,12 @@
     <string name="playlist_deleted_message">"La liste de lecture a été supprimée."</string>
     <string name="playlist_renamed_message">"La liste de lecture a été renommée."</string>
     <string name="recentlyadded">"Ajoutés récemment"</string>
+    <!-- no translation found for recentlyadded_title (3153322287249901914) -->
+    <skip />
+    <!-- no translation found for podcasts_listitem (8657809279717670634) -->
+    <skip />
+    <!-- no translation found for podcasts_title (4928414142496858304) -->
+    <skip />
     <string name="sdcard_missing_title">"Aucune carte SD trouvée"</string>
     <string name="sdcard_missing_message">"Aucune carte SD n\'est insérée dans votre téléphone."</string>
     <string name="sdcard_busy_title">"Carte SD non disponible"</string>
@@ -128,6 +132,8 @@
     <string name="working_artists">"Artistes…"</string>
     <string name="working_albums">"Albums…"</string>
     <string name="working_songs">"Chansons…"</string>
+    <!-- no translation found for working_playlists (4424950806134653351) -->
+    <skip />
     <!-- no translation found for loading (3267924133697717662) -->
     <skip />
     <!-- no translation found for sort_by_track (7662999005554152565) -->
@@ -137,5 +143,7 @@
     <!-- no translation found for sort_by_artist (4607024967813199992) -->
     <skip />
     <!-- no translation found for music_picker_title (1561623486324013570) -->
+    <skip />
+    <!-- no translation found for gadget_track (3186569295893300114) -->
     <skip />
 </resources>

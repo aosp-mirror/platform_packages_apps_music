@@ -55,8 +55,6 @@
     <string name="all_title">"すべてのメディア"</string>
     <string name="browse_menu">"アーティスト"</string>
     <string name="search_title">"検索"</string>
-    <string name="no_artists_title">"アーティストなし"</string>
-    <string name="no_albums_title">"アルバムなし"</string>
     <string name="no_tracks_title">"曲なし"</string>
     <string name="no_videos_title">"動画なし"</string>
     <string name="no_playlists_title">"再生リストなし"</string>
@@ -66,6 +64,12 @@
     <string name="playlist_deleted_message">"再生リストが削除されました。"</string>
     <string name="playlist_renamed_message">"再生リストの名前が変更されました。"</string>
     <string name="recentlyadded">"最近追加した項目"</string>
+    <!-- no translation found for recentlyadded_title (3153322287249901914) -->
+    <skip />
+    <!-- no translation found for podcasts_listitem (8657809279717670634) -->
+    <skip />
+    <!-- no translation found for podcasts_title (4928414142496858304) -->
+    <skip />
     <string name="sdcard_missing_title">"SDカードがありません"</string>
     <string name="sdcard_missing_message">"SDカードが携帯電話に挿入されていません。"</string>
     <string name="sdcard_busy_title">"SDカードは利用できません"</string>
@@ -128,6 +132,8 @@
     <string name="working_artists">"アーティスト..."</string>
     <string name="working_albums">"アルバム..."</string>
     <string name="working_songs">"曲..."</string>
+    <!-- no translation found for working_playlists (4424950806134653351) -->
+    <skip />
     <!-- no translation found for loading (3267924133697717662) -->
     <skip />
     <!-- no translation found for sort_by_track (7662999005554152565) -->
@@ -137,5 +143,7 @@
     <!-- no translation found for sort_by_artist (4607024967813199992) -->
     <skip />
     <!-- no translation found for music_picker_title (1561623486324013570) -->
+    <skip />
+    <!-- no translation found for gadget_track (3186569295893300114) -->
     <skip />
 </resources>

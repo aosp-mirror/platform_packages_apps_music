@@ -55,8 +55,6 @@
     <string name="all_title">"Все мультимедийное содержание"</string>
     <string name="browse_menu">"Артисты"</string>
     <string name="search_title">"Поиск"</string>
-    <string name="no_artists_title">"Нет артистов"</string>
-    <string name="no_albums_title">"Нет альбомов"</string>
     <string name="no_tracks_title">"Нет композиций"</string>
     <string name="no_videos_title">"Нет видео"</string>
     <string name="no_playlists_title">"Нет плейлистов"</string>
@@ -66,6 +64,12 @@
     <string name="playlist_deleted_message">"Плейлист удален."</string>
     <string name="playlist_renamed_message">"Плейлист переименован."</string>
     <string name="recentlyadded">"Недавно добавленные"</string>
+    <!-- no translation found for recentlyadded_title (3153322287249901914) -->
+    <skip />
+    <!-- no translation found for podcasts_listitem (8657809279717670634) -->
+    <skip />
+    <!-- no translation found for podcasts_title (4928414142496858304) -->
+    <skip />
     <string name="sdcard_missing_title">"Нет карты SD"</string>
     <string name="sdcard_missing_message">"В телефоне не установлена карта SD."</string>
     <string name="sdcard_busy_title">"Карта SD недоступна"</string>
@@ -128,6 +132,8 @@
     <string name="working_artists">"Артисты…"</string>
     <string name="working_albums">"Альбомы…"</string>
     <string name="working_songs">"Композиции…"</string>
+    <!-- no translation found for working_playlists (4424950806134653351) -->
+    <skip />
     <!-- no translation found for loading (3267924133697717662) -->
     <skip />
     <!-- no translation found for sort_by_track (7662999005554152565) -->
@@ -137,5 +143,7 @@
     <!-- no translation found for sort_by_artist (4607024967813199992) -->
     <skip />
     <!-- no translation found for music_picker_title (1561623486324013570) -->
+    <skip />
+    <!-- no translation found for gadget_track (3186569295893300114) -->
     <skip />
 </resources>

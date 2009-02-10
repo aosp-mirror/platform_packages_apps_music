@@ -83,6 +83,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     private AlbumArtHandler mAlbumArtHandler;
     private Toast mToast;
     private boolean mRelaunchAfterConfigChange;
+    private int mTouchSlop;
 
     public MediaPlaybackActivity()
     {
@@ -154,11 +155,12 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         } else {
             mOneShot = getIntent().getBooleanExtra("oneshot", false);
         }
+
+        mTouchSlop = ViewConfiguration.get(this).getScaledTouchSlop();
     }
     
     int mInitialX = -1;
     int mLastX = -1;
-    int SLOP = ViewConfiguration.getTouchSlop();
     int mTextWidth = 0;
     int mViewWidth = 0;
     boolean mDraggingLabel = false;
@@ -213,7 +215,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 return true;
             }
             int delta = mInitialX - (int) event.getX();
-            if (Math.abs(delta) > SLOP) {
+            if (Math.abs(delta) > mTouchSlop) {
                 // start moving
                 mLabelScroller.removeMessages(0, tv);
                 
@@ -267,22 +269,40 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         CharSequence title = null;
         String mime = null;
         String query = null;
+        String artist;
+        String album;
+        String song;
         
-        CharSequence artist = mArtistName.getText();
-        CharSequence album = mAlbumName.getText();
-        CharSequence song = mTrackName.getText();
+        try {
+            artist = mService.getArtistName();
+            album = mService.getAlbumName();
+            song = mService.getTrackName();
+        } catch (RemoteException ex) {
+            return true;
+        }
         
-        if (view.equals(mArtistName.getParent())) {
+        boolean knownartist = !MediaFile.UNKNOWN_STRING.equals(artist);
+        boolean knownalbum = !MediaFile.UNKNOWN_STRING.equals(album);
+        
+        if (knownartist && view.equals(mArtistName.getParent())) {
             title = artist;
             query = artist.toString();
             mime = MediaStore.Audio.Artists.ENTRY_CONTENT_TYPE;
-        } else if (view.equals(mAlbumName.getParent())) {
+        } else if (knownalbum && view.equals(mAlbumName.getParent())) {
             title = album;
-            query = artist + " " + album;
+            if (knownartist) {
+                query = artist + " " + album;
+            } else {
+                query = album;
+            }
             mime = MediaStore.Audio.Albums.ENTRY_CONTENT_TYPE;
-        } else if (view.equals(mTrackName.getParent())) {
+        } else if (view.equals(mTrackName.getParent()) || !knownartist || !knownalbum) {
             title = song;
-            query = artist + " " + song;
+            if (knownartist) {
+                query = artist + " " + song;
+            } else {
+                query = song;
+            }
             mime = "audio/*"; // the specific type doesn't matter, so don't bother retrieving it
         } else {
             throw new RuntimeException("shouldn't be here");
@@ -290,10 +310,15 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         title = getString(R.string.mediasearch, title);
 
         Intent i = new Intent();
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         i.setAction(MediaStore.INTENT_ACTION_MEDIA_SEARCH);
         i.putExtra(SearchManager.QUERY, query);
-        i.putExtra(MediaStore.EXTRA_MEDIA_ARTIST, artist);
-        i.putExtra(MediaStore.EXTRA_MEDIA_ALBUM, album);
+        if(knownartist) {
+            i.putExtra(MediaStore.EXTRA_MEDIA_ARTIST, artist);
+        }
+        if(knownalbum) {
+            i.putExtra(MediaStore.EXTRA_MEDIA_ALBUM, album);
+        }
         i.putExtra(MediaStore.EXTRA_MEDIA_TITLE, song);
         i.putExtra(MediaStore.EXTRA_MEDIA_FOCUS, mime);
 

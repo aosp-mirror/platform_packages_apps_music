@@ -84,7 +84,37 @@ public class MusicUtils {
         public final static int QUEUE = 12;
         public final static int CHILD_MENU_BASE = 13; // this should be the last item
     }
-    
+
+    public static String makeAlbumsLabel(Context context, int numalbums, int numsongs, boolean isUnknown) {
+        // There are two formats for the albums/songs information:
+        // "N Song(s)"  - used for unknown artist/album
+        // "N Album(s)" - used for known albums
+        
+        StringBuilder songs_albums = new StringBuilder();
+
+        Resources r = context.getResources();
+        if (isUnknown) {
+            if (numsongs == 1) {
+                songs_albums.append(context.getString(R.string.onesong));
+            } else {
+                String f = r.getQuantityText(R.plurals.Nsongs, numsongs).toString();
+                sFormatBuilder.setLength(0);
+                sFormatter.format(f, Integer.valueOf(numsongs));
+                songs_albums.append(sFormatBuilder);
+            }
+        } else {
+            String f = r.getQuantityText(R.plurals.Nalbums, numalbums).toString();
+            sFormatBuilder.setLength(0);
+            sFormatter.format(f, Integer.valueOf(numalbums));
+            songs_albums.append(sFormatBuilder);
+            songs_albums.append(context.getString(R.string.albumsongseparator));
+        }
+        return songs_albums.toString();
+    }
+
+    /**
+     * This is now only used for the query screen
+     */
     public static String makeAlbumsSongsLabel(Context context, int numalbums, int numsongs, boolean isUnknown) {
         // There are several formats for the albums/songs information:
         // "1 Song"   - used if there is only 1 song
@@ -778,11 +808,10 @@ public class MusicUtils {
     // fall back to getting artwork directly from the file, nor will
     // it attempt to repair the database.
     private static Bitmap getArtworkQuick(Context context, int album_id, int w, int h) {
-        // NOTE: There is in fact a 1 pixel frame in the ImageView used to
-        // display this drawable. Take it into account now, so we don't have to
+        // NOTE: There is in fact a 1 pixel border on the right side in the ImageView
+        // used to display this drawable. Take it into account now, so we don't have to
         // scale later.
-        w -= 2;
-        h -= 2;
+        w -= 1;
         ContentResolver res = context.getContentResolver();
         Uri uri = ContentUris.withAppendedId(sArtworkUri, album_id);
         if (uri != null) {

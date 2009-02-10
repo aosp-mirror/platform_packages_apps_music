@@ -220,14 +220,12 @@ public class AlbumBrowserActivity extends ListActivity
             fancyName = mAlbumCursor.getString(3);
             if (MediaFile.UNKNOWN_STRING.equals(fancyName))
                 fancyName = getText(R.string.unknown_artist_name);
-
-            if (mArtistId != null && fancyName != null)
-                setTitle(fancyName);
-            else
-                setTitle(R.string.albums_title);
-        } else {
-            setTitle(R.string.no_albums_title);
         }
+
+        if (mArtistId != null && fancyName != null)
+            setTitle(fancyName);
+        else
+            setTitle(R.string.albums_title);
     }
     
     @Override
@@ -550,7 +548,7 @@ public class AlbumBrowserActivity extends ListActivity
            vh.play_indicator = (ImageView) v.findViewById(R.id.play_indicator);
            vh.icon = (ImageView) v.findViewById(R.id.icon);
            vh.icon.setBackgroundDrawable(mDefaultAlbumIcon);
-           vh.icon.setPadding(1, 1, 1, 1);
+           vh.icon.setPadding(0, 0, 1, 0);
            v.setTag(vh);
            return v;
         }
@@ -572,20 +570,7 @@ public class AlbumBrowserActivity extends ListActivity
             if (MediaFile.UNKNOWN_STRING.equals(name)) {
                 displayname = mUnknownArtist;
             }
-            StringBuilder builder = mStringBuilder;
-            builder.delete(0, builder.length());
-            builder.append(displayname);
-            builder.append(mAlbumSongSeparator);
-            
-            int numsongs = cursor.getInt(mNumSongsIdx);
-            if (numsongs == 1) {
-                builder.append(context.getString(R.string.onesong));
-            } else {
-                final Object[] args = mFormatArgs;
-                args[0] = numsongs;
-                builder.append(mResources.getQuantityString(R.plurals.Nsongs, numsongs, args));
-            }
-            vh.line2.setText(builder.toString());
+            vh.line2.setText(displayname);
 
             ImageView iv = vh.icon;
             // We don't actually need the path to the thumbnail file,

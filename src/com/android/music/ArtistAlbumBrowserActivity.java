@@ -222,11 +222,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
     }
 
     private void setTitle() {
-      if (mArtistCursor != null && mArtistCursor.getCount() > 0) {
         setTitle(R.string.artists_title);
-    } else {
-        setTitle(R.string.no_artists_title);
-    }
     }
     
     @Override
@@ -598,7 +594,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             vh.line2 = (TextView) v.findViewById(R.id.line2);
             vh.play_indicator = (ImageView) v.findViewById(R.id.play_indicator);
             vh.icon = (ImageView) v.findViewById(R.id.icon);
-            vh.icon.setPadding(1, 1, 1, 1);
+            vh.icon.setPadding(0, 0, 1, 0);
             v.setTag(vh);
             return v;
         }
@@ -613,7 +609,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             vh.play_indicator = (ImageView) v.findViewById(R.id.play_indicator);
             vh.icon = (ImageView) v.findViewById(R.id.icon);
             vh.icon.setBackgroundDrawable(mDefaultAlbumIcon);
-            vh.icon.setPadding(1, 1, 1, 1);
+            vh.icon.setPadding(0, 0, 1, 0);
             v.setTag(vh);
             return v;
         }
@@ -634,7 +630,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             int numalbums = cursor.getInt(mGroupAlbumIdx);
             int numsongs = cursor.getInt(mGroupSongIdx);
             
-            String songs_albums = MusicUtils.makeAlbumsSongsLabel(context,
+            String songs_albums = MusicUtils.makeAlbumsLabel(context,
                     numalbums, numsongs, unknown);
             
             vh.line2.setText(songs_albums);
@@ -689,19 +685,6 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
                     args[1] = numartistsongs;
                     args[2] = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Artists.ARTIST));
                     builder.append(mResources.getQuantityString(R.plurals.Nsongscomp, numsongs, args));
-                }
-            }
-            // If this is the unknown album, we don't really have any information about the year,
-            // since the year info is be for the entire collection of unknown album songs, not
-            // just the ones belonging to this artist.
-            if (!unknown && first != 0 && last != 0) {
-                builder.append("\n");
-                
-                builder.append(first);
-                if (first != last) {
-                    builder.append('-');
-                    builder.append(last);
-                } else {
                 }
             }
             vh.line2.setText(builder.toString());

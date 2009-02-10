@@ -26,8 +26,7 @@
         android:label="@string/musicbrowserlabel"
         android:taskAffinity="android.task.music"
         android:allowTaskReparenting="true">
-        <activity android:name="MusicBrowserActivity"
-                android:theme="@android:style/Theme.NoTitleBar">
+        <activity android:name="MusicBrowserActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -37,6 +36,7 @@
         <receiver android:name="MediaButtonIntentReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
+                <action android:name="android.media.AUDIO_BECOMING_NOISY" />
             </intent-filter>
         </receiver>
         <!-- This is the "current music playing" panel, which has special
@@ -208,5 +208,12 @@
         <activity android:name="DeleteItems" android:theme="@android:style/Theme.Dialog" />
         <activity android:name="ScanningProgress" android:theme="@android:style/Theme.Dialog" />
         <service android:name="MediaPlaybackService" android:exported="true" />
+
+        <receiver android:name="MediaGadgetProvider">
+            <intent-filter>
+                <action android:name="android.gadget.action.GADGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.gadget.provider" android:resource="@xml/gadget_info" />
+        </receiver>
     </application>
 </manifest>
