@@ -560,7 +560,8 @@ public class AlbumBrowserActivity extends ListActivity
 
             String name = cursor.getString(mAlbumIdx);
             String displayname = name;
-            if (MediaFile.UNKNOWN_STRING.equals(name)) {
+            boolean unknown = name.equals(MediaFile.UNKNOWN_STRING); 
+            if (unknown) {
                 displayname = mUnknownAlbum;
             }
             vh.line1.setText(displayname);
@@ -576,7 +577,7 @@ public class AlbumBrowserActivity extends ListActivity
             // We don't actually need the path to the thumbnail file,
             // we just use it to see if there is album art or not
             String art = cursor.getString(mAlbumArtIndex);
-            if (art == null || art.length() == 0) {
+            if (unknown || art == null || art.length() == 0) {
                 iv.setImageDrawable(null);
             } else {
                 int artIndex = cursor.getInt(0);

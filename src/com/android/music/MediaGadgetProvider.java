@@ -27,6 +27,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.media.MediaFile;
 import android.util.Config;
 import android.util.Log;
 import android.view.View;
@@ -44,11 +45,11 @@ public class MediaGadgetProvider extends BroadcastReceiver {
     
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
-        if (GadgetManager.GADGET_ENABLED_ACTION.equals(action)) {
+        if (GadgetManager.ACTION_GADGET_ENABLED.equals(action)) {
             if (LOGD) Log.d(TAG, "ENABLED");
-        } else if (GadgetManager.GADGET_DISABLED_ACTION.equals(action)) {
+        } else if (GadgetManager.ACTION_GADGET_DISABLED.equals(action)) {
             if (LOGD) Log.d(TAG, "DISABLED");
-        } else if (GadgetManager.GADGET_UPDATE_ACTION.equals(action)) {
+        } else if (GadgetManager.ACTION_GADGET_UPDATE.equals(action)) {
             if (LOGD) Log.d(TAG, "UPDATE");
             int[] gadgetIds = intent.getIntArrayExtra(GadgetManager.EXTRA_GADGET_IDS);
             
@@ -110,7 +111,11 @@ public class MediaGadgetProvider extends BroadcastReceiver {
         // TODO: make GadgetHostView accept partial RemoteView updates so
         // we can enable this optimization
         if (metaChanged || true) {
+            String albumName = service.getAlbumName();
             int albumId = service.getAlbumId();
+            if (MediaFile.UNKNOWN_STRING.equals(albumName)) {
+                albumId = -1;
+            }
             Bitmap artwork = MusicUtils.getArtwork(service, albumId);
             
             // If nothing found, pull out default artwork

@@ -19,9 +19,7 @@
   <plurals name="Nsongs">
     <item quantity="other">"Композиций: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-  <plurals name="Nsongscomp">
-    <item quantity="other">"Всего композиций: <xliff:g id="COUNT_0">%d</xliff:g>, <xliff:g id="COUNT_FOR_ARTIST_1">%d</xliff:g> композиций <xliff:g id="COUNT_FOR_ARTIST_2">%s</xliff:g> артистов"</item>
-  </plurals>
+    <!-- no translation found for Nsongscomp:other (7162294486622945550) -->
   <plurals name="Nalbums">
     <item quantity="one">"1 альбом"</item>
     <item quantity="other">"Альбомов: <xliff:g id="COUNT">%d</xliff:g>"</item>

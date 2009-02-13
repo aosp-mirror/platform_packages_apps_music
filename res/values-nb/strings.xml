@@ -19,7 +19,9 @@
   <plurals name="Nsongs">
     <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> sanger"</item>
   </plurals>
-    <!-- no translation found for Nsongscomp:other (7162294486622945550) -->
+  <plurals name="Nsongscomp">
+    <item quantity="other">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> av <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> sanger"</item>
+  </plurals>
   <plurals name="Nalbums">
     <item quantity="one">"1 album"</item>
     <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> album"</item>
@@ -32,8 +34,8 @@
     <string name="shuffle_all">"Stokk alle"</string>
     <string name="play_all">"Spill alle"</string>
     <string name="delete_artist_desc">"Alle sanger av <xliff:g id="ARTIST">%s</xliff:g> vil vil bli slettet permanent fra minnekortet."</string>
-    <string name="delete_album_desc">"Hele albumet \\\"<xliff:g id="ALBUM">%s</xliff:g>\\\" vil bli slettet permanent fra minnekortet."</string>
-    <string name="delete_song_desc">"\\\"<xliff:g id="SONG">%s</xliff:g>\\\" vil bli slettet permanent fra minnekortet."</string>
+    <string name="delete_album_desc">"Hele albumet \\\\\\\"<xliff:g id="ALBUM">%s</xliff:g>\\\\\\\" vil bli slettet permanent fra minnekortet."</string>
+    <string name="delete_song_desc">"\\\\\\\"<xliff:g id="SONG">%s</xliff:g>\\\\\\\" vil bli slettet permanent fra minnekortet."</string>
     <string name="delete_confirm_button_text">"OK"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one">"1 sang ble slettet."</item>
@@ -62,12 +64,9 @@
     <string name="playlist_deleted_message">"Spillelisten ble slettet."</string>
     <string name="playlist_renamed_message">"Spillelisten fikk nytt navn."</string>
     <string name="recentlyadded">"Nylig lagt til"</string>
-    <!-- no translation found for recentlyadded_title (3153322287249901914) -->
-    <skip />
-    <!-- no translation found for podcasts_listitem (8657809279717670634) -->
-    <skip />
-    <!-- no translation found for podcasts_title (4928414142496858304) -->
-    <skip />
+    <string name="recentlyadded_title">"Nylig lagt til"</string>
+    <string name="podcasts_listitem">"Podcasts"</string>
+    <string name="podcasts_title">"Podcasts"</string>
     <string name="sdcard_missing_title">"Mangler minnekort"</string>
     <string name="sdcard_missing_message">"Telefonen har ikke noe minnekort i seg."</string>
     <string name="sdcard_busy_title">"Minnekort utilgjengelig"</string>
@@ -83,7 +82,7 @@
     <string name="repeat_all_notif">"Gjentar alle sanger."</string>
     <string name="ringtone_menu">"Bruk som telefonringetone"</string>
     <string name="ringtone_menu_short">"Bruk som ringetone"</string>
-    <string name="ringtone_set">"\\\"%s\\\" valgt som telefonringetone."</string>
+    <string name="ringtone_set">"\\\\\\\"%s\\\\\\\" valgt som telefonringetone."</string>
     <string name="play_selection">"Spill"</string>
     <string name="add_to_playlist">"Legg til spillelisten"</string>
     <string name="queue">"Gjeldende spilleliste"</string>
@@ -130,13 +129,11 @@
     <string name="working_artists">"Artister…"</string>
     <string name="working_albums">"Album…"</string>
     <string name="working_songs">"Sanger…"</string>
-    <!-- no translation found for working_playlists (4424950806134653351) -->
-    <skip />
+    <string name="working_playlists">"Spillelister…"</string>
     <string name="loading">"Laster"</string>
     <string name="sort_by_track">"Spor"</string>
     <string name="sort_by_album">"Album"</string>
     <string name="sort_by_artist">"Artister"</string>
     <string name="music_picker_title">"Velg musikkspor"</string>
-    <!-- no translation found for gadget_track (3186569295893300114) -->
-    <skip />
+    <string name="gadget_track">"Spor <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
 </resources>

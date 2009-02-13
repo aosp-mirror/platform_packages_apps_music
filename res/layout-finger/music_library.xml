@@ -46,7 +46,7 @@
                 android:text="@string/browse_menu"
                 android:ellipsize="marquee"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="?android:attr/textColorPrimary"
                 android:singleLine="true"
                 android:layout_marginBottom="35dip"
             />
@@ -60,7 +60,7 @@
                 android:text="@string/tracks_menu"
                 android:ellipsize="marquee"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="?android:attr/textColorPrimary"
                 android:singleLine="true"
                 android:layout_marginBottom="35dip"
             />
@@ -84,7 +84,7 @@
                 android:text="@string/albums_menu"
                 android:ellipsize="marquee"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="?android:attr/textColorPrimary"
                 android:singleLine="true"
                 android:layout_marginBottom="35dip"
             />
@@ -98,7 +98,7 @@
                 android:text="@string/playlists_menu"
                 android:ellipsize="marquee"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="?android:attr/textColorPrimary"
                 android:singleLine="true"
                 android:layout_marginBottom="35dip"
             />

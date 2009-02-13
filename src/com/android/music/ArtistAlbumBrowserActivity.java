@@ -694,7 +694,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             // we just use it to see if there is album art or not
             String art = cursor.getString(cursor.getColumnIndexOrThrow(
                     MediaStore.Audio.Albums.ALBUM_ART));
-            if (art == null || art.length() == 0) {
+            if (unknown || art == null || art.length() == 0) {
                 iv.setBackgroundDrawable(mDefaultAlbumIcon);
                 iv.setImageDrawable(null);
             } else {

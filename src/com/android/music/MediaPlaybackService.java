@@ -1130,7 +1130,9 @@ public class MediaPlaybackService extends Service {
 
             // Store the current file in the history, but keep the history at a
             // reasonable size
-            mHistory.add(Integer.valueOf(mPlayPos));
+            if (mPlayPos >= 0) {
+                mHistory.add(Integer.valueOf(mPlayPos));
+            }
             if (mHistory.size() > MAX_HISTORY_SIZE) {
                 mHistory.removeElementAt(0);
             }

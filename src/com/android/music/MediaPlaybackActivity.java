@@ -565,7 +565,8 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                         int [] list = new int[1];
                         list[0] = MusicUtils.getCurrentAudioId();
                         Bundle b = new Bundle();
-                        b.putString("description", mService.getTrackName());
+                        b.putString("description", getString(R.string.delete_song_desc,
+                                mService.getTrackName()));
                         b.putIntArray("items", list);
                         intent = new Intent();
                         intent.setClass(this, DeleteItems.class);
