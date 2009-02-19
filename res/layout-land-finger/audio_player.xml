@@ -27,12 +27,14 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <com.android.music.AlbumView android:id="@+id/album"
-            android:layout_width="200px"
-            android:layout_height="204px"
-            android:paddingLeft="20px"
-            android:paddingRight="15px"
-            android:paddingTop="20px" />
+        <ImageView
+            android:id="@+id/album"
+            android:background="@drawable/album_border_large"
+            android:layout_width="183dip"
+            android:layout_height="183dip"
+            android:layout_marginLeft="12dip"
+            android:layout_marginRight="15dip"
+            android:layout_marginTop="12dip" />
 
         <!-- This is the LinearLayout that contains function buttons and album/artist/track info -->
         <LinearLayout
@@ -45,22 +47,22 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingTop="20px" >
+                android:paddingTop="20dip" >
 
                <ImageButton android:id="@+id/curplaylist"
                     android:src="@drawable/ic_mp_current_playlist_btn"
-                    android:layout_width="82px"
-                    android:layout_height="45px"
-                    android:layout_marginRight="8px" />
+                    android:layout_width="82dip"
+                    android:layout_height="45dip"
+                    android:layout_marginRight="8dip" />
 
                <ImageButton android:id="@+id/shuffle"
-                    android:layout_width="82px"
-                    android:layout_height="45px"
-                    android:layout_marginRight="8px" />
+                    android:layout_width="82dip"
+                    android:layout_height="45dip"
+                    android:layout_marginRight="8dip" />
 
                <ImageButton android:id="@+id/repeat"
-                    android:layout_width="82px"
-                    android:layout_height="45px" />
+                    android:layout_width="82dip"
+                    android:layout_height="45dip" />
 
             </LinearLayout>
 

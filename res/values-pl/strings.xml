@@ -19,7 +19,9 @@
   <plurals name="Nsongs">
     <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> utworów"</item>
   </plurals>
-    <!-- no translation found for Nsongscomp:other (7162294486622945550) -->
+  <plurals name="Nsongscomp">
+    <item quantity="other">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> z <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> utworów"</item>
+  </plurals>
   <plurals name="Nalbums">
     <item quantity="one">"1 album"</item>
     <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> albumów"</item>
@@ -62,12 +64,9 @@
     <string name="playlist_deleted_message">"Lista odtwarzania została usunięta."</string>
     <string name="playlist_renamed_message">"Nazwa listy odtwarzania została zmieniona."</string>
     <string name="recentlyadded">"Ostatnio dodane"</string>
-    <!-- no translation found for recentlyadded_title (3153322287249901914) -->
-    <skip />
-    <!-- no translation found for podcasts_listitem (8657809279717670634) -->
-    <skip />
-    <!-- no translation found for podcasts_title (4928414142496858304) -->
-    <skip />
+    <string name="recentlyadded_title">"Ostatnio dodane"</string>
+    <string name="podcasts_listitem">"Podcasty"</string>
+    <string name="podcasts_title">"Podcasty"</string>
     <string name="sdcard_missing_title">"Brak karty SD"</string>
     <string name="sdcard_missing_message">"Brak karty SD w telefonie."</string>
     <string name="sdcard_busy_title">"Karta SD jest niedostępna"</string>
@@ -130,18 +129,11 @@
     <string name="working_artists">"Wykonawcy…"</string>
     <string name="working_albums">"Albumy…"</string>
     <string name="working_songs">"Utwory…"</string>
-    <!-- no translation found for working_playlists (4424950806134653351) -->
-    <skip />
-    <!-- no translation found for loading (3267924133697717662) -->
-    <skip />
-    <!-- no translation found for sort_by_track (7662999005554152565) -->
-    <skip />
-    <!-- no translation found for sort_by_album (2912837715658975248) -->
-    <skip />
-    <!-- no translation found for sort_by_artist (4607024967813199992) -->
-    <skip />
-    <!-- no translation found for music_picker_title (1561623486324013570) -->
-    <skip />
-    <!-- no translation found for gadget_track (3186569295893300114) -->
-    <skip />
+    <string name="working_playlists">"Listy odtwarzania..."</string>
+    <string name="loading">"Ładowanie"</string>
+    <string name="sort_by_track">"Utwory"</string>
+    <string name="sort_by_album">"Albumy"</string>
+    <string name="sort_by_artist">"Wykonawcy"</string>
+    <string name="music_picker_title">"Wybierz utwór muzyczny"</string>
+    <string name="gadget_track">"Ścieżka <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
 </resources>

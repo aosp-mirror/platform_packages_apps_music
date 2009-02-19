@@ -74,17 +74,46 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
         super.onCreate(icicle);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         MusicUtils.bindToService(this);
-        
-        if (icicle == null) {
-            Intent intent = getIntent();
-            mFilterString = intent.getStringExtra(SearchManager.QUERY);
-        }
-
         IntentFilter f = new IntentFilter();
         f.addAction(Intent.ACTION_MEDIA_SCANNER_STARTED);
         f.addAction(Intent.ACTION_MEDIA_UNMOUNTED);
         f.addDataScheme("file");
         registerReceiver(mScanListener, f);
+        
+        if (icicle == null) {
+            Intent intent = getIntent();
+            
+            if (intent.getAction().equals(Intent.ACTION_VIEW)) {
+                // this is something we got from the search bar
+                Uri uri = intent.getData();
+                String path = uri.toString();
+                if (path.startsWith("content://media/external/audio/media/")) {
+                    // This is a specific file
+                    String id = uri.getLastPathSegment();
+                    int [] list = new int[] { Integer.valueOf(id) };
+                    MusicUtils.playAll(this, list, 0);
+                    finish();
+                    return;
+                } else if (path.startsWith("content://media/external/audio/albums/")) {
+                    // This is an album, show the songs on it
+                    Intent i = new Intent(Intent.ACTION_PICK);
+                    i.setDataAndType(Uri.EMPTY, "vnd.android.cursor.dir/track");
+                    i.putExtra("album", uri.getLastPathSegment());
+                    startActivity(i);
+                    finish();
+                    return;
+                } else if (path.startsWith("content://media/external/audio/artists/")) {
+                    // This is an artist, show the albums for that artist
+                    Intent i = new Intent(Intent.ACTION_PICK);
+                    i.setDataAndType(Uri.EMPTY, "vnd.android.cursor.dir/album");
+                    i.putExtra("artist", uri.getLastPathSegment());
+                    startActivity(i);
+                    finish();
+                    return;
+                }
+            }
+            mFilterString = intent.getStringExtra(SearchManager.QUERY);
+        }
 
         setContentView(R.layout.query_activity);
         mTrackList = getListView();
@@ -134,7 +163,7 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
         MusicUtils.unbindFromService(this);
         unregisterReceiver(mScanListener);
         super.onDestroy();
-        if (!mAdapterSent) {
+        if (!mAdapterSent && mAdapter != null) {
             Cursor c = mAdapter.getCursor();
             if (c != null) {
                 c.close();

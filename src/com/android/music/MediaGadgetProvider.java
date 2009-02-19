@@ -21,13 +21,18 @@ import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.gadget.GadgetManager;
+import android.gadget.GadgetProvider;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.media.MediaFile;
+import android.os.SystemClock;
 import android.util.Config;
 import android.util.Log;
 import android.view.View;
@@ -37,32 +42,23 @@ import android.widget.RemoteViews;
  * Simple gadget to show currently playing album art along
  * with play/pause and next track buttons.  
  */
-public class MediaGadgetProvider extends BroadcastReceiver {
+public class MediaGadgetProvider extends GadgetProvider {
     static final String TAG = "MusicGadgetProvider";
-    static final boolean LOGD = Config.LOGD || false;
     
     public static final String CMDGADGETUPDATE = "gadgetupdate";
     
-    public void onReceive(Context context, Intent intent) {
-        String action = intent.getAction();
-        if (GadgetManager.ACTION_GADGET_ENABLED.equals(action)) {
-            if (LOGD) Log.d(TAG, "ENABLED");
-        } else if (GadgetManager.ACTION_GADGET_DISABLED.equals(action)) {
-            if (LOGD) Log.d(TAG, "DISABLED");
-        } else if (GadgetManager.ACTION_GADGET_UPDATE.equals(action)) {
-            if (LOGD) Log.d(TAG, "UPDATE");
-            int[] gadgetIds = intent.getIntArrayExtra(GadgetManager.EXTRA_GADGET_IDS);
-            
-            defaultGadget(context, gadgetIds);
-            
-            // Send broadcast intent to any running MediaPlaybackService so it can
-            // wrap around with an immediate update.
-            Intent updateIntent = new Intent(MediaPlaybackService.SERVICECMD);
-            updateIntent.putExtra(MediaPlaybackService.CMDNAME,
-                    MediaGadgetProvider.CMDGADGETUPDATE);
-            updateIntent.putExtra(GadgetManager.EXTRA_GADGET_IDS, gadgetIds);
-            context.sendBroadcast(updateIntent);
-        }
+    @Override
+    public void onUpdate(Context context, GadgetManager gadgetManager, int[] gadgetIds) {
+        defaultGadget(context, gadgetIds);
+        
+        // Send broadcast intent to any running MediaPlaybackService so it can
+        // wrap around with an immediate update.
+        Intent updateIntent = new Intent(MediaPlaybackService.SERVICECMD);
+        updateIntent.putExtra(MediaPlaybackService.CMDNAME,
+                MediaGadgetProvider.CMDGADGETUPDATE);
+        updateIntent.putExtra(GadgetManager.EXTRA_GADGET_IDS, gadgetIds);
+        updateIntent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY);
+        context.sendBroadcast(updateIntent);
     }
     
     /**
@@ -70,30 +66,19 @@ public class MediaGadgetProvider extends BroadcastReceiver {
      * and hide actions if service not running.
      */
     static void defaultGadget(Context context, int[] gadgetIds) {
-        
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.album_gadget);
+        final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.gadget);
 
-        // Link up default touch to launch media player
-        Intent intent = new Intent(context, MediaPlaybackActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context,
-                0 /* no requestCode */, intent, 0 /* no flags */);
-        views.setOnClickPendingIntent(R.id.album_gadget, pendingIntent);
-
-        // And hide other action buttons
-        views.setViewVisibility(R.id.control_play, View.GONE);
-        views.setViewVisibility(R.id.control_next, View.GONE);
-        
+        linkButtons(context, views, false /* not from service */);
         pushUpdate(context, gadgetIds, views);
-
     }
     
     private static void pushUpdate(Context context, int[] gadgetIds, RemoteViews views) {
         // Update specific list of gadgetIds if given, otherwise default to all
-        GadgetManager gm = GadgetManager.getInstance(context);
+        final GadgetManager gm = GadgetManager.getInstance(context);
         if (gadgetIds != null) {
             gm.updateGadget(gadgetIds, views);
         } else {
-            ComponentName thisGadget = new ComponentName(context,
+            final ComponentName thisGadget = new ComponentName(context,
                     MediaGadgetProvider.class);
             gm.updateGadget(thisGadget, views);
         }
@@ -103,87 +88,136 @@ public class MediaGadgetProvider extends BroadcastReceiver {
      * Update all active gadget instances by pushing changes 
      * @param metaChanged
      */
-    static void updateAllGadgets(MediaPlaybackService service,
-            boolean metaChanged, int[] gadgetIds) {
-        RemoteViews views = new RemoteViews(service.getPackageName(), R.layout.album_gadget);
+    static void updateAllGadgets(MediaPlaybackService service, int[] gadgetIds) {
+        final Resources res = service.getResources();
+        final RemoteViews views = new RemoteViews(service.getPackageName(), R.layout.gadget);
         
-        // Currently force metaChanged to make sure artwork is pushed to surface
-        // TODO: make GadgetHostView accept partial RemoteView updates so
-        // we can enable this optimization
-        if (metaChanged || true) {
-            String albumName = service.getAlbumName();
-            int albumId = service.getAlbumId();
-            if (MediaFile.UNKNOWN_STRING.equals(albumName)) {
-                albumId = -1;
-            }
-            Bitmap artwork = MusicUtils.getArtwork(service, albumId);
-            
-            // If nothing found, pull out default artwork
-            if (artwork == null) {
-                artwork = BitmapFactory.decodeResource(service.getResources(),
-                        R.drawable.albumart_mp_unknown);
-            }
-            
-            if (artwork != null) {
-                artwork = scaleArtwork(artwork, service);
-                views.setImageViewBitmap(R.id.artwork, artwork);
-            }
+        final int track = service.getQueuePosition() + 1;
+        final String titleName = service.getTrackName();
+        final String artistName = service.getArtistName();
+        final String albumName = service.getAlbumName();
+        
+        int albumId = service.getAlbumId();
+        if (MediaFile.UNKNOWN_STRING.equals(albumName)) {
+            albumId = -1;
         }
         
-        boolean playing = service.isPlaying();
-        views.setImageViewResource(R.id.control_play, playing ?
-                android.R.drawable.ic_media_pause : android.R.drawable.ic_media_play);
+        // Try loading album artwork and resize if found
+        Bitmap artwork = MusicUtils.getArtwork(service, albumId, false);
+        if (artwork != null) {
+            artwork = scaleArtwork(artwork, service);
+            views.setImageViewBitmap(R.id.artwork, artwork);
+            views.setViewVisibility(R.id.artwork, View.VISIBLE);
+            views.setViewVisibility(R.id.no_artwork, View.GONE);
+        } else {
+            views.setViewVisibility(R.id.artwork, View.GONE);
+            views.setViewVisibility(R.id.no_artwork, View.VISIBLE);
+        }
         
+        // Format title string with track number
+        final String titleString = res.getString(R.string.gadget_track_num_title, track, titleName);
+        
+        views.setTextViewText(R.id.title, titleString);
+        views.setTextViewText(R.id.artist, artistName);
+        
+        // Set chronometer to correct value
+        final boolean playing = service.isPlaying();
+        final long start = SystemClock.elapsedRealtime() - service.position();
+        final long end = start + service.duration();
+        
+        views.setChronometer(android.R.id.text1, start, null, playing);
+        views.setLong(R.id.progress_group, "setDurationBase", end);
+
+        // Set correct drawable for pause state
+        views.setImageViewResource(R.id.control_play, playing ?
+                R.drawable.gadget_pause : R.drawable.gadget_play);
+
+        // Link actions buttons to intents
+        linkButtons(service, views, true /* not from service */);
+        
+        pushUpdate(service, gadgetIds, views);
+    }
+
+    /**
+     * Link up various button actions using {@link PendingIntents}.
+     * 
+     * @param fromService If false, {@link MediaPlaybackService} isn't running,
+     *            and we should link the play button to start that service.
+     *            Otherwise, we assume the service is awake and send broadcast
+     *            Intents instead.
+     */
+    private static void linkButtons(Context context, RemoteViews views, boolean fromService) {
         // Connect up various buttons and touch events
         Intent intent;
         PendingIntent pendingIntent;
         
-        intent = new Intent(service, MusicBrowserActivity.class);
-        pendingIntent = PendingIntent.getActivity(service,
+        intent = new Intent(context, MediaPlaybackActivity.class);
+        pendingIntent = PendingIntent.getActivity(context,
                 0 /* no requestCode */, intent, 0 /* no flags */);
         views.setOnClickPendingIntent(R.id.album_gadget, pendingIntent);
         
-        intent = new Intent(MediaPlaybackService.TOGGLEPAUSE_ACTION);
-        pendingIntent = PendingIntent.getBroadcast(service,
+        intent = new Intent(MediaPlaybackService.PREVIOUS_ACTION);
+        pendingIntent = PendingIntent.getBroadcast(context,
                 0 /* no requestCode */, intent, 0 /* no flags */);
-        views.setOnClickPendingIntent(R.id.control_play, pendingIntent);
-        views.setViewVisibility(R.id.control_play, View.VISIBLE);
+        views.setOnClickPendingIntent(R.id.control_prev, pendingIntent);
+
+        // Use broadcast to trigger play/pause, otherwise 
+        if (fromService) {
+            intent = new Intent(MediaPlaybackService.TOGGLEPAUSE_ACTION);
+            pendingIntent = PendingIntent.getBroadcast(context,
+                    0 /* no requestCode */, intent, 0 /* no flags */);
+            views.setOnClickPendingIntent(R.id.control_play, pendingIntent);
+        } else {
+            intent = new Intent(MediaPlaybackService.TOGGLEPAUSE_ACTION);
+            intent.setComponent(new ComponentName(context, MediaPlaybackService.class));
+            pendingIntent = PendingIntent.getService(context,
+                    0 /* no requestCode */, intent, 0 /* no flags */);
+            views.setOnClickPendingIntent(R.id.control_play, pendingIntent);
+        }
         
         intent = new Intent(MediaPlaybackService.NEXT_ACTION);
-        pendingIntent = PendingIntent.getBroadcast(service,
+        pendingIntent = PendingIntent.getBroadcast(context,
                 0 /* no requestCode */, intent, 0 /* no flags */);
         views.setOnClickPendingIntent(R.id.control_next, pendingIntent);
-        views.setViewVisibility(R.id.control_next, View.VISIBLE);
-        
-        pushUpdate(service, gadgetIds, views);
     }
     
-    private static final int ARTWORK_SIZE = 175;
-    
     /**
-     * Rescale given album artwork to a specific size for gadget display.
+     * Scale and chop given album artwork to prepare as gadget background.
      */
     private static Bitmap scaleArtwork(Bitmap bitmap, Context context) {
-        if (bitmap == null) {
-            return null;
-        }
-        final Bitmap thumb = Bitmap.createBitmap(ARTWORK_SIZE, ARTWORK_SIZE,
-                Bitmap.Config.RGB_565);
+        final int cutoutSize = (int) context.getResources().getDimension(R.dimen.gadget_cutout);
+        final int srcWidth = bitmap.getWidth();
+        final int srcHeight = bitmap.getHeight();
+        final int srcDiameter = Math.min(srcWidth, srcHeight);
         
-        final Canvas canvas = new Canvas();
-        canvas.setBitmap(thumb);
+        // Figure out best circle size
+        final Rect src = new Rect((srcWidth - srcDiameter) / 2,
+                (srcHeight - srcDiameter) / 2, srcDiameter, srcDiameter);
+        final Rect dest = new Rect(0, 0, cutoutSize, cutoutSize);
         
+        final Bitmap thumb = Bitmap.createBitmap(cutoutSize, cutoutSize,
+                Bitmap.Config.ARGB_8888);
+
+        final Canvas canvas = new Canvas(thumb);
         final Paint paint = new Paint();
+        
+        paint.setAntiAlias(true);
+        
+        // Draw a mask circle using default paint
+        final int radius = cutoutSize / 2;
+        canvas.drawCircle(radius, radius, radius, paint);
+        
         paint.setDither(false);
         paint.setFilterBitmap(true);
+        paint.setAlpha(96);
         
-        Rect src = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-        Rect dest = new Rect(0, 0, thumb.getWidth(), thumb.getHeight());
-        
+        // Draw the actual album art, using the mask circle from earlier. Using
+        // this approach allows us to alpha-blend the circle edges, which isn't
+        // possible with Canvas.clipPath()
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(bitmap, src, dest, paint);
         
         return thumb;
     }
     
 }
-

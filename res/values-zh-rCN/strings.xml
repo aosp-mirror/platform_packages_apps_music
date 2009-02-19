@@ -19,7 +19,9 @@
   <plurals name="Nsongs">
     <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> 首歌曲"</item>
   </plurals>
-    <!-- no translation found for Nsongscomp:other (7162294486622945550) -->
+  <plurals name="Nsongscomp">
+    <item quantity="other">"共 <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> 首歌曲，其中 <xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> 首"</item>
+  </plurals>
   <plurals name="Nalbums">
     <item quantity="one">"1 个专辑"</item>
     <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> 个专辑"</item>
@@ -62,12 +64,9 @@
     <string name="playlist_deleted_message">"已删除播放列表。"</string>
     <string name="playlist_renamed_message">"已重命名播放列表。"</string>
     <string name="recentlyadded">"最近添加的歌曲"</string>
-    <!-- no translation found for recentlyadded_title (3153322287249901914) -->
-    <skip />
-    <!-- no translation found for podcasts_listitem (8657809279717670634) -->
-    <skip />
-    <!-- no translation found for podcasts_title (4928414142496858304) -->
-    <skip />
+    <string name="recentlyadded_title">"最近添加的"</string>
+    <string name="podcasts_listitem">"播客"</string>
+    <string name="podcasts_title">"播客"</string>
     <string name="sdcard_missing_title">"无 SD 卡"</string>
     <string name="sdcard_missing_message">"您的手机未插入 SD 卡。"</string>
     <string name="sdcard_busy_title">"SD 卡不可用"</string>
@@ -130,18 +129,11 @@
     <string name="working_artists">"艺术家..."</string>
     <string name="working_albums">"专辑..."</string>
     <string name="working_songs">"歌曲..."</string>
-    <!-- no translation found for working_playlists (4424950806134653351) -->
-    <skip />
-    <!-- no translation found for loading (3267924133697717662) -->
-    <skip />
-    <!-- no translation found for sort_by_track (7662999005554152565) -->
-    <skip />
-    <!-- no translation found for sort_by_album (2912837715658975248) -->
-    <skip />
-    <!-- no translation found for sort_by_artist (4607024967813199992) -->
-    <skip />
-    <!-- no translation found for music_picker_title (1561623486324013570) -->
-    <skip />
-    <!-- no translation found for gadget_track (3186569295893300114) -->
-    <skip />
+    <string name="working_playlists">"播放列表..."</string>
+    <string name="loading">"正在载入"</string>
+    <string name="sort_by_track">"曲目"</string>
+    <string name="sort_by_album">"专辑"</string>
+    <string name="sort_by_artist">"艺术家"</string>
+    <string name="music_picker_title">"选择曲目"</string>
+    <string name="gadget_track">"曲目 <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
 </resources>

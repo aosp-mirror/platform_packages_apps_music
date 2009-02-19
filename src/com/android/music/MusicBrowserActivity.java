@@ -172,10 +172,7 @@ public class MusicBrowserActivity extends Activity
                     break;
                     
                 case SEARCH_MUSIC: {
-                    intent = new Intent(Intent.ACTION_PICK);
-                    intent.setClass(this, QueryBrowserActivity.class);
-                    intent.putExtra(SearchManager.QUERY, "");
-                    startActivity(intent);
+                    startSearch("", false, null, false);
                     return true;
                 }
             }
@@ -184,19 +181,6 @@ public class MusicBrowserActivity extends Activity
         return super.onOptionsItemSelected(item);
     }
     
-    
-    // TODO: Activities are requested to call onSearchRequested, and to override
-    // that function in order to insert custom fields (e.g. the search bundle).  startSearch
-    // was not intended to be overridden.
-    @Override
-    public void startSearch(String initialQuery, boolean selectQuery, Bundle appSearchData,
-            boolean globalSearch) {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setClass(this, QueryBrowserActivity.class);
-        intent.putExtra(SearchManager.QUERY, initialQuery);
-        startActivity(intent);
-    }
-
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {

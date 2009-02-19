@@ -226,7 +226,7 @@ public class MediaPlaybackService extends Service {
                         next(false);
                     } else {
                         notifyChange(PLAYBACK_COMPLETE);
-                        MediaGadgetProvider.updateAllGadgets(MediaPlaybackService.this, true, null);
+                        pushGadgetUpdate();
                     }
                     break;
                 case RELEASE_WAKELOCK:
@@ -255,7 +255,6 @@ public class MediaPlaybackService extends Service {
                 }
             } else if (CMDPAUSE.equals(cmd) || PAUSE_ACTION.equals(action)) {
                 pause();
-		// TODO: add STOP action intent check
             } else if (CMDSTOP.equals(cmd)) {
                 pause();
                 seek(0);
@@ -263,8 +262,7 @@ public class MediaPlaybackService extends Service {
                 // Someone asked us to refresh a set of specific gadgets, probably
                 // because they were just added.
                 int[] gadgetIds = intent.getIntArrayExtra(GadgetManager.EXTRA_GADGET_IDS);
-                MediaGadgetProvider.updateAllGadgets(MediaPlaybackService.this,
-                        true, gadgetIds);
+                MediaGadgetProvider.updateAllGadgets(MediaPlaybackService.this, gadgetIds);
             }
         }
     };
@@ -590,7 +588,7 @@ public class MediaPlaybackService extends Service {
         stop(true);
         notifyChange(QUEUE_CHANGED);
         notifyChange(META_CHANGED);
-        MediaGadgetProvider.updateAllGadgets(this, true, null);
+        pushGadgetUpdate();
     }
 
     /**
@@ -616,7 +614,7 @@ public class MediaPlaybackService extends Service {
                         reloadQueue();
                         notifyChange(QUEUE_CHANGED);
                         notifyChange(META_CHANGED);
-                        MediaGadgetProvider.updateAllGadgets(MediaPlaybackService.this, true, null);
+                        pushGadgetUpdate();
                     }
                 }
             };
@@ -725,18 +723,18 @@ public class MediaPlaybackService extends Service {
                 if (action == NOW) {
                     mPlayPos = mPlayListLen - list.length;
                     openCurrent();
-                    play();
+                    play(false /* we push update */);
                     notifyChange(META_CHANGED);
-                    MediaGadgetProvider.updateAllGadgets(this, true, null);
+                    pushGadgetUpdate();
                     return;
                 }
             }
             if (mPlayPos < 0) {
                 mPlayPos = 0;
                 openCurrent();
-                play();
+                play(false /* we push update */);
                 notifyChange(META_CHANGED);
-                MediaGadgetProvider.updateAllGadgets(this, true, null);
+                pushGadgetUpdate();
             }
         }
     }
@@ -968,7 +966,7 @@ public class MediaPlaybackService extends Service {
     /**
      * Starts playback of a previously opened file.
      */
-    public void play() {
+    public void play(boolean shouldPushUpdate) {
         if (mPlayer.isInitialized()) {
             mPlayer.start();
             setForeground(true);
@@ -1009,8 +1007,30 @@ public class MediaPlaybackService extends Service {
                     new Intent("com.android.music.PLAYBACK_VIEWER"), 0);
             nm.notify(PLAYBACKSERVICE_STATUS, status);
             notifyChange(PLAYSTATE_CHANGED);
-            MediaGadgetProvider.updateAllGadgets(this, false, null);
+            if (shouldPushUpdate) {
+                pushGadgetUpdate();
+            }
+        } else if (mPlayListLen <= 0) {
+            // This is mostly so that if you press 'play' on a bluetooth headset
+            // without every having played anything before, it will still play
+            // something.
+            setShuffleMode(SHUFFLE_AUTO);
         }
+    }
+    
+    /**
+     * Starts playback of a previously opened file.
+     */
+    public void play() {
+        // Default play action should push gadget updates
+        play(true);
+    }
+    
+    /**
+     * Push an update to all music gadgets.
+     */
+    private void pushGadgetUpdate() {
+        MediaGadgetProvider.updateAllGadgets(this, null);
     }
 
     private void stop(boolean remove_status_icon) {
@@ -1047,7 +1067,7 @@ public class MediaPlaybackService extends Service {
             mWasPlaying = false;
             notifyChange(PLAYSTATE_CHANGED);
             saveBookmarkIfNeeded();
-            MediaGadgetProvider.updateAllGadgets(this, false, null);
+            pushGadgetUpdate();
         }
     }
 
@@ -1113,9 +1133,9 @@ public class MediaPlaybackService extends Service {
             saveBookmarkIfNeeded();
             stop(false);
             openCurrent();
-            play();
+            play(false /* we push update */);
             notifyChange(META_CHANGED);
-            MediaGadgetProvider.updateAllGadgets(this, true, null);
+            pushGadgetUpdate();
         }
     }
 
@@ -1195,7 +1215,7 @@ public class MediaPlaybackService extends Service {
                         // all done
                         gotoIdleState();
                         notifyChange(PLAYBACK_COMPLETE);
-                        MediaGadgetProvider.updateAllGadgets(this, true, null);
+                        pushGadgetUpdate();
                         return;
                     } else if (mRepeatMode == REPEAT_ALL || force) {
                         mPlayPos = 0;
@@ -1207,9 +1227,9 @@ public class MediaPlaybackService extends Service {
             saveBookmarkIfNeeded();
             stop(false);
             openCurrent();
-            play();
+            play(false /* we push update */);
             notifyChange(META_CHANGED);
-            MediaGadgetProvider.updateAllGadgets(this, true, null);
+            pushGadgetUpdate();
         }
     }
     
@@ -1396,7 +1416,7 @@ public class MediaPlaybackService extends Service {
     
     public void setShuffleMode(int shufflemode) {
         synchronized(this) {
-            if (mShuffleMode == shufflemode) {
+            if (mShuffleMode == shufflemode && mPlayListLen > 0) {
                 return;
             }
             mShuffleMode = shufflemode;
@@ -1406,9 +1426,9 @@ public class MediaPlaybackService extends Service {
                     doAutoShuffleUpdate();
                     mPlayPos = 0;
                     openCurrent();
-                    play();
+                    play(false /* we push update */);
                     notifyChange(META_CHANGED);
-                    MediaGadgetProvider.updateAllGadgets(this, true, null);
+                    pushGadgetUpdate();
                     return;
                 } else {
                     // failed to build a list of files to shuffle
@@ -1476,9 +1496,9 @@ public class MediaPlaybackService extends Service {
             stop(false);
             mPlayPos = pos;
             openCurrent();
-            play();
+            play(false /* we push update */);
             notifyChange(META_CHANGED);
-            MediaGadgetProvider.updateAllGadgets(this, true, null);
+            pushGadgetUpdate();
         }
     }
 

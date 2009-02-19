@@ -26,9 +26,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.MediaFile;
@@ -44,7 +41,6 @@ import android.provider.MediaStore;
 import android.text.Layout;
 import android.text.TextUtils.TruncateAt;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -53,8 +49,8 @@ import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.Window;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -105,7 +101,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         mCurrentTime = (TextView) findViewById(R.id.currenttime);
         mTotalTime = (TextView) findViewById(R.id.totaltime);
         mProgress = (ProgressBar) findViewById(android.R.id.progress);
-        mAlbum = (AlbumView) findViewById(R.id.album);
+        mAlbum = (ImageView) findViewById(R.id.album);
         mArtistName = (TextView) findViewById(R.id.artistname);
         mAlbumName = (TextView) findViewById(R.id.albumname);
         mTrackName = (TextView) findViewById(R.id.trackname);
@@ -1082,7 +1078,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         }
     }
     
-    private AlbumView mAlbum;
+    private ImageView mAlbum;
     private TextView mCurrentTime;
     private TextView mTotalTime;
     private TextView mArtistName;
@@ -1143,8 +1139,8 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case ALBUM_ART_DECODED:
-                    mAlbum.setArtwork((Bitmap)msg.obj);
-                    mAlbum.invalidate();
+                    mAlbum.setImageBitmap((Bitmap)msg.obj);
+                    mAlbum.getDrawable().setDither(true);
                     break;
 
                 case REFRESH:

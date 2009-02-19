@@ -32,7 +32,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+             <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".QueryBrowserActivity"
+             /> 
+       </activity>
         <receiver android:name="MediaButtonIntentReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
@@ -119,6 +123,10 @@
                 <action android:name="android.intent.action.SEARCH" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable"
+            />
         </activity>
         <activity android:name="PlaylistBrowserActivity" android:label="@string/musicbrowserlabel">
             <intent-filter>

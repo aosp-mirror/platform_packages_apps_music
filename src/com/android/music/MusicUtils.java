@@ -866,6 +866,13 @@ public class MusicUtils {
      * for the "unknown" album here (use -1 instead)
      */
     public static Bitmap getArtwork(Context context, int album_id) {
+        return getArtwork(context, album_id, true);
+    }
+    
+    /** Get album art for specified album. You should not pass in the album id
+     * for the "unknown" album here (use -1 instead)
+     */
+    public static Bitmap getArtwork(Context context, int album_id, boolean allowDefault) {
 
         if (album_id < 0) {
             // This is something that is not in the database, so get the album art directly
@@ -874,7 +881,11 @@ public class MusicUtils {
             if (bm != null) {
                 return bm;
             }
-            return getDefaultArtwork(context);
+            if (allowDefault) {
+                return getDefaultArtwork(context);
+            } else {
+                return null;
+            }
         }
 
         ContentResolver res = context.getContentResolver();
@@ -902,7 +913,11 @@ public class MusicUtils {
                             if (bm.getConfig() == null) {
                                 bm = bm.copy(Bitmap.Config.RGB_565, false);
                                 if (bm == null) {
-                                    return getDefaultArtwork(context);
+                                    if (allowDefault) {
+                                        return getDefaultArtwork(context);
+                                    } else {
+                                        return null;
+                                    }
                                 }
                             }
                             boolean success = bm.compress(Bitmap.CompressFormat.JPEG, 75, outstream);
@@ -934,8 +949,10 @@ public class MusicUtils {
                             Log.e(TAG, "error creating file", e);
                         }
                     }
-                } else {
+                } else if (allowDefault) {
                     bm = getDefaultArtwork(context);
+                } else {
+                    bm = null;
                 }
                 return bm;
             } finally {

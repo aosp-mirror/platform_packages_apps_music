@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2009 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,9 +13,16 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt">"プレイリスト名"</string>
-    <string name="rename_playlist_same_prompt">"「<xliff:g id="PLAYLIST">%s</xliff:g>」の新しい名前"</string>
-    <string name="rename_playlist_diff_prompt">"「<xliff:g id="PLAYLIST">%s</xliff:g>」の新しい名前"</string>
+
+<resources>
+    <color name="gadget_progress_bg_start">#ffc2c7bc</color>
+    <color name="gadget_progress_bg_center">#fff8fff1</color>
+    <color name="gadget_progress_bg_end">#ffe9f0e9</color>
+    <color name="gadget_progress_fg_start">#ff8aa841</color>
+    <color name="gadget_progress_fg_center">#ffadd252</color>
+    <color name="gadget_progress_fg_end">#ffadd252</color>
+
+    <color name="gadget_text">#ff003533</color>
+    <color name="gadget_text_shadow">#ffffffff</color>
 </resources>
+
