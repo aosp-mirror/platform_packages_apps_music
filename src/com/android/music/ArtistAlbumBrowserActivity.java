@@ -125,7 +125,6 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             mArtistCursor = mAdapter.getCursor();
             if (mArtistCursor != null) {
                 init(mArtistCursor);
-                setTitle();
             } else {
                 getArtistCursor(mAdapter.getQueryHandler(), null);
             }
@@ -195,7 +194,6 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
     private Handler mReScanHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            setTitle();
             getArtistCursor(mAdapter.getQueryHandler(), null);
         }
     };
@@ -219,6 +217,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         }
 
         MusicUtils.hideDatabaseError(this);
+        setTitle();
     }
 
     private void setTitle() {
@@ -533,7 +532,6 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
                 //Log.i("@@@", "query complete");
                 mActivity.init(cursor);
-                mActivity.setTitle();
             }
         }
 

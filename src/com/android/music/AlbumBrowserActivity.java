@@ -119,7 +119,6 @@ public class AlbumBrowserActivity extends ListActivity
             mAlbumCursor = mAdapter.getCursor();
             if (mAlbumCursor != null) {
                 init(mAlbumCursor);
-                setTitle();
             } else {
                 getAlbumCursor(mAdapter.getQueryHandler(), null);
             }
@@ -187,7 +186,6 @@ public class AlbumBrowserActivity extends ListActivity
     private Handler mReScanHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            setTitle();
             getAlbumCursor(mAdapter.getQueryHandler(), null);
         }
     };
@@ -211,6 +209,7 @@ public class AlbumBrowserActivity extends ListActivity
         }
         
         MusicUtils.hideDatabaseError(this);
+        setTitle();
     }
 
     private void setTitle() {
@@ -487,7 +486,6 @@ public class AlbumBrowserActivity extends ListActivity
             protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
                 //Log.i("@@@", "query complete");
                 mActivity.init(cursor);
-                mActivity.setTitle();
             }
         }
 

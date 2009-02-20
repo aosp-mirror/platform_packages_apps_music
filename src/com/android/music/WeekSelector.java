@@ -60,6 +60,13 @@ public class WeekSelector extends Activity
         mWeeks.setSelectedPos(pos);
         
         ((Button) findViewById(R.id.set)).setOnClickListener(mListener);
+        
+        ((Button) findViewById(R.id.cancel)).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                setResult(RESULT_CANCELED);
+                finish();
+            }
+        });
     }
     
     @Override

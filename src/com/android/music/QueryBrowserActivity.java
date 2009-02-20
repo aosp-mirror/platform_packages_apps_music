@@ -338,7 +338,7 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
                 mimetype = "audio/";
             }
             if (mimetype.equals("artist")) {
-                iv.setImageResource(R.drawable.ic_search_category_music_artist);
+                iv.setImageResource(R.drawable.ic_mp_artist_list);
                 String name = cursor.getString(cursor.getColumnIndexOrThrow(
                         SearchManager.SUGGEST_COLUMN_TEXT_1));
                 String displayname = name;
@@ -356,7 +356,7 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
                 tv2.setText(songs_albums);
             
             } else if (mimetype.equals("album")) {
-                iv.setImageResource(R.drawable.ic_search_category_music_album);
+                iv.setImageResource(R.drawable.albumart_mp_unknown_list);
                 String name = cursor.getString(cursor.getColumnIndexOrThrow(
                         SearchManager.SUGGEST_COLUMN_TEXT_1));
                 String displayname = name;
@@ -375,7 +375,7 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
             } else if(mimetype.startsWith("audio/") ||
                     mimetype.equals("application/ogg") ||
                     mimetype.equals("application/x-ogg")) {
-                iv.setImageResource(R.drawable.ic_search_category_music_song);
+                iv.setImageResource(R.drawable.ic_mp_song_list);
                 String name = cursor.getString(cursor.getColumnIndexOrThrow(
                         SearchManager.SUGGEST_COLUMN_TEXT_1));
                 tv1.setText(name);

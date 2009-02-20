@@ -200,7 +200,6 @@ public class PlaylistBrowserActivity extends ListActivity
     
     private Handler mReScanHandler = new Handler() {
         public void handleMessage(Message msg) {
-            setTitle();
             getPlaylistCursor(mAdapter.getQueryHandler(), null);
         }
     };
@@ -508,6 +507,7 @@ public class PlaylistBrowserActivity extends ListActivity
     
     static class PlaylistListAdapter extends SimpleCursorAdapter {
         int mTitleIdx;
+        int mIdIdx;
         private PlaylistBrowserActivity mActivity = null;
         private AsyncQueryHandler mQueryHandler;
 
@@ -536,6 +536,7 @@ public class PlaylistBrowserActivity extends ListActivity
         private void getColumnIndices(Cursor cursor) {
             if (cursor != null) {
                 mTitleIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Playlists.NAME);
+                mIdIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Playlists._ID);
             }
         }
 
@@ -555,8 +556,14 @@ public class PlaylistBrowserActivity extends ListActivity
             String name = cursor.getString(mTitleIdx);
             tv.setText(name);
             
+            long id = cursor.getLong(mIdIdx);
+            
             ImageView iv = (ImageView) view.findViewById(R.id.icon);
-            iv.setImageResource(R.drawable.ic_mp_playlist_list);
+            if (id == RECENTLY_ADDED_PLAYLIST) {
+                iv.setImageResource(R.drawable.ic_mp_playlist_recently_added_list);
+            } else {
+                iv.setImageResource(R.drawable.ic_mp_playlist_list);
+            }
             ViewGroup.LayoutParams p = iv.getLayoutParams();
             p.width = ViewGroup.LayoutParams.WRAP_CONTENT;
             p.height = ViewGroup.LayoutParams.WRAP_CONTENT;
