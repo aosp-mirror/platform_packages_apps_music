@@ -146,8 +146,6 @@ public class MediaPlaybackService extends Service {
     // This will have to change if we want to support multiple simultaneous cards.
     private int mCardId;
     
-    private MediaGadgetProvider mGadgetProvider = MediaGadgetProvider.getInstance();
-    
     // interval after which we stop the service when idle
     private static final int IDLE_DELAY = 60000; 
 
@@ -228,6 +226,7 @@ public class MediaPlaybackService extends Service {
                         next(false);
                     } else {
                         notifyChange(PLAYBACK_COMPLETE);
+                        pushGadgetUpdate();
                     }
                     break;
                 case RELEASE_WAKELOCK:
@@ -263,7 +262,7 @@ public class MediaPlaybackService extends Service {
                 // Someone asked us to refresh a set of specific gadgets, probably
                 // because they were just added.
                 int[] gadgetIds = intent.getIntArrayExtra(GadgetManager.EXTRA_GADGET_IDS);
-                mGadgetProvider.performUpdate(MediaPlaybackService.this, gadgetIds);
+                MediaGadgetProvider.updateAllGadgets(MediaPlaybackService.this, gadgetIds);
             }
         }
     };
@@ -589,6 +588,7 @@ public class MediaPlaybackService extends Service {
         stop(true);
         notifyChange(QUEUE_CHANGED);
         notifyChange(META_CHANGED);
+        pushGadgetUpdate();
     }
 
     /**
@@ -614,6 +614,7 @@ public class MediaPlaybackService extends Service {
                         reloadQueue();
                         notifyChange(QUEUE_CHANGED);
                         notifyChange(META_CHANGED);
+                        pushGadgetUpdate();
                     }
                 }
             };
@@ -658,9 +659,6 @@ public class MediaPlaybackService extends Service {
         } else {
             saveQueue(false);
         }
-        
-        // Share this notification directly with our gadgets
-        mGadgetProvider.notifyChange(this, what);
     }
 
     private void ensurePlayListCapacity(int size) {
@@ -725,16 +723,18 @@ public class MediaPlaybackService extends Service {
                 if (action == NOW) {
                     mPlayPos = mPlayListLen - list.length;
                     openCurrent();
-                    play();
+                    play(false /* we push update */);
                     notifyChange(META_CHANGED);
+                    pushGadgetUpdate();
                     return;
                 }
             }
             if (mPlayPos < 0) {
                 mPlayPos = 0;
                 openCurrent();
-                play();
+                play(false /* we push update */);
                 notifyChange(META_CHANGED);
+                pushGadgetUpdate();
             }
         }
     }
@@ -966,7 +966,7 @@ public class MediaPlaybackService extends Service {
     /**
      * Starts playback of a previously opened file.
      */
-    public void play() {
+    public void play(boolean shouldPushUpdate) {
         if (mPlayer.isInitialized()) {
             mPlayer.start();
             setForeground(true);
@@ -1009,6 +1009,9 @@ public class MediaPlaybackService extends Service {
                 notifyChange(PLAYSTATE_CHANGED);
             }
             mWasPlaying = true;
+            if (shouldPushUpdate) {
+                pushGadgetUpdate();
+            }
         } else if (mPlayListLen <= 0) {
             // This is mostly so that if you press 'play' on a bluetooth headset
             // without every having played anything before, it will still play
@@ -1017,6 +1020,21 @@ public class MediaPlaybackService extends Service {
         }
     }
     
+    /**
+     * Starts playback of a previously opened file.
+     */
+    public void play() {
+        // Default play action should push gadget updates
+        play(true);
+    }
+    
+    /**
+     * Push an update to all music gadgets.
+     */
+    private void pushGadgetUpdate() {
+        MediaGadgetProvider.updateAllGadgets(this, null);
+    }
+
     private void stop(boolean remove_status_icon) {
         if (mPlayer.isInitialized()) {
             mPlayer.stop();
@@ -1053,6 +1071,7 @@ public class MediaPlaybackService extends Service {
             mWasPlaying = false;
             notifyChange(PLAYSTATE_CHANGED);
             saveBookmarkIfNeeded();
+            pushGadgetUpdate();
         }
     }
 
@@ -1118,8 +1137,9 @@ public class MediaPlaybackService extends Service {
             saveBookmarkIfNeeded();
             stop(false);
             openCurrent();
-            play();
+            play(false /* we push update */);
             notifyChange(META_CHANGED);
+            pushGadgetUpdate();
         }
     }
 
@@ -1199,6 +1219,7 @@ public class MediaPlaybackService extends Service {
                         // all done
                         gotoIdleState();
                         notifyChange(PLAYBACK_COMPLETE);
+                        pushGadgetUpdate();
                         return;
                     } else if (mRepeatMode == REPEAT_ALL || force) {
                         mPlayPos = 0;
@@ -1210,8 +1231,9 @@ public class MediaPlaybackService extends Service {
             saveBookmarkIfNeeded();
             stop(false);
             openCurrent();
-            play();
+            play(false /* we push update */);
             notifyChange(META_CHANGED);
+            pushGadgetUpdate();
         }
     }
     
@@ -1408,8 +1430,9 @@ public class MediaPlaybackService extends Service {
                     doAutoShuffleUpdate();
                     mPlayPos = 0;
                     openCurrent();
-                    play();
+                    play(false /* we push update */);
                     notifyChange(META_CHANGED);
+                    pushGadgetUpdate();
                     return;
                 } else {
                     // failed to build a list of files to shuffle
@@ -1477,8 +1500,9 @@ public class MediaPlaybackService extends Service {
             stop(false);
             mPlayPos = pos;
             openCurrent();
-            play();
+            play(false /* we push update */);
             notifyChange(META_CHANGED);
+            pushGadgetUpdate();
         }
     }
 

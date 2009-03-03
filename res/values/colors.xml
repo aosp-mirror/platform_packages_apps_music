@@ -15,6 +15,14 @@
 -->
 
 <resources>
-    <color name="gadget_text">#ffffffff</color>
+    <color name="gadget_progress_bg_start">#ffc2c7bc</color>
+    <color name="gadget_progress_bg_center">#fff8fff1</color>
+    <color name="gadget_progress_bg_end">#ffe9f0e9</color>
+    <color name="gadget_progress_fg_start">#ff8aa841</color>
+    <color name="gadget_progress_fg_center">#ffadd252</color>
+    <color name="gadget_progress_fg_end">#ffadd252</color>
+
+    <color name="gadget_text">#ff003533</color>
+    <color name="gadget_text_shadow">#ffffffff</color>
 </resources>
 

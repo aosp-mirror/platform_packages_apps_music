@@ -19,5 +19,4 @@
 
     android:searchSuggestAuthority="media"
     android:searchSuggestPath="external/audio"
-    android:searchSuggestIntentAction="android.intent.action.VIEW"
 />

@@ -16,11 +16,11 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_window_focused="false"
-        android:drawable="@drawable/gadget_play_normal" />
+        android:drawable="@drawable/gadget_prev_normal" />
     <item android:state_pressed="true"
-        android:drawable="@drawable/gadget_play_pressed" />
+        android:drawable="@drawable/gadget_prev_pressed" />
     <item android:state_focused="true"
-        android:drawable="@drawable/gadget_play_focused" />
+        android:drawable="@drawable/gadget_prev_focused" />
     <item
-         android:drawable="@drawable/gadget_play_normal" />
+         android:drawable="@drawable/gadget_prev_normal" />
 </selector>

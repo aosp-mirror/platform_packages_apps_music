@@ -20,7 +20,7 @@
     <item android:state_pressed="true"
         android:drawable="@drawable/gadget_pause_pressed" />
     <item android:state_focused="true"
-        android:drawable="@drawable/gadget_pause_pressed" />
+        android:drawable="@drawable/gadget_pause_focused" />
     <item
          android:drawable="@drawable/gadget_pause_normal" />
 </selector>

@@ -468,8 +468,6 @@ public class AlbumBrowserActivity extends ListActivity
         private AlphabetIndexer mIndexer;
         private AlbumBrowserActivity mActivity;
         private AsyncQueryHandler mQueryHandler;
-        private String mConstraint = null;
-        private boolean mConstraintIsValid = false;
         
         class ViewHolder {
             TextView line1;
@@ -606,16 +604,7 @@ public class AlbumBrowserActivity extends ListActivity
         
         @Override
         public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
-            String s = constraint.toString();
-            if (mConstraintIsValid && (
-                    (s == null && mConstraint == null) ||
-                    (s != null && s.equals(mConstraint)))) {
-                return getCursor();
-            }
-            Cursor c = mActivity.getAlbumCursor(null, s);
-            mConstraint = s;
-            mConstraintIsValid = true;
-            return c;
+            return mActivity.getAlbumCursor(null, constraint.toString());
         }
         
         public Object[] getSections() {

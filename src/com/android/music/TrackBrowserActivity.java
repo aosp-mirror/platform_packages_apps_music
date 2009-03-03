@@ -147,23 +147,6 @@ public class TrackBrowserActivity extends ListActivity
                 MediaStore.Audio.Playlists.Members.AUDIO_ID
         };
 
-        setContentView(R.layout.media_picker_activity);
-        mTrackList = getListView();
-        mTrackList.setOnCreateContextMenuListener(this);
-        if (mEditMode) {
-            //((TouchInterceptor) mTrackList).setDragListener(mDragListener);
-            ((TouchInterceptor) mTrackList).setDropListener(mDropListener);
-            ((TouchInterceptor) mTrackList).setRemoveListener(mRemoveListener);
-            mTrackList.setCacheColorHint(0);
-        } else {
-            mTrackList.setTextFilterEnabled(true);
-        }
-        mAdapter = (TrackListAdapter) getLastNonConfigurationInstance();
-        
-        if (mAdapter != null) {
-            mAdapter.setActivity(this);
-            setListAdapter(mAdapter);
-        }
         MusicUtils.bindToService(this, this);
     }
 
@@ -176,6 +159,18 @@ public class TrackBrowserActivity extends ListActivity
         f.addDataScheme("file");
         registerReceiver(mScanListener, f);
 
+        setContentView(R.layout.media_picker_activity);
+        mTrackList = getListView();
+        mTrackList.setOnCreateContextMenuListener(this);
+        if (mEditMode) {
+            //((TouchInterceptor) mTrackList).setDragListener(mDragListener);
+            ((TouchInterceptor) mTrackList).setDropListener(mDropListener);
+            ((TouchInterceptor) mTrackList).setRemoveListener(mRemoveListener);
+            mTrackList.setCacheColorHint(0);
+        } else {
+            mTrackList.setTextFilterEnabled(true);
+        }
+        mAdapter = (TrackListAdapter) getLastNonConfigurationInstance();
         if (mAdapter == null) {
             //Log.i("@@@", "starting query");
             mAdapter = new TrackListAdapter(
@@ -192,6 +187,8 @@ public class TrackBrowserActivity extends ListActivity
             setTitle(R.string.working_songs);
             getTrackCursor(mAdapter.getQueryHandler(), null);
         } else {
+            mAdapter.setActivity(this);
+            setListAdapter(mAdapter);
             mTrackCursor = mAdapter.getCursor();
             // If mTrackCursor is null, this can be because it doesn't have
             // a cursor yet (because the initial query that sets its cursor
@@ -1258,8 +1255,6 @@ public class TrackBrowserActivity extends ListActivity
         
         private TrackBrowserActivity mActivity = null;
         private AsyncQueryHandler mQueryHandler;
-        private String mConstraint = null;
-        private boolean mConstraintIsValid = false;
         
         class ViewHolder {
             TextView line1;
@@ -1426,16 +1421,7 @@ public class TrackBrowserActivity extends ListActivity
         
         @Override
         public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
-            String s = constraint.toString();
-            if (mConstraintIsValid && (
-                    (s == null && mConstraint == null) ||
-                    (s != null && s.equals(mConstraint)))) {
-                return getCursor();
-            }
-            Cursor c = mActivity.getTrackCursor(null, s);
-            mConstraint = s;
-            mConstraintIsValid = true;
-            return c;
+            return mActivity.getTrackCursor(null, constraint.toString());
         }
         
         // SectionIndexer methods
