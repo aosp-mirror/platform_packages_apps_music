@@ -34,8 +34,8 @@
     <string name="shuffle_all">"Stokk alle"</string>
     <string name="play_all">"Spill alle"</string>
     <string name="delete_artist_desc">"Alle sanger av <xliff:g id="ARTIST">%s</xliff:g> vil vil bli slettet permanent fra minnekortet."</string>
-    <string name="delete_album_desc">"Hele albumet \\\\\\\"<xliff:g id="ALBUM">%s</xliff:g>\\\\\\\" vil bli slettet permanent fra minnekortet."</string>
-    <string name="delete_song_desc">"\\\\\\\"<xliff:g id="SONG">%s</xliff:g>\\\\\\\" vil bli slettet permanent fra minnekortet."</string>
+    <string name="delete_album_desc">"Hele albumet \"<xliff:g id="ALBUM">%s</xliff:g>\" vil bli slettet permanent fra minnekortet."</string>
+    <string name="delete_song_desc">"\"<xliff:g id="SONG">%s</xliff:g>\" vil bli slettet permanent fra minnekortet."</string>
     <string name="delete_confirm_button_text">"OK"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one">"1 sang ble slettet."</item>
@@ -82,7 +82,7 @@
     <string name="repeat_all_notif">"Gjentar alle sanger."</string>
     <string name="ringtone_menu">"Bruk som telefonringetone"</string>
     <string name="ringtone_menu_short">"Bruk som ringetone"</string>
-    <string name="ringtone_set">"\\\\\\\"%s\\\\\\\" valgt som telefonringetone."</string>
+    <string name="ringtone_set">"\"%s\" valgt som telefonringetone."</string>
     <string name="play_selection">"Spill"</string>
     <string name="add_to_playlist">"Legg til spillelisten"</string>
     <string name="queue">"Gjeldende spilleliste"</string>

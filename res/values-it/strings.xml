@@ -29,7 +29,7 @@
     <string name="goto_start">"Raccolta"</string>
     <string name="goto_playback">"Riproduci"</string>
     <string name="party_shuffle">"Party shuffle"</string>
-    <string name="party_shuffle_off">"Party shuffle off"</string>
+    <string name="party_shuffle_off">"Party shuffle non attiva"</string>
     <string name="delete_item">"Elimina"</string>
     <string name="shuffle_all">"Ripr. casuale"</string>
     <string name="play_all">"Riprod. tutti"</string>
@@ -86,7 +86,7 @@
     <string name="play_selection">"Riprod."</string>
     <string name="add_to_playlist">"Aggiungi a playlist"</string>
     <string name="queue">"Playlist corrente"</string>
-    <string name="new_playlist">"Nuovo"</string>
+    <string name="new_playlist">"Nuova"</string>
     <string name="new_playlist_name_template">"Nuova playlist <xliff:g id="NUMBER">%d</xliff:g>"</string>
   <plurals name="NNNtrackstoplaylist">
     <item quantity="one">"1 brano aggiunto alla playlist."</item>

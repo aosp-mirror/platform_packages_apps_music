@@ -35,7 +35,7 @@
     <string name="play_all">"Alles afspelen"</string>
     <string name="delete_artist_desc">"Alle nummers van <xliff:g id="ARTIST">%s</xliff:g> worden definitief van de SD-kaart verwijderd."</string>
     <string name="delete_album_desc">"Het hele album \'<xliff:g id="ALBUM">%s</xliff:g>\' wordt definitief van de SD-kaart verwijderd."</string>
-    <string name="delete_song_desc">"\'<xliff:g id="SONG">%s</xliff:g>\' wordt definitief van de SD-kaart verwijderd."</string>
+    <string name="delete_song_desc">"<xliff:g id="SONG">%s</xliff:g>\' wordt definitief van de SD-kaart verwijderd."</string>
     <string name="delete_confirm_button_text">"OK"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one">"1 nummer is verwijderd."</item>
@@ -82,7 +82,7 @@
     <string name="repeat_all_notif">"Alle nummers worden herhaald."</string>
     <string name="ringtone_menu">"Gebruiken als beltoon van telefoon"</string>
     <string name="ringtone_menu_short">"Gebruiken als beltoon"</string>
-    <string name="ringtone_set">"\'%s\' ingesteld als beltoon van telefoon."</string>
+    <string name="ringtone_set">"%s\' ingesteld als beltoon van telefoon."</string>
     <string name="play_selection">"Afspelen"</string>
     <string name="add_to_playlist">"Toevoegen aan afspeellijst"</string>
     <string name="queue">"Huidige afspeellijst"</string>

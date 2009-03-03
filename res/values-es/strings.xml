@@ -67,8 +67,8 @@
     <string name="recentlyadded_title">"Añadidos recientemente"</string>
     <string name="podcasts_listitem">"Podcasts"</string>
     <string name="podcasts_title">"Podcasts"</string>
-    <string name="sdcard_missing_title">"Ninguna tarjeta SD"</string>
-    <string name="sdcard_missing_message">"No hay ninguna tarjeta SD en el teléfono."</string>
+    <string name="sdcard_missing_title">"Falta la tarjeta SD"</string>
+    <string name="sdcard_missing_message">"Falta la tarjeta SD en el teléfono"</string>
     <string name="sdcard_busy_title">"Tarjeta SD no disponible"</string>
     <string name="sdcard_busy_message">"La tarjeta SD está ocupada."</string>
     <string name="sdcard_error_title">"Error de tarjeta SD"</string>

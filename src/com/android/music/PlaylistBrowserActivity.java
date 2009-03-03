@@ -510,6 +510,8 @@ public class PlaylistBrowserActivity extends ListActivity
         int mIdIdx;
         private PlaylistBrowserActivity mActivity = null;
         private AsyncQueryHandler mQueryHandler;
+        private String mConstraint = null;
+        private boolean mConstraintIsValid = false;
 
         class QueryHandler extends AsyncQueryHandler {
             QueryHandler(ContentResolver res) {
@@ -585,7 +587,16 @@ public class PlaylistBrowserActivity extends ListActivity
         
         @Override
         public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
-            return mActivity.getPlaylistCursor(null, constraint.toString());
+            String s = constraint.toString();
+            if (mConstraintIsValid && (
+                    (s == null && mConstraint == null) ||
+                    (s != null && s.equals(mConstraint)))) {
+                return getCursor();
+            }
+            Cursor c = mActivity.getPlaylistCursor(null, s);
+            mConstraint = s;
+            mConstraintIsValid = true;
+            return c;
         }
     }
     

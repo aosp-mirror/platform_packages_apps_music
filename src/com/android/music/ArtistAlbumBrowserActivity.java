@@ -515,6 +515,8 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         private MusicAlphabetIndexer mIndexer;
         private ArtistAlbumBrowserActivity mActivity;
         private AsyncQueryHandler mQueryHandler;
+        private String mConstraint = null;
+        private boolean mConstraintIsValid = false;
         
         class ViewHolder {
             TextView line1;
@@ -785,7 +787,16 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         
         @Override
         public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
-            return mActivity.getArtistCursor(null, constraint.toString());
+            String s = constraint.toString();
+            if (mConstraintIsValid && (
+                    (s == null && mConstraint == null) ||
+                    (s != null && s.equals(mConstraint)))) {
+                return getCursor();
+            }
+            Cursor c = mActivity.getArtistCursor(null, s);
+            mConstraint = s;
+            mConstraintIsValid = true;
+            return c;
         }
 
         public Object[] getSections() {

@@ -16,129 +16,65 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/album_gadget"
-    android:layout_width="240dip"
-    android:layout_height="270dip"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     >
 
-    <ImageView
-        android:id="@+id/outline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/gadget_background"
-        />
-
-    <ImageView
-        android:id="@+id/artwork"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dip"
-        />
-
-    <ImageView
-        android:id="@+id/no_artwork"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dip"
-        android:src="@drawable/gadget_no_art"
-        android:visibility="gone"
-        />
-
-    <com.android.internal.widget.TextProgressBar
-        android:id="@+id/progress_group"
+    <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dip"
-        android:layout_marginLeft="50dip"
-        android:layout_marginRight="50dip"
-        android:padding="4dip"
-        android:gravity="center_vertical"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="9dip"
+        android:layout_marginRight="10dip"
+        android:background="@drawable/gadget_bg"
         >
 
-        <Chronometer
-            android:id="@android:id/text1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:padding="2dip"
-            android:textColor="@color/gadget_text"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:shadowColor="@color/gadget_text_shadow"
-            android:shadowRadius="2.75"
-            />
-
-        <ProgressBar
-            android:id="@android:id/progress"
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@android:id/text1"
-            android:indeterminateOnly="false"
-            android:progressDrawable="@drawable/gadget_progress"
-            android:minHeight="12dip"
-            android:maxHeight="12dip"
-            />
+            android:orientation="vertical"
+            android:background="@drawable/gadget_inner"
+            >
 
-    </com.android.internal.widget.TextProgressBar>
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:gravity="bottom|left"
+                android:textColor="@color/gadget_text"
+                android:textStyle="bold"
+                android:textSize="11sp"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                />
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dip"
-        android:layout_marginLeft="34dip"
-        android:layout_marginRight="34dip"
-        android:layout_below="@id/progress_group"
-        android:textColor="@color/gadget_text"
-        android:textSize="14sp"
-        android:singleLine="true"
-        android:ellipsize="marquee"
-        android:fadingEdge="horizontal"
-        android:shadowColor="@color/gadget_text_shadow"
-        android:shadowRadius="2.75"
-        />
+            <TextView
+                android:id="@+id/artist"
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:gravity="top|left"
+                android:textColor="@color/gadget_text"
+                android:textSize="11dip"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                />
 
-    <TextView
-        android:id="@+id/artist"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="34dip"
-        android:layout_marginRight="34dip"
-        android:layout_marginBottom="12dip"
-        android:layout_below="@id/title"
-        android:textColor="@color/gadget_text"
-        android:textStyle="bold"
-        android:textSize="14dip"
-        android:singleLine="true"
-        android:ellipsize="marquee"
-        android:fadingEdge="horizontal"
-        android:shadowColor="@color/gadget_text_shadow"
-        android:shadowRadius="2.75"
-        />
+        </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/control_prev"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/artist"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="14dip"
-        android:src="@drawable/gadget_prev"
-        android:background="@android:color/transparent"
-        />
+    </FrameLayout>
 
     <ImageButton
         android:id="@+id/control_next"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/artist"
+        android:layout_height="fill_parent"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="14dip"
+        android:layout_centerVertical="true"
+        android:paddingRight="25dip"
+        android:paddingLeft="10dip"
         android:src="@drawable/gadget_next"
         android:background="@android:color/transparent"
         />
@@ -147,10 +83,12 @@
         android:id="@+id/control_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/artist"
-        android:layout_marginTop="15dip"
-        android:nextFocusUp="@id/control_next"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:paddingLeft="16dip"
+        android:paddingRight="10dip"
+        android:paddingBottom="3dip"
+        android:paddingTop="10dip"
         android:src="@drawable/gadget_play"
         android:background="@android:color/transparent"
         />

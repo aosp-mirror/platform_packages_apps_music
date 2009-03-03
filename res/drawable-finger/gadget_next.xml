@@ -20,7 +20,7 @@
     <item android:state_pressed="true"
         android:drawable="@drawable/gadget_next_pressed" />
     <item android:state_focused="true"
-        android:drawable="@drawable/gadget_next_focused" />
+        android:drawable="@drawable/gadget_next_pressed" />
     <item
          android:drawable="@drawable/gadget_next_normal" />
 </selector>

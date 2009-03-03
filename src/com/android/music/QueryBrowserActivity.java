@@ -289,6 +289,8 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
     static class QueryListAdapter extends SimpleCursorAdapter {
         private QueryBrowserActivity mActivity = null;
         private AsyncQueryHandler mQueryHandler;
+        private String mConstraint = null;
+        private boolean mConstraintIsValid = false;
 
         class QueryHandler extends AsyncQueryHandler {
             QueryHandler(ContentResolver res) {
@@ -400,7 +402,16 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
         }
         @Override
         public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
-            return mActivity.getQueryCursor(null, constraint.toString());
+            String s = constraint.toString();
+            if (mConstraintIsValid && (
+                    (s == null && mConstraint == null) ||
+                    (s != null && s.equals(mConstraint)))) {
+                return getCursor();
+            }
+            Cursor c = mActivity.getQueryCursor(null, s);
+            mConstraint = s;
+            mConstraintIsValid = true;
+            return c;
         }
     }
 

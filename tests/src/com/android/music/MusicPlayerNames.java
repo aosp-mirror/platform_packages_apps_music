@@ -54,8 +54,8 @@ public class MusicPlayerNames {
     public static int NO_SKIPPING_SONGS = 500;
     
     public static final String DELETESONG = "/sdcard/toBeDeleted.amr"; 
-    public static final String GOLDENSONG = "/sdcard/music/AMRNB.amr";
+    public static final String GOLDENSONG = "/sdcard/media_api/music/AMRNB.amr";
     public static final String TOBEDELETESONGNAME = "toBeDeleted";   
     
-    public static int EXPECTED_NO_RINGTONE = 23;
+    public static int EXPECTED_NO_RINGTONE = 1;
 }
