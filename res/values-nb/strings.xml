@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onesong">"1 sang"</string>
+  <plurals name="Nsongs">
+    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> sanger"</item>
+  </plurals>
+  <plurals name="Nsongscomp">
+    <item quantity="other">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> av <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> sanger"</item>
+  </plurals>
+  <plurals name="Nalbums">
+    <item quantity="one">"1 album"</item>
+    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> album"</item>
+  </plurals>
+    <string name="goto_start">"Bibliotek"</string>
+    <string name="goto_playback">"Avspilling"</string>
+    <string name="party_shuffle">"Tilfeldig"</string>
+    <string name="party_shuffle_off">"Tilfeldig av"</string>
+    <string name="delete_item">"Slett"</string>
+    <string name="shuffle_all">"Stokk alle"</string>
+    <string name="play_all">"Spill alle"</string>
+    <string name="delete_artist_desc">"Alle sanger av <xliff:g id="ARTIST">%s</xliff:g> vil vil bli slettet permanent fra minnekortet."</string>
+    <string name="delete_album_desc">"Hele albumet \"<xliff:g id="ALBUM">%s</xliff:g>\" vil bli slettet permanent fra minnekortet."</string>
+    <string name="delete_song_desc">"\"<xliff:g id="SONG">%s</xliff:g>\" vil bli slettet permanent fra minnekortet."</string>
+    <string name="delete_confirm_button_text">"OK"</string>
+  <plurals name="NNNtracksdeleted">
+    <item quantity="one">"1 sang ble slettet."</item>
+    <item quantity="other">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> sang ble slettet."</item>
+  </plurals>
+    <string name="scanning">"Søker i minnekort…"</string>
+    <string name="nowplaying_title">"Spilles nå"</string>
+    <string name="partyshuffle_title">"Tilfeldig"</string>
+    <string name="artists_title">"Artister"</string>
+    <string name="albums_menu">"Album"</string>
+    <string name="albums_title">"Album"</string>
+    <string name="tracks_menu">"Sanger"</string>
+    <string name="tracks_title">"Sanger"</string>
+    <string name="playlists_menu">"Spillelister"</string>
+    <string name="playlists_title">"Spillelister"</string>
+    <string name="videos_title">"Videoer"</string>
+    <string name="all_title">"Alle medier"</string>
+    <string name="browse_menu">"Artister"</string>
+    <string name="search_title">"Søk"</string>
+    <string name="no_tracks_title">"Ingen sanger"</string>
+    <string name="no_videos_title">"Ingen videoer"</string>
+    <string name="no_playlists_title">"Ingen spillelister"</string>
+    <string name="delete_playlist_menu">"Slett"</string>
+    <string name="edit_playlist_menu">"Rediger"</string>
+    <string name="rename_playlist_menu">"Gi nytt navn"</string>
+    <string name="playlist_deleted_message">"Spillelisten ble slettet."</string>
+    <string name="playlist_renamed_message">"Spillelisten fikk nytt navn."</string>
+    <string name="recentlyadded">"Nylig lagt til"</string>
+    <string name="recentlyadded_title">"Nylig lagt til"</string>
+    <string name="podcasts_listitem">"Podcasts"</string>
+    <string name="podcasts_title">"Podcasts"</string>
+    <string name="sdcard_missing_title">"Mangler minnekort"</string>
+    <string name="sdcard_missing_message">"Telefonen har ikke noe minnekort i seg."</string>
+    <string name="sdcard_busy_title">"Minnekort utilgjengelig"</string>
+    <string name="sdcard_busy_message">"Minnekortet er opptatt."</string>
+    <string name="sdcard_error_title">"Feil i minnekort"</string>
+    <string name="sdcard_error_message">"En feil oppsto i minnekortet."</string>
+    <string name="unknown_artist_name">"Ukjent artist"</string>
+    <string name="unknown_album_name">"Ukjent album"</string>
+    <string name="shuffle_on_notif">"Tilfeldig avspilling er på."</string>
+    <string name="shuffle_off_notif">"Tilfeldig avspilling er av."</string>
+    <string name="repeat_off_notif">"Ingen gjentagelse."</string>
+    <string name="repeat_current_notif">"Gjentar denne sangen."</string>
+    <string name="repeat_all_notif">"Gjentar alle sanger."</string>
+    <string name="ringtone_menu">"Bruk som telefonringetone"</string>
+    <string name="ringtone_menu_short">"Bruk som ringetone"</string>
+    <string name="ringtone_set">"\"%s\" valgt som telefonringetone."</string>
+    <string name="play_selection">"Spill"</string>
+    <string name="add_to_playlist">"Legg til spillelisten"</string>
+    <string name="queue">"Gjeldende spilleliste"</string>
+    <string name="new_playlist">"Ny"</string>
+    <string name="new_playlist_name_template">"Ny spilleliste <xliff:g id="NUMBER">%d</xliff:g>"</string>
+  <plurals name="NNNtrackstoplaylist">
+    <item quantity="one">"1 sang ble lagt til spillelisten."</item>
+    <item quantity="other">"%d sanger ble lagt til spillelisten."</item>
+  </plurals>
+    <string name="emptyplaylist">"Den valgte spillelisten er tom."</string>
+    <string name="create_playlist_create_text">"Lagre"</string>
+    <string name="create_playlist_overwrite_text">"Erstatt"</string>
+    <string name="service_start_error_title">"Avspillingsproblem"</string>
+    <string name="service_start_error_msg">"Beklager, kunne ikke spille av sangen."</string>
+    <string name="service_start_error_button">"OK"</string>
+  <string-array name="weeklist">
+    <item>"1 uke"</item>
+    <item>"2 uker"</item>
+    <item>"3 uker"</item>
+    <item>"4 uker"</item>
+    <item>"5 uker"</item>
+    <item>"6 uker"</item>
+    <item>"7 uker"</item>
+    <item>"8 uker"</item>
+    <item>"9 uker"</item>
+    <item>"10 uker"</item>
+    <item>"11 uker"</item>
+    <item>"12 uker"</item>
+  </string-array>
+    <string name="weekpicker_set">"Ferdig"</string>
+    <string name="weekpicker_title">"Velg tid"</string>
+    <string name="save_as_playlist">"Lagre som spilleliste"</string>
+    <string name="clear_playlist">"Tøm spilleliste"</string>
+    <string name="musicbrowserlabel">"Musikk"</string>
+    <string name="musicshortcutlabel">"Musikk-spilleliste"</string>
+    <string name="mediaplaybacklabel">"Musikk"</string>
+    <string name="videobrowserlabel">"Videoer"</string>
+    <string name="mediapickerlabel">"Musikk"</string>
+    <string name="playback_failed">"Beklager, spilleren støtter ikke denne typen lydfiler."</string>
+    <string name="cancel">"Avbryt"</string>
+    <string name="remove_from_playlist">"Fjern fra spilleliste"</string>
+    <string name="streamloadingtext">"Kobler til <xliff:g id="HOST">%s</xliff:g>"</string>
+    <string name="mediasearch">"Søk etter %s ved hjelp av:"</string>
+    <string name="working_artists">"Artister…"</string>
+    <string name="working_albums">"Album…"</string>
+    <string name="working_songs">"Sanger…"</string>
+    <string name="working_playlists">"Spillelister…"</string>
+    <string name="loading">"Laster"</string>
+    <string name="sort_by_track">"Spor"</string>
+    <string name="sort_by_album">"Album"</string>
+    <string name="sort_by_artist">"Artister"</string>
+    <string name="music_picker_title">"Velg musikkspor"</string>
+    <string name="gadget_track">"Spor <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+</resources>

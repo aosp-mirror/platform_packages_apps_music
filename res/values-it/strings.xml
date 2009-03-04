@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onesong">"1 brano"</string>
+  <plurals name="Nsongs">
+    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> brani"</item>
+  </plurals>
+  <plurals name="Nsongscomp">
+    <item quantity="other">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> brani su <xliff:g id="TOTAL_COUNT">%1$d</xliff:g>"</item>
+  </plurals>
+  <plurals name="Nalbums">
+    <item quantity="one">"1 album"</item>
+    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> album"</item>
+  </plurals>
+    <string name="goto_start">"Raccolta"</string>
+    <string name="goto_playback">"Riproduci"</string>
+    <string name="party_shuffle">"Party shuffle"</string>
+    <string name="party_shuffle_off">"Party shuffle non attiva"</string>
+    <string name="delete_item">"Elimina"</string>
+    <string name="shuffle_all">"Ripr. casuale"</string>
+    <string name="play_all">"Riprod. tutti"</string>
+    <string name="delete_artist_desc">"Tutti i brani di <xliff:g id="ARTIST">%s</xliff:g> verranno eliminati definitivamente dalla scheda SD."</string>
+    <string name="delete_album_desc">"L\'intero album \"<xliff:g id="ALBUM">%s</xliff:g>\" verrà eliminato definitivamente dalla scheda SD."</string>
+    <string name="delete_song_desc">"Il brano \"<xliff:g id="SONG">%s</xliff:g>\" verrà eliminato definitivamente dalla scheda SD."</string>
+    <string name="delete_confirm_button_text">"OK"</string>
+  <plurals name="NNNtracksdeleted">
+    <item quantity="one">"1 brano eliminato."</item>
+    <item quantity="other">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> brani eliminati."</item>
+  </plurals>
+    <string name="scanning">"Analisi scheda SD..."</string>
+    <string name="nowplaying_title">"In esecuzione"</string>
+    <string name="partyshuffle_title">"Party shuffle"</string>
+    <string name="artists_title">"Artisti"</string>
+    <string name="albums_menu">"Album"</string>
+    <string name="albums_title">"Album"</string>
+    <string name="tracks_menu">"Brani"</string>
+    <string name="tracks_title">"Brani"</string>
+    <string name="playlists_menu">"Playlist"</string>
+    <string name="playlists_title">"Playlist"</string>
+    <string name="videos_title">"Video"</string>
+    <string name="all_title">"Tutti i media"</string>
+    <string name="browse_menu">"Artisti"</string>
+    <string name="search_title">"Cerca"</string>
+    <string name="no_tracks_title">"Nessun brano"</string>
+    <string name="no_videos_title">"Nessun video"</string>
+    <string name="no_playlists_title">"Nessuna playlist"</string>
+    <string name="delete_playlist_menu">"Elimina"</string>
+    <string name="edit_playlist_menu">"Modifica"</string>
+    <string name="rename_playlist_menu">"Rinomina"</string>
+    <string name="playlist_deleted_message">"Playlist eliminata."</string>
+    <string name="playlist_renamed_message">"Playlist rinominata."</string>
+    <string name="recentlyadded">"Aggiunta di recente"</string>
+    <string name="recentlyadded_title">"Aggiunta di recente"</string>
+    <string name="podcasts_listitem">"Podcast"</string>
+    <string name="podcasts_title">"Podcast"</string>
+    <string name="sdcard_missing_title">"Nessuna scheda SD"</string>
+    <string name="sdcard_missing_message">"Il telefono non contiene una scheda SD."</string>
+    <string name="sdcard_busy_title">"Scheda SD non disponibile"</string>
+    <string name="sdcard_busy_message">"Spiacenti. La scheda SD è già in uso."</string>
+    <string name="sdcard_error_title">"Errore della scheda SD"</string>
+    <string name="sdcard_error_message">"Si è verificato un errore nella scheda SD."</string>
+    <string name="unknown_artist_name">"Artista sconosciuto"</string>
+    <string name="unknown_album_name">"Album sconosciuto"</string>
+    <string name="shuffle_on_notif">"Riproduzione casuale attiva."</string>
+    <string name="shuffle_off_notif">"Riproduzione casuale non attiva."</string>
+    <string name="repeat_off_notif">"Ripetizione non attiva."</string>
+    <string name="repeat_current_notif">"Ripetizione brano corrente."</string>
+    <string name="repeat_all_notif">"Ripetizione di tutti i brani."</string>
+    <string name="ringtone_menu">"Usa come suoneria"</string>
+    <string name="ringtone_menu_short">"Usa come suoneria"</string>
+    <string name="ringtone_set">"\"%s\" impostato come suoneria."</string>
+    <string name="play_selection">"Riprod."</string>
+    <string name="add_to_playlist">"Aggiungi a playlist"</string>
+    <string name="queue">"Playlist corrente"</string>
+    <string name="new_playlist">"Nuova"</string>
+    <string name="new_playlist_name_template">"Nuova playlist <xliff:g id="NUMBER">%d</xliff:g>"</string>
+  <plurals name="NNNtrackstoplaylist">
+    <item quantity="one">"1 brano aggiunto alla playlist."</item>
+    <item quantity="other">"%d brani aggiunti alla playlist."</item>
+  </plurals>
+    <string name="emptyplaylist">"La playlist selezionata è vuota."</string>
+    <string name="create_playlist_create_text">"Salva"</string>
+    <string name="create_playlist_overwrite_text">"Sostituisci"</string>
+    <string name="service_start_error_title">"Problema di riproduzione"</string>
+    <string name="service_start_error_msg">"Spiacenti. Impossibile riprodurre il brano."</string>
+    <string name="service_start_error_button">"OK"</string>
+  <string-array name="weeklist">
+    <item>"1 settimana"</item>
+    <item>"2 settimane"</item>
+    <item>"3 settimane"</item>
+    <item>"4 settimane"</item>
+    <item>"5 settimane"</item>
+    <item>"6 settimane"</item>
+    <item>"7 settimane"</item>
+    <item>"8 settimane"</item>
+    <item>"9 settimane"</item>
+    <item>"10 settimane"</item>
+    <item>"11 settimane"</item>
+    <item>"12 settimane"</item>
+  </string-array>
+    <string name="weekpicker_set">"Fine"</string>
+    <string name="weekpicker_title">"Imposta periodo"</string>
+    <string name="save_as_playlist">"Salva come playlist"</string>
+    <string name="clear_playlist">"Cancella playlist"</string>
+    <string name="musicbrowserlabel">"Musica"</string>
+    <string name="musicshortcutlabel">"Playlist musicale"</string>
+    <string name="mediaplaybacklabel">"Musica"</string>
+    <string name="videobrowserlabel">"Video"</string>
+    <string name="mediapickerlabel">"Musica"</string>
+    <string name="playback_failed">"Spiacenti. Il player non supporta questo tipo di file audio."</string>
+    <string name="cancel">"Annulla"</string>
+    <string name="remove_from_playlist">"Rimuovi da playlist"</string>
+    <string name="streamloadingtext">"Connessione a <xliff:g id="HOST">%s</xliff:g>"</string>
+    <string name="mediasearch">"Cerca %s con:"</string>
+    <string name="working_artists">"Artisti…"</string>
+    <string name="working_albums">"Album…"</string>
+    <string name="working_songs">"Brani…"</string>
+    <string name="working_playlists">"Playlist…"</string>
+    <string name="loading">"Caricamento"</string>
+    <string name="sort_by_track">"Tracce"</string>
+    <string name="sort_by_album">"Album"</string>
+    <string name="sort_by_artist">"Artisti"</string>
+    <string name="music_picker_title">"Seleziona traccia musicale"</string>
+    <string name="gadget_track">"Traccia <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+</resources>

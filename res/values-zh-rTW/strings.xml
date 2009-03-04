@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onesong">"1 首歌曲"</string>
+  <plurals name="Nsongs">
+    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> 首歌曲"</item>
+  </plurals>
+  <plurals name="Nsongscomp">
+    <item quantity="other">"專輯的 <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> 首歌曲中，有 <xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> 首該演出者的歌曲"</item>
+  </plurals>
+  <plurals name="Nalbums">
+    <item quantity="one">"1 張專輯"</item>
+    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> 專輯"</item>
+  </plurals>
+    <string name="goto_start">"媒體庫"</string>
+    <string name="goto_playback">"播放內容"</string>
+    <string name="party_shuffle">"派對隨機播放"</string>
+    <string name="party_shuffle_off">"關閉派對隨機播放"</string>
+    <string name="delete_item">"刪除"</string>
+    <string name="shuffle_all">"全部隨機播放"</string>
+    <string name="play_all">"全部播放"</string>
+    <string name="delete_artist_desc">"<xliff:g id="ARTIST">%s</xliff:g> 演唱的所有歌曲會從 SD 卡永久刪除。"</string>
+    <string name="delete_album_desc">"「<xliff:g id="ALBUM">%s</xliff:g>」的所有內容會從 SD 卡永久刪除。"</string>
+    <string name="delete_song_desc">"「<xliff:g id="SONG">%s</xliff:g>」會從 SD 卡永久刪除。"</string>
+    <string name="delete_confirm_button_text">"確定"</string>
+  <plurals name="NNNtracksdeleted">
+    <item quantity="one">"已刪除 1 首歌曲。"</item>
+    <item quantity="other">"已刪除 <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> 首歌曲。"</item>
+  </plurals>
+    <string name="scanning">"掃描 SD 卡中..."</string>
+    <string name="nowplaying_title">"目前播放"</string>
+    <string name="partyshuffle_title">"派對隨機播放"</string>
+    <string name="artists_title">"演唱者"</string>
+    <string name="albums_menu">"專輯"</string>
+    <string name="albums_title">"專輯"</string>
+    <string name="tracks_menu">"歌曲"</string>
+    <string name="tracks_title">"歌曲"</string>
+    <string name="playlists_menu">"播放清單"</string>
+    <string name="playlists_title">"播放清單"</string>
+    <string name="videos_title">"影片"</string>
+    <string name="all_title">"所有媒體"</string>
+    <string name="browse_menu">"演唱者"</string>
+    <string name="search_title">"搜尋"</string>
+    <string name="no_tracks_title">"沒有歌曲"</string>
+    <string name="no_videos_title">"沒有影片"</string>
+    <string name="no_playlists_title">"沒有播放清單"</string>
+    <string name="delete_playlist_menu">"刪除"</string>
+    <string name="edit_playlist_menu">"編輯"</string>
+    <string name="rename_playlist_menu">"重新命名"</string>
+    <string name="playlist_deleted_message">"播放清單已刪除。"</string>
+    <string name="playlist_renamed_message">"已重新命名播放清單。"</string>
+    <string name="recentlyadded">"最近新增的項目"</string>
+    <string name="recentlyadded_title">"最近新增的歌曲"</string>
+    <string name="podcasts_listitem">"Podcast"</string>
+    <string name="podcasts_title">"Podcast"</string>
+    <string name="sdcard_missing_title">"沒有 SD 卡"</string>
+    <string name="sdcard_missing_message">"您的手機未插入 SD 卡。"</string>
+    <string name="sdcard_busy_title">"無法使用 SD 卡"</string>
+    <string name="sdcard_busy_message">"抱歉，SD 卡忙碌中。"</string>
+    <string name="sdcard_error_title">"SD 卡錯誤"</string>
+    <string name="sdcard_error_message">"SD 卡發生錯誤。"</string>
+    <string name="unknown_artist_name">"未知的演唱者"</string>
+    <string name="unknown_album_name">"未知的專輯"</string>
+    <string name="shuffle_on_notif">"已開啟隨機播放。"</string>
+    <string name="shuffle_off_notif">"已關閉隨機播放。"</string>
+    <string name="repeat_off_notif">"已關閉重複播放。"</string>
+    <string name="repeat_current_notif">"重複播放目前歌曲。"</string>
+    <string name="repeat_all_notif">"重複播放所有歌曲。"</string>
+    <string name="ringtone_menu">"設成來電鈴聲"</string>
+    <string name="ringtone_menu_short">"設成鈴聲"</string>
+    <string name="ringtone_set">"已將「%s」設為來電鈴聲。"</string>
+    <string name="play_selection">"播放"</string>
+    <string name="add_to_playlist">"新增至播放清單"</string>
+    <string name="queue">"目前播放清單"</string>
+    <string name="new_playlist">"新增"</string>
+    <string name="new_playlist_name_template">"新播放清單 <xliff:g id="NUMBER">%d</xliff:g>"</string>
+  <plurals name="NNNtrackstoplaylist">
+    <item quantity="one">"已將 1 首歌曲加入播放清單。"</item>
+    <item quantity="other">"%d 歌曲已新增至播放清單。"</item>
+  </plurals>
+    <string name="emptyplaylist">"您選取的播放清單是空的。"</string>
+    <string name="create_playlist_create_text">"儲存"</string>
+    <string name="create_playlist_overwrite_text">"覆寫"</string>
+    <string name="service_start_error_title">"播放內容問題"</string>
+    <string name="service_start_error_msg">"抱歉，此歌曲無法播放。"</string>
+    <string name="service_start_error_button">"確定"</string>
+  <string-array name="weeklist">
+    <item>"1 週"</item>
+    <item>"2 週"</item>
+    <item>"3 週"</item>
+    <item>"4 週"</item>
+    <item>"5 週"</item>
+    <item>"6 週"</item>
+    <item>"7 週"</item>
+    <item>"8 週"</item>
+    <item>"9 週"</item>
+    <item>"10 週"</item>
+    <item>"11 週"</item>
+    <item>"12 週"</item>
+  </string-array>
+    <string name="weekpicker_set">"完成"</string>
+    <string name="weekpicker_title">"設定時間"</string>
+    <string name="save_as_playlist">"另存為播放清單"</string>
+    <string name="clear_playlist">"清除播放清單"</string>
+    <string name="musicbrowserlabel">"音樂"</string>
+    <string name="musicshortcutlabel">"音樂播放清單"</string>
+    <string name="mediaplaybacklabel">"音樂"</string>
+    <string name="videobrowserlabel">"影片"</string>
+    <string name="mediapickerlabel">"音樂"</string>
+    <string name="playback_failed">"抱歉，撥放器不支援此音訊檔格式。"</string>
+    <string name="cancel">"取消"</string>
+    <string name="remove_from_playlist">"從播放清單移除"</string>
+    <string name="streamloadingtext">"連線到 <xliff:g id="HOST">%s</xliff:g>"</string>
+    <string name="mediasearch">"搜尋 %s，使用："</string>
+    <string name="working_artists">"演唱者..."</string>
+    <string name="working_albums">"專輯..."</string>
+    <string name="working_songs">"歌曲..."</string>
+    <string name="working_playlists">"播放清單..."</string>
+    <string name="loading">"載入中"</string>
+    <string name="sort_by_track">"曲目"</string>
+    <string name="sort_by_album">"專輯"</string>
+    <string name="sort_by_artist">"演唱者"</string>
+    <string name="music_picker_title">"選取音樂曲目"</string>
+    <string name="gadget_track">"音軌 <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+</resources>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onesong">"曲（1）"</string>
+  <plurals name="Nsongs">
+    <item quantity="other">"曲（<xliff:g id="COUNT">%d</xliff:g>）"</item>
+  </plurals>
+  <plurals name="Nsongscomp">
+    <item quantity="other">"<xliff:g id="TOTAL_COUNT">%1$d</xliff:g>曲中<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g>曲"</item>
+  </plurals>
+  <plurals name="Nalbums">
+    <item quantity="one">"アルバム（1）"</item>
+    <item quantity="other">"アルバム（<xliff:g id="COUNT">%d</xliff:g>）"</item>
+  </plurals>
+    <string name="goto_start">"ライブラリ"</string>
+    <string name="goto_playback">"再生"</string>
+    <string name="party_shuffle">"パーティシャッフル"</string>
+    <string name="party_shuffle_off">"パーティシャッフルOFF"</string>
+    <string name="delete_item">"削除"</string>
+    <string name="shuffle_all">"すべてシャッフル"</string>
+    <string name="play_all">"すべて再生"</string>
+    <string name="delete_artist_desc">"<xliff:g id="ARTIST">%s</xliff:g>の全曲をSDカードから完全に削除します。"</string>
+    <string name="delete_album_desc">"アルバム「<xliff:g id="ALBUM">%s</xliff:g>」全体をSDカードから完全に削除します。"</string>
+    <string name="delete_song_desc">"「<xliff:g id="SONG">%s</xliff:g>」をSDカードから完全に削除します。"</string>
+    <string name="delete_confirm_button_text">"OK"</string>
+  <plurals name="NNNtracksdeleted">
+    <item quantity="one">"1曲削除しました。"</item>
+    <item quantity="other">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g>曲削除しました。"</item>
+  </plurals>
+    <string name="scanning">"SDカードをスキャン中..."</string>
+    <string name="nowplaying_title">"再生中"</string>
+    <string name="partyshuffle_title">"パーティシャッフル"</string>
+    <string name="artists_title">"アーティスト"</string>
+    <string name="albums_menu">"アルバム"</string>
+    <string name="albums_title">"アルバム"</string>
+    <string name="tracks_menu">"曲"</string>
+    <string name="tracks_title">"曲"</string>
+    <string name="playlists_menu">"プレイリスト"</string>
+    <string name="playlists_title">"プレイリスト"</string>
+    <string name="videos_title">"動画"</string>
+    <string name="all_title">"すべてのメディア"</string>
+    <string name="browse_menu">"アーティスト"</string>
+    <string name="search_title">"検索"</string>
+    <string name="no_tracks_title">"曲がありません"</string>
+    <string name="no_videos_title">"動画がありません"</string>
+    <string name="no_playlists_title">"プレイリストがありません"</string>
+    <string name="delete_playlist_menu">"削除"</string>
+    <string name="edit_playlist_menu">"編集"</string>
+    <string name="rename_playlist_menu">"名前を変更"</string>
+    <string name="playlist_deleted_message">"プレイリストを削除しました。"</string>
+    <string name="playlist_renamed_message">"プレイリストの名前を変更しました。"</string>
+    <string name="recentlyadded">"最近追加したアイテム"</string>
+    <string name="recentlyadded_title">"最近追加した項目"</string>
+    <string name="podcasts_listitem">"ポッドキャスト"</string>
+    <string name="podcasts_title">"ポッドキャスト"</string>
+    <string name="sdcard_missing_title">"SDカードがありません"</string>
+    <string name="sdcard_missing_message">"SDカードが携帯電話に挿入されていません。"</string>
+    <string name="sdcard_busy_title">"SDカードを使用できません"</string>
+    <string name="sdcard_busy_message">"このSDカードは別の端末で使用中です。"</string>
+    <string name="sdcard_error_title">"SDカードエラー"</string>
+    <string name="sdcard_error_message">"SDカードでエラーが発生しました。"</string>
+    <string name="unknown_artist_name">"不明なアーティスト"</string>
+    <string name="unknown_album_name">"不明なアルバム"</string>
+    <string name="shuffle_on_notif">"シャッフルをONにしました。"</string>
+    <string name="shuffle_off_notif">"シャッフルをOFFにしました。"</string>
+    <string name="repeat_off_notif">"繰り返しをOFFにしました。"</string>
+    <string name="repeat_current_notif">"現在の曲を繰り返し再生します。"</string>
+    <string name="repeat_all_notif">"全曲繰り返しで再生します。"</string>
+    <string name="ringtone_menu">"着信音に設定"</string>
+    <string name="ringtone_menu_short">"着信音に設定"</string>
+    <string name="ringtone_set">"「%s」を着信音として設定しました。"</string>
+    <string name="play_selection">"再生"</string>
+    <string name="add_to_playlist">"プレイリストに追加"</string>
+    <string name="queue">"現在のプレイリスト"</string>
+    <string name="new_playlist">"新規"</string>
+    <string name="new_playlist_name_template">"新規プレイリスト<xliff:g id="NUMBER">%d</xliff:g>"</string>
+  <plurals name="NNNtrackstoplaylist">
+    <item quantity="one">"プレイリストに1曲追加しました。"</item>
+    <item quantity="other">"プレイリストに%d曲追加しました。"</item>
+  </plurals>
+    <string name="emptyplaylist">"選択したプレイリストは空です。"</string>
+    <string name="create_playlist_create_text">"保存"</string>
+    <string name="create_playlist_overwrite_text">"上書き保存"</string>
+    <string name="service_start_error_title">"再生エラー"</string>
+    <string name="service_start_error_msg">"再生できません。"</string>
+    <string name="service_start_error_button">"OK"</string>
+  <string-array name="weeklist">
+    <item>"1週間"</item>
+    <item>"2週間"</item>
+    <item>"3週間"</item>
+    <item>"4週間"</item>
+    <item>"5週間"</item>
+    <item>"6週間"</item>
+    <item>"7週間"</item>
+    <item>"8週間"</item>
+    <item>"9週間"</item>
+    <item>"10週間"</item>
+    <item>"11週間"</item>
+    <item>"12週間"</item>
+  </string-array>
+    <string name="weekpicker_set">"完了"</string>
+    <string name="weekpicker_title">"期間の設定"</string>
+    <string name="save_as_playlist">"プレイリストとして保存"</string>
+    <string name="clear_playlist">"プレイリストをクリア"</string>
+    <string name="musicbrowserlabel">"ミュージック"</string>
+    <string name="musicshortcutlabel">"ミュージックプレイリスト"</string>
+    <string name="mediaplaybacklabel">"ミュージック"</string>
+    <string name="videobrowserlabel">"動画"</string>
+    <string name="mediapickerlabel">"ミュージック"</string>
+    <string name="playback_failed">"プレーヤーが対応していない音声ファイル形式です。"</string>
+    <string name="cancel">"キャンセル"</string>
+    <string name="remove_from_playlist">"プレイリストから削除"</string>
+    <string name="streamloadingtext">"<xliff:g id="HOST">%s</xliff:g>に接続中"</string>
+    <string name="mediasearch">"%sの検索:"</string>
+    <string name="working_artists">"アーティスト..."</string>
+    <string name="working_albums">"アルバム..."</string>
+    <string name="working_songs">"曲..."</string>
+    <string name="working_playlists">"再生リスト..."</string>
+    <string name="loading">"読み込み中"</string>
+    <string name="sort_by_track">"トラック"</string>
+    <string name="sort_by_album">"アルバム"</string>
+    <string name="sort_by_artist">"アーティスト"</string>
+    <string name="music_picker_title">"音楽トラックを選択"</string>
+    <string name="gadget_track">"トラック<xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+</resources>

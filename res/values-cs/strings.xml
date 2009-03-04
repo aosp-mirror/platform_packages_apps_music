@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onesong">"1 skladba"</string>
+  <plurals name="Nsongs">
+    <item quantity="other">"Počet skladeb: <xliff:g id="COUNT">%d</xliff:g>"</item>
+  </plurals>
+  <plurals name="Nsongscomp">
+    <item quantity="other">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> z celkem <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> skladeb"</item>
+  </plurals>
+  <plurals name="Nalbums">
+    <item quantity="one">"1 album"</item>
+    <item quantity="other">"Počet alb: <xliff:g id="COUNT">%d</xliff:g>"</item>
+  </plurals>
+    <string name="goto_start">"Knihovna"</string>
+    <string name="goto_playback">"Přehrávání"</string>
+    <string name="party_shuffle">"Náhodně – všechny"</string>
+    <string name="party_shuffle_off">"Vypnout náhodné přehrávání všeho"</string>
+    <string name="delete_item">"Smazat"</string>
+    <string name="shuffle_all">"Náhodně – aktuální seznam"</string>
+    <string name="play_all">"Přehrát vše"</string>
+    <string name="delete_artist_desc">"Všechny skladby interpreta <xliff:g id="ARTIST">%s</xliff:g> budou trvale smazány z karty SD."</string>
+    <string name="delete_album_desc">"Celé album <xliff:g id="ALBUM">%s</xliff:g> bude trvale smazáno z karty SD."</string>
+    <string name="delete_song_desc">"Skladba <xliff:g id="SONG">%s</xliff:g> bude trvale smazána z karty SD."</string>
+    <string name="delete_confirm_button_text">"OK"</string>
+  <plurals name="NNNtracksdeleted">
+    <item quantity="one">"Byla smazána 1 skladba."</item>
+    <item quantity="other">"Smazané skladby: <xliff:g id="SONGS_TO_DELETE">%d</xliff:g>."</item>
+  </plurals>
+    <string name="scanning">"Vyhledávání na kartě SD..."</string>
+    <string name="nowplaying_title">"Nyní se přehrává"</string>
+    <string name="partyshuffle_title">"Náhodně – všechny"</string>
+    <string name="artists_title">"Interpreti"</string>
+    <string name="albums_menu">"Alba"</string>
+    <string name="albums_title">"Alba"</string>
+    <string name="tracks_menu">"Skladby"</string>
+    <string name="tracks_title">"Skladby"</string>
+    <string name="playlists_menu">"Seznamy stop"</string>
+    <string name="playlists_title">"Seznamy stop"</string>
+    <string name="videos_title">"Videa"</string>
+    <string name="all_title">"Všechna média"</string>
+    <string name="browse_menu">"Interpreti"</string>
+    <string name="search_title">"Hledat"</string>
+    <string name="no_tracks_title">"Žádné skladby"</string>
+    <string name="no_videos_title">"Žádná videa"</string>
+    <string name="no_playlists_title">"Žádné seznamy stop"</string>
+    <string name="delete_playlist_menu">"Smazat"</string>
+    <string name="edit_playlist_menu">"Upravit"</string>
+    <string name="rename_playlist_menu">"Přejmenovat"</string>
+    <string name="playlist_deleted_message">"Seznam stop byl smazán."</string>
+    <string name="playlist_renamed_message">"Seznam stop byl přejmenován."</string>
+    <string name="recentlyadded">"Nedávno přidané"</string>
+    <string name="recentlyadded_title">"Nedávno přidané"</string>
+    <string name="podcasts_listitem">"Podcasty"</string>
+    <string name="podcasts_title">"Podcasty"</string>
+    <string name="sdcard_missing_title">"Žádná karta SD není dostupná"</string>
+    <string name="sdcard_missing_message">"V telefonu není vložena karta SD."</string>
+    <string name="sdcard_busy_title">"Karta SD není dostupná"</string>
+    <string name="sdcard_busy_message">"Karta SD je zaneprázdněna."</string>
+    <string name="sdcard_error_title">"Chyba karty SD"</string>
+    <string name="sdcard_error_message">"Na kartě SD došlo k chybě."</string>
+    <string name="unknown_artist_name">"Neznámý interpret"</string>
+    <string name="unknown_album_name">"Neznámé album"</string>
+    <string name="shuffle_on_notif">"Náhodné přehrávání je zapnuto."</string>
+    <string name="shuffle_off_notif">"Náhodné přehrávání je vypnuto."</string>
+    <string name="repeat_off_notif">"Opakování je vypnuto."</string>
+    <string name="repeat_current_notif">"Opakování aktuální skladby."</string>
+    <string name="repeat_all_notif">"Opakování všech skladeb."</string>
+    <string name="ringtone_menu">"Použít jako vyzváněcí tón telefonu"</string>
+    <string name="ringtone_menu_short">"Použít jako vyzváněcí tón"</string>
+    <string name="ringtone_set">"Skladba %s byla nastavena jako vyzváněcí tón."</string>
+    <string name="play_selection">"Přehrát"</string>
+    <string name="add_to_playlist">"Přidat do seznamu stop"</string>
+    <string name="queue">"Aktuální seznam stop"</string>
+    <string name="new_playlist">"Nové"</string>
+    <string name="new_playlist_name_template">"Nový seznam stop <xliff:g id="NUMBER">%d</xliff:g>"</string>
+  <plurals name="NNNtrackstoplaylist">
+    <item quantity="one">"1 skladba byla přidána do seznamu stop."</item>
+    <item quantity="other">"Skladby přidány do seznamu stop: %d."</item>
+  </plurals>
+    <string name="emptyplaylist">"Vybraný seznam stop je prázdný."</string>
+    <string name="create_playlist_create_text">"Uložit"</string>
+    <string name="create_playlist_overwrite_text">"Přepsat"</string>
+    <string name="service_start_error_title">"Problém s přehráváním"</string>
+    <string name="service_start_error_msg">"Skladbu nelze přehrát."</string>
+    <string name="service_start_error_button">"OK"</string>
+  <string-array name="weeklist">
+    <item>"1 týden"</item>
+    <item>"2 týdny"</item>
+    <item>"3 týdny"</item>
+    <item>"4 týdny"</item>
+    <item>"5 týdnů"</item>
+    <item>"6 týdnů"</item>
+    <item>"7 týdnů"</item>
+    <item>"8 týdnů"</item>
+    <item>"9 týdnů"</item>
+    <item>"10 týdnů"</item>
+    <item>"11 týdnů"</item>
+    <item>"12 týdnů"</item>
+  </string-array>
+    <string name="weekpicker_set">"Hotovo"</string>
+    <string name="weekpicker_title">"Nastavit čas"</string>
+    <string name="save_as_playlist">"Uložit jako seznam stop"</string>
+    <string name="clear_playlist">"Vymazat seznam stop"</string>
+    <string name="musicbrowserlabel">"Hudba"</string>
+    <string name="musicshortcutlabel">"Seznam skladeb"</string>
+    <string name="mediaplaybacklabel">"Hudba"</string>
+    <string name="videobrowserlabel">"Videa"</string>
+    <string name="mediapickerlabel">"Hudba"</string>
+    <string name="playback_failed">"Přehrávač nepodporuje tento typ zvukových souborů."</string>
+    <string name="cancel">"Zrušit"</string>
+    <string name="remove_from_playlist">"Odstranit ze seznamu stop"</string>
+    <string name="streamloadingtext">"Připojování k proudu <xliff:g id="HOST">%s</xliff:g>"</string>
+    <string name="mediasearch">"Vyhledat skladbu %s pomocí:"</string>
+    <string name="working_artists">"Interpreti…"</string>
+    <string name="working_albums">"Alba…"</string>
+    <string name="working_songs">"Skladby…"</string>
+    <string name="working_playlists">"Seznamy stop…"</string>
+    <string name="loading">"Načítání"</string>
+    <string name="sort_by_track">"Stopy"</string>
+    <string name="sort_by_album">"Alba"</string>
+    <string name="sort_by_artist">"Interpreti"</string>
+    <string name="music_picker_title">"Vyberte hudební stopu"</string>
+    <string name="gadget_track">"Stopa <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+</resources>

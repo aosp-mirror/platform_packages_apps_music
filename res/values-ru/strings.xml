@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onesong">"1 композиция"</string>
+  <plurals name="Nsongs">
+    <item quantity="other">"Композиций: <xliff:g id="COUNT">%d</xliff:g>"</item>
+  </plurals>
+  <plurals name="Nsongscomp">
+    <item quantity="other">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> из <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> песен"</item>
+  </plurals>
+  <plurals name="Nalbums">
+    <item quantity="one">"1 альбом"</item>
+    <item quantity="other">"Альбомов: <xliff:g id="COUNT">%d</xliff:g>"</item>
+  </plurals>
+    <string name="goto_start">"Библиотека"</string>
+    <string name="goto_playback">"Воспроизведение"</string>
+    <string name="party_shuffle">"Вечеринка"</string>
+    <string name="party_shuffle_off">"Режим вечеринки отключен"</string>
+    <string name="delete_item">"Удалить"</string>
+    <string name="shuffle_all">"Перемешать все"</string>
+    <string name="play_all">"Воспроизвести все"</string>
+    <string name="delete_artist_desc">"Все композиции артиста <xliff:g id="ARTIST">%s</xliff:g> будут удалены с карты SD."</string>
+    <string name="delete_album_desc">"Весь альбом \"<xliff:g id="ALBUM">%s</xliff:g>\" будет удален с карты SD."</string>
+    <string name="delete_song_desc">"Композиция \"<xliff:g id="SONG">%s</xliff:g>\" будет удалена с карты SD."</string>
+    <string name="delete_confirm_button_text">"ОК"</string>
+  <plurals name="NNNtracksdeleted">
+    <item quantity="one">"1 композиция была удалена."</item>
+    <item quantity="other">"Композиции (<xliff:g id="SONGS_TO_DELETE">%d</xliff:g>) были удалены."</item>
+  </plurals>
+    <string name="scanning">"Сканирование карты SD…"</string>
+    <string name="nowplaying_title">"Воспроизводится"</string>
+    <string name="partyshuffle_title">"Вечеринка"</string>
+    <string name="artists_title">"Артисты"</string>
+    <string name="albums_menu">"Альбомы"</string>
+    <string name="albums_title">"Альбомы"</string>
+    <string name="tracks_menu">"Композиции"</string>
+    <string name="tracks_title">"Композиции"</string>
+    <string name="playlists_menu">"Плейлисты"</string>
+    <string name="playlists_title">"Плейлисты"</string>
+    <string name="videos_title">"Видео"</string>
+    <string name="all_title">"Все мультимедийное содержание"</string>
+    <string name="browse_menu">"Артисты"</string>
+    <string name="search_title">"Поиск"</string>
+    <string name="no_tracks_title">"Нет композиций"</string>
+    <string name="no_videos_title">"Нет видео"</string>
+    <string name="no_playlists_title">"Нет плейлистов"</string>
+    <string name="delete_playlist_menu">"Удалить"</string>
+    <string name="edit_playlist_menu">"Изменить"</string>
+    <string name="rename_playlist_menu">"Переименовать"</string>
+    <string name="playlist_deleted_message">"Плейлист удален."</string>
+    <string name="playlist_renamed_message">"Плейлист переименован."</string>
+    <string name="recentlyadded">"Недавно добавленные"</string>
+    <string name="recentlyadded_title">"Недавно добавленные"</string>
+    <string name="podcasts_listitem">"Подкасты"</string>
+    <string name="podcasts_title">"Подкасты"</string>
+    <string name="sdcard_missing_title">"Нет карты SD"</string>
+    <string name="sdcard_missing_message">"В телефоне не установлена карта SD."</string>
+    <string name="sdcard_busy_title">"Карта SD недоступна"</string>
+    <string name="sdcard_busy_message">"К сожалению, карта SD занята."</string>
+    <string name="sdcard_error_title">"Ошибка карты SD"</string>
+    <string name="sdcard_error_message">"Ошибка при доступе к карте SD."</string>
+    <string name="unknown_artist_name">"Неизвестный артист"</string>
+    <string name="unknown_album_name">"Неизвестный альбом"</string>
+    <string name="shuffle_on_notif">"Перемешивание включено."</string>
+    <string name="shuffle_off_notif">"Перемешивание отключено."</string>
+    <string name="repeat_off_notif">"Повтор отключен."</string>
+    <string name="repeat_current_notif">"Повтор текущей композиции."</string>
+    <string name="repeat_all_notif">"Повтор всех композиций."</string>
+    <string name="ringtone_menu">"Использовать как мелодию звонка телефона"</string>
+    <string name="ringtone_menu_short">"Использовать как мелодию звонка"</string>
+    <string name="ringtone_set">"Установлена мелодия звонка телефона: \"%s\"."</string>
+    <string name="play_selection">"Воспроизвести"</string>
+    <string name="add_to_playlist">"Добавить в плейлист"</string>
+    <string name="queue">"Текущий плейлист"</string>
+    <string name="new_playlist">"Создать"</string>
+    <string name="new_playlist_name_template">"Новый плейлист <xliff:g id="NUMBER">%d</xliff:g>"</string>
+  <plurals name="NNNtrackstoplaylist">
+    <item quantity="one">"1 композиция добавлена в плейлист."</item>
+    <item quantity="other">"Композиции (%d) добавлены в плейлист."</item>
+  </plurals>
+    <string name="emptyplaylist">"Выбранный плейлист пуст."</string>
+    <string name="create_playlist_create_text">"Сохранить"</string>
+    <string name="create_playlist_overwrite_text">"Перезаписать"</string>
+    <string name="service_start_error_title">"Проблема с воспроизведением"</string>
+    <string name="service_start_error_msg">"К сожалению, воспроизвести композицию не удалось."</string>
+    <string name="service_start_error_button">"ОК"</string>
+  <string-array name="weeklist">
+    <item>"1 неделя"</item>
+    <item>"2 недели"</item>
+    <item>"3 недели"</item>
+    <item>"4 недели"</item>
+    <item>"5 недель"</item>
+    <item>"6 недель"</item>
+    <item>"7 недель"</item>
+    <item>"8 недель"</item>
+    <item>"9 недель"</item>
+    <item>"10 недель"</item>
+    <item>"11 недель"</item>
+    <item>"12 недель"</item>
+  </string-array>
+    <string name="weekpicker_set">"Готово"</string>
+    <string name="weekpicker_title">"Выбор времени"</string>
+    <string name="save_as_playlist">"Сохранить как плейлист"</string>
+    <string name="clear_playlist">"Очистить плейлист"</string>
+    <string name="musicbrowserlabel">"Музыка"</string>
+    <string name="musicshortcutlabel">"Музыкальный плейлист"</string>
+    <string name="mediaplaybacklabel">"Музыка"</string>
+    <string name="videobrowserlabel">"Видео"</string>
+    <string name="mediapickerlabel">"Музыка"</string>
+    <string name="playback_failed">"Извините, проигрыватель не поддерживает этот тип аудиофайлов."</string>
+    <string name="cancel">"Отмена"</string>
+    <string name="remove_from_playlist">"Удалить из плейлиста"</string>
+    <string name="streamloadingtext">"Идет подключение к хосту <xliff:g id="HOST">%s</xliff:g>"</string>
+    <string name="mediasearch">"Поиск %s с помощью:"</string>
+    <string name="working_artists">"Артисты…"</string>
+    <string name="working_albums">"Альбомы…"</string>
+    <string name="working_songs">"Композиции…"</string>
+    <string name="working_playlists">"Плейлисты..."</string>
+    <string name="loading">"Идет загрузка"</string>
+    <string name="sort_by_track">"Дорожки"</string>
+    <string name="sort_by_album">"Альбомы"</string>
+    <string name="sort_by_artist">"Артисты"</string>
+    <string name="music_picker_title">"Выбрать музыкальную дорожку"</string>
+    <string name="gadget_track">"Трек <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+</resources>
