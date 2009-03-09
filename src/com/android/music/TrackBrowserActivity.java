@@ -225,9 +225,9 @@ public class TrackBrowserActivity extends ListActivity
         MusicUtils.unbindFromService(this);
         try {
             if ("nowplaying".equals(mPlaylist)) {
-                unregisterReceiver(mNowPlayingListener);
+                unregisterReceiverSafe(mNowPlayingListener);
             } else {
-                unregisterReceiver(mTrackListListener);
+                unregisterReceiverSafe(mTrackListListener);
             }
         } catch (IllegalArgumentException ex) {
             // we end up here in case we never registered the listeners
@@ -241,9 +241,23 @@ public class TrackBrowserActivity extends ListActivity
                 c.close();
             }
         }
-        unregisterReceiver(mScanListener);
+        unregisterReceiverSafe(mScanListener);
         super.onDestroy();
-   }
+    }
+    
+    /**
+     * Unregister a receiver, but eat the exception that is thrown if the
+     * receiver was never registered to begin with. This is a little easier
+     * than keeping track of whether the receivers have actually been
+     * registered by the time onDestroy() is called.
+     */
+    private void unregisterReceiverSafe(BroadcastReceiver receiver) {
+        try {
+            unregisterReceiver(receiver);
+        } catch (IllegalArgumentException e) {
+            // ignore
+        }
+    }
     
     @Override
     public void onResume() {
@@ -372,7 +386,7 @@ public class TrackBrowserActivity extends ListActivity
                     }    
                     cursor.deactivate();
                 }
-                if (fancyName.equals(MediaFile.UNKNOWN_STRING)) {
+                if (fancyName == null || fancyName.equals(MediaFile.UNKNOWN_STRING)) {
                     fancyName = getString(R.string.unknown_album_name);
                 }
             }

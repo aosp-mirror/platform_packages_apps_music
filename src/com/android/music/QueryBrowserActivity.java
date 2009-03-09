@@ -344,8 +344,10 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
                 String name = cursor.getString(cursor.getColumnIndexOrThrow(
                         SearchManager.SUGGEST_COLUMN_TEXT_1));
                 String displayname = name;
-                if (name.equals(MediaFile.UNKNOWN_STRING)) {
+                boolean isunknown = false;
+                if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
                     displayname = context.getString(R.string.unknown_artist_name);
+                    isunknown = true;
                 }
                 tv1.setText(displayname);
 
@@ -353,7 +355,7 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
                 int numsongs = cursor.getInt(cursor.getColumnIndexOrThrow("data2"));
                 
                 String songs_albums = MusicUtils.makeAlbumsSongsLabel(context,
-                        numalbums, numsongs, name.equals(MediaFile.UNKNOWN_STRING));
+                        numalbums, numsongs, isunknown);
                 
                 tv2.setText(songs_albums);
             
@@ -362,14 +364,14 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
                 String name = cursor.getString(cursor.getColumnIndexOrThrow(
                         SearchManager.SUGGEST_COLUMN_TEXT_1));
                 String displayname = name;
-                if (name.equals(MediaFile.UNKNOWN_STRING)) {
+                if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
                     displayname = context.getString(R.string.unknown_album_name);
                 }
                 tv1.setText(displayname);
                 
                 name = cursor.getString(cursor.getColumnIndexOrThrow("data1"));
                 displayname = name;
-                if (name.equals(MediaFile.UNKNOWN_STRING)) {
+                if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
                     displayname = context.getString(R.string.unknown_artist_name);
                 }
                 tv2.setText(displayname);
@@ -383,11 +385,11 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
                 tv1.setText(name);
 
                 String displayname = cursor.getString(cursor.getColumnIndexOrThrow("data1"));
-                if (name.equals(MediaFile.UNKNOWN_STRING)) {
+                if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
                     displayname = context.getString(R.string.unknown_artist_name);
                 }
                 name = cursor.getString(cursor.getColumnIndexOrThrow("data2"));
-                if (name.equals(MediaFile.UNKNOWN_STRING)) {
+                if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
                     name = context.getString(R.string.unknown_artist_name);
                 }
                 tv2.setText(displayname + " - " + name);

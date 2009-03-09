@@ -217,7 +217,7 @@ public class AlbumBrowserActivity extends ListActivity
         if (mAlbumCursor != null && mAlbumCursor.getCount() > 0) {
             mAlbumCursor.moveToFirst();
             fancyName = mAlbumCursor.getString(3);
-            if (MediaFile.UNKNOWN_STRING.equals(fancyName))
+            if (fancyName == null || fancyName.equals(MediaFile.UNKNOWN_STRING))
                 fancyName = getText(R.string.unknown_artist_name);
         }
 
@@ -338,9 +338,6 @@ public class AlbumBrowserActivity extends ListActivity
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id)
     {
-        if (mHasHeader) {
-            position --;
-        }
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setDataAndType(Uri.EMPTY, "vnd.android.cursor.dir/track");
         intent.putExtra("album", Long.valueOf(id).toString());
@@ -560,7 +557,7 @@ public class AlbumBrowserActivity extends ListActivity
 
             String name = cursor.getString(mAlbumIdx);
             String displayname = name;
-            boolean unknown = name.equals(MediaFile.UNKNOWN_STRING); 
+            boolean unknown = name == null || name.equals(MediaFile.UNKNOWN_STRING); 
             if (unknown) {
                 displayname = mUnknownAlbum;
             }
@@ -568,7 +565,7 @@ public class AlbumBrowserActivity extends ListActivity
             
             name = cursor.getString(mArtistIdx);
             displayname = name;
-            if (MediaFile.UNKNOWN_STRING.equals(name)) {
+            if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
                 displayname = mUnknownArtist;
             }
             vh.line2.setText(displayname);
@@ -633,6 +630,5 @@ public class AlbumBrowserActivity extends ListActivity
 
     private Cursor mAlbumCursor;
     private String mArtistId;
-    private boolean mHasHeader = false;
 }
 
