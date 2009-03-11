@@ -20,6 +20,7 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.appwidget.AppWidgetManager;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -31,7 +32,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
-import android.gadget.GadgetManager;
 import android.media.AudioManager;
 import android.media.MediaFile;
 import android.media.MediaPlayer;
@@ -147,7 +147,7 @@ public class MediaPlaybackService extends Service {
     // This will have to change if we want to support multiple simultaneous cards.
     private int mCardId;
     
-    private MediaGadgetProvider mGadgetProvider = MediaGadgetProvider.getInstance();
+    private MediaAppWidgetProvider mAppWidgetProvider = MediaAppWidgetProvider.getInstance();
     
     // interval after which we stop the service when idle
     private static final int IDLE_DELAY = 60000; 
@@ -260,11 +260,11 @@ public class MediaPlaybackService extends Service {
             } else if (CMDSTOP.equals(cmd)) {
                 pause();
                 seek(0);
-            } else if (MediaGadgetProvider.CMDGADGETUPDATE.equals(cmd)) {
-                // Someone asked us to refresh a set of specific gadgets, probably
+            } else if (MediaAppWidgetProvider.CMDAPPWIDGETUPDATE.equals(cmd)) {
+                // Someone asked us to refresh a set of specific widgets, probably
                 // because they were just added.
-                int[] gadgetIds = intent.getIntArrayExtra(GadgetManager.EXTRA_GADGET_IDS);
-                mGadgetProvider.performUpdate(MediaPlaybackService.this, gadgetIds);
+                int[] appWidgetIds = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
+                mAppWidgetProvider.performUpdate(MediaPlaybackService.this, appWidgetIds);
             }
         }
     };
@@ -668,8 +668,8 @@ public class MediaPlaybackService extends Service {
             saveQueue(false);
         }
         
-        // Share this notification directly with our gadgets
-        mGadgetProvider.notifyChange(this, what);
+        // Share this notification directly with our widgets
+        mAppWidgetProvider.notifyChange(this, what);
     }
 
     private void ensurePlayListCapacity(int size) {

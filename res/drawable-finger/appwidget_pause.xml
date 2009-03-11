@@ -16,11 +16,11 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_window_focused="false"
-        android:drawable="@drawable/gadget_pause_normal" />
+        android:drawable="@drawable/appwidget_pause_normal" />
     <item android:state_pressed="true"
-        android:drawable="@drawable/gadget_pause_pressed" />
+        android:drawable="@drawable/appwidget_pause_pressed" />
     <item android:state_focused="true"
-        android:drawable="@drawable/gadget_pause_pressed" />
+        android:drawable="@drawable/appwidget_pause_pressed" />
     <item
-         android:drawable="@drawable/gadget_pause_normal" />
+         android:drawable="@drawable/appwidget_pause_normal" />
 </selector>

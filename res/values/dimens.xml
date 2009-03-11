@@ -15,6 +15,6 @@
 -->
 
 <resources>
-    <!-- Size of gadget album art cutout -->
-    <dimen name="gadget_cutout">198dip</dimen>
+    <!-- Size of widget album art cutout -->
+    <dimen name="appwidget_cutout">198dip</dimen>
 </resources>

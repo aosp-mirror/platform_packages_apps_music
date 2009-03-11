@@ -17,13 +17,13 @@
 package com.android.music;
 
 import android.app.PendingIntent;
+import android.appwidget.AppWidgetManager;
+import android.appwidget.AppWidgetProvider;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.gadget.GadgetManager;
-import android.gadget.GadgetProvider;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -40,74 +40,72 @@ import android.view.View;
 import android.widget.RemoteViews;
 
 /**
- * Simple gadget to show currently playing album art along
+ * Simple widget to show currently playing album art along
  * with play/pause and next track buttons.  
  */
-public class MediaGadgetProvider extends GadgetProvider {
-    static final String TAG = "MusicGadgetProvider";
+public class MediaAppWidgetProvider extends AppWidgetProvider {
+    static final String TAG = "MusicAppWidgetProvider";
     
-    public static final String CMDGADGETUPDATE = "gadgetupdate";
+    public static final String CMDAPPWIDGETUPDATE = "appwidgetupdate";
     
-    static final ComponentName THIS_GADGET =
+    static final ComponentName THIS_APPWIDGET =
         new ComponentName("com.android.music",
-                "com.android.music.MediaGadgetProvider");
+                "com.android.music.MediaAppWidgetProvider");
     
-    private static MediaGadgetProvider sInstance;
+    private static MediaAppWidgetProvider sInstance;
     
-    static synchronized MediaGadgetProvider getInstance() {
+    static synchronized MediaAppWidgetProvider getInstance() {
         if (sInstance == null) {
-            sInstance = new MediaGadgetProvider();
+            sInstance = new MediaAppWidgetProvider();
         }
         return sInstance;
     }
 
     @Override
-    public void onUpdate(Context context, GadgetManager gadgetManager, int[] gadgetIds) {
-        defaultGadget(context, gadgetIds);
+    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        defaultAppWidget(context, appWidgetIds);
         
         // Send broadcast intent to any running MediaPlaybackService so it can
         // wrap around with an immediate update.
         Intent updateIntent = new Intent(MediaPlaybackService.SERVICECMD);
         updateIntent.putExtra(MediaPlaybackService.CMDNAME,
-                MediaGadgetProvider.CMDGADGETUPDATE);
-        updateIntent.putExtra(GadgetManager.EXTRA_GADGET_IDS, gadgetIds);
+                MediaAppWidgetProvider.CMDAPPWIDGETUPDATE);
+        updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
         updateIntent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY);
         context.sendBroadcast(updateIntent);
     }
     
     /**
-     * Initialize given gadgets to default state, where we launch Music on default click
+     * Initialize given widgets to default state, where we launch Music on default click
      * and hide actions if service not running.
      */
-    private void defaultGadget(Context context, int[] gadgetIds) {
+    private void defaultAppWidget(Context context, int[] appWidgetIds) {
         final Resources res = context.getResources();
-        final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.gadget);
+        final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.album_appwidget);
         
         views.setTextViewText(R.id.title, res.getText(R.string.emptyplaylist));
 
         linkButtons(context, views, false /* not playing */);
-        pushUpdate(context, gadgetIds, views);
+        pushUpdate(context, appWidgetIds, views);
     }
     
-    private void pushUpdate(Context context, int[] gadgetIds, RemoteViews views) {
-        // Update specific list of gadgetIds if given, otherwise default to all
-        final GadgetManager gm = GadgetManager.getInstance(context);
-        if (gadgetIds != null) {
-            gm.updateGadget(gadgetIds, views);
+    private void pushUpdate(Context context, int[] appWidgetIds, RemoteViews views) {
+        // Update specific list of appWidgetIds if given, otherwise default to all
+        final AppWidgetManager gm = AppWidgetManager.getInstance(context);
+        if (appWidgetIds != null) {
+            gm.updateAppWidget(appWidgetIds, views);
         } else {
-            final ComponentName thisGadget = new ComponentName(context,
-                    MediaGadgetProvider.class);
-            gm.updateGadget(thisGadget, views);
+            gm.updateAppWidget(THIS_APPWIDGET, views);
         }
     }
     
     /**
-     * Check against {@link GadgetManager} if there are any instances of this gadget.
+     * Check against {@link AppWidgetManager} if there are any instances of this widget.
      */
     private boolean hasInstances(Context context) {
-        GadgetManager gadgetManager = GadgetManager.getInstance(context);
-        int[] gadgetIds = gadgetManager.getGadgetIds(THIS_GADGET);
-        return (gadgetIds.length > 0);
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(THIS_APPWIDGET);
+        return (appWidgetIds.length > 0);
     }
 
     /**
@@ -124,11 +122,11 @@ public class MediaGadgetProvider extends GadgetProvider {
     }
     
     /**
-     * Update all active gadget instances by pushing changes 
+     * Update all active widget instances by pushing changes 
      */
-    void performUpdate(MediaPlaybackService service, int[] gadgetIds) {
+    void performUpdate(MediaPlaybackService service, int[] appWidgetIds) {
         final Resources res = service.getResources();
-        final RemoteViews views = new RemoteViews(service.getPackageName(), R.layout.gadget);
+        final RemoteViews views = new RemoteViews(service.getPackageName(), R.layout.album_appwidget);
         
         final int track = service.getQueuePosition() + 1;
         final String titleName = service.getTrackName();
@@ -154,19 +152,19 @@ public class MediaGadgetProvider extends GadgetProvider {
         // Set correct drawable for pause state
         final boolean playing = service.isPlaying();
         views.setImageViewResource(R.id.control_play, playing ?
-                R.drawable.gadget_pause : R.drawable.gadget_play);
+                R.drawable.appwidget_pause : R.drawable.appwidget_play);
 
         // Link actions buttons to intents
         linkButtons(service, views, playing);
         
-        pushUpdate(service, gadgetIds, views);
+        pushUpdate(service, appWidgetIds, views);
     }
 
     /**
      * Link up various button actions using {@link PendingIntents}.
      * 
      * @param playerActive True if player is active in background, which means
-     *            gadget click will launch {@link MediaPlaybackActivity},
+     *            widget click will launch {@link MediaPlaybackActivity},
      *            otherwise we launch {@link MusicBrowserActivity}.
      */
     private void linkButtons(Context context, RemoteViews views, boolean playerActive) {
@@ -180,12 +178,12 @@ public class MediaGadgetProvider extends GadgetProvider {
             intent = new Intent(context, MediaPlaybackActivity.class);
             pendingIntent = PendingIntent.getActivity(context,
                     0 /* no requestCode */, intent, 0 /* no flags */);
-            views.setOnClickPendingIntent(R.id.album_gadget, pendingIntent);
+            views.setOnClickPendingIntent(R.id.album_appwidget, pendingIntent);
         } else {
             intent = new Intent(context, MusicBrowserActivity.class);
             pendingIntent = PendingIntent.getActivity(context,
                     0 /* no requestCode */, intent, 0 /* no flags */);
-            views.setOnClickPendingIntent(R.id.album_gadget, pendingIntent);
+            views.setOnClickPendingIntent(R.id.album_appwidget, pendingIntent);
         }
         
         intent = new Intent(MediaPlaybackService.TOGGLEPAUSE_ACTION);
