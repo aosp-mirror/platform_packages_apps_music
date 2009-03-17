@@ -20,7 +20,7 @@
     <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> chansons"</item>
   </plurals>
   <plurals name="Nsongscomp">
-    <item quantity="other">"<xliff:g id="COUNT_0">%d</xliff:g> chansons au total, <xliff:g id="COUNT_FOR_ARTIST_1">%d</xliff:g> de <xliff:g id="COUNT_FOR_ARTIST_2">%s</xliff:g>"</item>
+    <item quantity="other">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> chansons sur <xliff:g id="TOTAL_COUNT">%1$d</xliff:g>"</item>
   </plurals>
   <plurals name="Nalbums">
     <item quantity="one">"1 album"</item>
@@ -34,7 +34,7 @@
     <string name="shuffle_all">"Lecture aléatoire de toutes les chansons"</string>
     <string name="play_all">"Tout lire"</string>
     <string name="delete_artist_desc">"Toutes les chansons de <xliff:g id="ARTIST">%s</xliff:g> seront définitivement supprimées de la carte SD."</string>
-    <string name="delete_album_desc">"L\' intégralité de l\'album \"<xliff:g id="ALBUM">%s</xliff:g>\" sera définitivement supprimé de la carte SD."</string>
+    <string name="delete_album_desc">"L\'intégralité de l\'album \"<xliff:g id="ALBUM">%s</xliff:g>\" sera définitivement supprimée de la carte SD."</string>
     <string name="delete_song_desc">"La chanson \"<xliff:g id="SONG">%s</xliff:g>\" sera définitivement supprimée de la carte SD."</string>
     <string name="delete_confirm_button_text">"OK"</string>
   <plurals name="NNNtracksdeleted">
@@ -49,23 +49,24 @@
     <string name="albums_title">"Albums"</string>
     <string name="tracks_menu">"Chansons"</string>
     <string name="tracks_title">"Chansons"</string>
-    <string name="playlists_menu">"Listes de lecture"</string>
-    <string name="playlists_title">"Listes de lecture"</string>
+    <string name="playlists_menu">"Playlists"</string>
+    <string name="playlists_title">"Playlists"</string>
     <string name="videos_title">"Vidéos"</string>
-    <string name="all_title">"Tous les médias"</string>
+    <string name="all_title">"Tous le multimédia"</string>
     <string name="browse_menu">"Artistes"</string>
-    <string name="search_title">"Recherche"</string>
-    <string name="no_artists_title">"Aucun artiste trouvé"</string>
-    <string name="no_albums_title">"Aucun album trouvé"</string>
+    <string name="search_title">"Rechercher"</string>
     <string name="no_tracks_title">"Aucune chanson"</string>
     <string name="no_videos_title">"Aucune vidéo trouvée"</string>
-    <string name="no_playlists_title">"Aucune liste de lecture trouvée"</string>
+    <string name="no_playlists_title">"Aucune playlist trouvée"</string>
     <string name="delete_playlist_menu">"Supprimer"</string>
     <string name="edit_playlist_menu">"Modifier"</string>
     <string name="rename_playlist_menu">"Renommer"</string>
-    <string name="playlist_deleted_message">"La liste de lecture a été supprimée."</string>
-    <string name="playlist_renamed_message">"La liste de lecture a été renommée."</string>
+    <string name="playlist_deleted_message">"La playlist a été supprimée."</string>
+    <string name="playlist_renamed_message">"La playlist a été renommée."</string>
     <string name="recentlyadded">"Ajoutés récemment"</string>
+    <string name="recentlyadded_title">"Playlist récente"</string>
+    <string name="podcasts_listitem">"Podcasts"</string>
+    <string name="podcasts_title">"Podcasts"</string>
     <string name="sdcard_missing_title">"Aucune carte SD trouvée"</string>
     <string name="sdcard_missing_message">"Aucune carte SD n\'est insérée dans votre téléphone."</string>
     <string name="sdcard_busy_title">"Carte SD non disponible"</string>
@@ -74,68 +75,65 @@
     <string name="sdcard_error_message">"Une erreur s\'est produite sur votre carte SD."</string>
     <string name="unknown_artist_name">"Artiste inconnu"</string>
     <string name="unknown_album_name">"Album inconnu"</string>
-    <string name="shuffle_on_notif">"La lecture aléatoire est activé."</string>
+    <string name="shuffle_on_notif">"La lecture aléatoire est activée."</string>
     <string name="shuffle_off_notif">"Le mode aléatoire est désactivé."</string>
     <string name="repeat_off_notif">"La lecture en boucle est désactivée."</string>
-    <string name="repeat_current_notif">"Lecture en boucle de la chanson en écoute"</string>
+    <string name="repeat_current_notif">"Lecture en boucle de la chanson en écoute."</string>
     <string name="repeat_all_notif">"Lecture en boucle de toutes les chansons"</string>
-    <string name="ringtone_menu">"Utiliser comme sonnerie du téléphone"</string>
-    <string name="ringtone_menu_short">"Utiliser comme sonnerie"</string>
+    <string name="ringtone_menu">"Utiliser comme sonnerie"</string>
+    <string name="ringtone_menu_short">"Définir comme sonnerie"</string>
     <string name="ringtone_set">"\"%s\" a été défini comme sonnerie."</string>
     <string name="play_selection">"Lire"</string>
-    <string name="add_to_playlist">"Ajouter à la liste de lecture"</string>
-    <string name="queue">"Liste de lecture actuelle"</string>
+    <string name="add_to_playlist">"Ajouter à la playlist"</string>
+    <string name="queue">"Playlist actuelle"</string>
     <string name="new_playlist">"Nouveau"</string>
-    <string name="new_playlist_name_template">"Nouvelle liste de lecture <xliff:g id="NUMBER">%d</xliff:g>"</string>
+    <string name="new_playlist_name_template">"Nouvelle playlist <xliff:g id="NUMBER">%d</xliff:g>"</string>
   <plurals name="NNNtrackstoplaylist">
-    <item quantity="one">"1 chanson a été ajoutée à la liste de lecture."</item>
-    <item quantity="other">"%d chansons ont été ajoutées à la liste de lecture."</item>
+    <item quantity="one">"1 chanson a été ajoutée à la playlist."</item>
+    <item quantity="other">"%d chansons ont été ajoutées à la playlist."</item>
   </plurals>
-    <string name="emptyplaylist">"La liste de lecture sélectionnée est vide."</string>
+    <string name="emptyplaylist">"La playlist sélectionnée est vide."</string>
     <string name="create_playlist_create_text">"Enregistrer"</string>
-    <string name="create_playlist_overwrite_text">"Écraser"</string>
+    <string name="create_playlist_overwrite_text">"Remplacer"</string>
     <string name="service_start_error_title">"Erreur de lecture"</string>
     <string name="service_start_error_msg">"Désolé, la chanson n\'a pas pu être lue."</string>
     <string name="service_start_error_button">"OK"</string>
   <string-array name="weeklist">
-    <item>"1 semaine"</item>
-    <item>"2 semaines"</item>
-    <item>"3 semaines"</item>
-    <item>"4 semaines"</item>
-    <item>"5 semaines"</item>
-    <item>"6 semaines"</item>
-    <item>"7 semaines"</item>
-    <item>"8 semaines"</item>
-    <item>"9 semaines"</item>
-    <item>"10 semaines"</item>
-    <item>"11 semaines"</item>
-    <item>"12 semaines"</item>
+    <item>"1 sem."</item>
+    <item>"2 sem."</item>
+    <item>"3 sem."</item>
+    <item>"4 sem."</item>
+    <item>"5 sem."</item>
+    <item>"6 sem."</item>
+    <item>"7 sem."</item>
+    <item>"8 sem."</item>
+    <item>"9 sem."</item>
+    <item>"10 sem."</item>
+    <item>"11 sem."</item>
+    <item>"12 sem."</item>
   </string-array>
-    <string name="weekpicker_set">"Terminé"</string>
+    <string name="weekpicker_set">"OK"</string>
     <string name="weekpicker_title">"Définir la durée"</string>
-    <string name="save_as_playlist">"Enregistrer en tant que liste de lecture"</string>
-    <string name="clear_playlist">"Effacer la liste de lecture"</string>
+    <string name="save_as_playlist">"Enregistrer comme playlist"</string>
+    <string name="clear_playlist">"Effacer la playlist"</string>
     <string name="musicbrowserlabel">"Musique"</string>
-    <string name="musicshortcutlabel">"Liste de lecture musicale"</string>
+    <string name="musicshortcutlabel">"Playlist musicale"</string>
     <string name="mediaplaybacklabel">"Musique"</string>
     <string name="videobrowserlabel">"Vidéos"</string>
     <string name="mediapickerlabel">"Musique"</string>
     <string name="playback_failed">"Désolé, le lecteur ne prend pas en charge ce type de fichier audio."</string>
     <string name="cancel">"Annuler"</string>
-    <string name="remove_from_playlist">"Supprimer de la liste de lecture"</string>
+    <string name="remove_from_playlist">"Supprimer de la playlist"</string>
     <string name="streamloadingtext">"Connexion à <xliff:g id="HOST">%s</xliff:g>"</string>
     <string name="mediasearch">"Rechercher %s à l\'aide de :"</string>
     <string name="working_artists">"Artistes…"</string>
     <string name="working_albums">"Albums…"</string>
     <string name="working_songs">"Chansons…"</string>
-    <!-- no translation found for loading (3267924133697717662) -->
-    <skip />
-    <!-- no translation found for sort_by_track (7662999005554152565) -->
-    <skip />
-    <!-- no translation found for sort_by_album (2912837715658975248) -->
-    <skip />
-    <!-- no translation found for sort_by_artist (4607024967813199992) -->
-    <skip />
-    <!-- no translation found for music_picker_title (1561623486324013570) -->
-    <skip />
+    <string name="working_playlists">"Playlists…"</string>
+    <string name="loading">"Chargement"</string>
+    <string name="sort_by_track">"Pistes"</string>
+    <string name="sort_by_album">"Albums"</string>
+    <string name="sort_by_artist">"Artistes"</string>
+    <string name="music_picker_title">"Sélectionner une piste"</string>
+    <string name="gadget_track">"Piste <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
 </resources>

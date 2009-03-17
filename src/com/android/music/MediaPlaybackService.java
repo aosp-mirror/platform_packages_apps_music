@@ -20,7 +20,10 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.appwidget.AppWidgetManager;
 import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -28,6 +31,7 @@ import android.content.BroadcastReceiver;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteException;
 import android.media.AudioManager;
 import android.media.MediaFile;
 import android.media.MediaPlayer;
@@ -41,12 +45,11 @@ import android.os.PowerManager;
 import android.os.SystemClock;
 import android.os.PowerManager.WakeLock;
 import android.provider.MediaStore;
-import android.provider.Settings;
-import com.android.internal.telephony.Phone;
-import com.android.internal.telephony.PhoneStateIntentReceiver;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
+import com.android.internal.telephony.Phone;
+import com.android.internal.telephony.PhoneStateIntentReceiver;
 
 import java.io.IOException;
 import java.util.Random;
@@ -83,10 +86,16 @@ public class MediaPlaybackService extends Service {
     public static final String SERVICECMD = "com.android.music.musicservicecommand";
     public static final String CMDNAME = "command";
     public static final String CMDTOGGLEPAUSE = "togglepause";
+    public static final String CMDSTOP = "stop";
     public static final String CMDPAUSE = "pause";
     public static final String CMDPREVIOUS = "previous";
     public static final String CMDNEXT = "next";
-    
+
+    public static final String TOGGLEPAUSE_ACTION = "com.android.music.musicservicecommand.togglepause";
+    public static final String PAUSE_ACTION = "com.android.music.musicservicecommand.pause";
+    public static final String PREVIOUS_ACTION = "com.android.music.musicservicecommand.previous";
+    public static final String NEXT_ACTION = "com.android.music.musicservicecommand.next";
+
     private static final int PHONE_CHANGED = 1;
     private static final int TRACK_ENDED = 1;
     private static final int RELEASE_WAKELOCK = 2;
@@ -111,15 +120,20 @@ public class MediaPlaybackService extends Service {
     private final Shuffler mRand = new Shuffler();
     private int mOpenFailedCounter = 0;
     String[] mCursorCols = new String[] {
-            "audio._id AS _id",
+            "audio._id AS _id",             // index must match IDCOLIDX below
             MediaStore.Audio.Media.ARTIST,
             MediaStore.Audio.Media.ALBUM,
             MediaStore.Audio.Media.TITLE,
             MediaStore.Audio.Media.DATA,
             MediaStore.Audio.Media.MIME_TYPE,
             MediaStore.Audio.Media.ALBUM_ID,
-            MediaStore.Audio.Media.ARTIST_ID
+            MediaStore.Audio.Media.ARTIST_ID,
+            MediaStore.Audio.Media.IS_PODCAST, // index must match PODCASTCOLIDX below
+            MediaStore.Audio.Media.BOOKMARK    // index must match BOOKMARKCOLIDX below
     };
+    private final static int IDCOLIDX = 0;
+    private final static int PODCASTCOLIDX = 8;
+    private final static int BOOKMARKCOLIDX = 9;
     private BroadcastReceiver mUnmountReceiver = null;
     private WakeLock mWakeLock;
     private int mServiceStartId = -1;
@@ -132,6 +146,8 @@ public class MediaPlaybackService extends Service {
     // We use this to distinguish between different cards when saving/restoring playlists.
     // This will have to change if we want to support multiple simultaneous cards.
     private int mCardId;
+    
+    private MediaAppWidgetProvider mAppWidgetProvider = MediaAppWidgetProvider.getInstance();
     
     // interval after which we stop the service when idle
     private static final int IDLE_DELAY = 60000; 
@@ -227,19 +243,28 @@ public class MediaPlaybackService extends Service {
     private BroadcastReceiver mIntentReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
             String cmd = intent.getStringExtra("command");
-            if (CMDNEXT.equals(cmd)) {
+            if (CMDNEXT.equals(cmd) || NEXT_ACTION.equals(action)) {
                 next(true);
-            } else if (CMDPREVIOUS.equals(cmd)) {
+            } else if (CMDPREVIOUS.equals(cmd) || PREVIOUS_ACTION.equals(action)) {
                 prev();
-            } else if (CMDTOGGLEPAUSE.equals(cmd)) {
+            } else if (CMDTOGGLEPAUSE.equals(cmd) || TOGGLEPAUSE_ACTION.equals(action)) {
                 if (isPlaying()) {
                     pause();
                 } else {
                     play();
                 }
-            } else if (CMDPAUSE.equals(cmd)) {
+            } else if (CMDPAUSE.equals(cmd) || PAUSE_ACTION.equals(action)) {
                 pause();
+            } else if (CMDSTOP.equals(cmd)) {
+                pause();
+                seek(0);
+            } else if (MediaAppWidgetProvider.CMDAPPWIDGETUPDATE.equals(cmd)) {
+                // Someone asked us to refresh a set of specific widgets, probably
+                // because they were just added.
+                int[] appWidgetIds = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
+                mAppWidgetProvider.performUpdate(MediaPlaybackService.this, appWidgetIds);
             }
         }
     };
@@ -267,8 +292,15 @@ public class MediaPlaybackService extends Service {
         nm.cancel(PLAYBACKSERVICE_STATUS);
         
         reloadQueue();
-
-        registerReceiver(mIntentReceiver, new IntentFilter(SERVICECMD));
+        
+        IntentFilter commandFilter = new IntentFilter();
+        commandFilter.addAction(SERVICECMD);
+        commandFilter.addAction(TOGGLEPAUSE_ACTION);
+        commandFilter.addAction(PAUSE_ACTION);
+        commandFilter.addAction(NEXT_ACTION);
+        commandFilter.addAction(PREVIOUS_ACTION);
+        registerReceiver(mIntentReceiver, commandFilter);
+        
         mPsir.registerIntent();
         PowerManager pm = (PowerManager)getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, this.getClass().getName());
@@ -282,6 +314,14 @@ public class MediaPlaybackService extends Service {
 
     @Override
     public void onDestroy() {
+        // Check that we're not being destroyed while something is still playing.
+        if (isPlaying()) {
+            Log.e("MediaPlaybackService", "Service being destroyed while still playing.");
+        }
+        // and for good measure, call mPlayer.stop(), which calls MediaPlayer.reset(), which
+        // releases the MediaPlayer's wake lock, if any.
+        mPlayer.stop();
+        
         if (mCursor != null) {
             mCursor.close();
             mCursor = null;
@@ -477,20 +517,27 @@ public class MediaPlaybackService extends Service {
     public void onStart(Intent intent, int startId) {
         mServiceStartId = startId;
         mDelayedStopHandler.removeCallbacksAndMessages(null);
+        
+        String action = intent.getAction();
         String cmd = intent.getStringExtra("command");
-        if (CMDNEXT.equals(cmd)) {
+        
+        if (CMDNEXT.equals(cmd) || NEXT_ACTION.equals(action)) {
             next(true);
-        } else if (CMDPREVIOUS.equals(cmd)) {
+        } else if (CMDPREVIOUS.equals(cmd) || PREVIOUS_ACTION.equals(action)) {
             prev();
-        } else if (CMDTOGGLEPAUSE.equals(cmd)) {
+        } else if (CMDTOGGLEPAUSE.equals(cmd) || TOGGLEPAUSE_ACTION.equals(action)) {
             if (isPlaying()) {
                 pause();
             } else {
                 play();
             }
-        } else if (CMDPAUSE.equals(cmd)) {
+        } else if (CMDPAUSE.equals(cmd) || PAUSE_ACTION.equals(action)) {
             pause();
+        } else if (CMDSTOP.equals(cmd)) {
+            pause();
+            seek(0);
         }
+        
         // make sure the service will shut down on its own if it was
         // just started but not bound to and nothing is playing
         mDelayedStopHandler.removeCallbacksAndMessages(null);
@@ -620,6 +667,9 @@ public class MediaPlaybackService extends Service {
         } else {
             saveQueue(false);
         }
+        
+        // Share this notification directly with our widgets
+        mAppWidgetProvider.notifyChange(this, what);
     }
 
     private void ensurePlayListCapacity(int size) {
@@ -638,13 +688,7 @@ public class MediaPlaybackService extends Service {
         // than the allocated size
     }
     
-    private void addToPlayList(int id) {
-        synchronized(this) {
-            ensurePlayListCapacity(mPlayListLen + 1);
-            mPlayList[mPlayListLen++] = id;
-        }
-    }
-    
+    // insert the list of songs at the specified position in the playlist
     private void addToPlayList(int [] list, int position) {
         int addlen = list.length;
         if (position < 0) { // overwrite
@@ -716,7 +760,23 @@ public class MediaPlaybackService extends Service {
             if (mShuffleMode == SHUFFLE_AUTO) {
                 mShuffleMode = SHUFFLE_NORMAL;
             }
-            addToPlayList(list, -1);
+            int listlength = list.length;
+            boolean newlist = true;
+            if (mPlayListLen == listlength) {
+                // possible fast path: list might be the same
+                newlist = false;
+                for (int i = 0; i < listlength; i++) {
+                    if (list[i] != mPlayList[i]) {
+                        newlist = true;
+                        break;
+                    }
+                }
+            }
+            if (newlist) {
+                addToPlayList(list, -1);
+                notifyChange(QUEUE_CHANGED);
+            }
+            int oldpos = mPlayPos;
             if (position >= 0) {
                 mPlayPos = position;
             } else {
@@ -724,7 +784,12 @@ public class MediaPlaybackService extends Service {
             }
             mHistory.clear();
 
+            saveBookmarkIfNeeded();
             openCurrent();
+            if (!newlist && mPlayPos != oldpos) {
+                // the queue didn't change, but the position did
+                notifyChange(META_CHANGED);
+            }
         }
     }
     
@@ -802,6 +867,13 @@ public class MediaPlaybackService extends Service {
             if (mCursor != null) {
                 mCursor.moveToFirst();
                 open(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + "/" + id, false);
+                // go to bookmark if needed
+                if (isPodcast()) {
+                    long bookmark = getBookmark();
+                    // Start playing a little bit before the bookmark,
+                    // so it's easier to get back in to the narrative.
+                    seek(bookmark - 5000);
+                }
             }
         }
     }
@@ -871,7 +943,7 @@ public class MediaPlaybackService extends Service {
                             mCursor.moveToNext();
                             ensurePlayListCapacity(1);
                             mPlayListLen = 1;
-                            mPlayList[0] = mCursor.getInt(0);
+                            mPlayList[0] = mCursor.getInt(IDCOLIDX);
                             mPlayPos = 0;
                         }
                     }
@@ -913,7 +985,6 @@ public class MediaPlaybackService extends Service {
 
             mPlayer.start();
             setForeground(true);
-            mWasPlaying = true;
 
             NotificationManager nm = (NotificationManager)
             getSystemService(Context.NOTIFICATION_SERVICE);
@@ -949,10 +1020,18 @@ public class MediaPlaybackService extends Service {
             status.contentIntent = PendingIntent.getActivity(this, 0,
                     new Intent("com.android.music.PLAYBACK_VIEWER"), 0);
             nm.notify(PLAYBACKSERVICE_STATUS, status);
-            notifyChange(PLAYSTATE_CHANGED);
+            if (!mWasPlaying) {
+                notifyChange(PLAYSTATE_CHANGED);
+            }
+            mWasPlaying = true;
+        } else if (mPlayListLen <= 0) {
+            // This is mostly so that if you press 'play' on a bluetooth headset
+            // without every having played anything before, it will still play
+            // something.
+            setShuffleMode(SHUFFLE_AUTO);
         }
     }
-
+    
     private void stop(boolean remove_status_icon) {
         if (mPlayer.isInitialized()) {
             mPlayer.stop();
@@ -966,7 +1045,9 @@ public class MediaPlaybackService extends Service {
             gotoIdleState();
         }
         setForeground(false);
-        mWasPlaying = false;
+        if (remove_status_icon) {
+            mWasPlaying = false;
+        }
     }
 
     /**
@@ -986,6 +1067,7 @@ public class MediaPlaybackService extends Service {
             setForeground(false);
             mWasPlaying = false;
             notifyChange(PLAYSTATE_CHANGED);
+            saveBookmarkIfNeeded();
         }
     }
 
@@ -1048,6 +1130,7 @@ public class MediaPlaybackService extends Service {
                     mPlayPos = mPlayListLen - 1;
                 }
             }
+            saveBookmarkIfNeeded();
             stop(false);
             openCurrent();
             play();
@@ -1066,7 +1149,9 @@ public class MediaPlaybackService extends Service {
 
             // Store the current file in the history, but keep the history at a
             // reasonable size
-            mHistory.add(Integer.valueOf(mPlayPos));
+            if (mPlayPos >= 0) {
+                mHistory.add(Integer.valueOf(mPlayPos));
+            }
             if (mHistory.size() > MAX_HISTORY_SIZE) {
                 mHistory.removeElementAt(0);
             }
@@ -1137,6 +1222,7 @@ public class MediaPlaybackService extends Service {
                     mPlayPos++;
                 }
             }
+            saveBookmarkIfNeeded();
             stop(false);
             openCurrent();
             play();
@@ -1153,22 +1239,54 @@ public class MediaPlaybackService extends Service {
         mDelayedStopHandler.sendMessageDelayed(msg, IDLE_DELAY);
     }
     
+    private void saveBookmarkIfNeeded() {
+        try {
+            if (isPodcast()) {
+                long pos = position();
+                long bookmark = getBookmark();
+                long duration = duration();
+                if ((pos < bookmark && (pos + 10000) > bookmark) ||
+                        (pos > bookmark && (pos - 10000) < bookmark)) {
+                    // The existing bookmark is close to the current
+                    // position, so don't update it.
+                    return;
+                }
+                if (pos < 15000 || (pos + 10000) > duration) {
+                    // if we're near the start or end, clear the bookmark
+                    pos = 0;
+                }
+                
+                // write 'pos' to the bookmark field
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.Audio.Media.BOOKMARK, pos);
+                Uri uri = ContentUris.withAppendedId(
+                        MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, mCursor.getLong(IDCOLIDX));
+                getContentResolver().update(uri, values, null, null);
+            }
+        } catch (SQLiteException ex) {
+        }
+    }
+
     // Make sure there are at least 5 items after the currently playing item
     // and no more than 10 items before.
     private void doAutoShuffleUpdate() {
+        boolean notify = false;
         // remove old entries
         if (mPlayPos > 10) {
             removeTracks(0, mPlayPos - 9);
+            notify = true;
         }
         // add new entries if needed
         int to_add = 7 - (mPlayListLen - (mPlayPos < 0 ? -1 : mPlayPos));
-        if (to_add > 0) {
-            for (int i = 0; i < to_add; i++) {
-                // pick something at random from the list
-                int idx = mRand.nextInt(mAutoShuffleList.length);
-                Integer which = mAutoShuffleList[idx];
-                addToPlayList(which);
-            }
+        for (int i = 0; i < to_add; i++) {
+            // pick something at random from the list
+            int idx = mRand.nextInt(mAutoShuffleList.length);
+            Integer which = mAutoShuffleList[idx];
+            ensurePlayListCapacity(mPlayListLen + 1);
+            mPlayList[mPlayListLen++] = which;
+            notify = true;
+        }
+        if (notify) {
             notifyChange(QUEUE_CHANGED);
         }
     }
@@ -1225,6 +1343,14 @@ public class MediaPlaybackService extends Service {
      * @return the number of tracks deleted
      */
     public int removeTracks(int first, int last) {
+        int numremoved = removeTracksInternal(first, last);
+        if (numremoved > 0) {
+            notifyChange(QUEUE_CHANGED);
+        }
+        return numremoved;
+    }
+    
+    private int removeTracksInternal(int first, int last) {
         synchronized (this) {
             if (last < first) return 0;
             if (first < 0) first = 0;
@@ -1259,7 +1385,6 @@ public class MediaPlaybackService extends Service {
                     }
                 }
             }
-            notifyChange(QUEUE_CHANGED);
             return last - first + 1;
         }
     }
@@ -1275,17 +1400,20 @@ public class MediaPlaybackService extends Service {
         synchronized (this) {
             for (int i = 0; i < mPlayListLen; i++) {
                 if (mPlayList[i] == id) {
-                    numremoved += removeTracks(i, i);
+                    numremoved += removeTracksInternal(i, i);
                     i--;
                 }
             }
+        }
+        if (numremoved > 0) {
+            notifyChange(QUEUE_CHANGED);
         }
         return numremoved;
     }
     
     public void setShuffleMode(int shufflemode) {
         synchronized(this) {
-            if (mShuffleMode == shufflemode) {
+            if (mShuffleMode == shufflemode && mPlayListLen > 0) {
                 return;
             }
             mShuffleMode = shufflemode;
@@ -1297,11 +1425,13 @@ public class MediaPlaybackService extends Service {
                     openCurrent();
                     play();
                     notifyChange(META_CHANGED);
+                    return;
                 } else {
                     // failed to build a list of files to shuffle
                     mShuffleMode = SHUFFLE_NONE;
                 }
             }
+            saveQueue(false);
         }
     }
     public int getShuffleMode() {
@@ -1311,6 +1441,7 @@ public class MediaPlaybackService extends Service {
     public void setRepeatMode(int repeatmode) {
         synchronized(this) {
             mRepeatMode = repeatmode;
+            saveQueue(false);
         }
     }
     public int getRepeatMode() {
@@ -1411,7 +1542,23 @@ public class MediaPlaybackService extends Service {
         }
     }
 
+    private boolean isPodcast() {
+        synchronized (this) {
+            if (mCursor == null) {
+                return false;
+            }
+            return (mCursor.getInt(PODCASTCOLIDX) > 0);
+        }
+    }
     
+    private long getBookmark() {
+        synchronized (this) {
+            if (mCursor == null) {
+                return 0;
+            }
+            return mCursor.getLong(BOOKMARKCOLIDX);
+        }
+    }
     
     /**
      * Returns the duration of the file in milliseconds.
@@ -1690,4 +1837,3 @@ public class MediaPlaybackService extends Service {
         }
     };
 }
-

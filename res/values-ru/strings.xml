@@ -20,7 +20,7 @@
     <item quantity="other">"Композиций: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
   <plurals name="Nsongscomp">
-    <item quantity="other">"Всего композиций: <xliff:g id="COUNT_0">%d</xliff:g>, <xliff:g id="COUNT_FOR_ARTIST_1">%d</xliff:g> композиций <xliff:g id="COUNT_FOR_ARTIST_2">%s</xliff:g> артистов"</item>
+    <item quantity="other">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> из <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> песен"</item>
   </plurals>
   <plurals name="Nalbums">
     <item quantity="one">"1 альбом"</item>
@@ -55,8 +55,6 @@
     <string name="all_title">"Все мультимедийное содержание"</string>
     <string name="browse_menu">"Артисты"</string>
     <string name="search_title">"Поиск"</string>
-    <string name="no_artists_title">"Нет артистов"</string>
-    <string name="no_albums_title">"Нет альбомов"</string>
     <string name="no_tracks_title">"Нет композиций"</string>
     <string name="no_videos_title">"Нет видео"</string>
     <string name="no_playlists_title">"Нет плейлистов"</string>
@@ -66,6 +64,9 @@
     <string name="playlist_deleted_message">"Плейлист удален."</string>
     <string name="playlist_renamed_message">"Плейлист переименован."</string>
     <string name="recentlyadded">"Недавно добавленные"</string>
+    <string name="recentlyadded_title">"Недавно добавленные"</string>
+    <string name="podcasts_listitem">"Подкасты"</string>
+    <string name="podcasts_title">"Подкасты"</string>
     <string name="sdcard_missing_title">"Нет карты SD"</string>
     <string name="sdcard_missing_message">"В телефоне не установлена карта SD."</string>
     <string name="sdcard_busy_title">"Карта SD недоступна"</string>
@@ -128,14 +129,11 @@
     <string name="working_artists">"Артисты…"</string>
     <string name="working_albums">"Альбомы…"</string>
     <string name="working_songs">"Композиции…"</string>
-    <!-- no translation found for loading (3267924133697717662) -->
-    <skip />
-    <!-- no translation found for sort_by_track (7662999005554152565) -->
-    <skip />
-    <!-- no translation found for sort_by_album (2912837715658975248) -->
-    <skip />
-    <!-- no translation found for sort_by_artist (4607024967813199992) -->
-    <skip />
-    <!-- no translation found for music_picker_title (1561623486324013570) -->
-    <skip />
+    <string name="working_playlists">"Плейлисты..."</string>
+    <string name="loading">"Идет загрузка"</string>
+    <string name="sort_by_track">"Дорожки"</string>
+    <string name="sort_by_album">"Альбомы"</string>
+    <string name="sort_by_artist">"Артисты"</string>
+    <string name="music_picker_title">"Выбрать музыкальную дорожку"</string>
+    <string name="gadget_track">"Трек <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
 </resources>

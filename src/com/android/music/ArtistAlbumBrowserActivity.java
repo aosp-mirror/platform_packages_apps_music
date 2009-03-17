@@ -125,7 +125,6 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             mArtistCursor = mAdapter.getCursor();
             if (mArtistCursor != null) {
                 init(mArtistCursor);
-                setTitle();
             } else {
                 getArtistCursor(mAdapter.getQueryHandler(), null);
             }
@@ -195,7 +194,6 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
     private Handler mReScanHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            setTitle();
             getArtistCursor(mAdapter.getQueryHandler(), null);
         }
     };
@@ -219,14 +217,11 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         }
 
         MusicUtils.hideDatabaseError(this);
+        setTitle();
     }
 
     private void setTitle() {
-      if (mArtistCursor != null && mArtistCursor.getCount() > 0) {
         setTitle(R.string.artists_title);
-    } else {
-        setTitle(R.string.no_artists_title);
-    }
     }
     
     @Override
@@ -239,7 +234,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         intent.putExtra("album", mCurrentAlbumId);
         Cursor c = (Cursor) getExpandableListAdapter().getChild(groupPosition, childPosition);
         String album = c.getString(c.getColumnIndex(MediaStore.Audio.Albums.ALBUM));
-        if (album.equals(MediaFile.UNKNOWN_STRING)) {
+        if (album == null || album.equals(MediaFile.UNKNOWN_STRING)) {
             // unknown album, so we should include the artist ID to limit the songs to songs only by that artist 
             mArtistCursor.moveToPosition(groupPosition);
             mCurrentArtistId = mArtistCursor.getString(mArtistCursor.getColumnIndex(MediaStore.Audio.Artists._ID));
@@ -520,6 +515,8 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         private MusicAlphabetIndexer mIndexer;
         private ArtistAlbumBrowserActivity mActivity;
         private AsyncQueryHandler mQueryHandler;
+        private String mConstraint = null;
+        private boolean mConstraintIsValid = false;
         
         class ViewHolder {
             TextView line1;
@@ -537,7 +534,6 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
                 //Log.i("@@@", "query complete");
                 mActivity.init(cursor);
-                mActivity.setTitle();
             }
         }
 
@@ -598,7 +594,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             vh.line2 = (TextView) v.findViewById(R.id.line2);
             vh.play_indicator = (ImageView) v.findViewById(R.id.play_indicator);
             vh.icon = (ImageView) v.findViewById(R.id.icon);
-            vh.icon.setPadding(1, 1, 1, 1);
+            vh.icon.setPadding(0, 0, 1, 0);
             v.setTag(vh);
             return v;
         }
@@ -613,7 +609,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             vh.play_indicator = (ImageView) v.findViewById(R.id.play_indicator);
             vh.icon = (ImageView) v.findViewById(R.id.icon);
             vh.icon.setBackgroundDrawable(mDefaultAlbumIcon);
-            vh.icon.setPadding(1, 1, 1, 1);
+            vh.icon.setPadding(0, 0, 1, 0);
             v.setTag(vh);
             return v;
         }
@@ -625,7 +621,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
 
             String artist = cursor.getString(mGroupArtistIdx);
             String displayartist = artist;
-            boolean unknown = MediaFile.UNKNOWN_STRING.equals(artist);
+            boolean unknown = artist == null || artist.equals(MediaFile.UNKNOWN_STRING);
             if (unknown) {
                 displayartist = mUnknownArtist;
             }
@@ -634,7 +630,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             int numalbums = cursor.getInt(mGroupAlbumIdx);
             int numsongs = cursor.getInt(mGroupSongIdx);
             
-            String songs_albums = MusicUtils.makeAlbumsSongsLabel(context,
+            String songs_albums = MusicUtils.makeAlbumsLabel(context,
                     numalbums, numsongs, unknown);
             
             vh.line2.setText(songs_albums);
@@ -655,7 +651,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
 
             String name = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM));
             String displayname = name;
-            boolean unknown = name.equals(MediaFile.UNKNOWN_STRING); 
+            boolean unknown = name == null || name.equals(MediaFile.UNKNOWN_STRING); 
             if (unknown) {
                 displayname = mUnknownAlbum;
             }
@@ -691,19 +687,6 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
                     builder.append(mResources.getQuantityString(R.plurals.Nsongscomp, numsongs, args));
                 }
             }
-            // If this is the unknown album, we don't really have any information about the year,
-            // since the year info is be for the entire collection of unknown album songs, not
-            // just the ones belonging to this artist.
-            if (!unknown && first != 0 && last != 0) {
-                builder.append("\n");
-                
-                builder.append(first);
-                if (first != last) {
-                    builder.append('-');
-                    builder.append(last);
-                } else {
-                }
-            }
             vh.line2.setText(builder.toString());
             
             ImageView iv = vh.icon;
@@ -711,7 +694,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             // we just use it to see if there is album art or not
             String art = cursor.getString(cursor.getColumnIndexOrThrow(
                     MediaStore.Audio.Albums.ALBUM_ART));
-            if (art == null || art.length() == 0) {
+            if (unknown || art == null || art.length() == 0) {
                 iv.setBackgroundDrawable(mDefaultAlbumIcon);
                 iv.setImageDrawable(null);
             } else {
@@ -755,7 +738,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
                 MyCursorWrapper(Cursor c, String artist) {
                     super(c);
                     mArtistName = artist;
-                    if (MediaFile.UNKNOWN_STRING.equals(mArtistName)) {
+                    if (mArtistName == null || mArtistName.equals(MediaFile.UNKNOWN_STRING)) {
                         mArtistName = mUnknownArtist;
                     }
                     mMagicColumnIdx = c.getColumnCount();
@@ -771,7 +754,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
                 
                 @Override
                 public int getColumnIndexOrThrow(String name) {
-                    if (name.equals(MediaStore.Audio.Albums.ARTIST)) {
+                    if (MediaStore.Audio.Albums.ARTIST.equals(name)) {
                         return mMagicColumnIdx;
                     }
                     return super.getColumnIndexOrThrow(name); 
@@ -804,7 +787,16 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         
         @Override
         public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
-            return mActivity.getArtistCursor(null, constraint.toString());
+            String s = constraint.toString();
+            if (mConstraintIsValid && (
+                    (s == null && mConstraint == null) ||
+                    (s != null && s.equals(mConstraint)))) {
+                return getCursor();
+            }
+            Cursor c = mActivity.getArtistCursor(null, s);
+            mConstraint = s;
+            mConstraintIsValid = true;
+            return c;
         }
 
         public Object[] getSections() {

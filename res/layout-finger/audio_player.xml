@@ -26,12 +26,14 @@
         android:orientation="horizontal"
         android:gravity="center">
 
-        <com.android.music.AlbumView android:id="@+id/album"
-            android:layout_width="220px"
-            android:layout_height="fill_parent"
-            android:paddingLeft="12px"
-            android:paddingRight="6px"
-            android:paddingTop="16px" />
+        <ImageView
+            android:id="@+id/album"
+            android:background="@drawable/album_border_large"
+            android:layout_width="220dip"
+            android:layout_height="220dip"
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="2dip"
+            android:layout_marginTop="8dip" />
 
         <LinearLayout
             android:layout_width="0dip"
@@ -42,19 +44,19 @@
 
            <ImageButton android:id="@+id/curplaylist"
                 android:src="@drawable/ic_mp_current_playlist_btn"
-                android:layout_width="85px"
-                android:layout_height="54px"
-                android:layout_marginTop="14px" />
+                android:layout_width="85dip"
+                android:layout_height="54dip"
+                android:layout_marginTop="14dip" />
 
            <ImageButton android:id="@+id/shuffle"
-                android:layout_width="85px"
-                android:layout_height="54px"
-                android:layout_marginTop="20px" />
+                android:layout_width="85dip"
+                android:layout_height="54dip"
+                android:layout_marginTop="20dip" />
 
            <ImageButton android:id="@+id/repeat"
-                android:layout_width="85px"
-                android:layout_height="54px"
-                android:layout_marginTop="20px" />
+                android:layout_width="85dip"
+                android:layout_height="54dip"
+                android:layout_marginTop="20dip" />
 
         </LinearLayout>
 

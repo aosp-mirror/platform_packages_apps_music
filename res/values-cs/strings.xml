@@ -20,7 +20,7 @@
     <item quantity="other">"Počet skladeb: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
   <plurals name="Nsongscomp">
-    <item quantity="other">"Celkový počet skladeb: <xliff:g id="COUNT_0">%d</xliff:g>. <xliff:g id="COUNT_FOR_ARTIST_1">%d</xliff:g> od interpreta <xliff:g id="COUNT_FOR_ARTIST_2">%s</xliff:g>."</item>
+    <item quantity="other">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> z celkem <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> skladeb"</item>
   </plurals>
   <plurals name="Nalbums">
     <item quantity="one">"1 album"</item>
@@ -55,8 +55,6 @@
     <string name="all_title">"Všechna média"</string>
     <string name="browse_menu">"Interpreti"</string>
     <string name="search_title">"Hledat"</string>
-    <string name="no_artists_title">"Žádný interpret"</string>
-    <string name="no_albums_title">"Žádná alba"</string>
     <string name="no_tracks_title">"Žádné skladby"</string>
     <string name="no_videos_title">"Žádná videa"</string>
     <string name="no_playlists_title">"Žádné seznamy stop"</string>
@@ -66,6 +64,9 @@
     <string name="playlist_deleted_message">"Seznam stop byl smazán."</string>
     <string name="playlist_renamed_message">"Seznam stop byl přejmenován."</string>
     <string name="recentlyadded">"Nedávno přidané"</string>
+    <string name="recentlyadded_title">"Nedávno přidané"</string>
+    <string name="podcasts_listitem">"Podcasty"</string>
+    <string name="podcasts_title">"Podcasty"</string>
     <string name="sdcard_missing_title">"Žádná karta SD není dostupná"</string>
     <string name="sdcard_missing_message">"V telefonu není vložena karta SD."</string>
     <string name="sdcard_busy_title">"Karta SD není dostupná"</string>
@@ -128,14 +129,11 @@
     <string name="working_artists">"Interpreti…"</string>
     <string name="working_albums">"Alba…"</string>
     <string name="working_songs">"Skladby…"</string>
-    <!-- no translation found for loading (3267924133697717662) -->
-    <skip />
-    <!-- no translation found for sort_by_track (7662999005554152565) -->
-    <skip />
-    <!-- no translation found for sort_by_album (2912837715658975248) -->
-    <skip />
-    <!-- no translation found for sort_by_artist (4607024967813199992) -->
-    <skip />
-    <!-- no translation found for music_picker_title (1561623486324013570) -->
-    <skip />
+    <string name="working_playlists">"Seznamy stop…"</string>
+    <string name="loading">"Načítání"</string>
+    <string name="sort_by_track">"Stopy"</string>
+    <string name="sort_by_album">"Alba"</string>
+    <string name="sort_by_artist">"Interpreti"</string>
+    <string name="music_picker_title">"Vyberte hudební stopu"</string>
+    <string name="gadget_track">"Stopa <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
 </resources>

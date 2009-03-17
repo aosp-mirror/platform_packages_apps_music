@@ -42,7 +42,7 @@ public class TouchInterceptor extends ListView {
     private WindowManager.LayoutParams mWindowParams;
     private int mDragPos;      // which item is being dragged
     private int mFirstDragPos; // where was the dragged item originally
-    private int mDragPoint;    // at what offset inset the item did the user grab it
+    private int mDragPoint;    // at what offset inside the item did the user grab it
     private int mCoordOffset;  // the difference between screen coordinates and coordinates in this view
     private DragListener mDragListener;
     private DropListener mDropListener;
@@ -56,18 +56,20 @@ public class TouchInterceptor extends ListView {
     private int mRemoveMode = -1;
     private Rect mTempRect = new Rect();
     private Bitmap mDragBitmap;
+    private final int mTouchSlop;
 
     public TouchInterceptor(Context context, AttributeSet attrs) {
         super(context, attrs);
         SharedPreferences pref = context.getSharedPreferences("Music", 3);
         mRemoveMode = pref.getInt("deletemode", -1);
+        mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
     }
     
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         if (mRemoveListener != null && mGestureDetector == null) {
             if (mRemoveMode == FLING) {
-                mGestureDetector = new GestureDetector(new SimpleOnGestureListener() {
+                mGestureDetector = new GestureDetector(getContext(), new SimpleOnGestureListener() {
                     @Override
                     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
                             float velocityY) {
@@ -114,7 +116,7 @@ public class TouchInterceptor extends ListView {
                         mDragPos = itemnum;
                         mFirstDragPos = mDragPos;
                         mHeight = getHeight();
-                        int touchSlop = ViewConfiguration.getTouchSlop();
+                        int touchSlop = mTouchSlop;
                         mUpperBound = Math.min(y - touchSlop, mHeight / 3);
                         mLowerBound = Math.max(y + touchSlop, mHeight * 2 /3);
                         return false;
@@ -144,12 +146,13 @@ public class TouchInterceptor extends ListView {
     }
     
     private int getItemForPosition(int y) {
-        int pos = myPointToPosition(0, y - mDragPoint - 32);
+        int adjustedy = y - mDragPoint - 32;
+        int pos = myPointToPosition(0, adjustedy);
         if (pos >= 0) {
             if (pos <= mFirstDragPos) {
                 pos += 1;
             }
-        } else if ((y - mDragPoint) < 0) {
+        } else if (adjustedy < 0) {
             pos = 0;
         }
         return pos;
@@ -209,10 +212,7 @@ public class TouchInterceptor extends ListView {
         if (mDragPos > mFirstDragPos) {
             childnum++;
         }
-        View v = getChildAt(childnum);
-        if (v== null) {
-            return;
-        }
+
         View first = getChildAt(mFirstDragPos - getFirstVisiblePosition());
 
         for (int i = 0;; i++) {
@@ -231,8 +231,10 @@ public class TouchInterceptor extends ListView {
                     // not hovering over it
                     height = 1;
                 }
-            } else if (i == (mDragPos - getFirstVisiblePosition() + (mDragPos > mFirstDragPos ? 1 : 0))) {
-                height = 128;
+            } else if (i == childnum) {
+                if (mDragPos < getCount() - 1) {
+                    height = 128;
+                }
             }
             ViewGroup.LayoutParams params = vv.getLayoutParams();
             params.height = height;
@@ -247,7 +249,8 @@ public class TouchInterceptor extends ListView {
             mGestureDetector.onTouchEvent(ev);
         }
         if ((mDragListener != null || mDropListener != null) && mDragView != null) {
-            switch (ev.getAction()) {
+            int action = ev.getAction(); 
+            switch (action) {
                 case MotionEvent.ACTION_UP:
                 case MotionEvent.ACTION_CANCEL:
                     Rect r = mTempRect;
@@ -259,20 +262,21 @@ public class TouchInterceptor extends ListView {
                         }
                         unExpandViews(true);
                     } else {
-                        if (mDropListener != null) {
+                        if (mDropListener != null && mDragPos >= 0 && mDragPos < getCount()) {
                             mDropListener.drop(mFirstDragPos, mDragPos);
                         }
                         unExpandViews(false);
                     }
                     break;
                     
+                case MotionEvent.ACTION_DOWN:
                 case MotionEvent.ACTION_MOVE:
                     int x = (int) ev.getX();
                     int y = (int) ev.getY();
                     dragView(x, y);
                     int itemnum = getItemForPosition(y);
                     if (itemnum >= 0) {
-                        if (true || itemnum != mDragPos) {
+                        if (action == MotionEvent.ACTION_DOWN || itemnum != mDragPos) {
                             if (mDragListener != null) {
                                 mDragListener.drag(mDragPos, itemnum);
                             }

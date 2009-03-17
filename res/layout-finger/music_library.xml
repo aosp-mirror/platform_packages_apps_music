@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:paddingTop="35dip"
+        android:paddingLeft="18dip"
+        android:paddingRight="18dip"
+        android:orientation="horizontal"
+        >
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:layout_marginRight="18dip"
+            >
+
+            <Button
+                android:id="@+id/browse_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/main_menu_button"
+                android:drawableTop="@drawable/ic_mp_screen_artists"
+                android:text="@string/browse_menu"
+                android:ellipsize="marquee"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="?android:attr/textColorPrimaryDisableOnly"
+                android:singleLine="true"
+                android:layout_marginBottom="35dip"
+            />
+
+            <Button
+                android:id="@+id/tracks_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/main_menu_button"
+                android:drawableTop="@drawable/ic_mp_screen_tracks"
+                android:text="@string/tracks_menu"
+                android:ellipsize="marquee"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="?android:attr/textColorPrimaryDisableOnly"
+                android:singleLine="true"
+                android:layout_marginBottom="35dip"
+            />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            >
+
+            <Button
+                android:id="@+id/albums_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/main_menu_button"
+                android:drawableTop="@drawable/ic_mp_screen_albums"
+                android:text="@string/albums_menu"
+                android:ellipsize="marquee"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="?android:attr/textColorPrimaryDisableOnly"
+                android:singleLine="true"
+                android:layout_marginBottom="35dip"
+            />
+
+            <Button
+                android:id="@+id/playlists_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/main_menu_button"
+                android:drawableTop="@drawable/ic_mp_screen_playlists"
+                android:text="@string/playlists_menu"
+                android:ellipsize="marquee"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="?android:attr/textColorPrimaryDisableOnly"
+                android:singleLine="true"
+                android:layout_marginBottom="35dip"
+            />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/nowplaying"
+        android:layout_width="fill_parent"
+        android:layout_height="64dip"
+        android:focusable="true"
+        android:visibility="invisible"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/divider_horizontal_dark" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="18dip"
+            android:layout_marginRight="18dip">
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                />
+                <TextView
+                    android:id="@+id/artist"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                />
+            </LinearLayout>
+
+            <ImageView android:id="@+id/icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/indicator_ic_mp_playing_large"
+            />
+
+        </LinearLayout>
+    </LinearLayout>   
+</LinearLayout>
+

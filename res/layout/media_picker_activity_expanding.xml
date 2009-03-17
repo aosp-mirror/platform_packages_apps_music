@@ -28,6 +28,8 @@
         android:layout_height="fill_parent"
         android:textSize="18sp"
         android:drawSelectorOnTop="false"
-        android:fastScrollEnabled="true" /> 
+        android:fastScrollEnabled="true"
+        android:indicatorLeft="30dip" />
+        android:indicatorRight="60dip" />
 
 </LinearLayout>

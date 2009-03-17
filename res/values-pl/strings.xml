@@ -20,7 +20,7 @@
     <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> utworów"</item>
   </plurals>
   <plurals name="Nsongscomp">
-    <item quantity="other">"Całkowita liczba utworów: <xliff:g id="COUNT_0">%d</xliff:g>; liczba utworów dla <xliff:g id="COUNT_FOR_ARTIST_2">%s</xliff:g>: <xliff:g id="COUNT_FOR_ARTIST_1">%d</xliff:g>"</item>
+    <item quantity="other">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> z <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> utworów"</item>
   </plurals>
   <plurals name="Nalbums">
     <item quantity="one">"1 album"</item>
@@ -28,10 +28,10 @@
   </plurals>
     <string name="goto_start">"Biblioteka"</string>
     <string name="goto_playback">"Odtwórz"</string>
-    <string name="party_shuffle">"Odtwarzaj losowo w trybie przyjęcia"</string>
-    <string name="party_shuffle_off">"Odtwarzanie losowe w trybie przyjęcia jest wyłączone"</string>
+    <string name="party_shuffle">"Losowo w trybie imprezy"</string>
+    <string name="party_shuffle_off">"Wyłączono losowe odtwarzanie w trybie imprezy"</string>
     <string name="delete_item">"Usuń"</string>
-    <string name="shuffle_all">"Odtwarzaj losowo wszystkie"</string>
+    <string name="shuffle_all">"Wszystkie losowo"</string>
     <string name="play_all">"Odtwórz wszystko"</string>
     <string name="delete_artist_desc">"Wszystkie utwory wykonawcy <xliff:g id="ARTIST">%s</xliff:g> zostaną na stałe usunięte z karty SD."</string>
     <string name="delete_album_desc">"Cały album „<xliff:g id="ALBUM">%s</xliff:g>” zostanie na stałe usunięty z karty SD."</string>
@@ -43,29 +43,30 @@
   </plurals>
     <string name="scanning">"Skanowanie karty SD..."</string>
     <string name="nowplaying_title">"Teraz odtwarzane"</string>
-    <string name="partyshuffle_title">"Odtwarzaj losowo w trybie przyjęcia"</string>
+    <string name="partyshuffle_title">"Losowo w trybie imprezy"</string>
     <string name="artists_title">"Wykonawcy"</string>
     <string name="albums_menu">"Albumy"</string>
     <string name="albums_title">"Albumy"</string>
     <string name="tracks_menu">"Utwory"</string>
     <string name="tracks_title">"Utwory"</string>
-    <string name="playlists_menu">"Listy odtwarzania"</string>
-    <string name="playlists_title">"Listy odtwarzania"</string>
+    <string name="playlists_menu">"Playlisty"</string>
+    <string name="playlists_title">"Playlisty"</string>
     <string name="videos_title">"Filmy wideo"</string>
     <string name="all_title">"Wszystkie multimedia"</string>
     <string name="browse_menu">"Wykonawcy"</string>
     <string name="search_title">"Szukaj"</string>
-    <string name="no_artists_title">"Brak wykonawców"</string>
-    <string name="no_albums_title">"Brak albumów"</string>
     <string name="no_tracks_title">"Brak utworów"</string>
     <string name="no_videos_title">"Brak filmów wideo"</string>
-    <string name="no_playlists_title">"Brak list odtwarzania"</string>
+    <string name="no_playlists_title">"Brak playlist"</string>
     <string name="delete_playlist_menu">"Usuń"</string>
     <string name="edit_playlist_menu">"Edytuj"</string>
     <string name="rename_playlist_menu">"Zmień nazwę"</string>
-    <string name="playlist_deleted_message">"Lista odtwarzania została usunięta."</string>
-    <string name="playlist_renamed_message">"Nazwa listy odtwarzania została zmieniona."</string>
+    <string name="playlist_deleted_message">"Playlista została usunięta."</string>
+    <string name="playlist_renamed_message">"Zmieniono nazwę playlisty."</string>
     <string name="recentlyadded">"Ostatnio dodane"</string>
+    <string name="recentlyadded_title">"Ostatnio dodane"</string>
+    <string name="podcasts_listitem">"Podcasty"</string>
+    <string name="podcasts_title">"Podcasty"</string>
     <string name="sdcard_missing_title">"Brak karty SD"</string>
     <string name="sdcard_missing_message">"Brak karty SD w telefonie."</string>
     <string name="sdcard_busy_title">"Karta SD jest niedostępna"</string>
@@ -74,24 +75,24 @@
     <string name="sdcard_error_message">"Napotkano błąd na karcie SD."</string>
     <string name="unknown_artist_name">"Nieznany wykonawca"</string>
     <string name="unknown_album_name">"Nieznany album"</string>
-    <string name="shuffle_on_notif">"Odtwarzanie losowe jest włączone."</string>
-    <string name="shuffle_off_notif">"Odtwarzanie losowe jest wyłączone."</string>
+    <string name="shuffle_on_notif">"Odtwarzanie losowe włączone"</string>
+    <string name="shuffle_off_notif">"Odtwarzanie losowe wyłączone"</string>
     <string name="repeat_off_notif">"Powtarzanie jest wyłączone."</string>
     <string name="repeat_current_notif">"Powtarzanie obecnego utworu."</string>
     <string name="repeat_all_notif">"Powtarzanie wszystkich utworów."</string>
-    <string name="ringtone_menu">"Zastosuj jako dzwonek telefonu"</string>
-    <string name="ringtone_menu_short">"Zastosuj jako dzwonek"</string>
+    <string name="ringtone_menu">"Ustaw jako dzwonek telefonu"</string>
+    <string name="ringtone_menu_short">"Ustaw jako dzwonek"</string>
     <string name="ringtone_set">"„%s” ustawiono jako dzwonek telefonu."</string>
     <string name="play_selection">"Odtwórz"</string>
-    <string name="add_to_playlist">"Dodaj do listy odtwarzania"</string>
-    <string name="queue">"Obecna lista odtwarzania"</string>
+    <string name="add_to_playlist">"Dodaj do playlisty"</string>
+    <string name="queue">"Bieżąca playlista"</string>
     <string name="new_playlist">"Nowy"</string>
-    <string name="new_playlist_name_template">"Nowa lista odtwarzania <xliff:g id="NUMBER">%d</xliff:g>"</string>
+    <string name="new_playlist_name_template">"Nowa playlista <xliff:g id="NUMBER">%d</xliff:g>"</string>
   <plurals name="NNNtrackstoplaylist">
-    <item quantity="one">"1 utwór został dodany do listy odtwarzania."</item>
+    <item quantity="one">"Dodano 1 utwór do playlisty."</item>
     <item quantity="other">"%d utworów dodano do listy odtwarzania."</item>
   </plurals>
-    <string name="emptyplaylist">"Wybrana lista odtwarzania jest pusta."</string>
+    <string name="emptyplaylist">"Wybrana playlista jest pusta."</string>
     <string name="create_playlist_create_text">"Zapisz"</string>
     <string name="create_playlist_overwrite_text">"Zastąp"</string>
     <string name="service_start_error_title">"Problem z odtwarzaniem"</string>
@@ -113,29 +114,26 @@
   </string-array>
     <string name="weekpicker_set">"Gotowe"</string>
     <string name="weekpicker_title">"Ustaw czas"</string>
-    <string name="save_as_playlist">"Zapisz jako listę odtwarzania"</string>
-    <string name="clear_playlist">"Wyczyść listę odtwarzania"</string>
+    <string name="save_as_playlist">"Zapisz jako playlistę"</string>
+    <string name="clear_playlist">"Wyczyść playlistę"</string>
     <string name="musicbrowserlabel">"Muzyka"</string>
-    <string name="musicshortcutlabel">"Lista odtwarzania muzyki"</string>
+    <string name="musicshortcutlabel">"Playlista muzyczna"</string>
     <string name="mediaplaybacklabel">"Muzyka"</string>
     <string name="videobrowserlabel">"Filmy wideo"</string>
     <string name="mediapickerlabel">"Muzyka"</string>
     <string name="playback_failed">"Niestety, odtwarzacz nie obsługuje plików audio tego typu."</string>
     <string name="cancel">"Anuluj"</string>
-    <string name="remove_from_playlist">"Usuń z listy odtwarzania"</string>
+    <string name="remove_from_playlist">"Usuń z playlisty"</string>
     <string name="streamloadingtext">"Łączenie z: <xliff:g id="HOST">%s</xliff:g>"</string>
     <string name="mediasearch">"Wyszukaj %s z wykorzystaniem:"</string>
     <string name="working_artists">"Wykonawcy…"</string>
     <string name="working_albums">"Albumy…"</string>
     <string name="working_songs">"Utwory…"</string>
-    <!-- no translation found for loading (3267924133697717662) -->
-    <skip />
-    <!-- no translation found for sort_by_track (7662999005554152565) -->
-    <skip />
-    <!-- no translation found for sort_by_album (2912837715658975248) -->
-    <skip />
-    <!-- no translation found for sort_by_artist (4607024967813199992) -->
-    <skip />
-    <!-- no translation found for music_picker_title (1561623486324013570) -->
-    <skip />
+    <string name="working_playlists">"Listy odtwarzania..."</string>
+    <string name="loading">"Ładowanie"</string>
+    <string name="sort_by_track">"Utwory"</string>
+    <string name="sort_by_album">"Albumy"</string>
+    <string name="sort_by_artist">"Wykonawcy"</string>
+    <string name="music_picker_title">"Wybierz utwór muzyczny"</string>
+    <string name="gadget_track">"Ścieżka <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
 </resources>

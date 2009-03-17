@@ -119,7 +119,6 @@ public class AlbumBrowserActivity extends ListActivity
             mAlbumCursor = mAdapter.getCursor();
             if (mAlbumCursor != null) {
                 init(mAlbumCursor);
-                setTitle();
             } else {
                 getAlbumCursor(mAdapter.getQueryHandler(), null);
             }
@@ -187,7 +186,6 @@ public class AlbumBrowserActivity extends ListActivity
     private Handler mReScanHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            setTitle();
             getAlbumCursor(mAdapter.getQueryHandler(), null);
         }
     };
@@ -211,6 +209,7 @@ public class AlbumBrowserActivity extends ListActivity
         }
         
         MusicUtils.hideDatabaseError(this);
+        setTitle();
     }
 
     private void setTitle() {
@@ -218,16 +217,14 @@ public class AlbumBrowserActivity extends ListActivity
         if (mAlbumCursor != null && mAlbumCursor.getCount() > 0) {
             mAlbumCursor.moveToFirst();
             fancyName = mAlbumCursor.getString(3);
-            if (MediaFile.UNKNOWN_STRING.equals(fancyName))
+            if (fancyName == null || fancyName.equals(MediaFile.UNKNOWN_STRING))
                 fancyName = getText(R.string.unknown_artist_name);
-
-            if (mArtistId != null && fancyName != null)
-                setTitle(fancyName);
-            else
-                setTitle(R.string.albums_title);
-        } else {
-            setTitle(R.string.no_albums_title);
         }
+
+        if (mArtistId != null && fancyName != null)
+            setTitle(fancyName);
+        else
+            setTitle(R.string.albums_title);
     }
     
     @Override
@@ -341,9 +338,6 @@ public class AlbumBrowserActivity extends ListActivity
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id)
     {
-        if (mHasHeader) {
-            position --;
-        }
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setDataAndType(Uri.EMPTY, "vnd.android.cursor.dir/track");
         intent.putExtra("album", Long.valueOf(id).toString());
@@ -471,6 +465,8 @@ public class AlbumBrowserActivity extends ListActivity
         private AlphabetIndexer mIndexer;
         private AlbumBrowserActivity mActivity;
         private AsyncQueryHandler mQueryHandler;
+        private String mConstraint = null;
+        private boolean mConstraintIsValid = false;
         
         class ViewHolder {
             TextView line1;
@@ -489,7 +485,6 @@ public class AlbumBrowserActivity extends ListActivity
             protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
                 //Log.i("@@@", "query complete");
                 mActivity.init(cursor);
-                mActivity.setTitle();
             }
         }
 
@@ -550,7 +545,7 @@ public class AlbumBrowserActivity extends ListActivity
            vh.play_indicator = (ImageView) v.findViewById(R.id.play_indicator);
            vh.icon = (ImageView) v.findViewById(R.id.icon);
            vh.icon.setBackgroundDrawable(mDefaultAlbumIcon);
-           vh.icon.setPadding(1, 1, 1, 1);
+           vh.icon.setPadding(0, 0, 1, 0);
            v.setTag(vh);
            return v;
         }
@@ -562,36 +557,24 @@ public class AlbumBrowserActivity extends ListActivity
 
             String name = cursor.getString(mAlbumIdx);
             String displayname = name;
-            if (MediaFile.UNKNOWN_STRING.equals(name)) {
+            boolean unknown = name == null || name.equals(MediaFile.UNKNOWN_STRING); 
+            if (unknown) {
                 displayname = mUnknownAlbum;
             }
             vh.line1.setText(displayname);
             
             name = cursor.getString(mArtistIdx);
             displayname = name;
-            if (MediaFile.UNKNOWN_STRING.equals(name)) {
+            if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
                 displayname = mUnknownArtist;
             }
-            StringBuilder builder = mStringBuilder;
-            builder.delete(0, builder.length());
-            builder.append(displayname);
-            builder.append(mAlbumSongSeparator);
-            
-            int numsongs = cursor.getInt(mNumSongsIdx);
-            if (numsongs == 1) {
-                builder.append(context.getString(R.string.onesong));
-            } else {
-                final Object[] args = mFormatArgs;
-                args[0] = numsongs;
-                builder.append(mResources.getQuantityString(R.plurals.Nsongs, numsongs, args));
-            }
-            vh.line2.setText(builder.toString());
+            vh.line2.setText(displayname);
 
             ImageView iv = vh.icon;
             // We don't actually need the path to the thumbnail file,
             // we just use it to see if there is album art or not
             String art = cursor.getString(mAlbumArtIndex);
-            if (art == null || art.length() == 0) {
+            if (unknown || art == null || art.length() == 0) {
                 iv.setImageDrawable(null);
             } else {
                 int artIndex = cursor.getInt(0);
@@ -620,7 +603,16 @@ public class AlbumBrowserActivity extends ListActivity
         
         @Override
         public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
-            return mActivity.getAlbumCursor(null, constraint.toString());
+            String s = constraint.toString();
+            if (mConstraintIsValid && (
+                    (s == null && mConstraint == null) ||
+                    (s != null && s.equals(mConstraint)))) {
+                return getCursor();
+            }
+            Cursor c = mActivity.getAlbumCursor(null, s);
+            mConstraint = s;
+            mConstraintIsValid = true;
+            return c;
         }
         
         public Object[] getSections() {
@@ -638,6 +630,5 @@ public class AlbumBrowserActivity extends ListActivity
 
     private Cursor mAlbumCursor;
     private String mArtistId;
-    private boolean mHasHeader = false;
 }
 

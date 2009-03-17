@@ -20,7 +20,7 @@
     <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> canciones"</item>
   </plurals>
   <plurals name="Nsongscomp">
-    <item quantity="other">"<xliff:g id="COUNT_0">%d</xliff:g> canciones totales, <xliff:g id="COUNT_FOR_ARTIST_1">%d</xliff:g> de <xliff:g id="COUNT_FOR_ARTIST_2">%s</xliff:g>"</item>
+    <item quantity="other">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> de <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> canciones"</item>
   </plurals>
   <plurals name="Nalbums">
     <item quantity="one">"1 álbum"</item>
@@ -55,8 +55,6 @@
     <string name="all_title">"Todos los medios"</string>
     <string name="browse_menu">"Artistas"</string>
     <string name="search_title">"Buscar"</string>
-    <string name="no_artists_title">"Ningún artista"</string>
-    <string name="no_albums_title">"Ningún álbum"</string>
     <string name="no_tracks_title">"Ninguna canción"</string>
     <string name="no_videos_title">"Ningún vídeo"</string>
     <string name="no_playlists_title">"Ninguna lista de reproducción"</string>
@@ -65,9 +63,12 @@
     <string name="rename_playlist_menu">"Cambiar nombre"</string>
     <string name="playlist_deleted_message">"Se ha eliminado la lista de reproducción."</string>
     <string name="playlist_renamed_message">"Se ha cambiado el nombre de la lista de reproducción."</string>
-    <string name="recentlyadded">"Añadidos recientemente"</string>
-    <string name="sdcard_missing_title">"Ninguna tarjeta SD"</string>
-    <string name="sdcard_missing_message">"No hay ninguna tarjeta SD en el teléfono."</string>
+    <string name="recentlyadded">"Añadidas recientemente"</string>
+    <string name="recentlyadded_title">"Añadidos recientemente"</string>
+    <string name="podcasts_listitem">"Podcasts"</string>
+    <string name="podcasts_title">"Podcasts"</string>
+    <string name="sdcard_missing_title">"Falta la tarjeta SD"</string>
+    <string name="sdcard_missing_message">"Falta la tarjeta SD en el teléfono"</string>
     <string name="sdcard_busy_title">"Tarjeta SD no disponible"</string>
     <string name="sdcard_busy_message">"La tarjeta SD está ocupada."</string>
     <string name="sdcard_error_title">"Error de tarjeta SD"</string>
@@ -128,14 +129,11 @@
     <string name="working_artists">"Artistas…"</string>
     <string name="working_albums">"Álbumes…"</string>
     <string name="working_songs">"Canciones…"</string>
-    <!-- no translation found for loading (3267924133697717662) -->
-    <skip />
-    <!-- no translation found for sort_by_track (7662999005554152565) -->
-    <skip />
-    <!-- no translation found for sort_by_album (2912837715658975248) -->
-    <skip />
-    <!-- no translation found for sort_by_artist (4607024967813199992) -->
-    <skip />
-    <!-- no translation found for music_picker_title (1561623486324013570) -->
-    <skip />
+    <string name="working_playlists">"Listas de reproducción…"</string>
+    <string name="loading">"Cargando"</string>
+    <string name="sort_by_track">"Pistas"</string>
+    <string name="sort_by_album">"Álbumes"</string>
+    <string name="sort_by_artist">"Artistas"</string>
+    <string name="music_picker_title">"Seleccionar pista musical"</string>
+    <string name="gadget_track">"Pista <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
 </resources>

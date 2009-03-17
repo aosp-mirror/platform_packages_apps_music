@@ -32,6 +32,7 @@ import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.IBinder;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -83,73 +84,24 @@ public class MusicBrowserActivity extends Activity
     }
 
     public void init() {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.music_library);
         mNowPlayingView = findViewById(R.id.nowplaying);
         mTitle = (TextView) mNowPlayingView.findViewById(R.id.title);
         mArtist = (TextView) mNowPlayingView.findViewById(R.id.artist);
         
-        ImageButton b = (ImageButton) findViewById(R.id.browse_button); 
+        View b = (View) findViewById(R.id.browse_button); 
         b.setOnClickListener(this);
-        b.setOnTouchListener(mMarqueeEnablerTouch);
-        b.setOnFocusChangeListener(mMarqueeEnablerFocus);
         
-        b = (ImageButton) findViewById(R.id.albums_button);
+        b = (View) findViewById(R.id.albums_button);
         b.setOnClickListener(this);
-        b.setOnTouchListener(mMarqueeEnablerTouch);
-        b.setOnFocusChangeListener(mMarqueeEnablerFocus);
 
-        b = (ImageButton) findViewById(R.id.tracks_button);
+        b = (View) findViewById(R.id.tracks_button);
         b.setOnClickListener(this);
-        b.setOnTouchListener(mMarqueeEnablerTouch);
-        b.setOnFocusChangeListener(mMarqueeEnablerFocus);
 
-        b = (ImageButton) findViewById(R.id.playlists_button);
+        b = (View) findViewById(R.id.playlists_button);
         b.setOnClickListener(this);
-        b.setOnTouchListener(mMarqueeEnablerTouch);
-        b.setOnFocusChangeListener(mMarqueeEnablerFocus);
     }
     
-    private View.OnTouchListener mMarqueeEnablerTouch = new View.OnTouchListener() {
-
-        public boolean onTouch(View v, MotionEvent event) {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-                    doMarquee(v, true);
-                    break;
-                case MotionEvent.ACTION_CANCEL:
-                case MotionEvent.ACTION_UP:
-                    doMarquee(v, false);
-                    break;
-            }
-            return false;
-        }
-    };
-    
-    private View.OnFocusChangeListener mMarqueeEnablerFocus = new View.OnFocusChangeListener() {
-
-        public void onFocusChange(View v, boolean hasFocus) {
-            doMarquee(v, hasFocus);
-        }
-    };
-    
-    private void doMarquee(View v, boolean hasFocus) {
-        switch (v.getId()) {
-            case R.id.browse_button:
-                findViewById(R.id.artists_label).setSelected(hasFocus);
-                break;
-            case R.id.tracks_button:
-                findViewById(R.id.tracks_label).setSelected(hasFocus);
-                break;
-            case R.id.albums_button:
-                findViewById(R.id.albums_label).setSelected(hasFocus);
-                break;
-            case R.id.playlists_button:
-                findViewById(R.id.playlists_label).setSelected(hasFocus);
-                break;
-          }
-    }
-
     private void updateMenu() {
         try {
             if (MusicUtils.sService != null && MusicUtils.sService.getAudioId() != -1) {
@@ -174,7 +126,7 @@ public class MusicBrowserActivity extends Activity
             doAutoShuffle();
         }
     }
-
+    
     @Override
     public void onPause() {
         super.onPause();
@@ -220,10 +172,7 @@ public class MusicBrowserActivity extends Activity
                     break;
                     
                 case SEARCH_MUSIC: {
-                    intent = new Intent(Intent.ACTION_PICK);
-                    intent.setClass(this, QueryBrowserActivity.class);
-                    intent.putExtra(SearchManager.QUERY, "");
-                    startActivity(intent);
+                    startSearch("", false, null, false);
                     return true;
                 }
             }
@@ -232,19 +181,6 @@ public class MusicBrowserActivity extends Activity
         return super.onOptionsItemSelected(item);
     }
     
-    
-    // TODO: Activities are requested to call onSearchRequested, and to override
-    // that function in order to insert custom fields (e.g. the search bundle).  startSearch
-    // was not intended to be overridden.
-    @Override
-    public void startSearch(String initialQuery, boolean selectQuery, Bundle appSearchData,
-            boolean globalSearch) {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setClass(this, QueryBrowserActivity.class);
-        intent.putExtra(SearchManager.QUERY, initialQuery);
-        startActivity(intent);
-    }
-
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
@@ -323,8 +259,10 @@ public class MusicBrowserActivity extends Activity
                 Drawable dr = getResources().getDrawable(android.R.drawable.menuitem_background);
                 dr.setState(new int[] { android.R.attr.state_focused});
                 mNowPlayingView.setBackgroundDrawable(dr);
+                mNowPlayingView.setSelected(true);
             } else {
                 mNowPlayingView.setBackgroundDrawable(mBack);
+                mNowPlayingView.setSelected(false);
             }
         }
     };

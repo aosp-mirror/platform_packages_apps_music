@@ -26,9 +26,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.MediaFile;
@@ -44,7 +41,6 @@ import android.provider.MediaStore;
 import android.text.Layout;
 import android.text.TextUtils.TruncateAt;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -53,8 +49,8 @@ import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.Window;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -83,6 +79,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     private AlbumArtHandler mAlbumArtHandler;
     private Toast mToast;
     private boolean mRelaunchAfterConfigChange;
+    private int mTouchSlop;
 
     public MediaPlaybackActivity()
     {
@@ -104,7 +101,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         mCurrentTime = (TextView) findViewById(R.id.currenttime);
         mTotalTime = (TextView) findViewById(R.id.totaltime);
         mProgress = (ProgressBar) findViewById(android.R.id.progress);
-        mAlbum = (AlbumView) findViewById(R.id.album);
+        mAlbum = (ImageView) findViewById(R.id.album);
         mArtistName = (TextView) findViewById(R.id.artistname);
         mAlbumName = (TextView) findViewById(R.id.albumname);
         mTrackName = (TextView) findViewById(R.id.trackname);
@@ -154,11 +151,12 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         } else {
             mOneShot = getIntent().getBooleanExtra("oneshot", false);
         }
+
+        mTouchSlop = ViewConfiguration.get(this).getScaledTouchSlop();
     }
     
     int mInitialX = -1;
     int mLastX = -1;
-    int SLOP = ViewConfiguration.getTouchSlop();
     int mTextWidth = 0;
     int mViewWidth = 0;
     boolean mDraggingLabel = false;
@@ -213,7 +211,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 return true;
             }
             int delta = mInitialX - (int) event.getX();
-            if (Math.abs(delta) > SLOP) {
+            if (Math.abs(delta) > mTouchSlop) {
                 // start moving
                 mLabelScroller.removeMessages(0, tv);
                 
@@ -267,22 +265,40 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         CharSequence title = null;
         String mime = null;
         String query = null;
+        String artist;
+        String album;
+        String song;
         
-        CharSequence artist = mArtistName.getText();
-        CharSequence album = mAlbumName.getText();
-        CharSequence song = mTrackName.getText();
+        try {
+            artist = mService.getArtistName();
+            album = mService.getAlbumName();
+            song = mService.getTrackName();
+        } catch (RemoteException ex) {
+            return true;
+        }
         
-        if (view.equals(mArtistName.getParent())) {
+        boolean knownartist = !MediaFile.UNKNOWN_STRING.equals(artist);
+        boolean knownalbum = !MediaFile.UNKNOWN_STRING.equals(album);
+        
+        if (knownartist && view.equals(mArtistName.getParent())) {
             title = artist;
             query = artist.toString();
             mime = MediaStore.Audio.Artists.ENTRY_CONTENT_TYPE;
-        } else if (view.equals(mAlbumName.getParent())) {
+        } else if (knownalbum && view.equals(mAlbumName.getParent())) {
             title = album;
-            query = artist + " " + album;
+            if (knownartist) {
+                query = artist + " " + album;
+            } else {
+                query = album;
+            }
             mime = MediaStore.Audio.Albums.ENTRY_CONTENT_TYPE;
-        } else if (view.equals(mTrackName.getParent())) {
+        } else if (view.equals(mTrackName.getParent()) || !knownartist || !knownalbum) {
             title = song;
-            query = artist + " " + song;
+            if (knownartist) {
+                query = artist + " " + song;
+            } else {
+                query = song;
+            }
             mime = "audio/*"; // the specific type doesn't matter, so don't bother retrieving it
         } else {
             throw new RuntimeException("shouldn't be here");
@@ -290,10 +306,15 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         title = getString(R.string.mediasearch, title);
 
         Intent i = new Intent();
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         i.setAction(MediaStore.INTENT_ACTION_MEDIA_SEARCH);
         i.putExtra(SearchManager.QUERY, query);
-        i.putExtra(MediaStore.EXTRA_MEDIA_ARTIST, artist);
-        i.putExtra(MediaStore.EXTRA_MEDIA_ALBUM, album);
+        if(knownartist) {
+            i.putExtra(MediaStore.EXTRA_MEDIA_ARTIST, artist);
+        }
+        if(knownalbum) {
+            i.putExtra(MediaStore.EXTRA_MEDIA_ALBUM, album);
+        }
         i.putExtra(MediaStore.EXTRA_MEDIA_TITLE, song);
         i.putExtra(MediaStore.EXTRA_MEDIA_FOCUS, mime);
 
@@ -540,7 +561,8 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                         int [] list = new int[1];
                         list[0] = MusicUtils.getCurrentAudioId();
                         Bundle b = new Bundle();
-                        b.putString("description", mService.getTrackName());
+                        b.putString("description", getString(R.string.delete_song_desc,
+                                mService.getTrackName()));
                         b.putIntArray("items", list);
                         intent = new Intent();
                         intent.setClass(this, DeleteItems.class);
@@ -1056,7 +1078,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         }
     }
     
-    private AlbumView mAlbum;
+    private ImageView mAlbum;
     private TextView mCurrentTime;
     private TextView mTotalTime;
     private TextView mArtistName;
@@ -1117,8 +1139,8 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case ALBUM_ART_DECODED:
-                    mAlbum.setArtwork((Bitmap)msg.obj);
-                    mAlbum.invalidate();
+                    mAlbum.setImageBitmap((Bitmap)msg.obj);
+                    mAlbum.getDrawable().setDither(true);
                     break;
 
                 case REFRESH:

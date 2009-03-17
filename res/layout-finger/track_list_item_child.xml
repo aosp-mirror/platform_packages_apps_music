@@ -20,7 +20,8 @@
     android:layout_width="fill_parent"
     android:layout_height="64dip"
     android:background="@drawable/list_selector"
-    android:paddingLeft="24px">
+    android:gravity="center_vertical"
+    android:ignoreGravity="@+id/icon">
 
     <include layout="@layout/track_list_item_common" />
 

@@ -15,7 +15,7 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt">"再生リスト名"</string>
+    <string name="create_playlist_create_text_prompt">"プレイリスト名"</string>
     <string name="rename_playlist_same_prompt">"「<xliff:g id="PLAYLIST">%s</xliff:g>」の新しい名前"</string>
     <string name="rename_playlist_diff_prompt">"「<xliff:g id="PLAYLIST">%s</xliff:g>」の新しい名前"</string>
 </resources>

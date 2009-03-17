@@ -26,8 +26,9 @@
         <item quantity="other"><xliff:g id="count">%d</xliff:g> songs</item>
     </plurals>
 
+    <!-- shows how many songs on the album are by the selected artist, out of how many total, if those two numbers are different -->
     <plurals name="Nsongscomp">
-        <item quantity="other"><xliff:g id="count">%d</xliff:g> songs total, <xliff:g id="count_for_artist">%d</xliff:g> by <xliff:g id="count_for_artist">%s</xliff:g></item>
+        <item quantity="other"><xliff:g id="count_for_artist">%2$d</xliff:g> of <xliff:g id="total_count">%1$d</xliff:g> songs</item>
     </plurals>
 
     <!-- Used in artists list view, indicates how many albums exist for a given artist. -->
@@ -115,10 +116,6 @@
     <string name="browse_menu">Artists</string>
     <!-- Library screen, menu item -->
     <string name="search_title">Search</string>
-    <!-- Title of screen when there are no artists, or if the SD card is busy -->
-    <string name="no_artists_title">No artists</string>
-    <!-- Title of screen when there are no albums, or if the SD card is busy -->
-    <string name="no_albums_title">No albums</string>
     <!-- Title of screen when there are no songs, or if the SD card is busy -->
     <string name="no_tracks_title">No songs</string>
     <!-- Title of screen when there are no videos, or if the SD card is busy -->
@@ -135,8 +132,14 @@
     <string name="playlist_deleted_message">Playlist deleted.</string>
     <!-- Transient popup message shown after renaming a playlist -->
     <string name="playlist_renamed_message">Playlist renamed.</string>
-    <!-- The name of the pseudo-playlist that holds all the recently added files -->
+    <!-- The name of the pseudo-playlist that holds all the recently added files, shown in list view -->
     <string name="recentlyadded">Recently added</string>
+    <!-- The name of the pseudo-playlist that holds all the recently added files, shown in title bar of songs list -->
+    <string name="recentlyadded_title">Recently added</string>
+    <!-- The name of the pseudo-playlist that holds all the podcasts, shown in list view -->
+    <string name="podcasts_listitem">Podcasts</string>
+    <!-- The name of the pseudo-playlist that holds all the podcasts, shown in title bar of songs list -->
+    <string name="podcasts_title">Podcasts</string>
     <!-- Title of screen when no sd card is present -->
     <string name="sdcard_missing_title">No SD card</string>
     <!-- label underneath icon used to indicate that no sd card is present -->
@@ -260,6 +263,8 @@
     <string name="working_albums">Albums\u2026</string>
     <!-- Shown in the title bar while the list of songs is being retrieved in the background -->
     <string name="working_songs">Songs\u2026</string>
+    <!-- Shown in the title bar while the list of playlists is being retrieved in the background -->
+    <string name="working_playlists">Playlists\u2026</string>
     
     <!-- Shown in the music picker while loading the music database. -->
     <string name="loading">Loading</string>
@@ -271,5 +276,11 @@
     <string name="sort_by_artist">Artists</string>
     <!--  Title of the music picker activity. -->
     <string name="music_picker_title">Select music track</string>
+
+    <!-- Title for track number in music gadget -->
+    <string name="gadget_track">Track <xliff:g id="track_number">%d</xliff:g></string>
+
+    <!-- Mixes together track number and track title in music gadget -->
+    <string name="gadget_track_num_title" translatable="false"><xliff:g id="track_number">%d</xliff:g>. <xliff:g id="track_title">%s</xliff:g></string>
 </resources>
 

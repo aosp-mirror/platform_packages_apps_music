@@ -15,7 +15,7 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt">"Nazwa listy odtwarzania"</string>
+    <string name="create_playlist_create_text_prompt">"Nazwa playlisty"</string>
     <string name="rename_playlist_same_prompt">"Zmień nazwę „<xliff:g id="PLAYLIST">%s</xliff:g>” na"</string>
     <string name="rename_playlist_diff_prompt">"Zmień nazwę „<xliff:g id="PLAYLIST">%s</xliff:g>” na"</string>
 </resources>

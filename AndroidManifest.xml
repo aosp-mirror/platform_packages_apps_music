@@ -26,17 +26,21 @@
         android:label="@string/musicbrowserlabel"
         android:taskAffinity="android.task.music"
         android:allowTaskReparenting="true">
-        <activity android:name="MusicBrowserActivity"
-                android:theme="@android:style/Theme.NoTitleBar">
+        <activity android:name="MusicBrowserActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+             <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".QueryBrowserActivity"
+             /> 
+       </activity>
         <receiver android:name="MediaButtonIntentReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
+                <action android:name="android.media.AUDIO_BECOMING_NOISY" />
             </intent-filter>
         </receiver>
         <!-- This is the "current music playing" panel, which has special
@@ -119,6 +123,10 @@
                 <action android:name="android.intent.action.SEARCH" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable"
+            />
         </activity>
         <activity android:name="PlaylistBrowserActivity" android:label="@string/musicbrowserlabel">
             <intent-filter>
@@ -208,5 +216,12 @@
         <activity android:name="DeleteItems" android:theme="@android:style/Theme.Dialog" />
         <activity android:name="ScanningProgress" android:theme="@android:style/Theme.Dialog" />
         <service android:name="MediaPlaybackService" android:exported="true" />
+
+        <receiver android:name="MediaAppWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/appwidget_info" />
+        </receiver>
     </application>
 </manifest>

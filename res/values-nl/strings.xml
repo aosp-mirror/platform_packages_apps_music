@@ -20,7 +20,7 @@
     <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> nummers"</item>
   </plurals>
   <plurals name="Nsongscomp">
-    <item quantity="other">"<xliff:g id="COUNT_0">%d</xliff:g> nummers in totaal, <xliff:g id="COUNT_FOR_ARTIST_1">%d</xliff:g> van <xliff:g id="COUNT_FOR_ARTIST_2">%s</xliff:g>"</item>
+    <item quantity="other">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> van <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> nummers"</item>
   </plurals>
   <plurals name="Nalbums">
     <item quantity="one">"1 album"</item>
@@ -35,7 +35,7 @@
     <string name="play_all">"Alles afspelen"</string>
     <string name="delete_artist_desc">"Alle nummers van <xliff:g id="ARTIST">%s</xliff:g> worden definitief van de SD-kaart verwijderd."</string>
     <string name="delete_album_desc">"Het hele album \'<xliff:g id="ALBUM">%s</xliff:g>\' wordt definitief van de SD-kaart verwijderd."</string>
-    <string name="delete_song_desc">"\'<xliff:g id="SONG">%s</xliff:g>\' wordt definitief van de SD-kaart verwijderd."</string>
+    <string name="delete_song_desc">"<xliff:g id="SONG">%s</xliff:g>\' wordt definitief van de SD-kaart verwijderd."</string>
     <string name="delete_confirm_button_text">"OK"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one">"1 nummer is verwijderd."</item>
@@ -55,8 +55,6 @@
     <string name="all_title">"Alle media"</string>
     <string name="browse_menu">"Artiesten"</string>
     <string name="search_title">"Zoeken"</string>
-    <string name="no_artists_title">"Geen artiesten"</string>
-    <string name="no_albums_title">"Geen albums"</string>
     <string name="no_tracks_title">"Geen nummers"</string>
     <string name="no_videos_title">"Geen video\'s"</string>
     <string name="no_playlists_title">"Geen afspeellijsten"</string>
@@ -66,6 +64,9 @@
     <string name="playlist_deleted_message">"Afspeellijst verwijderd."</string>
     <string name="playlist_renamed_message">"Naam van afspeellijst gewijzigd."</string>
     <string name="recentlyadded">"Onlangs toegevoegd"</string>
+    <string name="recentlyadded_title">"Onlangs toegevoegd"</string>
+    <string name="podcasts_listitem">"Podcasts"</string>
+    <string name="podcasts_title">"Podcasts"</string>
     <string name="sdcard_missing_title">"Geen SD-kaart"</string>
     <string name="sdcard_missing_message">"Er is geen SD-kaart in de telefoon geplaatst."</string>
     <string name="sdcard_busy_title">"SD-kaart niet beschikbaar"</string>
@@ -81,7 +82,7 @@
     <string name="repeat_all_notif">"Alle nummers worden herhaald."</string>
     <string name="ringtone_menu">"Gebruiken als beltoon van telefoon"</string>
     <string name="ringtone_menu_short">"Gebruiken als beltoon"</string>
-    <string name="ringtone_set">"\'%s\' ingesteld als beltoon van telefoon."</string>
+    <string name="ringtone_set">"%s\' ingesteld als beltoon van telefoon."</string>
     <string name="play_selection">"Afspelen"</string>
     <string name="add_to_playlist">"Toevoegen aan afspeellijst"</string>
     <string name="queue">"Huidige afspeellijst"</string>
@@ -128,14 +129,11 @@
     <string name="working_artists">"Artiesten…"</string>
     <string name="working_albums">"Albums…"</string>
     <string name="working_songs">"Nummers…"</string>
-    <!-- no translation found for loading (3267924133697717662) -->
-    <skip />
-    <!-- no translation found for sort_by_track (7662999005554152565) -->
-    <skip />
-    <!-- no translation found for sort_by_album (2912837715658975248) -->
-    <skip />
-    <!-- no translation found for sort_by_artist (4607024967813199992) -->
-    <skip />
-    <!-- no translation found for music_picker_title (1561623486324013570) -->
-    <skip />
+    <string name="working_playlists">"Afspeellijsten…"</string>
+    <string name="loading">"Laden"</string>
+    <string name="sort_by_track">"Tracks"</string>
+    <string name="sort_by_album">"Albums"</string>
+    <string name="sort_by_artist">"Artiesten"</string>
+    <string name="music_picker_title">"Muziektrack selecteren"</string>
+    <string name="gadget_track">"Track <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
 </resources>
