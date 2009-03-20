@@ -19,24 +19,11 @@ package com.android.music;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.media.MediaFile;
 import android.os.Environment;
-import android.os.SystemClock;
-import android.util.Config;
-import android.util.Log;
-import android.view.View;
 import android.widget.RemoteViews;
 
 /**

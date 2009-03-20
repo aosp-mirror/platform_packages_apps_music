@@ -115,12 +115,12 @@
     <string name="weekpicker_set">"完了"</string>
     <string name="weekpicker_title">"期間の設定"</string>
     <string name="save_as_playlist">"プレイリストとして保存"</string>
-    <string name="clear_playlist">"プレイリストをクリア"</string>
-    <string name="musicbrowserlabel">"ミュージック"</string>
+    <string name="clear_playlist">"プレイリストを消去"</string>
+    <string name="musicbrowserlabel">"音楽"</string>
     <string name="musicshortcutlabel">"ミュージックプレイリスト"</string>
-    <string name="mediaplaybacklabel">"ミュージック"</string>
+    <string name="mediaplaybacklabel">"音楽"</string>
     <string name="videobrowserlabel">"動画"</string>
-    <string name="mediapickerlabel">"ミュージック"</string>
+    <string name="mediapickerlabel">"音楽"</string>
     <string name="playback_failed">"プレーヤーが対応していない音声ファイル形式です。"</string>
     <string name="cancel">"キャンセル"</string>
     <string name="remove_from_playlist">"プレイリストから削除"</string>

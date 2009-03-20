@@ -760,6 +760,7 @@ public class MediaPlaybackService extends Service {
             if (mShuffleMode == SHUFFLE_AUTO) {
                 mShuffleMode = SHUFFLE_NORMAL;
             }
+            int oldId = getAudioId();
             int listlength = list.length;
             boolean newlist = true;
             if (mPlayListLen == listlength) {
@@ -786,8 +787,7 @@ public class MediaPlaybackService extends Service {
 
             saveBookmarkIfNeeded();
             openCurrent();
-            if (!newlist && mPlayPos != oldpos) {
-                // the queue didn't change, but the position did
+            if (oldId != getAudioId()) {
                 notifyChange(META_CHANGED);
             }
         }
