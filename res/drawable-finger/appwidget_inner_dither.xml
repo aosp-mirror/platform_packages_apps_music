@@ -14,8 +14,7 @@
      limitations under the License.
 -->
 
-<resources>
-    <color name="appwidget_text">#ff000000</color>
-    <color name="appwidget_shadow">#ffffffff</color>
-</resources>
-
+<nine-patch xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/appwidget_inner"
+    android:dither="true"
+/>
