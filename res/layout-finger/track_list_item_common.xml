@@ -66,8 +66,8 @@
 
     <ImageView android:id="@+id/play_indicator"
         android:layout_alignParentRight="true"
-        android:layout_alignBottom="@id/line2"
         android:layout_below="@id/duration"        
+        android:layout_marginTop="10dip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="12dip" />
