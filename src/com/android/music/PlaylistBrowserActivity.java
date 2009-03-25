@@ -346,7 +346,7 @@ public class PlaylistBrowserActivity extends ListActivity
             intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcut);
             intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, ((TextView) v.findViewById(R.id.line1)).getText());
             intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(
-                    this, R.drawable.app_music));
+                    this, R.drawable.ic_launcher_shortcut_music_playlist));
 
             setResult(RESULT_OK, intent);
             finish();
