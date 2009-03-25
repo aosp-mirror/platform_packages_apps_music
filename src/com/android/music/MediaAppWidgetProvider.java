@@ -138,10 +138,8 @@ public class MediaAppWidgetProvider extends AppWidgetProvider {
         final boolean playing = service.isPlaying();
         if (playing) {
             views.setImageViewResource(R.id.control_play, R.drawable.appwidget_pause);
-            views.setImageViewResource(R.id.led, R.drawable.appwidget_led_anim);
         } else {
             views.setImageViewResource(R.id.control_play, R.drawable.appwidget_play);
-            views.setImageViewResource(R.id.led, R.drawable.appwidget_led0);
         }
 
         // Link actions buttons to intents

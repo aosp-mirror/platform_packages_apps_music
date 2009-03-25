@@ -24,6 +24,7 @@
         android:id="@+id/control_play"
         android:layout_width="48dip"
         android:layout_height="fill_parent"
+        android:layout_marginLeft="2dip"
         android:src="@drawable/appwidget_play"
         android:background="@android:color/transparent"
         android:scaleType="center"
@@ -39,39 +40,21 @@
         android:scaleType="center"
         />
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/album_appwidget"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_toRightOf="@id/control_play"
         android:layout_toLeftOf="@id/control_next"
         android:background="@drawable/appwidget_inner_dither"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
         >
-
-        <com.android.server.status.AnimatedImageView
-            android:id="@+id/led"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dip"
-            android:layout_marginRight="10dip"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/appwidget_led0"
-            />
-
-        <ImageView
-            android:visibility="invisible"
-            android:id="@+id/anchor"
-            android:layout_width="0dip"
-            android:layout_height="7dip"
-            android:layout_centerVertical="true"
-            />
 
         <TextView
             android:id="@+id/title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/anchor"
             android:layout_marginLeft="10dip"
             android:layout_marginRight="20dip"
             android:textColor="@color/appwidget_text"
@@ -87,9 +70,8 @@
             android:id="@+id/artist"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/anchor"
             android:layout_marginLeft="10dip"
-            android:layout_marginRight="40dip"
+            android:layout_marginRight="20dip"
             android:textColor="@color/appwidget_text"
             android:textSize="14sp"
             android:singleLine="true"
@@ -98,6 +80,6 @@
             android:ellipsize="none"
             />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>
