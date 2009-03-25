@@ -279,8 +279,5 @@
 
     <!-- Title for track number in music gadget -->
     <string name="gadget_track">Track <xliff:g id="track_number">%d</xliff:g></string>
-
-    <!-- Mixes together track number and track title in music gadget -->
-    <string name="gadget_track_num_title" translatable="false"><xliff:g id="track_number">%d</xliff:g>. <xliff:g id="track_title">%s</xliff:g></string>
 </resources>
 
