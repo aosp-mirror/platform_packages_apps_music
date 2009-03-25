@@ -14,8 +14,13 @@
      limitations under the License.
 -->
 
-<resources>
-    <color name="appwidget_text">#ff000000</color>
-    <color name="appwidget_shadow">#ffffffff</color>
-</resources>
-
+<animation-list
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:oneshot="false">
+    <item android:drawable="@drawable/appwidget_led1" android:duration="500" />
+    <item android:drawable="@drawable/appwidget_led3" android:duration="500" />
+    <item android:drawable="@drawable/appwidget_led2" android:duration="500" />
+    <item android:drawable="@drawable/appwidget_led5" android:duration="500" />
+    <item android:drawable="@drawable/appwidget_led4" android:duration="500" />
+    <item android:drawable="@drawable/appwidget_led3" android:duration="500" />
+</animation-list>
