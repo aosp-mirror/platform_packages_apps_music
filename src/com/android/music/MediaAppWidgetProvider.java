@@ -19,24 +19,11 @@ package com.android.music;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.media.MediaFile;
 import android.os.Environment;
-import android.os.SystemClock;
-import android.util.Config;
-import android.util.Log;
-import android.view.View;
 import android.widget.RemoteViews;
 
 /**
@@ -84,6 +71,7 @@ public class MediaAppWidgetProvider extends AppWidgetProvider {
         final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.album_appwidget);
         
         views.setTextViewText(R.id.title, res.getText(R.string.emptyplaylist));
+        views.setTextViewText(R.id.artist, null);
 
         linkButtons(context, views, false /* not playing */);
         pushUpdate(context, appWidgetIds, views);
@@ -129,30 +117,30 @@ public class MediaAppWidgetProvider extends AppWidgetProvider {
         final RemoteViews views = new RemoteViews(service.getPackageName(), R.layout.album_appwidget);
         
         final int track = service.getQueuePosition() + 1;
-        final String titleName = service.getTrackName();
-        final String artistName = service.getArtistName();
+        CharSequence titleName = service.getTrackName();
+        CharSequence artistName = service.getArtistName();
         
         // Format title string with track number, or show SD card message
-        CharSequence titleString = "";
         String status = Environment.getExternalStorageState();
-        if (titleName != null) {
-            titleString = res.getString(R.string.gadget_track_num_title, track, titleName);
-        } else if (status.equals(Environment.MEDIA_SHARED) ||
+        if (status.equals(Environment.MEDIA_SHARED) ||
                 status.equals(Environment.MEDIA_UNMOUNTED)) {
-            titleString = res.getText(R.string.sdcard_busy_title);
+            titleName = res.getText(R.string.sdcard_busy_title);
         } else if (status.equals(Environment.MEDIA_REMOVED)) {
-            titleString = res.getText(R.string.sdcard_missing_title);
-        } else {
-            titleString = res.getText(R.string.emptyplaylist);
+            titleName = res.getText(R.string.sdcard_missing_title);
+        } else if (titleName == null) {
+            titleName = res.getText(R.string.emptyplaylist);
         }
         
-        views.setTextViewText(R.id.title, titleString);
+        views.setTextViewText(R.id.title, titleName);
         views.setTextViewText(R.id.artist, artistName);
         
         // Set correct drawable for pause state
         final boolean playing = service.isPlaying();
-        views.setImageViewResource(R.id.control_play, playing ?
-                R.drawable.appwidget_pause : R.drawable.appwidget_play);
+        if (playing) {
+            views.setImageViewResource(R.id.control_play, R.drawable.appwidget_pause);
+        } else {
+            views.setImageViewResource(R.id.control_play, R.drawable.appwidget_play);
+        }
 
         // Link actions buttons to intents
         linkButtons(service, views, playing);

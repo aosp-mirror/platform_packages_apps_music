@@ -325,23 +325,29 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     private OnSeekBarChangeListener mSeekListener = new OnSeekBarChangeListener() {
         public void onStartTrackingTouch(SeekBar bar) {
             mLastSeekEventTime = 0;
+            mFromTouch = true;
         }
-        public void onProgressChanged(SeekBar bar, int progress, boolean fromtouch) {
-            if (mService == null) return;
-            if (fromtouch) {
-                long now = SystemClock.elapsedRealtime();
-                if ((now - mLastSeekEventTime) > 250) {
-                    mLastSeekEventTime = now;
-                    mPosOverride = mDuration * progress / 1000;
-                    try {
-                        mService.seek(mPosOverride);
-                    } catch (RemoteException ex) {
-                    }
+        public void onProgressChanged(SeekBar bar, int progress, boolean fromuser) {
+            if (!fromuser || (mService == null)) return;
+            long now = SystemClock.elapsedRealtime();
+            if ((now - mLastSeekEventTime) > 250) {
+                mLastSeekEventTime = now;
+                mPosOverride = mDuration * progress / 1000;
+                try {
+                    mService.seek(mPosOverride);
+                } catch (RemoteException ex) {
+                }
+
+                // trackball event, allow progress updates
+                if (!mFromTouch) {
+                    refreshNow();
+                    mPosOverride = -1;
                 }
             }
         }
         public void onStopTrackingTouch(SeekBar bar) {
             mPosOverride = -1;
+            mFromTouch = false;
         }
     };
     
@@ -1086,6 +1092,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     private TextView mTrackName;
     private ProgressBar mProgress;
     private long mPosOverride = -1;
+    private boolean mFromTouch = false;
     private long mDuration;
     private int seekmethod;
     private boolean paused;

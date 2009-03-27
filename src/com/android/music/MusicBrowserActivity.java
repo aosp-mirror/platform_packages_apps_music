@@ -218,7 +218,10 @@ public class MusicBrowserActivity extends Activity
     private ServiceConnection autoshuffle = new ServiceConnection() {
         public void onServiceConnected(ComponentName classname, IBinder obj) {
             // we need to be able to bind again, so unbind
-            unbindService(this);
+            try {
+                unbindService(this);
+            } catch (IllegalArgumentException e) {
+            }
             IMediaPlaybackService serv = IMediaPlaybackService.Stub.asInterface(obj);
             if (serv != null) {
                 try {

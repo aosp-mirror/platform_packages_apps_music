@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright (C) 2009 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,14 +13,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_window_focused="false"
-        android:drawable="@drawable/appwidget_play_normal" />
-    <item android:state_pressed="true"
-        android:drawable="@drawable/appwidget_play_pressed" />
-    <item android:state_focused="true"
-        android:drawable="@drawable/appwidget_play_focused" />
-    <item
-         android:drawable="@drawable/appwidget_play_normal" />
-</selector>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="notification_artist_album">"<xliff:g id="ALBUM">%2$s</xliff:g>"\n"<xliff:g id="ARTIST">%1$s</xliff:g>"</string>
+</resources>

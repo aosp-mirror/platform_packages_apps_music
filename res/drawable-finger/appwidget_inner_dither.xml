@@ -14,13 +14,7 @@
      limitations under the License.
 -->
 
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_window_focused="false"
-        android:drawable="@drawable/appwidget_play_normal" />
-    <item android:state_pressed="true"
-        android:drawable="@drawable/appwidget_play_pressed" />
-    <item android:state_focused="true"
-        android:drawable="@drawable/appwidget_play_focused" />
-    <item
-         android:drawable="@drawable/appwidget_play_normal" />
-</selector>
+<nine-patch xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/appwidget_inner"
+    android:dither="true"
+/>

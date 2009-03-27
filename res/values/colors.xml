@@ -15,6 +15,7 @@
 -->
 
 <resources>
-    <color name="appwidget_text">#ffffffff</color>
+    <color name="appwidget_text">#ff000000</color>
+    <color name="appwidget_shadow">#ffffffff</color>
 </resources>
 
