@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Environment;
+import android.view.View;
 import android.widget.RemoteViews;
 
 /**
@@ -70,8 +71,8 @@ public class MediaAppWidgetProvider extends AppWidgetProvider {
         final Resources res = context.getResources();
         final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.album_appwidget);
         
-        views.setTextViewText(R.id.title, res.getText(R.string.emptyplaylist));
-        views.setTextViewText(R.id.artist, null);
+        views.setViewVisibility(R.id.title, View.GONE);
+        views.setTextViewText(R.id.artist, res.getText(R.string.emptyplaylist));
 
         linkButtons(context, views, false /* not playing */);
         pushUpdate(context, appWidgetIds, views);
@@ -119,20 +120,30 @@ public class MediaAppWidgetProvider extends AppWidgetProvider {
         final int track = service.getQueuePosition() + 1;
         CharSequence titleName = service.getTrackName();
         CharSequence artistName = service.getArtistName();
+        CharSequence errorState = null;
         
         // Format title string with track number, or show SD card message
         String status = Environment.getExternalStorageState();
         if (status.equals(Environment.MEDIA_SHARED) ||
                 status.equals(Environment.MEDIA_UNMOUNTED)) {
-            titleName = res.getText(R.string.sdcard_busy_title);
+            errorState = res.getText(R.string.sdcard_busy_title);
         } else if (status.equals(Environment.MEDIA_REMOVED)) {
-            titleName = res.getText(R.string.sdcard_missing_title);
+            errorState = res.getText(R.string.sdcard_missing_title);
         } else if (titleName == null) {
-            titleName = res.getText(R.string.emptyplaylist);
+            errorState = res.getText(R.string.emptyplaylist);
         }
         
-        views.setTextViewText(R.id.title, titleName);
-        views.setTextViewText(R.id.artist, artistName);
+        if (errorState != null) {
+            // Show error state to user
+            views.setViewVisibility(R.id.title, View.GONE);
+            views.setTextViewText(R.id.artist, errorState);
+            
+        } else {
+            // No error, so show normal titles
+            views.setViewVisibility(R.id.title, View.VISIBLE);
+            views.setTextViewText(R.id.title, titleName);
+            views.setTextViewText(R.id.artist, artistName);
+        }
         
         // Set correct drawable for pause state
         final boolean playing = service.isPlaying();
