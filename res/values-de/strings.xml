@@ -92,7 +92,7 @@
     <item quantity="one">"1 Titel zur Playlist hinzugefügt"</item>
     <item quantity="other">"%d Titel zur Playlist hinzugefügt."</item>
   </plurals>
-    <string name="emptyplaylist">"Ausgewählte Playlist ist leer"</string>
+    <string name="emptyplaylist">"Playlist ist leer"</string>
     <string name="create_playlist_create_text">"Speichern"</string>
     <string name="create_playlist_overwrite_text">"Überschreiben"</string>
     <string name="service_start_error_title">"Problem bei der Wiedergabe"</string>
