@@ -28,8 +28,8 @@
   </plurals>
     <string name="goto_start">"Biblioteka"</string>
     <string name="goto_playback">"Odtwórz"</string>
-    <string name="party_shuffle">"Losowo w trybie imprezy"</string>
-    <string name="party_shuffle_off">"Wyłączono losowe odtwarzanie w trybie imprezy"</string>
+    <string name="party_shuffle">"Losowo – tryb imprezy"</string>
+    <string name="party_shuffle_off">"Wyłącz tryb imprezy"</string>
     <string name="delete_item">"Usuń"</string>
     <string name="shuffle_all">"Wszystkie losowo"</string>
     <string name="play_all">"Odtwórz wszystko"</string>
@@ -135,5 +135,5 @@
     <string name="sort_by_album">"Albumy"</string>
     <string name="sort_by_artist">"Wykonawcy"</string>
     <string name="music_picker_title">"Wybierz utwór muzyczny"</string>
-    <string name="gadget_track">"Ścieżka <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+    <string name="gadget_track">"Utwór <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
 </resources>

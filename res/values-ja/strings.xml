@@ -64,7 +64,7 @@
     <string name="playlist_deleted_message">"プレイリストを削除しました。"</string>
     <string name="playlist_renamed_message">"プレイリストの名前を変更しました。"</string>
     <string name="recentlyadded">"最近追加したアイテム"</string>
-    <string name="recentlyadded_title">"最近追加した項目"</string>
+    <string name="recentlyadded_title">"最近追加したアイテム"</string>
     <string name="podcasts_listitem">"ポッドキャスト"</string>
     <string name="podcasts_title">"ポッドキャスト"</string>
     <string name="sdcard_missing_title">"SDカードがありません"</string>
