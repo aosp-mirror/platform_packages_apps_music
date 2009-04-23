@@ -277,8 +277,11 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
             return true;
         }
         
-        boolean knownartist = !MediaFile.UNKNOWN_STRING.equals(artist);
-        boolean knownalbum = !MediaFile.UNKNOWN_STRING.equals(album);
+        boolean knownartist =
+            (artist != null) && !MediaFile.UNKNOWN_STRING.equals(artist);
+
+        boolean knownalbum =
+            (album != null) && !MediaFile.UNKNOWN_STRING.equals(album);
         
         if (knownartist && view.equals(mArtistName.getParent())) {
             title = artist;
@@ -293,6 +296,12 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
             }
             mime = MediaStore.Audio.Albums.ENTRY_CONTENT_TYPE;
         } else if (view.equals(mTrackName.getParent()) || !knownartist || !knownalbum) {
+            if ((song == null) || MediaFile.UNKNOWN_STRING.equals(song)) {
+                // A popup of the form "Search for null/'' using ..." is pretty
+                // unhelpful, plus, we won't find any way to buy it anyway.
+                return true;
+            }
+
             title = song;
             if (knownartist) {
                 query = artist + " " + song;
