@@ -90,7 +90,7 @@
     <string name="new_playlist_name_template">"Nowa playlista <xliff:g id="NUMBER">%d</xliff:g>"</string>
   <plurals name="NNNtrackstoplaylist">
     <item quantity="one">"Dodano 1 utwór do playlisty."</item>
-    <item quantity="other">"%d utworów dodano do listy odtwarzania."</item>
+    <item quantity="other">"Utworów dodanych do playlisty: %d."</item>
   </plurals>
     <string name="emptyplaylist">"Wybrana playlista jest pusta."</string>
     <string name="create_playlist_create_text">"Zapisz"</string>
@@ -129,7 +129,7 @@
     <string name="working_artists">"Wykonawcy…"</string>
     <string name="working_albums">"Albumy…"</string>
     <string name="working_songs">"Utwory…"</string>
-    <string name="working_playlists">"Listy odtwarzania..."</string>
+    <string name="working_playlists">"Playlisty…"</string>
     <string name="loading">"Ładowanie"</string>
     <string name="sort_by_track">"Utwory"</string>
     <string name="sort_by_album">"Albumy"</string>
