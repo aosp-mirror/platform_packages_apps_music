@@ -33,7 +33,7 @@
     <string name="delete_item">"刪除"</string>
     <string name="shuffle_all">"全部隨機播放"</string>
     <string name="play_all">"全部播放"</string>
-    <string name="delete_artist_desc">"<xliff:g id="ARTIST">%s</xliff:g> 的所有歌曲會從 SD 卡永久刪除。"</string>
+    <string name="delete_artist_desc">"<xliff:g id="ARTIST">%s</xliff:g>的所有歌曲會從 SD 卡永久刪除。"</string>
     <string name="delete_album_desc">"「<xliff:g id="ALBUM">%s</xliff:g>」的所有內容會從 SD 卡永久刪除。"</string>
     <string name="delete_song_desc">"「<xliff:g id="SONG">%s</xliff:g>」會從 SD 卡永久刪除。"</string>
     <string name="delete_confirm_button_text">"確定"</string>
