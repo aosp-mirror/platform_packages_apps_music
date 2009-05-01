@@ -18,6 +18,6 @@
     android:label="@string/search_title"
 
     android:searchSuggestAuthority="media"
-    android:searchSuggestPath="external/audio"
+    android:searchSuggestPath="external/audio/search"
     android:searchSuggestIntentAction="android.intent.action.VIEW"
 />
