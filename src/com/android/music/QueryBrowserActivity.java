@@ -33,6 +33,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.BaseColumns;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
@@ -267,15 +268,17 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
             filter = "";
         }
         String[] ccols = new String[] {
-                "_id",   // this will be the artist, album or track ID
+                BaseColumns._ID,   // this will be the artist, album or track ID
                 MediaStore.Audio.Media.MIME_TYPE, // mimetype of audio file, or "artist" or "album"
-                SearchManager.SUGGEST_COLUMN_TEXT_1,
+                MediaStore.Audio.Artists.ARTIST,
+                MediaStore.Audio.Albums.ALBUM,
+                MediaStore.Audio.Media.TITLE,
                 "data1",
                 "data2"
         };
 
-        Uri search = Uri.parse("content://media/external/audio/" + 
-                SearchManager.SUGGEST_URI_PATH_QUERY + "/" + Uri.encode(filter));
+        Uri search = Uri.parse("content://media/external/audio/search/fancy/" +
+                Uri.encode(filter));
         
         Cursor ret = null;
         if (async != null) {
@@ -342,7 +345,7 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
             if (mimetype.equals("artist")) {
                 iv.setImageResource(R.drawable.ic_mp_artist_list);
                 String name = cursor.getString(cursor.getColumnIndexOrThrow(
-                        SearchManager.SUGGEST_COLUMN_TEXT_1));
+                        MediaStore.Audio.Artists.ARTIST));
                 String displayname = name;
                 boolean isunknown = false;
                 if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
@@ -362,14 +365,15 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
             } else if (mimetype.equals("album")) {
                 iv.setImageResource(R.drawable.albumart_mp_unknown_list);
                 String name = cursor.getString(cursor.getColumnIndexOrThrow(
-                        SearchManager.SUGGEST_COLUMN_TEXT_1));
+                        MediaStore.Audio.Albums.ALBUM));
                 String displayname = name;
                 if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
                     displayname = context.getString(R.string.unknown_album_name);
                 }
                 tv1.setText(displayname);
                 
-                name = cursor.getString(cursor.getColumnIndexOrThrow("data1"));
+                name = cursor.getString(cursor.getColumnIndexOrThrow(
+                        MediaStore.Audio.Artists.ARTIST));
                 displayname = name;
                 if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
                     displayname = context.getString(R.string.unknown_artist_name);
@@ -381,16 +385,18 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
                     mimetype.equals("application/x-ogg")) {
                 iv.setImageResource(R.drawable.ic_mp_song_list);
                 String name = cursor.getString(cursor.getColumnIndexOrThrow(
-                        SearchManager.SUGGEST_COLUMN_TEXT_1));
+                        MediaStore.Audio.Media.TITLE));
                 tv1.setText(name);
 
-                String displayname = cursor.getString(cursor.getColumnIndexOrThrow("data1"));
-                if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
+                String displayname = cursor.getString(cursor.getColumnIndexOrThrow(
+                        MediaStore.Audio.Artists.ARTIST));
+                if (displayname == null || displayname.equals(MediaFile.UNKNOWN_STRING)) {
                     displayname = context.getString(R.string.unknown_artist_name);
                 }
-                name = cursor.getString(cursor.getColumnIndexOrThrow("data2"));
+                name = cursor.getString(cursor.getColumnIndexOrThrow(
+                        MediaStore.Audio.Albums.ALBUM));
                 if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
-                    name = context.getString(R.string.unknown_artist_name);
+                    name = context.getString(R.string.unknown_album_name);
                 }
                 tv2.setText(displayname + " - " + name);
             }
