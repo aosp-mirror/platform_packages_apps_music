@@ -58,7 +58,7 @@ public class StreamStarter extends Activity
                     IntentFilter f = new IntentFilter();
                     f.addAction(MediaPlaybackService.ASYNC_OPEN_COMPLETE);
                     registerReceiver(mStatusListener, new IntentFilter(f));
-                    MusicUtils.sService.openfileAsync(getIntent().getData().toString());
+                    MusicUtils.sService.openFileAsync(getIntent().getData().toString());
                 } catch (RemoteException ex) {
                 }
             }
