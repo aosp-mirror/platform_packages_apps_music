@@ -1734,13 +1734,13 @@ public class MediaPlaybackService extends Service {
 
     private final IMediaPlaybackService.Stub mBinder = new IMediaPlaybackService.Stub()
     {
-        public void openfileAsync(String path)
+        public void openFileAsync(String path)
         {
             MediaPlaybackService.this.openAsync(path);
         }
-        public void openfile(String path)
+        public void openFile(String path, boolean oneShot)
         {
-            MediaPlaybackService.this.open(path, true);
+            MediaPlaybackService.this.open(path, oneShot);
         }
         public void open(int [] list, int position) {
             MediaPlaybackService.this.open(list, position);
