@@ -410,6 +410,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         
         Intent i = new Intent();
         i.setAction(MediaStore.INTENT_ACTION_MEDIA_SEARCH);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         
         if (mCurrentArtistId != null) {
             title = mCurrentArtistName;

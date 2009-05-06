@@ -668,6 +668,7 @@ public class TrackBrowserActivity extends ListActivity
         
         Intent i = new Intent();
         i.setAction(MediaStore.INTENT_ACTION_MEDIA_SEARCH);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         
         title = mCurrentAlbumName;
         query = mCurrentArtistNameForAlbum + " " + mCurrentAlbumName;
