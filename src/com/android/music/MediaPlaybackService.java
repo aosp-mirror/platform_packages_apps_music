@@ -139,7 +139,7 @@ public class MediaPlaybackService extends Service {
     private int mServiceStartId = -1;
     private boolean mServiceInUse = false;
     private boolean mResumeAfterCall = false;
-    private boolean mWasPlaying = false;
+    private boolean mIsSupposedToBePlaying = false;
     private boolean mQuietMode = false;
     
     private SharedPreferences mPreferences;
@@ -211,7 +211,7 @@ public class MediaPlaybackService extends Service {
                     }
                     break;
                 case SERVER_DIED:
-                    if (mWasPlaying) {
+                    if (mIsSupposedToBePlaying) {
                         next(true);
                     } else {
                         // the server died when we were idle, so just
@@ -229,6 +229,7 @@ public class MediaPlaybackService extends Service {
                         next(false);
                     } else {
                         notifyChange(PLAYBACK_COMPLETE);
+                        mIsSupposedToBePlaying = false;
                     }
                     break;
                 case RELEASE_WAKELOCK:
@@ -1014,10 +1015,10 @@ public class MediaPlaybackService extends Service {
             status.contentIntent = PendingIntent.getActivity(this, 0,
                     new Intent("com.android.music.PLAYBACK_VIEWER"), 0);
             nm.notify(PLAYBACKSERVICE_STATUS, status);
-            if (!mWasPlaying) {
+            if (!mIsSupposedToBePlaying) {
                 notifyChange(PLAYSTATE_CHANGED);
             }
-            mWasPlaying = true;
+            mIsSupposedToBePlaying = true;
         } else if (mPlayListLen <= 0) {
             // This is mostly so that if you press 'play' on a bluetooth headset
             // without every having played anything before, it will still play
@@ -1040,7 +1041,7 @@ public class MediaPlaybackService extends Service {
         }
         setForeground(false);
         if (remove_status_icon) {
-            mWasPlaying = false;
+            mIsSupposedToBePlaying = false;
         }
     }
 
@@ -1059,7 +1060,7 @@ public class MediaPlaybackService extends Service {
             mPlayer.pause();
             gotoIdleState();
             setForeground(false);
-            mWasPlaying = false;
+            mIsSupposedToBePlaying = false;
             notifyChange(PLAYSTATE_CHANGED);
             saveBookmarkIfNeeded();
         }
@@ -1070,10 +1071,7 @@ public class MediaPlaybackService extends Service {
      * @return true if playback is paused, false if not
      */
     public boolean isPlaying() {
-        if (mPlayer.isInitialized()) {
-            return mPlayer.isPlaying();
-        }
-        return false;
+        return mIsSupposedToBePlaying;
     }
 
     /*
@@ -1208,6 +1206,7 @@ public class MediaPlaybackService extends Service {
                         // all done
                         gotoIdleState();
                         notifyChange(PLAYBACK_COMPLETE);
+                        mIsSupposedToBePlaying = false;
                         return;
                     } else if (mRepeatMode == REPEAT_ALL || force) {
                         mPlayPos = 0;
@@ -1667,10 +1666,6 @@ public class MediaPlaybackService extends Service {
             mMediaPlayer.pause();
         }
         
-        public boolean isPlaying() {
-            return mMediaPlayer.isPlaying();
-        }
-
         public void setHandler(Handler handler) {
             mHandler = handler;
         }
