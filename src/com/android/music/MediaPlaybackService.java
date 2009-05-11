@@ -1062,13 +1062,15 @@ public class MediaPlaybackService extends Service {
      * Pauses playback (call play() to resume)
      */
     public void pause() {
-        if (isPlaying()) {
-            mPlayer.pause();
-            gotoIdleState();
-            setForeground(false);
-            mIsSupposedToBePlaying = false;
-            notifyChange(PLAYSTATE_CHANGED);
-            saveBookmarkIfNeeded();
+        synchronized(this) {
+            if (isPlaying()) {
+                mPlayer.pause();
+                gotoIdleState();
+                setForeground(false);
+                mIsSupposedToBePlaying = false;
+                notifyChange(PLAYSTATE_CHANGED);
+                saveBookmarkIfNeeded();
+            }
         }
     }
 
