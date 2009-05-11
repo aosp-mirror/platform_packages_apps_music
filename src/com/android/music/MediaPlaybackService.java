@@ -1006,8 +1006,6 @@ public class MediaPlaybackService extends Service {
                         );
             }
             
-            Intent statusintent = new Intent("com.android.music.PLAYBACK_VIEWER");
-            statusintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             Notification status = new Notification();
             status.contentView = views;
             status.flags |= Notification.FLAG_ONGOING_EVENT;
