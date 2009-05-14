@@ -417,10 +417,8 @@ public class AlbumBrowserActivity extends ListActivity
             
         String[] cols = new String[] {
                 MediaStore.Audio.Albums._ID,
-                MediaStore.Audio.Albums.ALBUM,
-                MediaStore.Audio.Albums.ALBUM_KEY,
                 MediaStore.Audio.Albums.ARTIST,
-                MediaStore.Audio.Albums.NUMBER_OF_SONGS,
+                MediaStore.Audio.Albums.ALBUM,
                 MediaStore.Audio.Albums.ALBUM_ART
         };
         Cursor ret = null;
@@ -455,7 +453,6 @@ public class AlbumBrowserActivity extends ListActivity
         private final BitmapDrawable mDefaultAlbumIcon;
         private int mAlbumIdx;
         private int mArtistIdx;
-        private int mNumSongsIdx;
         private int mAlbumArtIndex;
         private final Resources mResources;
         private final StringBuilder mStringBuilder = new StringBuilder();
@@ -469,10 +466,9 @@ public class AlbumBrowserActivity extends ListActivity
         private String mConstraint = null;
         private boolean mConstraintIsValid = false;
         
-        class ViewHolder {
+        static class ViewHolder {
             TextView line1;
             TextView line2;
-            TextView duration;
             ImageView play_indicator;
             ImageView icon;
         }
@@ -516,7 +512,6 @@ public class AlbumBrowserActivity extends ListActivity
             if (cursor != null) {
                 mAlbumIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM);
                 mArtistIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ARTIST);
-                mNumSongsIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.NUMBER_OF_SONGS);
                 mAlbumArtIndex = cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM_ART);
                 
                 if (mIndexer != null) {
@@ -542,7 +537,6 @@ public class AlbumBrowserActivity extends ListActivity
            ViewHolder vh = new ViewHolder();
            vh.line1 = (TextView) v.findViewById(R.id.line1);
            vh.line2 = (TextView) v.findViewById(R.id.line2);
-           vh.duration = (TextView) v.findViewById(R.id.duration);
            vh.play_indicator = (ImageView) v.findViewById(R.id.play_indicator);
            vh.icon = (ImageView) v.findViewById(R.id.icon);
            vh.icon.setBackgroundDrawable(mDefaultAlbumIcon);

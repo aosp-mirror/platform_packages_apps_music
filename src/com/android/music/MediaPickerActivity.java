@@ -223,7 +223,7 @@ public class MediaPickerActivity extends ListActivity implements MusicUtils.Defs
     private String mLastYear;
     private String mWhereClause;
 
-    class PickListAdapter extends SimpleCursorAdapter {
+    static class PickListAdapter extends SimpleCursorAdapter {
         int mTitleIdx;
         int mArtistIdx;
         int mAlbumIdx;

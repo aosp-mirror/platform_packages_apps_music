@@ -519,7 +519,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         private String mConstraint = null;
         private boolean mConstraintIsValid = false;
         
-        class ViewHolder {
+        static class ViewHolder {
             TextView line1;
             TextView line2;
             ImageView play_indicator;
@@ -660,12 +660,6 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
 
             int numsongs = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.NUMBER_OF_SONGS));
             int numartistsongs = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.NUMBER_OF_SONGS_FOR_ARTIST));
-            int first = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.FIRST_YEAR));
-            int last = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.LAST_YEAR));
-
-            if (first == 0) {
-                first = last;
-            }
 
             final StringBuilder builder = mBuffer;
             builder.delete(0, builder.length());
@@ -725,8 +719,6 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
                     MediaStore.Audio.Albums.ALBUM,
                     MediaStore.Audio.Albums.NUMBER_OF_SONGS,
                     MediaStore.Audio.Albums.NUMBER_OF_SONGS_FOR_ARTIST,
-                    MediaStore.Audio.Albums.FIRST_YEAR,
-                    MediaStore.Audio.Albums.LAST_YEAR,
                     MediaStore.Audio.Albums.ALBUM_ART
             };
             Cursor c = MusicUtils.query(mActivity,

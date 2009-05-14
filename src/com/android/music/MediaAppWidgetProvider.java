@@ -117,7 +117,6 @@ public class MediaAppWidgetProvider extends AppWidgetProvider {
         final Resources res = service.getResources();
         final RemoteViews views = new RemoteViews(service.getPackageName(), R.layout.album_appwidget);
         
-        final int track = service.getQueuePosition() + 1;
         CharSequence titleName = service.getTrackName();
         CharSequence artistName = service.getArtistName();
         CharSequence errorState = null;

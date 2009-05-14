@@ -116,9 +116,6 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
                                     LONG_PRESS_DELAY);
                         }
                         
-                        SharedPreferences pref = context.getSharedPreferences("Music", 
-                                Context.MODE_WORLD_READABLE | Context.MODE_WORLD_WRITEABLE);
-                        String q = pref.getString("queue", "");
                         // The service may or may not be running, but we need to send it
                         // a command.
                         Intent i = new Intent(context, MediaPlaybackService.class);

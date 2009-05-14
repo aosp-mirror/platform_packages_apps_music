@@ -76,7 +76,7 @@ public class MusicPicker extends ListActivity
     static final String SORT_MODE_KEY = "sortMode";
     
     /** Arbitrary number, doesn't matter since we only do one query type. */
-    final int MY_QUERY_TOKEN = 42;
+    static final int MY_QUERY_TOKEN = 42;
     
     /** Menu item to sort the music list by track title. */
     static final int TRACK_MENU = Menu.FIRST;
@@ -169,8 +169,6 @@ public class MusicPicker extends ListActivity
         private int mArtistIdx;
         private int mAlbumIdx;
         private int mDurationIdx;
-        private int mAudioIdIdx;
-        private int mTrackIdx;
 
         private boolean mLoading = true;
         private int mIndexerSortMode;
@@ -306,12 +304,6 @@ public class MusicPicker extends ListActivity
                 mArtistIdx = cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
                 mAlbumIdx = cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM);
                 mDurationIdx = cursor.getColumnIndex(MediaStore.Audio.Media.DURATION);
-                int audioIdIdx = cursor.getColumnIndex(MediaStore.Audio.Playlists.Members.AUDIO_ID);
-                if (audioIdIdx < 0) {
-                    audioIdIdx = cursor.getColumnIndex(MediaStore.Audio.Media._ID);
-                }
-                mAudioIdIdx = audioIdIdx;
-                mTrackIdx = cursor.getColumnIndex(MediaStore.Audio.Media.TRACK);
             }
             
             // The next time the indexer is needed, we will need to rebind it
