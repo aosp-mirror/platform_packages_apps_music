@@ -900,6 +900,16 @@ public class MusicUtils {
                 // maybe it never existed to begin with.
                 Bitmap bm = getArtworkFromFile(context, null, album_id);
                 if (bm != null) {
+                    if (bm.getConfig() == null) {
+                        bm = bm.copy(Bitmap.Config.RGB_565, false);
+                        if (bm == null) {
+                            if (allowDefault) {
+                                return getDefaultArtwork(context);
+                            } else {
+                                return null;
+                            }
+                        }
+                    }
                     // Put the newly found artwork in the database.
                     // Note that this shouldn't be done for the "unknown" album,
                     // but if this method is called correctly, that won't happen.
@@ -910,16 +920,6 @@ public class MusicUtils {
                     if (ensureFileExists(file)) {
                         try {
                             OutputStream outstream = new FileOutputStream(file);
-                            if (bm.getConfig() == null) {
-                                bm = bm.copy(Bitmap.Config.RGB_565, false);
-                                if (bm == null) {
-                                    if (allowDefault) {
-                                        return getDefaultArtwork(context);
-                                    } else {
-                                        return null;
-                                    }
-                                }
-                            }
                             boolean success = bm.compress(Bitmap.CompressFormat.JPEG, 75, outstream);
                             outstream.close();
                             if (success) {

@@ -1294,7 +1294,7 @@ public class MediaPlaybackService extends Service {
     // A simple variation of Random that makes sure that the
     // value it returns is not equal to the value it returned
     // previously, unless the interval is 1.
-    private class Shuffler {
+    private static class Shuffler {
         private int mPrevious;
         private Random mRandom = new Random();
         public int nextInt(int interval) {

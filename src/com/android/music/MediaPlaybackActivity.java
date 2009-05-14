@@ -286,7 +286,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         
         if (knownartist && view.equals(mArtistName.getParent())) {
             title = artist;
-            query = artist.toString();
+            query = artist;
             mime = MediaStore.Audio.Artists.ENTRY_CONTENT_TYPE;
         } else if (knownalbum && view.equals(mAlbumName.getParent())) {
             title = album;
@@ -1285,7 +1285,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         }
     }
     
-    private class Worker implements Runnable {
+    private static class Worker implements Runnable {
         private final Object mLock = new Object();
         private Looper mLooper;
         

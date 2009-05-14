@@ -65,13 +65,13 @@ import java.util.Arrays;
 public class TrackBrowserActivity extends ListActivity
         implements View.OnCreateContextMenuListener, MusicUtils.Defs, ServiceConnection
 {
-    private final int Q_SELECTED = CHILD_MENU_BASE;
-    private final int Q_ALL = CHILD_MENU_BASE + 1;
-    private final int SAVE_AS_PLAYLIST = CHILD_MENU_BASE + 2;
-    private final int PLAY_ALL = CHILD_MENU_BASE + 3;
-    private final int CLEAR_PLAYLIST = CHILD_MENU_BASE + 4;
-    private final int REMOVE = CHILD_MENU_BASE + 5;
-    private final int SEARCH = CHILD_MENU_BASE + 6;
+    private static final int Q_SELECTED = CHILD_MENU_BASE;
+    private static final int Q_ALL = CHILD_MENU_BASE + 1;
+    private static final int SAVE_AS_PLAYLIST = CHILD_MENU_BASE + 2;
+    private static final int PLAY_ALL = CHILD_MENU_BASE + 3;
+    private static final int CLEAR_PLAYLIST = CHILD_MENU_BASE + 4;
+    private static final int REMOVE = CHILD_MENU_BASE + 5;
+    private static final int SEARCH = CHILD_MENU_BASE + 6;
 
 
     private static final String LOGTAG = "TrackBrowser";
@@ -151,7 +151,6 @@ public class TrackBrowserActivity extends ListActivity
         mTrackList = getListView();
         mTrackList.setOnCreateContextMenuListener(this);
         if (mEditMode) {
-            //((TouchInterceptor) mTrackList).setDragListener(mDragListener);
             ((TouchInterceptor) mTrackList).setDropListener(mDropListener);
             ((TouchInterceptor) mTrackList).setRemoveListener(mRemoveListener);
             mTrackList.setCacheColorHint(0);
@@ -439,18 +438,6 @@ public class TrackBrowserActivity extends ListActivity
         }
     }
     
-    private TouchInterceptor.DragListener mDragListener =
-        new TouchInterceptor.DragListener() {
-        public void drag(int from, int to) {
-            if (mTrackCursor instanceof NowPlayingCursor) {
-                NowPlayingCursor c = (NowPlayingCursor) mTrackCursor;
-                c.moveItem(from, to);
-                ((TrackListAdapter)getListAdapter()).notifyDataSetChanged();
-                getListView().invalidateViews();
-                mDeletedOneRow = true;
-            }
-        }
-    };
     private TouchInterceptor.DropListener mDropListener =
         new TouchInterceptor.DropListener() {
         public void drop(int from, int to) {
@@ -1261,7 +1248,6 @@ public class TrackBrowserActivity extends ListActivity
 
         int mTitleIdx;
         int mArtistIdx;
-        int mAlbumIdx;
         int mDurationIdx;
         int mAudioIdIdx;
 
@@ -1276,7 +1262,7 @@ public class TrackBrowserActivity extends ListActivity
         private String mConstraint = null;
         private boolean mConstraintIsValid = false;
         
-        class ViewHolder {
+        static class ViewHolder {
             TextView line1;
             TextView line2;
             TextView duration;
@@ -1323,7 +1309,6 @@ public class TrackBrowserActivity extends ListActivity
             if (cursor != null) {
                 mTitleIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE);
                 mArtistIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST);
-                mAlbumIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM);
                 mDurationIdx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION);
                 try {
                     mAudioIdIdx = cursor.getColumnIndexOrThrow(
