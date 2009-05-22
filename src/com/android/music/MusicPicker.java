@@ -172,7 +172,6 @@ public class MusicPicker extends ListActivity
 
         private boolean mLoading = true;
         private int mIndexerSortMode;
-        private boolean mIndexerOutOfDate;
         private MusicAlphabetIndexer mIndexer;
         
         class ViewHolder {
@@ -304,11 +303,31 @@ public class MusicPicker extends ListActivity
                 mArtistIdx = cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
                 mAlbumIdx = cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM);
                 mDurationIdx = cursor.getColumnIndex(MediaStore.Audio.Media.DURATION);
+
+                // If the sort mode has changed, or we haven't yet created an
+                // indexer one, then create a new one that is indexing the
+                // appropriate column based on the sort mode.
+                if (mIndexerSortMode != mSortMode || mIndexer == null) {
+                    mIndexerSortMode = mSortMode;
+                    int idx = mTitleIdx;
+                    switch (mIndexerSortMode) {
+                        case ARTIST_MENU:
+                            idx = mArtistIdx;
+                            break;
+                        case ALBUM_MENU:
+                            idx = mAlbumIdx;
+                            break;
+                    }
+                    mIndexer = new MusicAlphabetIndexer(cursor, idx,
+                            getResources().getString(
+                                    com.android.internal.R.string.fast_scroll_alphabet));
+                    
+                // If we have a valid indexer, but the cursor has changed since
+                // its last use, then point it to the current cursor.
+                } else {
+                    mIndexer.setCursor(cursor);
+                }
             }
-            
-            // The next time the indexer is needed, we will need to rebind it
-            // to this cursor.
-            mIndexerOutOfDate = true;
             
             // Ensure that the list is shown (and initial progress indicator
             // hidden) in case this is the first cursor we have gotten.
@@ -334,32 +353,6 @@ public class MusicPicker extends ListActivity
                 return 0;
             }
             
-            // If the sort mode has changed, or we haven't yet created an
-            // indexer one, then create a new one that is indexing the
-            // appropriate column based on the sort mode.
-            if (mIndexerSortMode != mSortMode || mIndexer == null) {
-                mIndexerSortMode = mSortMode;
-                int idx = mTitleIdx;
-                switch (mIndexerSortMode) {
-                    case ARTIST_MENU:
-                        idx = mArtistIdx;
-                        break;
-                    case ALBUM_MENU:
-                        idx = mAlbumIdx;
-                        break;
-                }
-                mIndexer = new MusicAlphabetIndexer(cursor, idx,
-                        getResources().getString(
-                                com.android.internal.R.string.fast_scroll_alphabet));
-                
-            // If we have a valid indexer, but the cursor has changed since
-            // its last use, then point it to the current cursor.
-            } else if (mIndexerOutOfDate) {
-                mIndexer.setCursor(cursor);
-            }
-            
-            mIndexerOutOfDate = false;
-            
             return mIndexer.getPositionForSection(section);
         }
 
@@ -368,7 +361,10 @@ public class MusicPicker extends ListActivity
         }
 
         public Object[] getSections() {
-            return mIndexer.getSections();
+            if (mIndexer != null) {
+                return mIndexer.getSections();
+            }
+            return null;
         }
     }
 
