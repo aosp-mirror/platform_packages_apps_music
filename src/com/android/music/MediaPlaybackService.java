@@ -52,6 +52,7 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneStateIntentReceiver;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.Random;
 import java.util.Vector;
 
@@ -319,10 +320,13 @@ public class MediaPlaybackService extends Service {
         if (isPlaying()) {
             Log.e("MediaPlaybackService", "Service being destroyed while still playing.");
         }
-        // and for good measure, call mPlayer.stop(), which calls MediaPlayer.reset(), which
-        // releases the MediaPlayer's wake lock, if any.
-        mPlayer.stop();
+        // release all MediaPlayer resources, including the native player and wakelocks
+        mPlayer.release();
+        mPlayer = null;
         
+        // make sure there aren't any other messages coming
+        mDelayedStopHandler.removeCallbacksAndMessages(null);
+
         if (mCursor != null) {
             mCursor.close();
             mCursor = null;
@@ -1669,6 +1673,14 @@ public class MediaPlaybackService extends Service {
             mIsInitialized = false;
         }
 
+        /**
+         * You CANNOT use this player anymore after calling release()
+         */
+        public void release() {
+            stop();
+            mMediaPlayer.release();
+        }
+        
         public void pause() {
             mMediaPlayer.pause();
         }
@@ -1734,102 +1746,115 @@ public class MediaPlaybackService extends Service {
         }
     }
 
-    private final IMediaPlaybackService.Stub mBinder = new IMediaPlaybackService.Stub()
-    {
+    /*
+     * By making this a static class with a WeakReference to the Service, we
+     * ensure that the Service can be GCd even when the system process still
+     * has a remote reference to the stub.
+     */
+    static class ServiceStub extends IMediaPlaybackService.Stub {
+        WeakReference<MediaPlaybackService> mService;
+        
+        ServiceStub(MediaPlaybackService service) {
+            mService = new WeakReference<MediaPlaybackService>(service);
+        }
+
         public void openFileAsync(String path)
         {
-            MediaPlaybackService.this.openAsync(path);
+            mService.get().openAsync(path);
         }
         public void openFile(String path, boolean oneShot)
         {
-            MediaPlaybackService.this.open(path, oneShot);
+            mService.get().open(path, oneShot);
         }
         public void open(int [] list, int position) {
-            MediaPlaybackService.this.open(list, position);
+            mService.get().open(list, position);
         }
         public int getQueuePosition() {
-            return MediaPlaybackService.this.getQueuePosition();
+            return mService.get().getQueuePosition();
         }
         public void setQueuePosition(int index) {
-            MediaPlaybackService.this.setQueuePosition(index);
+            mService.get().setQueuePosition(index);
         }
         public boolean isPlaying() {
-            return MediaPlaybackService.this.isPlaying();
+            return mService.get().isPlaying();
         }
         public void stop() {
-            MediaPlaybackService.this.stop();
+            mService.get().stop();
         }
         public void pause() {
-            MediaPlaybackService.this.pause();
+            mService.get().pause();
         }
         public void play() {
-            MediaPlaybackService.this.play();
+            mService.get().play();
         }
         public void prev() {
-            MediaPlaybackService.this.prev();
+            mService.get().prev();
         }
         public void next() {
-            MediaPlaybackService.this.next(true);
+            mService.get().next(true);
         }
         public String getTrackName() {
-            return MediaPlaybackService.this.getTrackName();
+            return mService.get().getTrackName();
         }
         public String getAlbumName() {
-            return MediaPlaybackService.this.getAlbumName();
+            return mService.get().getAlbumName();
         }
         public int getAlbumId() {
-            return MediaPlaybackService.this.getAlbumId();
+            return mService.get().getAlbumId();
         }
         public String getArtistName() {
-            return MediaPlaybackService.this.getArtistName();
+            return mService.get().getArtistName();
         }
         public int getArtistId() {
-            return MediaPlaybackService.this.getArtistId();
+            return mService.get().getArtistId();
         }
         public void enqueue(int [] list , int action) {
-            MediaPlaybackService.this.enqueue(list, action);
+            mService.get().enqueue(list, action);
         }
         public int [] getQueue() {
-            return MediaPlaybackService.this.getQueue();
+            return mService.get().getQueue();
         }
         public void moveQueueItem(int from, int to) {
-            MediaPlaybackService.this.moveQueueItem(from, to);
+            mService.get().moveQueueItem(from, to);
         }
         public String getPath() {
-            return MediaPlaybackService.this.getPath();
+            return mService.get().getPath();
         }
         public int getAudioId() {
-            return MediaPlaybackService.this.getAudioId();
+            return mService.get().getAudioId();
         }
         public long position() {
-            return MediaPlaybackService.this.position();
+            return mService.get().position();
         }
         public long duration() {
-            return MediaPlaybackService.this.duration();
+            return mService.get().duration();
         }
         public long seek(long pos) {
-            return MediaPlaybackService.this.seek(pos);
+            return mService.get().seek(pos);
         }
         public void setShuffleMode(int shufflemode) {
-            MediaPlaybackService.this.setShuffleMode(shufflemode);
+            mService.get().setShuffleMode(shufflemode);
         }
         public int getShuffleMode() {
-            return MediaPlaybackService.this.getShuffleMode();
+            return mService.get().getShuffleMode();
         }
         public int removeTracks(int first, int last) {
-            return MediaPlaybackService.this.removeTracks(first, last);
+            return mService.get().removeTracks(first, last);
         }
         public int removeTrack(int id) {
-            return MediaPlaybackService.this.removeTrack(id);
+            return mService.get().removeTrack(id);
         }
         public void setRepeatMode(int repeatmode) {
-            MediaPlaybackService.this.setRepeatMode(repeatmode);
+            mService.get().setRepeatMode(repeatmode);
         }
         public int getRepeatMode() {
-            return MediaPlaybackService.this.getRepeatMode();
+            return mService.get().getRepeatMode();
         }
         public int getMediaMountedCount() {
-            return MediaPlaybackService.this.getMediaMountedCount();
+            return mService.get().getMediaMountedCount();
         }
-    };
+
+    }
+    
+    private final IBinder mBinder = new ServiceStub(this);
 }
