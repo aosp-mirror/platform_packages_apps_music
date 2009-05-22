@@ -915,7 +915,6 @@ public class TrackBrowserActivity extends ListActivity
             for (int i = 0; i < searchWords.length; i++) {
                 where.append(" AND ");
                 where.append(MediaStore.Audio.Media.ARTIST_KEY + "||");
-                where.append(MediaStore.Audio.Media.ALBUM_KEY + "||");
                 where.append(MediaStore.Audio.Media.TITLE_KEY + " LIKE ?");
             }
         }
