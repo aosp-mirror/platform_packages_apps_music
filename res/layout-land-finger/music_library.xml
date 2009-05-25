@@ -31,8 +31,9 @@
 
         <Button
             android:id="@+id/browse_button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="@drawable/main_menu_button"
             android:drawableTop="@drawable/ic_mp_screen_artists"
             android:text="@string/browse_menu"
@@ -46,8 +47,9 @@
 
         <Button
             android:id="@+id/albums_button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="@drawable/main_menu_button"
             android:drawableTop="@drawable/ic_mp_screen_albums"
             android:text="@string/albums_menu"
@@ -61,8 +63,9 @@
 
         <Button
             android:id="@+id/tracks_button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="@drawable/main_menu_button"
             android:drawableTop="@drawable/ic_mp_screen_tracks"
             android:text="@string/tracks_menu"
@@ -76,8 +79,9 @@
 
         <Button
             android:id="@+id/playlists_button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="@drawable/main_menu_button"
             android:drawableTop="@drawable/ic_mp_screen_playlists"
             android:text="@string/playlists_menu"
