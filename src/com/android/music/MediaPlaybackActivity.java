@@ -440,6 +440,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         mHandler.removeMessages(REFRESH);
         unregisterReceiver(mStatusListener);
         MusicUtils.unbindFromService(this);
+        mService = null;
         super.onStop();
     }
 
@@ -1010,9 +1011,6 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     private ServiceConnection osc = new ServiceConnection() {
             public void onServiceConnected(ComponentName classname, IBinder obj) {
                 mService = IMediaPlaybackService.Stub.asInterface(obj);
-                if (MusicUtils.sService == null) {
-                    MusicUtils.sService = mService;
-                }
                 startPlayback();
                 try {
                     // Assume something is playing when the service says it is,
