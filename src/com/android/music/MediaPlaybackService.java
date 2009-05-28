@@ -326,6 +326,8 @@ public class MediaPlaybackService extends Service {
         
         // make sure there aren't any other messages coming
         mDelayedStopHandler.removeCallbacksAndMessages(null);
+        mMediaplayerHandler.removeCallbacksAndMessages(null);
+        mPhoneHandler.removeCallbacksAndMessages(null);
 
         if (mCursor != null) {
             mCursor.close();
