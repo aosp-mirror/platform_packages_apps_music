@@ -279,5 +279,8 @@
 
     <!-- Title for track number in music gadget -->
     <string name="gadget_track">Track <xliff:g id="track_number">%d</xliff:g></string>
+
+    <!-- Toast after streamStarter activity receives PLAYBACK_COMPLETE in case of an error -->
+    <string name="fail_to_start_stream">Failed to play the requested stream.</string>
 </resources>
 
