@@ -45,11 +45,11 @@ import android.os.PowerManager;
 import android.os.SystemClock;
 import android.os.PowerManager.WakeLock;
 import android.provider.MediaStore;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
-import com.android.internal.telephony.Phone;
-import com.android.internal.telephony.PhoneStateIntentReceiver;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -97,7 +97,6 @@ public class MediaPlaybackService extends Service {
     public static final String PREVIOUS_ACTION = "com.android.music.musicservicecommand.previous";
     public static final String NEXT_ACTION = "com.android.music.musicservicecommand.next";
 
-    private static final int PHONE_CHANGED = 1;
     private static final int TRACK_ENDED = 1;
     private static final int RELEASE_WAKELOCK = 2;
     private static final int SERVER_DIED = 3;
@@ -106,7 +105,6 @@ public class MediaPlaybackService extends Service {
     
     private MultiPlayer mPlayer;
     private String mFileToPlay;
-    private PhoneStateIntentReceiver mPsir;
     private int mShuffleMode = SHUFFLE_NONE;
     private int mRepeatMode = REPEAT_NONE;
     private int mMediaMountedCount = 0;
@@ -153,35 +151,28 @@ public class MediaPlaybackService extends Service {
     // interval after which we stop the service when idle
     private static final int IDLE_DELAY = 60000; 
 
-    private Handler mPhoneHandler = new Handler() {
+    private PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
         @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case PHONE_CHANGED:
-                    Phone.State state = mPsir.getPhoneState();
-                    if (state == Phone.State.RINGING) {
-                        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                        int ringvolume = audioManager.getStreamVolume(AudioManager.STREAM_RING);
-                        if (ringvolume > 0) {
-                            mResumeAfterCall = (isPlaying() || mResumeAfterCall) && (getAudioId() >= 0);
-                            pause();
-                        }
-                    } else if (state == Phone.State.OFFHOOK) {
-                        // pause the music while a conversation is in progress
-                        mResumeAfterCall = (isPlaying() || mResumeAfterCall) && (getAudioId() >= 0);
-                        pause();
-                    } else if (state == Phone.State.IDLE) {
-                        // start playing again
-                        if (mResumeAfterCall) {
-                            // resume playback only if music was playing
-                            // when the call was answered
-                            startAndFadeIn();
-                            mResumeAfterCall = false;
-                        }
-                    }
-                    break;
-                default:
-                    break;
+        public void onCallStateChanged(int state, String incomingNumber) {
+            if (state == TelephonyManager.CALL_STATE_RINGING) {
+                AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+                int ringvolume = audioManager.getStreamVolume(AudioManager.STREAM_RING);
+                if (ringvolume > 0) {
+                    mResumeAfterCall = (isPlaying() || mResumeAfterCall) && (getAudioId() >= 0);
+                    pause();
+                }
+            } else if (state == TelephonyManager.CALL_STATE_OFFHOOK) {
+                // pause the music while a conversation is in progress
+                mResumeAfterCall = (isPlaying() || mResumeAfterCall) && (getAudioId() >= 0);
+                pause();
+            } else if (state == TelephonyManager.CALL_STATE_IDLE) {
+                // start playing again
+                if (mResumeAfterCall) {
+                    // resume playback only if music was playing
+                    // when the call was answered
+                    startAndFadeIn();
+                    mResumeAfterCall = false;
+                }
             }
         }
     };
@@ -272,8 +263,6 @@ public class MediaPlaybackService extends Service {
     };
 
     public MediaPlaybackService() {
-        mPsir = new PhoneStateIntentReceiver(this, mPhoneHandler);
-        mPsir.notifyPhoneCallState(PHONE_CHANGED);
     }
 
     @Override
@@ -303,7 +292,8 @@ public class MediaPlaybackService extends Service {
         commandFilter.addAction(PREVIOUS_ACTION);
         registerReceiver(mIntentReceiver, commandFilter);
         
-        mPsir.registerIntent();
+        TelephonyManager tmgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        tmgr.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
         PowerManager pm = (PowerManager)getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, this.getClass().getName());
         mWakeLock.setReferenceCounted(false);
@@ -327,19 +317,20 @@ public class MediaPlaybackService extends Service {
         // make sure there aren't any other messages coming
         mDelayedStopHandler.removeCallbacksAndMessages(null);
         mMediaplayerHandler.removeCallbacksAndMessages(null);
-        mPhoneHandler.removeCallbacksAndMessages(null);
 
         if (mCursor != null) {
             mCursor.close();
             mCursor = null;
         }
 
+        TelephonyManager tmgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        tmgr.listen(mPhoneStateListener, 0);
+
         unregisterReceiver(mIntentReceiver);
         if (mUnmountReceiver != null) {
             unregisterReceiver(mUnmountReceiver);
             mUnmountReceiver = null;
         }
-        mPsir.unregisterIntent();
         mWakeLock.release();
         super.onDestroy();
     }
