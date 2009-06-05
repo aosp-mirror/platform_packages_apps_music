@@ -400,37 +400,37 @@ public class MediaPlaybackService extends Service {
             // the same one as when the playlist was saved
             q = mPreferences.getString("queue", "");
         }
-        if (q != null && q.length() > 1) {
+        int qlen = q.length();
+        if (q != null && qlen > 1) {
             //Log.i("@@@@ service", "loaded queue: " + q);
-            String [] entries = q.split(";");
-            int len = entries.length;
-            ensurePlayListCapacity(len);
-            for (int i = 0; i < len; i++) {
-                if (newstyle) {
-                    String revhex = entries[i];
-                    int n = 0;
-                    for (int j = revhex.length() - 1; j >= 0 ; j--) {
-                        n <<= 4;
-                        char c = revhex.charAt(j);
-                        if (c >= '0' && c <= '9') {
-                            n += (c - '0');
-                        } else if (c >= 'a' && c <= 'f') {
-                            n += (10 + c - 'a');
-                        } else {
-                            // bogus playlist data
-                            len = 0;
-                            break;
-                        }
-                    }
-                    mPlayList[i] = n;
+            int plen = 0;
+            int n = 0;
+            int shift = 0;
+            for (int i = 0; i < qlen; i++) {
+                char c = q.charAt(i);
+                if (c == ';') {
+                    ensurePlayListCapacity(plen + 1);
+                    mPlayList[plen] = n;
+                    plen++;
+                    n = 0;
+                    shift = 0;
                 } else {
-                    mPlayList[i] = Integer.parseInt(entries[i]);
+                    if (c >= '0' && c <= '9') {
+                        n += ((c - '0') << shift);
+                    } else if (c >= 'a' && c <= 'f') {
+                        n += ((10 + c - 'a') << shift);
+                    } else {
+                        // bogus playlist data
+                        plen = 0;
+                        break;
+                    }
+                    shift += 4;
                 }
             }
-            mPlayListLen = len;
+            mPlayListLen = plen;
 
             int pos = mPreferences.getInt("curpos", 0);
-            if (pos < 0 || pos >= len) {
+            if (pos < 0 || pos >= mPlayListLen) {
                 // The saved playlist is bogus, discard it
                 mPlayListLen = 0;
                 return;
@@ -676,7 +676,7 @@ public class MediaPlaybackService extends Service {
             // need to grow and copy the array for every
             // insert
             int [] newlist = new int[size * 2];
-            int len = mPlayListLen;
+            int len = mPlayList != null ? mPlayList.length : mPlayListLen;
             for (int i = 0; i < len; i++) {
                 newlist[i] = mPlayList[i];
             }
