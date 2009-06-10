@@ -400,8 +400,8 @@ public class MediaPlaybackService extends Service {
             // the same one as when the playlist was saved
             q = mPreferences.getString("queue", "");
         }
-        int qlen = q.length();
-        if (q != null && qlen > 1) {
+        int qlen = q != null ? q.length() : 0;
+        if (qlen > 1) {
             //Log.i("@@@@ service", "loaded queue: " + q);
             int plen = 0;
             int n = 0;
