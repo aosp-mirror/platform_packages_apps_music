@@ -1143,6 +1143,10 @@ public class MediaPlaybackService extends Service {
                 return;
             }
 
+            if (mPlayListLen <= 0) {
+                return;
+            }
+
             // Store the current file in the history, but keep the history at a
             // reasonable size
             if (mPlayPos >= 0) {
