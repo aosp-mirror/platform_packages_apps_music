@@ -1029,14 +1029,13 @@ public class MusicUtils {
                             MediaStore.Audio.Media.ALBUM_ID + "=?", new String [] {String.valueOf(albumid)},
                             null);
                     if (c != null) {
-                        c.moveToFirst();
-                        if (!c.isAfterLast()) {
+                        if (c.moveToFirst()) {
                             int trackid = c.getInt(0);
                             uri = ContentUris.withAppendedId(
                                     MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, trackid);
-                        }
-                        if (c.getString(1).equals(MediaFile.UNKNOWN_STRING)) {
-                            albumid = -1;
+                            if (MediaFile.UNKNOWN_STRING.equals(c.getString(1))) {
+                                albumid = -1;
+                            }
                         }
                         c.close();
                     }
