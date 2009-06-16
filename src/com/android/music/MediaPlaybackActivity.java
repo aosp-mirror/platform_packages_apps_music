@@ -1220,13 +1220,16 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 return;
             }
             
-            if (mService.getAudioId() < 0 && path.toLowerCase().startsWith("http://")) {
+            int songid = mService.getAudioId(); 
+            if (songid < 0 && path.toLowerCase().startsWith("http://")) {
+                // Once we can get album art and meta data from MediaPlayer, we
+                // can show that info again when streaming.
                 ((View) mArtistName.getParent()).setVisibility(View.INVISIBLE);
                 ((View) mAlbumName.getParent()).setVisibility(View.INVISIBLE);
                 mAlbum.setVisibility(View.GONE);
                 mTrackName.setText(path);
                 mAlbumArtHandler.removeMessages(GET_ALBUM_ART);
-                mAlbumArtHandler.obtainMessage(GET_ALBUM_ART, -1, 0).sendToTarget();
+                mAlbumArtHandler.obtainMessage(GET_ALBUM_ART, -1, -1).sendToTarget();
             } else {
                 ((View) mArtistName.getParent()).setVisibility(View.VISIBLE);
                 ((View) mAlbumName.getParent()).setVisibility(View.VISIBLE);
@@ -1244,7 +1247,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 mAlbumName.setText(albumName);
                 mTrackName.setText(mService.getTrackName());
                 mAlbumArtHandler.removeMessages(GET_ALBUM_ART);
-                mAlbumArtHandler.obtainMessage(GET_ALBUM_ART, albumid, 0).sendToTarget();
+                mAlbumArtHandler.obtainMessage(GET_ALBUM_ART, albumid, songid).sendToTarget();
                 mAlbum.setVisibility(View.VISIBLE);
             }
             mDuration = mService.duration();
@@ -1263,14 +1266,15 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         public void handleMessage(Message msg)
         {
             int albumid = msg.arg1;
+            int songid = msg.arg2;
             if (msg.what == GET_ALBUM_ART && (mAlbumId != albumid || albumid < 0)) {
                 // while decoding the new image, show the default album art
                 Message numsg = mHandler.obtainMessage(ALBUM_ART_DECODED, null);
                 mHandler.removeMessages(ALBUM_ART_DECODED);
                 mHandler.sendMessageDelayed(numsg, 300);
-                Bitmap bm = MusicUtils.getArtwork(MediaPlaybackActivity.this, albumid);
+                Bitmap bm = MusicUtils.getArtwork(MediaPlaybackActivity.this, songid, albumid);
                 if (bm == null) {
-                    bm = MusicUtils.getArtwork(MediaPlaybackActivity.this, -1);
+                    bm = MusicUtils.getArtwork(MediaPlaybackActivity.this, songid, -1);
                     albumid = -1;
                 }
                 if (bm != null) {
