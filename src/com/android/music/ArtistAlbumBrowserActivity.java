@@ -314,7 +314,11 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             mCurrentArtistId = mArtistCursor.getString(mArtistCursor.getColumnIndexOrThrow(MediaStore.Audio.Artists._ID));
             mCurrentArtistName = mArtistCursor.getString(mArtistCursor.getColumnIndexOrThrow(MediaStore.Audio.Artists.ARTIST));
             mCurrentAlbumId = null;
-            menu.setHeaderTitle(mCurrentArtistName);
+            if (mCurrentArtistName == null || mCurrentArtistName.equals(MediaFile.UNKNOWN_STRING)) {
+                menu.setHeaderTitle(getString(R.string.unknown_artist_name));
+            } else {
+                menu.setHeaderTitle(mCurrentArtistName);
+            }
             return;
         } else if (itemtype == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
             if (cpos == -1) {
@@ -331,7 +335,11 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             mArtistCursor.moveToPosition(gpos);
             mCurrentArtistNameForAlbum = mArtistCursor.getString(
                     mArtistCursor.getColumnIndexOrThrow(MediaStore.Audio.Artists.ARTIST));
-            menu.setHeaderTitle(mCurrentAlbumName);
+            if (mCurrentAlbumName == null || mCurrentAlbumName.equals(MediaFile.UNKNOWN_STRING)) {
+                menu.setHeaderTitle(getString(R.string.unknown_album_name));
+            } else {
+                menu.setHeaderTitle(mCurrentAlbumName);
+            }
         }
     }
 
