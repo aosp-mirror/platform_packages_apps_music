@@ -566,21 +566,21 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 }
 
                 case PLAYLIST_SELECTED: {
-                    int [] list = new int[1];
+                    long [] list = new long[1];
                     list[0] = MusicUtils.getCurrentAudioId();
-                    int playlist = item.getIntent().getIntExtra("playlist", 0);
+                    long playlist = item.getIntent().getLongExtra("playlist", 0);
                     MusicUtils.addToPlaylist(this, list, playlist);
                     return true;
                 }
                 
                 case DELETE_ITEM: {
                     if (mService != null) {
-                        int [] list = new int[1];
+                        long [] list = new long[1];
                         list[0] = MusicUtils.getCurrentAudioId();
                         Bundle b = new Bundle();
                         b.putString("description", getString(R.string.delete_song_desc,
                                 mService.getTrackName()));
-                        b.putIntArray("items", list);
+                        b.putLongArray("items", list);
                         intent = new Intent();
                         intent.setClass(this, DeleteItems.class);
                         intent.putExtras(b);
@@ -603,7 +603,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
             case NEW_PLAYLIST:
                 Uri uri = intent.getData();
                 if (uri != null) {
-                    int [] list = new int[1];
+                    long [] list = new long[1];
                     list[0] = MusicUtils.getCurrentAudioId();
                     int playlist = Integer.parseInt(uri.getLastPathSegment());
                     MusicUtils.addToPlaylist(this, list, playlist);
@@ -1209,6 +1209,15 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         }
     };
 
+    private static class AlbumSongIdWrapper {
+        public long albumid;
+        public long songid;
+        AlbumSongIdWrapper(long aid, long sid) {
+            albumid = aid;
+            songid = sid;
+        }
+    }
+    
     private void updateTrackInfo() {
         if (mService == null) {
             return;
@@ -1220,7 +1229,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 return;
             }
             
-            int songid = mService.getAudioId(); 
+            long songid = mService.getAudioId(); 
             if (songid < 0 && path.toLowerCase().startsWith("http://")) {
                 // Once we can get album art and meta data from MediaPlayer, we
                 // can show that info again when streaming.
@@ -1229,7 +1238,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 mAlbum.setVisibility(View.GONE);
                 mTrackName.setText(path);
                 mAlbumArtHandler.removeMessages(GET_ALBUM_ART);
-                mAlbumArtHandler.obtainMessage(GET_ALBUM_ART, -1, -1).sendToTarget();
+                mAlbumArtHandler.obtainMessage(GET_ALBUM_ART, new AlbumSongIdWrapper(-1, -1)).sendToTarget();
             } else {
                 ((View) mArtistName.getParent()).setVisibility(View.VISIBLE);
                 ((View) mAlbumName.getParent()).setVisibility(View.VISIBLE);
@@ -1239,7 +1248,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 }
                 mArtistName.setText(artistName);
                 String albumName = mService.getAlbumName();
-                int albumid = mService.getAlbumId();
+                long albumid = mService.getAlbumId();
                 if (MediaFile.UNKNOWN_STRING.equals(albumName)) {
                     albumName = getString(R.string.unknown_album_name);
                     albumid = -1;
@@ -1247,7 +1256,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 mAlbumName.setText(albumName);
                 mTrackName.setText(mService.getTrackName());
                 mAlbumArtHandler.removeMessages(GET_ALBUM_ART);
-                mAlbumArtHandler.obtainMessage(GET_ALBUM_ART, albumid, songid).sendToTarget();
+                mAlbumArtHandler.obtainMessage(GET_ALBUM_ART, new AlbumSongIdWrapper(albumid, songid)).sendToTarget();
                 mAlbum.setVisibility(View.VISIBLE);
             }
             mDuration = mService.duration();
@@ -1258,15 +1267,16 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     }
     
     public class AlbumArtHandler extends Handler {
-        private int mAlbumId = -1;
+        private long mAlbumId = -1;
         
         public AlbumArtHandler(Looper looper) {
             super(looper);
         }
+        @Override
         public void handleMessage(Message msg)
         {
-            int albumid = msg.arg1;
-            int songid = msg.arg2;
+            long albumid = ((AlbumSongIdWrapper) msg.obj).albumid;
+            long songid = ((AlbumSongIdWrapper) msg.obj).songid;
             if (msg.what == GET_ALBUM_ART && (mAlbumId != albumid || albumid < 0)) {
                 // while decoding the new image, show the default album art
                 Message numsg = mHandler.obtainMessage(ALBUM_ART_DECODED, null);

@@ -253,13 +253,13 @@ public class AlbumBrowserActivity extends ListActivity
         switch (item.getItemId()) {
             case PLAY_SELECTION: {
                 // play the selected album
-                int [] list = MusicUtils.getSongListForAlbum(this, Integer.parseInt(mCurrentAlbumId));
+                long [] list = MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
                 MusicUtils.playAll(this, list, 0);
                 return true;
             }
 
             case QUEUE: {
-                int [] list = MusicUtils.getSongListForAlbum(this, Integer.parseInt(mCurrentAlbumId));
+                long [] list = MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
                 MusicUtils.addToCurrentPlaylist(this, list);
                 return true;
             }
@@ -272,18 +272,18 @@ public class AlbumBrowserActivity extends ListActivity
             }
 
             case PLAYLIST_SELECTED: {
-                int [] list = MusicUtils.getSongListForAlbum(this, Integer.parseInt(mCurrentAlbumId));
-                int playlist = item.getIntent().getIntExtra("playlist", 0);
+                long [] list = MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
+                long playlist = item.getIntent().getLongExtra("playlist", 0);
                 MusicUtils.addToPlaylist(this, list, playlist);
                 return true;
             }
             case DELETE_ITEM: {
-                int [] list = MusicUtils.getSongListForAlbum(this, Integer.parseInt(mCurrentAlbumId));
+                long [] list = MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
                 String f = getString(R.string.delete_album_desc); 
                 String desc = String.format(f, mCurrentAlbumName);
                 Bundle b = new Bundle();
                 b.putString("description", desc);
-                b.putIntArray("items", list);
+                b.putLongArray("items", list);
                 Intent intent = new Intent();
                 intent.setClass(this, DeleteItems.class);
                 intent.putExtras(b);
@@ -332,8 +332,8 @@ public class AlbumBrowserActivity extends ListActivity
                 if (resultCode == RESULT_OK) {
                     Uri uri = intent.getData();
                     if (uri != null) {
-                        int [] list = MusicUtils.getSongListForAlbum(this, Integer.parseInt(mCurrentAlbumId));
-                        MusicUtils.addToPlaylist(this, list, Integer.parseInt(uri.getLastPathSegment()));
+                        long [] list = MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
+                        MusicUtils.addToPlaylist(this, list, Long.parseLong(uri.getLastPathSegment()));
                     }
                 }
                 break;
@@ -573,16 +573,15 @@ public class AlbumBrowserActivity extends ListActivity
             // We don't actually need the path to the thumbnail file,
             // we just use it to see if there is album art or not
             String art = cursor.getString(mAlbumArtIndex);
+            long aid = cursor.getLong(0);
             if (unknown || art == null || art.length() == 0) {
                 iv.setImageDrawable(null);
             } else {
-                int artIndex = cursor.getInt(0);
-                Drawable d = MusicUtils.getCachedArtwork(context, artIndex, mDefaultAlbumIcon);
+                Drawable d = MusicUtils.getCachedArtwork(context, aid, mDefaultAlbumIcon);
                 iv.setImageDrawable(d);
             }
             
-            int currentalbumid = MusicUtils.getCurrentAlbumId();
-            int aid = cursor.getInt(0);
+            long currentalbumid = MusicUtils.getCurrentAlbumId();
             iv = vh.play_indicator;
             if (currentalbumid == aid) {
                 iv.setImageDrawable(mNowPlayingOverlay);

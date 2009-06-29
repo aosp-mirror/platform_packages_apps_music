@@ -348,20 +348,20 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         switch (item.getItemId()) {
             case PLAY_SELECTION: {
                 // play everything by the selected artist
-                int [] list =
+                long [] list =
                     mCurrentArtistId != null ?
-                    MusicUtils.getSongListForArtist(this, Integer.parseInt(mCurrentArtistId))
-                    : MusicUtils.getSongListForAlbum(this, Integer.parseInt(mCurrentAlbumId));
+                    MusicUtils.getSongListForArtist(this, Long.parseLong(mCurrentArtistId))
+                    : MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
                         
                 MusicUtils.playAll(this, list, 0);
                 return true;
             }
 
             case QUEUE: {
-                int [] list =
+                long [] list =
                     mCurrentArtistId != null ?
-                    MusicUtils.getSongListForArtist(this, Integer.parseInt(mCurrentArtistId))
-                    : MusicUtils.getSongListForAlbum(this, Integer.parseInt(mCurrentAlbumId));
+                    MusicUtils.getSongListForArtist(this, Long.parseLong(mCurrentArtistId))
+                    : MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
                 MusicUtils.addToCurrentPlaylist(this, list);
                 return true;
             }
@@ -374,30 +374,30 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             }
 
             case PLAYLIST_SELECTED: {
-                int [] list =
+                long [] list =
                     mCurrentArtistId != null ?
-                    MusicUtils.getSongListForArtist(this, Integer.parseInt(mCurrentArtistId))
-                    : MusicUtils.getSongListForAlbum(this, Integer.parseInt(mCurrentAlbumId));
-                int playlist = item.getIntent().getIntExtra("playlist", 0);
+                    MusicUtils.getSongListForArtist(this, Long.parseLong(mCurrentArtistId))
+                    : MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
+                long playlist = item.getIntent().getLongExtra("playlist", 0);
                 MusicUtils.addToPlaylist(this, list, playlist);
                 return true;
             }
             
             case DELETE_ITEM: {
-                int [] list;
+                long [] list;
                 String desc;
                 if (mCurrentArtistId != null) {
-                    list = MusicUtils.getSongListForArtist(this, Integer.parseInt(mCurrentArtistId));
+                    list = MusicUtils.getSongListForArtist(this, Long.parseLong(mCurrentArtistId));
                     String f = getString(R.string.delete_artist_desc);
                     desc = String.format(f, mCurrentArtistName);
                 } else {
-                    list = MusicUtils.getSongListForAlbum(this, Integer.parseInt(mCurrentAlbumId));
+                    list = MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
                     String f = getString(R.string.delete_album_desc); 
                     desc = String.format(f, mCurrentAlbumName);
                 }
                 Bundle b = new Bundle();
                 b.putString("description", desc);
-                b.putIntArray("items", list);
+                b.putLongArray("items", list);
                 Intent intent = new Intent();
                 intent.setClass(this, DeleteItems.class);
                 intent.putExtras(b);
@@ -453,13 +453,13 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
                 if (resultCode == RESULT_OK) {
                     Uri uri = intent.getData();
                     if (uri != null) {
-                        int [] list = null;
+                        long [] list = null;
                         if (mCurrentArtistId != null) {
-                            list = MusicUtils.getSongListForArtist(this, Integer.parseInt(mCurrentArtistId));
+                            list = MusicUtils.getSongListForArtist(this, Long.parseLong(mCurrentArtistId));
                         } else if (mCurrentAlbumId != null) {
-                            list = MusicUtils.getSongListForAlbum(this, Integer.parseInt(mCurrentAlbumId));
+                            list = MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
                         }
-                        MusicUtils.addToPlaylist(this, list, Integer.parseInt(uri.getLastPathSegment()));
+                        MusicUtils.addToPlaylist(this, list, Long.parseLong(uri.getLastPathSegment()));
                     }
                 }
                 break;
@@ -644,8 +644,8 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             
             vh.line2.setText(songs_albums);
             
-            int currentartistid = MusicUtils.getCurrentArtistId();
-            int artistid = cursor.getInt(mGroupArtistIdIdx);
+            long currentartistid = MusicUtils.getCurrentArtistId();
+            long artistid = cursor.getLong(mGroupArtistIdIdx);
             if (currentartistid == artistid && !isexpanded) {
                 vh.play_indicator.setImageDrawable(mNowPlayingOverlay);
             } else {
@@ -701,13 +701,13 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
                 iv.setBackgroundDrawable(mDefaultAlbumIcon);
                 iv.setImageDrawable(null);
             } else {
-                int artIndex = cursor.getInt(0);
+                long artIndex = cursor.getLong(0);
                 Drawable d = MusicUtils.getCachedArtwork(context, artIndex, mDefaultAlbumIcon);
                 iv.setImageDrawable(d);
             }
 
-            int currentalbumid = MusicUtils.getCurrentAlbumId();
-            int aid = cursor.getInt(0);
+            long currentalbumid = MusicUtils.getCurrentAlbumId();
+            long aid = cursor.getLong(0);
             iv = vh.play_indicator;
             if (currentalbumid == aid) {
                 iv.setImageDrawable(mNowPlayingOverlay);
@@ -720,7 +720,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         @Override
         protected Cursor getChildrenCursor(Cursor groupCursor) {
             
-            int id = groupCursor.getInt(groupCursor.getColumnIndexOrThrow(MediaStore.Audio.Artists._ID));
+            long id = groupCursor.getLong(groupCursor.getColumnIndexOrThrow(MediaStore.Audio.Artists._ID));
             
             String[] cols = new String[] {
                     MediaStore.Audio.Albums._ID,

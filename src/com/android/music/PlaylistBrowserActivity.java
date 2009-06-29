@@ -100,7 +100,7 @@ public class PlaylistBrowserActivity extends ListActivity
                     } else if (id == PODCASTS_PLAYLIST) {
                         playPodcasts();
                     } else if (id == ALL_SONGS_PLAYLIST) {
-                        int [] list = MusicUtils.getAllSongs(PlaylistBrowserActivity.this);
+                        long [] list = MusicUtils.getAllSongs(PlaylistBrowserActivity.this);
                         if (list != null) {
                             MusicUtils.playAll(PlaylistBrowserActivity.this, list, 0);
                         }
@@ -384,10 +384,10 @@ public class PlaylistBrowserActivity extends ListActivity
         }
         try {
             int len = cursor.getCount();
-            int [] list = new int[len];
+            long [] list = new long[len];
             for (int i = 0; i < len; i++) {
                 cursor.moveToNext();
-                list[i] = cursor.getInt(0);
+                list[i] = cursor.getLong(0);
             }
             MusicUtils.playAll(this, list, 0);
         } catch (SQLiteException ex) {
@@ -409,10 +409,10 @@ public class PlaylistBrowserActivity extends ListActivity
         }
         try {
             int len = cursor.getCount();
-            int [] list = new int[len];
+            long [] list = new long[len];
             for (int i = 0; i < len; i++) {
                 cursor.moveToNext();
-                list[i] = cursor.getInt(0);
+                list[i] = cursor.getLong(0);
             }
             MusicUtils.playAll(this, list, 0);
         } catch (SQLiteException ex) {

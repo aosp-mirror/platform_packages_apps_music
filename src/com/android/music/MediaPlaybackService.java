@@ -108,9 +108,9 @@ public class MediaPlaybackService extends Service {
     private int mShuffleMode = SHUFFLE_NONE;
     private int mRepeatMode = REPEAT_NONE;
     private int mMediaMountedCount = 0;
-    private int [] mAutoShuffleList = null;
+    private long [] mAutoShuffleList = null;
     private boolean mOneShot;
-    private int [] mPlayList = null;
+    private long [] mPlayList = null;
     private int mPlayListLen = 0;
     private Vector<Integer> mHistory = new Vector<Integer>(MAX_HISTORY_SIZE);
     private Cursor mCursor;
@@ -359,12 +359,12 @@ public class MediaPlaybackService extends Service {
             // on the phone)
             int len = mPlayListLen;
             for (int i = 0; i < len; i++) {
-                int n = mPlayList[i];
+                long n = mPlayList[i];
                 if (n == 0) {
                     q.append("0;");
                 } else {
                     while (n != 0) {
-                        int digit = n & 0xf;
+                        int digit = (int)(n & 0xf);
                         n >>= 4;
                         q.append(hexdigits[digit]);
                     }
@@ -654,7 +654,7 @@ public class MediaPlaybackService extends Service {
     private void notifyChange(String what) {
         
         Intent i = new Intent(what);
-        i.putExtra("id", Integer.valueOf(getAudioId()));
+        i.putExtra("id", Long.valueOf(getAudioId()));
         i.putExtra("artist", getArtistName());
         i.putExtra("album",getAlbumName());
         i.putExtra("track", getTrackName());
@@ -675,7 +675,7 @@ public class MediaPlaybackService extends Service {
             // reallocate at 2x requested size so we don't
             // need to grow and copy the array for every
             // insert
-            int [] newlist = new int[size * 2];
+            long [] newlist = new long[size * 2];
             int len = mPlayList != null ? mPlayList.length : mPlayListLen;
             for (int i = 0; i < len; i++) {
                 newlist[i] = mPlayList[i];
@@ -687,7 +687,7 @@ public class MediaPlaybackService extends Service {
     }
     
     // insert the list of songs at the specified position in the playlist
-    private void addToPlayList(int [] list, int position) {
+    private void addToPlayList(long [] list, int position) {
         int addlen = list.length;
         if (position < 0) { // overwrite
             mPlayListLen = 0;
@@ -720,7 +720,7 @@ public class MediaPlaybackService extends Service {
      * @param list The list of tracks to append.
      * @param action NOW, NEXT or LAST
      */
-    public void enqueue(int [] list, int action) {
+    public void enqueue(long [] list, int action) {
         synchronized(this) {
             if (action == NEXT && mPlayPos + 1 < mPlayListLen) {
                 addToPlayList(list, mPlayPos + 1);
@@ -753,12 +753,12 @@ public class MediaPlaybackService extends Service {
      * specified position is 0.
      * @param list The new list of tracks.
      */
-    public void open(int [] list, int position) {
+    public void open(long [] list, int position) {
         synchronized (this) {
             if (mShuffleMode == SHUFFLE_AUTO) {
                 mShuffleMode = SHUFFLE_NORMAL;
             }
-            int oldId = getAudioId();
+            long oldId = getAudioId();
             int listlength = list.length;
             boolean newlist = true;
             if (mPlayListLen == listlength) {
@@ -805,7 +805,7 @@ public class MediaPlaybackService extends Service {
                 index2 = mPlayListLen - 1;
             }
             if (index1 < index2) {
-                int tmp = mPlayList[index1];
+                long tmp = mPlayList[index1];
                 for (int i = index1; i < index2; i++) {
                     mPlayList[i] = mPlayList[i+1];
                 }
@@ -816,7 +816,7 @@ public class MediaPlaybackService extends Service {
                         mPlayPos--;
                 }
             } else if (index2 < index1) {
-                int tmp = mPlayList[index1];
+                long tmp = mPlayList[index1];
                 for (int i = index1; i > index2; i--) {
                     mPlayList[i] = mPlayList[i-1];
                 }
@@ -835,10 +835,10 @@ public class MediaPlaybackService extends Service {
      * Returns the current play list
      * @return An array of integers containing the IDs of the tracks in the play list
      */
-    public int [] getQueue() {
+    public long [] getQueue() {
         synchronized (this) {
             int len = mPlayListLen;
-            int [] list = new int[len];
+            long [] list = new long[len];
             for (int i = 0; i < len; i++) {
                 list[i] = mPlayList[i];
             }
@@ -941,7 +941,7 @@ public class MediaPlaybackService extends Service {
                             mCursor.moveToNext();
                             ensurePlayListCapacity(1);
                             mPlayListLen = 1;
-                            mPlayList[0] = mCursor.getInt(IDCOLIDX);
+                            mPlayList[0] = mCursor.getLong(IDCOLIDX);
                             mPlayPos = 0;
                         }
                     }
@@ -1283,7 +1283,7 @@ public class MediaPlaybackService extends Service {
         for (int i = 0; i < to_add; i++) {
             // pick something at random from the list
             int idx = mRand.nextInt(mAutoShuffleList.length);
-            Integer which = mAutoShuffleList[idx];
+            long which = mAutoShuffleList[idx];
             ensurePlayListCapacity(mPlayListLen + 1);
             mPlayList[mPlayListLen++] = which;
             notify = true;
@@ -1320,10 +1320,10 @@ public class MediaPlaybackService extends Service {
                 return false;
             }
             int len = c.getCount();
-            int[] list = new int[len];
+            long [] list = new long[len];
             for (int i = 0; i < len; i++) {
                 c.moveToNext();
-                list[i] = c.getInt(0);
+                list[i] = c.getLong(0);
             }
             mAutoShuffleList = list;
             return true;
@@ -1397,7 +1397,7 @@ public class MediaPlaybackService extends Service {
      * @param id The id to be removed
      * @return how many instances of the track were removed
      */
-    public int removeTrack(int id) {
+    public int removeTrack(long id) {
         int numremoved = 0;
         synchronized (this) {
             for (int i = 0; i < mPlayListLen; i++) {
@@ -1466,7 +1466,7 @@ public class MediaPlaybackService extends Service {
      * Returns the rowid of the currently playing file, or -1 if
      * no file is currently playing.
      */
-    public int getAudioId() {
+    public long getAudioId() {
         synchronized (this) {
             if (mPlayPos >= 0 && mPlayer.isInitialized()) {
                 return mPlayList[mPlayPos];
@@ -1508,12 +1508,12 @@ public class MediaPlaybackService extends Service {
         }
     }
     
-    public int getArtistId() {
+    public long getArtistId() {
         synchronized (this) {
             if (mCursor == null) {
                 return -1;
             }
-            return mCursor.getInt(mCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST_ID));
+            return mCursor.getLong(mCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST_ID));
         }
     }
 
@@ -1526,12 +1526,12 @@ public class MediaPlaybackService extends Service {
         }
     }
 
-    public int getAlbumId() {
+    public long getAlbumId() {
         synchronized (this) {
             if (mCursor == null) {
                 return -1;
             }
-            return mCursor.getInt(mCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID));
+            return mCursor.getLong(mCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID));
         }
     }
 
@@ -1764,7 +1764,7 @@ public class MediaPlaybackService extends Service {
         {
             mService.get().open(path, oneShot);
         }
-        public void open(int [] list, int position) {
+        public void open(long [] list, int position) {
             mService.get().open(list, position);
         }
         public int getQueuePosition() {
@@ -1797,19 +1797,19 @@ public class MediaPlaybackService extends Service {
         public String getAlbumName() {
             return mService.get().getAlbumName();
         }
-        public int getAlbumId() {
+        public long getAlbumId() {
             return mService.get().getAlbumId();
         }
         public String getArtistName() {
             return mService.get().getArtistName();
         }
-        public int getArtistId() {
+        public long getArtistId() {
             return mService.get().getArtistId();
         }
-        public void enqueue(int [] list , int action) {
+        public void enqueue(long [] list , int action) {
             mService.get().enqueue(list, action);
         }
-        public int [] getQueue() {
+        public long [] getQueue() {
             return mService.get().getQueue();
         }
         public void moveQueueItem(int from, int to) {
@@ -1818,7 +1818,7 @@ public class MediaPlaybackService extends Service {
         public String getPath() {
             return mService.get().getPath();
         }
-        public int getAudioId() {
+        public long getAudioId() {
             return mService.get().getAudioId();
         }
         public long position() {
@@ -1839,7 +1839,7 @@ public class MediaPlaybackService extends Service {
         public int removeTracks(int first, int last) {
             return mService.get().removeTracks(first, last);
         }
-        public int removeTrack(int id) {
+        public int removeTrack(long id) {
             return mService.get().removeTrack(id);
         }
         public void setRepeatMode(int repeatmode) {

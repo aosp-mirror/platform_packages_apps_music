@@ -23,7 +23,7 @@ interface IMediaPlaybackService
 {
     void openFile(String path, boolean oneShot);
     void openFileAsync(String path);
-    void open(in int [] list, int position);
+    void open(in long [] list, int position);
     int getQueuePosition();
     boolean isPlaying();
     void stop();
@@ -36,19 +36,19 @@ interface IMediaPlaybackService
     long seek(long pos);
     String getTrackName();
     String getAlbumName();
-    int getAlbumId();
+    long getAlbumId();
     String getArtistName();
-    int getArtistId();
-    void enqueue(in int [] list, int action);
-    int [] getQueue();
+    long getArtistId();
+    void enqueue(in long [] list, int action);
+    long [] getQueue();
     void moveQueueItem(int from, int to);
     void setQueuePosition(int index);
     String getPath();
-    int getAudioId();
+    long getAudioId();
     void setShuffleMode(int shufflemode);
     int getShuffleMode();
     int removeTracks(int first, int last);
-    int removeTrack(int id);
+    int removeTrack(long id);
     void setRepeatMode(int repeatmode);
     int getRepeatMode();
     int getMediaMountedCount();

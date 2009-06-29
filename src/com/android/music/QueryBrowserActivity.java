@@ -100,7 +100,7 @@ implements MusicUtils.Defs, ServiceConnection
             if (path.startsWith("content://media/external/audio/media/")) {
                 // This is a specific file
                 String id = uri.getLastPathSegment();
-                int [] list = new int[] { Integer.valueOf(id) };
+                long [] list = new long[] { Long.valueOf(id) };
                 MusicUtils.playAll(this, list, 0);
                 finish();
                 return;
@@ -254,7 +254,7 @@ implements MusicUtils.Defs, ServiceConnection
             intent.putExtra("album", Long.valueOf(id).toString());
             startActivity(intent);
         } else if (position >= 0 && id >= 0){
-            int [] list = new int[] { (int) id };
+            long [] list = new long[] { id };
             MusicUtils.playAll(this, list, 0);
         } else {
             Log.e("QueryBrowser", "invalid position/id: " + position + "/" + id);

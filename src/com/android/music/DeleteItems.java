@@ -40,7 +40,7 @@ public class DeleteItems extends Activity
 {
     private TextView mPrompt;
     private Button mButton;
-    private int [] mItemList;
+    private long [] mItemList;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -64,7 +64,7 @@ public class DeleteItems extends Activity
 
         Bundle b = getIntent().getExtras();
         String desc = b.getString("description");
-        mItemList = b.getIntArray("items");
+        mItemList = b.getLongArray("items");
         
         mPrompt.setText(desc);
     }
