@@ -22,4 +22,5 @@
     android:searchSuggestPath="external/audio/search"
     android:searchSuggestThreshold="3"
     android:searchSuggestIntentAction="android.intent.action.VIEW"
+    android:searchSettingsDescription="@string/search_settings_description"
 />

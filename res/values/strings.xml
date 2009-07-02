@@ -282,5 +282,8 @@
 
     <!-- Toast after streamStarter activity receives PLAYBACK_COMPLETE in case of an error -->
     <string name="fail_to_start_stream">Failed to play the requested stream.</string>
+    
+    <!-- The string used to describe Music as a searchable item within system search settings. -->
+    <string name="search_settings_description">Artists, albums, and tracks</string>
 </resources>
 
