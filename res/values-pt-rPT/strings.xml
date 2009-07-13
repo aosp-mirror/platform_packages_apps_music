@@ -28,22 +28,22 @@
   </plurals>
     <string name="goto_start">"Biblioteca"</string>
     <string name="goto_playback">"Reprodução"</string>
-    <string name="party_shuffle">"Coleção aleatória"</string>
-    <string name="party_shuffle_off">"Coleção aleatória desativada"</string>
-    <string name="delete_item">"Excluir"</string>
-    <string name="shuffle_all">"Reproduzir aleatoriamente"</string>
-    <string name="play_all">"Reproduzir tudo"</string>
-    <string name="delete_artist_desc">"Todas as músicas do <xliff:g id="ARTIST">%s</xliff:g> serão permanentemente excluídas do cartão SD."</string>
-    <string name="delete_album_desc">"Todo o álbum \"<xliff:g id="ALBUM">%s</xliff:g>\" será permanentemente excluído do cartão SD."</string>
-    <string name="delete_song_desc">"\"<xliff:g id="SONG">%s</xliff:g>\" será permanentemente excluída do cartão SD."</string>
+    <string name="party_shuffle">"Lista·aleatória"</string>
+    <string name="party_shuffle_off">"Lista·aleatória·desactivada"</string>
+    <string name="delete_item">"Eliminar"</string>
+    <string name="shuffle_all">"Reproduzir todas aleatoriamente"</string>
+    <string name="play_all">"Reproduzir todas"</string>
+    <string name="delete_artist_desc">"Todas as músicas de <xliff:g id="ARTIST">%s</xliff:g> serão eliminadas definitivamente do cartão SD."</string>
+    <string name="delete_album_desc">"O álbum \"<xliff:g id="ALBUM">%s</xliff:g>\" inteiro será eliminado definitivamente do cartão SD."</string>
+    <string name="delete_song_desc">"\"<xliff:g id="SONG">%s</xliff:g>\" será eliminada definitivamente do cartão SD."</string>
     <string name="delete_confirm_button_text">"OK"</string>
   <plurals name="NNNtracksdeleted">
-    <item quantity="one">"1 música foi excluída."</item>
-    <item quantity="other">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> músicas foram excluídas."</item>
+    <item quantity="one">"Foi eliminada 1 música."</item>
+    <item quantity="other">"Foram eliminadas <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> músicas."</item>
   </plurals>
-    <string name="scanning">"Verificando o cartão SD…"</string>
+    <string name="scanning">"A analisar o cartão SD..."</string>
     <string name="nowplaying_title">"Em reprodução"</string>
-    <string name="partyshuffle_title">"Coleção aleatória"</string>
+    <string name="partyshuffle_title">"Lista aleatória"</string>
     <string name="artists_title">"Artistas"</string>
     <string name="albums_menu">"Álbuns"</string>
     <string name="albums_title">"Álbuns"</string>
@@ -52,51 +52,51 @@
     <string name="playlists_menu">"Listas de reprodução"</string>
     <string name="playlists_title">"Listas de reprodução"</string>
     <string name="videos_title">"Vídeos"</string>
-    <string name="all_title">"Todas as mídias"</string>
+    <string name="all_title">"Todo o conteúdo multimédia"</string>
     <string name="browse_menu">"Artistas"</string>
     <string name="search_title">"Pesquisar"</string>
     <string name="no_tracks_title">"Sem músicas"</string>
     <string name="no_videos_title">"Sem vídeos"</string>
     <string name="no_playlists_title">"Sem listas de reprodução"</string>
-    <string name="delete_playlist_menu">"Excluir"</string>
+    <string name="delete_playlist_menu">"Eliminar"</string>
     <string name="edit_playlist_menu">"Editar"</string>
-    <string name="rename_playlist_menu">"Renomear"</string>
-    <string name="playlist_deleted_message">"Lista de reprodução excluída."</string>
-    <string name="playlist_renamed_message">"Lista de reprodução renomeada."</string>
-    <string name="recentlyadded">"Adicionado recentemente"</string>
-    <string name="recentlyadded_title">"Adicionado recentemente"</string>
+    <string name="rename_playlist_menu">"Mudar o nome"</string>
+    <string name="playlist_deleted_message">"Lista de reprodução eliminada."</string>
+    <string name="playlist_renamed_message">"Nome da lista de reprodução alterado."</string>
+    <string name="recentlyadded">"Adicionadas recentemente"</string>
+    <string name="recentlyadded_title">"Adicionadas recentemente"</string>
     <string name="podcasts_listitem">"Podcasts"</string>
     <string name="podcasts_title">"Podcasts"</string>
     <string name="sdcard_missing_title">"Sem cartão SD"</string>
-    <string name="sdcard_missing_message">"O seu telefone não tem um cartão SD inserido."</string>
-    <string name="sdcard_busy_title">"Cartão SD não disponível"</string>
-    <string name="sdcard_busy_message">"Desculpe, o seu cartão SD está ocupado."</string>
+    <string name="sdcard_missing_message">"O telefone não tem um cartão SD inserido."</string>
+    <string name="sdcard_busy_title">"Cartão SD indisponível"</string>
+    <string name="sdcard_busy_message">"Lamentamos, mas o cartão SD está ocupado."</string>
     <string name="sdcard_error_title">"Erro do cartão SD"</string>
-    <string name="sdcard_error_message">"Foi encontrado um erro no seu cartão SD."</string>
+    <string name="sdcard_error_message">"Ocorreu um erro com o cartão SD."</string>
     <string name="unknown_artist_name">"Artista desconhecido"</string>
     <string name="unknown_album_name">"Álbum desconhecido"</string>
-    <string name="shuffle_on_notif">"A reprodução aleatória está ativada."</string>
-    <string name="shuffle_off_notif">"A reprodução aleatória está desativada."</string>
-    <string name="repeat_off_notif">"A repetição está desativada."</string>
-    <string name="repeat_current_notif">"Repetindo a música atual."</string>
-    <string name="repeat_all_notif">"Repetindo todas as músicas."</string>
-    <string name="ringtone_menu">"Usar como toque do telefone"</string>
-    <string name="ringtone_menu_short">"Usar como toque"</string>
-    <string name="ringtone_set">"\"%s\" definido como toque do telefone."</string>
+    <string name="shuffle_on_notif">"A reprodução aleatória está activada"</string>
+    <string name="shuffle_off_notif">"A reprodução aleatória está desactivada."</string>
+    <string name="repeat_off_notif">"A repetição está desactivada."</string>
+    <string name="repeat_current_notif">"Repetir a música actual."</string>
+    <string name="repeat_all_notif">"A repetir todas as músicas."</string>
+    <string name="ringtone_menu">"Utilizar como toque do telefone"</string>
+    <string name="ringtone_menu_short">"Utilizar como toque"</string>
+    <string name="ringtone_set">"\"%s\" definida como toque do telefone."</string>
     <string name="play_selection">"Reproduzir"</string>
     <string name="add_to_playlist">"Adicionar à lista de reprodução"</string>
-    <string name="queue">"Lista de reprodução atual"</string>
+    <string name="queue">"Lista de reprodução actual"</string>
     <string name="new_playlist">"Novo"</string>
     <string name="new_playlist_name_template">"Nova lista de reprodução <xliff:g id="NUMBER">%d</xliff:g>"</string>
   <plurals name="NNNtrackstoplaylist">
-    <item quantity="one">"1 música adicionada à lista de reprodução."</item>
+    <item quantity="one">"Uma música adicionada à lista de reprodução."</item>
     <item quantity="other">"%d músicas adicionadas à lista de reprodução."</item>
   </plurals>
-    <string name="emptyplaylist">"A lista de reprodução selecionada está vazia."</string>
-    <string name="create_playlist_create_text">"Salvar"</string>
+    <string name="emptyplaylist">"A lista de reprodução seleccionada está vazia."</string>
+    <string name="create_playlist_create_text">"Guardar"</string>
     <string name="create_playlist_overwrite_text">"Substituir"</string>
-    <string name="service_start_error_title">"Problema na reprodução"</string>
-    <string name="service_start_error_msg">"Desculpe, não foi possível reproduzir a música."</string>
+    <string name="service_start_error_title">"Problemas de reprodução"</string>
+    <string name="service_start_error_msg">"Lamentamos, mas não foi possível reproduzir a música."</string>
     <string name="service_start_error_button">"OK"</string>
   <string-array name="weeklist">
     <item>"1 semana"</item>
@@ -113,28 +113,28 @@
     <item>"12 semanas"</item>
   </string-array>
     <string name="weekpicker_set">"Concluído"</string>
-    <string name="weekpicker_title">"Definir o período"</string>
-    <string name="save_as_playlist">"Salvar como lista de reprodução"</string>
-    <string name="clear_playlist">"Limpar lista de reprodução"</string>
+    <string name="weekpicker_title">"Definir a hora"</string>
+    <string name="save_as_playlist">"Guardar como lista de reprodução"</string>
+    <string name="clear_playlist">"Limpar a lista de reprodução"</string>
     <string name="musicbrowserlabel">"Música"</string>
     <string name="musicshortcutlabel">"Lista de reprodução de músicas"</string>
     <string name="mediaplaybacklabel">"Música"</string>
     <string name="videobrowserlabel">"Vídeos"</string>
     <string name="mediapickerlabel">"Música"</string>
-    <string name="playback_failed">"Desculpe, o player não suporta este tipo de arquivo de áudio."</string>
+    <string name="playback_failed">"Lamentamos, mas o leitor não suporta este tipo de ficheiros de áudio."</string>
     <string name="cancel">"Cancelar"</string>
     <string name="remove_from_playlist">"Remover da lista de reprodução"</string>
-    <string name="streamloadingtext">"Conectando-se a <xliff:g id="HOST">%s</xliff:g>"</string>
-    <string name="mediasearch">"Pesquisar %s usando:"</string>
-    <string name="working_artists">"Artistas…"</string>
+    <string name="streamloadingtext">"A ligar a <xliff:g id="HOST">%s</xliff:g>"</string>
+    <string name="mediasearch">"Procurar %s utilizando:"</string>
+    <string name="working_artists">"Artistas..."</string>
     <string name="working_albums">"Álbuns..."</string>
-    <string name="working_songs">"Músicas…"</string>
+    <string name="working_songs">"Músicas..."</string>
     <string name="working_playlists">"Listas de reprodução..."</string>
-    <string name="loading">"Carregando"</string>
+    <string name="loading">"A carregar"</string>
     <string name="sort_by_track">"Faixas"</string>
     <string name="sort_by_album">"Álbuns"</string>
     <string name="sort_by_artist">"Artistas"</string>
-    <string name="music_picker_title">"Selecione a faixa de música"</string>
+    <string name="music_picker_title">"Seleccionar faixa de música"</string>
     <string name="gadget_track">"Faixa <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
     <!-- no translation found for fail_to_start_stream (3605390187703912835) -->
     <skip />

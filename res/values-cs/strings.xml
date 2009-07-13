@@ -136,4 +136,7 @@
     <string name="sort_by_artist">"Interpreti"</string>
     <string name="music_picker_title">"Vyberte hudební stopu"</string>
     <string name="gadget_track">"Stopa <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+    <string name="fail_to_start_stream">"Přehrání požadovaného datového proudu se nezdařilo."</string>
+    <!-- no translation found for search_settings_description (6520975349259883368) -->
+    <skip />
 </resources>

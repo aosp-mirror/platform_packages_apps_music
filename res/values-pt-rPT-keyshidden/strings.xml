@@ -15,7 +15,7 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt">"키보드를 사용하여 새 재생 목록에 이름을 지정하거나 \'저장\'을 선택하여 \'%s\'(이)라고 지정합니다."</string>
-    <string name="rename_playlist_same_prompt">"키보드를 사용하여 재생 목록 \'<xliff:g id="PLAYLIST">%s</xliff:g>\'에 새 이름을 지정합니다."</string>
-    <string name="rename_playlist_diff_prompt">"키보드를 사용하여 재생 목록 \'<xliff:g id="PLAYLIST">%s</xliff:g>\'에 새 이름을 지정하거나 \'저장\'을 선택하여 \'%s\'(이)라고 지정합니다."</string>
+    <string name="create_playlist_create_text_prompt">"Abra o teclado para dar um nome à nova lista de reprodução ou seleccione Guardar para a guardar com o nome \"%s\"."</string>
+    <string name="rename_playlist_same_prompt">"Abra o teclado para dar um novo nome à lista de reprodução \"<xliff:g id="PLAYLIST">%s</xliff:g>\"."</string>
+    <string name="rename_playlist_diff_prompt">"Abra o teclado para dar um novo nome à lista de reprodução \"<xliff:g id="PLAYLIST">%s</xliff:g>\" ou seleccione Guardar para a guardar com o nome \"%s\"."</string>
 </resources>

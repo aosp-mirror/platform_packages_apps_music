@@ -34,7 +34,7 @@
     <string name="shuffle_all">"Arrastrar todo"</string>
     <string name="play_all">"Reproducir todo"</string>
     <string name="delete_artist_desc">"Todas las canciones de <xliff:g id="ARTIST">%s</xliff:g> se eliminarán definitivamente de la tarjeta SD."</string>
-    <string name="delete_album_desc">"El álbum \"<xliff:g id="ALBUM">%s</xliff:g>\" se eliminará definitivamente de la tarjeta SD.\n."</string>
+    <string name="delete_album_desc">"El álbum \"<xliff:g id="ALBUM">%s</xliff:g>\" se eliminará definitivamente de la tarjeta SD."</string>
     <string name="delete_song_desc">"\"<xliff:g id="SONG">%s</xliff:g>\" se eliminará definitivamente de la tarjeta SD."</string>
     <string name="delete_confirm_button_text">"Aceptar"</string>
   <plurals name="NNNtracksdeleted">
@@ -136,4 +136,8 @@
     <string name="sort_by_artist">"Artistas"</string>
     <string name="music_picker_title">"Seleccionar pista de música"</string>
     <string name="gadget_track">"Pista <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+    <!-- no translation found for fail_to_start_stream (3605390187703912835) -->
+    <skip />
+    <!-- no translation found for search_settings_description (6520975349259883368) -->
+    <skip />
 </resources>

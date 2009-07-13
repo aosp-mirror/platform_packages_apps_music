@@ -15,7 +15,7 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt">"打开键盘以为新播放列表命名，或选择“保存”将其命名为“%s”。"</string>
-    <string name="rename_playlist_same_prompt">"打开键盘以赋予播放列表“<xliff:g id="PLAYLIST">%s</xliff:g>”新名称。"</string>
-    <string name="rename_playlist_diff_prompt">"打开键盘以赋予播放列表“<xliff:g id="PLAYLIST">%s</xliff:g>”新名称，或选择“保存”将其命名为“%s”。"</string>
+    <string name="create_playlist_create_text_prompt">"打开键盘为新的播放列表创建名称，或选择“保存”将其命名为“%s”。"</string>
+    <string name="rename_playlist_same_prompt">"打开键盘为“<xliff:g id="PLAYLIST">%s</xliff:g>”播放列表创建一个新名称。"</string>
+    <string name="rename_playlist_diff_prompt">"打开键盘为“<xliff:g id="PLAYLIST">%s</xliff:g>”播放列表创建一个新名称，或选择“保存”将其命名为“%s”。"</string>
 </resources>

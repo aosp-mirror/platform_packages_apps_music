@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onesong">"1 τραγούδι"</string>
+  <plurals name="Nsongs">
+    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> τραγούδια"</item>
+  </plurals>
+  <plurals name="Nsongscomp">
+    <item quantity="other">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> από <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> τραγούδια"</item>
+  </plurals>
+  <plurals name="Nalbums">
+    <item quantity="one">"1 άλμπουμ"</item>
+    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> άλμπουμ"</item>
+  </plurals>
+    <string name="goto_start">"Βιβλιοθήκη"</string>
+    <string name="goto_playback">"Αναπαραγωγή"</string>
+    <string name="party_shuffle">"Πάρτι - τυχαία αναπαραγωγή"</string>
+    <string name="party_shuffle_off">"Απενεργοποίηση λειτουργίας \"πάρτι - τυχαία αναπαραγωγή\""</string>
+    <string name="delete_item">"Διαγραφή"</string>
+    <string name="shuffle_all">"Τυχαία αναπαραγωγή όλων"</string>
+    <string name="play_all">"Αναπαραγωγή όλων"</string>
+    <string name="delete_artist_desc">"Όλα τα τραγούδια από <xliff:g id="ARTIST">%s</xliff:g> θα διαγραφούν οριστικά από την κάρτα SD."</string>
+    <string name="delete_album_desc">"Ολόκληρο το άλμπουμ \"<xliff:g id="ALBUM">%s</xliff:g>\" θα διαγραφεί οριστικά από την κάρτα SD."</string>
+    <string name="delete_song_desc">"Το <xliff:g id="SONG">%s</xliff:g> θα διαγραφεί οριστικά από την κάρτα SD."</string>
+    <string name="delete_confirm_button_text">"OK"</string>
+  <plurals name="NNNtracksdeleted">
+    <item quantity="one">"Διαγράφηκε 1 τραγούδι."</item>
+    <item quantity="other">"Διαγράφηκαν <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> τραγούδια."</item>
+  </plurals>
+    <string name="scanning">"Σάρωση κάρτας SD..."</string>
+    <string name="nowplaying_title">"Αναπαραγωγή σε εξέλιξη"</string>
+    <string name="partyshuffle_title">"Πάρτι - τυχαία αναπαραγωγή"</string>
+    <string name="artists_title">"Καλλιτέχνες"</string>
+    <string name="albums_menu">"Άλμπουμ"</string>
+    <string name="albums_title">"Άλμπουμ"</string>
+    <string name="tracks_menu">"Τραγούδια"</string>
+    <string name="tracks_title">"Τραγούδια"</string>
+    <string name="playlists_menu">"Λίστες αναπαραγωγής"</string>
+    <string name="playlists_title">"Λίστες αναπαραγωγής"</string>
+    <string name="videos_title">"Βίντεο"</string>
+    <string name="all_title">"Όλα τα μέσα"</string>
+    <string name="browse_menu">"Καλλιτέχνες"</string>
+    <string name="search_title">"Αναζήτηση"</string>
+    <string name="no_tracks_title">"Δεν υπάρχουν τραγούδια"</string>
+    <string name="no_videos_title">"Δεν υπάρχουν βίντεο"</string>
+    <string name="no_playlists_title">"Δεν υπάρχουν λίστες αναπαραγωγής"</string>
+    <string name="delete_playlist_menu">"Διαγραφή"</string>
+    <string name="edit_playlist_menu">"Επεξεργασία"</string>
+    <string name="rename_playlist_menu">"Μετονομασία"</string>
+    <string name="playlist_deleted_message">"Η λίστα αναπαραγωγής διαγράφηκε."</string>
+    <string name="playlist_renamed_message">"Μετονομασία λίστας αναπαραγωγής."</string>
+    <string name="recentlyadded">"Αρχεία που προστέθηκαν πρόσφατα"</string>
+    <string name="recentlyadded_title">"Αρχεία που προστέθηκαν πρόσφατα"</string>
+    <string name="podcasts_listitem">"Podcasts"</string>
+    <string name="podcasts_title">"Podcasts"</string>
+    <string name="sdcard_missing_title">"Δεν υπάρχει κάρτα SD"</string>
+    <string name="sdcard_missing_message">"Δεν υπάρχει κάρτα SD στο τηλέφωνό σας."</string>
+    <string name="sdcard_busy_title">"Η κάρτα SD δεν είναι διαθέσιμη"</string>
+    <string name="sdcard_busy_message">"Λυπούμαστε, η κάρτα SD είναι απασχολημένη."</string>
+    <string name="sdcard_error_title">"Σφάλμα κάρτας SD"</string>
+    <string name="sdcard_error_message">"Προέκυψε σφάλμα στην κάρτα SD."</string>
+    <string name="unknown_artist_name">"Άγνωστος καλλιτέχνης"</string>
+    <string name="unknown_album_name">"Άγνωστο άλμπουμ"</string>
+    <string name="shuffle_on_notif">"Η τυχαία αναπαραγωγή ενεργοποιήθηκε."</string>
+    <string name="shuffle_off_notif">"Η τυχαία αναπαραγωγή απενεργοποιήθηκε."</string>
+    <string name="repeat_off_notif">"Η επανάληψη απενεργοποιήθηκε."</string>
+    <string name="repeat_current_notif">"Επανάληψη τρέχοντος τραγουδιού."</string>
+    <string name="repeat_all_notif">"Επανάληψη όλων των τραγουδιών."</string>
+    <string name="ringtone_menu">"Χρήση ως ήχος κλήσης τηλεφώνου"</string>
+    <string name="ringtone_menu_short">"Χρήση ως ήχος κλήσης"</string>
+    <string name="ringtone_set">"Ορισμός του \"%s\" ως ήχος κλήσης τηλεφώνου."</string>
+    <string name="play_selection">"Αναπαραγωγή"</string>
+    <string name="add_to_playlist">"Προσθήκη στη λίστα αναπαραγωγής"</string>
+    <string name="queue">"Τρέχουσα λίστα αναπαραγωγής"</string>
+    <string name="new_playlist">"Νέο"</string>
+    <string name="new_playlist_name_template">"Νέα λίστα αναπαραγωγής <xliff:g id="NUMBER">%d</xliff:g>"</string>
+  <plurals name="NNNtrackstoplaylist">
+    <item quantity="one">"1 τραγούδι προστέθηκε στη λίστα αναπαραγωγής."</item>
+    <item quantity="other">"%d τραγούδια προστέθηκαν στη λίστα αναπαραγωγής."</item>
+  </plurals>
+    <string name="emptyplaylist">"Η λίστα αναπαραγωγής που επιλέξατε είναι κενή."</string>
+    <string name="create_playlist_create_text">"Αποθήκευση"</string>
+    <string name="create_playlist_overwrite_text">"Αντικατάσταση"</string>
+    <string name="service_start_error_title">"Πρόβλημα αναπαραγωγής"</string>
+    <string name="service_start_error_msg">"Λυπούμαστε, δεν είναι δυνατή η αναπαραγωγή του τραγουδιού."</string>
+    <string name="service_start_error_button">"OK"</string>
+  <string-array name="weeklist">
+    <item>"1 εβδομάδα"</item>
+    <item>"2 εβδομάδες"</item>
+    <item>"3 εβδομάδες"</item>
+    <item>"4 εβδομάδες"</item>
+    <item>"5 εβδομάδες"</item>
+    <item>"6 εβδομάδες"</item>
+    <item>"7 εβδομάδες"</item>
+    <item>"8 εβδομάδες"</item>
+    <item>"9 εβδομάδες"</item>
+    <item>"10 εβδομάδες"</item>
+    <item>"11 εβδομάδες"</item>
+    <item>"12 εβδομάδες"</item>
+  </string-array>
+    <string name="weekpicker_set">"Ολοκληρώθηκε"</string>
+    <string name="weekpicker_title">"Ρύθμιση ώρας"</string>
+    <string name="save_as_playlist">"Αποθήκευση ως λίστα αναπαραγωγής"</string>
+    <string name="clear_playlist">"Εκκαθάριση λίστας αναπαραγωγής"</string>
+    <string name="musicbrowserlabel">"Μουσική"</string>
+    <string name="musicshortcutlabel">"Λίστα αναπαραγωγής μουσικής"</string>
+    <string name="mediaplaybacklabel">"Μουσική"</string>
+    <string name="videobrowserlabel">"Βίντεο"</string>
+    <string name="mediapickerlabel">"Μουσική"</string>
+    <string name="playback_failed">"Λυπούμαστε, το πρόγραμμα αναπαραγωγής δεν υποστηρίζει αυτόν τον τύπο αρχείου ήχου."</string>
+    <string name="cancel">"Ακύρωση"</string>
+    <string name="remove_from_playlist">"Κατάργηση από τη λίστα αναπαραγωγής"</string>
+    <string name="streamloadingtext">"Σύνδεση στο <xliff:g id="HOST">%s</xliff:g>"</string>
+    <string name="mediasearch">"Αναζήτηση του %s με χρήση:"</string>
+    <string name="working_artists">"Καλλιτέχνες..."</string>
+    <string name="working_albums">"Άλμπουμ..."</string>
+    <string name="working_songs">"Τραγούδια..."</string>
+    <string name="working_playlists">"Λίστες αναπαραγωγής..."</string>
+    <string name="loading">"Φόρτωση"</string>
+    <string name="sort_by_track">"Κομμάτια"</string>
+    <string name="sort_by_album">"Άλμπουμ"</string>
+    <string name="sort_by_artist">"Καλλιτέχνες"</string>
+    <string name="music_picker_title">"Επιλέξτε μουσικό κομμάτι"</string>
+    <string name="gadget_track">"Κομμάτι <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+    <!-- no translation found for fail_to_start_stream (3605390187703912835) -->
+    <skip />
+    <!-- no translation found for search_settings_description (6520975349259883368) -->
+    <skip />
+</resources>
