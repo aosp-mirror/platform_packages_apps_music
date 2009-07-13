@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onesong">"1 låt"</string>
+  <plurals name="Nsongs">
+    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> låtar"</item>
+  </plurals>
+  <plurals name="Nsongscomp">
+    <item quantity="other">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> av <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> låtar"</item>
+  </plurals>
+  <plurals name="Nalbums">
+    <item quantity="one">"1 album"</item>
+    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> album"</item>
+  </plurals>
+    <string name="goto_start">"Bibliotek"</string>
+    <string name="goto_playback">"Uppspelning"</string>
+    <string name="party_shuffle">"Blanda alla spår"</string>
+    <string name="party_shuffle_off">"Blandar inte hela listan"</string>
+    <string name="delete_item">"Ta bort"</string>
+    <string name="shuffle_all">"Blanda hela listan"</string>
+    <string name="play_all">"Spela alla"</string>
+    <string name="delete_artist_desc">"Alla låtar av <xliff:g id="ARTIST">%s</xliff:g> tas bort från SD-kortet permanent."</string>
+    <string name="delete_album_desc">"Hela albumet <xliff:g id="ALBUM">%s</xliff:g> tas bort från SD-kortet permanent."</string>
+    <string name="delete_song_desc">"\"<xliff:g id="SONG">%s</xliff:g>\" tas bort från SD-kortet permanent."</string>
+    <string name="delete_confirm_button_text">"OK"</string>
+  <plurals name="NNNtracksdeleted">
+    <item quantity="one">"1 låt togs bort."</item>
+    <item quantity="other">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> låtar togs bort."</item>
+  </plurals>
+    <string name="scanning">"Skannar SD-kort…"</string>
+    <string name="nowplaying_title">"Nu spelas"</string>
+    <string name="partyshuffle_title">"Blanda alla spår"</string>
+    <string name="artists_title">"Artister"</string>
+    <string name="albums_menu">"Album"</string>
+    <string name="albums_title">"Album"</string>
+    <string name="tracks_menu">"Låtar"</string>
+    <string name="tracks_title">"Låtar"</string>
+    <string name="playlists_menu">"Spellistor"</string>
+    <string name="playlists_title">"Spellistor"</string>
+    <string name="videos_title">"Videor"</string>
+    <string name="all_title">"Alla media"</string>
+    <string name="browse_menu">"Artister"</string>
+    <string name="search_title">"Sök"</string>
+    <string name="no_tracks_title">"Inga låtar"</string>
+    <string name="no_videos_title">"Inga videor"</string>
+    <string name="no_playlists_title">"Ingen spellista"</string>
+    <string name="delete_playlist_menu">"Ta bort"</string>
+    <string name="edit_playlist_menu">"Redigera"</string>
+    <string name="rename_playlist_menu">"Byt namn"</string>
+    <string name="playlist_deleted_message">"Spellista har tagits bort."</string>
+    <string name="playlist_renamed_message">"Nytt namn på spellista."</string>
+    <string name="recentlyadded">"Nyligen tillagda"</string>
+    <string name="recentlyadded_title">"Nyligen tillagda"</string>
+    <string name="podcasts_listitem">"Podsändningar"</string>
+    <string name="podcasts_title">"Podsändningar"</string>
+    <string name="sdcard_missing_title">"Inget SD-kort"</string>
+    <string name="sdcard_missing_message">"Det finns inget SD-kort i telefonen."</string>
+    <string name="sdcard_busy_title">"SD-kort ej tillgängligt"</string>
+    <string name="sdcard_busy_message">"Ditt SD-kort är tyvärr upptaget."</string>
+    <string name="sdcard_error_title">"SD-kortfel"</string>
+    <string name="sdcard_error_message">"Ett fel upptäcktes på ditt SD-kort."</string>
+    <string name="unknown_artist_name">"Okänd artist"</string>
+    <string name="unknown_album_name">"Okänt album"</string>
+    <string name="shuffle_on_notif">"Blandar spår."</string>
+    <string name="shuffle_off_notif">"Blandar inte spår."</string>
+    <string name="repeat_off_notif">"Upprepning är aktiverat."</string>
+    <string name="repeat_current_notif">"Upprepa aktuell låt."</string>
+    <string name="repeat_all_notif">"Upprepa alla låtar."</string>
+    <string name="ringtone_menu">"Använd som ringsignal"</string>
+    <string name="ringtone_menu_short">"Använd som ringsignal"</string>
+    <string name="ringtone_set">"\"%s\" vald som ringsignal."</string>
+    <string name="play_selection">"Spela"</string>
+    <string name="add_to_playlist">"Lägg till i spellista"</string>
+    <string name="queue">"Aktuell spellista"</string>
+    <string name="new_playlist">"Ny"</string>
+    <string name="new_playlist_name_template">"Ny spellista <xliff:g id="NUMBER">%d</xliff:g>"</string>
+  <plurals name="NNNtrackstoplaylist">
+    <item quantity="one">"1 låt har lagts till i spellistan."</item>
+    <item quantity="other">"%d låtar har lagts till i spellistan."</item>
+  </plurals>
+    <string name="emptyplaylist">"Den valda spellistan är tom."</string>
+    <string name="create_playlist_create_text">"Spara"</string>
+    <string name="create_playlist_overwrite_text">"Skriv över"</string>
+    <string name="service_start_error_title">"Problem med uppspelningen"</string>
+    <string name="service_start_error_msg">"Det gick tyvärr inte att spela låten."</string>
+    <string name="service_start_error_button">"OK"</string>
+  <string-array name="weeklist">
+    <item>"1 vecka"</item>
+    <item>"2 veckor"</item>
+    <item>"3 veckor"</item>
+    <item>"4 veckor"</item>
+    <item>"5 veckor"</item>
+    <item>"6 veckor"</item>
+    <item>"7 veckor"</item>
+    <item>"8 veckor"</item>
+    <item>"9 veckor"</item>
+    <item>"10 veckor"</item>
+    <item>"11 veckor"</item>
+    <item>"12 veckor"</item>
+  </string-array>
+    <string name="weekpicker_set">"Färdig"</string>
+    <string name="weekpicker_title">"Ange tid"</string>
+    <string name="save_as_playlist">"Spara som spellista"</string>
+    <string name="clear_playlist">"Rensa spellista"</string>
+    <string name="musicbrowserlabel">"Musik"</string>
+    <string name="musicshortcutlabel">"Musikspellista"</string>
+    <string name="mediaplaybacklabel">"Musik"</string>
+    <string name="videobrowserlabel">"Videor"</string>
+    <string name="mediapickerlabel">"Musik"</string>
+    <string name="playback_failed">"Spelaren stöder tyvärr inte den här typen av ljudfiler."</string>
+    <string name="cancel">"Avbryt"</string>
+    <string name="remove_from_playlist">"Ta bort från spellista"</string>
+    <string name="streamloadingtext">"Ansluter till <xliff:g id="HOST">%s</xliff:g>"</string>
+    <string name="mediasearch">"Sök efter %s med:"</string>
+    <string name="working_artists">"Artister…"</string>
+    <string name="working_albums">"Album…"</string>
+    <string name="working_songs">"Låtar…"</string>
+    <string name="working_playlists">"Spellistor…"</string>
+    <string name="loading">"Läser in"</string>
+    <string name="sort_by_track">"Spår"</string>
+    <string name="sort_by_album">"Album"</string>
+    <string name="sort_by_artist">"Artister"</string>
+    <string name="music_picker_title">"Välj musikspår"</string>
+    <string name="gadget_track">"Spår <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+    <!-- no translation found for fail_to_start_stream (3605390187703912835) -->
+    <skip />
+    <!-- no translation found for search_settings_description (6520975349259883368) -->
+    <skip />
+</resources>

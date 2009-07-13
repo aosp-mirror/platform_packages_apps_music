@@ -15,7 +15,7 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt">"Abra o teclado e dê um nome à sua nova Lista de reprodução ou selecione Salvar para nomeá-la \"%s\"."</string>
-    <string name="rename_playlist_same_prompt">"Abra o teclado para dar um novo nome à lista de reprodução \"<xliff:g id="PLAYLIST">%s</xliff:g>\"."</string>
-    <string name="rename_playlist_diff_prompt">"Abra o teclado e para dar um novo nome à lista de reprodução \"<xliff:g id="PLAYLIST">%s</xliff:g>\" ou selecione Salvar para nomeá-la \"%s\"."</string>
+    <string name="create_playlist_create_text_prompt">"Abra o teclado para dar um nome à sua nova Lista de reprodução ou selecione Salvar para nomeá-la \"%s\"."</string>
+    <string name="rename_playlist_same_prompt">"Abra o teclado para dar um nome à nova lista de reprodução \"<xliff:g id="PLAYLIST">%s</xliff:g>\"."</string>
+    <string name="rename_playlist_diff_prompt">"Abra o teclado para dar um novo nome à lista de reprodução \"<xliff:g id="PLAYLIST">%s</xliff:g>\" ou selecione Salvar para nomeá-la \"%s\"."</string>
 </resources>

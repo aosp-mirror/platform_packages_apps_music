@@ -26,7 +26,7 @@
     <item quantity="one">"1 album"</item>
     <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> albums"</item>
   </plurals>
-    <string name="goto_start">"Médiathèque"</string>
+    <string name="goto_start">"Bibliothèque"</string>
     <string name="goto_playback">"Lecture"</string>
     <string name="party_shuffle">"Lecture aléatoire"</string>
     <string name="party_shuffle_off">"La lecture aléatoire est désactivée."</string>
@@ -76,7 +76,7 @@
     <string name="unknown_artist_name">"Artiste inconnu"</string>
     <string name="unknown_album_name">"Album inconnu"</string>
     <string name="shuffle_on_notif">"La lecture aléatoire est activée."</string>
-    <string name="shuffle_off_notif">"Le mode aléatoire est désactivé."</string>
+    <string name="shuffle_off_notif">"La lecture aléatoire est désactivée."</string>
     <string name="repeat_off_notif">"La lecture en boucle est désactivée."</string>
     <string name="repeat_current_notif">"Lecture en boucle de la chanson en écoute."</string>
     <string name="repeat_all_notif">"Lecture en boucle de toutes les chansons"</string>
@@ -136,4 +136,7 @@
     <string name="sort_by_artist">"Artistes"</string>
     <string name="music_picker_title">"Sélectionner une piste"</string>
     <string name="gadget_track">"Piste <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+    <string name="fail_to_start_stream">"Échec de la lecture du flux demandé"</string>
+    <!-- no translation found for search_settings_description (6520975349259883368) -->
+    <skip />
 </resources>

@@ -49,8 +49,8 @@
     <string name="albums_title">"Álbumes"</string>
     <string name="tracks_menu">"Canciones"</string>
     <string name="tracks_title">"Canciones"</string>
-    <string name="playlists_menu">"Listas de reproducción"</string>
-    <string name="playlists_title">"Listas de reproducción"</string>
+    <string name="playlists_menu">"Listas reprod."</string>
+    <string name="playlists_title">"Listas reprod."</string>
     <string name="videos_title">"Vídeos"</string>
     <string name="all_title">"Todos los medios"</string>
     <string name="browse_menu">"Artistas"</string>
@@ -136,4 +136,7 @@
     <string name="sort_by_artist">"Artistas"</string>
     <string name="music_picker_title">"Seleccionar pista musical"</string>
     <string name="gadget_track">"Pista <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+    <string name="fail_to_start_stream">"No se ha podido reproducir el flujo solicitado."</string>
+    <!-- no translation found for search_settings_description (6520975349259883368) -->
+    <skip />
 </resources>

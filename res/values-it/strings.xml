@@ -136,4 +136,7 @@
     <string name="sort_by_artist">"Artisti"</string>
     <string name="music_picker_title">"Seleziona traccia musicale"</string>
     <string name="gadget_track">"Traccia <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+    <string name="fail_to_start_stream">"Impossibile riprodurre lo stream richiesto."</string>
+    <!-- no translation found for search_settings_description (6520975349259883368) -->
+    <skip />
 </resources>

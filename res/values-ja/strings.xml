@@ -64,7 +64,7 @@
     <string name="playlist_deleted_message">"プレイリストを削除しました。"</string>
     <string name="playlist_renamed_message">"プレイリストの名前を変更しました。"</string>
     <string name="recentlyadded">"最近追加したアイテム"</string>
-    <string name="recentlyadded_title">"最近追加した項目"</string>
+    <string name="recentlyadded_title">"最近追加したアイテム"</string>
     <string name="podcasts_listitem">"ポッドキャスト"</string>
     <string name="podcasts_title">"ポッドキャスト"</string>
     <string name="sdcard_missing_title">"SDカードがありません"</string>
@@ -136,4 +136,8 @@
     <string name="sort_by_artist">"アーティスト"</string>
     <string name="music_picker_title">"音楽トラックを選択"</string>
     <string name="gadget_track">"トラック<xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+    <!-- no translation found for fail_to_start_stream (3605390187703912835) -->
+    <skip />
+    <!-- no translation found for search_settings_description (6520975349259883368) -->
+    <skip />
 </resources>

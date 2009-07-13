@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onesong">"1 sang"</string>
+  <plurals name="Nsongs">
+    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> sange"</item>
+  </plurals>
+  <plurals name="Nsongscomp">
+    <item quantity="other">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> af <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> sange"</item>
+  </plurals>
+  <plurals name="Nalbums">
+    <item quantity="one">"1 album"</item>
+    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> albummer"</item>
+  </plurals>
+    <string name="goto_start">"Bibliotek"</string>
+    <string name="goto_playback">"Afspilning"</string>
+    <string name="party_shuffle">"Festmix"</string>
+    <string name="party_shuffle_off">"Festmix er slået fra"</string>
+    <string name="delete_item">"Slet"</string>
+    <string name="shuffle_all">"Bland alle"</string>
+    <string name="play_all">"Spil alle"</string>
+    <string name="delete_artist_desc">"Alle sange af <xliff:g id="ARTIST">%s</xliff:g> slettes permanent fra SD-kortet."</string>
+    <string name="delete_album_desc">"Hele albummet \"<xliff:g id="ALBUM">%s</xliff:g>\" slettes permanent fra SD-kortet."</string>
+    <string name="delete_song_desc">"\"<xliff:g id="SONG">%s</xliff:g>\" slettes permanent fra SD-kortet."</string>
+    <string name="delete_confirm_button_text">"OK"</string>
+  <plurals name="NNNtracksdeleted">
+    <item quantity="one">"Der blev slettet 1 sang."</item>
+    <item quantity="other">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> sange blev slettet."</item>
+  </plurals>
+    <string name="scanning">"Scanner SD-kort ..."</string>
+    <string name="nowplaying_title">"Spiller nu"</string>
+    <string name="partyshuffle_title">"Festmix"</string>
+    <string name="artists_title">"Kunstnere"</string>
+    <string name="albums_menu">"Albummer"</string>
+    <string name="albums_title">"Albummer"</string>
+    <string name="tracks_menu">"Sange"</string>
+    <string name="tracks_title">"Sange"</string>
+    <string name="playlists_menu">"Afspilningslister"</string>
+    <string name="playlists_title">"Afspilningslister"</string>
+    <string name="videos_title">"Videoer"</string>
+    <string name="all_title">"Alle medier"</string>
+    <string name="browse_menu">"Kunstnere"</string>
+    <string name="search_title">"Søg"</string>
+    <string name="no_tracks_title">"Der er ingen sange"</string>
+    <string name="no_videos_title">"Der er ingen videoer"</string>
+    <string name="no_playlists_title">"Der er ingen afspilningslister"</string>
+    <string name="delete_playlist_menu">"Slet"</string>
+    <string name="edit_playlist_menu">"Rediger"</string>
+    <string name="rename_playlist_menu">"Omdøb"</string>
+    <string name="playlist_deleted_message">"Afspilningsliste slettet."</string>
+    <string name="playlist_renamed_message">"Afspilningslisten er omdøbt."</string>
+    <string name="recentlyadded">"Tilføjet for nyligt"</string>
+    <string name="recentlyadded_title">"Tilføjet for nyligt"</string>
+    <string name="podcasts_listitem">"Podcasts"</string>
+    <string name="podcasts_title">"Podcasts"</string>
+    <string name="sdcard_missing_title">"Der er intet SD-kort"</string>
+    <string name="sdcard_missing_message">"Der er ikke indsat et SD-kort i din telefon."</string>
+    <string name="sdcard_busy_title">"SD-kortet er ikke tilgængeligt"</string>
+    <string name="sdcard_busy_message">"Beklager! Dit SD-kort er optaget."</string>
+    <string name="sdcard_error_title">"SD-kortfejl"</string>
+    <string name="sdcard_error_message">"Der opstod en fejl på dit SD-kort."</string>
+    <string name="unknown_artist_name">"Ukendt kunstner"</string>
+    <string name="unknown_album_name">"Ukendt album"</string>
+    <string name="shuffle_on_notif">"Bland er slået til."</string>
+    <string name="shuffle_off_notif">"Bland er slået fra."</string>
+    <string name="repeat_off_notif">"Gentagelse er slået fra."</string>
+    <string name="repeat_current_notif">"Den aktuelle sang gentages."</string>
+    <string name="repeat_all_notif">"Gentager alle sange."</string>
+    <string name="ringtone_menu">"Brug som telefonringetone"</string>
+    <string name="ringtone_menu_short">"Brug som ringetone"</string>
+    <string name="ringtone_set">"\"%s\" er indstillet som ringetone for telefonen."</string>
+    <string name="play_selection">"Afspil"</string>
+    <string name="add_to_playlist">"Føj til afspilningsliste"</string>
+    <string name="queue">"Aktuel afspilningsliste"</string>
+    <string name="new_playlist">"Ny"</string>
+    <string name="new_playlist_name_template">"Ny afspilningsliste <xliff:g id="NUMBER">%d</xliff:g>"</string>
+  <plurals name="NNNtrackstoplaylist">
+    <item quantity="one">"Der blev føjet 1 sang til afspilningslisten."</item>
+    <item quantity="other">"%d sange føjet til afspilningsliste."</item>
+  </plurals>
+    <string name="emptyplaylist">"Den valgte afspilningsliste er tom."</string>
+    <string name="create_playlist_create_text">"Gem"</string>
+    <string name="create_playlist_overwrite_text">"Overskriv"</string>
+    <string name="service_start_error_title">"Afspilningsproblem"</string>
+    <string name="service_start_error_msg">"Beklager! Sangen kunne ikke spilles."</string>
+    <string name="service_start_error_button">"OK"</string>
+  <string-array name="weeklist">
+    <item>"1 uge"</item>
+    <item>"2 uger"</item>
+    <item>"3 uger"</item>
+    <item>"4 uger"</item>
+    <item>"5 uger"</item>
+    <item>"6 uger"</item>
+    <item>"7 uger"</item>
+    <item>"8 uger"</item>
+    <item>"9 uger"</item>
+    <item>"10 uger"</item>
+    <item>"11 uger"</item>
+    <item>"12 uger"</item>
+  </string-array>
+    <string name="weekpicker_set">"Færdig"</string>
+    <string name="weekpicker_title">"Indstil tid"</string>
+    <string name="save_as_playlist">"Gem som afspilningsliste"</string>
+    <string name="clear_playlist">"Ryd afspilningsliste"</string>
+    <string name="musicbrowserlabel">"Musik"</string>
+    <string name="musicshortcutlabel">"Musikafspilningsliste"</string>
+    <string name="mediaplaybacklabel">"Musik"</string>
+    <string name="videobrowserlabel">"Videoer"</string>
+    <string name="mediapickerlabel">"Musik"</string>
+    <string name="playback_failed">"Beklager! Afspilleren understøtter ikke denne slags lydfiler."</string>
+    <string name="cancel">"Annuller"</string>
+    <string name="remove_from_playlist">"Fjern fra afspilningsliste"</string>
+    <string name="streamloadingtext">"Forbinder til <xliff:g id="HOST">%s</xliff:g>"</string>
+    <string name="mediasearch">"Søg efter %s ved hjælp af:"</string>
+    <string name="working_artists">"Kunstnere ..."</string>
+    <string name="working_albums">"Albummer ..."</string>
+    <string name="working_songs">"Sange ..."</string>
+    <string name="working_playlists">"Afspilningslister ..."</string>
+    <string name="loading">"Indlæser"</string>
+    <string name="sort_by_track">"Numre"</string>
+    <string name="sort_by_album">"Albummer"</string>
+    <string name="sort_by_artist">"Kunstnere"</string>
+    <string name="music_picker_title">"Vælg musiknummer"</string>
+    <string name="gadget_track">"Nummer <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+    <!-- no translation found for fail_to_start_stream (3605390187703912835) -->
+    <skip />
+    <!-- no translation found for search_settings_description (6520975349259883368) -->
+    <skip />
+</resources>
