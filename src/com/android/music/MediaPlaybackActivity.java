@@ -22,6 +22,7 @@ import android.app.SearchManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -29,6 +30,7 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.MediaFile;
@@ -269,15 +271,38 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         String artist;
         String album;
         String song;
+        long audioid;
         
         try {
             artist = mService.getArtistName();
             album = mService.getAlbumName();
             song = mService.getTrackName();
+            audioid = mService.getAudioId();
         } catch (RemoteException ex) {
             return true;
         }
-        
+
+        if (MediaFile.UNKNOWN_STRING.equals(album) &&
+                MediaFile.UNKNOWN_STRING.equals(artist) &&
+                song != null &&
+                song.startsWith("recording")) {
+            // not music
+            return false;
+        }
+        Cursor c = MusicUtils.query(this,
+                ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, audioid),
+                new String[] {MediaStore.Audio.Media.IS_MUSIC}, null, null, null);
+        boolean ismusic = true;
+        if (c != null) {
+            if (c.moveToFirst()) {
+                ismusic = c.getInt(0) != 0;
+            }
+            c.close();
+        }
+        if (!ismusic) {
+            return false;
+        }
+
         boolean knownartist =
             (artist != null) && !MediaFile.UNKNOWN_STRING.equals(artist);
 

@@ -144,7 +144,8 @@ public class TrackBrowserActivity extends ListActivity
                 MediaStore.Audio.Media.ARTIST_ID,
                 MediaStore.Audio.Media.DURATION,
                 MediaStore.Audio.Playlists.Members.PLAY_ORDER,
-                MediaStore.Audio.Playlists.Members.AUDIO_ID
+                MediaStore.Audio.Playlists.Members.AUDIO_ID,
+                MediaStore.Audio.Media.IS_MUSIC
         };
 
         setContentView(R.layout.media_picker_activity);
@@ -558,6 +559,33 @@ public class TrackBrowserActivity extends ListActivity
         }
     };
 
+    // Cursor should be positioned on the entry to be checked
+    // Returns false if the entry matches the naming pattern used for recordings,
+    // or if it is marked as not music in the database.
+    private boolean isMusic(Cursor c) {
+        int titleidx = c.getColumnIndex(MediaStore.Audio.Media.TITLE);
+        int albumidx = c.getColumnIndex(MediaStore.Audio.Media.ALBUM);
+        int artistidx = c.getColumnIndex(MediaStore.Audio.Media.ARTIST);
+
+        String title = c.getString(titleidx);
+        String album = c.getString(albumidx);
+        String artist = c.getString(artistidx);
+        if (MediaFile.UNKNOWN_STRING.equals(album) &&
+                MediaFile.UNKNOWN_STRING.equals(artist) &&
+                title != null &&
+                title.startsWith("recording")) {
+            // not music
+            return false;
+        }
+
+        int ismusic_idx = c.getColumnIndex(MediaStore.Audio.Media.IS_MUSIC);
+        boolean ismusic = true;
+        if (ismusic_idx >= 0) {
+            ismusic = mTrackCursor.getInt(ismusic_idx) != 0;
+        }
+        return ismusic;
+    }
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfoIn) {
         menu.add(0, PLAY_SELECTION, 0, R.string.play_selection);
@@ -568,7 +596,6 @@ public class TrackBrowserActivity extends ListActivity
         }
         menu.add(0, USE_AS_RINGTONE, 0, R.string.ringtone_menu);
         menu.add(0, DELETE_ITEM, 0, R.string.delete_item);
-        menu.add(0, SEARCH, 0, R.string.search_title);
         AdapterContextMenuInfo mi = (AdapterContextMenuInfo) menuInfoIn;
         mSelectedPosition =  mi.position;
         mTrackCursor.moveToPosition(mSelectedPosition);
@@ -578,6 +605,10 @@ public class TrackBrowserActivity extends ListActivity
             mSelectedId = mTrackCursor.getLong(id_idx);
         } catch (IllegalArgumentException ex) {
             mSelectedId = mi.id;
+        }
+        // only add the 'search' menu if the selected item is music
+        if (isMusic(mTrackCursor)) {
+            menu.add(0, SEARCH, 0, R.string.search_title);
         }
         mCurrentAlbumName = mTrackCursor.getString(mTrackCursor.getColumnIndexOrThrow(
                 MediaStore.Audio.Media.ALBUM));
