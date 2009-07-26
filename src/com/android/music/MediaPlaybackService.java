@@ -45,13 +45,14 @@ import android.os.PowerManager;
 import android.os.SystemClock;
 import android.os.PowerManager.WakeLock;
 import android.provider.MediaStore;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
-import com.android.internal.telephony.Phone;
-import com.android.internal.telephony.PhoneStateIntentReceiver;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.Random;
 import java.util.Vector;
 
@@ -96,7 +97,6 @@ public class MediaPlaybackService extends Service {
     public static final String PREVIOUS_ACTION = "com.android.music.musicservicecommand.previous";
     public static final String NEXT_ACTION = "com.android.music.musicservicecommand.next";
 
-    private static final int PHONE_CHANGED = 1;
     private static final int TRACK_ENDED = 1;
     private static final int RELEASE_WAKELOCK = 2;
     private static final int SERVER_DIED = 3;
@@ -105,7 +105,6 @@ public class MediaPlaybackService extends Service {
     
     private MultiPlayer mPlayer;
     private String mFileToPlay;
-    private PhoneStateIntentReceiver mPsir;
     private int mShuffleMode = SHUFFLE_NONE;
     private int mRepeatMode = REPEAT_NONE;
     private int mMediaMountedCount = 0;
@@ -139,7 +138,7 @@ public class MediaPlaybackService extends Service {
     private int mServiceStartId = -1;
     private boolean mServiceInUse = false;
     private boolean mResumeAfterCall = false;
-    private boolean mWasPlaying = false;
+    private boolean mIsSupposedToBePlaying = false;
     private boolean mQuietMode = false;
     
     private SharedPreferences mPreferences;
@@ -152,35 +151,28 @@ public class MediaPlaybackService extends Service {
     // interval after which we stop the service when idle
     private static final int IDLE_DELAY = 60000; 
 
-    private Handler mPhoneHandler = new Handler() {
+    private PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
         @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case PHONE_CHANGED:
-                    Phone.State state = mPsir.getPhoneState();
-                    if (state == Phone.State.RINGING) {
-                        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                        int ringvolume = audioManager.getStreamVolume(AudioManager.STREAM_RING);
-                        if (ringvolume > 0) {
-                            mResumeAfterCall = (isPlaying() || mResumeAfterCall) && (getAudioId() >= 0);
-                            pause();
-                        }
-                    } else if (state == Phone.State.OFFHOOK) {
-                        // pause the music while a conversation is in progress
-                        mResumeAfterCall = (isPlaying() || mResumeAfterCall) && (getAudioId() >= 0);
-                        pause();
-                    } else if (state == Phone.State.IDLE) {
-                        // start playing again
-                        if (mResumeAfterCall) {
-                            // resume playback only if music was playing
-                            // when the call was answered
-                            startAndFadeIn();
-                            mResumeAfterCall = false;
-                        }
-                    }
-                    break;
-                default:
-                    break;
+        public void onCallStateChanged(int state, String incomingNumber) {
+            if (state == TelephonyManager.CALL_STATE_RINGING) {
+                AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+                int ringvolume = audioManager.getStreamVolume(AudioManager.STREAM_RING);
+                if (ringvolume > 0) {
+                    mResumeAfterCall = (isPlaying() || mResumeAfterCall) && (getAudioId() >= 0);
+                    pause();
+                }
+            } else if (state == TelephonyManager.CALL_STATE_OFFHOOK) {
+                // pause the music while a conversation is in progress
+                mResumeAfterCall = (isPlaying() || mResumeAfterCall) && (getAudioId() >= 0);
+                pause();
+            } else if (state == TelephonyManager.CALL_STATE_IDLE) {
+                // start playing again
+                if (mResumeAfterCall) {
+                    // resume playback only if music was playing
+                    // when the call was answered
+                    startAndFadeIn();
+                    mResumeAfterCall = false;
+                }
             }
         }
     };
@@ -211,7 +203,7 @@ public class MediaPlaybackService extends Service {
                     }
                     break;
                 case SERVER_DIED:
-                    if (mWasPlaying) {
+                    if (mIsSupposedToBePlaying) {
                         next(true);
                     } else {
                         // the server died when we were idle, so just
@@ -229,6 +221,7 @@ public class MediaPlaybackService extends Service {
                         next(false);
                     } else {
                         notifyChange(PLAYBACK_COMPLETE);
+                        mIsSupposedToBePlaying = false;
                     }
                     break;
                 case RELEASE_WAKELOCK:
@@ -270,8 +263,6 @@ public class MediaPlaybackService extends Service {
     };
 
     public MediaPlaybackService() {
-        mPsir = new PhoneStateIntentReceiver(this, mPhoneHandler);
-        mPsir.notifyPhoneCallState(PHONE_CHANGED);
     }
 
     @Override
@@ -301,7 +292,8 @@ public class MediaPlaybackService extends Service {
         commandFilter.addAction(PREVIOUS_ACTION);
         registerReceiver(mIntentReceiver, commandFilter);
         
-        mPsir.registerIntent();
+        TelephonyManager tmgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        tmgr.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
         PowerManager pm = (PowerManager)getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, this.getClass().getName());
         mWakeLock.setReferenceCounted(false);
@@ -318,21 +310,27 @@ public class MediaPlaybackService extends Service {
         if (isPlaying()) {
             Log.e("MediaPlaybackService", "Service being destroyed while still playing.");
         }
-        // and for good measure, call mPlayer.stop(), which calls MediaPlayer.reset(), which
-        // releases the MediaPlayer's wake lock, if any.
-        mPlayer.stop();
+        // release all MediaPlayer resources, including the native player and wakelocks
+        mPlayer.release();
+        mPlayer = null;
         
+        // make sure there aren't any other messages coming
+        mDelayedStopHandler.removeCallbacksAndMessages(null);
+        mMediaplayerHandler.removeCallbacksAndMessages(null);
+
         if (mCursor != null) {
             mCursor.close();
             mCursor = null;
         }
+
+        TelephonyManager tmgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        tmgr.listen(mPhoneStateListener, 0);
 
         unregisterReceiver(mIntentReceiver);
         if (mUnmountReceiver != null) {
             unregisterReceiver(mUnmountReceiver);
             mUnmountReceiver = null;
         }
-        mPsir.unregisterIntent();
         mWakeLock.release();
         super.onDestroy();
     }
@@ -402,37 +400,37 @@ public class MediaPlaybackService extends Service {
             // the same one as when the playlist was saved
             q = mPreferences.getString("queue", "");
         }
-        if (q != null && q.length() > 1) {
+        int qlen = q != null ? q.length() : 0;
+        if (qlen > 1) {
             //Log.i("@@@@ service", "loaded queue: " + q);
-            String [] entries = q.split(";");
-            int len = entries.length;
-            ensurePlayListCapacity(len);
-            for (int i = 0; i < len; i++) {
-                if (newstyle) {
-                    String revhex = entries[i];
-                    int n = 0;
-                    for (int j = revhex.length() - 1; j >= 0 ; j--) {
-                        n <<= 4;
-                        char c = revhex.charAt(j);
-                        if (c >= '0' && c <= '9') {
-                            n += (c - '0');
-                        } else if (c >= 'a' && c <= 'f') {
-                            n += (10 + c - 'a');
-                        } else {
-                            // bogus playlist data
-                            len = 0;
-                            break;
-                        }
-                    }
-                    mPlayList[i] = n;
+            int plen = 0;
+            int n = 0;
+            int shift = 0;
+            for (int i = 0; i < qlen; i++) {
+                char c = q.charAt(i);
+                if (c == ';') {
+                    ensurePlayListCapacity(plen + 1);
+                    mPlayList[plen] = n;
+                    plen++;
+                    n = 0;
+                    shift = 0;
                 } else {
-                    mPlayList[i] = Integer.parseInt(entries[i]);
+                    if (c >= '0' && c <= '9') {
+                        n += ((c - '0') << shift);
+                    } else if (c >= 'a' && c <= 'f') {
+                        n += ((10 + c - 'a') << shift);
+                    } else {
+                        // bogus playlist data
+                        plen = 0;
+                        break;
+                    }
+                    shift += 4;
                 }
             }
-            mPlayListLen = len;
+            mPlayListLen = plen;
 
             int pos = mPreferences.getInt("curpos", 0);
-            if (pos < 0 || pos >= len) {
+            if (pos < 0 || pos >= mPlayListLen) {
                 // The saved playlist is bogus, discard it
                 mPlayListLen = 0;
                 return;
@@ -678,7 +676,7 @@ public class MediaPlaybackService extends Service {
             // need to grow and copy the array for every
             // insert
             int [] newlist = new int[size * 2];
-            int len = mPlayListLen;
+            int len = mPlayList != null ? mPlayList.length : mPlayListLen;
             for (int i = 0; i < len; i++) {
                 newlist[i] = mPlayList[i];
             }
@@ -978,8 +976,9 @@ public class MediaPlaybackService extends Service {
     public void play() {
         if (mPlayer.isInitialized()) {
             // if we are at the end of the song, go to the next song first
-            if (mRepeatMode != REPEAT_CURRENT &&
-                mPlayer.position() >= mPlayer.duration() - 1) {
+            long duration = mPlayer.duration();
+            if (mRepeatMode != REPEAT_CURRENT && duration > 2000 &&
+                mPlayer.position() >= duration - 2000) {
                 next(true);
             }
 
@@ -1011,8 +1010,6 @@ public class MediaPlaybackService extends Service {
                         );
             }
             
-            Intent statusintent = new Intent("com.android.music.PLAYBACK_VIEWER");
-            statusintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             Notification status = new Notification();
             status.contentView = views;
             status.flags |= Notification.FLAG_ONGOING_EVENT;
@@ -1020,10 +1017,10 @@ public class MediaPlaybackService extends Service {
             status.contentIntent = PendingIntent.getActivity(this, 0,
                     new Intent("com.android.music.PLAYBACK_VIEWER"), 0);
             nm.notify(PLAYBACKSERVICE_STATUS, status);
-            if (!mWasPlaying) {
+            if (!mIsSupposedToBePlaying) {
                 notifyChange(PLAYSTATE_CHANGED);
             }
-            mWasPlaying = true;
+            mIsSupposedToBePlaying = true;
         } else if (mPlayListLen <= 0) {
             // This is mostly so that if you press 'play' on a bluetooth headset
             // without every having played anything before, it will still play
@@ -1046,7 +1043,7 @@ public class MediaPlaybackService extends Service {
         }
         setForeground(false);
         if (remove_status_icon) {
-            mWasPlaying = false;
+            mIsSupposedToBePlaying = false;
         }
     }
 
@@ -1061,25 +1058,25 @@ public class MediaPlaybackService extends Service {
      * Pauses playback (call play() to resume)
      */
     public void pause() {
-        if (isPlaying()) {
-            mPlayer.pause();
-            gotoIdleState();
-            setForeground(false);
-            mWasPlaying = false;
-            notifyChange(PLAYSTATE_CHANGED);
-            saveBookmarkIfNeeded();
+        synchronized(this) {
+            if (isPlaying()) {
+                mPlayer.pause();
+                gotoIdleState();
+                setForeground(false);
+                mIsSupposedToBePlaying = false;
+                notifyChange(PLAYSTATE_CHANGED);
+                saveBookmarkIfNeeded();
+            }
         }
     }
 
-    /** Returns whether playback is currently paused
+    /** Returns whether something is currently playing
      *
-     * @return true if playback is paused, false if not
+     * @return true if something is playing (or will be playing shortly, in case
+     * we're currently transitioning between tracks), false if not.
      */
     public boolean isPlaying() {
-        if (mPlayer.isInitialized()) {
-            return mPlayer.isPlaying();
-        }
-        return false;
+        return mIsSupposedToBePlaying;
     }
 
     /*
@@ -1144,6 +1141,10 @@ public class MediaPlaybackService extends Service {
                 // we were playing a specific file not part of a playlist, so there is no 'next'
                 seek(0);
                 play();
+                return;
+            }
+
+            if (mPlayListLen <= 0) {
                 return;
             }
 
@@ -1214,6 +1215,7 @@ public class MediaPlaybackService extends Service {
                         // all done
                         gotoIdleState();
                         notifyChange(PLAYBACK_COMPLETE);
+                        mIsSupposedToBePlaying = false;
                         return;
                     } else if (mRepeatMode == REPEAT_ALL || force) {
                         mPlayPos = 0;
@@ -1294,7 +1296,7 @@ public class MediaPlaybackService extends Service {
     // A simple variation of Random that makes sure that the
     // value it returns is not equal to the value it returned
     // previously, unless the interval is 1.
-    private class Shuffler {
+    private static class Shuffler {
         private int mPrevious;
         private Random mRandom = new Random();
         public int nextInt(int interval) {
@@ -1669,14 +1671,18 @@ public class MediaPlaybackService extends Service {
             mIsInitialized = false;
         }
 
+        /**
+         * You CANNOT use this player anymore after calling release()
+         */
+        public void release() {
+            stop();
+            mMediaPlayer.release();
+        }
+        
         public void pause() {
             mMediaPlayer.pause();
         }
         
-        public boolean isPlaying() {
-            return mMediaPlayer.isPlaying();
-        }
-
         public void setHandler(Handler handler) {
             mHandler = handler;
         }
@@ -1738,102 +1744,115 @@ public class MediaPlaybackService extends Service {
         }
     }
 
-    private final IMediaPlaybackService.Stub mBinder = new IMediaPlaybackService.Stub()
-    {
-        public void openfileAsync(String path)
-        {
-            MediaPlaybackService.this.openAsync(path);
+    /*
+     * By making this a static class with a WeakReference to the Service, we
+     * ensure that the Service can be GCd even when the system process still
+     * has a remote reference to the stub.
+     */
+    static class ServiceStub extends IMediaPlaybackService.Stub {
+        WeakReference<MediaPlaybackService> mService;
+        
+        ServiceStub(MediaPlaybackService service) {
+            mService = new WeakReference<MediaPlaybackService>(service);
         }
-        public void openfile(String path)
+
+        public void openFileAsync(String path)
         {
-            MediaPlaybackService.this.open(path, true);
+            mService.get().openAsync(path);
+        }
+        public void openFile(String path, boolean oneShot)
+        {
+            mService.get().open(path, oneShot);
         }
         public void open(int [] list, int position) {
-            MediaPlaybackService.this.open(list, position);
+            mService.get().open(list, position);
         }
         public int getQueuePosition() {
-            return MediaPlaybackService.this.getQueuePosition();
+            return mService.get().getQueuePosition();
         }
         public void setQueuePosition(int index) {
-            MediaPlaybackService.this.setQueuePosition(index);
+            mService.get().setQueuePosition(index);
         }
         public boolean isPlaying() {
-            return MediaPlaybackService.this.isPlaying();
+            return mService.get().isPlaying();
         }
         public void stop() {
-            MediaPlaybackService.this.stop();
+            mService.get().stop();
         }
         public void pause() {
-            MediaPlaybackService.this.pause();
+            mService.get().pause();
         }
         public void play() {
-            MediaPlaybackService.this.play();
+            mService.get().play();
         }
         public void prev() {
-            MediaPlaybackService.this.prev();
+            mService.get().prev();
         }
         public void next() {
-            MediaPlaybackService.this.next(true);
+            mService.get().next(true);
         }
         public String getTrackName() {
-            return MediaPlaybackService.this.getTrackName();
+            return mService.get().getTrackName();
         }
         public String getAlbumName() {
-            return MediaPlaybackService.this.getAlbumName();
+            return mService.get().getAlbumName();
         }
         public int getAlbumId() {
-            return MediaPlaybackService.this.getAlbumId();
+            return mService.get().getAlbumId();
         }
         public String getArtistName() {
-            return MediaPlaybackService.this.getArtistName();
+            return mService.get().getArtistName();
         }
         public int getArtistId() {
-            return MediaPlaybackService.this.getArtistId();
+            return mService.get().getArtistId();
         }
         public void enqueue(int [] list , int action) {
-            MediaPlaybackService.this.enqueue(list, action);
+            mService.get().enqueue(list, action);
         }
         public int [] getQueue() {
-            return MediaPlaybackService.this.getQueue();
+            return mService.get().getQueue();
         }
         public void moveQueueItem(int from, int to) {
-            MediaPlaybackService.this.moveQueueItem(from, to);
+            mService.get().moveQueueItem(from, to);
         }
         public String getPath() {
-            return MediaPlaybackService.this.getPath();
+            return mService.get().getPath();
         }
         public int getAudioId() {
-            return MediaPlaybackService.this.getAudioId();
+            return mService.get().getAudioId();
         }
         public long position() {
-            return MediaPlaybackService.this.position();
+            return mService.get().position();
         }
         public long duration() {
-            return MediaPlaybackService.this.duration();
+            return mService.get().duration();
         }
         public long seek(long pos) {
-            return MediaPlaybackService.this.seek(pos);
+            return mService.get().seek(pos);
         }
         public void setShuffleMode(int shufflemode) {
-            MediaPlaybackService.this.setShuffleMode(shufflemode);
+            mService.get().setShuffleMode(shufflemode);
         }
         public int getShuffleMode() {
-            return MediaPlaybackService.this.getShuffleMode();
+            return mService.get().getShuffleMode();
         }
         public int removeTracks(int first, int last) {
-            return MediaPlaybackService.this.removeTracks(first, last);
+            return mService.get().removeTracks(first, last);
         }
         public int removeTrack(int id) {
-            return MediaPlaybackService.this.removeTrack(id);
+            return mService.get().removeTrack(id);
         }
         public void setRepeatMode(int repeatmode) {
-            MediaPlaybackService.this.setRepeatMode(repeatmode);
+            mService.get().setRepeatMode(repeatmode);
         }
         public int getRepeatMode() {
-            return MediaPlaybackService.this.getRepeatMode();
+            return mService.get().getRepeatMode();
         }
         public int getMediaMountedCount() {
-            return MediaPlaybackService.this.getMediaMountedCount();
+            return mService.get().getMediaMountedCount();
         }
-    };
+
+    }
+    
+    private final IBinder mBinder = new ServiceStub(this);
 }

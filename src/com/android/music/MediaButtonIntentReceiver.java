@@ -102,23 +102,16 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
 
             if (command != null) {
                 if (action == KeyEvent.ACTION_DOWN) {
-                    if (!mDown) {
-                        // only if this isn't a repeat event
-                        
-                        if (MediaPlaybackService.CMDTOGGLEPAUSE.equals(command)) {
-                            // We're not using the original time of the event as the
-                            // base here, because in some cases it can take more than
-                            // one second for us to receive the event, in which case
-                            // we would go immediately to auto shuffle mode, even if
-                            // the user didn't long press.
-                            mHandler.sendMessageDelayed(
-                                    mHandler.obtainMessage(MSG_LONGPRESS_TIMEOUT, context),
-                                    LONG_PRESS_DELAY);
+                    if (mDown) {
+                        if (MediaPlaybackService.CMDTOGGLEPAUSE.equals(command)
+                                && mLastClickTime != 0 
+                                && eventtime - mLastClickTime > LONG_PRESS_DELAY) {
+                            mHandler.sendMessage(
+                                    mHandler.obtainMessage(MSG_LONGPRESS_TIMEOUT, context));
                         }
-                        
-                        SharedPreferences pref = context.getSharedPreferences("Music", 
-                                Context.MODE_WORLD_READABLE | Context.MODE_WORLD_WRITEABLE);
-                        String q = pref.getString("queue", "");
+                    } else {
+                        // if this isn't a repeat event
+
                         // The service may or may not be running, but we need to send it
                         // a command.
                         Intent i = new Intent(context, MediaPlaybackService.class);

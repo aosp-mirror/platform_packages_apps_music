@@ -314,7 +314,11 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             mCurrentArtistId = mArtistCursor.getString(mArtistCursor.getColumnIndexOrThrow(MediaStore.Audio.Artists._ID));
             mCurrentArtistName = mArtistCursor.getString(mArtistCursor.getColumnIndexOrThrow(MediaStore.Audio.Artists.ARTIST));
             mCurrentAlbumId = null;
-            menu.setHeaderTitle(mCurrentArtistName);
+            if (mCurrentArtistName == null || mCurrentArtistName.equals(MediaFile.UNKNOWN_STRING)) {
+                menu.setHeaderTitle(getString(R.string.unknown_artist_name));
+            } else {
+                menu.setHeaderTitle(mCurrentArtistName);
+            }
             return;
         } else if (itemtype == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
             if (cpos == -1) {
@@ -331,7 +335,11 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             mArtistCursor.moveToPosition(gpos);
             mCurrentArtistNameForAlbum = mArtistCursor.getString(
                     mArtistCursor.getColumnIndexOrThrow(MediaStore.Audio.Artists.ARTIST));
-            menu.setHeaderTitle(mCurrentAlbumName);
+            if (mCurrentAlbumName == null || mCurrentAlbumName.equals(MediaFile.UNKNOWN_STRING)) {
+                menu.setHeaderTitle(getString(R.string.unknown_album_name));
+            } else {
+                menu.setHeaderTitle(mCurrentAlbumName);
+            }
         }
     }
 
@@ -410,6 +418,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         
         Intent i = new Intent();
         i.setAction(MediaStore.INTENT_ACTION_MEDIA_SEARCH);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         
         if (mCurrentArtistId != null) {
             title = mCurrentArtistName;
@@ -518,7 +527,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         private String mConstraint = null;
         private boolean mConstraintIsValid = false;
         
-        class ViewHolder {
+        static class ViewHolder {
             TextView line1;
             TextView line2;
             ImageView play_indicator;
@@ -659,12 +668,6 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
 
             int numsongs = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.NUMBER_OF_SONGS));
             int numartistsongs = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.NUMBER_OF_SONGS_FOR_ARTIST));
-            int first = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.FIRST_YEAR));
-            int last = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.LAST_YEAR));
-
-            if (first == 0) {
-                first = last;
-            }
 
             final StringBuilder builder = mBuffer;
             builder.delete(0, builder.length());
@@ -724,8 +727,6 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
                     MediaStore.Audio.Albums.ALBUM,
                     MediaStore.Audio.Albums.NUMBER_OF_SONGS,
                     MediaStore.Audio.Albums.NUMBER_OF_SONGS_FOR_ARTIST,
-                    MediaStore.Audio.Albums.FIRST_YEAR,
-                    MediaStore.Audio.Albums.LAST_YEAR,
                     MediaStore.Audio.Albums.ALBUM_ART
             };
             Cursor c = MusicUtils.query(mActivity,

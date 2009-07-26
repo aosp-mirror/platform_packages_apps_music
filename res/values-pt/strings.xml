@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onesong">"1 música"</string>
+  <plurals name="Nsongs">
+    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> músicas"</item>
+  </plurals>
+    <!-- no translation found for Nsongscomp:other (7162294486622945550) -->
+  <plurals name="Nalbums">
+    <item quantity="one">"1 álbum"</item>
+    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> álbuns"</item>
+  </plurals>
+    <string name="goto_start">"Biblioteca"</string>
+    <string name="goto_playback">"Reprodução"</string>
+    <string name="party_shuffle">"Ordem aleatória para festas"</string>
+    <string name="party_shuffle_off">"Ordem aleatória para festas desativada"</string>
+    <string name="delete_item">"Excluir"</string>
+    <string name="shuffle_all">"Todas as músicas em ordem aleatória"</string>
+    <string name="play_all">"Reproduzir tudo"</string>
+    <string name="delete_artist_desc">"Todas as músicas de <xliff:g id="ARTIST">%s</xliff:g> serão excluídas permanentemente do cartão SD."</string>
+    <string name="delete_album_desc">"Todo o álbum \"<xliff:g id="ALBUM">%s</xliff:g>\" será excluído permanentemente do cartão SD."</string>
+    <string name="delete_song_desc">"\"<xliff:g id="SONG">%s</xliff:g>\" será permanentemente excluída do cartão SD."</string>
+    <string name="delete_confirm_button_text">"OK"</string>
+  <plurals name="NNNtracksdeleted">
+    <item quantity="one">"1 música foi excluída."</item>
+    <item quantity="other">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> músicas foram excluídas."</item>
+  </plurals>
+    <string name="scanning">"Examinando cartão SD…"</string>
+    <string name="nowplaying_title">"Reproduzindo"</string>
+    <string name="partyshuffle_title">"Ordem aleatória para festas"</string>
+    <string name="artists_title">"Artistas"</string>
+    <string name="albums_menu">"Álbuns"</string>
+    <string name="albums_title">"Álbuns"</string>
+    <string name="tracks_menu">"Músicas"</string>
+    <string name="tracks_title">"Músicas"</string>
+    <string name="playlists_menu">"Listas de reprodução"</string>
+    <string name="playlists_title">"Listas de reprodução"</string>
+    <string name="videos_title">"Vídeos"</string>
+    <string name="all_title">"Todas as mídias"</string>
+    <string name="browse_menu">"Artistas"</string>
+    <string name="search_title">"Procurar"</string>
+    <string name="no_tracks_title">"Não há músicas"</string>
+    <string name="no_videos_title">"Não há vídeos"</string>
+    <string name="no_playlists_title">"Nenhuma lista de reprodução"</string>
+    <string name="delete_playlist_menu">"Excluir"</string>
+    <string name="edit_playlist_menu">"Editar"</string>
+    <string name="rename_playlist_menu">"Renomear"</string>
+    <string name="playlist_deleted_message">"Lista de reprodução excluída."</string>
+    <string name="playlist_renamed_message">"Lista de reprodução renomeada."</string>
+    <string name="recentlyadded">"Adicionados recentemente"</string>
+    <!-- no translation found for recentlyadded_title (3153322287249901914) -->
+    <skip />
+    <!-- no translation found for podcasts_listitem (8657809279717670634) -->
+    <skip />
+    <!-- no translation found for podcasts_title (4928414142496858304) -->
+    <skip />
+    <string name="sdcard_missing_title">"Não há cartão SD"</string>
+    <string name="sdcard_missing_message">"O telefone não tem um cartão SD inserido."</string>
+    <string name="sdcard_busy_title">"O cartão SD não está disponível"</string>
+    <string name="sdcard_busy_message">"Desculpe, o cartão SD está cheio."</string>
+    <string name="sdcard_error_title">"Erro do cartão SD"</string>
+    <string name="sdcard_error_message">"Ocorreu um erro no cartão SD."</string>
+    <string name="unknown_artist_name">"Artista desconhecido"</string>
+    <string name="unknown_album_name">"Álbum desconhecido"</string>
+    <string name="shuffle_on_notif">"Ordem aleatória ativada."</string>
+    <string name="shuffle_off_notif">"Ordem aleatória desativada."</string>
+    <string name="repeat_off_notif">"Repetição desativada."</string>
+    <string name="repeat_current_notif">"Repetir música atual."</string>
+    <string name="repeat_all_notif">"Repetir todas as músicas."</string>
+    <string name="ringtone_menu">"Usar como ringtone do telefone"</string>
+    <string name="ringtone_menu_short">"Usar como ringtone"</string>
+    <string name="ringtone_set">"\"%s\" foi definido como ringtone do telefone."</string>
+    <string name="play_selection">"Reproduzir"</string>
+    <string name="add_to_playlist">"Adicionar à lista de reprodução"</string>
+    <string name="queue">"Lista de reprodução atual"</string>
+    <string name="new_playlist">"Novo"</string>
+    <string name="new_playlist_name_template">"Nova lista de reprodução <xliff:g id="NUMBER">%d</xliff:g>"</string>
+  <plurals name="NNNtrackstoplaylist">
+    <item quantity="one">"1 música adicionada à lista de reprodução."</item>
+    <item quantity="other">"%d músicas adicionadas à lista de reprodução."</item>
+  </plurals>
+    <string name="emptyplaylist">"A lista de reprodução selecionada está vazia."</string>
+    <string name="create_playlist_create_text">"Salvar"</string>
+    <string name="create_playlist_overwrite_text">"Substituir"</string>
+    <string name="service_start_error_title">"Problema com a reprodução"</string>
+    <string name="service_start_error_msg">"Desculpe, não foi possível reproduzir a música."</string>
+    <string name="service_start_error_button">"OK"</string>
+  <string-array name="weeklist">
+    <item>"1 semana"</item>
+    <item>"2 semanas"</item>
+    <item>"3 semanas"</item>
+    <item>"4 semanas"</item>
+    <item>"5 semanas"</item>
+    <item>"6 semanas"</item>
+    <item>"7 semanas"</item>
+    <item>"8 semanas"</item>
+    <item>"9 semanas"</item>
+    <item>"10 semanas"</item>
+    <item>"11 semanas"</item>
+    <item>"12 semanas"</item>
+  </string-array>
+    <string name="weekpicker_set">"Concluído"</string>
+    <string name="weekpicker_title">"Definir tempo"</string>
+    <string name="save_as_playlist">"Salvar como lista de reprodução"</string>
+    <string name="clear_playlist">"Limpar lista de reprodução"</string>
+    <string name="musicbrowserlabel">"Música"</string>
+    <string name="musicshortcutlabel">"Lista de reprodução de músicas"</string>
+    <string name="mediaplaybacklabel">"Música"</string>
+    <string name="videobrowserlabel">"Vídeos"</string>
+    <string name="mediapickerlabel">"Música"</string>
+    <string name="playback_failed">"Desculpe, o player não suporta este tipo de arquivo de áudio."</string>
+    <string name="cancel">"Cancelar"</string>
+    <string name="remove_from_playlist">"Remover da lista de reprodução"</string>
+    <string name="streamloadingtext">"Conectando a <xliff:g id="HOST">%s</xliff:g>"</string>
+    <string name="mediasearch">"Pesquisar por %s usando:"</string>
+    <string name="working_artists">"Artistas…"</string>
+    <string name="working_albums">"Álbuns…"</string>
+    <string name="working_songs">"Músicas…"</string>
+    <!-- no translation found for working_playlists (4424950806134653351) -->
+    <skip />
+    <!-- no translation found for loading (3267924133697717662) -->
+    <skip />
+    <!-- no translation found for sort_by_track (7662999005554152565) -->
+    <skip />
+    <!-- no translation found for sort_by_album (2912837715658975248) -->
+    <skip />
+    <!-- no translation found for sort_by_artist (4607024967813199992) -->
+    <skip />
+    <!-- no translation found for music_picker_title (1561623486324013570) -->
+    <skip />
+    <!-- no translation found for gadget_track (3186569295893300114) -->
+    <skip />
+    <!-- no translation found for fail_to_start_stream (3605390187703912835) -->
+    <skip />
+</resources>

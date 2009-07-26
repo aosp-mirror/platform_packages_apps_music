@@ -20,10 +20,12 @@ import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.AsyncQueryHandler;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 
 import android.database.Cursor;
 import android.database.DatabaseUtils;
@@ -32,7 +34,9 @@ import android.media.MediaFile;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
+import android.provider.BaseColumns;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
@@ -49,7 +53,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class QueryBrowserActivity extends ListActivity implements MusicUtils.Defs
+public class QueryBrowserActivity extends ListActivity
+implements MusicUtils.Defs, ServiceConnection
 {
     private final static int PLAY_NOW = 0;
     private final static int ADD_TO_QUEUE = 1;
@@ -73,52 +78,55 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
     {
         super.onCreate(icicle);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        MusicUtils.bindToService(this);
+        mAdapter = (QueryListAdapter) getLastNonConfigurationInstance();
+        MusicUtils.bindToService(this, this);
+        // defer the real work until we're bound to the service
+    }
+
+
+    public void onServiceConnected(ComponentName name, IBinder service) {
         IntentFilter f = new IntentFilter();
         f.addAction(Intent.ACTION_MEDIA_SCANNER_STARTED);
         f.addAction(Intent.ACTION_MEDIA_UNMOUNTED);
         f.addDataScheme("file");
         registerReceiver(mScanListener, f);
         
-        if (icicle == null) {
-            Intent intent = getIntent();
-            
-            if (intent.getAction().equals(Intent.ACTION_VIEW)) {
-                // this is something we got from the search bar
-                Uri uri = intent.getData();
-                String path = uri.toString();
-                if (path.startsWith("content://media/external/audio/media/")) {
-                    // This is a specific file
-                    String id = uri.getLastPathSegment();
-                    int [] list = new int[] { Integer.valueOf(id) };
-                    MusicUtils.playAll(this, list, 0);
-                    finish();
-                    return;
-                } else if (path.startsWith("content://media/external/audio/albums/")) {
-                    // This is an album, show the songs on it
-                    Intent i = new Intent(Intent.ACTION_PICK);
-                    i.setDataAndType(Uri.EMPTY, "vnd.android.cursor.dir/track");
-                    i.putExtra("album", uri.getLastPathSegment());
-                    startActivity(i);
-                    finish();
-                    return;
-                } else if (path.startsWith("content://media/external/audio/artists/")) {
-                    // This is an artist, show the albums for that artist
-                    Intent i = new Intent(Intent.ACTION_PICK);
-                    i.setDataAndType(Uri.EMPTY, "vnd.android.cursor.dir/album");
-                    i.putExtra("artist", uri.getLastPathSegment());
-                    startActivity(i);
-                    finish();
-                    return;
-                }
+        Intent intent = getIntent();
+        
+        if (intent.getAction().equals(Intent.ACTION_VIEW)) {
+            // this is something we got from the search bar
+            Uri uri = intent.getData();
+            String path = uri.toString();
+            if (path.startsWith("content://media/external/audio/media/")) {
+                // This is a specific file
+                String id = uri.getLastPathSegment();
+                int [] list = new int[] { Integer.valueOf(id) };
+                MusicUtils.playAll(this, list, 0);
+                finish();
+                return;
+            } else if (path.startsWith("content://media/external/audio/albums/")) {
+                // This is an album, show the songs on it
+                Intent i = new Intent(Intent.ACTION_PICK);
+                i.setDataAndType(Uri.EMPTY, "vnd.android.cursor.dir/track");
+                i.putExtra("album", uri.getLastPathSegment());
+                startActivity(i);
+                finish();
+                return;
+            } else if (path.startsWith("content://media/external/audio/artists/")) {
+                // This is an artist, show the albums for that artist
+                Intent i = new Intent(Intent.ACTION_PICK);
+                i.setDataAndType(Uri.EMPTY, "vnd.android.cursor.dir/album");
+                i.putExtra("artist", uri.getLastPathSegment());
+                startActivity(i);
+                finish();
+                return;
             }
-            mFilterString = intent.getStringExtra(SearchManager.QUERY);
         }
+        mFilterString = intent.getStringExtra(SearchManager.QUERY);
 
         setContentView(R.layout.query_activity);
         mTrackList = getListView();
         mTrackList.setTextFilterEnabled(true);
-        mAdapter = (QueryListAdapter) getLastNonConfigurationInstance();
         if (mAdapter == null) {
             mAdapter = new QueryListAdapter(
                     getApplication(),
@@ -145,7 +153,11 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
             }
         }
     }
-    
+
+    public void onServiceDisconnected(ComponentName name) {
+        
+    }
+
     @Override
     public Object onRetainNonConfigurationInstance() {
         mAdapterSent = true;
@@ -267,15 +279,17 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
             filter = "";
         }
         String[] ccols = new String[] {
-                "_id",   // this will be the artist, album or track ID
+                BaseColumns._ID,   // this will be the artist, album or track ID
                 MediaStore.Audio.Media.MIME_TYPE, // mimetype of audio file, or "artist" or "album"
-                SearchManager.SUGGEST_COLUMN_TEXT_1,
+                MediaStore.Audio.Artists.ARTIST,
+                MediaStore.Audio.Albums.ALBUM,
+                MediaStore.Audio.Media.TITLE,
                 "data1",
                 "data2"
         };
 
-        Uri search = Uri.parse("content://media/external/audio/" + 
-                SearchManager.SUGGEST_URI_PATH_QUERY + "/" + Uri.encode(filter));
+        Uri search = Uri.parse("content://media/external/audio/search/fancy/" +
+                Uri.encode(filter));
         
         Cursor ret = null;
         if (async != null) {
@@ -342,7 +356,7 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
             if (mimetype.equals("artist")) {
                 iv.setImageResource(R.drawable.ic_mp_artist_list);
                 String name = cursor.getString(cursor.getColumnIndexOrThrow(
-                        SearchManager.SUGGEST_COLUMN_TEXT_1));
+                        MediaStore.Audio.Artists.ARTIST));
                 String displayname = name;
                 boolean isunknown = false;
                 if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
@@ -362,14 +376,15 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
             } else if (mimetype.equals("album")) {
                 iv.setImageResource(R.drawable.albumart_mp_unknown_list);
                 String name = cursor.getString(cursor.getColumnIndexOrThrow(
-                        SearchManager.SUGGEST_COLUMN_TEXT_1));
+                        MediaStore.Audio.Albums.ALBUM));
                 String displayname = name;
                 if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
                     displayname = context.getString(R.string.unknown_album_name);
                 }
                 tv1.setText(displayname);
                 
-                name = cursor.getString(cursor.getColumnIndexOrThrow("data1"));
+                name = cursor.getString(cursor.getColumnIndexOrThrow(
+                        MediaStore.Audio.Artists.ARTIST));
                 displayname = name;
                 if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
                     displayname = context.getString(R.string.unknown_artist_name);
@@ -381,16 +396,18 @@ public class QueryBrowserActivity extends ListActivity implements MusicUtils.Def
                     mimetype.equals("application/x-ogg")) {
                 iv.setImageResource(R.drawable.ic_mp_song_list);
                 String name = cursor.getString(cursor.getColumnIndexOrThrow(
-                        SearchManager.SUGGEST_COLUMN_TEXT_1));
+                        MediaStore.Audio.Media.TITLE));
                 tv1.setText(name);
 
-                String displayname = cursor.getString(cursor.getColumnIndexOrThrow("data1"));
-                if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
+                String displayname = cursor.getString(cursor.getColumnIndexOrThrow(
+                        MediaStore.Audio.Artists.ARTIST));
+                if (displayname == null || displayname.equals(MediaFile.UNKNOWN_STRING)) {
                     displayname = context.getString(R.string.unknown_artist_name);
                 }
-                name = cursor.getString(cursor.getColumnIndexOrThrow("data2"));
+                name = cursor.getString(cursor.getColumnIndexOrThrow(
+                        MediaStore.Audio.Albums.ALBUM));
                 if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
-                    name = context.getString(R.string.unknown_artist_name);
+                    name = context.getString(R.string.unknown_album_name);
                 }
                 tv2.setText(displayname + " - " + name);
             }

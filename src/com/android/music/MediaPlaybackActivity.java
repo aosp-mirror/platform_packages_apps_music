@@ -21,11 +21,14 @@ import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.MediaFile;
@@ -65,7 +68,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     
     private boolean mOneShot = false;
     private boolean mSeeking = false;
-    private boolean mTrackball;
+    private boolean mDeviceHasNoDpad;
     private long mStartSeekPos = 0;
     private long mLastSeekEventTime;
     private IMediaPlaybackService mService = null;
@@ -78,7 +81,6 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     private Worker mAlbumArtWorker;
     private AlbumArtHandler mAlbumArtHandler;
     private Toast mToast;
-    private boolean mRelaunchAfterConfigChange;
     private int mTouchSlop;
 
     public MediaPlaybackActivity()
@@ -129,8 +131,8 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         mNextButton.setRepeatListener(mFfwdListener, 260);
         seekmethod = 1;
 
-        mTrackball = true; /* (See bug 1044348) (getResources().getConfiguration().navigation == 
-            Resources.Configuration.NAVIGATION_TRACKBALL);*/
+        mDeviceHasNoDpad = (getResources().getConfiguration().navigation != 
+            Configuration.NAVIGATION_DPAD);
         
         mQueueButton = (ImageButton) findViewById(R.id.curplaylist);
         mQueueButton.setOnClickListener(mQueueListener);
@@ -146,7 +148,6 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         mProgress.setMax(1000);
         
         if (icicle != null) {
-            mRelaunchAfterConfigChange = icicle.getBoolean("configchange");
             mOneShot = icicle.getBoolean("oneshot");
         } else {
             mOneShot = getIntent().getBooleanExtra("oneshot", false);
@@ -277,12 +278,15 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
             return true;
         }
         
-        boolean knownartist = !MediaFile.UNKNOWN_STRING.equals(artist);
-        boolean knownalbum = !MediaFile.UNKNOWN_STRING.equals(album);
+        boolean knownartist =
+            (artist != null) && !MediaFile.UNKNOWN_STRING.equals(artist);
+
+        boolean knownalbum =
+            (album != null) && !MediaFile.UNKNOWN_STRING.equals(album);
         
         if (knownartist && view.equals(mArtistName.getParent())) {
             title = artist;
-            query = artist.toString();
+            query = artist;
             mime = MediaStore.Audio.Artists.ENTRY_CONTENT_TYPE;
         } else if (knownalbum && view.equals(mAlbumName.getParent())) {
             title = album;
@@ -293,6 +297,12 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
             }
             mime = MediaStore.Audio.Albums.ENTRY_CONTENT_TYPE;
         } else if (view.equals(mTrackName.getParent()) || !knownartist || !knownalbum) {
+            if ((song == null) || MediaFile.UNKNOWN_STRING.equals(song)) {
+                // A popup of the form "Search for null/'' using ..." is pretty
+                // unhelpful, plus, we won't find any way to buy it anyway.
+                return true;
+            }
+
             title = song;
             if (knownartist) {
                 query = artist + " " + song;
@@ -430,12 +440,12 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         mHandler.removeMessages(REFRESH);
         unregisterReceiver(mStatusListener);
         MusicUtils.unbindFromService(this);
+        mService = null;
         super.onStop();
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putBoolean("configchange", getChangingConfigurations() != 0);
         outState.putBoolean("oneshot", mOneShot);
         super.onSaveInstanceState(outState);
     }
@@ -484,20 +494,21 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        // Don't show the menu items if we got launched by path/filedescriptor, since
-        // those tend to not be in the media database.
-        if (MusicUtils.getCurrentAudioId() >= 0) {
-            if (!mOneShot) {
-                menu.add(0, GOTO_START, 0, R.string.goto_start).setIcon(R.drawable.ic_menu_music_library);
-                menu.add(0, PARTY_SHUFFLE, 0, R.string.party_shuffle); // icon will be set in onPrepareOptionsMenu()
-            }
+        // Don't show the menu items if we got launched by path/filedescriptor, or
+        // if we're in one shot mode. In most cases, these menu items are not
+        // useful in those modes, so for consistency we never show them in these
+        // modes, instead of tailoring them to the specific file being played.
+        if (MusicUtils.getCurrentAudioId() >= 0 && !mOneShot) {
+            menu.add(0, GOTO_START, 0, R.string.goto_start).setIcon(R.drawable.ic_menu_music_library);
+            menu.add(0, PARTY_SHUFFLE, 0, R.string.party_shuffle); // icon will be set in onPrepareOptionsMenu()
             SubMenu sub = menu.addSubMenu(0, ADD_TO_PLAYLIST, 0,
                     R.string.add_to_playlist).setIcon(android.R.drawable.ic_menu_add);
             MusicUtils.makePlaylistMenu(this, sub);
             menu.add(0, USE_AS_RINGTONE, 0, R.string.ringtone_menu_short).setIcon(R.drawable.ic_menu_set_as_ringtone);
             menu.add(0, DELETE_ITEM, 0, R.string.delete_item).setIcon(R.drawable.ic_menu_delete);
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override
@@ -701,7 +712,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
             switch(keyCode)
             {
                 case KeyEvent.KEYCODE_DPAD_LEFT:
-                    if (mTrackball) {
+                    if (mDeviceHasNoDpad) {
                         break;
                     }
                     if (mService != null) {
@@ -722,7 +733,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                     mPosOverride = -1;
                     return true;
                 case KeyEvent.KEYCODE_DPAD_RIGHT:
-                    if (mTrackball) {
+                    if (mDeviceHasNoDpad) {
                         break;
                     }
                     if (mService != null) {
@@ -780,7 +791,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 return true;
 
             case KeyEvent.KEYCODE_DPAD_LEFT:
-                if (mTrackball) {
+                if (mDeviceHasNoDpad) {
                     break;
                 }
                 if (!mPrevButton.hasFocus()) {
@@ -789,7 +800,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 scanBackward(repcnt, event.getEventTime() - event.getDownTime());
                 return true;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
-                if (mTrackball) {
+                if (mDeviceHasNoDpad) {
                     break;
                 }
                 if (!mNextButton.hasFocus()) {
@@ -979,12 +990,14 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 filename = uri.toString();
             }
             try {
-                mOneShot = true;
-                if (! mRelaunchAfterConfigChange) {
-                    mService.stop();
-                    mService.openfile(filename);
-                    mService.play();
+                if (! ContentResolver.SCHEME_CONTENT.equals(scheme) ||
+                        ! MediaStore.AUTHORITY.equals(uri.getAuthority())) {
+                    mOneShot = true;
                 }
+                mService.stop();
+                mService.openFile(filename, mOneShot);
+                mService.play();
+                setIntent(new Intent());
             } catch (Exception ex) {
                 Log.d("MediaPlaybackActivity", "couldn't start playback: " + ex);
             }
@@ -998,9 +1011,6 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     private ServiceConnection osc = new ServiceConnection() {
             public void onServiceConnected(ComponentName classname, IBinder obj) {
                 mService = IMediaPlaybackService.Stub.asInterface(obj);
-                if (MusicUtils.sService == null) {
-                    MusicUtils.sService = mService;
-                }
                 startPlayback();
                 try {
                     // Assume something is playing when the service says it is,
@@ -1273,7 +1283,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         }
     }
     
-    private class Worker implements Runnable {
+    private static class Worker implements Runnable {
         private final Object mLock = new Object();
         private Looper mLooper;
         
