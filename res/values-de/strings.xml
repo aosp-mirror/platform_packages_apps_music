@@ -26,10 +26,10 @@
     <item quantity="one">"1 Album"</item>
     <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> Alben"</item>
   </plurals>
-    <string name="goto_start">"Startübersicht"</string>
+    <string name="goto_start">"Bibliothek"</string>
     <string name="goto_playback">"Wiedergeben"</string>
-    <string name="party_shuffle">"Zufallswiedergabe (Party)"</string>
-    <string name="party_shuffle_off">"Zufallswiedergabe (Party) deaktivieren"</string>
+    <string name="party_shuffle">"Party-Shuffle"</string>
+    <string name="party_shuffle_off">"Party-Shuffle deaktivieren"</string>
     <string name="delete_item">"Löschen"</string>
     <string name="shuffle_all">"Alle zufällig wiedergeben"</string>
     <string name="play_all">"Alle wiedergeben"</string>
@@ -43,7 +43,7 @@
   </plurals>
     <string name="scanning">"SD-Karte wird gelesenen..."</string>
     <string name="nowplaying_title">"Aktuelle Wiedergabe"</string>
-    <string name="partyshuffle_title">"Zufallswiedergabe (Party)"</string>
+    <string name="partyshuffle_title">"Party-Shuffle"</string>
     <string name="artists_title">"Interpreten"</string>
     <string name="albums_menu">"Alben"</string>
     <string name="albums_title">"Alben"</string>
@@ -92,7 +92,7 @@
     <item quantity="one">"1 Titel zur Playlist hinzugefügt"</item>
     <item quantity="other">"%d Titel zur Playlist hinzugefügt."</item>
   </plurals>
-    <string name="emptyplaylist">"Ausgewählte Playlist ist leer"</string>
+    <string name="emptyplaylist">"Playlist ist leer"</string>
     <string name="create_playlist_create_text">"Speichern"</string>
     <string name="create_playlist_overwrite_text">"Überschreiben"</string>
     <string name="service_start_error_title">"Problem bei der Wiedergabe"</string>
@@ -126,14 +126,17 @@
     <string name="remove_from_playlist">"Von Playlist entfernen"</string>
     <string name="streamloadingtext">"Verbindung mit <xliff:g id="HOST">%s</xliff:g> wird hergestellt"</string>
     <string name="mediasearch">"Nach %s suchen mithilfe von:"</string>
-    <string name="working_artists">"Künstler…"</string>
+    <string name="working_artists">"Interpreten..."</string>
     <string name="working_albums">"Alben…"</string>
     <string name="working_songs">"Lieder…"</string>
     <string name="working_playlists">"Playlists…"</string>
     <string name="loading">"Wird geladen"</string>
-    <string name="sort_by_track">"Titel"</string>
+    <string name="sort_by_track">"Tracks"</string>
     <string name="sort_by_album">"Alben"</string>
-    <string name="sort_by_artist">"Künstler"</string>
-    <string name="music_picker_title">"Musiktitel auswählen"</string>
+    <string name="sort_by_artist">"Interpreten"</string>
+    <string name="music_picker_title">"Musiktrack auswählen"</string>
     <string name="gadget_track">"Track <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+    <string name="fail_to_start_stream">"Der angeforderte Stream konnte nicht wiedergegeben werden."</string>
+    <!-- no translation found for search_settings_description (6520975349259883368) -->
+    <skip />
 </resources>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onesong">"1 şarkı"</string>
+  <plurals name="Nsongs">
+    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> şarkı"</item>
+  </plurals>
+  <plurals name="Nsongscomp">
+    <item quantity="other">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> / <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> şarkı"</item>
+  </plurals>
+  <plurals name="Nalbums">
+    <item quantity="one">"1 albüm"</item>
+    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> albüm"</item>
+  </plurals>
+    <string name="goto_start">"Kitaplık"</string>
+    <string name="goto_playback">"Yürüt"</string>
+    <string name="party_shuffle">"Karışık albüm oluşturma"</string>
+    <string name="party_shuffle_off">"Karışık albüm oluşturma kapalı"</string>
+    <string name="delete_item">"Sil"</string>
+    <string name="shuffle_all">"Tümünü karıştır"</string>
+    <string name="play_all">"Tümünü yürüt"</string>
+    <string name="delete_artist_desc">"<xliff:g id="ARTIST">%s</xliff:g> sanatçısına ait tüm şarkılar SD karttan kalıcı olarak silinecek."</string>
+    <string name="delete_album_desc">"\"<xliff:g id="ALBUM">%s</xliff:g>\" albümünün tamamı SD kattan silinecek."</string>
+    <string name="delete_song_desc">"\"<xliff:g id="SONG">%s</xliff:g>\" SD karttan kalıcı olarak silinecek."</string>
+    <string name="delete_confirm_button_text">"Tamam"</string>
+  <plurals name="NNNtracksdeleted">
+    <item quantity="one">"1 şarkı silindi."</item>
+    <item quantity="other">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> şarkı silindi."</item>
+  </plurals>
+    <string name="scanning">"SD kart taranıyor..."</string>
+    <string name="nowplaying_title">"Şimdi yürütülüyor"</string>
+    <string name="partyshuffle_title">"Karışık albüm oluşturma"</string>
+    <string name="artists_title">"Sanatçılar"</string>
+    <string name="albums_menu">"Albümler"</string>
+    <string name="albums_title">"Albümler"</string>
+    <string name="tracks_menu">"Şarkılar"</string>
+    <string name="tracks_title">"Şarkılar"</string>
+    <string name="playlists_menu">"Şarkı listeleri"</string>
+    <string name="playlists_title">"Şarkı listeleri"</string>
+    <string name="videos_title">"Videolar"</string>
+    <string name="all_title">"Tüm medya"</string>
+    <string name="browse_menu">"Sanatçılar"</string>
+    <string name="search_title">"Ara"</string>
+    <string name="no_tracks_title">"Şarkı yok"</string>
+    <string name="no_videos_title">"Video yok"</string>
+    <string name="no_playlists_title">"Şarkı listesi yok"</string>
+    <string name="delete_playlist_menu">"Sil"</string>
+    <string name="edit_playlist_menu">"Düzenle"</string>
+    <string name="rename_playlist_menu">"Yeniden adlandır"</string>
+    <string name="playlist_deleted_message">"Şarkı listesi silindi."</string>
+    <string name="playlist_renamed_message">"Şarkı listesi yeniden adlandırıldı."</string>
+    <string name="recentlyadded">"En son eklenen"</string>
+    <string name="recentlyadded_title">"En son eklenen"</string>
+    <string name="podcasts_listitem">"Podcast\'ler"</string>
+    <string name="podcasts_title">"Podcast\'ler"</string>
+    <string name="sdcard_missing_title">"SD kart yok"</string>
+    <string name="sdcard_missing_message">"Telefonunuza takılı bir SD kart yok."</string>
+    <string name="sdcard_busy_title">"SD kart kullanılamıyor"</string>
+    <string name="sdcard_busy_message">"Maalesef, SD kartınız meşgul."</string>
+    <string name="sdcard_error_title">"SD kart hatası"</string>
+    <string name="sdcard_error_message">"SD kartınızda bir hatayla karşılaşıldı."</string>
+    <string name="unknown_artist_name">"Bilinmeyen sanatçı"</string>
+    <string name="unknown_album_name">"Bilinmeyen albüm"</string>
+    <string name="shuffle_on_notif">"Karıştırma açık."</string>
+    <string name="shuffle_off_notif">"Karıştırma kapalı."</string>
+    <string name="repeat_off_notif">"Tekrarlama kapalı."</string>
+    <string name="repeat_current_notif">"Geçerli şarkı tekrarlanıyor."</string>
+    <string name="repeat_all_notif">"Tüm şarkılar tekrarlanıyor."</string>
+    <string name="ringtone_menu">"Telefon zil sesi olarak kullan"</string>
+    <string name="ringtone_menu_short">"Zil sesi olarak kullan"</string>
+    <string name="ringtone_set">"\"%s\" telefon zil sesi olarak ayarlanmış."</string>
+    <string name="play_selection">"Yürüt"</string>
+    <string name="add_to_playlist">"Şarkı listesine ekle"</string>
+    <string name="queue">"Geçerli şarkı listesi"</string>
+    <string name="new_playlist">"Yeni"</string>
+    <string name="new_playlist_name_template">"Yeni şarkı listesi <xliff:g id="NUMBER">%d</xliff:g>"</string>
+  <plurals name="NNNtrackstoplaylist">
+    <item quantity="one">"Şarkı listesine 1 şarkı eklendi."</item>
+    <item quantity="other">"Şarkı listesine %d şarkı eklendi."</item>
+  </plurals>
+    <string name="emptyplaylist">"Seçilen şarkı listesi boş."</string>
+    <string name="create_playlist_create_text">"Kaydet"</string>
+    <string name="create_playlist_overwrite_text">"Üzerine yaz"</string>
+    <string name="service_start_error_title">"Yürütme sorunu"</string>
+    <string name="service_start_error_msg">"Maalesef, şarkı yürütülemedi."</string>
+    <string name="service_start_error_button">"Tamam"</string>
+  <string-array name="weeklist">
+    <item>"1 hafta"</item>
+    <item>"2 hafta"</item>
+    <item>"3 hafta"</item>
+    <item>"4 hafta"</item>
+    <item>"5 hafta"</item>
+    <item>"6 hafta"</item>
+    <item>"7 hafta"</item>
+    <item>"8 hafta"</item>
+    <item>"9 hafta"</item>
+    <item>"10 hafta"</item>
+    <item>"11 hafta"</item>
+    <item>"12 hafta"</item>
+  </string-array>
+    <string name="weekpicker_set">"Bitti"</string>
+    <string name="weekpicker_title">"Saati ayarla"</string>
+    <string name="save_as_playlist">"Şarkı listesi olarak kaydet"</string>
+    <string name="clear_playlist">"Şarkı listesini temizle"</string>
+    <string name="musicbrowserlabel">"Müzik"</string>
+    <string name="musicshortcutlabel">"Müzik şarkı listesi"</string>
+    <string name="mediaplaybacklabel">"Müzik"</string>
+    <string name="videobrowserlabel">"Videolar"</string>
+    <string name="mediapickerlabel">"Müzik"</string>
+    <string name="playback_failed">"Maalesef, bu oynatıcı bu tür ses dosyalarını desteklemiyor."</string>
+    <string name="cancel">"İptal"</string>
+    <string name="remove_from_playlist">"Şarkı listesinden kaldır"</string>
+    <string name="streamloadingtext">"Şuraya bağlanılıyor: <xliff:g id="HOST">%s</xliff:g>"</string>
+    <string name="mediasearch">"Şunu kullanarak %s için arama yap:"</string>
+    <string name="working_artists">"Sanatçılar..."</string>
+    <string name="working_albums">"Albümler..."</string>
+    <string name="working_songs">"Şarkılar..."</string>
+    <string name="working_playlists">"Şarkı listeleri..."</string>
+    <string name="loading">"Yükleniyor"</string>
+    <string name="sort_by_track">"Parçalar"</string>
+    <string name="sort_by_album">"Albümler"</string>
+    <string name="sort_by_artist">"Sanatçılar"</string>
+    <string name="music_picker_title">"Müzik parçasını seç"</string>
+    <string name="gadget_track">"Parça <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+    <!-- no translation found for fail_to_start_stream (3605390187703912835) -->
+    <skip />
+    <!-- no translation found for search_settings_description (6520975349259883368) -->
+    <skip />
+</resources>

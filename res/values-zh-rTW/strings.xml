@@ -136,4 +136,7 @@
     <string name="sort_by_artist">"演出者"</string>
     <string name="music_picker_title">"選取音樂曲目"</string>
     <string name="gadget_track">"音軌 <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+    <string name="fail_to_start_stream">"無法播放您要求的串流媒體。"</string>
+    <!-- no translation found for search_settings_description (6520975349259883368) -->
+    <skip />
 </resources>

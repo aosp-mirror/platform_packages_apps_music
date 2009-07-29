@@ -15,7 +15,7 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt">"Введите название нового плейлиста с клавиатуры или нажмите Сохранить, чтобы назвать его \"%s\"."</string>
-    <string name="rename_playlist_same_prompt">"Введите новое название плейлиста \"<xliff:g id="PLAYLIST">%s</xliff:g>\" с клавиатуры."</string>
-    <string name="rename_playlist_diff_prompt">"Введите новое название плейлиста \"<xliff:g id="PLAYLIST">%s</xliff:g>\" с клавиатуры или нажмите Сохранить, чтобы назвать его \"%s\"."</string>
+    <string name="create_playlist_create_text_prompt">"Откройте клавиатуру, чтобы ввести название для нового плейлиста или нажмите \"Сохранить\", чтобы сохранить плейлист под названием \"%s\"."</string>
+    <string name="rename_playlist_same_prompt">"Откройте клавиатуру, чтобы ввести новое название для плейлиста \"<xliff:g id="PLAYLIST">%s</xliff:g>\"."</string>
+    <string name="rename_playlist_diff_prompt">"Откройте клавиатуру, чтобы ввести другое название для плейлиста <xliff:g id="PLAYLIST">%s</xliff:g> или нажмите \"Сохранить\", чтобы сохранить плейлист под названием \"%s\"."</string>
 </resources>

@@ -28,8 +28,8 @@
   </plurals>
     <string name="goto_start">"Biblioteka"</string>
     <string name="goto_playback">"Odtwórz"</string>
-    <string name="party_shuffle">"Losowo w trybie imprezy"</string>
-    <string name="party_shuffle_off">"Wyłączono losowe odtwarzanie w trybie imprezy"</string>
+    <string name="party_shuffle">"Losowo – tryb imprezy"</string>
+    <string name="party_shuffle_off">"Wyłącz tryb imprezy"</string>
     <string name="delete_item">"Usuń"</string>
     <string name="shuffle_all">"Wszystkie losowo"</string>
     <string name="play_all">"Odtwórz wszystko"</string>
@@ -90,7 +90,7 @@
     <string name="new_playlist_name_template">"Nowa playlista <xliff:g id="NUMBER">%d</xliff:g>"</string>
   <plurals name="NNNtrackstoplaylist">
     <item quantity="one">"Dodano 1 utwór do playlisty."</item>
-    <item quantity="other">"%d utworów dodano do listy odtwarzania."</item>
+    <item quantity="other">"Utworów dodanych do playlisty: %d."</item>
   </plurals>
     <string name="emptyplaylist">"Wybrana playlista jest pusta."</string>
     <string name="create_playlist_create_text">"Zapisz"</string>
@@ -129,11 +129,14 @@
     <string name="working_artists">"Wykonawcy…"</string>
     <string name="working_albums">"Albumy…"</string>
     <string name="working_songs">"Utwory…"</string>
-    <string name="working_playlists">"Listy odtwarzania..."</string>
+    <string name="working_playlists">"Playlisty…"</string>
     <string name="loading">"Ładowanie"</string>
     <string name="sort_by_track">"Utwory"</string>
     <string name="sort_by_album">"Albumy"</string>
     <string name="sort_by_artist">"Wykonawcy"</string>
     <string name="music_picker_title">"Wybierz utwór muzyczny"</string>
-    <string name="gadget_track">"Ścieżka <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+    <string name="gadget_track">"Utwór <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+    <string name="fail_to_start_stream">"Nie można odtworzyć żądanego strumienia."</string>
+    <!-- no translation found for search_settings_description (6520975349259883368) -->
+    <skip />
 </resources>

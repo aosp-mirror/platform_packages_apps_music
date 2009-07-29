@@ -136,4 +136,8 @@
     <string name="sort_by_artist">"Artister"</string>
     <string name="music_picker_title">"Velg musikkspor"</string>
     <string name="gadget_track">"Spor <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+    <!-- no translation found for fail_to_start_stream (3605390187703912835) -->
+    <skip />
+    <!-- no translation found for search_settings_description (6520975349259883368) -->
+    <skip />
 </resources>
