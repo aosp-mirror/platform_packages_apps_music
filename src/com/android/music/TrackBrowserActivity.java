@@ -1272,6 +1272,15 @@ public class TrackBrowserActivity extends ListActivity
         }
 
         class TrackQueryHandler extends AsyncQueryHandler {
+
+            class QueryArgs {
+                public Uri uri;
+                public String [] projection;
+                public String selection;
+                public String [] selectionArgs;
+                public String orderBy;
+            }
+
             TrackQueryHandler(ContentResolver res) {
                 super(res);
             }
@@ -1280,7 +1289,17 @@ public class TrackBrowserActivity extends ListActivity
                     String selection, String[] selectionArgs,
                     String orderBy, boolean async) {
                 if (async) {
-                    startQuery(0, null, uri, projection, selection, selectionArgs, orderBy);
+                    // Get 100 results first, which is enough to allow the user to start scrolling,
+                    // while still being very fast.
+                    Uri limituri = uri.buildUpon().appendQueryParameter("limit", "100").build();
+                    QueryArgs args = new QueryArgs();
+                    args.uri = uri;
+                    args.projection = projection;
+                    args.selection = selection;
+                    args.selectionArgs = selectionArgs;
+                    args.orderBy = orderBy;
+
+                    startQuery(0, args, limituri, projection, selection, selectionArgs, orderBy);
                     return null;
                 }
                 return MusicUtils.query(mActivity,
@@ -1291,6 +1310,11 @@ public class TrackBrowserActivity extends ListActivity
             protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
                 //Log.i("@@@", "query complete: " + cursor.getCount() + "   " + mActivity);
                 mActivity.init(cursor);
+                if (token == 0 && cookie != null && cursor != null && cursor.getCount() >= 100) {
+                    QueryArgs args = (QueryArgs) cookie;
+                    startQuery(1, null, args.uri, args.projection, args.selection,
+                            args.selectionArgs, args.orderBy);
+                }
             }
         }
         
