@@ -190,7 +190,7 @@ public class TrackBrowserActivity extends ListActivity
                     !(mPlaylist.equals("podcasts") || mPlaylist.equals("recentlyadded")));
             setListAdapter(mAdapter);
             setTitle(R.string.working_songs);
-            getTrackCursor(mAdapter.getQueryHandler(), null);
+            getTrackCursor(mAdapter.getQueryHandler(), null, true);
         } else {
             mTrackCursor = mAdapter.getCursor();
             // If mTrackCursor is null, this can be because it doesn't have
@@ -203,7 +203,7 @@ public class TrackBrowserActivity extends ListActivity
                 init(mTrackCursor);
             } else {
                 setTitle(R.string.working_songs);
-                getTrackCursor(mAdapter.getQueryHandler(), null);
+                getTrackCursor(mAdapter.getQueryHandler(), null, true);
             }
         }
     }
@@ -292,7 +292,7 @@ public class TrackBrowserActivity extends ListActivity
     private Handler mReScanHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            getTrackCursor(mAdapter.getQueryHandler(), null);
+            getTrackCursor(mAdapter.getQueryHandler(), null, true);
             // if the query results in a null cursor, onQueryComplete() will
             // call init(), which will post a delayed message to this handler
             // in order to try again.
@@ -900,7 +900,7 @@ public class TrackBrowserActivity extends ListActivity
                 if (resultCode == RESULT_CANCELED) {
                     finish();
                 } else {
-                    getTrackCursor(mAdapter.getQueryHandler(), null);
+                    getTrackCursor(mAdapter.getQueryHandler(), null, true);
                 }
                 break;
                 
@@ -927,12 +927,18 @@ public class TrackBrowserActivity extends ListActivity
         }
     }
     
-    private Cursor getTrackCursor(AsyncQueryHandler async, String filter) {
+    private Cursor getTrackCursor(TrackListAdapter.TrackQueryHandler queryhandler, String filter,
+            boolean async) {
+
+        if (queryhandler == null) {
+            throw new IllegalArgumentException();
+        }
+
         Cursor ret = null;
         mSortOrder = MediaStore.Audio.Media.TITLE_KEY;
         StringBuilder where = new StringBuilder();
         where.append(MediaStore.Audio.Media.TITLE + " != ''");
-        
+
         // Add in the filtering constraints
         String [] keywords = null;
         if (filter != null) {
@@ -952,17 +958,9 @@ public class TrackBrowserActivity extends ListActivity
         
         if (mGenre != null) {
             mSortOrder = MediaStore.Audio.Genres.Members.DEFAULT_SORT_ORDER;
-            if (async != null) {
-                async.startQuery(0, null,
-                        MediaStore.Audio.Genres.Members.getContentUri("external",
-                        Integer.valueOf(mGenre)),
-                        mCursorCols, where.toString(), keywords, mSortOrder);
-                ret = null;
-            } else {
-                ret = MusicUtils.query(this,
-                        MediaStore.Audio.Genres.Members.getContentUri("external", Integer.valueOf(mGenre)),
-                        mCursorCols, where.toString(), keywords, mSortOrder);
-            }
+            ret = queryhandler.doQuery(MediaStore.Audio.Genres.Members.getContentUri("external",
+                    Integer.valueOf(mGenre)),
+                    mCursorCols, where.toString(), keywords, mSortOrder, async);
         } else if (mPlaylist != null) {
             if (mPlaylist.equals("nowplaying")) {
                 if (MusicUtils.sService != null) {
@@ -975,43 +973,22 @@ public class TrackBrowserActivity extends ListActivity
                 }
             } else if (mPlaylist.equals("podcasts")) {
                 where.append(" AND " + MediaStore.Audio.Media.IS_PODCAST + "=1");
-                if (async != null) {
-                    async.startQuery(0, null,
-                            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, mCursorCols,
-                            where.toString(), keywords, MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
-                    ret = null;
-                 } else {
-                    ret = MusicUtils.query(this,
-                            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, mCursorCols,
-                            where.toString(), keywords, MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
-                }
+                ret = queryhandler.doQuery(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                        mCursorCols, where.toString(), keywords,
+                        MediaStore.Audio.Media.DEFAULT_SORT_ORDER, async);
             } else if (mPlaylist.equals("recentlyadded")) {
                 // do a query for all songs added in the last X weeks
                 int X = MusicUtils.getIntPref(this, "numweeks", 2) * (3600 * 24 * 7);
                 where.append(" AND " + MediaStore.MediaColumns.DATE_ADDED + ">");
                 where.append(System.currentTimeMillis() / 1000 - X);
-                if (async != null) {
-                    async.startQuery(0, null,
-                            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, mCursorCols,
-                            where.toString(), keywords, MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
-                    ret = null;
-                 } else {
-                    ret = MusicUtils.query(this,
-                            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, mCursorCols,
-                            where.toString(), keywords, MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
-                }
+                ret = queryhandler.doQuery(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                        mCursorCols, where.toString(), keywords,
+                        MediaStore.Audio.Media.DEFAULT_SORT_ORDER, async);
             } else {
                 mSortOrder = MediaStore.Audio.Playlists.Members.DEFAULT_SORT_ORDER;
-                if (async != null) {
-                    async.startQuery(0, null,
-                            MediaStore.Audio.Playlists.Members.getContentUri("external", Long.valueOf(mPlaylist)),
-                            mPlaylistMemberCols, where.toString(), keywords, mSortOrder);
-                    ret = null;
-                } else {
-                    ret = MusicUtils.query(this,
-                            MediaStore.Audio.Playlists.Members.getContentUri("external", Long.valueOf(mPlaylist)),
-                            mPlaylistMemberCols, where.toString(), keywords, mSortOrder);
-                }
+                ret = queryhandler.doQuery(MediaStore.Audio.Playlists.Members.getContentUri("external",
+                        Long.valueOf(mPlaylist)), mPlaylistMemberCols,
+                        where.toString(), keywords, mSortOrder, async);
             }
         } else {
             if (mAlbumId != null) {
@@ -1022,20 +999,13 @@ public class TrackBrowserActivity extends ListActivity
                 where.append(" AND " + MediaStore.Audio.Media.ARTIST_ID + "=" + mArtistId);
             }
             where.append(" AND " + MediaStore.Audio.Media.IS_MUSIC + "=1");
-            if (async != null) {
-                async.startQuery(0, null,
-                        MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-                        mCursorCols, where.toString() , keywords, mSortOrder);
-                ret = null;
-            } else {
-                ret = MusicUtils.query(this, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-                        mCursorCols, where.toString() , keywords, mSortOrder);
-            }
+            ret = queryhandler.doQuery(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                    mCursorCols, where.toString() , keywords, mSortOrder, async);
         }
         
         // This special case is for the "nowplaying" cursor, which cannot be handled
         // asynchronously using AsyncQueryHandler, so we do some extra initialization here.
-        if (ret != null && async != null) {
+        if (ret != null && async) {
             init(ret);
             setTitle();
         }
@@ -1288,7 +1258,7 @@ public class TrackBrowserActivity extends ListActivity
         private AlphabetIndexer mIndexer;
         
         private TrackBrowserActivity mActivity = null;
-        private AsyncQueryHandler mQueryHandler;
+        private TrackQueryHandler mQueryHandler;
         private String mConstraint = null;
         private boolean mConstraintIsValid = false;
         
@@ -1301,11 +1271,22 @@ public class TrackBrowserActivity extends ListActivity
             char [] buffer2;
         }
 
-        class QueryHandler extends AsyncQueryHandler {
-            QueryHandler(ContentResolver res) {
+        class TrackQueryHandler extends AsyncQueryHandler {
+            TrackQueryHandler(ContentResolver res) {
                 super(res);
             }
             
+            public Cursor doQuery(Uri uri, String[] projection,
+                    String selection, String[] selectionArgs,
+                    String orderBy, boolean async) {
+                if (async) {
+                    startQuery(0, null, uri, projection, selection, selectionArgs, orderBy);
+                    return null;
+                }
+                return MusicUtils.query(mActivity,
+                        uri, projection, selection, selectionArgs, orderBy);
+            }
+
             @Override
             protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
                 //Log.i("@@@", "query complete: " + cursor.getCount() + "   " + mActivity);
@@ -1324,14 +1305,14 @@ public class TrackBrowserActivity extends ListActivity
             mUnknownArtist = context.getString(R.string.unknown_artist_name);
             mUnknownAlbum = context.getString(R.string.unknown_album_name);
             
-            mQueryHandler = new QueryHandler(context.getContentResolver());
+            mQueryHandler = new TrackQueryHandler(context.getContentResolver());
         }
         
         public void setActivity(TrackBrowserActivity newactivity) {
             mActivity = newactivity;
         }
         
-        public AsyncQueryHandler getQueryHandler() {
+        public TrackQueryHandler getQueryHandler() {
             return mQueryHandler;
         }
         
@@ -1462,7 +1443,7 @@ public class TrackBrowserActivity extends ListActivity
                     (s != null && s.equals(mConstraint)))) {
                 return getCursor();
             }
-            Cursor c = mActivity.getTrackCursor(null, s);
+            Cursor c = mActivity.getTrackCursor(mQueryHandler, s, false);
             mConstraint = s;
             mConstraintIsValid = true;
             return c;
