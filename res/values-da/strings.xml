@@ -15,127 +15,127 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="onesong">"1 sang"</string>
+    <string name="onesong" msgid="8336826100414159413">"1 sang"</string>
   <plurals name="Nsongs">
-    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> sange"</item>
+    <item quantity="other" msgid="5798230388116542981">"<xliff:g id="COUNT">%d</xliff:g> sange"</item>
   </plurals>
   <plurals name="Nsongscomp">
-    <item quantity="other">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> af <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> sange"</item>
+    <item quantity="other" msgid="7162294486622945550">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> af <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> sange"</item>
   </plurals>
   <plurals name="Nalbums">
-    <item quantity="one">"1 album"</item>
-    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> albummer"</item>
+    <item quantity="one" msgid="3798955510439465932">"1 album"</item>
+    <item quantity="other" msgid="3047615499770811984">"<xliff:g id="COUNT">%d</xliff:g> albummer"</item>
   </plurals>
-    <string name="goto_start">"Bibliotek"</string>
-    <string name="goto_playback">"Afspilning"</string>
-    <string name="party_shuffle">"Festmix"</string>
-    <string name="party_shuffle_off">"Festmix er slået fra"</string>
-    <string name="delete_item">"Slet"</string>
-    <string name="shuffle_all">"Bland alle"</string>
-    <string name="play_all">"Spil alle"</string>
-    <string name="delete_artist_desc">"Alle sange af <xliff:g id="ARTIST">%s</xliff:g> slettes permanent fra SD-kortet."</string>
-    <string name="delete_album_desc">"Hele albummet \"<xliff:g id="ALBUM">%s</xliff:g>\" slettes permanent fra SD-kortet."</string>
-    <string name="delete_song_desc">"\"<xliff:g id="SONG">%s</xliff:g>\" slettes permanent fra SD-kortet."</string>
-    <string name="delete_confirm_button_text">"OK"</string>
+    <string name="goto_start" msgid="8979658707407220934">"Bibliotek"</string>
+    <string name="goto_playback" msgid="4885216161312176550">"Afspilning"</string>
+    <string name="party_shuffle" msgid="8213359225506006168">"Festmix"</string>
+    <string name="party_shuffle_off" msgid="1828744483354711679">"Festmix er slået fra"</string>
+    <string name="delete_item" msgid="3363330144534750601">"Slet"</string>
+    <string name="shuffle_all" msgid="1388193611787878773">"Bland alle"</string>
+    <string name="play_all" msgid="6309622568869321842">"Spil alle"</string>
+    <string name="delete_artist_desc" msgid="1843750591006508005">"Alle sange af <xliff:g id="ARTIST">%s</xliff:g> slettes permanent fra SD-kortet."</string>
+    <string name="delete_album_desc" msgid="535515999268177079">"Hele albummet \"<xliff:g id="ALBUM">%s</xliff:g>\" slettes permanent fra SD-kortet."</string>
+    <string name="delete_song_desc" msgid="1856800468541831408">"\"<xliff:g id="SONG">%s</xliff:g>\" slettes permanent fra SD-kortet."</string>
+    <string name="delete_confirm_button_text" msgid="7008121194944357274">"OK"</string>
   <plurals name="NNNtracksdeleted">
-    <item quantity="one">"Der blev slettet 1 sang."</item>
-    <item quantity="other">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> sange blev slettet."</item>
+    <item quantity="one" msgid="8560276109508404217">"Der blev slettet 1 sang."</item>
+    <item quantity="other" msgid="5156740163031225200">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> sange blev slettet."</item>
   </plurals>
-    <string name="scanning">"Scanner SD-kort ..."</string>
-    <string name="nowplaying_title">"Spiller nu"</string>
-    <string name="partyshuffle_title">"Festmix"</string>
-    <string name="artists_title">"Kunstnere"</string>
-    <string name="albums_menu">"Albummer"</string>
-    <string name="albums_title">"Albummer"</string>
-    <string name="tracks_menu">"Sange"</string>
-    <string name="tracks_title">"Sange"</string>
-    <string name="playlists_menu">"Afspilningslister"</string>
-    <string name="playlists_title">"Afspilningslister"</string>
-    <string name="videos_title">"Videoer"</string>
-    <string name="all_title">"Alle medier"</string>
-    <string name="browse_menu">"Kunstnere"</string>
-    <string name="search_title">"Søg"</string>
-    <string name="no_tracks_title">"Der er ingen sange"</string>
-    <string name="no_videos_title">"Der er ingen videoer"</string>
-    <string name="no_playlists_title">"Der er ingen afspilningslister"</string>
-    <string name="delete_playlist_menu">"Slet"</string>
-    <string name="edit_playlist_menu">"Rediger"</string>
-    <string name="rename_playlist_menu">"Omdøb"</string>
-    <string name="playlist_deleted_message">"Afspilningsliste slettet."</string>
-    <string name="playlist_renamed_message">"Afspilningslisten er omdøbt."</string>
-    <string name="recentlyadded">"Tilføjet for nyligt"</string>
-    <string name="recentlyadded_title">"Tilføjet for nyligt"</string>
-    <string name="podcasts_listitem">"Podcasts"</string>
-    <string name="podcasts_title">"Podcasts"</string>
-    <string name="sdcard_missing_title">"Der er intet SD-kort"</string>
-    <string name="sdcard_missing_message">"Der er ikke indsat et SD-kort i din telefon."</string>
-    <string name="sdcard_busy_title">"SD-kortet er ikke tilgængeligt"</string>
-    <string name="sdcard_busy_message">"Beklager! Dit SD-kort er optaget."</string>
-    <string name="sdcard_error_title">"SD-kortfejl"</string>
-    <string name="sdcard_error_message">"Der opstod en fejl på dit SD-kort."</string>
-    <string name="unknown_artist_name">"Ukendt kunstner"</string>
-    <string name="unknown_album_name">"Ukendt album"</string>
-    <string name="shuffle_on_notif">"Bland er slået til."</string>
-    <string name="shuffle_off_notif">"Bland er slået fra."</string>
-    <string name="repeat_off_notif">"Gentagelse er slået fra."</string>
-    <string name="repeat_current_notif">"Den aktuelle sang gentages."</string>
-    <string name="repeat_all_notif">"Gentager alle sange."</string>
-    <string name="ringtone_menu">"Brug som telefonringetone"</string>
-    <string name="ringtone_menu_short">"Brug som ringetone"</string>
-    <string name="ringtone_set">"\"%s\" er indstillet som ringetone for telefonen."</string>
-    <string name="play_selection">"Afspil"</string>
-    <string name="add_to_playlist">"Føj til afspilningsliste"</string>
-    <string name="queue">"Aktuel afspilningsliste"</string>
-    <string name="new_playlist">"Ny"</string>
-    <string name="new_playlist_name_template">"Ny afspilningsliste <xliff:g id="NUMBER">%d</xliff:g>"</string>
+    <string name="scanning" msgid="3529383847223198502">"Scanner SD-kort ..."</string>
+    <string name="nowplaying_title" msgid="8342523844307751761">"Spiller nu"</string>
+    <string name="partyshuffle_title" msgid="6582413231529992125">"Festmix"</string>
+    <string name="artists_title" msgid="8490372367259160067">"Kunstnere"</string>
+    <string name="albums_menu" msgid="5807982055590211900">"Albummer"</string>
+    <string name="albums_title" msgid="8773880394961378035">"Albummer"</string>
+    <string name="tracks_menu" msgid="6942246568246092330">"Sange"</string>
+    <string name="tracks_title" msgid="3229389424532295124">"Sange"</string>
+    <string name="playlists_menu" msgid="5382792649771928849">"Afspiln.liste"</string>
+    <string name="playlists_title" msgid="5094238486322957927">"Afspiln.liste"</string>
+    <string name="videos_title" msgid="2066741954354129115">"Videoer"</string>
+    <string name="all_title" msgid="6880186414437237653">"Alle medier"</string>
+    <string name="browse_menu" msgid="5248122473075843289">"Kunstnere"</string>
+    <string name="search_title" msgid="1016971653383739344">"Søg"</string>
+    <string name="no_tracks_title" msgid="8805805388271238471">"Der er ingen sange"</string>
+    <string name="no_videos_title" msgid="6218814130364793104">"Der er ingen videoer"</string>
+    <string name="no_playlists_title" msgid="4456351945617594418">"Der er ingen afspilningslister"</string>
+    <string name="delete_playlist_menu" msgid="8998637685583495247">"Slet"</string>
+    <string name="edit_playlist_menu" msgid="571618502105370684">"Rediger"</string>
+    <string name="rename_playlist_menu" msgid="3133463747389494668">"Omdøb"</string>
+    <string name="playlist_deleted_message" msgid="9008053828193961455">"Afspilningsliste slettet."</string>
+    <string name="playlist_renamed_message" msgid="7187580192703005990">"Afspilningslisten er omdøbt."</string>
+    <string name="recentlyadded" msgid="110978416756366953">"Tilføjet for nyligt"</string>
+    <string name="recentlyadded_title" msgid="3153322287249901914">"Tilføjet for nyligt"</string>
+    <string name="podcasts_listitem" msgid="8657809279717670634">"Podcasts"</string>
+    <string name="podcasts_title" msgid="4928414142496858304">"Podcasts"</string>
+    <string name="sdcard_missing_title" msgid="9008284946643270850">"Der er intet SD-kort"</string>
+    <string name="sdcard_missing_message" msgid="1169260755336159747">"Der er ikke indsat et SD-kort i din telefon."</string>
+    <string name="sdcard_busy_title" msgid="1162763571147174655">"SD-kortet er ikke tilgængeligt"</string>
+    <string name="sdcard_busy_message" msgid="8071868348072728830">"Beklager! Dit SD-kort er optaget."</string>
+    <string name="sdcard_error_title" msgid="165682155008600643">"SD-kortfejl"</string>
+    <string name="sdcard_error_message" msgid="4574563894036627855">"Der opstod en fejl på dit SD-kort."</string>
+    <string name="unknown_artist_name" msgid="5567811106415855219">"Ukendt kunstner"</string>
+    <string name="unknown_album_name" msgid="8525145988941244727">"Ukendt album"</string>
+    <string name="shuffle_on_notif" msgid="5453708337808483943">"Bland er slået til."</string>
+    <string name="shuffle_off_notif" msgid="4251189610017886263">"Bland er slået fra."</string>
+    <string name="repeat_off_notif" msgid="1149406899083479716">"Gentagelse er slået fra."</string>
+    <string name="repeat_current_notif" msgid="1227153936360904196">"Den aktuelle sang gentages."</string>
+    <string name="repeat_all_notif" msgid="6443293055987316642">"Gentager alle sange."</string>
+    <string name="ringtone_menu" msgid="2737472190159134599">"Brug som telefonringetone"</string>
+    <string name="ringtone_menu_short" msgid="3367622038867238133">"Brug som ringetone"</string>
+    <string name="ringtone_set" msgid="4352073372504803255">"\"%s\" er indstillet som ringetone for telefonen."</string>
+    <string name="play_selection" msgid="2854921021814550018">"Afspil"</string>
+    <string name="add_to_playlist" msgid="7110273488645072783">"Føj til afspilningsliste"</string>
+    <string name="queue" msgid="2937629819482787704">"Aktuel afspilningsliste"</string>
+    <string name="new_playlist" msgid="7588112979692632867">"Ny"</string>
+    <string name="new_playlist_name_template" msgid="905710296728900597">"Ny afspilningsliste <xliff:g id="NUMBER">%d</xliff:g>"</string>
   <plurals name="NNNtrackstoplaylist">
-    <item quantity="one">"Der blev føjet 1 sang til afspilningslisten."</item>
-    <item quantity="other">"%d sange føjet til afspilningsliste."</item>
+    <item quantity="one" msgid="422388042993582235">"Der blev føjet 1 sang til afspilningslisten."</item>
+    <item quantity="other" msgid="7675242021325355213">"%d sange føjet til afspilningsliste."</item>
   </plurals>
-    <string name="emptyplaylist">"Den valgte afspilningsliste er tom."</string>
-    <string name="create_playlist_create_text">"Gem"</string>
-    <string name="create_playlist_overwrite_text">"Overskriv"</string>
-    <string name="service_start_error_title">"Afspilningsproblem"</string>
-    <string name="service_start_error_msg">"Beklager! Sangen kunne ikke spilles."</string>
-    <string name="service_start_error_button">"OK"</string>
+    <string name="emptyplaylist" msgid="6711555673997896344">"Den valgte afspilningsliste er tom."</string>
+    <string name="create_playlist_create_text" msgid="8149755205483279143">"Gem"</string>
+    <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Overskriv"</string>
+    <string name="service_start_error_title" msgid="8649916852210198813">"Afspilningsproblem"</string>
+    <string name="service_start_error_msg" msgid="3880338547260838681">"Beklager! Sangen kunne ikke spilles."</string>
+    <string name="service_start_error_button" msgid="480888406592240723">"OK"</string>
   <string-array name="weeklist">
-    <item>"1 uge"</item>
-    <item>"2 uger"</item>
-    <item>"3 uger"</item>
-    <item>"4 uger"</item>
-    <item>"5 uger"</item>
-    <item>"6 uger"</item>
-    <item>"7 uger"</item>
-    <item>"8 uger"</item>
-    <item>"9 uger"</item>
-    <item>"10 uger"</item>
-    <item>"11 uger"</item>
-    <item>"12 uger"</item>
+    <item msgid="7005918873419323862">"1 uge"</item>
+    <item msgid="7487749116155425822">"2 uger"</item>
+    <item msgid="1565338360539555185">"3 uger"</item>
+    <item msgid="2142986059836933072">"4 uger"</item>
+    <item msgid="4332403875260507291">"5 uger"</item>
+    <item msgid="3847281907869868565">"6 uger"</item>
+    <item msgid="2942654998558867799">"7 uger"</item>
+    <item msgid="2115529325850052227">"8 uger"</item>
+    <item msgid="1396675336665198092">"9 uger"</item>
+    <item msgid="3178819129208998649">"10 uger"</item>
+    <item msgid="2727959579637914171">"11 uger"</item>
+    <item msgid="8708754966127584739">"12 uger"</item>
   </string-array>
-    <string name="weekpicker_set">"Færdig"</string>
-    <string name="weekpicker_title">"Indstil tid"</string>
-    <string name="save_as_playlist">"Gem som afspilningsliste"</string>
-    <string name="clear_playlist">"Ryd afspilningsliste"</string>
-    <string name="musicbrowserlabel">"Musik"</string>
-    <string name="musicshortcutlabel">"Musikafspilningsliste"</string>
-    <string name="mediaplaybacklabel">"Musik"</string>
-    <string name="videobrowserlabel">"Videoer"</string>
-    <string name="mediapickerlabel">"Musik"</string>
-    <string name="playback_failed">"Beklager! Afspilleren understøtter ikke denne slags lydfiler."</string>
-    <string name="cancel">"Annuller"</string>
-    <string name="remove_from_playlist">"Fjern fra afspilningsliste"</string>
-    <string name="streamloadingtext">"Forbinder til <xliff:g id="HOST">%s</xliff:g>"</string>
-    <string name="mediasearch">"Søg efter %s ved hjælp af:"</string>
-    <string name="working_artists">"Kunstnere ..."</string>
-    <string name="working_albums">"Albummer ..."</string>
-    <string name="working_songs">"Sange ..."</string>
-    <string name="working_playlists">"Afspilningslister ..."</string>
-    <string name="loading">"Indlæser"</string>
-    <string name="sort_by_track">"Numre"</string>
-    <string name="sort_by_album">"Albummer"</string>
-    <string name="sort_by_artist">"Kunstnere"</string>
-    <string name="music_picker_title">"Vælg musiknummer"</string>
-    <string name="gadget_track">"Nummer <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+    <string name="weekpicker_set" msgid="7636608790418067496">"Færdig"</string>
+    <string name="weekpicker_title" msgid="699535378922101701">"Indstil tid"</string>
+    <string name="save_as_playlist" msgid="5180413608901885255">"Gem som afspilningsliste"</string>
+    <string name="clear_playlist" msgid="4565515100924905315">"Ryd afspilningsliste"</string>
+    <string name="musicbrowserlabel" msgid="3162022214114562892">"Musik"</string>
+    <string name="musicshortcutlabel" msgid="2602980193508150226">"Musikafspilningsliste"</string>
+    <string name="mediaplaybacklabel" msgid="6733604841530940397">"Musik"</string>
+    <string name="videobrowserlabel" msgid="8522326678447494657">"Videoer"</string>
+    <string name="mediapickerlabel" msgid="4549836003229914299">"Musik"</string>
+    <string name="playback_failed" msgid="4477832192645009774">"Beklager! Afspilleren understøtter ikke denne slags lydfiler."</string>
+    <string name="cancel" msgid="886559484711947520">"Annuller"</string>
+    <string name="remove_from_playlist" msgid="2548577514849026354">"Fjern fra afspilningsliste"</string>
+    <string name="streamloadingtext" msgid="3367150884806639224">"Forbinder til <xliff:g id="HOST">%s</xliff:g>"</string>
+    <string name="mediasearch" msgid="9170843953524689876">"Søg efter %s ved hjælp af:"</string>
+    <string name="working_artists" msgid="8678357432732156580">"Kunstnere ..."</string>
+    <string name="working_albums" msgid="8713273699401457426">"Albummer ..."</string>
+    <string name="working_songs" msgid="2201491972050410684">"Sange ..."</string>
+    <string name="working_playlists" msgid="4424950806134653351">"Afspilningslister ..."</string>
+    <string name="loading" msgid="3267924133697717662">"Indlæser"</string>
+    <string name="sort_by_track" msgid="7662999005554152565">"Numre"</string>
+    <string name="sort_by_album" msgid="2912837715658975248">"Albummer"</string>
+    <string name="sort_by_artist" msgid="4607024967813199992">"Kunstnere"</string>
+    <string name="music_picker_title" msgid="1561623486324013570">"Vælg musiknummer"</string>
+    <string name="gadget_track" msgid="3186569295893300114">"Nummer <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
     <!-- no translation found for fail_to_start_stream (3605390187703912835) -->
     <skip />
     <!-- no translation found for search_settings_description (6520975349259883368) -->

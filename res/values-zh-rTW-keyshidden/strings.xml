@@ -15,7 +15,7 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt">"開啟鍵盤為新 [播放清單] 命名，或選取 [儲存] 將之命名為「%s」。"</string>
-    <string name="rename_playlist_same_prompt">"開啟鍵盤以重新命名「<xliff:g id="PLAYLIST">%s</xliff:g>」播放清單。"</string>
-    <string name="rename_playlist_diff_prompt">"開啟鍵盤以重新命名「<xliff:g id="PLAYLIST">%s</xliff:g>」播放清單，或選取 [儲存] 將之命名為「%s」。"</string>
+    <string name="create_playlist_create_text_prompt" msgid="6653146846093237201">"開啟鍵盤為新 [播放清單] 命名，或選取 [儲存] 將之命名為「%s」。"</string>
+    <string name="rename_playlist_same_prompt" msgid="7777541452078260899">"開啟鍵盤以重新命名「<xliff:g id="PLAYLIST">%s</xliff:g>」播放清單。"</string>
+    <string name="rename_playlist_diff_prompt" msgid="6930730254920388535">"開啟鍵盤以重新命名「<xliff:g id="PLAYLIST">%s</xliff:g>」播放清單，或選取 [儲存] 將之命名為「%s」。"</string>
 </resources>
