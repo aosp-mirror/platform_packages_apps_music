@@ -18,6 +18,7 @@ package com.android.music;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
@@ -32,7 +33,6 @@ import android.view.WindowManager;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 public class TouchInterceptor extends ListView {
@@ -57,12 +57,17 @@ public class TouchInterceptor extends ListView {
     private Rect mTempRect = new Rect();
     private Bitmap mDragBitmap;
     private final int mTouchSlop;
+    private int mItemHeightNormal;
+    private int mItemHeightExpanded;
 
     public TouchInterceptor(Context context, AttributeSet attrs) {
         super(context, attrs);
         SharedPreferences pref = context.getSharedPreferences("Music", 3);
         mRemoveMode = pref.getInt("deletemode", -1);
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
+        Resources res = getResources();
+        mItemHeightNormal = res.getDimensionPixelSize(R.dimen.normal_height);
+        mItemHeightExpanded = res.getDimensionPixelSize(R.dimen.expanded_height);
     }
     
     @Override
@@ -107,7 +112,8 @@ public class TouchInterceptor extends ListView {
                     View dragger = item.findViewById(R.id.icon);
                     Rect r = mTempRect;
                     dragger.getDrawingRect(r);
-                    if (x < r.right) {
+                    // The dragger icon itself is quite small, so pretend the touch area is bigger
+                    if (x < r.right * 2) {
                         item.setDrawingCacheEnabled(true);
                         // Create a copy of the drawing cache so that it does not get recycled
                         // by the framework when the list tries to clean up memory
@@ -189,7 +195,7 @@ public class TouchInterceptor extends ListView {
                 }
             }
             ViewGroup.LayoutParams params = v.getLayoutParams();
-            params.height = 64;
+            params.height = mItemHeightNormal;
             v.setLayoutParams(params);
             v.setVisibility(View.VISIBLE);
         }
@@ -220,7 +226,7 @@ public class TouchInterceptor extends ListView {
             if (vv == null) {
                 break;
             }
-            int height = 64;
+            int height = mItemHeightNormal;
             int visibility = View.VISIBLE;
             if (vv.equals(first)) {
                 // processing the item that is being dragged
@@ -233,7 +239,7 @@ public class TouchInterceptor extends ListView {
                 }
             } else if (i == childnum) {
                 if (mDragPos < getCount() - 1) {
-                    height = 128;
+                    height = mItemHeightExpanded;
                 }
             }
             ViewGroup.LayoutParams params = vv.getLayoutParams();
