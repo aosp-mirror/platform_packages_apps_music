@@ -15,11 +15,6 @@
 -->
 
 <resources>
-    <!-- height of a normal list item in edit playlist mode -->
-    <dimen name="normal_height">64dip</dimen>
-    <!-- height of an expanded list item in edit playlist mode -->
-    <dimen name="expanded_height">128dip</dimen>
-
-    <dimen name="appwidget_width">311dip</dimen>
-    <dimen name="appwidget_height">80dip</dimen>
+    <dimen name="appwidget_width">421dip</dimen>
+    <dimen name="appwidget_height">68dip</dimen>
 </resources>
