@@ -68,6 +68,8 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
     private String mCurrentAlbumId;
     private String mCurrentAlbumName;
     private String mCurrentArtistNameForAlbum;
+    boolean mIsUnknownArtist;
+    boolean mIsUnknownAlbum;
     private ArtistAlbumListAdapter mAdapter;
     private boolean mAdapterSent;
     private final static int SEARCH = CHILD_MENU_BASE;
@@ -164,6 +166,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         setListAdapter(null);
         mAdapter = null;
         unregisterReceiver(mScanListener);
+        setListAdapter(null);
         super.onDestroy();
     }
     
@@ -301,7 +304,6 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         SubMenu sub = menu.addSubMenu(0, ADD_TO_PLAYLIST, 0, R.string.add_to_playlist);
         MusicUtils.makePlaylistMenu(this, sub);
         menu.add(0, DELETE_ITEM, 0, R.string.delete_item);
-        menu.add(0, SEARCH, 0, R.string.search_title);
         
         ExpandableListContextMenuInfo mi = (ExpandableListContextMenuInfo) menuInfoIn;
         
@@ -319,10 +321,14 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             mCurrentArtistId = mArtistCursor.getString(mArtistCursor.getColumnIndexOrThrow(MediaStore.Audio.Artists._ID));
             mCurrentArtistName = mArtistCursor.getString(mArtistCursor.getColumnIndexOrThrow(MediaStore.Audio.Artists.ARTIST));
             mCurrentAlbumId = null;
-            if (mCurrentArtistName == null || mCurrentArtistName.equals(MediaFile.UNKNOWN_STRING)) {
+            mIsUnknownArtist = mCurrentArtistName == null ||
+                    mCurrentArtistName.equals(MediaFile.UNKNOWN_STRING);
+            mIsUnknownAlbum = true;
+            if (mIsUnknownArtist) {
                 menu.setHeaderTitle(getString(R.string.unknown_artist_name));
             } else {
                 menu.setHeaderTitle(mCurrentArtistName);
+                menu.add(0, SEARCH, 0, R.string.search_title);
             }
             return;
         } else if (itemtype == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
@@ -340,10 +346,17 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             mArtistCursor.moveToPosition(gpos);
             mCurrentArtistNameForAlbum = mArtistCursor.getString(
                     mArtistCursor.getColumnIndexOrThrow(MediaStore.Audio.Artists.ARTIST));
-            if (mCurrentAlbumName == null || mCurrentAlbumName.equals(MediaFile.UNKNOWN_STRING)) {
+            mIsUnknownArtist = mCurrentArtistNameForAlbum == null ||
+                    mCurrentArtistNameForAlbum.equals(MediaFile.UNKNOWN_STRING);
+            mIsUnknownAlbum = mCurrentAlbumName == null ||
+                    mCurrentAlbumName.equals(MediaFile.UNKNOWN_STRING);
+            if (mIsUnknownAlbum) {
                 menu.setHeaderTitle(getString(R.string.unknown_album_name));
             } else {
                 menu.setHeaderTitle(mCurrentAlbumName);
+            }
+            if (!mIsUnknownAlbum || !mIsUnknownArtist) {
+                menu.add(0, SEARCH, 0, R.string.search_title);
             }
         }
     }
@@ -431,8 +444,14 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             i.putExtra(MediaStore.EXTRA_MEDIA_ARTIST, mCurrentArtistName);
             i.putExtra(MediaStore.EXTRA_MEDIA_FOCUS, MediaStore.Audio.Artists.ENTRY_CONTENT_TYPE);
         } else {
-            title = mCurrentAlbumName;
-            query = mCurrentArtistNameForAlbum + " " + mCurrentAlbumName;
+            if (mIsUnknownAlbum) {
+                title = query = mCurrentArtistNameForAlbum;
+            } else {
+                title = query = mCurrentAlbumName;
+                if (!mIsUnknownArtist) {
+                    query = query + " " + mCurrentArtistNameForAlbum;
+                }
+            }
             i.putExtra(MediaStore.EXTRA_MEDIA_ARTIST, mCurrentArtistNameForAlbum);
             i.putExtra(MediaStore.EXTRA_MEDIA_ALBUM, mCurrentAlbumName);
             i.putExtra(MediaStore.EXTRA_MEDIA_FOCUS, MediaStore.Audio.Albums.ENTRY_CONTENT_TYPE);

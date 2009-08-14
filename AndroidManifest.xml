@@ -27,17 +27,17 @@
         android:label="@string/musicbrowserlabel"
         android:taskAffinity="android.task.music"
         android:allowTaskReparenting="true">
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value=".QueryBrowserActivity"
+        />
         <activity android:name="MusicBrowserActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-             <meta-data
-                android:name="android.app.default_searchable"
-                android:value=".QueryBrowserActivity"
-             /> 
-       </activity>
+        </activity>
         <receiver android:name="MediaButtonIntentReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
@@ -123,6 +123,7 @@
                 android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
+                <action android:name="android.intent.action.MEDIA_SEARCH" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data

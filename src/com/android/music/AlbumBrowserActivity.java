@@ -37,6 +37,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -64,6 +65,8 @@ public class AlbumBrowserActivity extends ListActivity
     private String mCurrentAlbumId;
     private String mCurrentAlbumName;
     private String mCurrentArtistNameForAlbum;
+    boolean mIsUnknownArtist;
+    boolean mIsUnknownAlbum;
     private AlbumListAdapter mAdapter;
     private boolean mAdapterSent;
     private final static int SEARCH = CHILD_MENU_BASE;
@@ -231,14 +234,13 @@ public class AlbumBrowserActivity extends ListActivity
         else
             setTitle(R.string.albums_title);
     }
-    
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfoIn) {
         menu.add(0, PLAY_SELECTION, 0, R.string.play_selection);
         SubMenu sub = menu.addSubMenu(0, ADD_TO_PLAYLIST, 0, R.string.add_to_playlist);
         MusicUtils.makePlaylistMenu(this, sub);
         menu.add(0, DELETE_ITEM, 0, R.string.delete_item);
-        menu.add(0, SEARCH, 0, R.string.search_title);
 
         AdapterContextMenuInfo mi = (AdapterContextMenuInfo) menuInfoIn;
         mAlbumCursor.moveToPosition(mi.position);
@@ -246,10 +248,17 @@ public class AlbumBrowserActivity extends ListActivity
         mCurrentAlbumName = mAlbumCursor.getString(mAlbumCursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM));
         mCurrentArtistNameForAlbum = mAlbumCursor.getString(
                 mAlbumCursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ARTIST));
-        if (mCurrentAlbumName == null || mCurrentAlbumName.equals(MediaFile.UNKNOWN_STRING)) {
+        mIsUnknownArtist = mCurrentArtistNameForAlbum == null ||
+                mCurrentArtistNameForAlbum.equals(MediaFile.UNKNOWN_STRING);
+        mIsUnknownAlbum = mCurrentAlbumName == null ||
+                mCurrentAlbumName.equals(MediaFile.UNKNOWN_STRING);
+        if (mIsUnknownAlbum) {
             menu.setHeaderTitle(getString(R.string.unknown_album_name));
         } else {
             menu.setHeaderTitle(mCurrentAlbumName);
+        }
+        if (!mIsUnknownAlbum || !mIsUnknownArtist) {
+            menu.add(0, SEARCH, 0, R.string.search_title);
         }
     }
 
@@ -305,16 +314,25 @@ public class AlbumBrowserActivity extends ListActivity
 
     void doSearch() {
         CharSequence title = null;
-        String query = null;
+        String query = "";
         
         Intent i = new Intent();
         i.setAction(MediaStore.INTENT_ACTION_MEDIA_SEARCH);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         
-        title = mCurrentAlbumName;
-        query = mCurrentArtistNameForAlbum + " " + mCurrentAlbumName;
-        i.putExtra(MediaStore.EXTRA_MEDIA_ARTIST, mCurrentArtistNameForAlbum);
-        i.putExtra(MediaStore.EXTRA_MEDIA_ALBUM, mCurrentAlbumName);
+        title = "";
+        if (!mIsUnknownAlbum) {
+            query = mCurrentAlbumName;
+            i.putExtra(MediaStore.EXTRA_MEDIA_ALBUM, mCurrentAlbumName);
+            title = mCurrentAlbumName;
+        }
+        if(!mIsUnknownArtist) {
+            query = query + " " + mCurrentArtistNameForAlbum;
+            i.putExtra(MediaStore.EXTRA_MEDIA_ARTIST, mCurrentArtistNameForAlbum);
+            title = title + " " + mCurrentArtistNameForAlbum;
+        }
+        // Since we hide the 'search' menu item when both album and artist are
+        // unknown, the query and title strings will have at least one of those.
         i.putExtra(MediaStore.EXTRA_MEDIA_FOCUS, MediaStore.Audio.Albums.ENTRY_CONTENT_TYPE);
         title = getString(R.string.mediasearch, title);
         i.putExtra(SearchManager.QUERY, query);

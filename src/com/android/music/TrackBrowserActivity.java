@@ -693,10 +693,16 @@ public class TrackBrowserActivity extends ListActivity
         i.setAction(MediaStore.INTENT_ACTION_MEDIA_SEARCH);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         
-        title = mCurrentAlbumName;
-        query = mCurrentArtistNameForAlbum + " " + mCurrentAlbumName;
-        i.putExtra(MediaStore.EXTRA_MEDIA_ARTIST, mCurrentArtistNameForAlbum);
-        i.putExtra(MediaStore.EXTRA_MEDIA_ALBUM, mCurrentAlbumName);
+        title = mCurrentTrackName;
+        if (MediaFile.UNKNOWN_STRING.equals(mCurrentArtistNameForAlbum)) {
+            query = mCurrentTrackName;
+        } else {
+            query = mCurrentArtistNameForAlbum + " " + mCurrentTrackName;
+            i.putExtra(MediaStore.EXTRA_MEDIA_ARTIST, mCurrentArtistNameForAlbum);
+        }
+        if (MediaFile.UNKNOWN_STRING.equals(mCurrentAlbumName)) {
+            i.putExtra(MediaStore.EXTRA_MEDIA_ALBUM, mCurrentAlbumName);
+        }
         i.putExtra(MediaStore.EXTRA_MEDIA_FOCUS, "audio/*");
         title = getString(R.string.mediasearch, title);
         i.putExtra(SearchManager.QUERY, query);
