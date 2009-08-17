@@ -90,7 +90,7 @@
     <string name="new_playlist_name_template" msgid="905710296728900597">"Nový seznam stop <xliff:g id="NUMBER">%d</xliff:g>"</string>
   <plurals name="NNNtrackstoplaylist">
     <item quantity="one" msgid="422388042993582235">"1 skladba byla přidána do seznamu stop."</item>
-    <item quantity="other" msgid="7675242021325355213">"Skladby přidány do seznamu stop: %d."</item>
+    <item quantity="other" msgid="7675242021325355213">"Počet skladeb přidaných do seznamu stop: %d."</item>
   </plurals>
     <string name="emptyplaylist" msgid="6711555673997896344">"Vybraný seznam stop je prázdný."</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"Uložit"</string>

@@ -31,7 +31,7 @@
     <string name="party_shuffle" msgid="8213359225506006168">"Party shuffle"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"Party shuffle uit"</string>
     <string name="delete_item" msgid="3363330144534750601">"Verwijderen"</string>
-    <string name="shuffle_all" msgid="1388193611787878773">"Alles in willekeurige volgorde afspelen"</string>
+    <string name="shuffle_all" msgid="1388193611787878773">"Shuffle alles"</string>
     <string name="play_all" msgid="6309622568869321842">"Alles afspelen"</string>
     <string name="delete_artist_desc" msgid="1843750591006508005">"Alle nummers van <xliff:g id="ARTIST">%s</xliff:g> worden definitief van de SD-kaart verwijderd."</string>
     <string name="delete_album_desc" msgid="535515999268177079">"Het hele album \'<xliff:g id="ALBUM">%s</xliff:g>\' wordt definitief van de SD-kaart verwijderd."</string>
@@ -84,7 +84,7 @@
     <string name="ringtone_menu_short" msgid="3367622038867238133">"Gebruiken als beltoon"</string>
     <string name="ringtone_set" msgid="4352073372504803255">"%s\' ingesteld als beltoon van telefoon."</string>
     <string name="play_selection" msgid="2854921021814550018">"Afspelen"</string>
-    <string name="add_to_playlist" msgid="7110273488645072783">"Toevoegen aan afspeellijst"</string>
+    <string name="add_to_playlist" msgid="7110273488645072783">"Toev. aan afspeellijst"</string>
     <string name="queue" msgid="2937629819482787704">"Huidige afspeellijst"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Nieuw"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"Nieuwe afspeellijst <xliff:g id="NUMBER">%d</xliff:g>"</string>
