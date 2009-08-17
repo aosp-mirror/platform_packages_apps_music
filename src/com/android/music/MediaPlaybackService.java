@@ -374,6 +374,25 @@ public class MediaPlaybackService extends Service {
             //Log.i("@@@@ service", "created queue string in " + (System.currentTimeMillis() - start) + " ms");
             ed.putString("queue", q.toString());
             ed.putInt("cardid", mCardId);
+            if (mShuffleMode != SHUFFLE_NONE) {
+                // In shuffle mode we need to save the history too
+                len = mHistory.size();
+                q.setLength(0);
+                for (int i = 0; i < len; i++) {
+                    int n = mHistory.get(i);
+                    if (n == 0) {
+                        q.append("0;");
+                    } else {
+                        while (n != 0) {
+                            int digit = (n & 0xf);
+                            n >>= 4;
+                            q.append(hexdigits[digit]);
+                        }
+                        q.append(";");
+                    }
+                }
+                ed.putString("history", q.toString());
+            }
         }
         ed.putInt("curpos", mPlayPos);
         if (mPlayer.isInitialized()) {
@@ -442,18 +461,18 @@ public class MediaPlaybackService extends Service {
             // To deal with this, try querying for the current file, and if
             // that fails, wait a while and try again. If that too fails,
             // assume there is a problem and don't restore the state.
-            Cursor c = MusicUtils.query(this,
+            Cursor crsr = MusicUtils.query(this,
                         MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                         new String [] {"_id"}, "_id=" + mPlayList[mPlayPos] , null, null);
-            if (c == null || c.getCount() == 0) {
+            if (crsr == null || crsr.getCount() == 0) {
                 // wait a bit and try again
                 SystemClock.sleep(3000);
-                c = getContentResolver().query(
+                crsr = getContentResolver().query(
                         MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                         mCursorCols, "_id=" + mPlayList[mPlayPos] , null, null);
             }
-            if (c != null) {
-                c.close();
+            if (crsr != null) {
+                crsr.close();
             }
 
             // Make sure we don't auto-skip to the next song, since that
@@ -488,6 +507,41 @@ public class MediaPlaybackService extends Service {
             int shufmode = mPreferences.getInt("shufflemode", SHUFFLE_NONE);
             if (shufmode != SHUFFLE_AUTO && shufmode != SHUFFLE_NORMAL) {
                 shufmode = SHUFFLE_NONE;
+            }
+            if (shufmode != SHUFFLE_NONE) {
+                // in shuffle mode we need to restore the history too
+                q = mPreferences.getString("history", "");
+                qlen = q != null ? q.length() : 0;
+                if (qlen > 1) {
+                    plen = 0;
+                    n = 0;
+                    shift = 0;
+                    mHistory.clear();
+                    for (int i = 0; i < qlen; i++) {
+                        char c = q.charAt(i);
+                        if (c == ';') {
+                            if (n >= mPlayListLen) {
+                                // bogus history data
+                                mHistory.clear();
+                                break;
+                            }
+                            mHistory.add(n);
+                            n = 0;
+                            shift = 0;
+                        } else {
+                            if (c >= '0' && c <= '9') {
+                                n += ((c - '0') << shift);
+                            } else if (c >= 'a' && c <= 'f') {
+                                n += ((10 + c - 'a') << shift);
+                            } else {
+                                // bogus history data
+                                mHistory.clear();
+                                break;
+                            }
+                            shift += 4;
+                        }
+                    }
+                }
             }
             if (shufmode == SHUFFLE_AUTO) {
                 if (! makeAutoShuffleList()) {
