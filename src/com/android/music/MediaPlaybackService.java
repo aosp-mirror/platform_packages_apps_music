@@ -101,7 +101,7 @@ public class MediaPlaybackService extends Service {
     private static final int RELEASE_WAKELOCK = 2;
     private static final int SERVER_DIED = 3;
     private static final int FADEIN = 4;
-    private static final int MAX_HISTORY_SIZE = 10;
+    private static final int MAX_HISTORY_SIZE = 100;
     
     private MultiPlayer mPlayer;
     private String mFileToPlay;
