@@ -17,7 +17,6 @@
 package com.android.music;
 
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
@@ -278,10 +277,6 @@ public class MediaPlaybackService extends Service {
         mPlayer = new MultiPlayer();
         mPlayer.setHandler(mMediaplayerHandler);
 
-        // Clear leftover notification in case this service previously got killed while playing
-        NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        nm.cancel(PLAYBACKSERVICE_STATUS);
-        
         reloadQueue();
         
         IntentFilter commandFilter = new IntentFilter();
@@ -1037,11 +1032,7 @@ public class MediaPlaybackService extends Service {
             }
 
             mPlayer.start();
-            setForeground(true);
 
-            NotificationManager nm = (NotificationManager)
-            getSystemService(Context.NOTIFICATION_SERVICE);
-    
             RemoteViews views = new RemoteViews(getPackageName(), R.layout.statusbar);
             views.setImageViewResource(R.id.icon, R.drawable.stat_notify_musicplayer);
             if (getAudioId() < 0) {
@@ -1070,7 +1061,7 @@ public class MediaPlaybackService extends Service {
             status.icon = R.drawable.stat_notify_musicplayer;
             status.contentIntent = PendingIntent.getActivity(this, 0,
                     new Intent("com.android.music.PLAYBACK_VIEWER"), 0);
-            nm.notify(PLAYBACKSERVICE_STATUS, status);
+            startForeground(PLAYBACKSERVICE_STATUS, status);
             if (!mIsSupposedToBePlaying) {
                 notifyChange(PLAYSTATE_CHANGED);
             }
@@ -1094,8 +1085,9 @@ public class MediaPlaybackService extends Service {
         }
         if (remove_status_icon) {
             gotoIdleState();
+        } else {
+            stopForeground(false);
         }
-        setForeground(false);
         if (remove_status_icon) {
             mIsSupposedToBePlaying = false;
         }
@@ -1116,7 +1108,6 @@ public class MediaPlaybackService extends Service {
             if (isPlaying()) {
                 mPlayer.pause();
                 gotoIdleState();
-                setForeground(false);
                 mIsSupposedToBePlaying = false;
                 notifyChange(PLAYSTATE_CHANGED);
                 saveBookmarkIfNeeded();
@@ -1287,12 +1278,10 @@ public class MediaPlaybackService extends Service {
     }
     
     private void gotoIdleState() {
-        NotificationManager nm =
-            (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        nm.cancel(PLAYBACKSERVICE_STATUS);
         mDelayedStopHandler.removeCallbacksAndMessages(null);
         Message msg = mDelayedStopHandler.obtainMessage();
         mDelayedStopHandler.sendMessageDelayed(msg, IDLE_DELAY);
+        stopForeground(true);
     }
     
     private void saveBookmarkIfNeeded() {
