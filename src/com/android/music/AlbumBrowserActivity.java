@@ -527,7 +527,7 @@ public class AlbumBrowserActivity extends ListActivity
             mNowPlayingOverlay = r.getDrawable(R.drawable.indicator_ic_mp_playing_list);
 
             Bitmap b = BitmapFactory.decodeResource(r, R.drawable.albumart_mp_unknown_list);
-            mDefaultAlbumIcon = new BitmapDrawable(b);
+            mDefaultAlbumIcon = new BitmapDrawable(context.getResources(), b);
             // no filter or dither, it's a lot faster and we can't tell the difference
             mDefaultAlbumIcon.setFilterBitmap(false);
             mDefaultAlbumIcon.setDither(false);
