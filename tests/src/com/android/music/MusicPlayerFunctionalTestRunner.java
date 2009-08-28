@@ -43,6 +43,7 @@ public class MusicPlayerFunctionalTestRunner extends InstrumentationTestRunner {
         TestSuite suite = new InstrumentationTestSuite(this);  
         suite.addTestSuite(TestSongs.class);
         suite.addTestSuite(TestPlaylist.class);
+        suite.addTestSuite(MusicPlayerStability.class);
         return suite;
     }
 
