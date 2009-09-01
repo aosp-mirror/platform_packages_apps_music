@@ -202,7 +202,9 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
     private Handler mReScanHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            getArtistCursor(mAdapter.getQueryHandler(), null);
+            if (mAdapter != null) {
+                getArtistCursor(mAdapter.getQueryHandler(), null);
+            }
         }
     };
 
@@ -215,6 +217,9 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
     
     public void init(Cursor c) {
 
+        if (mAdapter == null) {
+            return;
+        }
         mAdapter.changeCursor(c); // also sets mArtistCursor
 
         if (mArtistCursor == null) {

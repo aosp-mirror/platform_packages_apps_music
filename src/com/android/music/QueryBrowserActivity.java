@@ -227,7 +227,9 @@ implements MusicUtils.Defs, ServiceConnection
     private Handler mReScanHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            getQueryCursor(mAdapter.getQueryHandler(), null);
+            if (mAdapter != null) {
+                getQueryCursor(mAdapter.getQueryHandler(), null);
+            }
             // if the query results in a null cursor, onQueryComplete() will
             // call init(), which will post a delayed message to this handler
             // in order to try again.
@@ -248,7 +250,10 @@ implements MusicUtils.Defs, ServiceConnection
     }
     
     public void init(Cursor c) {
-        
+
+        if (mAdapter == null) {
+            return;
+        }
         mAdapter.changeCursor(c);
 
         if (mQueryCursor == null) {

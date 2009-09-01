@@ -204,12 +204,18 @@ public class PlaylistBrowserActivity extends ListActivity
     };
     
     private Handler mReScanHandler = new Handler() {
+        @Override
         public void handleMessage(Message msg) {
-            getPlaylistCursor(mAdapter.getQueryHandler(), null);
+            if (mAdapter != null) {
+                getPlaylistCursor(mAdapter.getQueryHandler(), null);
+            }
         }
     };
     public void init(Cursor cursor) {
 
+        if (mAdapter == null) {
+            return;
+        }
         mAdapter.changeCursor(cursor);
 
         if (mPlaylistCursor == null) {
@@ -331,7 +337,7 @@ public class PlaylistBrowserActivity extends ListActivity
             case SCAN_DONE:
                 if (resultCode == RESULT_CANCELED) {
                     finish();
-                } else {
+                } else if (mAdapter != null) {
                     getPlaylistCursor(mAdapter.getQueryHandler(), null);
                 }
                 break;
