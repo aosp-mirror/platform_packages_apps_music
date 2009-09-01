@@ -297,7 +297,9 @@ public class TrackBrowserActivity extends ListActivity
     private Handler mReScanHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            getTrackCursor(mAdapter.getQueryHandler(), null, true);
+            if (mAdapter != null) {
+                getTrackCursor(mAdapter.getQueryHandler(), null, true);
+            }
             // if the query results in a null cursor, onQueryComplete() will
             // call init(), which will post a delayed message to this handler
             // in order to try again.
@@ -319,6 +321,9 @@ public class TrackBrowserActivity extends ListActivity
     
     public void init(Cursor newCursor) {
 
+        if (mAdapter == null) {
+            return;
+        }
         mAdapter.changeCursor(newCursor); // also sets mTrackCursor
         
         if (mTrackCursor == null) {

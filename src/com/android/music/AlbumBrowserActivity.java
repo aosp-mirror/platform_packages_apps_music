@@ -194,7 +194,9 @@ public class AlbumBrowserActivity extends ListActivity
     private Handler mReScanHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            getAlbumCursor(mAdapter.getQueryHandler(), null);
+            if (mAdapter != null) {
+                getAlbumCursor(mAdapter.getQueryHandler(), null);
+            }
         }
     };
 
@@ -207,6 +209,9 @@ public class AlbumBrowserActivity extends ListActivity
 
     public void init(Cursor c) {
 
+        if (mAdapter == null) {
+            return;
+        }
         mAdapter.changeCursor(c); // also sets mAlbumCursor
 
         if (mAlbumCursor == null) {
