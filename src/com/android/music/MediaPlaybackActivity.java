@@ -289,6 +289,11 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
             // not music
             return false;
         }
+
+        if (audioid < 0) {
+            return false;
+        }
+
         Cursor c = MusicUtils.query(this,
                 ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, audioid),
                 new String[] {MediaStore.Audio.Media.IS_MUSIC}, null, null, null);
