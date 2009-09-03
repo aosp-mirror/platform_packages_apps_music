@@ -15,127 +15,127 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="onesong">"1 canción"</string>
+    <string name="onesong" msgid="8336826100414159413">"1 canción"</string>
   <plurals name="Nsongs">
-    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> canciones"</item>
+    <item quantity="other" msgid="5798230388116542981">"<xliff:g id="COUNT">%d</xliff:g> canciones"</item>
   </plurals>
   <plurals name="Nsongscomp">
-    <item quantity="other">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> de <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> canciones"</item>
+    <item quantity="other" msgid="7162294486622945550">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> de <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> canciones"</item>
   </plurals>
   <plurals name="Nalbums">
-    <item quantity="one">"1 álbum"</item>
-    <item quantity="other">"<xliff:g id="COUNT">%d</xliff:g> álbumes"</item>
+    <item quantity="one" msgid="3798955510439465932">"1 álbum"</item>
+    <item quantity="other" msgid="3047615499770811984">"<xliff:g id="COUNT">%d</xliff:g> álbumes"</item>
   </plurals>
-    <string name="goto_start">"Biblioteca"</string>
-    <string name="goto_playback">"Reproducir"</string>
-    <string name="party_shuffle">"Party shuffle"</string>
-    <string name="party_shuffle_off">"Party shuffle desactivado"</string>
-    <string name="delete_item">"Eliminar"</string>
-    <string name="shuffle_all">"Arrastrar todo"</string>
-    <string name="play_all">"Reproducir todo"</string>
-    <string name="delete_artist_desc">"Todas las canciones de <xliff:g id="ARTIST">%s</xliff:g> se eliminarán definitivamente de la tarjeta SD."</string>
-    <string name="delete_album_desc">"El álbum \"<xliff:g id="ALBUM">%s</xliff:g>\" se eliminará definitivamente de la tarjeta SD."</string>
-    <string name="delete_song_desc">"\"<xliff:g id="SONG">%s</xliff:g>\" se eliminará definitivamente de la tarjeta SD."</string>
-    <string name="delete_confirm_button_text">"Aceptar"</string>
+    <string name="goto_start" msgid="8979658707407220934">"Biblioteca"</string>
+    <string name="goto_playback" msgid="4885216161312176550">"Reproducir"</string>
+    <string name="party_shuffle" msgid="8213359225506006168">"Party shuffle"</string>
+    <string name="party_shuffle_off" msgid="1828744483354711679">"Party shuffle desactivado"</string>
+    <string name="delete_item" msgid="3363330144534750601">"Eliminar"</string>
+    <string name="shuffle_all" msgid="1388193611787878773">"Arrastrar todo"</string>
+    <string name="play_all" msgid="6309622568869321842">"Reproducir todo"</string>
+    <string name="delete_artist_desc" msgid="1843750591006508005">"Todas las canciones de <xliff:g id="ARTIST">%s</xliff:g> se eliminarán definitivamente de la tarjeta SD."</string>
+    <string name="delete_album_desc" msgid="535515999268177079">"El álbum \"<xliff:g id="ALBUM">%s</xliff:g>\" se eliminará definitivamente de la tarjeta SD."</string>
+    <string name="delete_song_desc" msgid="1856800468541831408">"\"<xliff:g id="SONG">%s</xliff:g>\" se eliminará definitivamente de la tarjeta SD."</string>
+    <string name="delete_confirm_button_text" msgid="7008121194944357274">"Aceptar"</string>
   <plurals name="NNNtracksdeleted">
-    <item quantity="one">"Se eliminó 1 canción."</item>
-    <item quantity="other">"Se eliminaron <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> canciones."</item>
+    <item quantity="one" msgid="8560276109508404217">"Se eliminó 1 canción."</item>
+    <item quantity="other" msgid="5156740163031225200">"Se eliminaron <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> canciones."</item>
   </plurals>
-    <string name="scanning">"Escaneando tarjeta SD..."</string>
-    <string name="nowplaying_title">"Reproduciendo ahora"</string>
-    <string name="partyshuffle_title">"Party shuffle"</string>
-    <string name="artists_title">"Artistas"</string>
-    <string name="albums_menu">"Álbumes"</string>
-    <string name="albums_title">"Álbumes"</string>
-    <string name="tracks_menu">"Canciones"</string>
-    <string name="tracks_title">"Canciones"</string>
-    <string name="playlists_menu">"Listas de reproducción"</string>
-    <string name="playlists_title">"Listas de reproducción"</string>
-    <string name="videos_title">"Videos"</string>
-    <string name="all_title">"Todos los medios"</string>
-    <string name="browse_menu">"Artistas"</string>
-    <string name="search_title">"Buscar"</string>
-    <string name="no_tracks_title">"No hay canciones"</string>
-    <string name="no_videos_title">"No hay videos"</string>
-    <string name="no_playlists_title">"No hay listas de reproducción"</string>
-    <string name="delete_playlist_menu">"Eliminar"</string>
-    <string name="edit_playlist_menu">"Editar"</string>
-    <string name="rename_playlist_menu">"Cambiar nombre"</string>
-    <string name="playlist_deleted_message">"Lista de reproducción eliminada."</string>
-    <string name="playlist_renamed_message">"Se cambió el nombre de la lista de reproducción."</string>
-    <string name="recentlyadded">"Últimos agregados"</string>
-    <string name="recentlyadded_title">"Últimos agregados"</string>
-    <string name="podcasts_listitem">"Podcasts"</string>
-    <string name="podcasts_title">"Podcasts"</string>
-    <string name="sdcard_missing_title">"No hay tarjeta SD"</string>
-    <string name="sdcard_missing_message">"Tu teléfono no tiene una tarjeta SD."</string>
-    <string name="sdcard_busy_title">"Tarjeta SD no disponible"</string>
-    <string name="sdcard_busy_message">"Lo sentimos, pero tu tarjeta SD está ocupada."</string>
-    <string name="sdcard_error_title">"Error de tarjeta SD"</string>
-    <string name="sdcard_error_message">"Se encontró un error en tu tarjeta SD."</string>
-    <string name="unknown_artist_name">"Artista desconocido"</string>
-    <string name="unknown_album_name">"Álbum desconocido"</string>
-    <string name="shuffle_on_notif">"El shuffle está activado."</string>
-    <string name="shuffle_off_notif">"El shuffle está desactivado."</string>
-    <string name="repeat_off_notif">"Repetir está desactivado."</string>
-    <string name="repeat_current_notif">"Repitiendo canción actual."</string>
-    <string name="repeat_all_notif">"Repitiendo todas las canciones."</string>
-    <string name="ringtone_menu">"Usar como tono de timbre del teléfono"</string>
-    <string name="ringtone_menu_short">"Usar como tono de timbre"</string>
-    <string name="ringtone_set">"\"%s\" definidos como tono de timbre del teléfono."</string>
-    <string name="play_selection">"Reproducir"</string>
-    <string name="add_to_playlist">"Agregar a lista de reproducción"</string>
-    <string name="queue">"Lista de reproducción actual"</string>
-    <string name="new_playlist">"Nuevos"</string>
-    <string name="new_playlist_name_template">"Lista de reproducción nueva <xliff:g id="NUMBER">%d</xliff:g>"</string>
+    <string name="scanning" msgid="3529383847223198502">"Escaneando tarjeta SD..."</string>
+    <string name="nowplaying_title" msgid="8342523844307751761">"Reproduciendo ahora"</string>
+    <string name="partyshuffle_title" msgid="6582413231529992125">"Party shuffle"</string>
+    <string name="artists_title" msgid="8490372367259160067">"Artistas"</string>
+    <string name="albums_menu" msgid="5807982055590211900">"Álbumes"</string>
+    <string name="albums_title" msgid="8773880394961378035">"Álbumes"</string>
+    <string name="tracks_menu" msgid="6942246568246092330">"Canciones"</string>
+    <string name="tracks_title" msgid="3229389424532295124">"Canciones"</string>
+    <string name="playlists_menu" msgid="5382792649771928849">"Listas de repr."</string>
+    <string name="playlists_title" msgid="5094238486322957927">"Listas de reproducción"</string>
+    <string name="videos_title" msgid="2066741954354129115">"Videos"</string>
+    <string name="all_title" msgid="6880186414437237653">"Todos los medios"</string>
+    <string name="browse_menu" msgid="5248122473075843289">"Artistas"</string>
+    <string name="search_title" msgid="1016971653383739344">"Buscar"</string>
+    <string name="no_tracks_title" msgid="8805805388271238471">"No hay canciones"</string>
+    <string name="no_videos_title" msgid="6218814130364793104">"No hay videos"</string>
+    <string name="no_playlists_title" msgid="4456351945617594418">"No hay listas de reproducción"</string>
+    <string name="delete_playlist_menu" msgid="8998637685583495247">"Eliminar"</string>
+    <string name="edit_playlist_menu" msgid="571618502105370684">"Editar"</string>
+    <string name="rename_playlist_menu" msgid="3133463747389494668">"Cambiar nombre"</string>
+    <string name="playlist_deleted_message" msgid="9008053828193961455">"Lista de reproducción eliminada."</string>
+    <string name="playlist_renamed_message" msgid="7187580192703005990">"Se cambió el nombre de la lista de reproducción."</string>
+    <string name="recentlyadded" msgid="110978416756366953">"Últimos agregados"</string>
+    <string name="recentlyadded_title" msgid="3153322287249901914">"Últimos agregados"</string>
+    <string name="podcasts_listitem" msgid="8657809279717670634">"Podcasts"</string>
+    <string name="podcasts_title" msgid="4928414142496858304">"Podcasts"</string>
+    <string name="sdcard_missing_title" msgid="9008284946643270850">"No hay tarjeta SD"</string>
+    <string name="sdcard_missing_message" msgid="1169260755336159747">"Tu teléfono no tiene una tarjeta SD."</string>
+    <string name="sdcard_busy_title" msgid="1162763571147174655">"Tarjeta SD no disponible"</string>
+    <string name="sdcard_busy_message" msgid="8071868348072728830">"Lo sentimos, pero tu tarjeta SD está ocupada."</string>
+    <string name="sdcard_error_title" msgid="165682155008600643">"Error de tarjeta SD"</string>
+    <string name="sdcard_error_message" msgid="4574563894036627855">"Se encontró un error en tu tarjeta SD."</string>
+    <string name="unknown_artist_name" msgid="5567811106415855219">"Artista desconocido"</string>
+    <string name="unknown_album_name" msgid="8525145988941244727">"Álbum desconocido"</string>
+    <string name="shuffle_on_notif" msgid="5453708337808483943">"El shuffle está activado."</string>
+    <string name="shuffle_off_notif" msgid="4251189610017886263">"El shuffle está desactivado."</string>
+    <string name="repeat_off_notif" msgid="1149406899083479716">"Repetir está desactivado."</string>
+    <string name="repeat_current_notif" msgid="1227153936360904196">"Repitiendo canción actual."</string>
+    <string name="repeat_all_notif" msgid="6443293055987316642">"Repitiendo todas las canciones."</string>
+    <string name="ringtone_menu" msgid="2737472190159134599">"Usar como tono de timbre del teléfono"</string>
+    <string name="ringtone_menu_short" msgid="3367622038867238133">"Usar como tono de timbre"</string>
+    <string name="ringtone_set" msgid="4352073372504803255">"\"%s\" definidos como tono de timbre del teléfono."</string>
+    <string name="play_selection" msgid="2854921021814550018">"Reproducir"</string>
+    <string name="add_to_playlist" msgid="7110273488645072783">"Agregar a lista de reproducción"</string>
+    <string name="queue" msgid="2937629819482787704">"Lista de reproducción actual"</string>
+    <string name="new_playlist" msgid="7588112979692632867">"Nuevos"</string>
+    <string name="new_playlist_name_template" msgid="905710296728900597">"Lista de reproducción nueva <xliff:g id="NUMBER">%d</xliff:g>"</string>
   <plurals name="NNNtrackstoplaylist">
-    <item quantity="one">"Se agregó una canción a la lista de reproducción."</item>
-    <item quantity="other">"%d canciones agregadas a la lista de reproducción."</item>
+    <item quantity="one" msgid="422388042993582235">"Se agregó una canción a la lista de reproducción."</item>
+    <item quantity="other" msgid="7675242021325355213">"%d canciones agregadas a la lista de reproducción."</item>
   </plurals>
-    <string name="emptyplaylist">"La lista de reproducción seleccionada está vacía."</string>
-    <string name="create_playlist_create_text">"Guardar"</string>
-    <string name="create_playlist_overwrite_text">"Sobreescribir"</string>
-    <string name="service_start_error_title">"Problema de reproducción"</string>
-    <string name="service_start_error_msg">"Lo sentimos, pero la canción no se pudo reproducir."</string>
-    <string name="service_start_error_button">"Aceptar"</string>
+    <string name="emptyplaylist" msgid="6711555673997896344">"La lista de reproducción seleccionada está vacía."</string>
+    <string name="create_playlist_create_text" msgid="8149755205483279143">"Guardar"</string>
+    <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Sobreescribir"</string>
+    <string name="service_start_error_title" msgid="8649916852210198813">"Problema de reproducción"</string>
+    <string name="service_start_error_msg" msgid="3880338547260838681">"Lo sentimos, pero la canción no se pudo reproducir."</string>
+    <string name="service_start_error_button" msgid="480888406592240723">"Aceptar"</string>
   <string-array name="weeklist">
-    <item>"1 semana"</item>
-    <item>"2 semanas"</item>
-    <item>"3 semanas"</item>
-    <item>"4 semanas"</item>
-    <item>"5 semanas"</item>
-    <item>"6 semanas"</item>
-    <item>"7 semanas"</item>
-    <item>"8 semanas"</item>
-    <item>"9 semanas"</item>
-    <item>"10 semanas"</item>
-    <item>"11 semanas"</item>
-    <item>"12 semanas"</item>
+    <item msgid="7005918873419323862">"1 semana"</item>
+    <item msgid="7487749116155425822">"2 semanas"</item>
+    <item msgid="1565338360539555185">"3 semanas"</item>
+    <item msgid="2142986059836933072">"4 semanas"</item>
+    <item msgid="4332403875260507291">"5 semanas"</item>
+    <item msgid="3847281907869868565">"6 semanas"</item>
+    <item msgid="2942654998558867799">"7 semanas"</item>
+    <item msgid="2115529325850052227">"8 semanas"</item>
+    <item msgid="1396675336665198092">"9 semanas"</item>
+    <item msgid="3178819129208998649">"10 semanas"</item>
+    <item msgid="2727959579637914171">"11 semanas"</item>
+    <item msgid="8708754966127584739">"12 semanas"</item>
   </string-array>
-    <string name="weekpicker_set">"Finalizado"</string>
-    <string name="weekpicker_title">"Fijar hora"</string>
-    <string name="save_as_playlist">"Guardar como lista de reproducción"</string>
-    <string name="clear_playlist">"Borrar lista de reproducción"</string>
-    <string name="musicbrowserlabel">"Música"</string>
-    <string name="musicshortcutlabel">"Lista de reproducción de música"</string>
-    <string name="mediaplaybacklabel">"Música"</string>
-    <string name="videobrowserlabel">"Videos"</string>
-    <string name="mediapickerlabel">"Música"</string>
-    <string name="playback_failed">"Lo sentimos, pero el reproductor no admite este tipo de archivo de audio."</string>
-    <string name="cancel">"Cancelar"</string>
-    <string name="remove_from_playlist">"Suprimir de la lista de reproducción"</string>
-    <string name="streamloadingtext">"Conectándose a <xliff:g id="HOST">%s</xliff:g>"</string>
-    <string name="mediasearch">"Buscar %s usando:"</string>
-    <string name="working_artists">"Artistas..."</string>
-    <string name="working_albums">"Álbumes..."</string>
-    <string name="working_songs">"Canciones..."</string>
-    <string name="working_playlists">"Listas de reproducción..."</string>
-    <string name="loading">"Cargando"</string>
-    <string name="sort_by_track">"Pista"</string>
-    <string name="sort_by_album">"Álbumes"</string>
-    <string name="sort_by_artist">"Artistas"</string>
-    <string name="music_picker_title">"Seleccionar pista de música"</string>
-    <string name="gadget_track">"Pista <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
+    <string name="weekpicker_set" msgid="7636608790418067496">"Finalizado"</string>
+    <string name="weekpicker_title" msgid="699535378922101701">"Fijar hora"</string>
+    <string name="save_as_playlist" msgid="5180413608901885255">"Guardar como lista de reproducción"</string>
+    <string name="clear_playlist" msgid="4565515100924905315">"Borrar lista de reproducción"</string>
+    <string name="musicbrowserlabel" msgid="3162022214114562892">"Música"</string>
+    <string name="musicshortcutlabel" msgid="2602980193508150226">"Lista de reproducción de música"</string>
+    <string name="mediaplaybacklabel" msgid="6733604841530940397">"Música"</string>
+    <string name="videobrowserlabel" msgid="8522326678447494657">"Videos"</string>
+    <string name="mediapickerlabel" msgid="4549836003229914299">"Música"</string>
+    <string name="playback_failed" msgid="4477832192645009774">"Lo sentimos, pero el reproductor no admite este tipo de archivo de audio."</string>
+    <string name="cancel" msgid="886559484711947520">"Cancelar"</string>
+    <string name="remove_from_playlist" msgid="2548577514849026354">"Suprimir de la lista de reproducción"</string>
+    <string name="streamloadingtext" msgid="3367150884806639224">"Conectándose a <xliff:g id="HOST">%s</xliff:g>"</string>
+    <string name="mediasearch" msgid="9170843953524689876">"Buscar %s usando:"</string>
+    <string name="working_artists" msgid="8678357432732156580">"Artistas..."</string>
+    <string name="working_albums" msgid="8713273699401457426">"Álbumes..."</string>
+    <string name="working_songs" msgid="2201491972050410684">"Canciones..."</string>
+    <string name="working_playlists" msgid="4424950806134653351">"Listas de reproducción..."</string>
+    <string name="loading" msgid="3267924133697717662">"Cargando"</string>
+    <string name="sort_by_track" msgid="7662999005554152565">"Pista"</string>
+    <string name="sort_by_album" msgid="2912837715658975248">"Álbumes"</string>
+    <string name="sort_by_artist" msgid="4607024967813199992">"Artistas"</string>
+    <string name="music_picker_title" msgid="1561623486324013570">"Seleccionar pista de música"</string>
+    <string name="gadget_track" msgid="3186569295893300114">"Pista <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
     <!-- no translation found for fail_to_start_stream (3605390187703912835) -->
     <skip />
     <!-- no translation found for search_settings_description (6520975349259883368) -->

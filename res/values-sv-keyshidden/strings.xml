@@ -15,7 +15,7 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt">"Öppna tangentbordet om du vill ange ett namn på spellistan. Om du väljer Spara får den namnet \"%s\"."</string>
-    <string name="rename_playlist_same_prompt">"Öppna tangentbordet om du vill ange ett namn på spellistan <xliff:g id="PLAYLIST">%s</xliff:g>."</string>
-    <string name="rename_playlist_diff_prompt">"Öppna tangentbordet om du vill ange ett nytt namn på spellistan <xliff:g id="PLAYLIST">%s</xliff:g>. Om du väljer Spara får den namnet \"%s\"."</string>
+    <string name="create_playlist_create_text_prompt" msgid="6653146846093237201">"Öppna tangentbordet om du vill ange ett namn på spellistan. Om du väljer Spara får den namnet \"%s\"."</string>
+    <string name="rename_playlist_same_prompt" msgid="7777541452078260899">"Öppna tangentbordet om du vill ange ett namn på spellistan <xliff:g id="PLAYLIST">%s</xliff:g>."</string>
+    <string name="rename_playlist_diff_prompt" msgid="6930730254920388535">"Öppna tangentbordet om du vill ange ett nytt namn på spellistan <xliff:g id="PLAYLIST">%s</xliff:g>. Om du väljer Spara får den namnet \"%s\"."</string>
 </resources>

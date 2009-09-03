@@ -15,10 +15,9 @@
 -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/appwidget_bg"
-    >
+    android:layout_width="@dimen/appwidget_width"
+    android:layout_height="@dimen/appwidget_height"
+    android:background="@drawable/appwidget_bg">
 
     <ImageButton
         android:id="@+id/control_play"

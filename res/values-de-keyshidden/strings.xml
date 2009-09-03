@@ -15,7 +15,7 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt">"Ziehen Sie die Tastatur heraus, um für die neue Playlist einen Namen festzulegen, oder wählen Sie \"Speichern\", um sie mit dem Namen \"%s\" zu speichern."</string>
-    <string name="rename_playlist_same_prompt">"Ziehen Sie die Tastatur heraus, um \"<xliff:g id="PLAYLIST">%s</xliff:g>\" umzubenennen."</string>
-    <string name="rename_playlist_diff_prompt">"Ziehen Sie die Tastatur heraus, um die Playlist \"<xliff:g id="PLAYLIST">%s</xliff:g>\" umzubenennen, oder wählen Sie \"Speichern\", um sie mit dem Namen \"%s\" zu speichern."</string>
+    <string name="create_playlist_create_text_prompt" msgid="6653146846093237201">"Ziehen Sie die Tastatur heraus, um für die neue Playlist einen Namen festzulegen, oder wählen Sie \"Speichern\", um sie mit dem Namen \"%s\" zu speichern."</string>
+    <string name="rename_playlist_same_prompt" msgid="7777541452078260899">"Ziehen Sie die Tastatur heraus, um \"<xliff:g id="PLAYLIST">%s</xliff:g>\" umzubenennen."</string>
+    <string name="rename_playlist_diff_prompt" msgid="6930730254920388535">"Ziehen Sie die Tastatur heraus, um die Playlist \"<xliff:g id="PLAYLIST">%s</xliff:g>\" umzubenennen, oder wählen Sie \"Speichern\", um sie mit dem Namen \"%s\" zu speichern."</string>
 </resources>

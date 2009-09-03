@@ -17,4 +17,7 @@
 <resources>
     <!-- Size of widget album art cutout -->
     <dimen name="appwidget_cutout">198dip</dimen>
+
+    <dimen name="appwidget_width">311dip</dimen>
+    <dimen name="appwidget_height">80dip</dimen>
 </resources>
