@@ -15,7 +15,7 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt">"Název seznamu stop"</string>
-    <string name="rename_playlist_same_prompt">"Přejmenovat seznam stop <xliff:g id="PLAYLIST">%s</xliff:g> na"</string>
-    <string name="rename_playlist_diff_prompt">"Přejmenovat seznam stop <xliff:g id="PLAYLIST">%s</xliff:g> na"</string>
+    <string name="create_playlist_create_text_prompt" msgid="942607395076646686">"Název seznamu stop"</string>
+    <string name="rename_playlist_same_prompt" msgid="6311998573141605099">"Přejmenovat seznam stop <xliff:g id="PLAYLIST">%s</xliff:g> na"</string>
+    <string name="rename_playlist_diff_prompt" msgid="621210762456614321">"Přejmenovat seznam stop <xliff:g id="PLAYLIST">%s</xliff:g> na"</string>
 </resources>

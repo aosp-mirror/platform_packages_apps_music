@@ -15,7 +15,9 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt">"Yeni şarkı listenize bir ad vermek için tuş takımını açın veya \"%s\" olarak adlandırmak üzere Kaydet\'i seçin."</string>
-    <string name="rename_playlist_same_prompt">"\"<xliff:g id="PLAYLIST">%s</xliff:g>\" şarkı listesine yeni bir ad vermek için tuş takımını açın."</string>
-    <string name="rename_playlist_diff_prompt">"\"<xliff:g id="PLAYLIST">%s</xliff:g>\" şarkı listesine yeni bir ad vermek için tuş takımını açın veya \"%s\" olarak adlandırmak üzere Kaydet\'i seçin."</string>
+    <!-- no translation found for create_playlist_create_text_prompt (2379436619128383935) -->
+    <skip />
+    <string name="rename_playlist_same_prompt" msgid="7777541452078260899">"\"<xliff:g id="PLAYLIST">%s</xliff:g>\" şarkı listesine yeni bir ad vermek için klavyeyi açın."</string>
+    <!-- no translation found for rename_playlist_diff_prompt (900422624897120958) -->
+    <skip />
 </resources>
