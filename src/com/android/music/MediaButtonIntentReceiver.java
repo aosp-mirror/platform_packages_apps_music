@@ -17,7 +17,6 @@
 package com.android.music;
 
 import android.bluetooth.BluetoothA2dp;
-import android.bluetooth.BluetoothError;
 import android.content.Context;
 import android.content.Intent;
 import android.content.BroadcastReceiver;
