@@ -15,7 +15,9 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt">"Otevřete klávesnici a zadejte název nového seznamu stop. Pokud zvolíte tlačítko Uložit, seznamu stop bude přidělen název %s."</string>
-    <string name="rename_playlist_same_prompt">"Otevřete klávesnici a zadejte nový název seznamu stop <xliff:g id="PLAYLIST">%s</xliff:g>."</string>
-    <string name="rename_playlist_diff_prompt">"Otevřete klávesnici a zadejte nový název seznamu stop <xliff:g id="PLAYLIST">%s</xliff:g>, nebo zvolte tlačítko Uložit a seznamu stop bude přidělen název %s."</string>
+    <!-- no translation found for create_playlist_create_text_prompt (2379436619128383935) -->
+    <skip />
+    <string name="rename_playlist_same_prompt" msgid="7777541452078260899">"Otevřete klávesnici a zadejte nový název seznamu stop <xliff:g id="PLAYLIST">%s</xliff:g>."</string>
+    <!-- no translation found for rename_playlist_diff_prompt (900422624897120958) -->
+    <skip />
 </resources>

@@ -15,7 +15,9 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt" msgid="942607395076646686">"Nom de la playlist"</string>
-    <string name="rename_playlist_same_prompt" msgid="6311998573141605099">"Renommer \"<xliff:g id="PLAYLIST">%s</xliff:g>\" en"</string>
-    <string name="rename_playlist_diff_prompt" msgid="621210762456614321">"Renommer \"<xliff:g id="PLAYLIST">%s</xliff:g>\" en"</string>
+    <!-- no translation found for create_playlist_create_text_prompt (2379436619128383935) -->
+    <skip />
+    <string name="rename_playlist_same_prompt" msgid="7777541452078260899">"Åpne tastaturet for å gi spillelisten «<xliff:g id="PLAYLIST">%s</xliff:g>» et nytt navn."</string>
+    <!-- no translation found for rename_playlist_diff_prompt (900422624897120958) -->
+    <skip />
 </resources>
