@@ -41,6 +41,7 @@ import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.SubMenu;
 import android.view.View;
@@ -560,6 +561,8 @@ public class MusicUtils {
         }
     }
     
+    private static String mLastSdStatus;
+
     public static void displayDatabaseError(Activity a) {
         String status = Environment.getExternalStorageState();
         int title = R.string.sdcard_error_title;
@@ -581,7 +584,8 @@ public class MusicUtils {
             Intent intent = new Intent();
             intent.setClass(a, ScanningProgress.class);
             a.startActivityForResult(intent, Defs.SCAN_DONE);
-        } else {
+        } else if (!TextUtils.equals(mLastSdStatus, status)) {
+            mLastSdStatus = status;
             Log.d(TAG, "sd card: " + status);
         }
 
