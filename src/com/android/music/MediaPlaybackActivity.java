@@ -70,7 +70,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     
     private boolean mOneShot = false;
     private boolean mSeeking = false;
-    private boolean mDeviceHasNoDpad;
+    private boolean mDeviceHasDpad;
     private long mStartSeekPos = 0;
     private long mLastSeekEventTime;
     private IMediaPlaybackService mService = null;
@@ -133,7 +133,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         mNextButton.setRepeatListener(mFfwdListener, 260);
         seekmethod = 1;
 
-        mDeviceHasNoDpad = (getResources().getConfiguration().navigation != 
+        mDeviceHasDpad = (getResources().getConfiguration().navigation ==
             Configuration.NAVIGATION_DPAD);
         
         mQueueButton = (ImageButton) findViewById(R.id.curplaylist);
@@ -742,7 +742,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
             switch(keyCode)
             {
                 case KeyEvent.KEYCODE_DPAD_LEFT:
-                    if (mDeviceHasNoDpad) {
+                    if (!useDpadMusicControl()) {
                         break;
                     }
                     if (mService != null) {
@@ -763,7 +763,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                     mPosOverride = -1;
                     return true;
                 case KeyEvent.KEYCODE_DPAD_RIGHT:
-                    if (mDeviceHasNoDpad) {
+                    if (!useDpadMusicControl()) {
                         break;
                     }
                     if (mService != null) {
@@ -783,6 +783,15 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         } catch (RemoteException ex) {
         }
         return super.onKeyUp(keyCode, event);
+    }
+
+    private boolean useDpadMusicControl() {
+        if (mDeviceHasDpad && (mPrevButton.isFocused() ||
+                mNextButton.isFocused() ||
+                mPauseButton.isFocused())) {
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -821,7 +830,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 return true;
 
             case KeyEvent.KEYCODE_DPAD_LEFT:
-                if (mDeviceHasNoDpad) {
+                if (!useDpadMusicControl()) {
                     break;
                 }
                 if (!mPrevButton.hasFocus()) {
@@ -830,7 +839,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 scanBackward(repcnt, event.getEventTime() - event.getDownTime());
                 return true;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
-                if (mDeviceHasNoDpad) {
+                if (!useDpadMusicControl()) {
                     break;
                 }
                 if (!mNextButton.hasFocus()) {

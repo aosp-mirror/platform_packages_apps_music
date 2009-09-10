@@ -53,7 +53,8 @@
                     android:src="@drawable/ic_mp_current_playlist_btn"
                     android:layout_width="82dip"
                     android:layout_height="45dip"
-                    android:layout_marginRight="8dip" />
+                    android:layout_marginRight="8dip"
+                    android:nextFocusLeft="@id/curplaylist" />
 
                <ImageButton android:id="@+id/shuffle"
                     android:layout_width="82dip"
