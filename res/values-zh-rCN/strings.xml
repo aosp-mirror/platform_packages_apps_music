@@ -82,14 +82,16 @@
     <string name="repeat_all_notif" msgid="6443293055987316642">"重复播放所有歌曲。"</string>
     <string name="ringtone_menu" msgid="2737472190159134599">"用作手机铃声"</string>
     <string name="ringtone_menu_short" msgid="3367622038867238133">"用作铃声"</string>
-    <!-- no translation found for ringtone_set (5325818347613843130) -->
-    <skip />
+    <string name="ringtone_set" msgid="5325818347613843130">"已将“<xliff:g id="NAME">%s</xliff:g>”设置为手机铃声。"</string>
     <string name="play_selection" msgid="2854921021814550018">"播放"</string>
     <string name="add_to_playlist" msgid="7110273488645072783">"添加到播放列表"</string>
     <string name="queue" msgid="2937629819482787704">"当前播放列表"</string>
     <string name="new_playlist" msgid="7588112979692632867">"新建"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"新建播放列表 <xliff:g id="NUMBER">%d</xliff:g>"</string>
-    <!-- no translation found for NNNtrackstoplaylist:other (7662771987109627255) -->
+  <plurals name="NNNtrackstoplaylist">
+    <item quantity="one" msgid="422388042993582235">"已将 1 首歌曲添加到播放列表。"</item>
+    <item quantity="other" msgid="7662771987109627255">"<xliff:g id="NUMBER">%d</xliff:g> 首歌曲已添加到播放列表。"</item>
+  </plurals>
     <string name="emptyplaylist" msgid="6711555673997896344">"选定的播放列表为空。"</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"保存"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"覆盖"</string>
@@ -123,8 +125,7 @@
     <string name="cancel" msgid="886559484711947520">"取消"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"从播放列表中删除"</string>
     <string name="streamloadingtext" msgid="3367150884806639224">"正在连接 <xliff:g id="HOST">%s</xliff:g>"</string>
-    <!-- no translation found for mediasearch (959222971261132292) -->
-    <skip />
+    <string name="mediasearch" msgid="959222971261132292">"使用以下工具搜索“<xliff:g id="TERM">%s</xliff:g>”："</string>
     <string name="working_artists" msgid="8678357432732156580">"艺术家..."</string>
     <string name="working_albums" msgid="8713273699401457426">"专辑..."</string>
     <string name="working_songs" msgid="2201491972050410684">"歌曲..."</string>
