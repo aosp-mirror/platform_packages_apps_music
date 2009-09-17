@@ -82,14 +82,16 @@
     <string name="repeat_all_notif" msgid="6443293055987316642">"Repitiendo todas las canciones."</string>
     <string name="ringtone_menu" msgid="2737472190159134599">"Usar como tono de timbre del teléfono"</string>
     <string name="ringtone_menu_short" msgid="3367622038867238133">"Usar como tono de timbre"</string>
-    <!-- no translation found for ringtone_set (5325818347613843130) -->
-    <skip />
+    <string name="ringtone_set" msgid="5325818347613843130">"\"<xliff:g id="NAME">%s</xliff:g>\" definidos como tono de timbre del teléfono."</string>
     <string name="play_selection" msgid="2854921021814550018">"Reproducir"</string>
     <string name="add_to_playlist" msgid="7110273488645072783">"Agregar a lista de reproducción"</string>
     <string name="queue" msgid="2937629819482787704">"Lista de reproducción actual"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Nuevos"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"Lista de reproducción nueva <xliff:g id="NUMBER">%d</xliff:g>"</string>
-    <!-- no translation found for NNNtrackstoplaylist:other (7662771987109627255) -->
+  <plurals name="NNNtrackstoplaylist">
+    <item quantity="one" msgid="422388042993582235">"Se agregó una canción a la lista de reproducción."</item>
+    <item quantity="other" msgid="7662771987109627255">"<xliff:g id="NUMBER">%d</xliff:g> canciones agregadas a la lista de reproducción."</item>
+  </plurals>
     <string name="emptyplaylist" msgid="6711555673997896344">"La lista de reproducción seleccionada está vacía."</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"Guardar"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Sobreescribir"</string>
@@ -123,8 +125,7 @@
     <string name="cancel" msgid="886559484711947520">"Cancelar"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"Suprimir de la lista de reproducción"</string>
     <string name="streamloadingtext" msgid="3367150884806639224">"Conectándose a <xliff:g id="HOST">%s</xliff:g>"</string>
-    <!-- no translation found for mediasearch (959222971261132292) -->
-    <skip />
+    <string name="mediasearch" msgid="959222971261132292">"Buscar <xliff:g id="TERM">%s</xliff:g> mediante:"</string>
     <string name="working_artists" msgid="8678357432732156580">"Artistas..."</string>
     <string name="working_albums" msgid="8713273699401457426">"Álbumes..."</string>
     <string name="working_songs" msgid="2201491972050410684">"Canciones..."</string>

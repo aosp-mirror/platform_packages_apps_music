@@ -82,14 +82,16 @@
     <string name="repeat_all_notif" msgid="6443293055987316642">"Opakování všech skladeb."</string>
     <string name="ringtone_menu" msgid="2737472190159134599">"Použít jako vyzváněcí tón telefonu"</string>
     <string name="ringtone_menu_short" msgid="3367622038867238133">"Použít jako vyzváněcí tón"</string>
-    <!-- no translation found for ringtone_set (5325818347613843130) -->
-    <skip />
+    <string name="ringtone_set" msgid="5325818347613843130">"Skladba <xliff:g id="NAME">%s</xliff:g> byla nastavena jako vyzváněcí tón."</string>
     <string name="play_selection" msgid="2854921021814550018">"Přehrát"</string>
     <string name="add_to_playlist" msgid="7110273488645072783">"Přidat do seznamu stop"</string>
     <string name="queue" msgid="2937629819482787704">"Aktuální seznam stop"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Nové"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"Nový seznam stop <xliff:g id="NUMBER">%d</xliff:g>"</string>
-    <!-- no translation found for NNNtrackstoplaylist:other (7662771987109627255) -->
+  <plurals name="NNNtrackstoplaylist">
+    <item quantity="one" msgid="422388042993582235">"1 skladba byla přidána do seznamu stop."</item>
+    <item quantity="other" msgid="7662771987109627255">"Počet skladeb přidaných do seznamu stop: <xliff:g id="NUMBER">%d</xliff:g>"</item>
+  </plurals>
     <string name="emptyplaylist" msgid="6711555673997896344">"Vybraný seznam stop je prázdný."</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"Uložit"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Přepsat"</string>
@@ -123,8 +125,7 @@
     <string name="cancel" msgid="886559484711947520">"Zrušit"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"Odstranit ze seznamu stop"</string>
     <string name="streamloadingtext" msgid="3367150884806639224">"Připojování k proudu <xliff:g id="HOST">%s</xliff:g>"</string>
-    <!-- no translation found for mediasearch (959222971261132292) -->
-    <skip />
+    <string name="mediasearch" msgid="959222971261132292">"Vyhledat výraz „<xliff:g id="TERM">%s</xliff:g>“ pomocí:"</string>
     <string name="working_artists" msgid="8678357432732156580">"Interpreti…"</string>
     <string name="working_albums" msgid="8713273699401457426">"Alba…"</string>
     <string name="working_songs" msgid="2201491972050410684">"Skladby…"</string>
