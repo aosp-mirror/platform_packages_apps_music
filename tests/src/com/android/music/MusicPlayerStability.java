@@ -73,4 +73,16 @@ public class MusicPlayerStability extends ActivityInstrumentationTestCase2 <Trac
             assertTrue("testPlayMP3", false);
         }
     }
+
+    @LargeTest
+    public void testMusicPlayerDoNothing() throws Exception {
+        // Launch music player and sleep for 30 seconds to capture
+        // the music player power usage base line.
+        try {
+            Thread.sleep(PLAY_TIME);
+        } catch (Exception e) {
+            assertTrue("MusicPlayer Do Nothing", false);
+        }
+        assertTrue("MusicPlayer Do Nothing", true);
+    }
 }
