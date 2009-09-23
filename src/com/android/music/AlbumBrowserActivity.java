@@ -229,7 +229,8 @@ public class AlbumBrowserActivity extends ListActivity
         CharSequence fancyName = "";
         if (mAlbumCursor != null && mAlbumCursor.getCount() > 0) {
             mAlbumCursor.moveToFirst();
-            fancyName = mAlbumCursor.getString(3);
+            fancyName = mAlbumCursor.getString(
+                    mAlbumCursor.getColumnIndex(MediaStore.Audio.Albums.ARTIST));
             if (fancyName == null || fancyName.equals(MediaFile.UNKNOWN_STRING))
                 fancyName = getText(R.string.unknown_artist_name);
         }
