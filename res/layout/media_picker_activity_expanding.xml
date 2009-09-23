@@ -29,7 +29,7 @@
         android:textSize="18sp"
         android:drawSelectorOnTop="false"
         android:fastScrollEnabled="true"
-        android:indicatorLeft="30dip" />
-        android:indicatorRight="60dip" />
+        android:indicatorLeft="8dip"
+        android:indicatorRight="52dip" />
 
 </LinearLayout>
