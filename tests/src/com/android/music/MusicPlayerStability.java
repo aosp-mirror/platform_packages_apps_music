@@ -55,7 +55,7 @@ public class MusicPlayerStability extends ActivityInstrumentationTestCase2 <Trac
      * The sdcard should have the target mp3 files.
      */
     @LargeTest
-    public void testPlayMP3() throws Exception {
+    public void testPlay30sMP3() throws Exception {
         // Launch the songs list. Pick the fisrt song and play
         try {
             Instrumentation inst = getInstrumentation();
@@ -75,7 +75,7 @@ public class MusicPlayerStability extends ActivityInstrumentationTestCase2 <Trac
     }
 
     @LargeTest
-    public void testMusicPlayerDoNothing() throws Exception {
+    public void testLaunchMusicPlayer() throws Exception {
         // Launch music player and sleep for 30 seconds to capture
         // the music player power usage base line.
         try {
