@@ -136,8 +136,6 @@
     <string name="sort_by_artist" msgid="4607024967813199992">"Καλλιτέχνες"</string>
     <string name="music_picker_title" msgid="1561623486324013570">"Επιλέξτε μουσικό κομμάτι"</string>
     <string name="gadget_track" msgid="3186569295893300114">"Κομμάτι <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
-    <!-- no translation found for fail_to_start_stream (3605390187703912835) -->
-    <skip />
-    <!-- no translation found for search_settings_description (6520975349259883368) -->
-    <skip />
+    <string name="fail_to_start_stream" msgid="3605390187703912835">"Απέτυχε η αναπαραγωγή της ζητούμενης ροής."</string>
+    <string name="search_settings_description" msgid="6520975349259883368">"Καλλιτέχνες, άλμπουμ και τραγούδια"</string>
 </resources>

@@ -136,8 +136,6 @@
     <string name="sort_by_artist" msgid="4607024967813199992">"Артисты"</string>
     <string name="music_picker_title" msgid="1561623486324013570">"Выбрать музыкальную дорожку"</string>
     <string name="gadget_track" msgid="3186569295893300114">"Трек <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
-    <!-- no translation found for fail_to_start_stream (3605390187703912835) -->
-    <skip />
-    <!-- no translation found for search_settings_description (6520975349259883368) -->
-    <skip />
+    <string name="fail_to_start_stream" msgid="3605390187703912835">"Не удается выполнить совместный просмотр."</string>
+    <string name="search_settings_description" msgid="6520975349259883368">"Исполнители, альбомы и дорожки"</string>
 </resources>
