@@ -1066,9 +1066,10 @@ public class MediaPlaybackService extends Service {
                     new Intent("com.android.music.PLAYBACK_VIEWER"), 0);
             startForeground(PLAYBACKSERVICE_STATUS, status);
             if (!mIsSupposedToBePlaying) {
+                mIsSupposedToBePlaying = true;
                 notifyChange(PLAYSTATE_CHANGED);
             }
-            mIsSupposedToBePlaying = true;
+
         } else if (mPlayListLen <= 0) {
             // This is mostly so that if you press 'play' on a bluetooth headset
             // without every having played anything before, it will still play
