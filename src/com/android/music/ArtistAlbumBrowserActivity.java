@@ -154,7 +154,9 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
     @Override
     public void onDestroy() {
         MusicUtils.unbindFromService(this);
-        if (!mAdapterSent) {
+        // if we have an adapter and didn't send it off to another activity yet, we should
+        // close the cursor
+        if (!mAdapterSent && mAdapter != null) {
             Cursor c = mAdapter.getCursor();
             if (c != null) {
                 c.close();
