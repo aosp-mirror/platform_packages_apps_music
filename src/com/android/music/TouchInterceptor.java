@@ -37,7 +37,7 @@ import android.widget.ListView;
 
 public class TouchInterceptor extends ListView {
     
-    private View mDragView;
+    private ImageView mDragView;
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams mWindowParams;
     private int mDragPos;      // which item is being dragged
@@ -319,6 +319,8 @@ public class TouchInterceptor extends ListView {
     }
     
     private void startDragging(Bitmap bm, int y) {
+        stopDragging();
+
         mWindowParams = new WindowManager.LayoutParams();
         mWindowParams.gravity = Gravity.TOP;
         mWindowParams.x = 0;
@@ -337,10 +339,6 @@ public class TouchInterceptor extends ListView {
         int backGroundColor = mContext.getResources().getColor(R.color.dragndrop_background);
         v.setBackgroundColor(backGroundColor);
         v.setImageBitmap(bm);
-
-        if (mDragBitmap != null) {
-            mDragBitmap.recycle();
-        }
         mDragBitmap = bm;
 
         mWindowManager = (WindowManager)mContext.getSystemService("window");
@@ -362,9 +360,12 @@ public class TouchInterceptor extends ListView {
     }
     
     private void stopDragging() {
-        WindowManager wm = (WindowManager)mContext.getSystemService("window");
-        wm.removeView(mDragView);
-        mDragView = null;
+        if (mDragView != null) {
+            WindowManager wm = (WindowManager)mContext.getSystemService("window");
+            wm.removeView(mDragView);
+            mDragView.setImageDrawable(null);
+            mDragView = null;
+        }
         if (mDragBitmap != null) {
             mDragBitmap.recycle();
             mDragBitmap = null;
