@@ -29,7 +29,7 @@
     <string name="goto_start" msgid="8979658707407220934">"音乐库"</string>
     <string name="goto_playback" msgid="4885216161312176550">"播放"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"派对随机播放"</string>
-    <string name="party_shuffle_off" msgid="1828744483354711679">"派对随机播放已关闭"</string>
+    <string name="party_shuffle_off" msgid="1828744483354711679">"关闭派对随机播放"</string>
     <string name="delete_item" msgid="3363330144534750601">"删除"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"全部随机播放"</string>
     <string name="play_all" msgid="6309622568869321842">"全部播放"</string>
@@ -38,11 +38,11 @@
     <string name="delete_song_desc" msgid="1856800468541831408">"将会从 SD 卡上永久删除“<xliff:g id="SONG">%s</xliff:g>”。"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"确定"</string>
   <plurals name="NNNtracksdeleted">
-    <item quantity="one" msgid="8560276109508404217">"1 首歌曲已删除。"</item>
+    <item quantity="one" msgid="8560276109508404217">"已删除 1 首歌曲。"</item>
     <item quantity="other" msgid="5156740163031225200">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> 首歌曲已删除。"</item>
   </plurals>
     <string name="scanning" msgid="3529383847223198502">"正在扫描 SD 卡..."</string>
-    <string name="nowplaying_title" msgid="8342523844307751761">"当前正在播放"</string>
+    <string name="nowplaying_title" msgid="8342523844307751761">"当前播放列表"</string>
     <string name="partyshuffle_title" msgid="6582413231529992125">"派对随机播放"</string>
     <string name="artists_title" msgid="8490372367259160067">"艺术家"</string>
     <string name="albums_menu" msgid="5807982055590211900">"专辑"</string>
@@ -78,7 +78,7 @@
     <string name="shuffle_on_notif" msgid="5453708337808483943">"随机播放已打开。"</string>
     <string name="shuffle_off_notif" msgid="4251189610017886263">"随机播放已关闭。"</string>
     <string name="repeat_off_notif" msgid="1149406899083479716">"重复播放已关闭。"</string>
-    <string name="repeat_current_notif" msgid="1227153936360904196">"重复当前歌曲。"</string>
+    <string name="repeat_current_notif" msgid="1227153936360904196">"重复播放当前歌曲。"</string>
     <string name="repeat_all_notif" msgid="6443293055987316642">"重复播放所有歌曲。"</string>
     <string name="ringtone_menu" msgid="2737472190159134599">"用作手机铃声"</string>
     <string name="ringtone_menu_short" msgid="3367622038867238133">"用作铃声"</string>
