@@ -127,7 +127,7 @@ public class TouchInterceptor extends ListView {
                         mLowerBound = Math.max(y + touchSlop, mHeight * 2 /3);
                         return false;
                     }
-                    mDragView = null;
+                    stopDragging();
                     break;
             }
         }
