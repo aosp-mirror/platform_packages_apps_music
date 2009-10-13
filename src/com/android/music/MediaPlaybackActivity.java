@@ -280,6 +280,9 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
             audioid = mService.getAudioId();
         } catch (RemoteException ex) {
             return true;
+        } catch (NullPointerException ex) {
+            // we might not actually have the service yet
+            return true;
         }
 
         if (MediaFile.UNKNOWN_STRING.equals(album) &&
