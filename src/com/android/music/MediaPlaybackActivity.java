@@ -690,6 +690,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
 
     private boolean seekMethod1(int keyCode)
     {
+        if (mService == null) return false;
         for(int x=0;x<10;x++) {
             for(int y=0;y<3;y++) {
                 if(keyboard[y][x] == keyCode) {
