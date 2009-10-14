@@ -233,9 +233,9 @@ public class TrackBrowserActivity extends ListActivity
             // we end up here in case we never registered the listeners
         }
         
-        // if we didn't send the adapter off to another activity, we should
+        // if we have an adapter and didn't send it off to another activity yet, we should
         // close the cursor
-        if (!mAdapterSent) {
+        if (!mAdapterSent && mAdapter != null) {
             Cursor c = mAdapter.getCursor();
             if (c != null) {
                 c.close();
