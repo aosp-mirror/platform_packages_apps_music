@@ -18,6 +18,7 @@ package com.android.music;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.KeyguardManager;
 import android.app.SearchManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -54,6 +55,7 @@ import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -100,6 +102,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         mAlbumArtHandler = new AlbumArtHandler(mAlbumArtWorker.getLooper());
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
         setContentView(R.layout.audio_player);
 
         mCurrentTime = (TextView) findViewById(R.id.currenttime);
@@ -534,8 +537,12 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
             SubMenu sub = menu.addSubMenu(0, ADD_TO_PLAYLIST, 0,
                     R.string.add_to_playlist).setIcon(android.R.drawable.ic_menu_add);
             MusicUtils.makePlaylistMenu(this, sub);
-            menu.add(0, USE_AS_RINGTONE, 0, R.string.ringtone_menu_short).setIcon(R.drawable.ic_menu_set_as_ringtone);
-            menu.add(0, DELETE_ITEM, 0, R.string.delete_item).setIcon(R.drawable.ic_menu_delete);
+            // these next two are in a separate group, so they can be shown/hidden as needed
+            // based on the keyguard state
+            menu.add(1, USE_AS_RINGTONE, 0, R.string.ringtone_menu_short)
+                    .setIcon(R.drawable.ic_menu_set_as_ringtone);
+            menu.add(1, DELETE_ITEM, 0, R.string.delete_item)
+                    .setIcon(R.drawable.ic_menu_delete);
             return true;
         }
         return false;
@@ -554,6 +561,8 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 item.setTitle(R.string.party_shuffle);
             }
         }
+        KeyguardManager km = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+        menu.setGroupVisible(1, !km.inKeyguardRestrictedInputMode());
         return true;
     }
 
