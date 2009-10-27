@@ -15,12 +15,14 @@
 -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_window_focused="false"
-        android:drawable="@drawable/appwidget_pause_normal" />
+
     <item android:state_pressed="true"
-        android:drawable="@drawable/appwidget_pause_pressed" />
-    <item android:state_focused="true"
-        android:drawable="@drawable/appwidget_pause_focused" />
+        android:drawable="@drawable/appwidget_inner_press_l" />
+
+    <item android:state_focused="true" android:state_enabled="true"
+        android:state_window_focused="true"
+        android:drawable="@drawable/appwidget_inner_focus_l" />
+
     <item
-         android:drawable="@drawable/appwidget_pause_normal" />
+         android:drawable="@android:color/transparent" />
 </selector>

@@ -14,7 +14,15 @@
      limitations under the License.
 -->
 
-<nine-patch xmlns:android="http://schemas.android.com/apk/res/android"
-    android:src="@drawable/appwidget_inner"
-    android:dither="true"
-/>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true"
+        android:drawable="@drawable/appwidget_inner_press_r" />
+
+    <item android:state_focused="true" android:state_enabled="true"
+        android:state_window_focused="true"
+        android:drawable="@drawable/appwidget_inner_focus_r" />
+
+    <item
+         android:drawable="@android:color/transparent" />
+</selector>
