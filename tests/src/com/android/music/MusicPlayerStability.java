@@ -59,11 +59,13 @@ public class MusicPlayerStability extends ActivityInstrumentationTestCase2 <Trac
         // Launch the songs list. Pick the fisrt song and play
         try {
             Instrumentation inst = getInstrumentation();
+            //Make sure the song list shown up
+            Thread.sleep(2000);
             inst.sendKeyDownUpSync(KeyEvent.KEYCODE_DPAD_DOWN);
             mTrackList = getActivity().getListView();
-            int viewCount = mTrackList.getSelectedItemPosition();
+            int scrollCount = mTrackList.getMaxScrollAmount();
             //Make sure there is at least one song in the sdcard
-            if (viewCount != -1) {
+            if (scrollCount != -1) {
                 inst.sendKeyDownUpSync(KeyEvent.KEYCODE_DPAD_CENTER);
             } else {
                 assertTrue("testPlayMP3", false);
