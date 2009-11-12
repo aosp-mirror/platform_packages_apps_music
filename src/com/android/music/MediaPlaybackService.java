@@ -303,7 +303,7 @@ public class MediaPlaybackService extends Service {
     public void onDestroy() {
         // Check that we're not being destroyed while something is still playing.
         if (isPlaying()) {
-            Log.e("MediaPlaybackService", "Service being destroyed while still playing.");
+            Log.e(LOGTAG, "Service being destroyed while still playing.");
         }
         // release all MediaPlayer resources, including the native player and wakelocks
         mPlayer.release();
@@ -492,6 +492,9 @@ public class MediaPlaybackService extends Service {
             
             long seekpos = mPreferences.getLong("seekpos", 0);
             seek(seekpos >= 0 && seekpos < duration() ? seekpos : 0);
+            Log.d(LOGTAG, "restored queue, currently at position "
+                    + position() + "/" + duration()
+                    + " (requested " + seekpos + ")");
             
             int repmode = mPreferences.getInt("repeatmode", REPEAT_NONE);
             if (repmode != REPEAT_ALL && repmode != REPEAT_CURRENT) {
@@ -1015,6 +1018,7 @@ public class MediaPlaybackService extends Service {
                     if (!mQuietMode) {
                         Toast.makeText(this, R.string.playback_failed, Toast.LENGTH_SHORT).show();
                     }
+                    Log.d(LOGTAG, "Failed to open file for playback");
                 }
             } else {
                 mOpenFailedCounter = 0;
@@ -1194,6 +1198,7 @@ public class MediaPlaybackService extends Service {
             }
 
             if (mPlayListLen <= 0) {
+                Log.d(LOGTAG, "No play queue");
                 return;
             }
 
@@ -1767,6 +1772,7 @@ public class MediaPlaybackService extends Service {
                     mHandler.sendMessageDelayed(mHandler.obtainMessage(SERVER_DIED), 2000);
                     return true;
                 default:
+                    Log.d("MultiPlayer", "Error: " + what + "," + extra);
                     break;
                 }
                 return false;
