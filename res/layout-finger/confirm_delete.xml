@@ -31,17 +31,17 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="6px"
+        android:padding="6dip"
         android:background="#ffffff" >
 
         <Button android:id="@+id/delete"
-            android:layout_width="120px" android:layout_height="wrap_content" 
+            android:layout_width="120dip" android:layout_height="wrap_content" 
             android:text="@string/delete_confirm_button_text"
             android:layout_gravity="center_horizontal"
             android:layout_alignParentLeft="true" />
 
         <Button android:id="@+id/cancel"
-            android:layout_width="120px" android:layout_height="wrap_content" 
+            android:layout_width="120dip" android:layout_height="wrap_content" 
             android:text="@string/cancel"
             android:layout_alignParentRight="true" />
 

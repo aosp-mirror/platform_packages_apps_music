@@ -18,10 +18,12 @@ package com.android.music;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.KeyguardManager;
 import android.app.SearchManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -29,6 +31,7 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.MediaFile;
@@ -52,6 +55,7 @@ import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -68,7 +72,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     
     private boolean mOneShot = false;
     private boolean mSeeking = false;
-    private boolean mDeviceHasNoDpad;
+    private boolean mDeviceHasDpad;
     private long mStartSeekPos = 0;
     private long mLastSeekEventTime;
     private IMediaPlaybackService mService = null;
@@ -98,6 +102,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         mAlbumArtHandler = new AlbumArtHandler(mAlbumArtWorker.getLooper());
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
         setContentView(R.layout.audio_player);
 
         mCurrentTime = (TextView) findViewById(R.id.currenttime);
@@ -131,7 +136,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         mNextButton.setRepeatListener(mFfwdListener, 260);
         seekmethod = 1;
 
-        mDeviceHasNoDpad = (getResources().getConfiguration().navigation != 
+        mDeviceHasDpad = (getResources().getConfiguration().navigation ==
             Configuration.NAVIGATION_DPAD);
         
         mQueueButton = (ImageButton) findViewById(R.id.curplaylist);
@@ -269,15 +274,43 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         String artist;
         String album;
         String song;
+        long audioid;
         
         try {
             artist = mService.getArtistName();
             album = mService.getAlbumName();
             song = mService.getTrackName();
+            audioid = mService.getAudioId();
         } catch (RemoteException ex) {
             return true;
         }
-        
+
+        if (MediaFile.UNKNOWN_STRING.equals(album) &&
+                MediaFile.UNKNOWN_STRING.equals(artist) &&
+                song != null &&
+                song.startsWith("recording")) {
+            // not music
+            return false;
+        }
+
+        if (audioid < 0) {
+            return false;
+        }
+
+        Cursor c = MusicUtils.query(this,
+                ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, audioid),
+                new String[] {MediaStore.Audio.Media.IS_MUSIC}, null, null, null);
+        boolean ismusic = true;
+        if (c != null) {
+            if (c.moveToFirst()) {
+                ismusic = c.getInt(0) != 0;
+            }
+            c.close();
+        }
+        if (!ismusic) {
+            return false;
+        }
+
         boolean knownartist =
             (artist != null) && !MediaFile.UNKNOWN_STRING.equals(artist);
 
@@ -504,8 +537,12 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
             SubMenu sub = menu.addSubMenu(0, ADD_TO_PLAYLIST, 0,
                     R.string.add_to_playlist).setIcon(android.R.drawable.ic_menu_add);
             MusicUtils.makePlaylistMenu(this, sub);
-            menu.add(0, USE_AS_RINGTONE, 0, R.string.ringtone_menu_short).setIcon(R.drawable.ic_menu_set_as_ringtone);
-            menu.add(0, DELETE_ITEM, 0, R.string.delete_item).setIcon(R.drawable.ic_menu_delete);
+            // these next two are in a separate group, so they can be shown/hidden as needed
+            // based on the keyguard state
+            menu.add(1, USE_AS_RINGTONE, 0, R.string.ringtone_menu_short)
+                    .setIcon(R.drawable.ic_menu_set_as_ringtone);
+            menu.add(1, DELETE_ITEM, 0, R.string.delete_item)
+                    .setIcon(R.drawable.ic_menu_delete);
             return true;
         }
         return false;
@@ -524,6 +561,8 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 item.setTitle(R.string.party_shuffle);
             }
         }
+        KeyguardManager km = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+        menu.setGroupVisible(1, !km.inKeyguardRestrictedInputMode());
         return true;
     }
 
@@ -566,21 +605,21 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 }
 
                 case PLAYLIST_SELECTED: {
-                    int [] list = new int[1];
+                    long [] list = new long[1];
                     list[0] = MusicUtils.getCurrentAudioId();
-                    int playlist = item.getIntent().getIntExtra("playlist", 0);
+                    long playlist = item.getIntent().getLongExtra("playlist", 0);
                     MusicUtils.addToPlaylist(this, list, playlist);
                     return true;
                 }
                 
                 case DELETE_ITEM: {
                     if (mService != null) {
-                        int [] list = new int[1];
+                        long [] list = new long[1];
                         list[0] = MusicUtils.getCurrentAudioId();
                         Bundle b = new Bundle();
                         b.putString("description", getString(R.string.delete_song_desc,
                                 mService.getTrackName()));
-                        b.putIntArray("items", list);
+                        b.putLongArray("items", list);
                         intent = new Intent();
                         intent.setClass(this, DeleteItems.class);
                         intent.putExtras(b);
@@ -603,7 +642,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
             case NEW_PLAYLIST:
                 Uri uri = intent.getData();
                 if (uri != null) {
-                    int [] list = new int[1];
+                    long [] list = new long[1];
                     list[0] = MusicUtils.getCurrentAudioId();
                     int playlist = Integer.parseInt(uri.getLastPathSegment());
                     MusicUtils.addToPlaylist(this, list, playlist);
@@ -712,7 +751,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
             switch(keyCode)
             {
                 case KeyEvent.KEYCODE_DPAD_LEFT:
-                    if (mDeviceHasNoDpad) {
+                    if (!useDpadMusicControl()) {
                         break;
                     }
                     if (mService != null) {
@@ -733,7 +772,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                     mPosOverride = -1;
                     return true;
                 case KeyEvent.KEYCODE_DPAD_RIGHT:
-                    if (mDeviceHasNoDpad) {
+                    if (!useDpadMusicControl()) {
                         break;
                     }
                     if (mService != null) {
@@ -753,6 +792,15 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         } catch (RemoteException ex) {
         }
         return super.onKeyUp(keyCode, event);
+    }
+
+    private boolean useDpadMusicControl() {
+        if (mDeviceHasDpad && (mPrevButton.isFocused() ||
+                mNextButton.isFocused() ||
+                mPauseButton.isFocused())) {
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -791,7 +839,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 return true;
 
             case KeyEvent.KEYCODE_DPAD_LEFT:
-                if (mDeviceHasNoDpad) {
+                if (!useDpadMusicControl()) {
                     break;
                 }
                 if (!mPrevButton.hasFocus()) {
@@ -800,7 +848,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 scanBackward(repcnt, event.getEventTime() - event.getDownTime());
                 return true;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
-                if (mDeviceHasNoDpad) {
+                if (!useDpadMusicControl()) {
                     break;
                 }
                 if (!mNextButton.hasFocus()) {
@@ -1209,6 +1257,15 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         }
     };
 
+    private static class AlbumSongIdWrapper {
+        public long albumid;
+        public long songid;
+        AlbumSongIdWrapper(long aid, long sid) {
+            albumid = aid;
+            songid = sid;
+        }
+    }
+    
     private void updateTrackInfo() {
         if (mService == null) {
             return;
@@ -1220,13 +1277,16 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 return;
             }
             
-            if (mService.getAudioId() < 0 && path.toLowerCase().startsWith("http://")) {
+            long songid = mService.getAudioId(); 
+            if (songid < 0 && path.toLowerCase().startsWith("http://")) {
+                // Once we can get album art and meta data from MediaPlayer, we
+                // can show that info again when streaming.
                 ((View) mArtistName.getParent()).setVisibility(View.INVISIBLE);
                 ((View) mAlbumName.getParent()).setVisibility(View.INVISIBLE);
                 mAlbum.setVisibility(View.GONE);
                 mTrackName.setText(path);
                 mAlbumArtHandler.removeMessages(GET_ALBUM_ART);
-                mAlbumArtHandler.obtainMessage(GET_ALBUM_ART, -1, 0).sendToTarget();
+                mAlbumArtHandler.obtainMessage(GET_ALBUM_ART, new AlbumSongIdWrapper(-1, -1)).sendToTarget();
             } else {
                 ((View) mArtistName.getParent()).setVisibility(View.VISIBLE);
                 ((View) mAlbumName.getParent()).setVisibility(View.VISIBLE);
@@ -1236,7 +1296,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 }
                 mArtistName.setText(artistName);
                 String albumName = mService.getAlbumName();
-                int albumid = mService.getAlbumId();
+                long albumid = mService.getAlbumId();
                 if (MediaFile.UNKNOWN_STRING.equals(albumName)) {
                     albumName = getString(R.string.unknown_album_name);
                     albumid = -1;
@@ -1244,7 +1304,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 mAlbumName.setText(albumName);
                 mTrackName.setText(mService.getTrackName());
                 mAlbumArtHandler.removeMessages(GET_ALBUM_ART);
-                mAlbumArtHandler.obtainMessage(GET_ALBUM_ART, albumid, 0).sendToTarget();
+                mAlbumArtHandler.obtainMessage(GET_ALBUM_ART, new AlbumSongIdWrapper(albumid, songid)).sendToTarget();
                 mAlbum.setVisibility(View.VISIBLE);
             }
             mDuration = mService.duration();
@@ -1255,22 +1315,24 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     }
     
     public class AlbumArtHandler extends Handler {
-        private int mAlbumId = -1;
+        private long mAlbumId = -1;
         
         public AlbumArtHandler(Looper looper) {
             super(looper);
         }
+        @Override
         public void handleMessage(Message msg)
         {
-            int albumid = msg.arg1;
+            long albumid = ((AlbumSongIdWrapper) msg.obj).albumid;
+            long songid = ((AlbumSongIdWrapper) msg.obj).songid;
             if (msg.what == GET_ALBUM_ART && (mAlbumId != albumid || albumid < 0)) {
                 // while decoding the new image, show the default album art
                 Message numsg = mHandler.obtainMessage(ALBUM_ART_DECODED, null);
                 mHandler.removeMessages(ALBUM_ART_DECODED);
                 mHandler.sendMessageDelayed(numsg, 300);
-                Bitmap bm = MusicUtils.getArtwork(MediaPlaybackActivity.this, albumid);
+                Bitmap bm = MusicUtils.getArtwork(MediaPlaybackActivity.this, songid, albumid);
                 if (bm == null) {
-                    bm = MusicUtils.getArtwork(MediaPlaybackActivity.this, -1);
+                    bm = MusicUtils.getArtwork(MediaPlaybackActivity.this, songid, -1);
                     albumid = -1;
                 }
                 if (bm != null) {

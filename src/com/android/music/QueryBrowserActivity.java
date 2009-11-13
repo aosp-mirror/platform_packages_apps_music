@@ -92,15 +92,16 @@ implements MusicUtils.Defs, ServiceConnection
         registerReceiver(mScanListener, f);
         
         Intent intent = getIntent();
+        String action = intent != null ? intent.getAction() : null;
         
-        if (intent.getAction().equals(Intent.ACTION_VIEW)) {
+        if (Intent.ACTION_VIEW.equals(action)) {
             // this is something we got from the search bar
             Uri uri = intent.getData();
             String path = uri.toString();
             if (path.startsWith("content://media/external/audio/media/")) {
                 // This is a specific file
                 String id = uri.getLastPathSegment();
-                int [] list = new int[] { Integer.valueOf(id) };
+                long [] list = new long[] { Long.valueOf(id) };
                 MusicUtils.playAll(this, list, 0);
                 finish();
                 return;
@@ -122,7 +123,30 @@ implements MusicUtils.Defs, ServiceConnection
                 return;
             }
         }
+
         mFilterString = intent.getStringExtra(SearchManager.QUERY);
+        if (MediaStore.INTENT_ACTION_MEDIA_SEARCH.equals(action)) {
+            String focus = intent.getStringExtra(MediaStore.EXTRA_MEDIA_FOCUS);
+            String artist = intent.getStringExtra(MediaStore.EXTRA_MEDIA_ARTIST);
+            String album = intent.getStringExtra(MediaStore.EXTRA_MEDIA_ALBUM);
+            String title = intent.getStringExtra(MediaStore.EXTRA_MEDIA_TITLE);
+            if (focus != null) {
+                if (focus.startsWith("audio/") && title != null) {
+                    mFilterString = title;
+                } else if (focus.equals(MediaStore.Audio.Albums.ENTRY_CONTENT_TYPE)) {
+                    if (album != null) {
+                        mFilterString = album;
+                        if (artist != null) {
+                            mFilterString = mFilterString + " " + artist;
+                        }
+                    }
+                } else if (focus.equals(MediaStore.Audio.Artists.ENTRY_CONTENT_TYPE)) {
+                    if (artist != null) {
+                        mFilterString = artist;
+                    }
+                }
+            }
+        }
 
         setContentView(R.layout.query_activity);
         mTrackList = getListView();
@@ -203,7 +227,9 @@ implements MusicUtils.Defs, ServiceConnection
     private Handler mReScanHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            getQueryCursor(mAdapter.getQueryHandler(), null);
+            if (mAdapter != null) {
+                getQueryCursor(mAdapter.getQueryHandler(), null);
+            }
             // if the query results in a null cursor, onQueryComplete() will
             // call init(), which will post a delayed message to this handler
             // in order to try again.
@@ -224,7 +250,10 @@ implements MusicUtils.Defs, ServiceConnection
     }
     
     public void init(Cursor c) {
-        
+
+        if (mAdapter == null) {
+            return;
+        }
         mAdapter.changeCursor(c);
 
         if (mQueryCursor == null) {
@@ -250,16 +279,18 @@ implements MusicUtils.Defs, ServiceConnection
         
         if ("artist".equals(selectedType)) {
             Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.setDataAndType(Uri.EMPTY, "vnd.android.cursor.dir/album");
             intent.putExtra("artist", Long.valueOf(id).toString());
             startActivity(intent);
         } else if ("album".equals(selectedType)) {
             Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.setDataAndType(Uri.EMPTY, "vnd.android.cursor.dir/track");
             intent.putExtra("album", Long.valueOf(id).toString());
             startActivity(intent);
         } else if (position >= 0 && id >= 0){
-            int [] list = new int[] { (int) id };
+            long [] list = new long[] { id };
             MusicUtils.playAll(this, list, 0);
         } else {
             Log.e("QueryBrowser", "invalid position/id: " + position + "/" + id);

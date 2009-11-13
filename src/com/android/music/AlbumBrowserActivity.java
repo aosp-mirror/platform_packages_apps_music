@@ -37,6 +37,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -64,6 +65,8 @@ public class AlbumBrowserActivity extends ListActivity
     private String mCurrentAlbumId;
     private String mCurrentAlbumName;
     private String mCurrentArtistNameForAlbum;
+    boolean mIsUnknownArtist;
+    boolean mIsUnknownAlbum;
     private AlbumListAdapter mAdapter;
     private boolean mAdapterSent;
     private final static int SEARCH = CHILD_MENU_BASE;
@@ -191,7 +194,9 @@ public class AlbumBrowserActivity extends ListActivity
     private Handler mReScanHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            getAlbumCursor(mAdapter.getQueryHandler(), null);
+            if (mAdapter != null) {
+                getAlbumCursor(mAdapter.getQueryHandler(), null);
+            }
         }
     };
 
@@ -204,6 +209,9 @@ public class AlbumBrowserActivity extends ListActivity
 
     public void init(Cursor c) {
 
+        if (mAdapter == null) {
+            return;
+        }
         mAdapter.changeCursor(c); // also sets mAlbumCursor
 
         if (mAlbumCursor == null) {
@@ -221,7 +229,8 @@ public class AlbumBrowserActivity extends ListActivity
         CharSequence fancyName = "";
         if (mAlbumCursor != null && mAlbumCursor.getCount() > 0) {
             mAlbumCursor.moveToFirst();
-            fancyName = mAlbumCursor.getString(3);
+            fancyName = mAlbumCursor.getString(
+                    mAlbumCursor.getColumnIndex(MediaStore.Audio.Albums.ARTIST));
             if (fancyName == null || fancyName.equals(MediaFile.UNKNOWN_STRING))
                 fancyName = getText(R.string.unknown_artist_name);
         }
@@ -231,14 +240,13 @@ public class AlbumBrowserActivity extends ListActivity
         else
             setTitle(R.string.albums_title);
     }
-    
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfoIn) {
         menu.add(0, PLAY_SELECTION, 0, R.string.play_selection);
         SubMenu sub = menu.addSubMenu(0, ADD_TO_PLAYLIST, 0, R.string.add_to_playlist);
         MusicUtils.makePlaylistMenu(this, sub);
         menu.add(0, DELETE_ITEM, 0, R.string.delete_item);
-        menu.add(0, SEARCH, 0, R.string.search_title);
 
         AdapterContextMenuInfo mi = (AdapterContextMenuInfo) menuInfoIn;
         mAlbumCursor.moveToPosition(mi.position);
@@ -246,10 +254,17 @@ public class AlbumBrowserActivity extends ListActivity
         mCurrentAlbumName = mAlbumCursor.getString(mAlbumCursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM));
         mCurrentArtistNameForAlbum = mAlbumCursor.getString(
                 mAlbumCursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ARTIST));
-        if (mCurrentAlbumName == null || mCurrentAlbumName.equals(MediaFile.UNKNOWN_STRING)) {
+        mIsUnknownArtist = mCurrentArtistNameForAlbum == null ||
+                mCurrentArtistNameForAlbum.equals(MediaFile.UNKNOWN_STRING);
+        mIsUnknownAlbum = mCurrentAlbumName == null ||
+                mCurrentAlbumName.equals(MediaFile.UNKNOWN_STRING);
+        if (mIsUnknownAlbum) {
             menu.setHeaderTitle(getString(R.string.unknown_album_name));
         } else {
             menu.setHeaderTitle(mCurrentAlbumName);
+        }
+        if (!mIsUnknownAlbum || !mIsUnknownArtist) {
+            menu.add(0, SEARCH, 0, R.string.search_title);
         }
     }
 
@@ -258,13 +273,13 @@ public class AlbumBrowserActivity extends ListActivity
         switch (item.getItemId()) {
             case PLAY_SELECTION: {
                 // play the selected album
-                int [] list = MusicUtils.getSongListForAlbum(this, Integer.parseInt(mCurrentAlbumId));
+                long [] list = MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
                 MusicUtils.playAll(this, list, 0);
                 return true;
             }
 
             case QUEUE: {
-                int [] list = MusicUtils.getSongListForAlbum(this, Integer.parseInt(mCurrentAlbumId));
+                long [] list = MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
                 MusicUtils.addToCurrentPlaylist(this, list);
                 return true;
             }
@@ -277,18 +292,18 @@ public class AlbumBrowserActivity extends ListActivity
             }
 
             case PLAYLIST_SELECTED: {
-                int [] list = MusicUtils.getSongListForAlbum(this, Integer.parseInt(mCurrentAlbumId));
-                int playlist = item.getIntent().getIntExtra("playlist", 0);
+                long [] list = MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
+                long playlist = item.getIntent().getLongExtra("playlist", 0);
                 MusicUtils.addToPlaylist(this, list, playlist);
                 return true;
             }
             case DELETE_ITEM: {
-                int [] list = MusicUtils.getSongListForAlbum(this, Integer.parseInt(mCurrentAlbumId));
+                long [] list = MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
                 String f = getString(R.string.delete_album_desc); 
                 String desc = String.format(f, mCurrentAlbumName);
                 Bundle b = new Bundle();
                 b.putString("description", desc);
-                b.putIntArray("items", list);
+                b.putLongArray("items", list);
                 Intent intent = new Intent();
                 intent.setClass(this, DeleteItems.class);
                 intent.putExtras(b);
@@ -305,16 +320,25 @@ public class AlbumBrowserActivity extends ListActivity
 
     void doSearch() {
         CharSequence title = null;
-        String query = null;
+        String query = "";
         
         Intent i = new Intent();
         i.setAction(MediaStore.INTENT_ACTION_MEDIA_SEARCH);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         
-        title = mCurrentAlbumName;
-        query = mCurrentArtistNameForAlbum + " " + mCurrentAlbumName;
-        i.putExtra(MediaStore.EXTRA_MEDIA_ARTIST, mCurrentArtistNameForAlbum);
-        i.putExtra(MediaStore.EXTRA_MEDIA_ALBUM, mCurrentAlbumName);
+        title = "";
+        if (!mIsUnknownAlbum) {
+            query = mCurrentAlbumName;
+            i.putExtra(MediaStore.EXTRA_MEDIA_ALBUM, mCurrentAlbumName);
+            title = mCurrentAlbumName;
+        }
+        if(!mIsUnknownArtist) {
+            query = query + " " + mCurrentArtistNameForAlbum;
+            i.putExtra(MediaStore.EXTRA_MEDIA_ARTIST, mCurrentArtistNameForAlbum);
+            title = title + " " + mCurrentArtistNameForAlbum;
+        }
+        // Since we hide the 'search' menu item when both album and artist are
+        // unknown, the query and title strings will have at least one of those.
         i.putExtra(MediaStore.EXTRA_MEDIA_FOCUS, MediaStore.Audio.Albums.ENTRY_CONTENT_TYPE);
         title = getString(R.string.mediasearch, title);
         i.putExtra(SearchManager.QUERY, query);
@@ -337,8 +361,8 @@ public class AlbumBrowserActivity extends ListActivity
                 if (resultCode == RESULT_OK) {
                     Uri uri = intent.getData();
                     if (uri != null) {
-                        int [] list = MusicUtils.getSongListForAlbum(this, Integer.parseInt(mCurrentAlbumId));
-                        MusicUtils.addToPlaylist(this, list, Integer.parseInt(uri.getLastPathSegment()));
+                        long [] list = MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
+                        MusicUtils.addToPlaylist(this, list, Long.parseLong(uri.getLastPathSegment()));
                     }
                 }
                 break;
@@ -509,7 +533,7 @@ public class AlbumBrowserActivity extends ListActivity
             mNowPlayingOverlay = r.getDrawable(R.drawable.indicator_ic_mp_playing_list);
 
             Bitmap b = BitmapFactory.decodeResource(r, R.drawable.albumart_mp_unknown_list);
-            mDefaultAlbumIcon = new BitmapDrawable(b);
+            mDefaultAlbumIcon = new BitmapDrawable(context.getResources(), b);
             // no filter or dither, it's a lot faster and we can't tell the difference
             mDefaultAlbumIcon.setFilterBitmap(false);
             mDefaultAlbumIcon.setDither(false);
@@ -578,16 +602,15 @@ public class AlbumBrowserActivity extends ListActivity
             // We don't actually need the path to the thumbnail file,
             // we just use it to see if there is album art or not
             String art = cursor.getString(mAlbumArtIndex);
+            long aid = cursor.getLong(0);
             if (unknown || art == null || art.length() == 0) {
                 iv.setImageDrawable(null);
             } else {
-                int artIndex = cursor.getInt(0);
-                Drawable d = MusicUtils.getCachedArtwork(context, artIndex, mDefaultAlbumIcon);
+                Drawable d = MusicUtils.getCachedArtwork(context, aid, mDefaultAlbumIcon);
                 iv.setImageDrawable(d);
             }
             
-            int currentalbumid = MusicUtils.getCurrentAlbumId();
-            int aid = cursor.getInt(0);
+            long currentalbumid = MusicUtils.getCurrentAlbumId();
             iv = vh.play_indicator;
             if (currentalbumid == aid) {
                 iv.setImageDrawable(mNowPlayingOverlay);

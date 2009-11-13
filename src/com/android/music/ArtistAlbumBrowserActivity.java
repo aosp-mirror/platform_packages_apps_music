@@ -68,6 +68,8 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
     private String mCurrentAlbumId;
     private String mCurrentAlbumName;
     private String mCurrentArtistNameForAlbum;
+    boolean mIsUnknownArtist;
+    boolean mIsUnknownAlbum;
     private ArtistAlbumListAdapter mAdapter;
     private boolean mAdapterSent;
     private final static int SEARCH = CHILD_MENU_BASE;
@@ -164,6 +166,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         setListAdapter(null);
         mAdapter = null;
         unregisterReceiver(mScanListener);
+        setListAdapter(null);
         super.onDestroy();
     }
     
@@ -199,7 +202,9 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
     private Handler mReScanHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            getArtistCursor(mAdapter.getQueryHandler(), null);
+            if (mAdapter != null) {
+                getArtistCursor(mAdapter.getQueryHandler(), null);
+            }
         }
     };
 
@@ -212,6 +217,9 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
     
     public void init(Cursor c) {
 
+        if (mAdapter == null) {
+            return;
+        }
         mAdapter.changeCursor(c); // also sets mArtistCursor
 
         if (mArtistCursor == null) {
@@ -301,7 +309,6 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         SubMenu sub = menu.addSubMenu(0, ADD_TO_PLAYLIST, 0, R.string.add_to_playlist);
         MusicUtils.makePlaylistMenu(this, sub);
         menu.add(0, DELETE_ITEM, 0, R.string.delete_item);
-        menu.add(0, SEARCH, 0, R.string.search_title);
         
         ExpandableListContextMenuInfo mi = (ExpandableListContextMenuInfo) menuInfoIn;
         
@@ -319,10 +326,14 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             mCurrentArtistId = mArtistCursor.getString(mArtistCursor.getColumnIndexOrThrow(MediaStore.Audio.Artists._ID));
             mCurrentArtistName = mArtistCursor.getString(mArtistCursor.getColumnIndexOrThrow(MediaStore.Audio.Artists.ARTIST));
             mCurrentAlbumId = null;
-            if (mCurrentArtistName == null || mCurrentArtistName.equals(MediaFile.UNKNOWN_STRING)) {
+            mIsUnknownArtist = mCurrentArtistName == null ||
+                    mCurrentArtistName.equals(MediaFile.UNKNOWN_STRING);
+            mIsUnknownAlbum = true;
+            if (mIsUnknownArtist) {
                 menu.setHeaderTitle(getString(R.string.unknown_artist_name));
             } else {
                 menu.setHeaderTitle(mCurrentArtistName);
+                menu.add(0, SEARCH, 0, R.string.search_title);
             }
             return;
         } else if (itemtype == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
@@ -340,10 +351,17 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             mArtistCursor.moveToPosition(gpos);
             mCurrentArtistNameForAlbum = mArtistCursor.getString(
                     mArtistCursor.getColumnIndexOrThrow(MediaStore.Audio.Artists.ARTIST));
-            if (mCurrentAlbumName == null || mCurrentAlbumName.equals(MediaFile.UNKNOWN_STRING)) {
+            mIsUnknownArtist = mCurrentArtistNameForAlbum == null ||
+                    mCurrentArtistNameForAlbum.equals(MediaFile.UNKNOWN_STRING);
+            mIsUnknownAlbum = mCurrentAlbumName == null ||
+                    mCurrentAlbumName.equals(MediaFile.UNKNOWN_STRING);
+            if (mIsUnknownAlbum) {
                 menu.setHeaderTitle(getString(R.string.unknown_album_name));
             } else {
                 menu.setHeaderTitle(mCurrentAlbumName);
+            }
+            if (!mIsUnknownAlbum || !mIsUnknownArtist) {
+                menu.add(0, SEARCH, 0, R.string.search_title);
             }
         }
     }
@@ -353,20 +371,20 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         switch (item.getItemId()) {
             case PLAY_SELECTION: {
                 // play everything by the selected artist
-                int [] list =
+                long [] list =
                     mCurrentArtistId != null ?
-                    MusicUtils.getSongListForArtist(this, Integer.parseInt(mCurrentArtistId))
-                    : MusicUtils.getSongListForAlbum(this, Integer.parseInt(mCurrentAlbumId));
+                    MusicUtils.getSongListForArtist(this, Long.parseLong(mCurrentArtistId))
+                    : MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
                         
                 MusicUtils.playAll(this, list, 0);
                 return true;
             }
 
             case QUEUE: {
-                int [] list =
+                long [] list =
                     mCurrentArtistId != null ?
-                    MusicUtils.getSongListForArtist(this, Integer.parseInt(mCurrentArtistId))
-                    : MusicUtils.getSongListForAlbum(this, Integer.parseInt(mCurrentAlbumId));
+                    MusicUtils.getSongListForArtist(this, Long.parseLong(mCurrentArtistId))
+                    : MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
                 MusicUtils.addToCurrentPlaylist(this, list);
                 return true;
             }
@@ -379,30 +397,30 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             }
 
             case PLAYLIST_SELECTED: {
-                int [] list =
+                long [] list =
                     mCurrentArtistId != null ?
-                    MusicUtils.getSongListForArtist(this, Integer.parseInt(mCurrentArtistId))
-                    : MusicUtils.getSongListForAlbum(this, Integer.parseInt(mCurrentAlbumId));
-                int playlist = item.getIntent().getIntExtra("playlist", 0);
+                    MusicUtils.getSongListForArtist(this, Long.parseLong(mCurrentArtistId))
+                    : MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
+                long playlist = item.getIntent().getLongExtra("playlist", 0);
                 MusicUtils.addToPlaylist(this, list, playlist);
                 return true;
             }
             
             case DELETE_ITEM: {
-                int [] list;
+                long [] list;
                 String desc;
                 if (mCurrentArtistId != null) {
-                    list = MusicUtils.getSongListForArtist(this, Integer.parseInt(mCurrentArtistId));
+                    list = MusicUtils.getSongListForArtist(this, Long.parseLong(mCurrentArtistId));
                     String f = getString(R.string.delete_artist_desc);
                     desc = String.format(f, mCurrentArtistName);
                 } else {
-                    list = MusicUtils.getSongListForAlbum(this, Integer.parseInt(mCurrentAlbumId));
+                    list = MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
                     String f = getString(R.string.delete_album_desc); 
                     desc = String.format(f, mCurrentAlbumName);
                 }
                 Bundle b = new Bundle();
                 b.putString("description", desc);
-                b.putIntArray("items", list);
+                b.putLongArray("items", list);
                 Intent intent = new Intent();
                 intent.setClass(this, DeleteItems.class);
                 intent.putExtras(b);
@@ -431,8 +449,14 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             i.putExtra(MediaStore.EXTRA_MEDIA_ARTIST, mCurrentArtistName);
             i.putExtra(MediaStore.EXTRA_MEDIA_FOCUS, MediaStore.Audio.Artists.ENTRY_CONTENT_TYPE);
         } else {
-            title = mCurrentAlbumName;
-            query = mCurrentArtistNameForAlbum + " " + mCurrentAlbumName;
+            if (mIsUnknownAlbum) {
+                title = query = mCurrentArtistNameForAlbum;
+            } else {
+                title = query = mCurrentAlbumName;
+                if (!mIsUnknownArtist) {
+                    query = query + " " + mCurrentArtistNameForAlbum;
+                }
+            }
             i.putExtra(MediaStore.EXTRA_MEDIA_ARTIST, mCurrentArtistNameForAlbum);
             i.putExtra(MediaStore.EXTRA_MEDIA_ALBUM, mCurrentAlbumName);
             i.putExtra(MediaStore.EXTRA_MEDIA_FOCUS, MediaStore.Audio.Albums.ENTRY_CONTENT_TYPE);
@@ -458,13 +482,13 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
                 if (resultCode == RESULT_OK) {
                     Uri uri = intent.getData();
                     if (uri != null) {
-                        int [] list = null;
+                        long [] list = null;
                         if (mCurrentArtistId != null) {
-                            list = MusicUtils.getSongListForArtist(this, Integer.parseInt(mCurrentArtistId));
+                            list = MusicUtils.getSongListForArtist(this, Long.parseLong(mCurrentArtistId));
                         } else if (mCurrentAlbumId != null) {
-                            list = MusicUtils.getSongListForAlbum(this, Integer.parseInt(mCurrentAlbumId));
+                            list = MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
                         }
-                        MusicUtils.addToPlaylist(this, list, Integer.parseInt(uri.getLastPathSegment()));
+                        MusicUtils.addToPlaylist(this, list, Long.parseLong(uri.getLastPathSegment()));
                     }
                 }
                 break;
@@ -649,8 +673,8 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             
             vh.line2.setText(songs_albums);
             
-            int currentartistid = MusicUtils.getCurrentArtistId();
-            int artistid = cursor.getInt(mGroupArtistIdIdx);
+            long currentartistid = MusicUtils.getCurrentArtistId();
+            long artistid = cursor.getLong(mGroupArtistIdIdx);
             if (currentartistid == artistid && !isexpanded) {
                 vh.play_indicator.setImageDrawable(mNowPlayingOverlay);
             } else {
@@ -706,13 +730,13 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
                 iv.setBackgroundDrawable(mDefaultAlbumIcon);
                 iv.setImageDrawable(null);
             } else {
-                int artIndex = cursor.getInt(0);
+                long artIndex = cursor.getLong(0);
                 Drawable d = MusicUtils.getCachedArtwork(context, artIndex, mDefaultAlbumIcon);
                 iv.setImageDrawable(d);
             }
 
-            int currentalbumid = MusicUtils.getCurrentAlbumId();
-            int aid = cursor.getInt(0);
+            long currentalbumid = MusicUtils.getCurrentAlbumId();
+            long aid = cursor.getLong(0);
             iv = vh.play_indicator;
             if (currentalbumid == aid) {
                 iv.setImageDrawable(mNowPlayingOverlay);
@@ -725,7 +749,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         @Override
         protected Cursor getChildrenCursor(Cursor groupCursor) {
             
-            int id = groupCursor.getInt(groupCursor.getColumnIndexOrThrow(MediaStore.Audio.Artists._ID));
+            long id = groupCursor.getLong(groupCursor.getColumnIndexOrThrow(MediaStore.Audio.Artists._ID));
             
             String[] cols = new String[] {
                     MediaStore.Audio.Albums._ID,

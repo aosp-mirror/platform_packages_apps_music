@@ -18,7 +18,7 @@
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="12px">
+    android:padding="12dip">
 
     <ProgressBar android:id="@+id/spinner"
         style="?android:attr/progressBarStyleLarge"
