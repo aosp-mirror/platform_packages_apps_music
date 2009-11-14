@@ -33,9 +33,9 @@
     <string name="delete_item" msgid="3363330144534750601">"删除"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"全部随机播放"</string>
     <string name="play_all" msgid="6309622568869321842">"全部播放"</string>
-    <string name="delete_artist_desc" msgid="1843750591006508005">"将会从 SD 卡上永久删除<xliff:g id="ARTIST">%s</xliff:g>的所有歌曲。"</string>
-    <string name="delete_album_desc" msgid="535515999268177079">"将会从 SD 卡上永久删除整张“<xliff:g id="ALBUM">%s</xliff:g>”专辑。"</string>
-    <string name="delete_song_desc" msgid="1856800468541831408">"将会从 SD 卡上永久删除“<xliff:g id="SONG">%s</xliff:g>”。"</string>
+    <string name="delete_artist_desc" msgid="1843750591006508005">"<xliff:g id="ARTIST">%s</xliff:g>的所有歌曲会从 SD 卡上永久删除。"</string>
+    <string name="delete_album_desc" msgid="535515999268177079">"“<xliff:g id="ALBUM">%s</xliff:g>”专辑的所有内容会从 SD 卡上永久删除。"</string>
+    <string name="delete_song_desc" msgid="1856800468541831408">"“<xliff:g id="SONG">%s</xliff:g>”会从 SD 卡上永久删除。"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"确定"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one" msgid="8560276109508404217">"已删除 1 首歌曲。"</item>
