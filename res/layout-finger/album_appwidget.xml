@@ -14,54 +14,36 @@
      limitations under the License.
 -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/appwidget_width"
-    android:layout_height="@dimen/appwidget_height"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
     android:background="@drawable/appwidget_bg">
 
-    <ImageButton
-        android:id="@+id/control_play"
-        android:layout_width="48dip"
-        android:layout_height="fill_parent"
-        android:layout_marginLeft="2dip"
-        android:src="@drawable/appwidget_play"
-        android:background="@android:color/transparent"
-        android:scaleType="center"
-        />
-
-    <ImageButton
-        android:id="@+id/control_next"
-        android:layout_width="35dip"
-        android:layout_height="fill_parent"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/appwidget_next"
-        android:background="@android:color/transparent"
-        android:scaleType="center"
-        />
-
-    <LinearLayout
+   <LinearLayout
         android:id="@+id/album_appwidget"
-        android:layout_width="fill_parent"
+        android:layout_width="0dip"
+        android:layout_weight="3"
         android:layout_height="fill_parent"
-        android:layout_toRightOf="@id/control_play"
-        android:layout_toLeftOf="@id/control_next"
-        android:background="@drawable/appwidget_inner_dither"
         android:orientation="vertical"
         android:gravity="center_vertical"
+        android:clickable="true"
+        android:focusable="true"
+	    android:background="@drawable/appwidget_button_left"
+        android:paddingLeft="18dip"
+        android:paddingRight="8dip"
         >
 
         <TextView
             android:id="@+id/title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="20dip"
             android:textColor="@color/appwidget_text"
             android:textStyle="bold"
             android:textSize="18sp"
             android:singleLine="true"
             android:fadingEdge="horizontal"
-            android:fadingEdgeLength="20dip"
+            android:fadingEdgeLength="10dip"
             android:ellipsize="none"
             />
 
@@ -69,16 +51,45 @@
             android:id="@+id/artist"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="20dip"
             android:textColor="@color/appwidget_text"
             android:textSize="14sp"
             android:singleLine="true"
             android:fadingEdge="horizontal"
-            android:fadingEdgeLength="20dip"
+            android:fadingEdgeLength="10dip"
             android:ellipsize="none"
             />
-
     </LinearLayout>
+    
+ 	<ImageView
+        android:layout_width="1dip"
+        android:layout_height="fill_parent"
+        android:background="@drawable/appwidget_divider"
+        />
+        
+    <ImageButton
+        android:id="@+id/control_play"
+        android:layout_width="0dip"
+        android:layout_weight="1"
+        android:layout_height="fill_parent"
+        android:src="@drawable/ic_appwidget_music_play"
+        android:background="@drawable/appwidget_button_center"
+        android:scaleType="center"
+        />
 
-</RelativeLayout>
+ 	<ImageView
+        android:layout_width="1dip"
+        android:layout_height="fill_parent"
+        android:background="@drawable/appwidget_divider"
+        />
+        
+    <ImageButton
+        android:id="@+id/control_next"
+        android:layout_width="0dip"
+        android:layout_weight="1"
+        android:layout_height="fill_parent"
+        android:src="@drawable/ic_appwidget_music_next"
+        android:background="@drawable/appwidget_button_right"
+        android:scaleType="center"
+        />
+
+</LinearLayout>

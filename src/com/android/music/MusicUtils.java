@@ -16,21 +16,7 @@
 
 package com.android.music;
 
-import java.io.File;
-import java.io.FileDescriptor;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Arrays;
-import java.util.Formatter;
-import java.util.HashMap;
-import java.util.Locale;
-
 import android.app.Activity;
-import android.app.ExpandableListActivity;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -49,20 +35,29 @@ import android.graphics.ColorFilter;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.media.MediaFile;
-import android.media.MediaScanner;
 import android.net.Uri;
-import android.os.RemoteException;
 import android.os.Environment;
 import android.os.ParcelFileDescriptor;
+import android.os.RemoteException;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileDescriptor;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Arrays;
+import java.util.Formatter;
+import java.util.HashMap;
+import java.util.Locale;
 
 public class MusicUtils {
 
@@ -195,7 +190,7 @@ public class MusicUtils {
         }
     }
     
-    public static int getCurrentAlbumId() {
+    public static long getCurrentAlbumId() {
         if (sService != null) {
             try {
                 return sService.getAlbumId();
@@ -205,7 +200,7 @@ public class MusicUtils {
         return -1;
     }
 
-    public static int getCurrentArtistId() {
+    public static long getCurrentArtistId() {
         if (MusicUtils.sService != null) {
             try {
                 return sService.getArtistId();
@@ -215,7 +210,7 @@ public class MusicUtils {
         return -1;
     }
 
-    public static int getCurrentAudioId() {
+    public static long getCurrentAudioId() {
         if (MusicUtils.sService != null) {
             try {
                 return sService.getAudioId();
@@ -250,14 +245,14 @@ public class MusicUtils {
         return false;
     }
 
-    private final static int [] sEmptyList = new int[0];
+    private final static long [] sEmptyList = new long[0];
     
-    public static int [] getSongListForCursor(Cursor cursor) {
+    public static long [] getSongListForCursor(Cursor cursor) {
         if (cursor == null) {
             return sEmptyList;
         }
         int len = cursor.getCount();
-        int [] list = new int[len];
+        long [] list = new long[len];
         cursor.moveToFirst();
         int colidx = -1;
         try {
@@ -266,13 +261,13 @@ public class MusicUtils {
             colidx = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID);
         }
         for (int i = 0; i < len; i++) {
-            list[i] = cursor.getInt(colidx);
+            list[i] = cursor.getLong(colidx);
             cursor.moveToNext();
         }
         return list;
     }
 
-    public static int [] getSongListForArtist(Context context, int id) {
+    public static long [] getSongListForArtist(Context context, long id) {
         final String[] ccols = new String[] { MediaStore.Audio.Media._ID };
         String where = MediaStore.Audio.Media.ARTIST_ID + "=" + id + " AND " + 
         MediaStore.Audio.Media.IS_MUSIC + "=1";
@@ -281,14 +276,14 @@ public class MusicUtils {
                 MediaStore.Audio.Media.ALBUM_KEY + ","  + MediaStore.Audio.Media.TRACK);
         
         if (cursor != null) {
-            int [] list = getSongListForCursor(cursor);
+            long [] list = getSongListForCursor(cursor);
             cursor.close();
             return list;
         }
         return sEmptyList;
     }
 
-    public static int [] getSongListForAlbum(Context context, int id) {
+    public static long [] getSongListForAlbum(Context context, long id) {
         final String[] ccols = new String[] { MediaStore.Audio.Media._ID };
         String where = MediaStore.Audio.Media.ALBUM_ID + "=" + id + " AND " + 
                 MediaStore.Audio.Media.IS_MUSIC + "=1";
@@ -296,20 +291,20 @@ public class MusicUtils {
                 ccols, where, null, MediaStore.Audio.Media.TRACK);
 
         if (cursor != null) {
-            int [] list = getSongListForCursor(cursor);
+            long [] list = getSongListForCursor(cursor);
             cursor.close();
             return list;
         }
         return sEmptyList;
     }
 
-    public static int [] getSongListForPlaylist(Context context, long plid) {
+    public static long [] getSongListForPlaylist(Context context, long plid) {
         final String[] ccols = new String[] { MediaStore.Audio.Playlists.Members.AUDIO_ID };
         Cursor cursor = query(context, MediaStore.Audio.Playlists.Members.getContentUri("external", plid),
                 ccols, null, null, MediaStore.Audio.Playlists.Members.DEFAULT_SORT_ORDER);
         
         if (cursor != null) {
-            int [] list = getSongListForCursor(cursor);
+            long [] list = getSongListForCursor(cursor);
             cursor.close();
             return list;
         }
@@ -317,13 +312,13 @@ public class MusicUtils {
     }
     
     public static void playPlaylist(Context context, long plid) {
-        int [] list = getSongListForPlaylist(context, plid);
+        long [] list = getSongListForPlaylist(context, plid);
         if (list != null) {
             playAll(context, list, -1, false);
         }
     }
 
-    public static int [] getAllSongs(Context context) {
+    public static long [] getAllSongs(Context context) {
         Cursor c = query(context, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                 new String[] {MediaStore.Audio.Media._ID}, MediaStore.Audio.Media.IS_MUSIC + "=1",
                 null, null);
@@ -332,10 +327,10 @@ public class MusicUtils {
                 return null;
             }
             int len = c.getCount();
-            int[] list = new int[len];
+            long [] list = new long[len];
             for (int i = 0; i < len; i++) {
                 c.moveToNext();
-                list[i] = c.getInt(0);
+                list[i] = c.getLong(0);
             }
 
             return list;
@@ -377,7 +372,7 @@ public class MusicUtils {
                 cur.moveToFirst();
                 while (! cur.isAfterLast()) {
                     Intent intent = new Intent();
-                    intent.putExtra("playlist", cur.getInt(0));
+                    intent.putExtra("playlist", cur.getLong(0));
 //                    if (cur.getInt(0) == mLastPlaylistSelected) {
 //                        sub.add(0, MusicBaseActivity.PLAYLIST_SELECTED, cur.getString(1)).setIntent(intent);
 //                    } else {
@@ -399,7 +394,7 @@ public class MusicUtils {
         return;
     }
     
-    public static void deleteTracks(Context context, int [] list) {
+    public static void deleteTracks(Context context, long [] list) {
         
         String [] cols = new String [] { MediaStore.Audio.Media._ID, 
                 MediaStore.Audio.Media.DATA, MediaStore.Audio.Media.ALBUM_ID };
@@ -423,10 +418,10 @@ public class MusicUtils {
                 c.moveToFirst();
                 while (! c.isAfterLast()) {
                     // remove from current playlist
-                    int id = c.getInt(0);
+                    long id = c.getLong(0);
                     sService.removeTrack(id);
                     // remove from album art cache
-                    int artIndex = c.getInt(2);
+                    long artIndex = c.getLong(2);
                     synchronized(sArtCache) {
                         sArtCache.remove(artIndex);
                     }
@@ -466,7 +461,7 @@ public class MusicUtils {
         context.getContentResolver().notifyChange(Uri.parse("content://media"), null);
     }
     
-    public static void addToCurrentPlaylist(Context context, int [] list) {
+    public static void addToCurrentPlaylist(Context context, long [] list) {
         if (sService == null) {
             return;
         }
@@ -479,7 +474,7 @@ public class MusicUtils {
         }
     }
     
-    public static void addToPlaylist(Context context, int [] ids, long playlistid) {
+    public static void addToPlaylist(Context context, long [] ids, long playlistid) {
         if (ids == null) {
             // this shouldn't happen (the menuitems shouldn't be visible
             // unless the selected item represents something playable
@@ -513,17 +508,24 @@ public class MusicUtils {
     }
 
     public static Cursor query(Context context, Uri uri, String[] projection,
-            String selection, String[] selectionArgs, String sortOrder) {
+            String selection, String[] selectionArgs, String sortOrder, int limit) {
         try {
             ContentResolver resolver = context.getContentResolver();
             if (resolver == null) {
                 return null;
+            }
+            if (limit > 0) {
+                uri = uri.buildUpon().appendQueryParameter("limit", "" + limit).build();
             }
             return resolver.query(uri, projection, selection, selectionArgs, sortOrder);
          } catch (UnsupportedOperationException ex) {
             return null;
         }
         
+    }
+    public static Cursor query(Context context, Uri uri, String[] projection,
+            String selection, String[] selectionArgs, String sortOrder) {
+        return query(context, uri, projection, selection, selectionArgs, sortOrder, 0);
     }
     
     public static boolean isMediaScannerScanning(Context context) {
@@ -559,6 +561,8 @@ public class MusicUtils {
         }
     }
     
+    private static String mLastSdStatus;
+
     public static void displayDatabaseError(Activity a) {
         String status = Environment.getExternalStorageState();
         int title = R.string.sdcard_error_title;
@@ -580,7 +584,8 @@ public class MusicUtils {
             Intent intent = new Intent();
             intent.setClass(a, ScanningProgress.class);
             a.startActivityForResult(intent, Defs.SCAN_DONE);
-        } else {
+        } else if (!TextUtils.equals(mLastSdStatus, status)) {
+            mLastSdStatus = status;
             Log.d(TAG, "sd card: " + status);
         }
 
@@ -632,7 +637,8 @@ public class MusicUtils {
     private static final Object[] sTimeArgs = new Object[5];
 
     public static String makeTimeString(Context context, long secs) {
-        String durationformat = context.getString(R.string.durationformat);
+        String durationformat = context.getString(
+                secs < 3600 ? R.string.durationformatshort : R.string.durationformatlong);
         
         /* Provide multiple arguments so the format can be changed easily
          * by modifying the xml.
@@ -661,17 +667,17 @@ public class MusicUtils {
         playAll(context, cursor, position, false);
     }
     
-    public static void playAll(Context context, int [] list, int position) {
+    public static void playAll(Context context, long [] list, int position) {
         playAll(context, list, position, false);
     }
     
     private static void playAll(Context context, Cursor cursor, int position, boolean force_shuffle) {
     
-        int [] list = getSongListForCursor(cursor);
+        long [] list = getSongListForCursor(cursor);
         playAll(context, list, position, force_shuffle);
     }
     
-    private static void playAll(Context context, int [] list, int position, boolean force_shuffle) {
+    private static void playAll(Context context, long [] list, int position, boolean force_shuffle) {
         if (list.length == 0 || sService == null) {
             Log.d("MusicUtils", "attempt to play empty song list");
             // Don't try to play empty playlists. Nothing good will come of it.
@@ -683,13 +689,13 @@ public class MusicUtils {
             if (force_shuffle) {
                 sService.setShuffleMode(MediaPlaybackService.SHUFFLE_NORMAL);
             }
-            int curid = sService.getAudioId();
+            long curid = sService.getAudioId();
             int curpos = sService.getQueuePosition();
             if (position != -1 && curpos == position && curid == list[position]) {
                 // The selected file is the file that's currently playing;
                 // figure out if we need to restart with a new playlist,
                 // or just launch the playback activity.
-                int [] playlist = sService.getQueue();
+                long [] playlist = sService.getQueue();
                 if (Arrays.equals(list, playlist)) {
                     // we don't need to set a new list, but we should resume playback if needed
                     sService.play();
@@ -740,12 +746,11 @@ public class MusicUtils {
     }
     
     private static int sArtId = -2;
-    private static byte [] mCachedArt;
     private static Bitmap mCachedBit = null;
     private static final BitmapFactory.Options sBitmapOptionsCache = new BitmapFactory.Options();
     private static final BitmapFactory.Options sBitmapOptions = new BitmapFactory.Options();
     private static final Uri sArtworkUri = Uri.parse("content://media/external/audio/albumart");
-    private static final HashMap<Integer, Drawable> sArtCache = new HashMap<Integer, Drawable>();
+    private static final HashMap<Long, Drawable> sArtCache = new HashMap<Long, Drawable>();
     private static int sArtCacheId = -1;
     
     static {
@@ -777,7 +782,7 @@ public class MusicUtils {
         }
     }
     
-    public static Drawable getCachedArtwork(Context context, int artIndex, BitmapDrawable defaultArtwork) {
+    public static Drawable getCachedArtwork(Context context, long artIndex, BitmapDrawable defaultArtwork) {
         Drawable d = null;
         synchronized(sArtCache) {
             d = sArtCache.get(artIndex);
@@ -807,7 +812,7 @@ public class MusicUtils {
     // Get album art for specified album. This method will not try to
     // fall back to getting artwork directly from the file, nor will
     // it attempt to repair the database.
-    private static Bitmap getArtworkQuick(Context context, int album_id, int w, int h) {
+    private static Bitmap getArtworkQuick(Context context, long album_id, int w, int h) {
         // NOTE: There is in fact a 1 pixel border on the right side in the ImageView
         // used to display this drawable. Take it into account now, so we don't have to
         // scale later.
@@ -865,27 +870,18 @@ public class MusicUtils {
     /** Get album art for specified album. You should not pass in the album id
      * for the "unknown" album here (use -1 instead)
      */
-    public static Bitmap getArtwork(Context context, int album_id) {
-        return getArtwork(context, album_id, true);
-    }
-    
-    /** Get album art for specified album. You should not pass in the album id
-     * for the "unknown" album here (use -1 instead)
-     */
-    public static Bitmap getArtwork(Context context, int album_id, boolean allowDefault) {
+    public static Bitmap getArtwork(Context context, long song_id, long album_id) {
 
         if (album_id < 0) {
             // This is something that is not in the database, so get the album art directly
             // from the file.
-            Bitmap bm = getArtworkFromFile(context, null, -1);
-            if (bm != null) {
-                return bm;
+            if (song_id >= 0) {
+                Bitmap bm = getArtworkFromFile(context, song_id, -1);
+                if (bm != null) {
+                    return bm;
+                }
             }
-            if (allowDefault) {
-                return getDefaultArtwork(context);
-            } else {
-                return null;
-            }
+            return getDefaultArtwork(context);
         }
 
         ContentResolver res = context.getContentResolver();
@@ -898,61 +894,16 @@ public class MusicUtils {
             } catch (FileNotFoundException ex) {
                 // The album art thumbnail does not actually exist. Maybe the user deleted it, or
                 // maybe it never existed to begin with.
-                Bitmap bm = getArtworkFromFile(context, null, album_id);
+                Bitmap bm = getArtworkFromFile(context, song_id, album_id);
                 if (bm != null) {
                     if (bm.getConfig() == null) {
                         bm = bm.copy(Bitmap.Config.RGB_565, false);
                         if (bm == null) {
-                            if (allowDefault) {
-                                return getDefaultArtwork(context);
-                            } else {
-                                return null;
-                            }
+                            return getDefaultArtwork(context);
                         }
                     }
-                    // Put the newly found artwork in the database.
-                    // Note that this shouldn't be done for the "unknown" album,
-                    // but if this method is called correctly, that won't happen.
-                    
-                    // first write it somewhere
-                    String file = Environment.getExternalStorageDirectory()
-                        + "/albumthumbs/" + String.valueOf(System.currentTimeMillis());
-                    if (ensureFileExists(file)) {
-                        try {
-                            OutputStream outstream = new FileOutputStream(file);
-                            boolean success = bm.compress(Bitmap.CompressFormat.JPEG, 75, outstream);
-                            outstream.close();
-                            if (success) {
-                                ContentValues values = new ContentValues();
-                                values.put("album_id", album_id);
-                                values.put("_data", file);
-                                Uri newuri = res.insert(sArtworkUri, values);
-                                if (newuri == null) {
-                                    // Failed to insert in to the database. The most likely
-                                    // cause of this is that the item already existed in the
-                                    // database, and the most likely cause of that is that
-                                    // the album was scanned before, but the user deleted the
-                                    // album art from the sd card.
-                                    // We can ignore that case here, since the media provider
-                                    // will regenerate the album art for those entries when
-                                    // it detects this.
-                                    success = false;
-                                }
-                            }
-                            if (!success) {
-                                File f = new File(file);
-                                f.delete();
-                            }
-                        } catch (FileNotFoundException e) {
-                            Log.e(TAG, "error creating file", e);
-                        } catch (IOException e) {
-                            Log.e(TAG, "error creating file", e);
-                        }
-                    }
-                } else if (allowDefault) {
-                    bm = getDefaultArtwork(context);
                 } else {
-                    bm = null;
+                    bm = getDefaultArtwork(context);
                 }
                 return bm;
             } finally {
@@ -967,168 +918,39 @@ public class MusicUtils {
         
         return null;
     }
-
-    // copied from MediaProvider
-    private static boolean ensureFileExists(String path) {
-        File file = new File(path);
-        if (file.exists()) {
-            return true;
-        } else {
-            // we will not attempt to create the first directory in the path
-            // (for example, do not create /sdcard if the SD card is not mounted)
-            int secondSlash = path.indexOf('/', 1);
-            if (secondSlash < 1) return false;
-            String directoryPath = path.substring(0, secondSlash);
-            File directory = new File(directoryPath);
-            if (!directory.exists())
-                return false;
-            file.getParentFile().mkdirs();
-            try {
-                return file.createNewFile();
-            } catch(IOException ioe) {
-                Log.d(TAG, "File creation failed for " + path);
-            }
-            return false;
-        }
-    }
     
     // get album art for specified file
     private static final String sExternalMediaUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI.toString();
-    private static Bitmap getArtworkFromFile(Context context, Uri uri, int albumid) {
+    private static Bitmap getArtworkFromFile(Context context, long songid, long albumid) {
         Bitmap bm = null;
         byte [] art = null;
         String path = null;
 
-        if (sArtId == albumid) {
-            //Log.i("@@@@@@ ", "reusing cached data", new Exception());
-            if (mCachedBit != null) {
-                return mCachedBit;
-            }
-            art = mCachedArt;
-        } else {
-            // try reading embedded artwork
-            if (uri == null) {
-                try {
-                    int curalbum = sService.getAlbumId();
-                    if (curalbum == albumid || albumid < 0) {
-                        path = sService.getPath();
-                        if (path != null) {
-                            uri = Uri.parse(path);
-                        }
-                    }
-                } catch (RemoteException ex) {
-                    return null;
-                } catch (NullPointerException ex) {
-                    return null;
-                }
-            }
-            if (uri == null) {
-                if (albumid >= 0) {
-                    Cursor c = query(context,MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-                            new String[] { MediaStore.Audio.Media._ID, MediaStore.Audio.Media.ALBUM },
-                            MediaStore.Audio.Media.ALBUM_ID + "=?", new String [] {String.valueOf(albumid)},
-                            null);
-                    if (c != null) {
-                        if (c.moveToFirst()) {
-                            int trackid = c.getInt(0);
-                            uri = ContentUris.withAppendedId(
-                                    MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, trackid);
-                            if (MediaFile.UNKNOWN_STRING.equals(c.getString(1))) {
-                                albumid = -1;
-                            }
-                        }
-                        c.close();
-                    }
-                }
-            }
-            if (uri != null) {
-                MediaScanner scanner = new MediaScanner(context);
-                ParcelFileDescriptor pfd = null;
-                try {
-                    pfd = context.getContentResolver().openFileDescriptor(uri, "r");
-                    if (pfd != null) {
-                        FileDescriptor fd = pfd.getFileDescriptor();
-                        art = scanner.extractAlbumArt(fd);
-                    }
-                } catch (IOException ex) {
-                } catch (SecurityException ex) {
-                } finally {
-                    try {
-                        if (pfd != null) {
-                            pfd.close();
-                        }
-                    } catch (IOException ex) {
-                    }
-                }
-            }
+        if (albumid < 0 && songid < 0) {
+            throw new IllegalArgumentException("Must specify an album or a song id");
         }
-        // if no embedded art exists, look for AlbumArt.jpg in same directory as the media file
-        if (art == null && path != null) {
-            if (path.startsWith(sExternalMediaUri)) {
-                // get the real path
-                Cursor c = query(context,Uri.parse(path),
-                        new String[] { MediaStore.Audio.Media.DATA},
-                        null, null, null);
-                if (c != null) {
-                    c.moveToFirst();
-                    if (!c.isAfterLast()) {
-                        path = c.getString(0);
-                    }
-                    c.close();
+
+        try {
+            if (albumid < 0) {
+                Uri uri = Uri.parse("content://media/external/audio/media/" + songid + "/albumart");
+                ParcelFileDescriptor pfd = context.getContentResolver().openFileDescriptor(uri, "r");
+                if (pfd != null) {
+                    FileDescriptor fd = pfd.getFileDescriptor();
+                    bm = BitmapFactory.decodeFileDescriptor(fd);
+                }
+            } else {
+                Uri uri = ContentUris.withAppendedId(sArtworkUri, albumid);
+                ParcelFileDescriptor pfd = context.getContentResolver().openFileDescriptor(uri, "r");
+                if (pfd != null) {
+                    FileDescriptor fd = pfd.getFileDescriptor();
+                    bm = BitmapFactory.decodeFileDescriptor(fd);
                 }
             }
-            int lastSlash = path.lastIndexOf('/');
-            if (lastSlash > 0) {
-                String artPath = path.substring(0, lastSlash + 1) + "AlbumArt.jpg";
-                File file = new File(artPath);
-                if (file.exists()) {
-                    art = new byte[(int)file.length()];
-                    FileInputStream stream = null;
-                    try {
-                        stream = new FileInputStream(file);
-                        stream.read(art);
-                    } catch (IOException ex) {
-                        art = null;
-                    } finally {
-                        try {
-                            if (stream != null) {
-                                stream.close();
-                            }
-                        } catch (IOException ex) {
-                        }
-                    }
-                } else {
-                    // TODO: try getting album art from the web
-                }
-            }
+        } catch (FileNotFoundException ex) {
+            //
         }
-        
-        if (art != null) {
-            try {
-                // get the size of the bitmap
-                BitmapFactory.Options opts = new BitmapFactory.Options();
-                opts.inJustDecodeBounds = true;
-                opts.inSampleSize = 1;
-                BitmapFactory.decodeByteArray(art, 0, art.length, opts);
-                
-                // request a reasonably sized output image
-                // TODO: don't hardcode the size
-                while (opts.outHeight > 320 || opts.outWidth > 320) {
-                    opts.outHeight /= 2;
-                    opts.outWidth /= 2;
-                    opts.inSampleSize *= 2;
-                }
-                
-                // get the image for real now
-                opts.inJustDecodeBounds = false;
-                bm = BitmapFactory.decodeByteArray(art, 0, art.length, opts);
-                if (albumid != -1) {
-                    sArtId = albumid;
-                }
-                mCachedArt = art;
-                mCachedBit = bm;
-            } catch (Exception e) {
-            }
+        if (bm != null) {
+            mCachedBit = bm;
         }
         return bm;
     }

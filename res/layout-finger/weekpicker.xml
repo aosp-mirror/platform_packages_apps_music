@@ -39,25 +39,25 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="6px"
-        android:layout_marginBottom="6px"
+        android:layout_marginTop="6dip"
+        android:layout_marginBottom="6dip"
         />
     
     <!-- Set button -->
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="6px"
+        android:padding="6dip"
         android:background="#ffffff" >
 
         <Button android:id="@+id/set"
-            android:layout_width="120px"
+            android:layout_width="120dip"
             android:layout_height="wrap_content"
             android:text="@string/weekpicker_set"
             android:layout_alignParentLeft="true" />
 
         <Button android:id="@+id/cancel"
-            android:layout_width="120px"
+            android:layout_width="120dip"
             android:layout_height="wrap_content" 
             android:text="@string/cancel"
             android:layout_alignParentRight="true" />
