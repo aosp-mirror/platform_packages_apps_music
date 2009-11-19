@@ -575,7 +575,12 @@ public class MediaPlaybackService extends Service {
             if (CMDNEXT.equals(cmd) || NEXT_ACTION.equals(action)) {
                 next(true);
             } else if (CMDPREVIOUS.equals(cmd) || PREVIOUS_ACTION.equals(action)) {
-                prev();
+                if (position() < 2000) {
+                    prev();
+                } else {
+                    seek(0);
+                    play();
+                }
             } else if (CMDTOGGLEPAUSE.equals(cmd) || TOGGLEPAUSE_ACTION.equals(action)) {
                 if (isPlaying()) {
                     pause();
