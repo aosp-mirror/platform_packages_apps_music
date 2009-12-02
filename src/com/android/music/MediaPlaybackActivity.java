@@ -102,7 +102,6 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         mAlbumArtHandler = new AlbumArtHandler(mAlbumArtWorker.getLooper());
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
         setContentView(R.layout.audio_player);
 
         mCurrentTime = (TextView) findViewById(R.id.currenttime);
