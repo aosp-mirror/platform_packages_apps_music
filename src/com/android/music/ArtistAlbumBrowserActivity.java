@@ -154,13 +154,12 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
     @Override
     public void onDestroy() {
         MusicUtils.unbindFromService(this);
-        // if we have an adapter and didn't send it off to another activity yet, we should
-        // close the cursor
+        // If we have an adapter and didn't send it off to another activity yet, we should
+        // close its cursor, which we do by assigning a null cursor to it. Doing this
+        // instead of closing the cursor directly keeps the framework from accessing
+        // the closed cursor later.
         if (!mAdapterSent && mAdapter != null) {
-            Cursor c = mAdapter.getCursor();
-            if (c != null) {
-                c.close();
-            }
+            mAdapter.changeCursor(null);
         }
         // Because we pass the adapter to the next activity, we need to make
         // sure it doesn't keep a reference to this activity. We can do this
@@ -810,6 +809,9 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
 
         @Override
         public void changeCursor(Cursor cursor) {
+            if (mActivity.isFinishing()) {
+                return;
+            }
             if (cursor != mActivity.mArtistCursor) {
                 mActivity.mArtistCursor = cursor;
                 getColumnIndices(cursor);
