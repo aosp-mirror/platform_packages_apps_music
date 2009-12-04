@@ -511,6 +511,10 @@ public class TrackBrowserActivity extends ListActivity
 
     private void removePlaylistItem(int which) {
         View v = mTrackList.getChildAt(which - mTrackList.getFirstVisiblePosition());
+        if (v == null) {
+            Log.d(LOGTAG, "No view when removing playlist item " + which);
+            return;
+        }
         try {
             if (MusicUtils.sService != null
                     && which != MusicUtils.sService.getQueuePosition()) {
