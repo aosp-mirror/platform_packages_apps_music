@@ -460,44 +460,8 @@ public class TrackBrowserActivity extends ListActivity
                 mDeletedOneRow = true;
             } else {
                 // update a saved playlist
-                Uri baseUri = MediaStore.Audio.Playlists.Members.getContentUri("external",
-                        Long.valueOf(mPlaylist));
-                ContentValues values = new ContentValues();
-                String where = MediaStore.Audio.Playlists.Members._ID + "=?";
-                String [] wherearg = new String[1];
-                ContentResolver res = getContentResolver();
-                
-                int colidx = mTrackCursor.getColumnIndexOrThrow(
-                        MediaStore.Audio.Playlists.Members.PLAY_ORDER);
-                if (from < to) {
-                    // move the item to somewhere later in the list
-                    mTrackCursor.moveToPosition(to);
-                    long toidx = mTrackCursor.getLong(colidx);
-                    mTrackCursor.moveToPosition(from);
-                    values.put(MediaStore.Audio.Playlists.Members.PLAY_ORDER, toidx);
-                    wherearg[0] = mTrackCursor.getString(0);
-                    res.update(baseUri, values, where, wherearg);
-                    for (int i = from + 1; i <= to; i++) {
-                        mTrackCursor.moveToPosition(i);
-                        values.put(MediaStore.Audio.Playlists.Members.PLAY_ORDER, i - 1);
-                        wherearg[0] = mTrackCursor.getString(0);
-                        res.update(baseUri, values, where, wherearg);
-                    }
-                } else if (from > to) {
-                    // move the item to somewhere earlier in the list
-                    mTrackCursor.moveToPosition(to);
-                    long toidx = mTrackCursor.getLong(colidx);
-                    mTrackCursor.moveToPosition(from);
-                    values.put(MediaStore.Audio.Playlists.Members.PLAY_ORDER, toidx);
-                    wherearg[0] = mTrackCursor.getString(0);
-                    res.update(baseUri, values, where, wherearg);
-                    for (int i = from - 1; i >= to; i--) {
-                        mTrackCursor.moveToPosition(i);
-                        values.put(MediaStore.Audio.Playlists.Members.PLAY_ORDER, i + 1);
-                        wherearg[0] = mTrackCursor.getString(0);
-                        res.update(baseUri, values, where, wherearg);
-                    }
-                }
+                MediaStore.Audio.Playlists.Members.moveItem(getContentResolver(),
+                        Long.valueOf(mPlaylist), from, to);
             }
         }
     };
