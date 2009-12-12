@@ -175,8 +175,10 @@ public class PlaylistBrowserActivity extends ListActivity
     @Override
     public void onDestroy() {
         ListView lv = getListView();
-        mLastListPosCourse = lv.getFirstVisiblePosition();
-        mLastListPosFine = lv.getChildAt(0).getTop();
+        if (lv != null) {
+            mLastListPosCourse = lv.getFirstVisiblePosition();
+            mLastListPosFine = lv.getChildAt(0).getTop();
+        }
         MusicUtils.unbindFromService(this);
         if (!mAdapterSent) {
             Cursor c = mAdapter.getCursor();
@@ -241,6 +243,7 @@ public class PlaylistBrowserActivity extends ListActivity
             mLastListPosCourse = -1;
         }
         MusicUtils.hideDatabaseError(this);
+        MusicUtils.updateButtonBar(this, R.id.playlisttab);
         setTitle();
     }
 
