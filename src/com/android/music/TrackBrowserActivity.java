@@ -236,7 +236,10 @@ public class TrackBrowserActivity extends ListActivity
         ListView lv = getListView();
         if (lv != null) {
             mLastListPosCourse = lv.getFirstVisiblePosition();
-            mLastListPosFine = lv.getChildAt(0).getTop();
+            View cv = lv.getChildAt(0);
+            if (cv != null) {
+                mLastListPosFine = cv.getTop();
+            }
         }
         MusicUtils.unbindFromService(this);
         try {
