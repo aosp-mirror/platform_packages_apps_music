@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2007 The Android Open Source Project
+<!-- Copyright (C) 2008 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -22,12 +22,19 @@
 
     <include layout="@layout/sd_error" />
 
-    <com.android.music.TouchInterceptor
+    <include layout="@layout/buttonbar" />
+
+    <ExpandableListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_weight="1"
         android:textSize="18sp"
         android:drawSelectorOnTop="false"
-        android:fastScrollEnabled="true" /> 
+        android:fastScrollEnabled="true"
+        android:indicatorLeft="8dip"
+        android:indicatorRight="52dip" />
+
+    <include layout="@layout/nowplaying" />
 
 </LinearLayout>
