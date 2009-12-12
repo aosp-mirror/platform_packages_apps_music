@@ -573,9 +573,8 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 case GOTO_START:
                     intent = new Intent();
                     intent.setClass(this, MusicBrowserActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                            | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
+                    finish();
                     break;
                 case USE_AS_RINGTONE: {
                     // Set the system setting to make this the current ringtone
@@ -585,14 +584,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                     return true;
                 }
                 case PARTY_SHUFFLE:
-                    if (mService != null) {
-                        int shuffle = mService.getShuffleMode();
-                        if (shuffle == MediaPlaybackService.SHUFFLE_AUTO) {
-                            mService.setShuffleMode(MediaPlaybackService.SHUFFLE_NONE);
-                        } else {
-                            mService.setShuffleMode(MediaPlaybackService.SHUFFLE_AUTO);
-                        }
-                    }
+                    MusicUtils.togglePartyShuffle();
                     setShuffleButtonImage();
                     break;
                     

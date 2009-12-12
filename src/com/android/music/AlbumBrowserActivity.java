@@ -20,10 +20,12 @@ import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.AsyncQueryHandler;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -35,6 +37,7 @@ import android.media.MediaFile;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -49,6 +52,7 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.Adapter;
 import android.widget.AlphabetIndexer;
 import android.widget.CursorAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -60,7 +64,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import java.text.Collator;
 
 public class AlbumBrowserActivity extends ListActivity
-    implements View.OnCreateContextMenuListener, MusicUtils.Defs
+    implements View.OnCreateContextMenuListener, MusicUtils.Defs, ServiceConnection
 {
     private String mCurrentAlbumId;
     private String mCurrentAlbumName;
@@ -70,6 +74,8 @@ public class AlbumBrowserActivity extends ListActivity
     private AlbumListAdapter mAdapter;
     private boolean mAdapterSent;
     private final static int SEARCH = CHILD_MENU_BASE;
+    private static int mLastListPosCourse = -1;
+    private static int mLastListPosFine = -1;
 
     public AlbumBrowserActivity()
     {
@@ -87,8 +93,9 @@ public class AlbumBrowserActivity extends ListActivity
         }
         super.onCreate(icicle);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        MusicUtils.bindToService(this);
+        MusicUtils.bindToService(this, this);
 
         IntentFilter f = new IntentFilter();
         f.addAction(Intent.ACTION_MEDIA_SCANNER_STARTED);
@@ -98,8 +105,8 @@ public class AlbumBrowserActivity extends ListActivity
         registerReceiver(mScanListener, f);
 
         setContentView(R.layout.media_picker_activity);
+        MusicUtils.updateButtonBar(this, R.id.albumtab);
         ListView lv = getListView();
-        lv.setFastScrollEnabled(true);
         lv.setOnCreateContextMenuListener(this);
         lv.setTextFilterEnabled(true);
 
@@ -146,6 +153,9 @@ public class AlbumBrowserActivity extends ListActivity
 
     @Override
     public void onDestroy() {
+        ListView lv = getListView();
+        mLastListPosCourse = lv.getFirstVisiblePosition();
+        mLastListPosFine = lv.getChildAt(0).getTop();
         MusicUtils.unbindFromService(this);
         if (!mAdapterSent) {
             Cursor c = mAdapter.getCursor();
@@ -178,6 +188,7 @@ public class AlbumBrowserActivity extends ListActivity
         @Override
         public void onReceive(Context context, Intent intent) {
             getListView().invalidateViews();
+            MusicUtils.updateNowPlaying(AlbumBrowserActivity.this);
         }
     };
     private BroadcastReceiver mScanListener = new BroadcastReceiver() {
@@ -220,7 +231,13 @@ public class AlbumBrowserActivity extends ListActivity
             mReScanHandler.sendEmptyMessageDelayed(0, 1000);
             return;
         }
-        
+
+        // restore previous position
+        if (mLastListPosCourse >= 0) {
+            getListView().setSelectionFromTop(mLastListPosCourse, mLastListPosFine);
+            mLastListPosCourse = -1;
+        }
+
         MusicUtils.hideDatabaseError(this);
         setTitle();
     }
@@ -382,15 +399,14 @@ public class AlbumBrowserActivity extends ListActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        menu.add(0, GOTO_START, 0, R.string.goto_start).setIcon(R.drawable.ic_menu_music_library);
-        menu.add(0, GOTO_PLAYBACK, 0, R.string.goto_playback).setIcon(R.drawable.ic_menu_playback);
+        menu.add(0, PARTY_SHUFFLE, 0, R.string.party_shuffle); // icon will be set in onPrepareOptionsMenu()
         menu.add(0, SHUFFLE_ALL, 0, R.string.shuffle_all).setIcon(R.drawable.ic_menu_shuffle);
         return true;
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(GOTO_PLAYBACK).setVisible(MusicUtils.isMusicLoaded());
+        MusicUtils.setPartyShuffleMenuIcon(menu);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -399,17 +415,9 @@ public class AlbumBrowserActivity extends ListActivity
         Intent intent;
         Cursor cursor;
         switch (item.getItemId()) {
-            case GOTO_START:
-                intent = new Intent();
-                intent.setClass(this, MusicBrowserActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                return true;
-
-            case GOTO_PLAYBACK:
-                intent = new Intent("com.android.music.PLAYBACK_VIEWER");
-                startActivity(intent);
-                return true;
+            case PARTY_SHUFFLE:
+                MusicUtils.togglePartyShuffle();
+                break;
 
             case SHUFFLE_ALL:
                 cursor = MusicUtils.query(this, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
@@ -657,5 +665,15 @@ public class AlbumBrowserActivity extends ListActivity
 
     private Cursor mAlbumCursor;
     private String mArtistId;
+
+    @Override
+    public void onServiceConnected(ComponentName name, IBinder service) {
+        MusicUtils.updateNowPlaying(this);
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+        finish();
+    }
 }
 

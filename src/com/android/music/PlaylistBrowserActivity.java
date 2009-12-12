@@ -70,6 +70,8 @@ public class PlaylistBrowserActivity extends ListActivity
     private static final long PODCASTS_PLAYLIST = -3;
     private PlaylistListAdapter mAdapter;
     boolean mAdapterSent;
+    private static int mLastListPosCourse = -1;
+    private static int mLastListPosFine = -1;
 
     private boolean mCreateShortcut;
 
@@ -90,6 +92,7 @@ public class PlaylistBrowserActivity extends ListActivity
         }
 
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         MusicUtils.bindToService(this, new ServiceConnection() {
             public void onServiceConnected(ComponentName classname, IBinder obj) {
@@ -108,7 +111,9 @@ public class PlaylistBrowserActivity extends ListActivity
                         MusicUtils.playPlaylist(PlaylistBrowserActivity.this, id);
                     }
                     finish();
+                    return;
                 }
+                MusicUtils.updateNowPlaying(PlaylistBrowserActivity.this);
             }
 
             public void onServiceDisconnected(ComponentName classname) {
@@ -123,6 +128,7 @@ public class PlaylistBrowserActivity extends ListActivity
         registerReceiver(mScanListener, f);
 
         setContentView(R.layout.media_picker_activity);
+        MusicUtils.updateButtonBar(this, R.id.playlisttab);
         ListView lv = getListView();
         lv.setOnCreateContextMenuListener(this);
         lv.setTextFilterEnabled(true);
@@ -168,6 +174,9 @@ public class PlaylistBrowserActivity extends ListActivity
     
     @Override
     public void onDestroy() {
+        ListView lv = getListView();
+        mLastListPosCourse = lv.getFirstVisiblePosition();
+        mLastListPosFine = lv.getChildAt(0).getTop();
         MusicUtils.unbindFromService(this);
         if (!mAdapterSent) {
             Cursor c = mAdapter.getCursor();
@@ -189,6 +198,7 @@ public class PlaylistBrowserActivity extends ListActivity
         super.onResume();
 
         MusicUtils.setSpinnerState(this);
+        MusicUtils.updateNowPlaying(PlaylistBrowserActivity.this);
     }
     @Override
     public void onPause() {
@@ -225,6 +235,11 @@ public class PlaylistBrowserActivity extends ListActivity
             return;
         }
 
+        // restore previous position
+        if (mLastListPosCourse >= 0) {
+            getListView().setSelectionFromTop(mLastListPosCourse, mLastListPosFine);
+            mLastListPosCourse = -1;
+        }
         MusicUtils.hideDatabaseError(this);
         setTitle();
     }
@@ -236,29 +251,24 @@ public class PlaylistBrowserActivity extends ListActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mCreateShortcut) {
-            menu.add(0, GOTO_START, 0, R.string.goto_start).setIcon(
-                    R.drawable.ic_menu_music_library);
-            menu.add(0, GOTO_PLAYBACK, 0, R.string.goto_playback).setIcon(
-                    R.drawable.ic_menu_playback).setVisible(MusicUtils.isMusicLoaded());
+            menu.add(0, PARTY_SHUFFLE, 0, R.string.party_shuffle); // icon will be set in onPrepareOptionsMenu()
         }
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MusicUtils.setPartyShuffleMenuIcon(menu);
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
         switch (item.getItemId()) {
-            case GOTO_START:
-                intent = new Intent();
-                intent.setClass(this, MusicBrowserActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                return true;
-
-            case GOTO_PLAYBACK:
-                intent = new Intent("com.android.music.PLAYBACK_VIEWER");
-                startActivity(intent);
-                return true;
+            case PARTY_SHUFFLE:
+                MusicUtils.togglePartyShuffle();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
