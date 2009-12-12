@@ -160,8 +160,10 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
     @Override
     public void onDestroy() {
         ExpandableListView lv = getExpandableListView();
-        mLastListPosCourse = lv.getFirstVisiblePosition();
-        mLastListPosFine = lv.getChildAt(0).getTop();
+        if (lv != null) {
+            mLastListPosCourse = lv.getFirstVisiblePosition();
+            mLastListPosFine = lv.getChildAt(0).getTop();
+        }
         
         MusicUtils.unbindFromService(this);
         if (!mAdapterSent) {
@@ -248,6 +250,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
         }
 
         MusicUtils.hideDatabaseError(this);
+        MusicUtils.updateButtonBar(this, R.id.artisttab);
         setTitle();
     }
 

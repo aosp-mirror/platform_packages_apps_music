@@ -154,8 +154,10 @@ public class AlbumBrowserActivity extends ListActivity
     @Override
     public void onDestroy() {
         ListView lv = getListView();
-        mLastListPosCourse = lv.getFirstVisiblePosition();
-        mLastListPosFine = lv.getChildAt(0).getTop();
+        if (lv != null) {
+            mLastListPosCourse = lv.getFirstVisiblePosition();
+            mLastListPosFine = lv.getChildAt(0).getTop();
+        }
         MusicUtils.unbindFromService(this);
         if (!mAdapterSent) {
             Cursor c = mAdapter.getCursor();
@@ -239,6 +241,7 @@ public class AlbumBrowserActivity extends ListActivity
         }
 
         MusicUtils.hideDatabaseError(this);
+        MusicUtils.updateButtonBar(this, R.id.albumtab);
         setTitle();
     }
 
