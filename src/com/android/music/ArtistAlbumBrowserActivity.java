@@ -858,12 +858,10 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
     
     private Cursor mArtistCursor;
 
-    @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
         MusicUtils.updateNowPlaying(this);
     }
 
-    @Override
     public void onServiceDisconnected(ComponentName name) {
         finish();
     }
