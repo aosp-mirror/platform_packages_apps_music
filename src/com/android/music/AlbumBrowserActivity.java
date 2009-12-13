@@ -154,8 +154,10 @@ public class AlbumBrowserActivity extends ListActivity
     @Override
     public void onDestroy() {
         ListView lv = getListView();
-        mLastListPosCourse = lv.getFirstVisiblePosition();
-        mLastListPosFine = lv.getChildAt(0).getTop();
+        if (lv != null) {
+            mLastListPosCourse = lv.getFirstVisiblePosition();
+            mLastListPosFine = lv.getChildAt(0).getTop();
+        }
         MusicUtils.unbindFromService(this);
         // If we have an adapter and didn't send it off to another activity yet, we should
         // close its cursor, which we do by assigning a null cursor to it. Doing this
@@ -240,6 +242,7 @@ public class AlbumBrowserActivity extends ListActivity
         }
 
         MusicUtils.hideDatabaseError(this);
+        MusicUtils.updateButtonBar(this, R.id.albumtab);
         setTitle();
     }
 
