@@ -671,12 +671,10 @@ public class AlbumBrowserActivity extends ListActivity
     private Cursor mAlbumCursor;
     private String mArtistId;
 
-    @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
         MusicUtils.updateNowPlaying(this);
     }
 
-    @Override
     public void onServiceDisconnected(ComponentName name) {
         finish();
     }

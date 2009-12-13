@@ -1075,7 +1075,6 @@ public class MusicUtils {
             }
             v.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
-                @Override
                 public void onFocusChange(View v, boolean hasFocus) {
                     if (hasFocus) {
                         for (int i = 0; i < ll.getTabCount(); i++) {
@@ -1090,7 +1089,6 @@ public class MusicUtils {
             
             v.setOnClickListener(new View.OnClickListener() {
 
-                @Override
                 public void onClick(View v) {
                     processTabClick((Activity)ll.getContext(), v, ll.getChildAt(sActiveTabIndex).getId());
                     
@@ -1163,7 +1161,6 @@ public class MusicUtils {
                 nowPlayingView.setVisibility(View.VISIBLE);
                 nowPlayingView.setOnClickListener(new View.OnClickListener() {
 
-                    @Override
                     public void onClick(View v) {
                         Context c = v.getContext();
                         c.startActivity(new Intent(c, MediaPlaybackActivity.class));
