@@ -234,8 +234,10 @@ public class TrackBrowserActivity extends ListActivity
     @Override
     public void onDestroy() {
         ListView lv = getListView();
-        mLastListPosCourse = lv.getFirstVisiblePosition();
-        mLastListPosFine = lv.getChildAt(0).getTop();
+        if (lv != null) {
+            mLastListPosCourse = lv.getFirstVisiblePosition();
+            mLastListPosFine = lv.getChildAt(0).getTop();
+        }
         MusicUtils.unbindFromService(this);
         try {
             if ("nowplaying".equals(mPlaylist)) {
@@ -359,6 +361,7 @@ public class TrackBrowserActivity extends ListActivity
         }
 
         MusicUtils.hideDatabaseError(this);
+        MusicUtils.updateButtonBar(this, R.id.songtab);
         setTitle();
 
         // When showing the queue, position the selection on the currently playing track
