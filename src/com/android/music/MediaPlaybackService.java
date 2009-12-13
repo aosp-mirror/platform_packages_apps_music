@@ -1072,7 +1072,8 @@ public class MediaPlaybackService extends Service {
             status.flags |= Notification.FLAG_ONGOING_EVENT;
             status.icon = R.drawable.stat_notify_musicplayer;
             status.contentIntent = PendingIntent.getActivity(this, 0,
-                    new Intent("com.android.music.PLAYBACK_VIEWER"), 0);
+                    new Intent("com.android.music.PLAYBACK_VIEWER")
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK), 0);
             startForeground(PLAYBACKSERVICE_STATUS, status);
             if (!mIsSupposedToBePlaying) {
                 mIsSupposedToBePlaying = true;
@@ -1553,6 +1554,9 @@ public class MediaPlaybackService extends Service {
             openCurrent();
             play();
             notifyChange(META_CHANGED);
+            if (mShuffleMode == SHUFFLE_AUTO) {
+                doAutoShuffleUpdate();
+            }
         }
     }
 
