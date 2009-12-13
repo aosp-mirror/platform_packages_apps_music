@@ -636,6 +636,10 @@ public class MusicUtils {
         if (v != null) {
             v.setVisibility(View.GONE);
         }
+        v = a.findViewById(R.id.buttonbar);
+        if (v != null) {
+            v.setVisibility(View.GONE);
+        }
         TextView tv = (TextView) a.findViewById(R.id.sd_message);
         tv.setText(message);
     }
