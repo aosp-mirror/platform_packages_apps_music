@@ -30,7 +30,8 @@ public class MediaPlaybackActivityStarter extends Activity
     public void onCreate(Bundle icicle)
     {
         super.onCreate(icicle);
-        Intent i = new Intent(this, MediaPlaybackActivity.class);
+        Intent i = new Intent(getIntent());
+        i.setClass(this, MediaPlaybackActivity.class);
         startActivity(i);
         finish();
     }
