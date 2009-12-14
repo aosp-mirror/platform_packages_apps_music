@@ -31,7 +31,9 @@
             android:name="android.app.default_searchable"
             android:value=".QueryBrowserActivity"
         />
-        <activity android:name="MusicBrowserActivity">
+        <activity android:name="MusicBrowserActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
+        >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
