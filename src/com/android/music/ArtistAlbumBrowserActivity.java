@@ -79,10 +79,6 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
     private static int mLastListPosCourse = -1;
     private static int mLastListPosFine = -1;
 
-    public void onTabClick(View v) {
-        MusicUtils.processTabClick(this, v, R.id.artisttab);
-    }
-
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle icicle) {
