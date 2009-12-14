@@ -96,6 +96,7 @@ public class TrackBrowserActivity extends ListActivity
     private long mSelectedId;
     private static int mLastListPosCourse = -1;
     private static int mLastListPosFine = -1;
+    private boolean mUseLastListPos = false;
 
     public TrackBrowserActivity()
     {
@@ -156,7 +157,7 @@ public class TrackBrowserActivity extends ListActivity
         };
 
         setContentView(R.layout.media_picker_activity);
-        MusicUtils.updateButtonBar(this, R.id.songtab);
+        mUseLastListPos = MusicUtils.updateButtonBar(this, R.id.songtab);
         mTrackList = getListView();
         mTrackList.setOnCreateContextMenuListener(this);
         if (mEditMode) {
@@ -234,7 +235,7 @@ public class TrackBrowserActivity extends ListActivity
     @Override
     public void onDestroy() {
         ListView lv = getListView();
-        if (lv != null) {
+        if (lv != null && mUseLastListPos) {
             mLastListPosCourse = lv.getFirstVisiblePosition();
             View cv = lv.getChildAt(0);
             if (cv != null) {
@@ -352,8 +353,12 @@ public class TrackBrowserActivity extends ListActivity
             return;
         }
 
+        MusicUtils.hideDatabaseError(this);
+        mUseLastListPos = MusicUtils.updateButtonBar(this, R.id.songtab);
+        setTitle();
+
         // Restore previous position
-        if (mLastListPosCourse >= 0) {
+        if (mLastListPosCourse >= 0 && mUseLastListPos) {
             ListView lv = getListView();
             // this hack is needed because otherwise the position doesn't change
             // for the 2nd (non-limited) cursor
@@ -363,10 +368,6 @@ public class TrackBrowserActivity extends ListActivity
                 mLastListPosCourse = -1;
             }
         }
-
-        MusicUtils.hideDatabaseError(this);
-        MusicUtils.updateButtonBar(this, R.id.songtab);
-        setTitle();
 
         // When showing the queue, position the selection on the currently playing track
         // Otherwise, position the selection on the first matching artist, if any

@@ -1054,7 +1054,7 @@ public class MusicUtils {
     
     static int sActiveTabIndex = -1;
     
-    static void updateButtonBar(Activity a, int highlight) {
+    static boolean updateButtonBar(Activity a, int highlight) {
         final TabWidget ll = (TabWidget) a.findViewById(R.id.buttonbar);
         boolean withtabs = false;
         Intent intent = a.getIntent();
@@ -1064,7 +1064,7 @@ public class MusicUtils {
         
         if (highlight == 0 || !withtabs) {
             ll.setVisibility(View.GONE);
-            return;
+            return withtabs;
         } else if (withtabs) {
             ll.setVisibility(View.VISIBLE);
         }
@@ -1097,6 +1097,7 @@ public class MusicUtils {
                     processTabClick((Activity)ll.getContext(), v, ll.getChildAt(sActiveTabIndex).getId());
                 }});
         }
+        return withtabs;
     }
 
     static void processTabClick(Activity a, View v, int current) {
