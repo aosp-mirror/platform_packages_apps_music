@@ -50,7 +50,6 @@ import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.LinearLayout;
 import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -1077,6 +1076,7 @@ public class MusicUtils {
                 ll.setCurrentTab(i);
                 sActiveTabIndex = i;
             }
+            v.setTag(i);
             v.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
                 public void onFocusChange(View v, boolean hasFocus) {
@@ -1095,7 +1095,6 @@ public class MusicUtils {
 
                 public void onClick(View v) {
                     processTabClick((Activity)ll.getContext(), v, ll.getChildAt(sActiveTabIndex).getId());
-                    
                 }});
         }
     }
@@ -1105,6 +1104,10 @@ public class MusicUtils {
         if (id == current) {
             return;
         }
+
+        final TabWidget ll = (TabWidget) a.findViewById(R.id.buttonbar);
+        ll.setCurrentTab((Integer) v.getTag());
+
         activateTab(a, id);
         if (id != R.id.nowplayingtab) {
             setIntPref(a, "activetab", id);
