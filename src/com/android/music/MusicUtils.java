@@ -32,6 +32,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -903,11 +907,20 @@ public class MusicUtils {
         }
         return null;
     }
-    
+
+    /** Get album art for specified album. You should not pass in the album id
+     * for the "unknown" album here (use -1 instead)
+     * This method always returns the default album art icon when no album art is found.
+     */
+    public static Bitmap getArtwork(Context context, long song_id, long album_id) {
+        return getArtwork(context, song_id, album_id, true);
+    }
+
     /** Get album art for specified album. You should not pass in the album id
      * for the "unknown" album here (use -1 instead)
      */
-    public static Bitmap getArtwork(Context context, long song_id, long album_id) {
+    public static Bitmap getArtwork(Context context, long song_id, long album_id,
+            boolean allowdefault) {
 
         if (album_id < 0) {
             // This is something that is not in the database, so get the album art directly
@@ -918,7 +931,10 @@ public class MusicUtils {
                     return bm;
                 }
             }
-            return getDefaultArtwork(context);
+            if (allowdefault) {
+                return getDefaultArtwork(context);
+            }
+            return null;
         }
 
         ContentResolver res = context.getContentResolver();
@@ -935,11 +951,11 @@ public class MusicUtils {
                 if (bm != null) {
                     if (bm.getConfig() == null) {
                         bm = bm.copy(Bitmap.Config.RGB_565, false);
-                        if (bm == null) {
+                        if (bm == null && allowdefault) {
                             return getDefaultArtwork(context);
                         }
                     }
-                } else {
+                } else if (allowdefault) {
                     bm = getDefaultArtwork(context);
                 }
                 return bm;
@@ -1178,6 +1194,43 @@ public class MusicUtils {
         } catch (RemoteException ex) {
         }
         nowPlayingView.setVisibility(View.GONE);
+    }
+
+    static void setBackground(View v, Bitmap bm) {
+
+        if (bm == null) {
+            v.setBackgroundResource(0);
+            return;
+        }
+
+        int vwidth = v.getWidth();
+        int vheight = v.getHeight();
+        int bwidth = bm.getWidth();
+        int bheight = bm.getHeight();
+        float scalex = (float) vwidth / bwidth;
+        float scaley = (float) vheight / bheight;
+        float scale = Math.max(scalex, scaley) * 1.3f;
+
+        Bitmap.Config config = Bitmap.Config.ARGB_8888;
+        Bitmap bg = Bitmap.createBitmap(vwidth, vheight, config);
+        Canvas c = new Canvas(bg);
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setFilterBitmap(true);
+        ColorMatrix greymatrix = new ColorMatrix();
+        greymatrix.setSaturation(0);
+        ColorMatrix darkmatrix = new ColorMatrix();
+        darkmatrix.setScale(.3f, .3f, .3f, 1.0f);
+        greymatrix.postConcat(darkmatrix);
+        ColorFilter filter = new ColorMatrixColorFilter(greymatrix);
+        paint.setColorFilter(filter);
+        Matrix matrix = new Matrix();
+        matrix.setTranslate(-bwidth/2, -bheight/2); // move bitmap center to origin
+        matrix.postRotate(10);
+        matrix.postScale(scale, scale);
+        matrix.postTranslate(vwidth/2, vheight/2);  // Move bitmap center to view center
+        c.drawBitmap(bm, matrix, paint);
+        v.setBackgroundDrawable(new BitmapDrawable(bg));
     }
 
 }
