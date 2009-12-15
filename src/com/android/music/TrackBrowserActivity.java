@@ -31,6 +31,7 @@ import android.content.ServiceConnection;
 import android.database.AbstractCursor;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.MediaFile;
 import android.net.Uri;
@@ -174,6 +175,14 @@ public class TrackBrowserActivity extends ListActivity
             setListAdapter(mAdapter);
         }
         MusicUtils.bindToService(this, this);
+
+        // don't set the album art until after the view has been layed out
+        mTrackList.post(new Runnable() {
+
+            public void run() {
+                setAlbumArtBackground();
+            }
+        });
     }
 
     public void onServiceConnected(ComponentName name, IBinder service)
@@ -399,6 +408,21 @@ public class TrackBrowserActivity extends ListActivity
             registerReceiver(mTrackListListener, new IntentFilter(f));
             mTrackListListener.onReceive(this, new Intent(MediaPlaybackService.META_CHANGED));
         }
+    }
+
+    private void setAlbumArtBackground() {
+        try {
+            long albumid = Long.valueOf(mAlbumId);
+            Bitmap bm = MusicUtils.getArtwork(TrackBrowserActivity.this, -1, albumid, false);
+            if (bm != null) {
+                MusicUtils.setBackground(mTrackList, bm);
+                mTrackList.setCacheColorHint(0);
+                return;
+            }
+        } catch (Exception ex) {
+        }
+        mTrackList.setBackgroundResource(0);
+        mTrackList.setCacheColorHint(0xff000000);
     }
 
     private void setTitle() {
