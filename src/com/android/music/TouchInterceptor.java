@@ -331,7 +331,8 @@ public class TouchInterceptor extends ListView {
         mWindowParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                 | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
                 | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-                | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
+                | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;
         mWindowParams.format = PixelFormat.TRANSLUCENT;
         mWindowParams.windowAnimations = 0;
         
@@ -354,6 +355,9 @@ public class TouchInterceptor extends ListView {
                 alpha = ((float)(width - x)) / (width / 2);
             }
             mWindowParams.alpha = alpha;
+        }
+        if (mRemoveMode == FLING) {
+            mWindowParams.x = x;
         }
         mWindowParams.y = y - mDragPoint + mCoordOffset;
         mWindowManager.updateViewLayout(mDragView, mWindowParams);
