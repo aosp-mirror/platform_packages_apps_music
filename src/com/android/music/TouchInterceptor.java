@@ -59,6 +59,7 @@ public class TouchInterceptor extends ListView {
     private final int mTouchSlop;
     private int mItemHeightNormal;
     private int mItemHeightExpanded;
+    private int mItemHeightHalf;
 
     public TouchInterceptor(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -67,6 +68,7 @@ public class TouchInterceptor extends ListView {
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         Resources res = getResources();
         mItemHeightNormal = res.getDimensionPixelSize(R.dimen.normal_height);
+        mItemHeightHalf = mItemHeightNormal / 2;
         mItemHeightExpanded = res.getDimensionPixelSize(R.dimen.expanded_height);
     }
     
@@ -139,6 +141,16 @@ public class TouchInterceptor extends ListView {
      * need to, so implement a slightly different version.
      */
     private int myPointToPosition(int x, int y) {
+
+        if (y < 0) {
+            // when dragging off the top of the screen, calculate position
+            // by going back from a visible item
+            int pos = myPointToPosition(x, y + mItemHeightNormal);
+            if (pos > 0) {
+                return pos - 1;
+            }
+        }
+
         Rect frame = mTempRect;
         final int count = getChildCount();
         for (int i = count - 1; i >= 0; i--) {
@@ -152,13 +164,15 @@ public class TouchInterceptor extends ListView {
     }
     
     private int getItemForPosition(int y) {
-        int adjustedy = y - mDragPoint - 32;
+        int adjustedy = y - mDragPoint - mItemHeightHalf;
         int pos = myPointToPosition(0, adjustedy);
         if (pos >= 0) {
             if (pos <= mFirstDragPos) {
                 pos += 1;
             }
         } else if (adjustedy < 0) {
+            // this shouldn't happen anymore now that myPointToPosition deals
+            // with this situation
             pos = 0;
         }
         return pos;
