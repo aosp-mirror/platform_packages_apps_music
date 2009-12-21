@@ -30,7 +30,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 
-import com.android.internal.database.ArrayListCursor;
+import com.android.common.ArrayListCursor;
 
 import android.database.Cursor;
 import android.database.MergeCursor;
