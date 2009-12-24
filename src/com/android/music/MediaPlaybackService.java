@@ -34,8 +34,6 @@ import android.database.sqlite.SQLiteException;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Environment;
-import android.os.FileUtils;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -268,7 +266,7 @@ public class MediaPlaybackService extends Service {
         super.onCreate();
         
         mPreferences = getSharedPreferences("Music", MODE_WORLD_READABLE | MODE_WORLD_WRITEABLE);
-        mCardId = FileUtils.getFatVolumeId(Environment.getExternalStorageDirectory().getPath());
+        mCardId = MusicUtils.getCardId(this);
         
         registerExternalStorageListener();
 
@@ -676,7 +674,7 @@ public class MediaPlaybackService extends Service {
                         closeExternalStorageFiles(intent.getData().getPath());
                     } else if (action.equals(Intent.ACTION_MEDIA_MOUNTED)) {
                         mMediaMountedCount++;
-                        mCardId = FileUtils.getFatVolumeId(intent.getData().getPath());
+                        mCardId = MusicUtils.getCardId(MediaPlaybackService.this);
                         reloadQueue();
                         notifyChange(QUEUE_CHANGED);
                         notifyChange(META_CHANGED);

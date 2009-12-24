@@ -27,7 +27,6 @@ import android.test.suitebuilder.annotation.LargeTest;
 import android.view.KeyEvent;
 import android.util.Log;
 import android.content.Context;
-import android.os.ServiceManager;
 
 
 import com.android.music.MusicBrowserActivity;

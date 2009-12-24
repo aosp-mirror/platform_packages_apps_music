@@ -16,8 +16,6 @@
 
 package com.android.music;
 
-import com.android.internal.database.SortCursor;
-
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
