@@ -23,7 +23,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ContentUris;
 import android.database.Cursor;
-import android.media.MediaFile;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
@@ -265,14 +264,14 @@ public class MediaPickerActivity extends ListActivity implements MusicUtils.Defs
             tv = (TextView) view.findViewById(R.id.line2);
             name = cursor.getString(mAlbumIdx);
             StringBuilder builder = new StringBuilder();
-            if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
+            if (name == null || name.equals(MediaStore.UNKNOWN_STRING)) {
                 builder.append(context.getString(R.string.unknown_album_name));
             } else {
                 builder.append(name);
             }
             builder.append("\n");
             name = cursor.getString(mArtistIdx);
-            if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
+            if (name == null || name.equals(MediaStore.UNKNOWN_STRING)) {
                 builder.append(context.getString(R.string.unknown_artist_name));
             } else {
                 builder.append(name);

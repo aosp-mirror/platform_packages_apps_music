@@ -39,7 +39,6 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.media.MediaFile;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.ParcelFileDescriptor;
@@ -1176,7 +1175,7 @@ public class MusicUtils {
                 TextView artist = (TextView) nowPlayingView.findViewById(R.id.artist);
                 title.setText(MusicUtils.sService.getTrackName());
                 String artistName = MusicUtils.sService.getArtistName();
-                if (MediaFile.UNKNOWN_STRING.equals(artistName)) {
+                if (MediaStore.UNKNOWN_STRING.equals(artistName)) {
                     artistName = a.getString(R.string.unknown_artist_name);
                 }
                 artist.setText(artistName);

@@ -33,7 +33,6 @@ import android.database.CharArrayBuffer;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
-import android.media.MediaFile;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -452,7 +451,7 @@ public class TrackBrowserActivity extends ListActivity
                     }    
                     cursor.deactivate();
                 }
-                if (fancyName == null || fancyName.equals(MediaFile.UNKNOWN_STRING)) {
+                if (fancyName == null || fancyName.equals(MediaStore.UNKNOWN_STRING)) {
                     fancyName = getString(R.string.unknown_album_name);
                 }
             }
@@ -607,8 +606,8 @@ public class TrackBrowserActivity extends ListActivity
         String title = c.getString(titleidx);
         String album = c.getString(albumidx);
         String artist = c.getString(artistidx);
-        if (MediaFile.UNKNOWN_STRING.equals(album) &&
-                MediaFile.UNKNOWN_STRING.equals(artist) &&
+        if (MediaStore.UNKNOWN_STRING.equals(album) &&
+                MediaStore.UNKNOWN_STRING.equals(artist) &&
                 title != null &&
                 title.startsWith("recording")) {
             // not music
@@ -726,13 +725,13 @@ public class TrackBrowserActivity extends ListActivity
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         
         title = mCurrentTrackName;
-        if (MediaFile.UNKNOWN_STRING.equals(mCurrentArtistNameForAlbum)) {
+        if (MediaStore.UNKNOWN_STRING.equals(mCurrentArtistNameForAlbum)) {
             query = mCurrentTrackName;
         } else {
             query = mCurrentArtistNameForAlbum + " " + mCurrentTrackName;
             i.putExtra(MediaStore.EXTRA_MEDIA_ARTIST, mCurrentArtistNameForAlbum);
         }
-        if (MediaFile.UNKNOWN_STRING.equals(mCurrentAlbumName)) {
+        if (MediaStore.UNKNOWN_STRING.equals(mCurrentAlbumName)) {
             i.putExtra(MediaStore.EXTRA_MEDIA_ALBUM, mCurrentAlbumName);
         }
         i.putExtra(MediaStore.EXTRA_MEDIA_FOCUS, "audio/*");
@@ -1454,7 +1453,7 @@ public class TrackBrowserActivity extends ListActivity
             builder.delete(0, builder.length());
 
             String name = cursor.getString(mArtistIdx);
-            if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
+            if (name == null || name.equals(MediaStore.UNKNOWN_STRING)) {
                 builder.append(mUnknownArtist);
             } else {
                 builder.append(name);

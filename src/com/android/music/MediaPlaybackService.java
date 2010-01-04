@@ -32,7 +32,6 @@ import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.media.AudioManager;
-import android.media.MediaFile;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
@@ -1054,11 +1053,11 @@ public class MediaPlaybackService extends Service {
             } else {
                 String artist = getArtistName();
                 views.setTextViewText(R.id.trackname, getTrackName());
-                if (artist == null || artist.equals(MediaFile.UNKNOWN_STRING)) {
+                if (artist == null || artist.equals(MediaStore.UNKNOWN_STRING)) {
                     artist = getString(R.string.unknown_artist_name);
                 }
                 String album = getAlbumName();
-                if (album == null || album.equals(MediaFile.UNKNOWN_STRING)) {
+                if (album == null || album.equals(MediaStore.UNKNOWN_STRING)) {
                     album = getString(R.string.unknown_album_name);
                 }
                 

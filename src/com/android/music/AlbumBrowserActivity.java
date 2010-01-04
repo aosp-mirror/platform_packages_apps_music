@@ -33,7 +33,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
-import android.media.MediaFile;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -255,7 +254,7 @@ public class AlbumBrowserActivity extends ListActivity
             mAlbumCursor.moveToFirst();
             fancyName = mAlbumCursor.getString(
                     mAlbumCursor.getColumnIndex(MediaStore.Audio.Albums.ARTIST));
-            if (fancyName == null || fancyName.equals(MediaFile.UNKNOWN_STRING))
+            if (fancyName == null || fancyName.equals(MediaStore.UNKNOWN_STRING))
                 fancyName = getText(R.string.unknown_artist_name);
         }
 
@@ -279,9 +278,9 @@ public class AlbumBrowserActivity extends ListActivity
         mCurrentArtistNameForAlbum = mAlbumCursor.getString(
                 mAlbumCursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ARTIST));
         mIsUnknownArtist = mCurrentArtistNameForAlbum == null ||
-                mCurrentArtistNameForAlbum.equals(MediaFile.UNKNOWN_STRING);
+                mCurrentArtistNameForAlbum.equals(MediaStore.UNKNOWN_STRING);
         mIsUnknownAlbum = mCurrentAlbumName == null ||
-                mCurrentAlbumName.equals(MediaFile.UNKNOWN_STRING);
+                mCurrentAlbumName.equals(MediaStore.UNKNOWN_STRING);
         if (mIsUnknownAlbum) {
             menu.setHeaderTitle(getString(R.string.unknown_album_name));
         } else {
@@ -600,7 +599,7 @@ public class AlbumBrowserActivity extends ListActivity
 
             String name = cursor.getString(mAlbumIdx);
             String displayname = name;
-            boolean unknown = name == null || name.equals(MediaFile.UNKNOWN_STRING); 
+            boolean unknown = name == null || name.equals(MediaStore.UNKNOWN_STRING); 
             if (unknown) {
                 displayname = mUnknownAlbum;
             }
@@ -608,7 +607,7 @@ public class AlbumBrowserActivity extends ListActivity
             
             name = cursor.getString(mArtistIdx);
             displayname = name;
-            if (name == null || name.equals(MediaFile.UNKNOWN_STRING)) {
+            if (name == null || name.equals(MediaStore.UNKNOWN_STRING)) {
                 displayname = mUnknownArtist;
             }
             vh.line2.setText(displayname);

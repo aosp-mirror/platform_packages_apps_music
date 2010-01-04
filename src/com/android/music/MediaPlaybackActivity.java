@@ -34,7 +34,6 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
-import android.media.MediaFile;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
@@ -287,8 +286,8 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
             return true;
         }
 
-        if (MediaFile.UNKNOWN_STRING.equals(album) &&
-                MediaFile.UNKNOWN_STRING.equals(artist) &&
+        if (MediaStore.UNKNOWN_STRING.equals(album) &&
+                MediaStore.UNKNOWN_STRING.equals(artist) &&
                 song != null &&
                 song.startsWith("recording")) {
             // not music
@@ -314,10 +313,10 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         }
 
         boolean knownartist =
-            (artist != null) && !MediaFile.UNKNOWN_STRING.equals(artist);
+            (artist != null) && !MediaStore.UNKNOWN_STRING.equals(artist);
 
         boolean knownalbum =
-            (album != null) && !MediaFile.UNKNOWN_STRING.equals(album);
+            (album != null) && !MediaStore.UNKNOWN_STRING.equals(album);
         
         if (knownartist && view.equals(mArtistName.getParent())) {
             title = artist;
@@ -332,7 +331,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
             }
             mime = MediaStore.Audio.Albums.ENTRY_CONTENT_TYPE;
         } else if (view.equals(mTrackName.getParent()) || !knownartist || !knownalbum) {
-            if ((song == null) || MediaFile.UNKNOWN_STRING.equals(song)) {
+            if ((song == null) || MediaStore.UNKNOWN_STRING.equals(song)) {
                 // A popup of the form "Search for null/'' using ..." is pretty
                 // unhelpful, plus, we won't find any way to buy it anyway.
                 return true;
@@ -1293,13 +1292,13 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 ((View) mArtistName.getParent()).setVisibility(View.VISIBLE);
                 ((View) mAlbumName.getParent()).setVisibility(View.VISIBLE);
                 String artistName = mService.getArtistName();
-                if (MediaFile.UNKNOWN_STRING.equals(artistName)) {
+                if (MediaStore.UNKNOWN_STRING.equals(artistName)) {
                     artistName = getString(R.string.unknown_artist_name);
                 }
                 mArtistName.setText(artistName);
                 String albumName = mService.getAlbumName();
                 long albumid = mService.getAlbumId();
-                if (MediaFile.UNKNOWN_STRING.equals(albumName)) {
+                if (MediaStore.UNKNOWN_STRING.equals(albumName)) {
                     albumName = getString(R.string.unknown_album_name);
                     albumid = -1;
                 }
