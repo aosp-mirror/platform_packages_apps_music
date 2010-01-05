@@ -16,9 +16,6 @@
 
 package com.android.music;
 
-import java.text.Collator;
-import java.util.ArrayList;
-
 import android.app.ListActivity;
 import android.content.AsyncQueryHandler;
 import android.content.BroadcastReceiver;
@@ -29,10 +26,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
-
-import com.android.common.ArrayListCursor;
-
 import android.database.Cursor;
+import android.database.MatrixCursor;
 import android.database.MergeCursor;
 import android.database.sqlite.SQLiteException;
 import android.media.AudioManager;
@@ -56,6 +51,9 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+
+import java.text.Collator;
+import java.util.ArrayList;
 
 public class PlaylistBrowserActivity extends ListActivity
     implements View.OnCreateContextMenuListener, MusicUtils.Defs
@@ -500,17 +498,17 @@ public class PlaylistBrowserActivity extends ListActivity
             Log.d("PlaylistBrowserActivity", "Already wrapped");
             return c;
         }
-        ArrayList<ArrayList> autoplaylists = new ArrayList<ArrayList>();
+        MatrixCursor autoplaylistscursor = new MatrixCursor(mCols);
         if (mCreateShortcut) {
             ArrayList<Object> all = new ArrayList<Object>(2);
             all.add(ALL_SONGS_PLAYLIST);
             all.add(getString(R.string.play_all));
-            autoplaylists.add(all);
+            autoplaylistscursor.addRow(all);
         }
         ArrayList<Object> recent = new ArrayList<Object>(2);
         recent.add(RECENTLY_ADDED_PLAYLIST);
         recent.add(getString(R.string.recentlyadded));
-        autoplaylists.add(recent);
+        autoplaylistscursor.addRow(recent);
         
         // check if there are any podcasts
         Cursor counter = MusicUtils.query(this, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
@@ -523,12 +521,10 @@ public class PlaylistBrowserActivity extends ListActivity
                 ArrayList<Object> podcasts = new ArrayList<Object>(2);
                 podcasts.add(PODCASTS_PLAYLIST);
                 podcasts.add(getString(R.string.podcasts_listitem));
-                autoplaylists.add(podcasts);
+                autoplaylistscursor.addRow(podcasts);
             }
         }
 
-        ArrayListCursor autoplaylistscursor = new ArrayListCursor(mCols, autoplaylists);
-        
         Cursor cc = new MergeCursor(new Cursor [] {autoplaylistscursor, c});
         return cc;
     }
