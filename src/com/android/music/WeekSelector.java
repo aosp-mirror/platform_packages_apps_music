@@ -16,8 +16,6 @@
 
 package com.android.music;
 
-import com.android.internal.widget.VerticalTextSpinner;
-
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
