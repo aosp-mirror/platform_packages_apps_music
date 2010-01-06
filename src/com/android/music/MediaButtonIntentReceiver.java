@@ -16,16 +16,13 @@
 
 package com.android.music;
 
-import android.bluetooth.BluetoothA2dp;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.BroadcastReceiver;
-import android.content.SharedPreferences;
 import android.media.AudioManager;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.os.Handler;
 import android.os.Message;
+import android.view.KeyEvent;
 
 /**
  * 
