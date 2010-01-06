@@ -883,14 +883,14 @@ public class TrackBrowserActivity extends ListActivity
          */
         super.onCreateOptionsMenu(menu);
         if (mPlaylist == null) {
-            menu.add(0, PLAY_ALL, 0, R.string.play_all).setIcon(com.android.internal.R.drawable.ic_menu_play_clip);
+            menu.add(0, PLAY_ALL, 0, R.string.play_all).setIcon(R.drawable.ic_menu_play_clip);
         }
         menu.add(0, PARTY_SHUFFLE, 0, R.string.party_shuffle); // icon will be set in onPrepareOptionsMenu()
         menu.add(0, SHUFFLE_ALL, 0, R.string.shuffle_all).setIcon(R.drawable.ic_menu_shuffle);
         if (mPlaylist != null) {
             menu.add(0, SAVE_AS_PLAYLIST, 0, R.string.save_as_playlist).setIcon(android.R.drawable.ic_menu_save);
             if (mPlaylist.equals("nowplaying")) {
-                menu.add(0, CLEAR_PLAYLIST, 0, R.string.clear_playlist).setIcon(com.android.internal.R.drawable.ic_menu_clear_playlist);
+                menu.add(0, CLEAR_PLAYLIST, 0, R.string.clear_playlist).setIcon(R.drawable.ic_menu_clear_playlist);
             }
         }
         return true;
@@ -1404,8 +1404,7 @@ public class TrackBrowserActivity extends ListActivity
                 if (mIndexer != null) {
                     mIndexer.setCursor(cursor);
                 } else if (!mActivity.mEditMode) {
-                    String alpha = mActivity.getString(
-                            com.android.internal.R.string.fast_scroll_alphabet);
+                    String alpha = mActivity.getString(R.string.fast_scroll_alphabet);
                 
                     mIndexer = new MusicAlphabetIndexer(cursor, mTitleIdx, alpha);
                 }

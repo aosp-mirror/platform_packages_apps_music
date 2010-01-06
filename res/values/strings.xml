@@ -38,7 +38,7 @@
         <!-- number of albums is not equal to one -->
         <item quantity="other"><xliff:g id="count">%d</xliff:g> albums</item>
     </plurals>
-    
+
     <!--
     This string is used as the format string in a String.format call,
     and 5 additional arguments are available for printing:
@@ -267,7 +267,7 @@
     <string name="working_songs">Songs\u2026</string>
     <!-- Shown in the title bar while the list of playlists is being retrieved in the background -->
     <string name="working_playlists">Playlists\u2026</string>
-    
+
     <!-- Shown in the music picker while loading the music database. -->
     <string name="loading">Loading</string>
     <!-- Menu in music picker to sort the list by track/song name. -->
@@ -284,8 +284,11 @@
 
     <!-- Toast after streamStarter activity receives PLAYBACK_COMPLETE in case of an error -->
     <string name="fail_to_start_stream">Failed to play the requested stream.</string>
-    
+
     <!-- The string used to describe Music as a searchable item within system search settings. -->
     <string name="search_settings_description">Artists, albums, and tracks</string>
+
+    <!--The fast scroll thumb will show one character from this string depending on the position in the list -->
+    <string name="fast_scroll_alphabet">\u0020ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
 </resources>
 

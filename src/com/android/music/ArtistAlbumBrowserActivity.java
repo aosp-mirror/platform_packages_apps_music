@@ -618,7 +618,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
                     mIndexer.setCursor(cursor);
                 } else {
                     mIndexer = new MusicAlphabetIndexer(cursor, mGroupArtistIdx, 
-                            mResources.getString(com.android.internal.R.string.fast_scroll_alphabet));
+                            mResources.getString(R.string.fast_scroll_alphabet));
                 }
             }
         }

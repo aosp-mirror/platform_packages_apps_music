@@ -319,8 +319,7 @@ public class MusicPicker extends ListActivity
                             break;
                     }
                     mIndexer = new MusicAlphabetIndexer(cursor, idx,
-                            getResources().getString(
-                                    com.android.internal.R.string.fast_scroll_alphabet));
+                            getResources().getString(R.string.fast_scroll_alphabet));
                     
                 // If we have a valid indexer, but the cursor has changed since
                 // its last use, then point it to the current cursor.

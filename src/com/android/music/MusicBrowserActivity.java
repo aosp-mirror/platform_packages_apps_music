@@ -17,30 +17,12 @@
 package com.android.music;
 
 import android.app.Activity;
-import android.app.SearchManager;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
-import android.media.AudioManager;
-import android.media.MediaFile;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.RemoteException;
 import android.os.IBinder;
-import android.provider.MediaStore;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.Window;
-import android.widget.ImageButton;
-import android.widget.TextView;
+import android.os.RemoteException;
 
 public class MusicBrowserActivity extends Activity
     implements MusicUtils.Defs {
