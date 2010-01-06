@@ -31,11 +31,11 @@ import android.view.View;
 public class VerticalTextSpinner extends View {
 
     private static final int SELECTOR_ARROW_HEIGHT = 15;
-    
+
     private static final int TEXT_SPACING = 18;
     private static final int TEXT_MARGIN_RIGHT = 25;
     private static final int TEXT_SIZE = 22;
-    
+
     /* Keep the calculations as this is really a for loop from
      * -2 to 2 but precalculated so we don't have to do in the onDraw.
      */
@@ -44,15 +44,15 @@ public class VerticalTextSpinner extends View {
     private static final int TEXT3_Y = (TEXT_SIZE * (0 + 2)) + (TEXT_SPACING * (0 + 1));
     private static final int TEXT4_Y = (TEXT_SIZE * (1 + 2)) + (TEXT_SPACING * (1 + 1));
     private static final int TEXT5_Y = (TEXT_SIZE * (2 + 2)) + (TEXT_SPACING * (2 + 1));
-    
+
     private static final int SCROLL_MODE_NONE = 0;
     private static final int SCROLL_MODE_UP = 1;
     private static final int SCROLL_MODE_DOWN = 2;
-    
+
     private static final long DEFAULT_SCROLL_INTERVAL_MS = 400;
     private static final int SCROLL_DISTANCE = TEXT_SIZE + TEXT_SPACING;
     private static final int MIN_ANIMATIONS = 4;
-    
+
     private final Drawable mBackgroundFocused;
     private final Drawable mSelectorFocused;
     private final Drawable mSelectorNormal;
@@ -62,7 +62,7 @@ public class VerticalTextSpinner extends View {
     private final int mSelectorHeight;
     private final TextPaint mTextPaintDark;
     private final TextPaint mTextPaintLight;
-    
+
     private int mSelectorY;
     private Drawable mSelector;
     private int mDownY;
@@ -72,31 +72,31 @@ public class VerticalTextSpinner extends View {
     private boolean mIsAnimationRunning;
     private boolean mStopAnimation;
     private boolean mWrapAround = true;
-    
+
     private int mTotalAnimatedDistance;
     private int mNumberOfAnimations;
     private long mDelayBetweenAnimations;
     private int mDistanceOfEachAnimation;
-    
+
     private String[] mTextList;
     private int mCurrentSelectedPos;
     private OnChangedListener mListener;
-    
+
     private String mText1;
     private String mText2;
     private String mText3;
     private String mText4;
     private String mText5;
-    
+
     public interface OnChangedListener {
         void onChanged(
                 VerticalTextSpinner spinner, int oldPos, int newPos, String[] items);
     }
-    
+
     public VerticalTextSpinner(Context context) {
         this(context, null);
     }
-    
+
     public VerticalTextSpinner(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
@@ -104,59 +104,61 @@ public class VerticalTextSpinner extends View {
     public VerticalTextSpinner(Context context, AttributeSet attrs,
             int defStyle) {
         super(context, attrs, defStyle);
-        
-        mBackgroundFocused = context.getResources().getDrawable(com.android.internal.R.drawable.pickerbox_background);
-        mSelectorFocused = context.getResources().getDrawable(com.android.internal.R.drawable.pickerbox_selected);
-        mSelectorNormal = context.getResources().getDrawable(com.android.internal.R.drawable.pickerbox_unselected);
-        
+
+        mBackgroundFocused = context.getResources().getDrawable(R.drawable.pickerbox_background);
+        mSelectorFocused = context.getResources().getDrawable(R.drawable.pickerbox_selected);
+        mSelectorNormal = context.getResources().getDrawable(R.drawable.pickerbox_unselected);
+
         mSelectorHeight = mSelectorFocused.getIntrinsicHeight();
         mSelectorDefaultY = (mBackgroundFocused.getIntrinsicHeight() - mSelectorHeight) / 2;
         mSelectorMinY = 0;
         mSelectorMaxY = mBackgroundFocused.getIntrinsicHeight() - mSelectorHeight;
-        
+
         mSelector = mSelectorNormal;
         mSelectorY = mSelectorDefaultY;
-        
+
         mTextPaintDark = new TextPaint(Paint.ANTI_ALIAS_FLAG);
         mTextPaintDark.setTextSize(TEXT_SIZE);
-        mTextPaintDark.setColor(context.getResources().getColor(com.android.internal.R.color.primary_text_light));
-        
+        mTextPaintDark.setColor(context.getResources()
+            .getColor(android.R.color.primary_text_light));
+
         mTextPaintLight = new TextPaint(Paint.ANTI_ALIAS_FLAG);
         mTextPaintLight.setTextSize(TEXT_SIZE);
-        mTextPaintLight.setColor(context.getResources().getColor(com.android.internal.R.color.secondary_text_dark));
-        
+        mTextPaintLight.setColor(context.getResources()
+            .getColor(android.R.color.secondary_text_dark));
+
         mScrollMode = SCROLL_MODE_NONE;
         mScrollInterval = DEFAULT_SCROLL_INTERVAL_MS;
         calculateAnimationValues();
     }
-    
+
     public void setOnChangeListener(OnChangedListener listener) {
         mListener = listener;
     }
-    
+
     public void setItems(String[] textList) {
         mTextList = textList;
         calculateTextPositions();
     }
-    
+
     public void setSelectedPos(int selectedPos) {
         mCurrentSelectedPos = selectedPos;
         calculateTextPositions();
         postInvalidate();
     }
-    
+
     public void setScrollInterval(long interval) {
         mScrollInterval = interval;
         calculateAnimationValues();
     }
-    
+
     public void setWrapAround(boolean wrap) {
         mWrapAround = wrap;
     }
-    
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        
+
         /* This is a bit confusing, when we get the key event
          * DPAD_DOWN we actually roll the spinner up. When the
          * key event is DPAD_UP we roll the spinner down.
@@ -182,7 +184,7 @@ public class VerticalTextSpinner extends View {
     private boolean canScrollUp() {
         return ((mCurrentSelectedPos < (mTextList.length - 1)) || mWrapAround);
     }
-    
+
     @Override
     protected void onFocusChanged(boolean gainFocus, int direction,
             Rect previouslyFocusedRect) {
@@ -195,9 +197,9 @@ public class VerticalTextSpinner extends View {
             mSelectorY = mSelectorDefaultY;
         }
     }
-    
+
     @Override
-    public boolean onTouchEvent(MotionEvent event) {        
+    public boolean onTouchEvent(MotionEvent event) {
         final int action = event.getAction();
         final int y = (int) event.getY();
 
@@ -205,7 +207,8 @@ public class VerticalTextSpinner extends View {
         case MotionEvent.ACTION_DOWN:
             requestFocus();
             mDownY = y;
-            isDraggingSelector = (y >= mSelectorY) && (y <= (mSelectorY + mSelector.getIntrinsicHeight()));
+            isDraggingSelector = (y >= mSelectorY) &&
+                    (y <= (mSelectorY + mSelector.getIntrinsicHeight()));
             break;
 
         case MotionEvent.ACTION_MOVE:
@@ -231,7 +234,7 @@ public class VerticalTextSpinner extends View {
                 }
             }
             break;
-            
+
         case MotionEvent.ACTION_UP:
         case MotionEvent.ACTION_CANCEL:
         default:
@@ -242,29 +245,29 @@ public class VerticalTextSpinner extends View {
         }
         return true;
     }
-    
+
     @Override
     protected void onDraw(Canvas canvas) {
-        
+
         /* The bounds of the selector */
         final int selectorLeft = 0;
         final int selectorTop = mSelectorY;
-        final int selectorRight = mMeasuredWidth;
+        final int selectorRight = getMeasuredWidth();
         final int selectorBottom = mSelectorY + mSelectorHeight;
-        
+
         /* Draw the selector */
         mSelector.setBounds(selectorLeft, selectorTop, selectorRight, selectorBottom);
         mSelector.draw(canvas);
-        
+
         if (mTextList == null) {
-            
+
             /* We're not setup with values so don't draw anything else */
             return;
         }
-        
+
         final TextPaint textPaintDark = mTextPaintDark;
         if (hasFocus()) {
-            
+
             /* The bounds of the top area where the text should be light */
             final int topLeft = 0;
             final int topTop = 0;
@@ -278,7 +281,7 @@ public class VerticalTextSpinner extends View {
             final String text4 = mText4;
             final String text5 = mText5;
             final TextPaint textPaintLight = mTextPaintLight;
-            
+
             /*
              * Draw the 1st, 2nd and 3rd item in light only, clip it so it only
              * draws in the area above the selector
@@ -312,7 +315,7 @@ public class VerticalTextSpinner extends View {
             final int bottomLeft = 0;
             final int bottomTop = selectorBottom - SELECTOR_ARROW_HEIGHT;
             final int bottomRight = selectorRight;
-            final int bottomBottom = mMeasuredHeight;
+            final int bottomBottom = getMeasuredHeight();
 
             /*
              * Draw the 3rd, 4th and 5th in white text, clip it so it only draws
@@ -327,7 +330,7 @@ public class VerticalTextSpinner extends View {
             drawText(canvas, text5,
                     TEXT5_Y + mTotalAnimatedDistance, textPaintLight);
             canvas.restore();
-            
+
         } else {
             drawText(canvas, mText3, TEXT3_Y, textPaintDark);
         }
@@ -363,14 +366,14 @@ public class VerticalTextSpinner extends View {
                 }
                 if (mStopAnimation) {
                     final int previousScrollMode = mScrollMode;
-                    
+
                     /* No longer scrolling, we wait till the current animation
                      * completes then we stop.
                      */
                     mIsAnimationRunning = false;
                     mStopAnimation = false;
                     mScrollMode = SCROLL_MODE_NONE;
-                    
+
                     /* If the current selected item is an empty string
                      * scroll past it.
                      */
@@ -407,7 +410,7 @@ public class VerticalTextSpinner extends View {
         mText4 = getTextToDraw(1);
         mText5 = getTextToDraw(2);
     }
-    
+
     private String getTextToDraw(int offset) {
         int index = getNewIndex(offset);
         if (index < 0) {
@@ -433,7 +436,7 @@ public class VerticalTextSpinner extends View {
         }
         return index;
     }
-    
+
     private void scroll() {
         if (mIsAnimationRunning) {
             return;
@@ -454,13 +457,13 @@ public class VerticalTextSpinner extends View {
             mDelayBetweenAnimations = mScrollInterval / mNumberOfAnimations;
         }
     }
-    
+
     private void drawText(Canvas canvas, String text, int y, TextPaint paint) {
         int width = (int) paint.measureText(text);
         int x = getMeasuredWidth() - width - TEXT_MARGIN_RIGHT;
         canvas.drawText(text, x, y, paint);
     }
-    
+
     public int getCurrentSelectedPos() {
         return mCurrentSelectedPos;
     }
