@@ -31,7 +31,7 @@
     <string name="party_shuffle" msgid="8213359225506006168">"Party shuffle"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"Party shuffle non attiva"</string>
     <string name="delete_item" msgid="3363330144534750601">"Elimina"</string>
-    <string name="shuffle_all" msgid="1388193611787878773">"Ripr. casuale"</string>
+    <string name="shuffle_all" msgid="1388193611787878773">"Casuale"</string>
     <string name="play_all" msgid="6309622568869321842">"Riprod. tutti"</string>
     <string name="delete_artist_desc" msgid="1843750591006508005">"Tutti i brani di <xliff:g id="ARTIST">%s</xliff:g> verranno eliminati definitivamente dalla scheda SD."</string>
     <string name="delete_album_desc" msgid="535515999268177079">"L\'intero album \"<xliff:g id="ALBUM">%s</xliff:g>\" verrà eliminato definitivamente dalla scheda SD."</string>
@@ -83,7 +83,7 @@
     <string name="ringtone_menu" msgid="2737472190159134599">"Usa come suoneria"</string>
     <string name="ringtone_menu_short" msgid="3367622038867238133">"Usa come suoneria"</string>
     <string name="ringtone_set" msgid="5325818347613843130">"\"<xliff:g id="NAME">%s</xliff:g>\" impostato come suoneria del telefono."</string>
-    <string name="play_selection" msgid="2854921021814550018">"Riprod."</string>
+    <string name="play_selection" msgid="2854921021814550018">"Riproduci"</string>
     <string name="add_to_playlist" msgid="7110273488645072783">"Aggiungi a playlist"</string>
     <string name="queue" msgid="2937629819482787704">"Playlist corrente"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Nuova"</string>
@@ -138,4 +138,6 @@
     <string name="gadget_track" msgid="3186569295893300114">"Traccia <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
     <string name="fail_to_start_stream" msgid="3605390187703912835">"Impossibile riprodurre lo stream richiesto."</string>
     <string name="search_settings_description" msgid="6520975349259883368">"Artisti, album e tracce"</string>
+    <!-- no translation found for fast_scroll_alphabet (5548732936480723311) -->
+    <skip />
 </resources>

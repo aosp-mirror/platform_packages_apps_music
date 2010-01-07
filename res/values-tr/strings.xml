@@ -82,7 +82,7 @@
     <string name="repeat_all_notif" msgid="6443293055987316642">"Tüm şarkılar tekrarlanıyor."</string>
     <string name="ringtone_menu" msgid="2737472190159134599">"Telefon zil sesi olarak kullan"</string>
     <string name="ringtone_menu_short" msgid="3367622038867238133">"Zil sesi olarak kullan"</string>
-    <string name="ringtone_set" msgid="5325818347613843130">"\"<xliff:g id="NAME">%s</xliff:g>\" telefon zil sesi olarak ayarlanmış."</string>
+    <string name="ringtone_set" msgid="5325818347613843130">"<xliff:g id="NAME">%s</xliff:g> telefon zil sesi olarak ayarlandı."</string>
     <string name="play_selection" msgid="2854921021814550018">"Yürüt"</string>
     <string name="add_to_playlist" msgid="7110273488645072783">"Şarkı listesine ekle"</string>
     <string name="queue" msgid="2937629819482787704">"Geçerli şarkı listesi"</string>
@@ -138,4 +138,6 @@
     <string name="gadget_track" msgid="3186569295893300114">"Parça <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
     <string name="fail_to_start_stream" msgid="3605390187703912835">"İstenen akış yürütülemiyor."</string>
     <string name="search_settings_description" msgid="6520975349259883368">"Sanatçı, albüm ve parçalar"</string>
+    <!-- no translation found for fast_scroll_alphabet (5548732936480723311) -->
+    <skip />
 </resources>
