@@ -15,8 +15,8 @@
 -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="horizontal"
     android:background="@drawable/appwidget_bg">
 
@@ -24,7 +24,7 @@
         android:id="@+id/album_appwidget"
         android:layout_width="0dip"
         android:layout_weight="3"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_vertical"
         android:clickable="true"
@@ -36,7 +36,7 @@
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/appwidget_text"
             android:textStyle="bold"
@@ -49,7 +49,7 @@
 
         <TextView
             android:id="@+id/artist"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/appwidget_text"
             android:textSize="14sp"
@@ -62,7 +62,7 @@
     
  	<ImageView
         android:layout_width="1dip"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:background="@drawable/appwidget_divider"
         />
         
@@ -70,7 +70,7 @@
         android:id="@+id/control_play"
         android:layout_width="0dip"
         android:layout_weight="1"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:src="@drawable/ic_appwidget_music_play"
         android:background="@drawable/appwidget_button_center"
         android:scaleType="center"
@@ -78,7 +78,7 @@
 
  	<ImageView
         android:layout_width="1dip"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:background="@drawable/appwidget_divider"
         />
         
@@ -86,7 +86,7 @@
         android:id="@+id/control_next"
         android:layout_width="0dip"
         android:layout_weight="1"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:src="@drawable/ic_appwidget_music_next"
         android:background="@drawable/appwidget_button_right"
         android:scaleType="center"

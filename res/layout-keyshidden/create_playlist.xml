@@ -16,12 +16,12 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dip"
         android:layout_marginTop="8dip"
@@ -34,14 +34,14 @@
             android:src="@drawable/ic_slide_keyboard"/>
 
         <TextView android:id="@+id/prompt"
-            android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
             android:text="@string/create_playlist_create_text_prompt"
             android:layout_marginLeft="8dip">
         </TextView>
     </LinearLayout>
 
     <EditText android:id="@+id/playlist"
-        android:layout_width="fill_parent" android:layout_height="wrap_content"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
         android:singleLine="true"
         android:visibility="gone"
         android:layout_marginBottom="8dip">
@@ -49,7 +49,7 @@
     </EditText>
 
     <RelativeLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="6dip"
         android:background="#ffffff" >

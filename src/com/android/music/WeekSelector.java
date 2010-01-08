@@ -17,22 +17,12 @@
 package com.android.music;
 
 import android.app.Activity;
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.database.Cursor;
 import android.media.AudioManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 public class WeekSelector extends Activity
 {
@@ -45,7 +35,7 @@ public class WeekSelector extends Activity
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.weekpicker);
-        getWindow().setLayout(WindowManager.LayoutParams.FILL_PARENT,
+        getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
                                     WindowManager.LayoutParams.WRAP_CONTENT);
 
         mWeeks = (VerticalTextSpinner)findViewById(R.id.weeks);
