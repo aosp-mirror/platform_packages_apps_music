@@ -21,8 +21,10 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.NinePatchDrawable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -32,25 +34,21 @@ public class VerticalTextSpinner extends View {
 
     private static final int SELECTOR_ARROW_HEIGHT = 15;
 
-    private static final int TEXT_SPACING = 18;
-    private static final int TEXT_MARGIN_RIGHT = 25;
-    private static final int TEXT_SIZE = 22;
-
-    /* Keep the calculations as this is really a for loop from
-     * -2 to 2 but precalculated so we don't have to do in the onDraw.
-     */
-    private static final int TEXT1_Y = (TEXT_SIZE * (-2 + 2)) + (TEXT_SPACING * (-2 + 1));
-    private static final int TEXT2_Y = (TEXT_SIZE * (-1 + 2)) + (TEXT_SPACING * (-1 + 1));
-    private static final int TEXT3_Y = (TEXT_SIZE * (0 + 2)) + (TEXT_SPACING * (0 + 1));
-    private static final int TEXT4_Y = (TEXT_SIZE * (1 + 2)) + (TEXT_SPACING * (1 + 1));
-    private static final int TEXT5_Y = (TEXT_SIZE * (2 + 2)) + (TEXT_SPACING * (2 + 1));
+    private static int TEXT_SPACING;
+    private static int TEXT_MARGIN_RIGHT;
+    private static int TEXT_SIZE;
+    private static int TEXT1_Y;
+    private static int TEXT2_Y;
+    private static int TEXT3_Y;
+    private static int TEXT4_Y;
+    private static int TEXT5_Y;
+    private static int SCROLL_DISTANCE;
 
     private static final int SCROLL_MODE_NONE = 0;
     private static final int SCROLL_MODE_UP = 1;
     private static final int SCROLL_MODE_DOWN = 2;
 
     private static final long DEFAULT_SCROLL_INTERVAL_MS = 400;
-    private static final int SCROLL_DISTANCE = TEXT_SIZE + TEXT_SPACING;
     private static final int MIN_ANIMATIONS = 4;
 
     private final Drawable mBackgroundFocused;
@@ -104,6 +102,17 @@ public class VerticalTextSpinner extends View {
     public VerticalTextSpinner(Context context, AttributeSet attrs,
             int defStyle) {
         super(context, attrs, defStyle);
+
+        float scale = getResources().getDisplayMetrics().density;
+        TEXT_SPACING = (int)(18 * scale);
+        TEXT_MARGIN_RIGHT = (int)(25 * scale);
+        TEXT_SIZE = (int)(22 * scale);
+        SCROLL_DISTANCE = TEXT_SIZE + TEXT_SPACING;
+        TEXT1_Y = (TEXT_SIZE * (-2 + 2)) + (TEXT_SPACING * (-2 + 1));
+        TEXT2_Y = (TEXT_SIZE * (-1 + 2)) + (TEXT_SPACING * (-1 + 1));
+        TEXT3_Y = (TEXT_SIZE * (0 + 2)) + (TEXT_SPACING * (0 + 1));
+        TEXT4_Y = (TEXT_SIZE * (1 + 2)) + (TEXT_SPACING * (1 + 1));
+        TEXT5_Y = (TEXT_SIZE * (2 + 2)) + (TEXT_SPACING * (2 + 1));
 
         mBackgroundFocused = context.getResources().getDrawable(R.drawable.pickerbox_background);
         mSelectorFocused = context.getResources().getDrawable(R.drawable.pickerbox_selected);
@@ -252,7 +261,7 @@ public class VerticalTextSpinner extends View {
         /* The bounds of the selector */
         final int selectorLeft = 0;
         final int selectorTop = mSelectorY;
-        final int selectorRight = getMeasuredWidth();
+        final int selectorRight = getWidth();
         final int selectorBottom = mSelectorY + mSelectorHeight;
 
         /* Draw the selector */
