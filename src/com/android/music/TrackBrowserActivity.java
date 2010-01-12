@@ -31,6 +31,7 @@ import android.content.ServiceConnection;
 import android.database.AbstractCursor;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.MediaFile;
 import android.net.Uri;
@@ -94,6 +95,9 @@ public class TrackBrowserActivity extends ListActivity
     private String mSortOrder;
     private int mSelectedPosition;
     private long mSelectedId;
+    private static int mLastListPosCourse = -1;
+    private static int mLastListPosFine = -1;
+    private boolean mUseLastListPos = false;
 
     public TrackBrowserActivity()
     {
@@ -105,6 +109,12 @@ public class TrackBrowserActivity extends ListActivity
     {
         super.onCreate(icicle);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        Intent intent = getIntent();
+        if (intent != null) {
+            if (intent.getBooleanExtra("withtabs", false)) {
+                requestWindowFeature(Window.FEATURE_NO_TITLE);
+            }
+        }
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         if (icicle != null) {
             mSelectedId = icicle.getLong("selectedtrack");
@@ -114,10 +124,9 @@ public class TrackBrowserActivity extends ListActivity
             mGenre = icicle.getString("genre");
             mEditMode = icicle.getBoolean("editmode", false);
         } else {
-            mAlbumId = getIntent().getStringExtra("album");
+            mAlbumId = intent.getStringExtra("album");
             // If we have an album, show everything on the album, not just stuff
             // by a particular artist.
-            Intent intent = getIntent();
             mArtistId = intent.getStringExtra("artist");
             mPlaylist = intent.getStringExtra("playlist");
             mGenre = intent.getStringExtra("genre");
@@ -149,6 +158,7 @@ public class TrackBrowserActivity extends ListActivity
         };
 
         setContentView(R.layout.media_picker_activity);
+        mUseLastListPos = MusicUtils.updateButtonBar(this, R.id.songtab);
         mTrackList = getListView();
         mTrackList.setOnCreateContextMenuListener(this);
         if (mEditMode) {
@@ -165,6 +175,14 @@ public class TrackBrowserActivity extends ListActivity
             setListAdapter(mAdapter);
         }
         MusicUtils.bindToService(this, this);
+
+        // don't set the album art until after the view has been layed out
+        mTrackList.post(new Runnable() {
+
+            public void run() {
+                setAlbumArtBackground();
+            }
+        });
     }
 
     public void onServiceConnected(ComponentName name, IBinder service)
@@ -200,11 +218,14 @@ public class TrackBrowserActivity extends ListActivity
             // first case, simply retry the query when the cursor is null.
             // Worst case, we end up doing the same query twice.
             if (mTrackCursor != null) {
-                init(mTrackCursor);
+                init(mTrackCursor, false);
             } else {
                 setTitle(R.string.working_songs);
                 getTrackCursor(mAdapter.getQueryHandler(), null, true);
             }
+        }
+        if (!mEditMode) {
+            MusicUtils.updateNowPlaying(this);
         }
     }
     
@@ -222,6 +243,14 @@ public class TrackBrowserActivity extends ListActivity
     
     @Override
     public void onDestroy() {
+        ListView lv = getListView();
+        if (lv != null && mUseLastListPos) {
+            mLastListPosCourse = lv.getFirstVisiblePosition();
+            View cv = lv.getChildAt(0);
+            if (cv != null) {
+                mLastListPosFine = cv.getTop();
+            }
+        }
         MusicUtils.unbindFromService(this);
         try {
             if ("nowplaying".equals(mPlaylist)) {
@@ -319,7 +348,7 @@ public class TrackBrowserActivity extends ListActivity
         super.onSaveInstanceState(outcicle);
     }
     
-    public void init(Cursor newCursor) {
+    public void init(Cursor newCursor, boolean isLimited) {
 
         if (mAdapter == null) {
             return;
@@ -332,9 +361,22 @@ public class TrackBrowserActivity extends ListActivity
             mReScanHandler.sendEmptyMessageDelayed(0, 1000);
             return;
         }
-        
+
         MusicUtils.hideDatabaseError(this);
+        mUseLastListPos = MusicUtils.updateButtonBar(this, R.id.songtab);
         setTitle();
+
+        // Restore previous position
+        if (mLastListPosCourse >= 0 && mUseLastListPos) {
+            ListView lv = getListView();
+            // this hack is needed because otherwise the position doesn't change
+            // for the 2nd (non-limited) cursor
+            lv.setAdapter(lv.getAdapter());
+            lv.setSelectionFromTop(mLastListPosCourse, mLastListPosFine);
+            if (!isLimited) {
+                mLastListPosCourse = -1;
+            }
+        }
 
         // When showing the queue, position the selection on the currently playing track
         // Otherwise, position the selection on the first matching artist, if any
@@ -366,6 +408,21 @@ public class TrackBrowserActivity extends ListActivity
             registerReceiver(mTrackListListener, new IntentFilter(f));
             mTrackListListener.onReceive(this, new Intent(MediaPlaybackService.META_CHANGED));
         }
+    }
+
+    private void setAlbumArtBackground() {
+        try {
+            long albumid = Long.valueOf(mAlbumId);
+            Bitmap bm = MusicUtils.getArtwork(TrackBrowserActivity.this, -1, albumid, false);
+            if (bm != null) {
+                MusicUtils.setBackground(mTrackList, bm);
+                mTrackList.setCacheColorHint(0);
+                return;
+            }
+        } catch (Exception ex) {
+        }
+        mTrackList.setBackgroundResource(0);
+        mTrackList.setCacheColorHint(0xff000000);
     }
 
     private void setTitle() {
@@ -543,6 +600,9 @@ public class TrackBrowserActivity extends ListActivity
         @Override
         public void onReceive(Context context, Intent intent) {
             getListView().invalidateViews();
+            if (!mEditMode) {
+                MusicUtils.updateNowPlaying(TrackBrowserActivity.this);
+            }
         }
     };
 
@@ -833,6 +893,18 @@ public class TrackBrowserActivity extends ListActivity
         if (mTrackCursor.getCount() == 0) {
             return;
         }
+        // When selecting a track from the queue, just jump there instead of
+        // reloading the queue. This is both faster, and prevents accidentally
+        // dropping out of party shuffle.
+        if (mTrackCursor instanceof NowPlayingCursor) {
+            if (MusicUtils.sService != null) {
+                try {
+                    MusicUtils.sService.setQueuePosition(position);
+                    return;
+                } catch (RemoteException ex) {
+                }
+            }
+        }
         MusicUtils.playAll(this, mTrackCursor, position);
     }
 
@@ -847,9 +919,7 @@ public class TrackBrowserActivity extends ListActivity
         if (mPlaylist == null) {
             menu.add(0, PLAY_ALL, 0, R.string.play_all).setIcon(com.android.internal.R.drawable.ic_menu_play_clip);
         }
-        menu.add(0, GOTO_START, 0, R.string.goto_start).setIcon(R.drawable.ic_menu_music_library);
-        menu.add(0, GOTO_PLAYBACK, 0, R.string.goto_playback).setIcon(R.drawable.ic_menu_playback)
-                .setVisible(MusicUtils.isMusicLoaded());
+        menu.add(0, PARTY_SHUFFLE, 0, R.string.party_shuffle); // icon will be set in onPrepareOptionsMenu()
         menu.add(0, SHUFFLE_ALL, 0, R.string.shuffle_all).setIcon(R.drawable.ic_menu_shuffle);
         if (mPlaylist != null) {
             menu.add(0, SAVE_AS_PLAYLIST, 0, R.string.save_as_playlist).setIcon(android.R.drawable.ic_menu_save);
@@ -858,6 +928,12 @@ public class TrackBrowserActivity extends ListActivity
             }
         }
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MusicUtils.setPartyShuffleMenuIcon(menu);
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -870,18 +946,9 @@ public class TrackBrowserActivity extends ListActivity
                 return true;
             }
 
-            case GOTO_START:
-                intent = new Intent();
-                intent.setClass(this, MusicBrowserActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                return true;
-
-            case GOTO_PLAYBACK:
-                intent = new Intent("com.android.music.PLAYBACK_VIEWER");
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                return true;
+            case PARTY_SHUFFLE:
+                MusicUtils.togglePartyShuffle();
+                break;
                 
             case SHUFFLE_ALL:
                 // Should 'shuffle all' shuffle ALL, or only the tracks shown?
@@ -1022,7 +1089,7 @@ public class TrackBrowserActivity extends ListActivity
         // This special case is for the "nowplaying" cursor, which cannot be handled
         // asynchronously using AsyncQueryHandler, so we do some extra initialization here.
         if (ret != null && async) {
-            init(ret);
+            init(ret, false);
             setTitle();
         }
         return ret;
@@ -1325,7 +1392,7 @@ public class TrackBrowserActivity extends ListActivity
             @Override
             protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
                 //Log.i("@@@", "query complete: " + cursor.getCount() + "   " + mActivity);
-                mActivity.init(cursor);
+                mActivity.init(cursor, cookie != null);
                 if (token == 0 && cookie != null && cursor != null && cursor.getCount() >= 100) {
                     QueryArgs args = (QueryArgs) cookie;
                     startQuery(1, null, args.uri, args.projection, args.selection,

@@ -32,9 +32,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.MediaFile;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.ParcelFileDescriptor;
@@ -43,9 +48,13 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -229,6 +238,34 @@ public class MusicUtils {
             }
         }
         return mode;
+    }
+    
+    public static void togglePartyShuffle() {
+        if (sService != null) {
+            int shuffle = getCurrentShuffleMode();
+            try {
+                if (shuffle == MediaPlaybackService.SHUFFLE_AUTO) {
+                    sService.setShuffleMode(MediaPlaybackService.SHUFFLE_NONE);
+                } else {
+                    sService.setShuffleMode(MediaPlaybackService.SHUFFLE_AUTO);
+                }
+            } catch (RemoteException ex) {
+            }
+        }
+    }
+    
+    public static void setPartyShuffleMenuIcon(Menu menu) {
+        MenuItem item = menu.findItem(Defs.PARTY_SHUFFLE);
+        if (item != null) {
+            int shuffle = MusicUtils.getCurrentShuffleMode();
+            if (shuffle == MediaPlaybackService.SHUFFLE_AUTO) {
+                item.setIcon(R.drawable.ic_menu_party_shuffle);
+                item.setTitle(R.string.party_shuffle_off);
+            } else {
+                item.setIcon(R.drawable.ic_menu_party_shuffle);
+                item.setTitle(R.string.party_shuffle);
+            }
+        }
     }
     
     /*
@@ -602,6 +639,10 @@ public class MusicUtils {
         if (v != null) {
             v.setVisibility(View.GONE);
         }
+        v = a.findViewById(R.id.buttonbar);
+        if (v != null) {
+            v.setVisibility(View.GONE);
+        }
         TextView tv = (TextView) a.findViewById(R.id.sd_message);
         tv.setText(message);
     }
@@ -709,7 +750,7 @@ public class MusicUtils {
             sService.play();
         } catch (RemoteException ex) {
         } finally {
-            Intent intent = new Intent("com.android.music.PLAYBACK_VIEWER")
+            Intent intent = new Intent(context, MediaPlaybackActivity.class)
                 .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             context.startActivity(intent);
         }
@@ -866,11 +907,20 @@ public class MusicUtils {
         }
         return null;
     }
-    
+
+    /** Get album art for specified album. You should not pass in the album id
+     * for the "unknown" album here (use -1 instead)
+     * This method always returns the default album art icon when no album art is found.
+     */
+    public static Bitmap getArtwork(Context context, long song_id, long album_id) {
+        return getArtwork(context, song_id, album_id, true);
+    }
+
     /** Get album art for specified album. You should not pass in the album id
      * for the "unknown" album here (use -1 instead)
      */
-    public static Bitmap getArtwork(Context context, long song_id, long album_id) {
+    public static Bitmap getArtwork(Context context, long song_id, long album_id,
+            boolean allowdefault) {
 
         if (album_id < 0) {
             // This is something that is not in the database, so get the album art directly
@@ -881,7 +931,10 @@ public class MusicUtils {
                     return bm;
                 }
             }
-            return getDefaultArtwork(context);
+            if (allowdefault) {
+                return getDefaultArtwork(context);
+            }
+            return null;
         }
 
         ContentResolver res = context.getContentResolver();
@@ -898,11 +951,11 @@ public class MusicUtils {
                 if (bm != null) {
                     if (bm.getConfig() == null) {
                         bm = bm.copy(Bitmap.Config.RGB_565, false);
-                        if (bm == null) {
+                        if (bm == null && allowdefault) {
                             return getDefaultArtwork(context);
                         }
                     }
-                } else {
+                } else if (allowdefault) {
                     bm = getDefaultArtwork(context);
                 }
                 return bm;
@@ -1014,4 +1067,170 @@ public class MusicUtils {
             }
         }
     }
+    
+    static int sActiveTabIndex = -1;
+    
+    static boolean updateButtonBar(Activity a, int highlight) {
+        final TabWidget ll = (TabWidget) a.findViewById(R.id.buttonbar);
+        boolean withtabs = false;
+        Intent intent = a.getIntent();
+        if (intent != null) {
+            withtabs = intent.getBooleanExtra("withtabs", false);
+        }
+        
+        if (highlight == 0 || !withtabs) {
+            ll.setVisibility(View.GONE);
+            return withtabs;
+        } else if (withtabs) {
+            ll.setVisibility(View.VISIBLE);
+        }
+        for (int i = ll.getChildCount() - 1; i >= 0; i--) {
+            
+            View v = ll.getChildAt(i);
+            boolean isActive = (v.getId() == highlight);
+            if (isActive) {
+                ll.setCurrentTab(i);
+                sActiveTabIndex = i;
+            }
+            v.setTag(i);
+            v.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (hasFocus) {
+                        for (int i = 0; i < ll.getTabCount(); i++) {
+                            if (ll.getChildTabViewAt(i) == v) {
+                                ll.setCurrentTab(i);
+                                processTabClick((Activity)ll.getContext(), v, ll.getChildAt(sActiveTabIndex).getId());
+                                break;
+                            }
+                        }
+                    }
+                }});
+            
+            v.setOnClickListener(new View.OnClickListener() {
+
+                public void onClick(View v) {
+                    processTabClick((Activity)ll.getContext(), v, ll.getChildAt(sActiveTabIndex).getId());
+                }});
+        }
+        return withtabs;
+    }
+
+    static void processTabClick(Activity a, View v, int current) {
+        int id = v.getId();
+        if (id == current) {
+            return;
+        }
+
+        final TabWidget ll = (TabWidget) a.findViewById(R.id.buttonbar);
+        ll.setCurrentTab((Integer) v.getTag());
+
+        activateTab(a, id);
+        if (id != R.id.nowplayingtab) {
+            setIntPref(a, "activetab", id);
+        }
+    }
+    
+    static void activateTab(Activity a, int id) {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        switch (id) {
+            case R.id.artisttab:
+                intent.setDataAndType(Uri.EMPTY, "vnd.android.cursor.dir/artistalbum");
+                break;
+            case R.id.albumtab:
+                intent.setDataAndType(Uri.EMPTY, "vnd.android.cursor.dir/album");
+                break;
+            case R.id.songtab:
+                intent.setDataAndType(Uri.EMPTY, "vnd.android.cursor.dir/track");
+                break;
+            case R.id.playlisttab:
+                intent.setDataAndType(Uri.EMPTY, MediaStore.Audio.Playlists.CONTENT_TYPE);
+                break;
+            case R.id.nowplayingtab:
+                intent = new Intent(a, MediaPlaybackActivity.class);
+                a.startActivity(intent);
+                // fall through and return
+            default:
+                return;
+        }
+        intent.putExtra("withtabs", true);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        a.startActivity(intent);
+        a.finish();
+        a.overridePendingTransition(0, 0);
+    }
+    
+    static void updateNowPlaying(Activity a) {
+        View nowPlayingView = a.findViewById(R.id.nowplaying);
+        if (nowPlayingView == null) {
+            return;
+        }
+        try {
+            boolean withtabs = false;
+            Intent intent = a.getIntent();
+            if (intent != null) {
+                withtabs = intent.getBooleanExtra("withtabs", false);
+            }
+            if (true && MusicUtils.sService != null && MusicUtils.sService.getAudioId() != -1) {
+                TextView title = (TextView) nowPlayingView.findViewById(R.id.title);
+                TextView artist = (TextView) nowPlayingView.findViewById(R.id.artist);
+                title.setText(MusicUtils.sService.getTrackName());
+                String artistName = MusicUtils.sService.getArtistName();
+                if (MediaFile.UNKNOWN_STRING.equals(artistName)) {
+                    artistName = a.getString(R.string.unknown_artist_name);
+                }
+                artist.setText(artistName);
+                //mNowPlayingView.setOnFocusChangeListener(mFocuser);
+                //mNowPlayingView.setOnClickListener(this);
+                nowPlayingView.setVisibility(View.VISIBLE);
+                nowPlayingView.setOnClickListener(new View.OnClickListener() {
+
+                    public void onClick(View v) {
+                        Context c = v.getContext();
+                        c.startActivity(new Intent(c, MediaPlaybackActivity.class));
+                    }});
+                return;
+            }
+        } catch (RemoteException ex) {
+        }
+        nowPlayingView.setVisibility(View.GONE);
+    }
+
+    static void setBackground(View v, Bitmap bm) {
+
+        if (bm == null) {
+            v.setBackgroundResource(0);
+            return;
+        }
+
+        int vwidth = v.getWidth();
+        int vheight = v.getHeight();
+        int bwidth = bm.getWidth();
+        int bheight = bm.getHeight();
+        float scalex = (float) vwidth / bwidth;
+        float scaley = (float) vheight / bheight;
+        float scale = Math.max(scalex, scaley) * 1.3f;
+
+        Bitmap.Config config = Bitmap.Config.ARGB_8888;
+        Bitmap bg = Bitmap.createBitmap(vwidth, vheight, config);
+        Canvas c = new Canvas(bg);
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setFilterBitmap(true);
+        ColorMatrix greymatrix = new ColorMatrix();
+        greymatrix.setSaturation(0);
+        ColorMatrix darkmatrix = new ColorMatrix();
+        darkmatrix.setScale(.3f, .3f, .3f, 1.0f);
+        greymatrix.postConcat(darkmatrix);
+        ColorFilter filter = new ColorMatrixColorFilter(greymatrix);
+        paint.setColorFilter(filter);
+        Matrix matrix = new Matrix();
+        matrix.setTranslate(-bwidth/2, -bheight/2); // move bitmap center to origin
+        matrix.postRotate(10);
+        matrix.postScale(scale, scale);
+        matrix.postTranslate(vwidth/2, vheight/2);  // Move bitmap center to view center
+        c.drawBitmap(bm, matrix, paint);
+        v.setBackgroundDrawable(new BitmapDrawable(bg));
+    }
+
 }

@@ -31,7 +31,9 @@
             android:name="android.app.default_searchable"
             android:value=".QueryBrowserActivity"
         />
-        <activity android:name="MusicBrowserActivity">
+        <activity android:name="MusicBrowserActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
+        >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -55,7 +57,7 @@
              to it we want it back in its initial state.  We exclude from
              recents since this is accessible through a notification when
              appropriate. -->
-        <activity android:name="MediaPlaybackActivity"
+        <activity android:name="MediaPlaybackActivityStarter"
                 android:theme="@android:style/Theme.NoTitleBar"
                 android:label="@string/mediaplaybacklabel"
                 android:taskAffinity=""
@@ -77,6 +79,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name="MediaPlaybackActivity"
+                android:theme="@android:style/Theme.NoTitleBar"
+                android:label="@string/mediaplaybacklabel" >
+        </activity>
+
         <activity android:name="StreamStarter" android:theme="@android:style/Theme.Dialog" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
