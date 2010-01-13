@@ -600,6 +600,13 @@ public class MusicUtils {
     private static String mLastSdStatus;
 
     public static void displayDatabaseError(Activity a) {
+        if (a.isFinishing()) {
+            // When switching tabs really fast, we can end up with a null
+            // cursor (not sure why), which will bring us here.
+            // Don't bother showing an error message in that case.
+            return;
+        }
+
         String status = Environment.getExternalStorageState();
         int title = R.string.sdcard_error_title;
         int message = R.string.sdcard_error_message;
