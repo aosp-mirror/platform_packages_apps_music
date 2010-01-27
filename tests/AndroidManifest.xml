@@ -21,17 +21,17 @@
         <uses-library android:name="android.test.runner" />
     </application>
 
-    <instrumentation android:name=".MusicPlayerLaunchPerformance"
+    <instrumentation android:name="com.android.music.tests.MusicPlayerLaunchPerformance"
         android:targetPackage="com.android.music"
         android:label="Music Launch Performance">
     </instrumentation>
     
-    <instrumentation android:name=".MusicPlayerFunctionalTestRunner"
+    <instrumentation android:name="com.android.music.tests.MusicPlayerFunctionalTestRunner"
         android:targetPackage="com.android.music"
         android:label="Music Player Functional Test">
     </instrumentation>
     
-    <instrumentation android:name=".MusicPlayerStressTestRunner"
+    <instrumentation android:name="com.android.music.tests.MusicPlayerStressTestRunner"
         android:targetPackage="com.android.music"
         android:label="Music Player Stress Test">
     </instrumentation>
