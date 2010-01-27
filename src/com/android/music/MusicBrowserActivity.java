@@ -16,6 +16,8 @@
 
 package com.android.music;
 
+import com.android.music.MusicUtils.ServiceToken;
+
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -26,6 +28,8 @@ import android.os.RemoteException;
 
 public class MusicBrowserActivity extends Activity
     implements MusicUtils.Defs {
+
+    private ServiceToken mToken;
 
     public MusicBrowserActivity() {
     }
@@ -47,13 +51,15 @@ public class MusicBrowserActivity extends Activity
         
         String shuf = getIntent().getStringExtra("autoshuffle");
         if ("true".equals(shuf)) {
-            bindService((new Intent()).setClass(this, MediaPlaybackService.class), autoshuffle, 0);
+            mToken = MusicUtils.bindToService(this, autoshuffle);
         }
     }
 
     @Override
     public void onDestroy() {
-        MusicUtils.unbindFromService(this);
+        if (mToken != null) {
+            MusicUtils.unbindFromService(mToken);
+        }
         super.onDestroy();
     }
 

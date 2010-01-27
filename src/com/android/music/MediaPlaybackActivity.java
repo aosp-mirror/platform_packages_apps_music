@@ -16,6 +16,8 @@
 
 package com.android.music;
 
+import com.android.music.MusicUtils.ServiceToken;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.KeyguardManager;
@@ -83,6 +85,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     private AlbumArtHandler mAlbumArtHandler;
     private Toast mToast;
     private int mTouchSlop;
+    private ServiceToken mToken;
 
     public MediaPlaybackActivity()
     {
@@ -471,7 +474,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         }
         mHandler.removeMessages(REFRESH);
         unregisterReceiver(mStatusListener);
-        MusicUtils.unbindFromService(this);
+        MusicUtils.unbindFromService(mToken);
         mService = null;
         super.onStop();
     }
@@ -487,7 +490,8 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         super.onStart();
         paused = false;
 
-        if (false == MusicUtils.bindToService(this, osc)) {
+        mToken = MusicUtils.bindToService(this, osc);
+        if (mToken == null) {
             // something went wrong
             mHandler.sendEmptyMessage(QUIT);
         }

@@ -16,6 +16,8 @@
 
 package com.android.music;
 
+import com.android.music.MusicUtils.ServiceToken;
+
 import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.AsyncQueryHandler;
@@ -97,6 +99,7 @@ public class TrackBrowserActivity extends ListActivity
     private static int mLastListPosCourse = -1;
     private static int mLastListPosFine = -1;
     private boolean mUseLastListPos = false;
+    private ServiceToken mToken;
 
     public TrackBrowserActivity()
     {
@@ -171,7 +174,7 @@ public class TrackBrowserActivity extends ListActivity
             mAdapter.setActivity(this);
             setListAdapter(mAdapter);
         }
-        MusicUtils.bindToService(this, this);
+        mToken = MusicUtils.bindToService(this, this);
 
         // don't set the album art until after the view has been layed out
         mTrackList.post(new Runnable() {
@@ -248,7 +251,7 @@ public class TrackBrowserActivity extends ListActivity
                 mLastListPosFine = cv.getTop();
             }
         }
-        MusicUtils.unbindFromService(this);
+        MusicUtils.unbindFromService(mToken);
         try {
             if ("nowplaying".equals(mPlaylist)) {
                 unregisterReceiverSafe(mNowPlayingListener);

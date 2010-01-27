@@ -16,6 +16,8 @@
 
 package com.android.music;
 
+import com.android.music.MusicUtils.ServiceToken;
+
 import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.AsyncQueryHandler;
@@ -66,6 +68,7 @@ implements MusicUtils.Defs, ServiceConnection
     private QueryListAdapter mAdapter;
     private boolean mAdapterSent;
     private String mFilterString = "";
+    private ServiceToken mToken;
 
     public QueryBrowserActivity()
     {
@@ -78,7 +81,7 @@ implements MusicUtils.Defs, ServiceConnection
         super.onCreate(icicle);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         mAdapter = (QueryListAdapter) getLastNonConfigurationInstance();
-        MusicUtils.bindToService(this, this);
+        mToken = MusicUtils.bindToService(this, this);
         // defer the real work until we're bound to the service
     }
 
@@ -195,7 +198,7 @@ implements MusicUtils.Defs, ServiceConnection
 
     @Override
     public void onDestroy() {
-        MusicUtils.unbindFromService(this);
+        MusicUtils.unbindFromService(mToken);
         unregisterReceiver(mScanListener);
         // If we have an adapter and didn't send it off to another activity yet, we should
         // close its cursor, which we do by assigning a null cursor to it. Doing this

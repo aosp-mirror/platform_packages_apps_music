@@ -16,6 +16,8 @@
 
 package com.android.music;
 
+import com.android.music.MusicUtils.ServiceToken;
+
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -36,6 +38,7 @@ import java.util.ArrayList;
 
 public class MediaPickerActivity extends ListActivity implements MusicUtils.Defs
 {
+    private ServiceToken mToken;
 
     public MediaPickerActivity()
     {
@@ -57,13 +60,13 @@ public class MediaPickerActivity extends ListActivity implements MusicUtils.Defs
         } else {
             setTitle(mFirstYear + "-" + mLastYear);
         }
-        MusicUtils.bindToService(this);
+        mToken = MusicUtils.bindToService(this);
         init();
     }
 
     @Override
     public void onDestroy() {
-        MusicUtils.unbindFromService(this);
+        MusicUtils.unbindFromService(mToken);
         super.onDestroy();
         if (mCursor != null) {
             mCursor.close();

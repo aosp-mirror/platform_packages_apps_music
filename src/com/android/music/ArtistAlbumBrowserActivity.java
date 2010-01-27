@@ -16,6 +16,7 @@
 
 package com.android.music;
 
+import com.android.music.MusicUtils.ServiceToken;
 import com.android.music.QueryBrowserActivity.QueryListAdapter.QueryHandler;
 
 import android.app.ExpandableListActivity;
@@ -77,6 +78,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
     private final static int SEARCH = CHILD_MENU_BASE;
     private static int mLastListPosCourse = -1;
     private static int mLastListPosFine = -1;
+    private ServiceToken mToken;
 
     /** Called when the activity is first created. */
     @Override
@@ -91,7 +93,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             mCurrentArtistId = icicle.getString("selectedartist");
             mCurrentArtistName = icicle.getString("selectedartistname");
         }
-        MusicUtils.bindToService(this, this);
+        mToken = MusicUtils.bindToService(this, this);
 
         IntentFilter f = new IntentFilter();
         f.addAction(Intent.ACTION_MEDIA_SCANNER_STARTED);
@@ -163,7 +165,7 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
             }
         }
         
-        MusicUtils.unbindFromService(this);
+        MusicUtils.unbindFromService(mToken);
         // If we have an adapter and didn't send it off to another activity yet, we should
         // close its cursor, which we do by assigning a null cursor to it. Doing this
         // instead of closing the cursor directly keeps the framework from accessing

@@ -16,6 +16,8 @@
 
 package com.android.music;
 
+import com.android.music.MusicUtils.ServiceToken;
+
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -34,6 +36,8 @@ import android.widget.Toast;
 
 public class StreamStarter extends Activity
 {
+    private ServiceToken mToken;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -53,7 +57,7 @@ public class StreamStarter extends Activity
     public void onResume() {
         super.onResume();
 
-        MusicUtils.bindToService(this, new ServiceConnection() {
+        mToken = MusicUtils.bindToService(this, new ServiceConnection() {
             public void onServiceConnected(ComponentName classname, IBinder obj) {
                 try {
                     IntentFilter f = new IntentFilter();
@@ -111,7 +115,7 @@ public class StreamStarter extends Activity
             }
         }
         unregisterReceiver(mStatusListener);
-        MusicUtils.unbindFromService(this);
+        MusicUtils.unbindFromService(mToken);
         super.onPause();
     }
 }

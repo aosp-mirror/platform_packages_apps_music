@@ -16,6 +16,8 @@
 
 package com.android.music;
 
+import com.android.music.MusicUtils.ServiceToken;
+
 import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.AsyncQueryHandler;
@@ -75,6 +77,7 @@ public class AlbumBrowserActivity extends ListActivity
     private final static int SEARCH = CHILD_MENU_BASE;
     private static int mLastListPosCourse = -1;
     private static int mLastListPosFine = -1;
+    private ServiceToken mToken;
 
     public AlbumBrowserActivity()
     {
@@ -94,7 +97,7 @@ public class AlbumBrowserActivity extends ListActivity
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        MusicUtils.bindToService(this, this);
+        mToken = MusicUtils.bindToService(this, this);
 
         IntentFilter f = new IntentFilter();
         f.addAction(Intent.ACTION_MEDIA_SCANNER_STARTED);
@@ -160,7 +163,7 @@ public class AlbumBrowserActivity extends ListActivity
                 mLastListPosFine = cv.getTop();
             }
         }
-        MusicUtils.unbindFromService(this);
+        MusicUtils.unbindFromService(mToken);
         // If we have an adapter and didn't send it off to another activity yet, we should
         // close its cursor, which we do by assigning a null cursor to it. Doing this
         // instead of closing the cursor directly keeps the framework from accessing

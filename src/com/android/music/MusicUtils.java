@@ -22,6 +22,7 @@ import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
@@ -53,6 +54,7 @@ import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -150,25 +152,36 @@ public class MusicUtils {
     public static IMediaPlaybackService sService = null;
     private static HashMap<Context, ServiceBinder> sConnectionMap = new HashMap<Context, ServiceBinder>();
 
-    public static boolean bindToService(Context context) {
+    public static class ServiceToken {
+        ContextWrapper mWrappedContext;
+        ServiceToken(ContextWrapper context) {
+            mWrappedContext = context;
+        }
+    }
+
+    public static ServiceToken bindToService(Context context) {
         return bindToService(context, null);
     }
 
-    public static boolean bindToService(Context context, ServiceConnection callback) {
-        context.startService(new Intent(context, MediaPlaybackService.class));
+    public static ServiceToken bindToService(Context context, ServiceConnection callback) {
+        ContextWrapper cw = new ContextWrapper(context);
+        cw.startService(new Intent(cw, MediaPlaybackService.class));
         ServiceBinder sb = new ServiceBinder(callback);
-        sConnectionMap.put(context, sb);
-        return context.bindService((new Intent()).setClass(context,
-                MediaPlaybackService.class), sb, 0);
+        if (cw.bindService((new Intent()).setClass(cw, MediaPlaybackService.class), sb, 0)) {
+            sConnectionMap.put(cw, sb);
+            return new ServiceToken(cw);
+        }
+        return null;
     }
-    
-    public static void unbindFromService(Context context) {
-        ServiceBinder sb = (ServiceBinder) sConnectionMap.remove(context);
+
+    public static void unbindFromService(ServiceToken token) {
+        ContextWrapper cw = token.mWrappedContext;
+        ServiceBinder sb = sConnectionMap.remove(cw);
         if (sb == null) {
             Log.e("MusicUtils", "Trying to unbind for unknown Context");
             return;
         }
-        context.unbindService(sb);
+        cw.unbindService(sb);
         if (sConnectionMap.isEmpty()) {
             // presumably there is nobody interested in the service at this point,
             // so don't hang on to the ServiceConnection
@@ -282,7 +295,7 @@ public class MusicUtils {
     }
 
     private final static long [] sEmptyList = new long[0];
-    
+
     public static long [] getSongListForCursor(Cursor cursor) {
         if (cursor == null) {
             return sEmptyList;
@@ -509,6 +522,34 @@ public class MusicUtils {
         } catch (RemoteException ex) {
         }
     }
+
+    private static ContentValues[] sContentValuesCache = null;
+
+    /**
+     * @param ids The source array containing all the ids to be added to the playlist
+     * @param offset Where in the 'ids' array we start reading
+     * @param len How many items to copy during this pass
+     * @param base The play order offset to use for this pass
+     */
+    private static void makeInsertItems(long[] ids, int offset, int len, int base) {
+        // adjust 'len' if would extend beyond the end of the source array
+        if (offset + len > ids.length) {
+            len = ids.length - offset;
+        }
+        // allocate the ContentValues array, or reallocate if it is the wrong size
+        if (sContentValuesCache == null || sContentValuesCache.length != len) {
+            sContentValuesCache = new ContentValues[len];
+        }
+        // fill in the ContentValues array with the right values for this pass
+        for (int i = 0; i < len; i++) {
+            if (sContentValuesCache[i] == null) {
+                sContentValuesCache[i] = new ContentValues();
+            }
+
+            sContentValuesCache[i].put(MediaStore.Audio.Playlists.Members.PLAY_ORDER, base + offset + i);
+            sContentValuesCache[i].put(MediaStore.Audio.Playlists.Members.AUDIO_ID, ids[offset + i]);
+        }
+    }
     
     public static void addToPlaylist(Context context, long [] ids, long playlistid) {
         if (ids == null) {
@@ -517,7 +558,6 @@ public class MusicUtils {
             Log.e("MusicBase", "ListSelection null");
         } else {
             int size = ids.length;
-            ContentValues values [] = new ContentValues[size];
             ContentResolver resolver = context.getContentResolver();
             // need to determine the number of items currently in the playlist,
             // so the play_order field can be maintained.
@@ -529,15 +569,13 @@ public class MusicUtils {
             cur.moveToFirst();
             int base = cur.getInt(0);
             cur.close();
-
-            for (int i = 0; i < size; i++) {
-                values[i] = new ContentValues();
-                values[i].put(MediaStore.Audio.Playlists.Members.PLAY_ORDER, Integer.valueOf(base + i));
-                values[i].put(MediaStore.Audio.Playlists.Members.AUDIO_ID, ids[i]);
+            int numinserted = 0;
+            for (int i = 0; i < size; i += 1000) {
+                makeInsertItems(ids, i, 1000, base);
+                numinserted += resolver.bulkInsert(uri, sContentValuesCache);
             }
-            resolver.bulkInsert(uri, values);
             String message = context.getResources().getQuantityString(
-                    R.plurals.NNNtrackstoplaylist, size, Integer.valueOf(size));
+                    R.plurals.NNNtrackstoplaylist, numinserted, numinserted);
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
             //mLastPlaylistSelected = playlistid;
         }
