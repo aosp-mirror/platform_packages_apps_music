@@ -1151,7 +1151,7 @@ public class TrackBrowserActivity extends ListActivity
             if (oldPosition == newPosition)
                 return true;
             
-            if (mNowPlaying == null || mCursorIdxs == null) {
+            if (mNowPlaying == null || mCursorIdxs == null || newPosition >= mNowPlaying.length) {
                 return false;
             }
 
