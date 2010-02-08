@@ -1248,6 +1248,10 @@ public class MediaPlaybackService extends Service {
                     } else {
                         // all done
                         gotoIdleState();
+                        if (mIsSupposedToBePlaying) {
+                            mIsSupposedToBePlaying = false;
+                            notifyChange(PLAYSTATE_CHANGED);
+                        }
                         return;
                     }
                 }
