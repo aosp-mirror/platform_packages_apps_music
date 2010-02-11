@@ -16,6 +16,9 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         package="com.android.music">
+
+    <original-package android:name="com.android.music" />
+
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
