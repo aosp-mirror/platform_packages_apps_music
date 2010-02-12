@@ -110,8 +110,8 @@ public class CreatePlaylist extends Activity
             if (!c.isAfterLast()) {
                 id = c.getInt(0);
             }
+            c.close();
         }
-        c.close();
         return id;
     }
     
