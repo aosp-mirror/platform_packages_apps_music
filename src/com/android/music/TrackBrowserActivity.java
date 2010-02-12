@@ -586,6 +586,12 @@ public class TrackBrowserActivity extends ListActivity
                     mDeletedOneRow = false;
                     return;
                 }
+                // The service could disappear while the broadcast was in flight,
+                // so check to see if it's still valid
+                if (MusicUtils.sService == null) {
+                    finish();
+                    return;
+                }
                 Cursor c = new NowPlayingCursor(MusicUtils.sService, mCursorCols);
                 if (c.getCount() == 0) {
                     finish();
