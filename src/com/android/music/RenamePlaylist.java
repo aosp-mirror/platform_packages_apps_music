@@ -103,13 +103,19 @@ public class RenamePlaylist extends Activity
     };
     
     private void setSaveButton() {
-        String typedname = mPlaylist.getText().toString(); 
-        if (idForplaylist(typedname) >= 0
-                && ! mOriginalName.equals(typedname)) {
-            mSaveButton.setText(R.string.create_playlist_overwrite_text);
+        String typedname = mPlaylist.getText().toString();
+        if (typedname.trim().length() == 0) {
+            mSaveButton.setEnabled(false);
         } else {
-            mSaveButton.setText(R.string.create_playlist_create_text);
+            mSaveButton.setEnabled(true);
+            if (idForplaylist(typedname) >= 0
+                    && ! mOriginalName.equals(typedname)) {
+                mSaveButton.setText(R.string.create_playlist_overwrite_text);
+            } else {
+                mSaveButton.setText(R.string.create_playlist_create_text);
+            }
         }
+
     }
     
     private int idForplaylist(String name) {

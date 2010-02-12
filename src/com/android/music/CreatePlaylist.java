@@ -80,11 +80,17 @@ public class CreatePlaylist extends Activity
             // don't care about this one
         }
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            // check if playlist with current name exists already, and warn the user if so.
-            if (idForplaylist(mPlaylist.getText().toString()) >= 0) {
-                mSaveButton.setText(R.string.create_playlist_overwrite_text);
+            String newText = mPlaylist.getText().toString();
+            if (newText.trim().length() == 0) {
+                mSaveButton.setEnabled(false);
             } else {
-                mSaveButton.setText(R.string.create_playlist_create_text);
+                mSaveButton.setEnabled(true);
+                // check if playlist with current name exists already, and warn the user if so.
+                if (idForplaylist(newText) >= 0) {
+                    mSaveButton.setText(R.string.create_playlist_overwrite_text);
+                } else {
+                    mSaveButton.setText(R.string.create_playlist_create_text);
+                }
             }
         };
         public void afterTextChanged(Editable s) {
