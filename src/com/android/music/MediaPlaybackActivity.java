@@ -1097,6 +1097,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 finish();
             }
             public void onServiceDisconnected(ComponentName classname) {
+                mService = null;
             }
     };
 
