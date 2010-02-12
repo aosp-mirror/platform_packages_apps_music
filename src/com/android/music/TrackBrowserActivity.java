@@ -244,13 +244,21 @@ public class TrackBrowserActivity extends ListActivity
     @Override
     public void onDestroy() {
         ListView lv = getListView();
-        if (lv != null && mUseLastListPos) {
-            mLastListPosCourse = lv.getFirstVisiblePosition();
-            View cv = lv.getChildAt(0);
-            if (cv != null) {
-                mLastListPosFine = cv.getTop();
+        if (lv != null) {
+            if (mUseLastListPos) {
+                mLastListPosCourse = lv.getFirstVisiblePosition();
+                View cv = lv.getChildAt(0);
+                if (cv != null) {
+                    mLastListPosFine = cv.getTop();
+                }
+            }
+            if (mEditMode) {
+                // clear the listeners so we won't get any more callbacks
+                ((TouchInterceptor) lv).setDropListener(null);
+                ((TouchInterceptor) lv).setRemoveListener(null);
             }
         }
+
         MusicUtils.unbindFromService(mToken);
         try {
             if ("nowplaying".equals(mPlaylist)) {
