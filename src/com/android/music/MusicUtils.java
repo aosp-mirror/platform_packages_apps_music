@@ -52,9 +52,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.view.MenuItem.OnMenuItemClickListener;
 import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -1070,13 +1068,13 @@ public class MusicUtils {
     
     static int getIntPref(Context context, String name, int def) {
         SharedPreferences prefs =
-            context.getSharedPreferences("com.android.music", Context.MODE_PRIVATE);
+            context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
         return prefs.getInt(name, def);
     }
     
     static void setIntPref(Context context, String name, int value) {
         SharedPreferences prefs =
-            context.getSharedPreferences("com.android.music", Context.MODE_PRIVATE);
+            context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
         Editor ed = prefs.edit();
         ed.putInt(name, value);
         ed.commit();
