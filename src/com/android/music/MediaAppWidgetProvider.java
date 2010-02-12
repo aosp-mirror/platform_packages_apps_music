@@ -35,11 +35,7 @@ public class MediaAppWidgetProvider extends AppWidgetProvider {
     static final String TAG = "MusicAppWidgetProvider";
     
     public static final String CMDAPPWIDGETUPDATE = "appwidgetupdate";
-    
-    static final ComponentName THIS_APPWIDGET =
-        new ComponentName("com.android.music",
-                "com.android.music.MediaAppWidgetProvider");
-    
+
     private static MediaAppWidgetProvider sInstance;
     
     static synchronized MediaAppWidgetProvider getInstance() {
@@ -84,7 +80,7 @@ public class MediaAppWidgetProvider extends AppWidgetProvider {
         if (appWidgetIds != null) {
             gm.updateAppWidget(appWidgetIds, views);
         } else {
-            gm.updateAppWidget(THIS_APPWIDGET, views);
+            gm.updateAppWidget(new ComponentName(context, this.getClass()), views);
         }
     }
     
@@ -93,7 +89,8 @@ public class MediaAppWidgetProvider extends AppWidgetProvider {
      */
     private boolean hasInstances(Context context) {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(THIS_APPWIDGET);
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(
+                new ComponentName(context, this.getClass()));
         return (appWidgetIds.length > 0);
     }
 
