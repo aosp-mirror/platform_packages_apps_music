@@ -70,7 +70,7 @@
     <string name="sdcard_missing_title" msgid="9008284946643270850">"Keine SD-Karte"</string>
     <string name="sdcard_missing_message" msgid="1169260755336159747">"Es befindet sich keine SD-Karte im Telefon."</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"SD-Karte nicht verfügbar"</string>
-    <string name="sdcard_busy_message" msgid="8071868348072728830">"Die SD-Karte ist ausgelastet."</string>
+    <string name="sdcard_busy_message" msgid="8071868348072728830">"SD-Karte wird benutzt"</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"SD-Kartenfehler"</string>
     <string name="sdcard_error_message" msgid="4574563894036627855">"Bei der SD-Karte ist ein Fehler aufgetreten."</string>
     <string name="unknown_artist_name" msgid="5567811106415855219">"Unbekannter Interpret"</string>
@@ -138,6 +138,5 @@
     <string name="gadget_track" msgid="3186569295893300114">"Track <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
     <string name="fail_to_start_stream" msgid="3605390187703912835">"Der angeforderte Stream konnte nicht wiedergegeben werden."</string>
     <string name="search_settings_description" msgid="6520975349259883368">"Interpreten, Alben und Tracks"</string>
-    <!-- no translation found for fast_scroll_alphabet (5548732936480723311) -->
-    <skip />
+    <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
 </resources>

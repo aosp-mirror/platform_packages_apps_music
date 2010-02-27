@@ -138,6 +138,5 @@
     <string name="gadget_track" msgid="3186569295893300114">"Spor <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
     <string name="fail_to_start_stream" msgid="3605390187703912835">"Kunne ikke spille av strømmen."</string>
     <string name="search_settings_description" msgid="6520975349259883368">"Artister, album og spor"</string>
-    <!-- no translation found for fast_scroll_alphabet (5548732936480723311) -->
-    <skip />
+    <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ"</string>
 </resources>
