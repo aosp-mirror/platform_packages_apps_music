@@ -288,6 +288,9 @@
     <!-- The string used to describe Music as a searchable item within system search settings. -->
     <string name="search_settings_description">Artists, albums, and tracks</string>
 
+    <!-- Shown in the search box as a hint -->
+    <string name="search_hint">Search Music</string>
+
     <!--The fast scroll thumb will show one character from this string depending on the position in the list -->
     <string name="fast_scroll_alphabet">\u0020ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
 </resources>
