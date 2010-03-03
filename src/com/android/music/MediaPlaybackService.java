@@ -1925,7 +1925,7 @@ public class MediaPlaybackService extends Service {
 
     @Override
     protected void dump(FileDescriptor fd, PrintWriter writer, String[] args) {
-        writer.println("Queue contains " + mPlayListLen + " items");
+        writer.println("" + mPlayListLen + " items in queue, currently at index " + mPlayPos);
         writer.println("Currently loaded:");
         writer.println(getArtistName());
         writer.println(getAlbumName());
@@ -1933,6 +1933,7 @@ public class MediaPlaybackService extends Service {
         writer.println(getPath());
         writer.println("playing: " + mIsSupposedToBePlaying);
         writer.println("actual: " + mPlayer.mMediaPlayer.isPlaying());
+        writer.println("shuffle mode: " + mShuffleMode);
         MusicUtils.debugDump(writer);
     }
 
