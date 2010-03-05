@@ -602,13 +602,17 @@ public class MusicPicker extends ListActivity
             Collator col = Collator.getInstance();
             col.setStrength(Collator.PRIMARY);
             for (int i = 0; i < searchWords.length; i++) {
-                keywords[i] = '%' + MediaStore.Audio.keyFor(searchWords[i]) + '%';
+                String key = MediaStore.Audio.keyFor(searchWords[i]);
+                key = key.replace("\\", "\\\\");
+                key = key.replace("%", "\\%");
+                key = key.replace("_", "\\_");
+                keywords[i] = '%' + key + '%';
             }
             for (int i = 0; i < searchWords.length; i++) {
                 where.append(" AND ");
                 where.append(MediaStore.Audio.Media.ARTIST_KEY + "||");
                 where.append(MediaStore.Audio.Media.ALBUM_KEY + "||");
-                where.append(MediaStore.Audio.Media.TITLE_KEY + " LIKE ?");
+                where.append(MediaStore.Audio.Media.TITLE_KEY + " LIKE ? ESCAPE '\\'");
             }
         }
         
