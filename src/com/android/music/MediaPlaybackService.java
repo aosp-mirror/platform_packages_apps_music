@@ -32,6 +32,7 @@ import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.media.AudioManager;
+import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Handler;
@@ -138,7 +139,10 @@ public class MediaPlaybackService extends Service {
     private boolean mResumeAfterCall = false;
     private boolean mIsSupposedToBePlaying = false;
     private boolean mQuietMode = false;
-    
+    private AudioManager mAudioManager;
+    // used to track what type of audio focus loss caused the playback to pause
+    private boolean mPausedByTransientLossOfFocus = false;
+
     private SharedPreferences mPreferences;
     // We use this to distinguish between different cards when saving/restoring playlists.
     // This will have to change if we want to support multiple simultaneous cards.
@@ -262,12 +266,46 @@ public class MediaPlaybackService extends Service {
         }
     };
 
+    private OnAudioFocusChangeListener mAudioFocusListener = new OnAudioFocusChangeListener() {
+        public void onAudioFocusChanged(int focusChange) {
+            // AudioFocus is a new feature: focus updates are made verbose on purpose
+            switch (focusChange) {
+                case AudioManager.AUDIOFOCUS_LOSS:
+                    Log.v(LOGTAG, "AudioFocus: received AUDIOFOCUS_LOSS");
+                    if(isPlaying()) {
+                        mPausedByTransientLossOfFocus = false;
+                        pause();
+                    }
+                    break;
+                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+                    Log.v(LOGTAG, "AudioFocus: received AUDIOFOCUS_LOSS_TRANSIENT");
+                    if(isPlaying()) {
+                        mPausedByTransientLossOfFocus = true;
+                        pause();
+                    }
+                    break;
+                case AudioManager.AUDIOFOCUS_GAIN:
+                    Log.v(LOGTAG, "AudioFocus: received AUDIOFOCUS_GAIN");
+                    if(!isPlaying() && mPausedByTransientLossOfFocus) {
+                        mPausedByTransientLossOfFocus = false;
+                        play();
+                    }
+                    break;
+                default:
+                    Log.e(LOGTAG, "Unknown audio focus change code");
+            }
+        }
+    };
+
     public MediaPlaybackService() {
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
+
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        mAudioManager.registerAudioFocusListener(mAudioFocusListener);
         
         mPreferences = getSharedPreferences("Music", MODE_WORLD_READABLE | MODE_WORLD_WRITEABLE);
         mCardId = MusicUtils.getCardId(this);
@@ -309,6 +347,9 @@ public class MediaPlaybackService extends Service {
         // release all MediaPlayer resources, including the native player and wakelocks
         mPlayer.release();
         mPlayer = null;
+
+        mAudioManager.abandonAudioFocus(mAudioFocusListener);
+        mAudioManager.unregisterAudioFocusListener(mAudioFocusListener);
         
         // make sure there aren't any other messages coming
         mDelayedStopHandler.removeCallbacksAndMessages(null);
@@ -1037,6 +1078,9 @@ public class MediaPlaybackService extends Service {
      * Starts playback of a previously opened file.
      */
     public void play() {
+        mAudioManager.requestAudioFocus(mAudioFocusListener, AudioManager.STREAM_MUSIC,
+                AudioManager.AUDIOFOCUS_GAIN);
+
         if (mPlayer.isInitialized()) {
             // if we are at the end of the song, go to the next song first
             long duration = mPlayer.duration();
