@@ -130,7 +130,9 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
                     mHandler.removeMessages(MSG_LONGPRESS_TIMEOUT);
                     mDown = false;
                 }
-                abortBroadcast();
+                if (isOrderedBroadcast()) {
+                    abortBroadcast();
+                }
             }
         }
     }

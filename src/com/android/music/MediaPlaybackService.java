@@ -20,6 +20,7 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -307,6 +308,8 @@ public class MediaPlaybackService extends Service {
 
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         mAudioManager.registerAudioFocusListener(mAudioFocusListener);
+        mAudioManager.registerMediaButtonEventReceiver(new ComponentName(getPackageName(),
+                MediaButtonIntentReceiver.class.getName()));
         
         mPreferences = getSharedPreferences("Music", MODE_WORLD_READABLE | MODE_WORLD_WRITEABLE);
         mCardId = MusicUtils.getCardId(this);
@@ -1081,6 +1084,8 @@ public class MediaPlaybackService extends Service {
     public void play() {
         mAudioManager.requestAudioFocus(mAudioFocusListener, AudioManager.STREAM_MUSIC,
                 AudioManager.AUDIOFOCUS_GAIN);
+        mAudioManager.registerMediaButtonEventReceiver(new ComponentName(this.getPackageName(),
+                MediaButtonIntentReceiver.class.getName()));
 
         if (mPlayer.isInitialized()) {
             // if we are at the end of the song, go to the next song first
