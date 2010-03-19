@@ -803,7 +803,7 @@ public class MusicUtils {
             sService.play();
         } catch (RemoteException ex) {
         } finally {
-            Intent intent = new Intent(context, MediaPlaybackActivity.class)
+            Intent intent = new Intent("com.android.music.PLAYBACK_VIEWER")
                 .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             context.startActivity(intent);
         }
@@ -1176,10 +1176,10 @@ public class MusicUtils {
         }
 
         final TabWidget ll = (TabWidget) a.findViewById(R.id.buttonbar);
-        ll.setCurrentTab((Integer) v.getTag());
 
         activateTab(a, id);
         if (id != R.id.nowplayingtab) {
+            ll.setCurrentTab((Integer) v.getTag());
             setIntPref(a, "activetab", id);
         }
     }

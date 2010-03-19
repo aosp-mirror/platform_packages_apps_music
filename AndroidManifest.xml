@@ -61,7 +61,7 @@
              to it we want it back in its initial state.  We exclude from
              recents since this is accessible through a notification when
              appropriate. -->
-        <activity android:name="com.android.music.MediaPlaybackActivityStarter"
+        <activity android:name="com.android.music.MediaPlaybackActivity"
                 android:theme="@android:style/Theme.NoTitleBar"
                 android:label="@string/mediaplaybacklabel"
                 android:taskAffinity=""
@@ -82,10 +82,6 @@
                 <action android:name="com.android.music.PLAYBACK_VIEWER" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
-        <activity android:name="com.android.music.MediaPlaybackActivity"
-                android:theme="@android:style/Theme.NoTitleBar"
-                android:label="@string/mediaplaybacklabel" >
         </activity>
 
         <activity android:name="com.android.music.StreamStarter"
