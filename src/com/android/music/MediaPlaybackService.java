@@ -268,7 +268,7 @@ public class MediaPlaybackService extends Service {
     };
 
     private OnAudioFocusChangeListener mAudioFocusListener = new OnAudioFocusChangeListener() {
-        public void onAudioFocusChanged(int focusChange) {
+        public void onAudioFocusChange(int focusChange) {
             // AudioFocus is a new feature: focus updates are made verbose on purpose
             switch (focusChange) {
                 case AudioManager.AUDIOFOCUS_LOSS:
