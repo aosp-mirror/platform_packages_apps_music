@@ -552,6 +552,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        if (mService == null) return false;
         MenuItem item = menu.findItem(PARTY_SHUFFLE);
         if (item != null) {
             int shuffle = MusicUtils.getCurrentShuffleMode();
@@ -1102,6 +1103,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     };
 
     private void setRepeatButtonImage() {
+        if (mService == null) return;
         try {
             switch (mService.getRepeatMode()) {
                 case MediaPlaybackService.REPEAT_ALL:
@@ -1119,6 +1121,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     }
     
     private void setShuffleButtonImage() {
+        if (mService == null) return;
         try {
             switch (mService.getShuffleMode()) {
                 case MediaPlaybackService.SHUFFLE_NONE:
