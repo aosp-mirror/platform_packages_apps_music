@@ -32,7 +32,7 @@
         android:allowTaskReparenting="true">
         <meta-data
             android:name="android.app.default_searchable"
-            android:value=".QueryBrowserActivity"
+            android:value="com.android.music.QueryBrowserActivity"
         />
         <activity android:name="com.android.music.MusicBrowserActivity"
             android:theme="@android:style/Theme.NoTitleBar"
