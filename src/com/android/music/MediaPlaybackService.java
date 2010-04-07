@@ -160,8 +160,8 @@ public class MediaPlaybackService extends Service {
             if (state == TelephonyManager.CALL_STATE_RINGING) {
                 AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
                 int ringvolume = audioManager.getStreamVolume(AudioManager.STREAM_RING);
+                mResumeAfterCall = (isPlaying() || mResumeAfterCall) && (getAudioId() >= 0);
                 if (ringvolume > 0) {
-                    mResumeAfterCall = (isPlaying() || mResumeAfterCall) && (getAudioId() >= 0);
                     pause();
                 }
             } else if (state == TelephonyManager.CALL_STATE_OFFHOOK) {
@@ -250,13 +250,16 @@ public class MediaPlaybackService extends Service {
             } else if (CMDTOGGLEPAUSE.equals(cmd) || TOGGLEPAUSE_ACTION.equals(action)) {
                 if (isPlaying()) {
                     pause();
+                    mResumeAfterCall = false;
                 } else {
                     play();
                 }
             } else if (CMDPAUSE.equals(cmd) || PAUSE_ACTION.equals(action)) {
                 pause();
+                mResumeAfterCall = false;
             } else if (CMDSTOP.equals(cmd)) {
                 pause();
+                mResumeAfterCall = false;
                 seek(0);
             } else if (MediaAppWidgetProvider.CMDAPPWIDGETUPDATE.equals(cmd)) {
                 // Someone asked us to refresh a set of specific widgets, probably
@@ -631,13 +634,16 @@ public class MediaPlaybackService extends Service {
             } else if (CMDTOGGLEPAUSE.equals(cmd) || TOGGLEPAUSE_ACTION.equals(action)) {
                 if (isPlaying()) {
                     pause();
+                    mResumeAfterCall = false;
                 } else {
                     play();
                 }
             } else if (CMDPAUSE.equals(cmd) || PAUSE_ACTION.equals(action)) {
                 pause();
+                mResumeAfterCall = false;
             } else if (CMDSTOP.equals(cmd)) {
                 pause();
+                mResumeAfterCall = false;
                 seek(0);
             }
         }
