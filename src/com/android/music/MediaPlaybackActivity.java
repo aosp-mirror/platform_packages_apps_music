@@ -585,6 +585,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 case GOTO_START:
                     intent = new Intent();
                     intent.setClass(this, MusicBrowserActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
                     break;
