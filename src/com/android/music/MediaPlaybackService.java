@@ -137,7 +137,6 @@ public class MediaPlaybackService extends Service {
     private WakeLock mWakeLock;
     private int mServiceStartId = -1;
     private boolean mServiceInUse = false;
-    private boolean mResumeAfterCall = false;
     private boolean mIsSupposedToBePlaying = false;
     private boolean mQuietMode = false;
     private AudioManager mAudioManager;
@@ -152,33 +151,7 @@ public class MediaPlaybackService extends Service {
     private MediaAppWidgetProvider mAppWidgetProvider = MediaAppWidgetProvider.getInstance();
     
     // interval after which we stop the service when idle
-    private static final int IDLE_DELAY = 60000; 
-
-    private PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
-        @Override
-        public void onCallStateChanged(int state, String incomingNumber) {
-            if (state == TelephonyManager.CALL_STATE_RINGING) {
-                AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                int ringvolume = audioManager.getStreamVolume(AudioManager.STREAM_RING);
-                mResumeAfterCall = (isPlaying() || mResumeAfterCall) && (getAudioId() >= 0);
-                if (ringvolume > 0) {
-                    pause();
-                }
-            } else if (state == TelephonyManager.CALL_STATE_OFFHOOK) {
-                // pause the music while a conversation is in progress
-                mResumeAfterCall = (isPlaying() || mResumeAfterCall) && (getAudioId() >= 0);
-                pause();
-            } else if (state == TelephonyManager.CALL_STATE_IDLE) {
-                // start playing again
-                if (mResumeAfterCall) {
-                    // resume playback only if music was playing
-                    // when the call was answered
-                    startAndFadeIn();
-                    mResumeAfterCall = false;
-                }
-            }
-        }
-    };
+    private static final int IDLE_DELAY = 60000;
     
     private void startAndFadeIn() {
         mMediaplayerHandler.sendEmptyMessageDelayed(FADEIN, 10);
@@ -250,16 +223,16 @@ public class MediaPlaybackService extends Service {
             } else if (CMDTOGGLEPAUSE.equals(cmd) || TOGGLEPAUSE_ACTION.equals(action)) {
                 if (isPlaying()) {
                     pause();
-                    mResumeAfterCall = false;
+                    mPausedByTransientLossOfFocus = false;
                 } else {
                     play();
                 }
             } else if (CMDPAUSE.equals(cmd) || PAUSE_ACTION.equals(action)) {
                 pause();
-                mResumeAfterCall = false;
+                mPausedByTransientLossOfFocus = false;
             } else if (CMDSTOP.equals(cmd)) {
                 pause();
-                mResumeAfterCall = false;
+                mPausedByTransientLossOfFocus = false;
                 seek(0);
             } else if (MediaAppWidgetProvider.CMDAPPWIDGETUPDATE.equals(cmd)) {
                 // Someone asked us to refresh a set of specific widgets, probably
@@ -293,7 +266,7 @@ public class MediaPlaybackService extends Service {
                     Log.v(LOGTAG, "AudioFocus: received AUDIOFOCUS_GAIN");
                     if(!isPlaying() && mPausedByTransientLossOfFocus) {
                         mPausedByTransientLossOfFocus = false;
-                        play();
+                        startAndFadeIn();
                     }
                     break;
                 default:
@@ -333,8 +306,6 @@ public class MediaPlaybackService extends Service {
         commandFilter.addAction(PREVIOUS_ACTION);
         registerReceiver(mIntentReceiver, commandFilter);
         
-        TelephonyManager tmgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        tmgr.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
         PowerManager pm = (PowerManager)getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, this.getClass().getName());
         mWakeLock.setReferenceCounted(false);
@@ -366,9 +337,6 @@ public class MediaPlaybackService extends Service {
             mCursor.close();
             mCursor = null;
         }
-
-        TelephonyManager tmgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        tmgr.listen(mPhoneStateListener, 0);
 
         unregisterReceiver(mIntentReceiver);
         if (mUnmountReceiver != null) {
@@ -634,16 +602,16 @@ public class MediaPlaybackService extends Service {
             } else if (CMDTOGGLEPAUSE.equals(cmd) || TOGGLEPAUSE_ACTION.equals(action)) {
                 if (isPlaying()) {
                     pause();
-                    mResumeAfterCall = false;
+                    mPausedByTransientLossOfFocus = false;
                 } else {
                     play();
                 }
             } else if (CMDPAUSE.equals(cmd) || PAUSE_ACTION.equals(action)) {
                 pause();
-                mResumeAfterCall = false;
+                mPausedByTransientLossOfFocus = false;
             } else if (CMDSTOP.equals(cmd)) {
                 pause();
-                mResumeAfterCall = false;
+                mPausedByTransientLossOfFocus = false;
                 seek(0);
             }
         }
@@ -663,9 +631,9 @@ public class MediaPlaybackService extends Service {
         // Take a snapshot of the current playlist
         saveQueue(true);
 
-        if (isPlaying() || mResumeAfterCall) {
+        if (isPlaying() || mPausedByTransientLossOfFocus) {
             // something is currently playing, or will be playing once 
-            // an in-progress call ends, so don't stop the service now.
+            // an in-progress action requesting audio focus ends, so don't stop the service now.
             return true;
         }
         
@@ -687,7 +655,7 @@ public class MediaPlaybackService extends Service {
         @Override
         public void handleMessage(Message msg) {
             // Check again to make sure nothing is playing right now
-            if (isPlaying() || mResumeAfterCall || mServiceInUse
+            if (isPlaying() || mPausedByTransientLossOfFocus || mServiceInUse
                     || mMediaplayerHandler.hasMessages(TRACK_ENDED)) {
                 return;
             }
