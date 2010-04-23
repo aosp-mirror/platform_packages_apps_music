@@ -68,7 +68,7 @@ public class MediaAppWidgetProvider extends AppWidgetProvider {
         final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.album_appwidget);
         
         views.setViewVisibility(R.id.title, View.GONE);
-        views.setTextViewText(R.id.artist, res.getText(R.string.emptyplaylist));
+        views.setTextViewText(R.id.artist, res.getText(R.string.widget_initial_text));
 
         linkButtons(context, views, false /* not playing */);
         pushUpdate(context, appWidgetIds, views);

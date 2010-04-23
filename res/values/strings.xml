@@ -293,5 +293,8 @@
 
     <!--The fast scroll thumb will show one character from this string depending on the position in the list -->
     <string name="fast_scroll_alphabet">\u0020ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+
+    <!-- Text shown on widget when first loaded -->
+    <string name="widget_initial_text">Touch to select music.</string>
 </resources>
 
