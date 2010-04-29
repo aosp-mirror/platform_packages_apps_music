@@ -144,4 +144,5 @@
     <string name="search_settings_description" msgid="6520975349259883368">"Interpreti, alba a stopy"</string>
     <string name="search_hint" msgid="3766854898072633001">"Vyhledat hudbu"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" AÁBCČDĎEÉĚFGHCHIÍJKLMNŇOÓPQRŘSŠTŤUÚŮVWXYÝZŽ"</string>
+    <string name="widget_initial_text" msgid="6334545155963910952">"Dotykem vyberte hudbu."</string>
 </resources>

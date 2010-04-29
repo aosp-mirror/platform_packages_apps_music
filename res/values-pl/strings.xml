@@ -96,7 +96,7 @@
     <item quantity="one" msgid="422388042993582235">"Dodano 1 utwór do playlisty."</item>
     <item quantity="other" msgid="7662771987109627255">"Liczba utworów dodanych do listy odtwarzania: <xliff:g id="NUMBER">%d</xliff:g>."</item>
   </plurals>
-    <string name="emptyplaylist" msgid="6711555673997896344">"Wybrana playlista jest pusta."</string>
+    <string name="emptyplaylist" msgid="6711555673997896344">"Playlista jest pusta."</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"Zapisz"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Zastąp"</string>
     <string name="service_start_error_title" msgid="8649916852210198813">"Problem z odtwarzaniem"</string>
@@ -144,4 +144,5 @@
     <string name="search_settings_description" msgid="6520975349259883368">"Wykonawcy, albumy i utwory"</string>
     <string name="search_hint" msgid="3766854898072633001">"Szukaj wśród muzyki"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" AĄBCĆDEĘFGHIJKLŁMNŃOÓPQRSŚTUVWXYZŹŻ"</string>
+    <string name="widget_initial_text" msgid="6334545155963910952">"Dotknij, aby wybrać utwór muzyczny."</string>
 </resources>
