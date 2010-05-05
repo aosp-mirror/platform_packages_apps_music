@@ -96,6 +96,9 @@
                 <data android:mimeType="audio/mpeg"/>
                 <data android:mimeType="audio/mp4"/>
                 <data android:mimeType="audio/mp4a-latm"/>
+                <data android:mimeType="application/ogg"/>
+                <data android:mimeType="application/x-ogg"/>
+                <data android:mimeType="audio/ogg"/>
             </intent-filter>
         </activity>
         <activity android:name="com.android.music.ArtistAlbumBrowserActivity">
