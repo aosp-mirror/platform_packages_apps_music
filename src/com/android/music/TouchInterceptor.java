@@ -341,7 +341,7 @@ public class TouchInterceptor extends ListView {
         v.setImageBitmap(bm);
         mDragBitmap = bm;
 
-        mWindowManager = (WindowManager)mContext.getSystemService("window");
+        mWindowManager = (WindowManager)mContext.getSystemService(Context.WINDOW_SERVICE);
         mWindowManager.addView(v, mWindowParams);
         mDragView = v;
     }
@@ -361,7 +361,7 @@ public class TouchInterceptor extends ListView {
     
     private void stopDragging() {
         if (mDragView != null) {
-            WindowManager wm = (WindowManager)mContext.getSystemService("window");
+            WindowManager wm = (WindowManager)mContext.getSystemService(Context.WINDOW_SERVICE);
             wm.removeView(mDragView);
             mDragView.setImageDrawable(null);
             mDragView = null;
