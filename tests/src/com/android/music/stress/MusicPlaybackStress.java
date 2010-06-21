@@ -80,7 +80,7 @@ public class MusicPlaybackStress extends ActivityInstrumentationTestCase <TrackB
       }
       //Verification: check if it is in low memory
       ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
-      ((ActivityManager)getActivity().getSystemService("activity")).getMemoryInfo(mi);
+      ((ActivityManager)getActivity().getSystemService(Context.ACTIVITY_SERVICE)).getMemoryInfo(mi);
       assertFalse(TAG, mi.lowMemory);      
     }
 }
