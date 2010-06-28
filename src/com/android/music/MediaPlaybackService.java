@@ -1645,6 +1645,26 @@ public class MediaPlaybackService extends Service {
     }
 
     /**
+     * Sets the audio session ID.
+     *
+     * @param sessionId: the audio session ID.
+     */
+    public void setAudioSessionId(int sessionId) {
+        synchronized (this) {
+            mPlayer.setAudioSessionId(sessionId);
+        }
+    }
+
+    /**
+     * Returns the audio session ID.
+     */
+    public int getAudioSessionId() {
+        synchronized (this) {
+            return mPlayer.getAudioSessionId();
+        }
+    }
+
+    /**
      * Provides a unified interface for dealing with midi files and
      * other media files.
      */
@@ -1784,6 +1804,14 @@ public class MediaPlaybackService extends Service {
         public void setVolume(float vol) {
             mMediaPlayer.setVolume(vol, vol);
         }
+
+        public void setAudioSessionId(int sessionId) {
+            mMediaPlayer.setAudioSessionId(sessionId);
+        }
+
+        public int getAudioSessionId() {
+            return mMediaPlayer.getAudioSessionId();
+        }
     }
 
     /*
@@ -1889,7 +1917,12 @@ public class MediaPlaybackService extends Service {
         public int getMediaMountedCount() {
             return mService.get().getMediaMountedCount();
         }
-
+        public void setAudioSessionId(int sessionId) {
+            mService.get().setAudioSessionId(sessionId);
+        }
+        public int getAudioSessionId() {
+            return mService.get().getAudioSessionId();
+        }
     }
 
     @Override
