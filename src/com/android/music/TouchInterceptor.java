@@ -380,6 +380,7 @@ public class TouchInterceptor extends ListView {
     
     private void stopDragging() {
         if (mDragView != null) {
+            mDragView.setVisibility(GONE);
             WindowManager wm = (WindowManager)getContext().getSystemService(Context.WINDOW_SERVICE);
             wm.removeView(mDragView);
             mDragView.setImageDrawable(null);
