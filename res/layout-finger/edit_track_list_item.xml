@@ -18,21 +18,19 @@
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="64dip"
+    android:layout_height="66dip"
     android:gravity="bottom"
     android:orientation="vertical"
     android:baselineAligned="false">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/divider_horizontal_dark" />
-
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="64dip"
+        android:layout_height="66dip"
         android:gravity="center_vertical"
-        android:ignoreGravity="@+id/icon">
+        android:ignoreGravity="@+id/icon"
+        android:background="@drawable/playlist_tile"
+        android:paddingLeft="47dip"
+        >
 
         <include layout="@layout/track_list_item_common" />
 
