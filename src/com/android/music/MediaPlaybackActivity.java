@@ -1338,7 +1338,9 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 Message numsg = mHandler.obtainMessage(ALBUM_ART_DECODED, null);
                 mHandler.removeMessages(ALBUM_ART_DECODED);
                 mHandler.sendMessageDelayed(numsg, 300);
-                Bitmap bm = MusicUtils.getArtwork(MediaPlaybackActivity.this, songid, albumid);
+                // Don't allow default artwork here, because we want to fall back to song-specific
+                // album art if we can't find anything for the album.
+                Bitmap bm = MusicUtils.getArtwork(MediaPlaybackActivity.this, songid, albumid, false);
                 if (bm == null) {
                     bm = MusicUtils.getArtwork(MediaPlaybackActivity.this, songid, -1);
                     albumid = -1;
