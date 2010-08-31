@@ -600,12 +600,14 @@ public class TrackBrowserActivity extends ListActivity
                     finish();
                     return;
                 }
-                Cursor c = new NowPlayingCursor(MusicUtils.sService, mCursorCols);
-                if (c.getCount() == 0) {
-                    finish();
-                    return;
+                if (mAdapter != null) {
+                    Cursor c = new NowPlayingCursor(MusicUtils.sService, mCursorCols);
+                    if (c.getCount() == 0) {
+                        finish();
+                        return;
+                    }
+                    mAdapter.changeCursor(c);
                 }
-                mAdapter.changeCursor(c);
             }
         }
     };
