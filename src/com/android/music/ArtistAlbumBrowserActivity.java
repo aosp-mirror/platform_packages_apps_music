@@ -43,6 +43,7 @@ import android.os.Message;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.ContextMenu;
@@ -510,43 +511,25 @@ public class ArtistAlbumBrowserActivity extends ExpandableListActivity
 
     private Cursor getArtistCursor(AsyncQueryHandler async, String filter) {
 
-        StringBuilder where = new StringBuilder();
-        where.append(MediaStore.Audio.Artists.ARTIST + " != ''");
-        
-        // Add in the filtering constraints
-        String [] keywords = null;
-        if (filter != null) {
-            String [] searchWords = filter.split(" ");
-            keywords = new String[searchWords.length];
-            Collator col = Collator.getInstance();
-            col.setStrength(Collator.PRIMARY);
-            for (int i = 0; i < searchWords.length; i++) {
-                String key = MediaStore.Audio.keyFor(searchWords[i]);
-                key = key.replace("\\", "\\\\");
-                key = key.replace("%", "\\%");
-                key = key.replace("_", "\\_");
-                keywords[i] = '%' + key + '%';
-            }
-            for (int i = 0; i < searchWords.length; i++) {
-                where.append(" AND ");
-                where.append(MediaStore.Audio.Media.ARTIST_KEY + " LIKE ? ESCAPE '\\'");
-            }
-        }
-
-        String whereclause = where.toString();  
         String[] cols = new String[] {
                 MediaStore.Audio.Artists._ID,
                 MediaStore.Audio.Artists.ARTIST,
                 MediaStore.Audio.Artists.NUMBER_OF_ALBUMS,
                 MediaStore.Audio.Artists.NUMBER_OF_TRACKS
         };
+
+        Uri uri = MediaStore.Audio.Artists.EXTERNAL_CONTENT_URI;
+        if (!TextUtils.isEmpty(filter)) {
+            uri = uri.buildUpon().appendQueryParameter("filter", Uri.encode(filter)).build();
+        }
+
         Cursor ret = null;
         if (async != null) {
-            async.startQuery(0, null, MediaStore.Audio.Artists.EXTERNAL_CONTENT_URI,
-                    cols, whereclause , keywords, MediaStore.Audio.Artists.ARTIST_KEY);
+            async.startQuery(0, null, uri,
+                    cols, null , null, MediaStore.Audio.Artists.ARTIST_KEY);
         } else {
-            ret = MusicUtils.query(this, MediaStore.Audio.Artists.EXTERNAL_CONTENT_URI,
-                    cols, whereclause , keywords, MediaStore.Audio.Artists.ARTIST_KEY);
+            ret = MusicUtils.query(this, uri,
+                    cols, null , null, MediaStore.Audio.Artists.ARTIST_KEY);
         }
         return ret;
     }
