@@ -10,6 +10,8 @@ LOCAL_PACKAGE_NAME := Music
 
 LOCAL_SDK_VERSION := current
 
+LOCAL_PROGUARD_FLAGS := -include $(LOCAL_PATH)/proguard.flags
+
 include $(BUILD_PACKAGE)
 
 # Use the folloing include to make our test apk.

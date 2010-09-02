@@ -82,7 +82,6 @@ public class MediaPlaybackService extends Service {
     public static final String META_CHANGED = "com.android.music.metachanged";
     public static final String QUEUE_CHANGED = "com.android.music.queuechanged";
     public static final String PLAYBACK_COMPLETE = "com.android.music.playbackcomplete";
-    public static final String ASYNC_OPEN_COMPLETE = "com.android.music.asyncopencomplete";
 
     public static final String SERVICECMD = "com.android.music.musicservicecommand";
     public static final String CMDNAME = "command";
@@ -109,7 +108,6 @@ public class MediaPlaybackService extends Service {
     private int mRepeatMode = REPEAT_NONE;
     private int mMediaMountedCount = 0;
     private long [] mAutoShuffleList = null;
-    private boolean mOneShot;
     private long [] mPlayList = null;
     private int mPlayListLen = 0;
     private Vector<Integer> mHistory = new Vector<Integer>(MAX_HISTORY_SIZE);
@@ -140,6 +138,7 @@ public class MediaPlaybackService extends Service {
     private boolean mIsSupposedToBePlaying = false;
     private boolean mQuietMode = false;
     private AudioManager mAudioManager;
+    private boolean mQueueIsSaveable = true;
     // used to track what type of audio focus loss caused the playback to pause
     private boolean mPausedByTransientLossOfFocus = false;
 
@@ -194,11 +193,8 @@ public class MediaPlaybackService extends Service {
                     if (mRepeatMode == REPEAT_CURRENT) {
                         seek(0);
                         play();
-                    } else if (!mOneShot) {
-                        next(false);
                     } else {
-                        notifyChange(PLAYBACK_COMPLETE);
-                        mIsSupposedToBePlaying = false;
+                        next(false);
                     }
                     break;
                 case RELEASE_WAKELOCK:
@@ -353,9 +349,10 @@ public class MediaPlaybackService extends Service {
     };
 
     private void saveQueue(boolean full) {
-        if (mOneShot) {
+        if (!mQueueIsSaveable) {
             return;
         }
+
         Editor ed = mPreferences.edit();
         //long start = System.currentTimeMillis();
         if (full) {
@@ -692,14 +689,13 @@ public class MediaPlaybackService extends Service {
                     String action = intent.getAction();
                     if (action.equals(Intent.ACTION_MEDIA_EJECT)) {
                         saveQueue(true);
-                        mOneShot = true; // This makes us not save the state again later,
-                                         // which would be wrong because the song ids and
-                                         // card id might not match. 
+                        mQueueIsSaveable = false;
                         closeExternalStorageFiles(intent.getData().getPath());
                     } else if (action.equals(Intent.ACTION_MEDIA_MOUNTED)) {
                         mMediaMountedCount++;
                         mCardId = MusicUtils.getCardId(MediaPlaybackService.this);
                         reloadQueue();
+                        mQueueIsSaveable = true;
                         notifyChange(QUEUE_CHANGED);
                         notifyChange(META_CHANGED);
                     }
@@ -933,6 +929,7 @@ public class MediaPlaybackService extends Service {
                 mCursor.close();
                 mCursor = null;
             }
+
             if (mPlayListLen == 0) {
                 return;
             }
@@ -945,7 +942,7 @@ public class MediaPlaybackService extends Service {
                     mCursorCols, "_id=" + id , null, null);
             if (mCursor != null) {
                 mCursor.moveToFirst();
-                open(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + "/" + id, false);
+                open(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + "/" + id);
                 // go to bookmark if needed
                 if (isPodcast()) {
                     long bookmark = getBookmark();
@@ -957,42 +954,15 @@ public class MediaPlaybackService extends Service {
         }
     }
 
-    public void openAsync(String path) {
-        synchronized (this) {
-            if (path == null) {
-                return;
-            }
-            
-            mRepeatMode = REPEAT_NONE;
-            ensurePlayListCapacity(1);
-            mPlayListLen = 1;
-            mPlayPos = -1;
-            
-            mFileToPlay = path;
-            mCursor = null;
-            mPlayer.setDataSourceAsync(mFileToPlay);
-            mOneShot = true;
-        }
-    }
-    
     /**
      * Opens the specified file and readies it for playback.
      *
      * @param path The full path of the file to be opened.
-     * @param oneshot when set to true, playback will stop after this file completes, instead
-     * of moving on to the next track in the list 
      */
-    public void open(String path, boolean oneshot) {
+    public void open(String path) {
         synchronized (this) {
             if (path == null) {
                 return;
-            }
-            
-            if (oneshot) {
-                mRepeatMode = REPEAT_NONE;
-                ensurePlayListCapacity(1);
-                mPlayListLen = 1;
-                mPlayPos = -1;
             }
             
             // if mCursor is null, try to associate path with a database cursor
@@ -1031,7 +1001,6 @@ public class MediaPlaybackService extends Service {
             }
             mFileToPlay = path;
             mPlayer.setDataSource(mFileToPlay);
-            mOneShot = oneshot;
             if (! mPlayer.isInitialized()) {
                 stop(true);
                 if (mOpenFailedCounter++ < 10 &&  mPlayListLen > 1) {
@@ -1190,12 +1159,6 @@ public class MediaPlaybackService extends Service {
 
     public void prev() {
         synchronized (this) {
-            if (mOneShot) {
-                // we were playing a specific file not part of a playlist, so there is no 'previous'
-                seek(0);
-                play();
-                return;
-            }
             if (mShuffleMode == SHUFFLE_NORMAL) {
                 // go to previously-played track and remove it from the history
                 int histsize = mHistory.size();
@@ -1222,13 +1185,6 @@ public class MediaPlaybackService extends Service {
 
     public void next(boolean force) {
         synchronized (this) {
-            if (mOneShot) {
-                // we were playing a specific file not part of a playlist, so there is no 'next'
-                seek(0);
-                play();
-                return;
-            }
-
             if (mPlayListLen <= 0) {
                 Log.d(LOGTAG, "No play queue");
                 return;
@@ -1706,7 +1662,6 @@ public class MediaPlaybackService extends Service {
                 mMediaPlayer.reset();
                 mMediaPlayer.setDataSource(path);
                 mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                mMediaPlayer.setOnPreparedListener(preparedlistener);
                 mMediaPlayer.prepareAsync();
             } catch (IOException ex) {
                 // TODO: notify the user why the file couldn't be opened
@@ -1792,12 +1747,6 @@ public class MediaPlaybackService extends Service {
             }
         };
 
-        MediaPlayer.OnPreparedListener preparedlistener = new MediaPlayer.OnPreparedListener() {
-            public void onPrepared(MediaPlayer mp) {
-                notifyChange(ASYNC_OPEN_COMPLETE);
-            }
-        };
- 
         MediaPlayer.OnErrorListener errorListener = new MediaPlayer.OnErrorListener() {
             public boolean onError(MediaPlayer mp, int what, int extra) {
                 switch (what) {
@@ -1849,13 +1798,9 @@ public class MediaPlaybackService extends Service {
             mService = new WeakReference<MediaPlaybackService>(service);
         }
 
-        public void openFileAsync(String path)
+        public void openFile(String path)
         {
-            mService.get().openAsync(path);
-        }
-        public void openFile(String path, boolean oneShot)
-        {
-            mService.get().open(path, oneShot);
+            mService.get().open(path);
         }
         public void open(long [] list, int position) {
             mService.get().open(list, position);
