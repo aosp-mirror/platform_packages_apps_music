@@ -68,8 +68,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     View.OnTouchListener, View.OnLongClickListener
 {
     private static final int USE_AS_RINGTONE = CHILD_MENU_BASE;
-    
-    private boolean mOneShot = false;
+
     private boolean mSeeking = false;
     private boolean mDeviceHasDpad;
     private long mStartSeekPos = 0;
@@ -150,12 +149,6 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
             seeker.setOnSeekBarChangeListener(mSeekListener);
         }
         mProgress.setMax(1000);
-        
-        if (icicle != null) {
-            mOneShot = icicle.getBoolean("oneshot");
-        } else {
-            mOneShot = getIntent().getBooleanExtra("oneshot", false);
-        }
 
         mTouchSlop = ViewConfiguration.get(this).getScaledTouchSlop();
     }
@@ -466,12 +459,6 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     @Override
     public void onStop() {
         paused = true;
-        if (mService != null && mOneShot && getChangingConfigurations() == 0) {
-            try {
-                mService.stop();
-            } catch (RemoteException ex) {
-            }
-        }
         mHandler.removeMessages(REFRESH);
         unregisterReceiver(mStatusListener);
         MusicUtils.unbindFromService(mToken);
@@ -479,12 +466,6 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         super.onStop();
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putBoolean("oneshot", mOneShot);
-        super.onSaveInstanceState(outState);
-    }
-    
     @Override
     public void onStart() {
         super.onStart();
@@ -509,7 +490,6 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     @Override
     public void onNewIntent(Intent intent) {
         setIntent(intent);
-        mOneShot = intent.getBooleanExtra("oneshot", false);
     }
     
     @Override
@@ -534,7 +514,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         // if we're in one shot mode. In most cases, these menu items are not
         // useful in those modes, so for consistency we never show them in these
         // modes, instead of tailoring them to the specific file being played.
-        if (MusicUtils.getCurrentAudioId() >= 0 && !mOneShot) {
+        if (MusicUtils.getCurrentAudioId() >= 0) {
             menu.add(0, GOTO_START, 0, R.string.goto_start).setIcon(R.drawable.ic_menu_music_library);
             menu.add(0, PARTY_SHUFFLE, 0, R.string.party_shuffle); // icon will be set in onPrepareOptionsMenu()
             SubMenu sub = menu.addSubMenu(0, ADD_TO_PLAYLIST, 0,
@@ -1043,12 +1023,8 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 filename = uri.toString();
             }
             try {
-                if (! ContentResolver.SCHEME_CONTENT.equals(scheme) ||
-                        ! MediaStore.AUTHORITY.equals(uri.getAuthority())) {
-                    mOneShot = true;
-                }
                 mService.stop();
-                mService.openFile(filename, mOneShot);
+                mService.openFile(filename);
                 mService.play();
                 setIntent(new Intent());
             } catch (Exception ex) {
@@ -1071,17 +1047,11 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                     if (mService.getAudioId() >= 0 || mService.isPlaying() ||
                             mService.getPath() != null) {
                         // something is playing now, we're done
-                        if (mOneShot || mService.getAudioId() < 0) {
-                            mRepeatButton.setVisibility(View.INVISIBLE);
-                            mShuffleButton.setVisibility(View.INVISIBLE);
-                            mQueueButton.setVisibility(View.INVISIBLE);
-                        } else {
-                            mRepeatButton.setVisibility(View.VISIBLE);
-                            mShuffleButton.setVisibility(View.VISIBLE);
-                            mQueueButton.setVisibility(View.VISIBLE);
-                            setRepeatButtonImage();
-                            setShuffleButtonImage();
-                        }
+                        mRepeatButton.setVisibility(View.VISIBLE);
+                        mShuffleButton.setVisibility(View.VISIBLE);
+                        mQueueButton.setVisibility(View.VISIBLE);
+                        setRepeatButtonImage();
+                        setShuffleButtonImage();
                         setPauseButtonImage();
                         return;
                     }
@@ -1253,13 +1223,8 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 updateTrackInfo();
                 setPauseButtonImage();
                 queueNextRefresh(1);
-            } else if (action.equals(MediaPlaybackService.PLAYBACK_COMPLETE)) {
-                if (mOneShot) {
-                    finish();
-                } else {
-                    setPauseButtonImage();
-                }
-            } else if (action.equals(MediaPlaybackService.PLAYSTATE_CHANGED)) {
+            } else if (action.equals(MediaPlaybackService.PLAYBACK_COMPLETE) ||
+                    action.equals(MediaPlaybackService.PLAYSTATE_CHANGED)) {
                 setPauseButtonImage();
             }
         }

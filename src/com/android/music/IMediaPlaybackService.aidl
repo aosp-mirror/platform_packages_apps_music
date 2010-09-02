@@ -21,8 +21,7 @@ import android.graphics.Bitmap;
 
 interface IMediaPlaybackService
 {
-    void openFile(String path, boolean oneShot);
-    void openFileAsync(String path);
+    void openFile(String path);
     void open(in long [] list, int position);
     int getQueuePosition();
     boolean isPlaying();
