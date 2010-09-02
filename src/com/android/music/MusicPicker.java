@@ -30,6 +30,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -594,43 +595,26 @@ public class MusicPicker extends ListActivity
         StringBuilder where = new StringBuilder();
         where.append(MediaStore.Audio.Media.TITLE + " != ''");
         
-        // Add in the filtering constraints
-        String [] keywords = null;
-        if (filterstring != null) {
-            String [] searchWords = filterstring.split(" ");
-            keywords = new String[searchWords.length];
-            Collator col = Collator.getInstance();
-            col.setStrength(Collator.PRIMARY);
-            for (int i = 0; i < searchWords.length; i++) {
-                String key = MediaStore.Audio.keyFor(searchWords[i]);
-                key = key.replace("\\", "\\\\");
-                key = key.replace("%", "\\%");
-                key = key.replace("_", "\\_");
-                keywords[i] = '%' + key + '%';
-            }
-            for (int i = 0; i < searchWords.length; i++) {
-                where.append(" AND ");
-                where.append(MediaStore.Audio.Media.ARTIST_KEY + "||");
-                where.append(MediaStore.Audio.Media.ALBUM_KEY + "||");
-                where.append(MediaStore.Audio.Media.TITLE_KEY + " LIKE ? ESCAPE '\\'");
-            }
-        }
-        
         // We want to show all audio files, even recordings.  Enforcing the
         // following condition would hide recordings.
         //where.append(" AND " + MediaStore.Audio.Media.IS_MUSIC + "=1");
-        
+
+        Uri uri = mBaseUri;
+        if (!TextUtils.isEmpty(filterstring)) {
+            uri = uri.buildUpon().appendQueryParameter("filter", Uri.encode(filterstring)).build();
+        }
+
         if (sync) {
             try {
-                return getContentResolver().query(mBaseUri, CURSOR_COLS,
-                        where.toString(), keywords, mSortOrder);
+                return getContentResolver().query(uri, CURSOR_COLS,
+                        where.toString(), null, mSortOrder);
             } catch (UnsupportedOperationException ex) {
             }
         } else {
             mAdapter.setLoading(true);
             setProgressBarIndeterminateVisibility(true);
-            mQueryHandler.startQuery(MY_QUERY_TOKEN, null, mBaseUri, CURSOR_COLS,
-                    where.toString(), keywords, mSortOrder);
+            mQueryHandler.startQuery(MY_QUERY_TOKEN, null, uri, CURSOR_COLS,
+                    where.toString(), null, mSortOrder);
         }
         return null;
     }
