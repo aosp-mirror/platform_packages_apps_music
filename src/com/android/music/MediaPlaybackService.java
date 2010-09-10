@@ -409,8 +409,8 @@ public class MediaPlaybackService extends Service {
         }
         ed.putInt("repeatmode", mRepeatMode);
         ed.putInt("shufflemode", mShuffleMode);
-        ed.commit();
-  
+        SharedPreferencesCompat.apply(ed);
+
         //Log.i("@@@@ service", "saved state in " + (System.currentTimeMillis() - start) + " ms");
     }
 
