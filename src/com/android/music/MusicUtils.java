@@ -1079,7 +1079,7 @@ public class MusicUtils {
             context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
         Editor ed = prefs.edit();
         ed.putInt(name, value);
-        ed.commit();
+        SharedPreferencesCompat.apply(ed);
     }
 
     static void setRingtone(Context context, long id) {
