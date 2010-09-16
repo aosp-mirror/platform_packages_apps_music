@@ -786,6 +786,11 @@ public class MediaPlaybackService extends Service {
             mPlayList[position + i] = list[i];
         }
         mPlayListLen += addlen;
+        if (mPlayListLen == 0) {
+            mCursor.close();
+            mCursor = null;
+            notifyChange(META_CHANGED);
+        }
     }
     
     /**
@@ -1419,6 +1424,10 @@ public class MediaPlaybackService extends Service {
                 if (mPlayListLen == 0) {
                     stop(true);
                     mPlayPos = -1;
+                    if (mCursor != null) {
+                        mCursor.close();
+                        mCursor = null;
+                    }
                 } else {
                     if (mPlayPos >= mPlayListLen) {
                         mPlayPos = 0;
@@ -1430,6 +1439,7 @@ public class MediaPlaybackService extends Service {
                         play();
                     }
                 }
+                notifyChange(META_CHANGED);
             }
             return last - first + 1;
         }
