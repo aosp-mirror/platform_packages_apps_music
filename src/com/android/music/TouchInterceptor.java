@@ -202,10 +202,16 @@ public class TouchInterceptor extends ListView {
                     setSelectionFromTop(position, y);
                     // end hack
                 }
-                layoutChildren(); // force children to be recreated where needed
-                v = getChildAt(i);
+                try {
+                    layoutChildren(); // force children to be recreated where needed
+                    v = getChildAt(i);
+                } catch (IllegalStateException ex) {
+                    // layoutChildren throws this sometimes, presumably because we're
+                    // in the process of being torn down but are still getting touch
+                    // events
+                }
                 if (v == null) {
-                    break;
+                    return;
                 }
             }
             ViewGroup.LayoutParams params = v.getLayoutParams();
