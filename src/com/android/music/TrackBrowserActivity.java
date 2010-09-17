@@ -1429,7 +1429,7 @@ public class TrackBrowserActivity extends ListActivity
                 
                 if (mIndexer != null) {
                     mIndexer.setCursor(cursor);
-                } else if (!mActivity.mEditMode) {
+                } else if (!mActivity.mEditMode && mActivity.mAlbumId == null) {
                     String alpha = mActivity.getString(R.string.fast_scroll_alphabet);
                 
                     mIndexer = new MusicAlphabetIndexer(cursor, mTitleIdx, alpha);
