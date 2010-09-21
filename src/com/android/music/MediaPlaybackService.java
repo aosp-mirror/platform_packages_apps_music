@@ -32,6 +32,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
+import android.media.audiofx.AudioEffect;
 import android.media.AudioManager;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.media.MediaPlayer;
@@ -43,8 +44,6 @@ import android.os.PowerManager;
 import android.os.SystemClock;
 import android.os.PowerManager.WakeLock;
 import android.provider.MediaStore;
-import android.telephony.PhoneStateListener;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
@@ -318,6 +317,10 @@ public class MediaPlaybackService extends Service {
             Log.e(LOGTAG, "Service being destroyed while still playing.");
         }
         // release all MediaPlayer resources, including the native player and wakelocks
+        Intent i = new Intent(AudioEffect.ACTION_CLOSE_AUDIO_EFFECT_CONTROL_SESSION);
+        i.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, getAudioSessionId());
+        i.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, getPackageName());
+        sendBroadcast(i);
         mPlayer.release();
         mPlayer = null;
 
@@ -663,7 +666,7 @@ public class MediaPlaybackService extends Service {
             stopSelf(mServiceStartId);
         }
     };
-    
+
     /**
      * Called when we receive a ACTION_MEDIA_EJECT notification.
      *
@@ -1687,27 +1690,6 @@ public class MediaPlaybackService extends Service {
             mMediaPlayer.setWakeMode(MediaPlaybackService.this, PowerManager.PARTIAL_WAKE_LOCK);
         }
 
-        public void setDataSourceAsync(String path) {
-            try {
-                mMediaPlayer.reset();
-                mMediaPlayer.setDataSource(path);
-                mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                mMediaPlayer.prepareAsync();
-            } catch (IOException ex) {
-                // TODO: notify the user why the file couldn't be opened
-                mIsInitialized = false;
-                return;
-            } catch (IllegalArgumentException ex) {
-                // TODO: notify the user why the file couldn't be opened
-                mIsInitialized = false;
-                return;
-            }
-            mMediaPlayer.setOnCompletionListener(listener);
-            mMediaPlayer.setOnErrorListener(errorListener);
-            
-            mIsInitialized = true;
-        }
-        
         public void setDataSource(String path) {
             try {
                 mMediaPlayer.reset();
@@ -1730,7 +1712,10 @@ public class MediaPlaybackService extends Service {
             }
             mMediaPlayer.setOnCompletionListener(listener);
             mMediaPlayer.setOnErrorListener(errorListener);
-            
+            Intent i = new Intent(AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION);
+            i.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, getAudioSessionId());
+            i.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, getPackageName());
+            sendBroadcast(i);
             mIsInitialized = true;
         }
         
@@ -1926,9 +1911,6 @@ public class MediaPlaybackService extends Service {
         }
         public int getMediaMountedCount() {
             return mService.get().getMediaMountedCount();
-        }
-        public void setAudioSessionId(int sessionId) {
-            mService.get().setAudioSessionId(sessionId);
         }
         public int getAudioSessionId() {
             return mService.get().getAudioSessionId();
