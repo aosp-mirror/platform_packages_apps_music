@@ -296,5 +296,8 @@
 
     <!-- Text shown on widget when first loaded -->
     <string name="widget_initial_text">Touch to select music.</string>
+
+    <!-- Menu text for the item controlling the audio effects panel [CHAR LIMIT=15] -->
+    <string name="effectspanel">Sound effects</string>
 </resources>
 

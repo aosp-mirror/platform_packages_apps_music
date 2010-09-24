@@ -31,9 +31,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.media.audiofx.AudioEffect;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -525,6 +527,12 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                     .setIcon(R.drawable.ic_menu_set_as_ringtone);
             menu.add(1, DELETE_ITEM, 0, R.string.delete_item)
                     .setIcon(R.drawable.ic_menu_delete);
+
+            Intent i = new Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL);
+            if (getPackageManager().resolveActivity(i, 0) != null) {
+                menu.add(0, EFFECTS_PANEL, 0, R.string.effectspanel);
+            }
+
             return true;
         }
         return false;
@@ -609,6 +617,13 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                         intent.putExtras(b);
                         startActivityForResult(intent, -1);
                     }
+                    return true;
+                }
+
+                case EFFECTS_PANEL: {
+                    Intent i = new Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL);
+                    i.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, mService.getAudioSessionId());
+                    startActivityForResult(i, EFFECTS_PANEL);
                     return true;
                 }
             }
