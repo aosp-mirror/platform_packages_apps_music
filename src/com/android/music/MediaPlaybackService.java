@@ -98,7 +98,9 @@ public class MediaPlaybackService extends Service {
     private static final int TRACK_ENDED = 1;
     private static final int RELEASE_WAKELOCK = 2;
     private static final int SERVER_DIED = 3;
-    private static final int FADEIN = 4;
+    private static final int FADEINFROMSTART = 4;
+    private static final int FADEDOWN = 5;
+    private static final int FADEUP = 6;
     private static final int MAX_HISTORY_SIZE = 100;
     
     private MultiPlayer mPlayer;
@@ -152,7 +154,7 @@ public class MediaPlaybackService extends Service {
     private static final int IDLE_DELAY = 60000;
     
     private void startAndFadeIn() {
-        mMediaplayerHandler.sendEmptyMessageDelayed(FADEIN, 10);
+        mMediaplayerHandler.sendEmptyMessageDelayed(FADEINFROMSTART, 10);
     }
     
     private Handler mMediaplayerHandler = new Handler() {
@@ -161,21 +163,31 @@ public class MediaPlaybackService extends Service {
         public void handleMessage(Message msg) {
             MusicUtils.debugLog("mMediaplayerHandler.handleMessage " + msg.what);
             switch (msg.what) {
-                case FADEIN:
+                case FADEINFROMSTART:
                     if (!isPlaying()) {
                         mCurrentVolume = 0f;
                         mPlayer.setVolume(mCurrentVolume);
                         play();
-                        mMediaplayerHandler.sendEmptyMessageDelayed(FADEIN, 10);
-                    } else {
-                        mCurrentVolume += 0.01f;
-                        if (mCurrentVolume < 1.0f) {
-                            mMediaplayerHandler.sendEmptyMessageDelayed(FADEIN, 10);
-                        } else {
-                            mCurrentVolume = 1.0f;
-                        }
-                        mPlayer.setVolume(mCurrentVolume);
                     }
+                    mMediaplayerHandler.sendEmptyMessageDelayed(FADEUP, 10);
+                    break;
+                case FADEDOWN:
+                    mCurrentVolume -= .05f;
+                    if (mCurrentVolume > .2f) {
+                        mMediaplayerHandler.sendEmptyMessageDelayed(FADEDOWN, 10);
+                    } else {
+                        mCurrentVolume = .2f;
+                    }
+                    mPlayer.setVolume(mCurrentVolume);
+                    break;
+                case FADEUP:
+                    mCurrentVolume += .01f;
+                    if (mCurrentVolume < 1.0f) {
+                        mMediaplayerHandler.sendEmptyMessageDelayed(FADEUP, 10);
+                    } else {
+                        mCurrentVolume = 1.0f;
+                    }
+                    mPlayer.setVolume(mCurrentVolume);
                     break;
                 case SERVER_DIED:
                     if (mIsSupposedToBePlaying) {
@@ -249,8 +261,10 @@ public class MediaPlaybackService extends Service {
                         pause();
                     }
                     break;
-                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
                 case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+                    mMediaplayerHandler.sendEmptyMessage(FADEDOWN);
+                    break;
+                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
                     Log.v(LOGTAG, "AudioFocus: received AUDIOFOCUS_LOSS_TRANSIENT");
                     if(isPlaying()) {
                         mPausedByTransientLossOfFocus = true;
@@ -262,6 +276,8 @@ public class MediaPlaybackService extends Service {
                     if(!isPlaying() && mPausedByTransientLossOfFocus) {
                         mPausedByTransientLossOfFocus = false;
                         startAndFadeIn();
+                    } else {
+                        mMediaplayerHandler.sendEmptyMessage(FADEUP);
                     }
                     break;
                 default:
