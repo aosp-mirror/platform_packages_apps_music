@@ -1198,18 +1198,18 @@ public class MediaPlaybackService extends Service {
                 return;
             }
 
-            // Store the current file in the history, but keep the history at a
-            // reasonable size
-            if (mPlayPos >= 0) {
-                mHistory.add(Integer.valueOf(mPlayPos));
-            }
-            if (mHistory.size() > MAX_HISTORY_SIZE) {
-                mHistory.removeElementAt(0);
-            }
-
             if (mShuffleMode == SHUFFLE_NORMAL) {
                 // Pick random next track from the not-yet-played ones
                 // TODO: make it work right after adding/removing items in the queue.
+
+                // Store the current file in the history, but keep the history at a
+                // reasonable size
+                if (mPlayPos >= 0) {
+                    mHistory.add(mPlayPos);
+                }
+                if (mHistory.size() > MAX_HISTORY_SIZE) {
+                    mHistory.removeElementAt(0);
+                }
 
                 int numTracks = mPlayListLen;
                 int[] tracks = new int[numTracks];
@@ -1325,6 +1325,7 @@ public class MediaPlaybackService extends Service {
     // and no more than 10 items before.
     private void doAutoShuffleUpdate() {
         boolean notify = false;
+
         // remove old entries
         if (mPlayPos > 10) {
             removeTracks(0, mPlayPos - 9);
@@ -1334,15 +1335,51 @@ public class MediaPlaybackService extends Service {
         int to_add = 7 - (mPlayListLen - (mPlayPos < 0 ? -1 : mPlayPos));
         for (int i = 0; i < to_add; i++) {
             // pick something at random from the list
-            int idx = mRand.nextInt(mAutoShuffleList.length);
-            long which = mAutoShuffleList[idx];
+
+            int lookback = mHistory.size();
+            int idx = -1;
+            while(true) {
+                idx = mRand.nextInt(mAutoShuffleList.length);
+                if (!wasRecentlyUsed(idx, lookback)) {
+                    break;
+                }
+                lookback /= 2;
+            }
+            mHistory.add(idx);
+            if (mHistory.size() > MAX_HISTORY_SIZE) {
+                mHistory.remove(0);
+            }
             ensurePlayListCapacity(mPlayListLen + 1);
-            mPlayList[mPlayListLen++] = which;
+            mPlayList[mPlayListLen++] = mAutoShuffleList[idx];
             notify = true;
         }
         if (notify) {
             notifyChange(QUEUE_CHANGED);
         }
+    }
+
+    // check that the specified idx is not in the history (but only look at at
+    // most lookbacksize entries in the history)
+    private boolean wasRecentlyUsed(int idx, int lookbacksize) {
+
+        // early exit to prevent infinite loops in case idx == mPlayPos
+        if (lookbacksize == 0) {
+            return false;
+        }
+
+        int histsize = mHistory.size();
+        if (histsize < lookbacksize) {
+            Log.d(LOGTAG, "lookback too big");
+            lookbacksize = histsize;
+        }
+        int maxidx = histsize - 1;
+        for (int i = 0; i < lookbacksize; i++) {
+            long entry = mHistory.get(maxidx - i);
+            if (entry == idx) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // A simple variation of Random that makes sure that the
