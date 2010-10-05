@@ -233,7 +233,7 @@
 -->
         </activity>
         <activity android:name="com.android.music.MusicPicker"
-                android:label="@string/music_picker_title" android:exported="false" >
+                android:label="@string/music_picker_title" android:exported="true" >
             <!-- First way to invoke us: someone asks to get content of
                  any of the audio types we support. -->
             <intent-filter>
