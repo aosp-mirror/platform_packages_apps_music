@@ -128,11 +128,12 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
         AsyncQueryHandler mAsyncQueryHandler = new AsyncQueryHandler(getContentResolver()) {
             @Override
             protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
-                int titleIdx = cursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
-                int artistIdx = cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
-                int idIdx = cursor.getColumnIndex(MediaStore.Audio.Media._ID);
-                int displaynameIdx = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
-                if (cursor.moveToFirst()) {
+                if (cursor != null && cursor.moveToFirst()) {
+
+                    int titleIdx = cursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
+                    int artistIdx = cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
+                    int idIdx = cursor.getColumnIndex(MediaStore.Audio.Media._ID);
+                    int displaynameIdx = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
 
                     if (idIdx >=0) {
                         mMediaId = cursor.getLong(idIdx);
@@ -153,8 +154,11 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
                         Log.w(TAG, "Cursor had no names for us");
                     }
                 } else {
-                    // What to do here? When would this even happen?
                     Log.w(TAG, "empty cursor");
+                }
+
+                if (cursor != null) {
+                    cursor.close();
                 }
                 setNames();
             }
@@ -197,7 +201,9 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
     
     @Override
     public void onDestroy() {
-        mProgressRefresher.removeCallbacksAndMessages(null);
+        if (mProgressRefresher != null) {
+            mProgressRefresher.removeCallbacksAndMessages(null);
+        }
         if (mPlayer != null) {
             mPlayer.release();
             mAudioManager.abandonAudioFocus(mAudioFocusListener);
