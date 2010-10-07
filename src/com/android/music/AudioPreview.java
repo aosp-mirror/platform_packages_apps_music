@@ -46,6 +46,7 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -315,6 +316,7 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
     };
 
     public boolean onError(MediaPlayer mp, int what, int extra) {
+        Toast.makeText(this, R.string.playback_failed, Toast.LENGTH_SHORT).show();
         finish();
         return true;
     }
