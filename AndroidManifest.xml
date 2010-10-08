@@ -87,6 +87,7 @@
         </activity>
 
         <activity android:name="AudioPreview" android:theme="@android:style/Theme.Dialog"
+                android:taskAffinity=""
                 android:excludeFromRecents="true" android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
