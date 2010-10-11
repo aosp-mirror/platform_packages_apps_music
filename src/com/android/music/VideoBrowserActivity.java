@@ -105,6 +105,14 @@ public class VideoBrowserActivity extends ListActivity implements MusicUtils.Def
         }
     }
 
+    @Override
+    public void onDestroy() {
+        if (mCursor != null) {
+            mCursor.close();
+        }
+        super.onDestroy();
+    }
+
     private Cursor mCursor;
     private String mWhereClause;
     private String mSortOrder;
