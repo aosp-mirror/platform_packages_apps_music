@@ -530,7 +530,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
 
             Intent i = new Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL);
             if (getPackageManager().resolveActivity(i, 0) != null) {
-                menu.add(0, EFFECTS_PANEL, 0, R.string.effectspanel);
+                menu.add(0, EFFECTS_PANEL, 0, R.string.effectspanel).setIcon(R.drawable.ic_menu_eq);
             }
 
             return true;
