@@ -152,7 +152,7 @@
         </activity>
         <activity android:name="com.android.music.QueryBrowserActivity"
                 android:theme="@android:style/Theme.NoTitleBar"
-                android:exported="false" >
+                android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
                 <action android:name="android.intent.action.MEDIA_SEARCH" />
