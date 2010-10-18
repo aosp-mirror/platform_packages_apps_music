@@ -326,7 +326,12 @@ public class AlbumBrowserActivity extends ListActivity
             }
             case DELETE_ITEM: {
                 long [] list = MusicUtils.getSongListForAlbum(this, Long.parseLong(mCurrentAlbumId));
-                String f = getString(R.string.delete_album_desc); 
+                String f;
+                if (android.os.Environment.isExternalStorageRemovable()) {
+                    f = getString(R.string.delete_album_desc);
+                } else {
+                    f = getString(R.string.delete_album_desc_nosdcard);
+                }
                 String desc = String.format(f, mCurrentAlbumName);
                 Bundle b = new Bundle();
                 b.putString("description", desc);
