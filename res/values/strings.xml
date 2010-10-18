@@ -72,12 +72,18 @@
 
     <!-- Delete confirmation dialog when deleting an entire artist -->
     <string name="delete_artist_desc">All songs by <xliff:g id="artist">%s</xliff:g> will be permanently deleted from the SD card.</string>
+    <!-- Delete confirmation dialog when deleting an entire artist -->
+    <string name="delete_artist_desc_nosdcard">All songs by <xliff:g id="artist">%s</xliff:g> will be permanently deleted from USB storage.</string>
 
     <!-- Delete confirmation dialog when deleting an entire album -->
     <string name="delete_album_desc">The entire album \"<xliff:g id="album">%s</xliff:g>\" will be permanently deleted from the SD card.</string>
+    <!-- Delete confirmation dialog when deleting an entire album -->
+    <string name="delete_album_desc_nosdcard">The entire album \"<xliff:g id="album">%s</xliff:g>\" will be permanently deleted from USB storage.</string>
 
     <!-- Delete confirmation dialog when deleting a single song -->
     <string name="delete_song_desc">\"<xliff:g id="song">%s</xliff:g>\" will be permanently deleted from the SD card.</string>
+    <!-- Delete confirmation dialog when deleting a single song -->
+    <string name="delete_song_desc_nosdcard">\"<xliff:g id="song">%s</xliff:g>\" will be permanently deleted from USB storage.</string>
 
     <!-- Delete confirmation dialog, confirmation button text -->
     <string name="delete_confirm_button_text">OK</string>
@@ -91,6 +97,8 @@
 
     <!-- shown in dialog while the media scanner is starting up -->
     <string name="scanning">Scanning SD card\u2026</string>
+    <!-- shown in dialog while the media scanner is starting up -->
+    <string name="scanning_nosdcard">Scanning USB storage\u2026</string>
 
     <!-- title of the "current playlist" screen when not in party shuffle mode -->
     <string name="nowplaying_title">Now playing</string>
@@ -144,16 +152,28 @@
     <string name="podcasts_title">Podcasts</string>
     <!-- Title of screen when no sd card is present -->
     <string name="sdcard_missing_title">No SD card</string>
+    <!-- Title of screen when no sd card is present -->
+    <string name="sdcard_missing_title_nosdcard">No USB storage</string>
     <!-- label underneath icon used to indicate that no sd card is present -->
     <string name="sdcard_missing_message">Your phone does not have an SD card inserted.</string>
+    <!-- label underneath icon used to indicate that no sd card is present -->
+    <string name="sdcard_missing_message_nosdcard">Your phone does not have USB storage.</string>
     <!-- label underneath icon used to indicate that the sd card is present, but currently unavailable -->
     <string name="sdcard_busy_title">SD card unavailable</string>
+    <!-- label underneath icon used to indicate that the sd card is present, but currently unavailable -->
+    <string name="sdcard_busy_title_nosdcard">USB storage unavailable</string>
     <!-- label underneath icon used to indicate sd card is mounted to your computer via USB -->
     <string name="sdcard_busy_message">Sorry, your SD card is busy.</string>
+    <!-- label underneath icon used to indicate sd card is mounted to your computer via USB -->
+    <string name="sdcard_busy_message_nosdcard">Sorry, your USB storage is busy.</string>
     <!-- Title of screen when there was an error accessing the sd card -->
     <string name="sdcard_error_title">SD card error</string>
+    <!-- Title of screen when there was an error accessing the sd card -->
+    <string name="sdcard_error_title_nosdcard">USB storage error</string>
     <!-- label underneath icon used to indicate there was an error accessing the sd card -->
     <string name="sdcard_error_message">An error was encountered on your SD card.</string>
+    <!-- label underneath icon used to indicate there was an error accessing the sd card -->
+    <string name="sdcard_error_message_nosdcard">An error was encountered on your USB storage.</string>
     <!-- Default name of artist that doesn't have a name in the metadata -->
     <string name="unknown_artist_name">Unknown artist</string>
     <!-- Default name of album that doesn't have a name in the metadata -->
