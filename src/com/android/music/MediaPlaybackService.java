@@ -80,7 +80,6 @@ public class MediaPlaybackService extends Service {
     public static final String PLAYSTATE_CHANGED = "com.android.music.playstatechanged";
     public static final String META_CHANGED = "com.android.music.metachanged";
     public static final String QUEUE_CHANGED = "com.android.music.queuechanged";
-    public static final String PLAYBACK_COMPLETE = "com.android.music.playbackcomplete";
 
     public static final String SERVICECMD = "com.android.music.musicservicecommand";
     public static final String CMDNAME = "command";
@@ -738,7 +737,8 @@ public class MediaPlaybackService extends Service {
         i.putExtra("artist", getArtistName());
         i.putExtra("album",getAlbumName());
         i.putExtra("track", getTrackName());
-        sendBroadcast(i);
+        i.putExtra("playing", isPlaying());
+        sendStickyBroadcast(i);
         
         if (what.equals(QUEUE_CHANGED)) {
             saveQueue(true);
@@ -1268,8 +1268,8 @@ public class MediaPlaybackService extends Service {
                     if (mRepeatMode == REPEAT_NONE && !force) {
                         // all done
                         gotoIdleState();
-                        notifyChange(PLAYBACK_COMPLETE);
                         mIsSupposedToBePlaying = false;
+                        notifyChange(PLAYSTATE_CHANGED);
                         return;
                     } else if (mRepeatMode == REPEAT_ALL || force) {
                         mPlayPos = 0;
