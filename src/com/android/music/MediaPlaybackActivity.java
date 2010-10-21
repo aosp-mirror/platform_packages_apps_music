@@ -482,7 +482,6 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         IntentFilter f = new IntentFilter();
         f.addAction(MediaPlaybackService.PLAYSTATE_CHANGED);
         f.addAction(MediaPlaybackService.META_CHANGED);
-        f.addAction(MediaPlaybackService.PLAYBACK_COMPLETE);
         registerReceiver(mStatusListener, new IntentFilter(f));
         updateTrackInfo();
         long next = refreshNow();
@@ -1243,8 +1242,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 updateTrackInfo();
                 setPauseButtonImage();
                 queueNextRefresh(1);
-            } else if (action.equals(MediaPlaybackService.PLAYBACK_COMPLETE) ||
-                    action.equals(MediaPlaybackService.PLAYSTATE_CHANGED)) {
+            } else if (action.equals(MediaPlaybackService.PLAYSTATE_CHANGED)) {
                 setPauseButtonImage();
             }
         }
