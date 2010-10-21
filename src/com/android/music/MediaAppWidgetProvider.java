@@ -99,8 +99,7 @@ public class MediaAppWidgetProvider extends AppWidgetProvider {
      */
     void notifyChange(MediaPlaybackService service, String what) {
         if (hasInstances(service)) {
-            if (MediaPlaybackService.PLAYBACK_COMPLETE.equals(what) ||
-                    MediaPlaybackService.META_CHANGED.equals(what) ||
+            if (MediaPlaybackService.META_CHANGED.equals(what) ||
                     MediaPlaybackService.PLAYSTATE_CHANGED.equals(what)) {
                 performUpdate(service, null);
             }
