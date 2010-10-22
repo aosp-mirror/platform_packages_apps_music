@@ -53,7 +53,7 @@ import java.io.IOException;
 public class AudioPreview extends Activity implements OnPreparedListener, OnErrorListener, OnCompletionListener
 {
     private final static String TAG = "AudioPreview";
-    private MediaPlayer mPlayer;
+    private PreviewPlayer mPlayer;
     private TextView mTextLine1;
     private TextView mTextLine2;
     private TextView mLoadingText;
@@ -102,26 +102,21 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
         mProgressRefresher = new Handler();
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
-        MediaPlayer player = (MediaPlayer) getLastNonConfigurationInstance();
-        boolean prepare = false;
+        PreviewPlayer player = (PreviewPlayer) getLastNonConfigurationInstance();
         if (player == null) {
-            player = new MediaPlayer();
-            prepare = true;
-        } else {
-            mPlayer = player;
-            showPostPrepareUI();
-        }
-        player.setOnPreparedListener(this);
-        player.setOnErrorListener(this);
-        player.setOnCompletionListener(this);
-        if (mPlayer == null) {
-            // mPlayer will be set by the onPrepared callback
+            mPlayer = new PreviewPlayer();
+            mPlayer.setActivity(this);
             try {
-                player.setDataSource(this, mUri);
-                player.prepareAsync();
+                mPlayer.setDataSourceAndPrepare(mUri);
             } catch (IOException ex) {
                 finish();
                 return;
+            }
+        } else {
+            mPlayer = player;
+            mPlayer.setActivity(this);
+            if (mPlayer.isPrepared()) {
+                showPostPrepareUI();
             }
         }
 
@@ -187,33 +182,46 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
         } else {
             // We can't get metadata from the file/stream itself yet, because
             // that API is hidden, so instead we display the URI being played
-            // (below, in onPrepared)
+            if (mPlayer.isPrepared()) {
+                setNames();
+            }
         }
     }
 
     @Override
     public Object onRetainNonConfigurationInstance() {
-        MediaPlayer player = mPlayer;
+        PreviewPlayer player = mPlayer;
         mPlayer = null;
         return player;
     }
 
-    
     @Override
     public void onDestroy() {
+        stopPlayback();
+        super.onDestroy();
+    }
+
+    private void stopPlayback() {
         if (mProgressRefresher != null) {
             mProgressRefresher.removeCallbacksAndMessages(null);
         }
         if (mPlayer != null) {
             mPlayer.release();
+            mPlayer = null;
             mAudioManager.abandonAudioFocus(mAudioFocusListener);
         }
-        super.onDestroy();
+    }
+
+    @Override
+    public void onUserLeaveHint() {
+        stopPlayback();
+        finish();
+        super.onUserLeaveHint();
     }
 
     public void onPrepared(MediaPlayer mp) {
         if (isFinishing()) return;
-        mPlayer = mp;
+        mPlayer = (PreviewPlayer) mp;
         start();
         setNames();
         showPostPrepareUI();
@@ -285,7 +293,7 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
     class ProgressRefresher implements Runnable {
 
         public void run() {
-            if (!mSeeking) {
+            if (mPlayer != null && !mSeeking) {
                 int progress = mPlayer.getCurrentPosition() / mDuration;
                 mSeekBar.setProgress(mPlayer.getCurrentPosition());
             }
@@ -381,9 +389,47 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
             case KeyEvent.KEYCODE_MEDIA_REWIND:
                 return true;
             case KeyEvent.KEYCODE_MEDIA_STOP:
+            case KeyEvent.KEYCODE_BACK:
+                stopPlayback();
                 finish();
                 return true;
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    /*
+     * Wrapper class to help with handing off the MediaPlayer to the next instance
+     * of the activity in case of orientation change, without losing any state.
+     */
+    private static class PreviewPlayer extends MediaPlayer implements OnPreparedListener {
+        AudioPreview mActivity;
+        boolean mIsPrepared = false;
+
+        public void setActivity(AudioPreview activity) {
+            mActivity = activity;
+            setOnPreparedListener(this);
+            setOnErrorListener(mActivity);
+            setOnCompletionListener(mActivity);
+        }
+
+        public void setDataSourceAndPrepare(Uri uri) throws IllegalArgumentException,
+                        SecurityException, IllegalStateException, IOException {
+            setDataSource(mActivity,uri);
+            prepareAsync();
+        }
+
+        /* (non-Javadoc)
+         * @see android.media.MediaPlayer.OnPreparedListener#onPrepared(android.media.MediaPlayer)
+         */
+        @Override
+        public void onPrepared(MediaPlayer mp) {
+            mIsPrepared = true;
+            mActivity.onPrepared(mp);
+        }
+
+        boolean isPrepared() {
+            return mIsPrepared;
+        }
+    }
+
 }
