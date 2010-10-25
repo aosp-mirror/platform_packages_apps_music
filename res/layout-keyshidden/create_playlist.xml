@@ -43,6 +43,7 @@
     <EditText android:id="@+id/playlist"
         android:layout_width="match_parent" android:layout_height="wrap_content"
         android:singleLine="true"
+        android:inputType="textCapSentences"
         android:visibility="gone"
         android:layout_marginBottom="8dip">
         <requestFocus />
