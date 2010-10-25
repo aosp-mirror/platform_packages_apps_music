@@ -94,12 +94,19 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
                 case KeyEvent.KEYCODE_MEDIA_PREVIOUS:
                     command = MediaPlaybackService.CMDPREVIOUS;
                     break;
+                case KeyEvent.KEYCODE_MEDIA_PAUSE:
+                    command = MediaPlaybackService.CMDPAUSE;
+                    break;
+                case KeyEvent.KEYCODE_MEDIA_PLAY:
+                    command = MediaPlaybackService.CMDPLAY;
+                    break;
             }
 
             if (command != null) {
                 if (action == KeyEvent.ACTION_DOWN) {
                     if (mDown) {
-                        if (MediaPlaybackService.CMDTOGGLEPAUSE.equals(command)
+                        if ((MediaPlaybackService.CMDTOGGLEPAUSE.equals(command) ||
+                                MediaPlaybackService.CMDPLAY.equals(command))
                                 && mLastClickTime != 0 
                                 && eventtime - mLastClickTime > LONG_PRESS_DELAY) {
                             mHandler.sendMessage(

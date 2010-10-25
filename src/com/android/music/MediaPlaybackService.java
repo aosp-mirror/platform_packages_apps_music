@@ -86,6 +86,7 @@ public class MediaPlaybackService extends Service {
     public static final String CMDTOGGLEPAUSE = "togglepause";
     public static final String CMDSTOP = "stop";
     public static final String CMDPAUSE = "pause";
+    public static final String CMDPLAY = "play";
     public static final String CMDPREVIOUS = "previous";
     public static final String CMDNEXT = "next";
 
@@ -236,6 +237,8 @@ public class MediaPlaybackService extends Service {
             } else if (CMDPAUSE.equals(cmd) || PAUSE_ACTION.equals(action)) {
                 pause();
                 mPausedByTransientLossOfFocus = false;
+            } else if (CMDPLAY.equals(cmd)) {
+                play();
             } else if (CMDSTOP.equals(cmd)) {
                 pause();
                 mPausedByTransientLossOfFocus = false;
