@@ -38,18 +38,18 @@
     <string name="shuffle_all" msgid="1388193611787878773">"Casuale"</string>
     <string name="play_all" msgid="6309622568869321842">"Riprod. tutti"</string>
     <string name="delete_artist_desc" msgid="1843750591006508005">"Tutti i brani di <xliff:g id="ARTIST">%s</xliff:g> verranno eliminati definitivamente dalla scheda SD."</string>
-    <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"Tutti i brani di <xliff:g id="ARTIST">%s</xliff:g> verranno eliminati definitivamente dalla scheda SD."</string>
+    <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"Tutti i brani di <xliff:g id="ARTIST">%s</xliff:g> verranno eliminati definitivamente dall\'archivio USB."</string>
     <string name="delete_album_desc" msgid="535515999268177079">"L\'intero album \"<xliff:g id="ALBUM">%s</xliff:g>\" verrà eliminato definitivamente dalla scheda SD."</string>
-    <string name="delete_album_desc_nosdcard" msgid="2739690641188691896">"L\'intero album \"<xliff:g id="ALBUM">%s</xliff:g>\" verrà eliminato definitivamente dalla scheda SD."</string>
+    <string name="delete_album_desc_nosdcard" msgid="2739690641188691896">"L\'intero album \"<xliff:g id="ALBUM">%s</xliff:g>\" verrà eliminato definitivamente dall\'archivio USB."</string>
     <string name="delete_song_desc" msgid="1856800468541831408">"Il brano \"<xliff:g id="SONG">%s</xliff:g>\" verrà eliminato definitivamente dalla scheda SD."</string>
-    <string name="delete_song_desc_nosdcard" msgid="2722621774200478721">"Il brano \"<xliff:g id="SONG">%s</xliff:g>\" verrà eliminato definitivamente dalla scheda SD."</string>
+    <string name="delete_song_desc_nosdcard" msgid="2722621774200478721">"\"<xliff:g id="SONG">%s</xliff:g>\" verrà eliminato definitivamente dall\'archivio USB."</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"OK"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one" msgid="8560276109508404217">"1 brano eliminato."</item>
     <item quantity="other" msgid="5156740163031225200">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> brani eliminati."</item>
   </plurals>
     <string name="scanning" msgid="3529383847223198502">"Analisi scheda SD..."</string>
-    <string name="scanning_nosdcard" msgid="8105284774487360148">"Analisi scheda SD..."</string>
+    <string name="scanning_nosdcard" msgid="8105284774487360148">"Analisi dell\'archivio USB in corso…"</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"In esecuzione"</string>
     <string name="partyshuffle_title" msgid="6582413231529992125">"Party shuffle"</string>
     <string name="artists_title" msgid="8490372367259160067">"Artisti"</string>
@@ -76,17 +76,17 @@
     <string name="podcasts_listitem" msgid="8657809279717670634">"Podcast"</string>
     <string name="podcasts_title" msgid="4928414142496858304">"Podcast"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"Nessuna scheda SD"</string>
-    <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"Nessuna scheda SD"</string>
+    <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"Nessun archivio USB"</string>
     <string name="sdcard_missing_message" msgid="1169260755336159747">"Il telefono non contiene una scheda SD."</string>
-    <string name="sdcard_missing_message_nosdcard" msgid="4894107850080476295">"Il telefono non contiene una scheda SD."</string>
+    <string name="sdcard_missing_message_nosdcard" msgid="4894107850080476295">"Il tuo telefono non ha un archivio USB."</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"Scheda SD non disponibile"</string>
-    <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"Scheda SD non disponibile"</string>
+    <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"Archivio USB non disponibile"</string>
     <string name="sdcard_busy_message" msgid="8071868348072728830">"Spiacenti. La scheda SD è già in uso."</string>
-    <string name="sdcard_busy_message_nosdcard" msgid="1644924834752791507">"Spiacenti. La scheda SD è già in uso."</string>
+    <string name="sdcard_busy_message_nosdcard" msgid="1644924834752791507">"Spiacenti. L\'archivio USB è già in uso."</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"Errore della scheda SD"</string>
-    <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"Errore della scheda SD"</string>
+    <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"Errore di accesso all\'archivio USB"</string>
     <string name="sdcard_error_message" msgid="4574563894036627855">"Si è verificato un errore nella scheda SD."</string>
-    <string name="sdcard_error_message_nosdcard" msgid="4983430848526821234">"Si è verificato un errore nella scheda SD."</string>
+    <string name="sdcard_error_message_nosdcard" msgid="4983430848526821234">"Si è verificato un errore nell\'archivio USB."</string>
     <string name="unknown_artist_name" msgid="5567811106415855219">"Artista sconosciuto"</string>
     <string name="unknown_album_name" msgid="8525145988941244727">"Album sconosciuto"</string>
     <string name="shuffle_on_notif" msgid="5453708337808483943">"Riproduzione casuale attiva."</string>

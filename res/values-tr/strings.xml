@@ -38,18 +38,18 @@
     <string name="shuffle_all" msgid="1388193611787878773">"Tümünü karıştır"</string>
     <string name="play_all" msgid="6309622568869321842">"Tümünü yürüt"</string>
     <string name="delete_artist_desc" msgid="1843750591006508005">"<xliff:g id="ARTIST">%s</xliff:g> sanatçısına ait tüm şarkılar SD karttan kalıcı olarak silinecek."</string>
-    <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"<xliff:g id="ARTIST">%s</xliff:g> sanatçısına ait tüm şarkılar SD karttan kalıcı olarak silinecek."</string>
+    <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"Tüm <xliff:g id="ARTIST">%s</xliff:g> şarkıları USB deplm birimndn kalıcı olarak silinecek."</string>
     <string name="delete_album_desc" msgid="535515999268177079">"\"<xliff:g id="ALBUM">%s</xliff:g>\" albümünün tamamı SD kattan silinecek."</string>
-    <string name="delete_album_desc_nosdcard" msgid="2739690641188691896">"\"<xliff:g id="ALBUM">%s</xliff:g>\" albümünün tamamı SD kattan silinecek."</string>
+    <string name="delete_album_desc_nosdcard" msgid="2739690641188691896">"Tüm \"<xliff:g id="ALBUM">%s</xliff:g>\" albümü USB depolama biriminden kalıcı olarak silinecek."</string>
     <string name="delete_song_desc" msgid="1856800468541831408">"\"<xliff:g id="SONG">%s</xliff:g>\" SD karttan kalıcı olarak silinecek."</string>
-    <string name="delete_song_desc_nosdcard" msgid="2722621774200478721">"\"<xliff:g id="SONG">%s</xliff:g>\" SD karttan kalıcı olarak silinecek."</string>
+    <string name="delete_song_desc_nosdcard" msgid="2722621774200478721">"\"<xliff:g id="SONG">%s</xliff:g>\" USB dep biriminden kalıcı olarak silinecek."</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"Tamam"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one" msgid="8560276109508404217">"1 şarkı silindi."</item>
     <item quantity="other" msgid="5156740163031225200">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> şarkı silindi."</item>
   </plurals>
     <string name="scanning" msgid="3529383847223198502">"SD kart taranıyor..."</string>
-    <string name="scanning_nosdcard" msgid="8105284774487360148">"SD kart taranıyor..."</string>
+    <string name="scanning_nosdcard" msgid="8105284774487360148">"USB dep br taranıyor…"</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"Şimdi yürütülüyor"</string>
     <string name="partyshuffle_title" msgid="6582413231529992125">"Karışık albüm oluşturma"</string>
     <string name="artists_title" msgid="8490372367259160067">"Sanatçılar"</string>
@@ -76,17 +76,17 @@
     <string name="podcasts_listitem" msgid="8657809279717670634">"Podcast\'ler"</string>
     <string name="podcasts_title" msgid="4928414142496858304">"Podcast\'ler"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"SD kart yok"</string>
-    <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"SD kart yok"</string>
+    <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"USB dep br yok"</string>
     <string name="sdcard_missing_message" msgid="1169260755336159747">"Telefonunuza takılı bir SD kart yok."</string>
-    <string name="sdcard_missing_message_nosdcard" msgid="4894107850080476295">"Telefonunuza takılı bir SD kart yok."</string>
+    <string name="sdcard_missing_message_nosdcard" msgid="4894107850080476295">"Telefonunuzda USB deplm birimi yok."</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"SD kart kullanılamıyor"</string>
-    <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"SD kart kullanılamıyor"</string>
+    <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"USB dep br kullanlmyor"</string>
     <string name="sdcard_busy_message" msgid="8071868348072728830">"Maalesef, SD kartınız meşgul."</string>
-    <string name="sdcard_busy_message_nosdcard" msgid="1644924834752791507">"Maalesef, SD kartınız meşgul."</string>
+    <string name="sdcard_busy_message_nosdcard" msgid="1644924834752791507">"Maalesef USB dep birmniz meşgul."</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"SD kart hatası"</string>
-    <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"SD kart hatası"</string>
+    <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"USB dep br hatası"</string>
     <string name="sdcard_error_message" msgid="4574563894036627855">"SD kartınızda bir hatayla karşılaşıldı."</string>
-    <string name="sdcard_error_message_nosdcard" msgid="4983430848526821234">"SD kartınızda bir hatayla karşılaşıldı."</string>
+    <string name="sdcard_error_message_nosdcard" msgid="4983430848526821234">"USB depolm birimnzd bir hatayla karşılaşıldı."</string>
     <string name="unknown_artist_name" msgid="5567811106415855219">"Bilinmeyen sanatçı"</string>
     <string name="unknown_album_name" msgid="8525145988941244727">"Bilinmeyen albüm"</string>
     <string name="shuffle_on_notif" msgid="5453708337808483943">"Karıştırma açık."</string>
