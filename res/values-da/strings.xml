@@ -38,14 +38,18 @@
     <string name="shuffle_all" msgid="1388193611787878773">"Bland alle"</string>
     <string name="play_all" msgid="6309622568869321842">"Spil alle"</string>
     <string name="delete_artist_desc" msgid="1843750591006508005">"Alle sange af <xliff:g id="ARTIST">%s</xliff:g> slettes permanent fra SD-kortet."</string>
+    <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"Alle sange af <xliff:g id="ARTIST">%s</xliff:g> slettes permanent fra USB-lager."</string>
     <string name="delete_album_desc" msgid="535515999268177079">"Hele albummet \"<xliff:g id="ALBUM">%s</xliff:g>\" slettes permanent fra SD-kortet."</string>
+    <string name="delete_album_desc_nosdcard" msgid="2739690641188691896">"Hele albummet \"<xliff:g id="ALBUM">%s</xliff:g>\" slettes permanent fra USB-lager."</string>
     <string name="delete_song_desc" msgid="1856800468541831408">"\"<xliff:g id="SONG">%s</xliff:g>\" slettes permanent fra SD-kortet."</string>
+    <string name="delete_song_desc_nosdcard" msgid="2722621774200478721">"\"<xliff:g id="SONG">%s</xliff:g>\" slettes permanent fra USB-lager."</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"OK"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one" msgid="8560276109508404217">"Der blev slettet 1 sang."</item>
     <item quantity="other" msgid="5156740163031225200">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> sange blev slettet."</item>
   </plurals>
     <string name="scanning" msgid="3529383847223198502">"Scanner SD-kort ..."</string>
+    <string name="scanning_nosdcard" msgid="8105284774487360148">"Scanner USB-lager..."</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"Spiller nu"</string>
     <string name="partyshuffle_title" msgid="6582413231529992125">"Festmix"</string>
     <string name="artists_title" msgid="8490372367259160067">"Kunstnere"</string>
@@ -72,11 +76,17 @@
     <string name="podcasts_listitem" msgid="8657809279717670634">"Podcasts"</string>
     <string name="podcasts_title" msgid="4928414142496858304">"Podcasts"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"Der er intet SD-kort"</string>
+    <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"Intet USB-lager"</string>
     <string name="sdcard_missing_message" msgid="1169260755336159747">"Der er ikke indsat et SD-kort i din telefon."</string>
+    <string name="sdcard_missing_message_nosdcard" msgid="4894107850080476295">"Din telefon har ikke noget USB-lager."</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"SD-kortet er ikke tilgængeligt"</string>
+    <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"USB-lager utilgængeligt"</string>
     <string name="sdcard_busy_message" msgid="8071868348072728830">"Beklager! Dit SD-kort er optaget."</string>
+    <string name="sdcard_busy_message_nosdcard" msgid="1644924834752791507">"Dit USB-lager er optaget."</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"SD-kortfejl"</string>
+    <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"Fejl i USB-lager"</string>
     <string name="sdcard_error_message" msgid="4574563894036627855">"Der opstod en fejl på dit SD-kort."</string>
+    <string name="sdcard_error_message_nosdcard" msgid="4983430848526821234">"Der opstod en fejl i dit USB-lager."</string>
     <string name="unknown_artist_name" msgid="5567811106415855219">"Ukendt kunstner"</string>
     <string name="unknown_album_name" msgid="8525145988941244727">"Ukendt album"</string>
     <string name="shuffle_on_notif" msgid="5453708337808483943">"Blanding er slået til."</string>
@@ -145,4 +155,5 @@
     <string name="search_hint" msgid="3766854898072633001">"Søg i Musik"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
     <string name="widget_initial_text" msgid="6334545155963910952">"Tryk for at vælge musik."</string>
+    <string name="effectspanel" msgid="8804547581593509614">"Lydeffekter"</string>
 </resources>

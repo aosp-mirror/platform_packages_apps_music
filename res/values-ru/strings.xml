@@ -38,14 +38,18 @@
     <string name="shuffle_all" msgid="1388193611787878773">"Перемешать все"</string>
     <string name="play_all" msgid="6309622568869321842">"Воспроизвести все"</string>
     <string name="delete_artist_desc" msgid="1843750591006508005">"Все композиции исполнителя <xliff:g id="ARTIST">%s</xliff:g> будут навсегда удалены с SD-карты."</string>
+    <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"Все композиции исполнителя <xliff:g id="ARTIST">%s</xliff:g> будут удалены с USB-накопителя."</string>
     <string name="delete_album_desc" msgid="535515999268177079">"Весь альбом \"<xliff:g id="ALBUM">%s</xliff:g>\" будет навсегда удален с SD-карты."</string>
+    <string name="delete_album_desc_nosdcard" msgid="2739690641188691896">"Весь альбом \"<xliff:g id="ALBUM">%s</xliff:g>\" будет окончательно удален с USB-накопителя."</string>
     <string name="delete_song_desc" msgid="1856800468541831408">"Композиция \"<xliff:g id="SONG">%s</xliff:g>\" будет навсегда удалена с SD-карты."</string>
+    <string name="delete_song_desc_nosdcard" msgid="2722621774200478721">"Композиция \"<xliff:g id="SONG">%s</xliff:g>\" будет окончательно удалена с USB-накопителя."</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"ОК"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one" msgid="8560276109508404217">"1 композиция удалена"</item>
     <item quantity="other" msgid="5156740163031225200">"Удалено композиций: <xliff:g id="SONGS_TO_DELETE">%d</xliff:g>."</item>
   </plurals>
     <string name="scanning" msgid="3529383847223198502">"Сканирование SD-карты…"</string>
+    <string name="scanning_nosdcard" msgid="8105284774487360148">"Сканирование USB-накопителя..."</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"Сейчас воспроизводится"</string>
     <string name="partyshuffle_title" msgid="6582413231529992125">"Создать микс"</string>
     <string name="artists_title" msgid="8490372367259160067">"Исполнители"</string>
@@ -72,11 +76,17 @@
     <string name="podcasts_listitem" msgid="8657809279717670634">"Подкасты"</string>
     <string name="podcasts_title" msgid="4928414142496858304">"Подкасты"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"SD-карта отсутствует."</string>
+    <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"USB-накопитель не найден"</string>
     <string name="sdcard_missing_message" msgid="1169260755336159747">"В телефоне отсутствует SD-карта."</string>
+    <string name="sdcard_missing_message_nosdcard" msgid="4894107850080476295">"Ваш телефон не оснащен USB-накопителем."</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"SD-карта недоступна"</string>
+    <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"USB-накопитель недоступен"</string>
     <string name="sdcard_busy_message" msgid="8071868348072728830">"SD-карта занята."</string>
+    <string name="sdcard_busy_message_nosdcard" msgid="1644924834752791507">"USB-накопитель занят."</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"Ошибка SD-карты"</string>
+    <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"Ошибка USB-накопителя"</string>
     <string name="sdcard_error_message" msgid="4574563894036627855">"Ошибка SD-карты."</string>
+    <string name="sdcard_error_message_nosdcard" msgid="4983430848526821234">"Ошибка USB-накопителя."</string>
     <string name="unknown_artist_name" msgid="5567811106415855219">"Неизвестный исполнитель"</string>
     <string name="unknown_album_name" msgid="8525145988941244727">"Неизвестный альбом"</string>
     <string name="shuffle_on_notif" msgid="5453708337808483943">"Режим случайного воспроизведения включен."</string>
@@ -145,4 +155,5 @@
     <string name="search_hint" msgid="3766854898072633001">"Поиск музыки"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"</string>
     <string name="widget_initial_text" msgid="6334545155963910952">"Нажмите ,чтобы выбрать музыку."</string>
+    <string name="effectspanel" msgid="8804547581593509614">"Звуковые эффекты"</string>
 </resources>
