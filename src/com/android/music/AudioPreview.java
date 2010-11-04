@@ -222,7 +222,6 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
     public void onPrepared(MediaPlayer mp) {
         if (isFinishing()) return;
         mPlayer = (PreviewPlayer) mp;
-        start();
         setNames();
         showPostPrepareUI();
     }
@@ -230,9 +229,11 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
     private void showPostPrepareUI() {
         ProgressBar pb = (ProgressBar) findViewById(R.id.spinner);
         pb.setVisibility(View.GONE);
-        mSeekBar.setVisibility(View.VISIBLE);
         mDuration = mPlayer.getDuration();
-        mSeekBar.setMax(mDuration);
+        if (mDuration != 0) {
+            mSeekBar.setMax(mDuration);
+            mSeekBar.setVisibility(View.VISIBLE);
+        }
         mSeekBar.setOnSeekBarChangeListener(mSeekListener);
         mLoadingText.setVisibility(View.GONE);
         View v = findViewById(R.id.titleandbuttons);
@@ -293,7 +294,7 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
     class ProgressRefresher implements Runnable {
 
         public void run() {
-            if (mPlayer != null && !mSeeking) {
+            if (mPlayer != null && !mSeeking && mDuration != 0) {
                 int progress = mPlayer.getCurrentPosition() / mDuration;
                 mSeekBar.setProgress(mPlayer.getCurrentPosition());
             }
