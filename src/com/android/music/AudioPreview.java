@@ -223,6 +223,7 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
         if (isFinishing()) return;
         mPlayer = (PreviewPlayer) mp;
         setNames();
+        mPlayer.start();
         showPostPrepareUI();
     }
 
@@ -238,7 +239,9 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
         mLoadingText.setVisibility(View.GONE);
         View v = findViewById(R.id.titleandbuttons);
         v.setVisibility(View.VISIBLE);
-        start(); // because it requests audio focus
+        mAudioManager.requestAudioFocus(mAudioFocusListener, AudioManager.STREAM_MUSIC,
+                AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+        mProgressRefresher.postDelayed(new ProgressRefresher(), 200);
         updatePlayPause();
     }
     
