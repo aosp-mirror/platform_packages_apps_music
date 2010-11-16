@@ -162,10 +162,12 @@ public class TrackBrowserActivity extends ListActivity
         mUseLastListPos = MusicUtils.updateButtonBar(this, R.id.songtab);
         mTrackList = getListView();
         mTrackList.setOnCreateContextMenuListener(this);
+        mTrackList.setCacheColorHint(0);
         if (mEditMode) {
             ((TouchInterceptor) mTrackList).setDropListener(mDropListener);
             ((TouchInterceptor) mTrackList).setRemoveListener(mRemoveListener);
-            mTrackList.setCacheColorHint(0);
+            mTrackList.setDivider(null);
+            mTrackList.setSelector(R.drawable.list_selector_background);
         } else {
             mTrackList.setTextFilterEnabled(true);
         }
@@ -419,18 +421,20 @@ public class TrackBrowserActivity extends ListActivity
     }
 
     private void setAlbumArtBackground() {
-        try {
-            long albumid = Long.valueOf(mAlbumId);
-            Bitmap bm = MusicUtils.getArtwork(TrackBrowserActivity.this, -1, albumid, false);
-            if (bm != null) {
-                MusicUtils.setBackground(mTrackList, bm);
-                mTrackList.setCacheColorHint(0);
-                return;
+        if (!mEditMode) {
+            try {
+                long albumid = Long.valueOf(mAlbumId);
+                Bitmap bm = MusicUtils.getArtwork(TrackBrowserActivity.this, -1, albumid, false);
+                if (bm != null) {
+                    MusicUtils.setBackground(mTrackList, bm);
+                    mTrackList.setCacheColorHint(0);
+                    return;
+                }
+            } catch (Exception ex) {
             }
-        } catch (Exception ex) {
         }
-        mTrackList.setBackgroundResource(0);
-        mTrackList.setCacheColorHint(0xff000000);
+        mTrackList.setBackgroundColor(0xff000000);
+        mTrackList.setCacheColorHint(0);
     }
 
     private void setTitle() {
@@ -1446,12 +1450,7 @@ public class TrackBrowserActivity extends ListActivity
         public View newView(Context context, Cursor cursor, ViewGroup parent) {
             View v = super.newView(context, cursor, parent);
             ImageView iv = (ImageView) v.findViewById(R.id.icon);
-            if (mActivity.mEditMode) {
-                iv.setVisibility(View.VISIBLE);
-                iv.setImageResource(R.drawable.ic_mp_move);
-            } else {
-                iv.setVisibility(View.GONE);
-            }
+            iv.setVisibility(View.GONE);
             
             ViewHolder vh = new ViewHolder();
             vh.line1 = (TextView) v.findViewById(R.id.line1);
