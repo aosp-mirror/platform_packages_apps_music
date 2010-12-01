@@ -1142,7 +1142,7 @@ public class MediaPlaybackService extends Service {
     public void pause() {
         synchronized(this) {
             if (isPlaying()) {
-                mMediaplayerHandler.removeMessages(FADEIN);
+                mMediaplayerHandler.removeMessages(FADEINFROMSTART);
                 mPlayer.pause();
                 gotoIdleState();
                 mIsSupposedToBePlaying = false;
