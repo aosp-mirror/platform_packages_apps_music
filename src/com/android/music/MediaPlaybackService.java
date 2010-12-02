@@ -211,8 +211,11 @@ public class MediaPlaybackService extends Service {
                             }
                             pause();
                             break;
-                        case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
                         case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+                            mMediaplayerHandler.removeMessages(FADEUP);
+                            mMediaplayerHandler.sendEmptyMessage(FADEDOWN);
+                            break;
+                        case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
                             Log.v(LOGTAG, "AudioFocus: received AUDIOFOCUS_LOSS_TRANSIENT");
                             if(isPlaying()) {
                                 mPausedByTransientLossOfFocus = true;
@@ -227,6 +230,7 @@ public class MediaPlaybackService extends Service {
                                 mPlayer.setVolume(mCurrentVolume);
                                 play(); // also queues a fade-in
                             } else {
+                                mMediaplayerHandler.removeMessages(FADEDOWN);
                                 mMediaplayerHandler.sendEmptyMessage(FADEUP);
                             }
                             break;
@@ -1062,6 +1066,7 @@ public class MediaPlaybackService extends Service {
             mPlayer.start();
             // make sure we fade in, in case a previous fadein was stopped because
             // of another focus loss
+            mMediaplayerHandler.removeMessages(FADEDOWN);
             mMediaplayerHandler.sendEmptyMessage(FADEUP);
 
             RemoteViews views = new RemoteViews(getPackageName(), R.layout.statusbar);
