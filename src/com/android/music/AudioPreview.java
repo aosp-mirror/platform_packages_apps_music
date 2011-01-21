@@ -50,6 +50,9 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
+/**
+ * Dialog that comes up in response to various music-related VIEW intents.
+ */
 public class AudioPreview extends Activity implements OnPreparedListener, OnErrorListener, OnCompletionListener
 {
     private final static String TAG = "AudioPreview";
@@ -86,8 +89,6 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.audiopreview);
-        getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.WRAP_CONTENT);
 
         mTextLine1 = (TextView) findViewById(R.id.line1);
         mTextLine2 = (TextView) findViewById(R.id.line2);
@@ -108,7 +109,13 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
             mPlayer.setActivity(this);
             try {
                 mPlayer.setDataSourceAndPrepare(mUri);
-            } catch (IOException ex) {
+            } catch (Exception ex) {
+                // catch generic Exception, since we may be called with a media
+                // content URI, another content provider's URI, a file URI,
+                // an http URI, and there are different exceptions associated
+                // with failure to open each of those.
+                Log.d(TAG, "Failed to open file: " + ex);
+                Toast.makeText(this, R.string.playback_failed, Toast.LENGTH_SHORT).show();
                 finish();
                 return;
             }
