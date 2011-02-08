@@ -52,7 +52,7 @@
     <item quantity="other" msgid="5156740163031225200">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> آهنگ حذف شد."</item>
   </plurals>
     <string name="scanning" msgid="3529383847223198502">"در حال اسکن کارت SD..."</string>
-    <!-- outdated translation 2358282624985614411 -->     <string name="scanning_nosdcard" msgid="8105284774487360148">"در حال اسکن کردن دستگاه ذخیره سازی USB..."</string>
+    <!-- outdated translation 2358282624985614411 -->     <string name="scanning_nosdcard" msgid="8105284774487360148">"در حال اسکن کردن حافظه USB..."</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"در حال پخش"</string>
     <string name="partyshuffle_title" msgid="6582413231529992125">"ترتیب تصادفی گروه"</string>
     <string name="artists_title" msgid="8490372367259160067">"هنرمندها"</string>
@@ -81,15 +81,15 @@
     <string name="sdcard_missing_title" msgid="9008284946643270850">"کارت SD موجود نیست"</string>
     <!-- outdated translation 3398903247244978423 -->     <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"حافظه USB وجود ندارد"</string>
     <string name="sdcard_missing_message" msgid="1169260755336159747">"کارت SD در گوشی شما قرار داده نشده است."</string>
-    <!-- outdated translation 3225785656849989220 -->     <string name="sdcard_missing_message_nosdcard" msgid="4894107850080476295">"تلفن شما دارای دستگاه ذخیره سازی USB نیست."</string>
+    <!-- outdated translation 3225785656849989220 -->     <string name="sdcard_missing_message_nosdcard" msgid="4894107850080476295">"تلفن شما دارای حافظه USB نیست."</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"کارت SD موجود نیست"</string>
     <!-- outdated translation 3255670319883395244 -->     <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"حافظه USB در دسترس نیست"</string>
     <string name="sdcard_busy_message" msgid="8071868348072728830">"متأسفم، کارت SD شما مشغول است."</string>
-    <!-- outdated translation 2778892819626715620 -->     <string name="sdcard_busy_message_nosdcard" msgid="1644924834752791507">"متأسفیم، دستگاه ذخیره سازی USB مشغول است."</string>
+    <!-- outdated translation 2778892819626715620 -->     <string name="sdcard_busy_message_nosdcard" msgid="1644924834752791507">"متأسفیم، حافظه USB مشغول است."</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"خطای کارت SD"</string>
-    <!-- outdated translation 3372863713295903484 -->     <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"خطای دستگاه ذخیره سازی USB"</string>
+    <!-- outdated translation 3372863713295903484 -->     <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"خطای حافظه USB"</string>
     <string name="sdcard_error_message" msgid="4574563894036627855">"در کارت SD شما خطایی روی داد."</string>
-    <!-- outdated translation 8173802384309602942 -->     <string name="sdcard_error_message_nosdcard" msgid="4983430848526821234">"خطایی در دستگاه ذخیره سازی USB رخ داد."</string>
+    <!-- outdated translation 8173802384309602942 -->     <string name="sdcard_error_message_nosdcard" msgid="4983430848526821234">"خطایی در حافظه USB رخ داد."</string>
     <string name="unknown_artist_name" msgid="5567811106415855219">"هنرمند ناشناس"</string>
     <string name="unknown_album_name" msgid="8525145988941244727">"آلبوم ناشناس"</string>
     <string name="shuffle_on_notif" msgid="5453708337808483943">"ترتیب تصادفی روشن است"</string>

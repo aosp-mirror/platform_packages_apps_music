@@ -87,7 +87,7 @@
     <string name="sdcard_busy_message" msgid="8071868348072728830">"Din păcate cardul dvs. SD este ocupat."</string>
     <!-- outdated translation 2778892819626715620 -->     <string name="sdcard_busy_message_nosdcard" msgid="1644924834752791507">"Din păcate, stocarea USB este ocupată."</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"Eroare pe cardul SD"</string>
-    <!-- outdated translation 3372863713295903484 -->     <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"Eroare la accesarea stocării USB"</string>
+    <!-- outdated translation 3372863713295903484 -->     <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"Eroare la accesarea spaţiului de stocare USB"</string>
     <string name="sdcard_error_message" msgid="4574563894036627855">"A apărut o eroare pe cardul dvs. SD."</string>
     <!-- outdated translation 8173802384309602942 -->     <string name="sdcard_error_message_nosdcard" msgid="4983430848526821234">"A apărut o eroare pe stocarea USB."</string>
     <string name="unknown_artist_name" msgid="5567811106415855219">"Artist necunoscut"</string>

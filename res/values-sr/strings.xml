@@ -85,7 +85,7 @@
     <string name="sdcard_busy_title" msgid="1162763571147174655">"SD картица је недоступна"</string>
     <!-- outdated translation 3255670319883395244 -->     <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"USB меморија је недоступна"</string>
     <string name="sdcard_busy_message" msgid="8071868348072728830">"Жао нам је, али SD картица је заузета."</string>
-    <!-- outdated translation 2778892819626715620 -->     <string name="sdcard_busy_message_nosdcard" msgid="1644924834752791507">"Жао нам је, али USB меморија је заузета."</string>
+    <!-- outdated translation 2778892819626715620 -->     <string name="sdcard_busy_message_nosdcard" msgid="1644924834752791507">"Жао нам је, USB меморија је заузета."</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"Грешка у вези са SD картицом"</string>
     <!-- outdated translation 3372863713295903484 -->     <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"Грешка USB меморијe"</string>
     <string name="sdcard_error_message" msgid="4574563894036627855">"Дошло је до грешке на SD картици."</string>
