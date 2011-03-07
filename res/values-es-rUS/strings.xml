@@ -38,11 +38,11 @@
     <string name="shuffle_all" msgid="1388193611787878773">"Arrastrar todo"</string>
     <string name="play_all" msgid="6309622568869321842">"Reproducir todo"</string>
     <string name="delete_artist_desc" msgid="1843750591006508005">"Todas las canciones de <xliff:g id="ARTIST">%s</xliff:g> se eliminarán definitivamente de la tarjeta SD."</string>
-    <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"Todas las canciones de <xliff:g id="ARTIST">%s</xliff:g> se suprimirán de forma permanente del almacenamiento USB."</string>
+    <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"Todas las canciones de <xliff:g id="ARTIST">%s</xliff:g> se eliminarán permanentemente del almacenamiento USB."</string>
     <string name="delete_album_desc" msgid="535515999268177079">"El álbum \"<xliff:g id="ALBUM">%s</xliff:g>\" se eliminará definitivamente de la tarjeta SD."</string>
-    <string name="delete_album_desc_nosdcard" msgid="2739690641188691896">"Todo el álbum \"<xliff:g id="ALBUM">%s</xliff:g>\" se suprimirá de forma permanente del almacenamiento USB."</string>
+    <string name="delete_album_desc_nosdcard" msgid="2739690641188691896">"Todo el álbum \"<xliff:g id="ALBUM">%s</xliff:g>\" se eliminará permanentemente del almacenamiento USB."</string>
     <string name="delete_song_desc" msgid="1856800468541831408">"\"<xliff:g id="SONG">%s</xliff:g>\" se eliminará definitivamente de la tarjeta SD."</string>
-    <string name="delete_song_desc_nosdcard" msgid="2722621774200478721">"\"<xliff:g id="SONG">%s</xliff:g>\" se suprimirá de forma permanente del almacenamiento USB."</string>
+    <string name="delete_song_desc_nosdcard" msgid="2722621774200478721">"\"<xliff:g id="SONG">%s</xliff:g>\" se eliminará permanentemente del almacenamiento USB."</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"Aceptar"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one" msgid="8560276109508404217">"Se eliminó 1 canción."</item>
