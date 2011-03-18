@@ -32,10 +32,10 @@
   </plurals>
     <string name="goto_start" msgid="8979658707407220934">"Bibliothèque"</string>
     <string name="goto_playback" msgid="4885216161312176550">"Lecture"</string>
-    <string name="party_shuffle" msgid="8213359225506006168">"Lecture aléatoire"</string>
-    <string name="party_shuffle_off" msgid="1828744483354711679">"Désactiver la lecture aléatoire"</string>
+    <string name="party_shuffle" msgid="8213359225506006168">"Mode DJ"</string>
+    <string name="party_shuffle_off" msgid="1828744483354711679">"Désactiver le mode DJ"</string>
     <string name="delete_item" msgid="3363330144534750601">"Supprimer"</string>
-    <string name="shuffle_all" msgid="1388193611787878773">"Lecture aléatoire de toutes les chansons"</string>
+    <string name="shuffle_all" msgid="1388193611787878773">"Lecture aléatoire"</string>
     <string name="play_all" msgid="6309622568869321842">"Tout lire"</string>
     <string name="delete_artist_desc" msgid="1843750591006508005">"Toutes les chansons de <xliff:g id="ARTIST">%s</xliff:g> seront définitivement supprimées de la carte SD."</string>
     <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"Tous les morceaux de <xliff:g id="ARTIST">%s</xliff:g> seront définitivement supprimés de la mémoire de stockage USB."</string>
@@ -51,7 +51,7 @@
     <string name="scanning" msgid="3529383847223198502">"Lecture de la carte SD..."</string>
     <string name="scanning_nosdcard" msgid="8105284774487360148">"Analyse de la mémoire stockage USB..."</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"En écoute"</string>
-    <string name="partyshuffle_title" msgid="6582413231529992125">"Lecture aléatoire"</string>
+    <string name="partyshuffle_title" msgid="6582413231529992125">"Mode DJ"</string>
     <string name="artists_title" msgid="8490372367259160067">"Artistes"</string>
     <string name="albums_menu" msgid="5807982055590211900">"Albums"</string>
     <string name="albums_title" msgid="8773880394961378035">"Albums"</string>
@@ -80,7 +80,7 @@
     <string name="sdcard_missing_message" msgid="1169260755336159747">"Aucune carte SD n\'est insérée dans votre téléphone."</string>
     <string name="sdcard_missing_message_nosdcard" msgid="4894107850080476295">"Votre téléphone ne dispose d\'aucune mémoire de stockage USB."</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"Carte SD non disponible"</string>
-    <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"Mémoire de stockage USB indisponible"</string>
+    <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"Mémoire de stockage USB non disponible"</string>
     <string name="sdcard_busy_message" msgid="8071868348072728830">"Désolé, votre carte SD n\'est pas disponible."</string>
     <string name="sdcard_busy_message_nosdcard" msgid="1644924834752791507">"Désolé, votre mémoire de stockage USB est occupée."</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"Erreur de carte SD"</string>
@@ -152,8 +152,8 @@
     <string name="gadget_track" msgid="3186569295893300114">"Piste <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
     <string name="fail_to_start_stream" msgid="3605390187703912835">"Échec de la lecture du flux demandé"</string>
     <string name="search_settings_description" msgid="6520975349259883368">"Artistes, albums et morceaux"</string>
-    <string name="search_hint" msgid="3766854898072633001">"Rechercher dans la musique"</string>
+    <string name="search_hint" msgid="3766854898072633001">"Rechercher de la musique"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
-    <string name="widget_initial_text" msgid="6334545155963910952">"Touchez l\'écran pour sélectionner la musique."</string>
+    <string name="widget_initial_text" msgid="6334545155963910952">"Touchez l\'écran pour sélectionner une musique."</string>
     <string name="effectspanel" msgid="8804547581593509614">"Effets sonores"</string>
 </resources>
