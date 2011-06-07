@@ -1561,13 +1561,15 @@ public class TrackBrowserActivity extends ListActivity
             if (mIndexer != null) { 
                 return mIndexer.getSections();
             } else {
-                return null;
+                return new String [] { " " };
             }
         }
         
         public int getPositionForSection(int section) {
-            int pos = mIndexer.getPositionForSection(section);
-            return pos;
+            if (mIndexer != null) {
+                return mIndexer.getPositionForSection(section);
+            }
+            return 0;
         }
         
         public int getSectionForPosition(int position) {
