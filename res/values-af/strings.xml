@@ -46,14 +46,11 @@
     <!-- no translation found for play_all (6309622568869321842) -->
     <skip />
     <string name="delete_artist_desc" msgid="1843750591006508005">"Alle liedjies deur <xliff:g id="ARTIST">%s</xliff:g> sal permanent van die SD-kaart uitgevee word."</string>
-    <!-- no translation found for delete_artist_desc_nosdcard (1565010405469696133) -->
-    <skip />
+    <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"Alle liedjies deur <xliff:g id="ARTIST">%s</xliff:g> op die USB-berging sal permanent uitgevee word."</string>
     <string name="delete_album_desc" msgid="535515999268177079">"Die hele album \"<xliff:g id="ALBUM">%s</xliff:g>\" sal permanent van die SD-kaart uitgevee word."</string>
-    <!-- no translation found for delete_album_desc_nosdcard (2739690641188691896) -->
-    <skip />
+    <string name="delete_album_desc_nosdcard" msgid="2739690641188691896">"Die hele album \"<xliff:g id="ALBUM">%s</xliff:g>\" sal permanent van die USB-berging af uitgevee word."</string>
     <string name="delete_song_desc" msgid="1856800468541831408">"\"<xliff:g id="SONG">%s</xliff:g>\" sal permanent van die SD-kaart uitgevee word."</string>
-    <!-- no translation found for delete_song_desc_nosdcard (2722621774200478721) -->
-    <skip />
+    <string name="delete_song_desc_nosdcard" msgid="2722621774200478721">"\"<xliff:g id="SONG">%s</xliff:g>\" op die USB-berging sal permanent uitgevee word."</string>
     <!-- no translation found for delete_confirm_button_text (7008121194944357274) -->
     <skip />
   <plurals name="NNNtracksdeleted">
@@ -62,8 +59,7 @@
   </plurals>
     <!-- no translation found for scanning (3529383847223198502) -->
     <skip />
-    <!-- no translation found for scanning_nosdcard (8105284774487360148) -->
-    <skip />
+    <string name="scanning_nosdcard" msgid="8105284774487360148">"Ondersoek tans USB-berging…"</string>
     <!-- no translation found for nowplaying_title (8342523844307751761) -->
     <skip />
     <!-- no translation found for partyshuffle_title (6582413231529992125) -->
@@ -104,6 +100,8 @@
     <skip />
     <!-- no translation found for playlist_deleted_message (9008053828193961455) -->
     <skip />
+    <!-- unknown placeholder PLAYLIST in playlist_renamed_message -->
+    <skip />
     <!-- no translation found for playlist_renamed_message (7187580192703005990) -->
     <skip />
     <!-- no translation found for recentlyadded (110978416756366953) -->
@@ -113,28 +111,22 @@
     <string name="podcasts_title" msgid="4928414142496858304">"Podsendinge"</string>
     <!-- no translation found for sdcard_missing_title (9008284946643270850) -->
     <skip />
-    <!-- no translation found for sdcard_missing_title_nosdcard (7984839174824243958) -->
-    <skip />
+    <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"Geen USB-berging nie"</string>
     <!-- no translation found for sdcard_missing_message (1169260755336159747) -->
     <skip />
-    <!-- no translation found for sdcard_missing_message_nosdcard (4894107850080476295) -->
-    <skip />
+    <string name="sdcard_missing_message_nosdcard" msgid="4894107850080476295">"Jou foon het nie USB-berging nie."</string>
     <!-- no translation found for sdcard_busy_title (1162763571147174655) -->
     <skip />
-    <!-- no translation found for sdcard_busy_title_nosdcard (3319125156566499501) -->
-    <skip />
+    <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"USB-berging nie beskikbaar nie"</string>
     <!-- no translation found for sdcard_busy_message (8071868348072728830) -->
     <skip />
-    <!-- no translation found for sdcard_busy_message_nosdcard (1644924834752791507) -->
-    <skip />
+    <string name="sdcard_busy_message_nosdcard" msgid="1644924834752791507">"Jammer, jou USB-berging is besig."</string>
     <!-- no translation found for sdcard_error_title (165682155008600643) -->
     <skip />
-    <!-- no translation found for sdcard_error_title_nosdcard (7564338137076303931) -->
-    <skip />
+    <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"USB-bergingsfout"</string>
     <!-- no translation found for sdcard_error_message (4574563894036627855) -->
     <skip />
-    <!-- no translation found for sdcard_error_message_nosdcard (4983430848526821234) -->
-    <skip />
+    <string name="sdcard_error_message_nosdcard" msgid="4983430848526821234">"Daar was \'n probleem met jou USB-berging."</string>
     <!-- no translation found for unknown_artist_name (5567811106415855219) -->
     <skip />
     <!-- no translation found for unknown_album_name (8525145988941244727) -->
@@ -149,8 +141,7 @@
     <skip />
     <!-- no translation found for repeat_all_notif (6443293055987316642) -->
     <skip />
-    <!-- no translation found for ringtone_menu (2737472190159134599) -->
-    <skip />
+    <!-- outdated translation 2639269982635263661 -->     <string name="ringtone_menu" msgid="2737472190159134599">"Gebruik as luitoon"</string>
     <!-- no translation found for ringtone_menu_short (3367622038867238133) -->
     <skip />
     <string name="ringtone_set" msgid="5325818347613843130">"\"<xliff:g id="NAME">%s</xliff:g>\" gestel as foonluitoon."</string>
@@ -160,8 +151,7 @@
     <skip />
     <!-- no translation found for queue (2937629819482787704) -->
     <skip />
-    <!-- no translation found for new_playlist (7588112979692632867) -->
-    <skip />
+    <!-- outdated translation 3694372648400264329 -->     <string name="new_playlist" msgid="7588112979692632867">"Nuwe snitlys"</string>
     <!-- no translation found for new_playlist_name_template (905710296728900597) -->
     <skip />
   <plurals name="NNNtrackstoplaylist">
@@ -170,8 +160,7 @@
   </plurals>
     <!-- no translation found for emptyplaylist (6711555673997896344) -->
     <skip />
-    <!-- no translation found for create_playlist_create_text (8149755205483279143) -->
-    <skip />
+    <!-- outdated translation 161515343279713043 -->     <string name="create_playlist_create_text" msgid="8149755205483279143">"OK"</string>
     <!-- no translation found for create_playlist_overwrite_text (2007808383561024706) -->
     <skip />
     <!-- no translation found for service_start_error_title (8649916852210198813) -->
@@ -212,8 +201,7 @@
     <skip />
     <!-- no translation found for mediapickerlabel (4549836003229914299) -->
     <skip />
-    <!-- no translation found for playback_failed (4477832192645009774) -->
-    <skip />
+    <!-- outdated translation 7340707059999936922 -->     <string name="playback_failed" msgid="4477832192645009774">"Kan nie die versoekte snit speel nie"</string>
     <!-- no translation found for cancel (886559484711947520) -->
     <skip />
     <!-- no translation found for remove_from_playlist (2548577514849026354) -->
@@ -233,12 +221,8 @@
     <string name="gadget_track" msgid="3186569295893300114">"Snit <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
     <string name="fail_to_start_stream" msgid="3605390187703912835">"Kon nie versoekte stroom speel nie."</string>
     <string name="search_settings_description" msgid="6520975349259883368">"Kunstenaars, albums en snitte"</string>
-    <!-- no translation found for search_hint (3766854898072633001) -->
-    <skip />
-    <!-- no translation found for fast_scroll_alphabet (5548732936480723311) -->
-    <skip />
-    <!-- no translation found for widget_initial_text (6334545155963910952) -->
-    <skip />
-    <!-- no translation found for effectspanel (8804547581593509614) -->
-    <skip />
+    <string name="search_hint" msgid="3766854898072633001">"Deursoek musiek"</string>
+    <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
+    <string name="widget_initial_text" msgid="6334545155963910952">"Raak om musiek te kies."</string>
+    <string name="effectspanel" msgid="8804547581593509614">"Klankeffekte"</string>
 </resources>

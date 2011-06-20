@@ -38,22 +38,18 @@
     <string name="shuffle_all" msgid="1388193611787878773">"Rombak semua"</string>
     <string name="play_all" msgid="6309622568869321842">"Mainkan semua"</string>
     <string name="delete_artist_desc" msgid="1843750591006508005">"Semua lagu oleh <xliff:g id="ARTIST">%s</xliff:g> akan dipadamkan secara kekal dari kad SD."</string>
-    <!-- no translation found for delete_artist_desc_nosdcard (1565010405469696133) -->
-    <skip />
+    <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"Semua lagu oleh <xliff:g id="ARTIST">%s</xliff:g> akan dipadamkan secara kekal dari storan USB."</string>
     <string name="delete_album_desc" msgid="535515999268177079">"Keseluruhan album \"<xliff:g id="ALBUM">%s</xliff:g>\" akan dipadamkan secara kekal dari kad SD."</string>
-    <!-- no translation found for delete_album_desc_nosdcard (2739690641188691896) -->
-    <skip />
+    <string name="delete_album_desc_nosdcard" msgid="2739690641188691896">"Keseluruhan album \"<xliff:g id="ALBUM">%s</xliff:g>\" akan dipadamkan secara kekal dari storan USB."</string>
     <string name="delete_song_desc" msgid="1856800468541831408">"\"<xliff:g id="SONG">%s</xliff:g>\" akan dipadamkan secara kekal dari kad SD."</string>
-    <!-- no translation found for delete_song_desc_nosdcard (2722621774200478721) -->
-    <skip />
+    <string name="delete_song_desc_nosdcard" msgid="2722621774200478721">"\"<xliff:g id="SONG">%s</xliff:g>\" akan dipadamkan secara kekal dari storan USB."</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"OK"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one" msgid="8560276109508404217">"1 lagu telah dipadamkan."</item>
     <item quantity="other" msgid="5156740163031225200">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> lagu dipadamkan"</item>
   </plurals>
     <string name="scanning" msgid="3529383847223198502">"Mengimbas kad SD..."</string>
-    <!-- no translation found for scanning_nosdcard (8105284774487360148) -->
-    <skip />
+    <string name="scanning_nosdcard" msgid="8105284774487360148">"Mengimbas storan USB..."</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"Sedang dimainkan"</string>
     <string name="partyshuffle_title" msgid="6582413231529992125">"Rombak parti"</string>
     <string name="artists_title" msgid="8490372367259160067">"Artis"</string>
@@ -80,23 +76,17 @@
     <string name="podcasts_listitem" msgid="8657809279717670634">"Podcast"</string>
     <string name="podcasts_title" msgid="4928414142496858304">"Podcast"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"Tiada kad SD"</string>
-    <!-- no translation found for sdcard_missing_title_nosdcard (7984839174824243958) -->
-    <skip />
+    <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"Tiada storan USB"</string>
     <string name="sdcard_missing_message" msgid="1169260755336159747">"Telefon anda tidak dimasukkan kad SD."</string>
-    <!-- no translation found for sdcard_missing_message_nosdcard (4894107850080476295) -->
-    <skip />
+    <string name="sdcard_missing_message_nosdcard" msgid="4894107850080476295">"Telefon anda tidak mempunyai storan USB."</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"Kad SD tidak tersedia"</string>
-    <!-- no translation found for sdcard_busy_title_nosdcard (3319125156566499501) -->
-    <skip />
+    <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"Storan USB tidak tersedia"</string>
     <string name="sdcard_busy_message" msgid="8071868348072728830">"Maaf, kad SD anda sibuk."</string>
-    <!-- no translation found for sdcard_busy_message_nosdcard (1644924834752791507) -->
-    <skip />
+    <string name="sdcard_busy_message_nosdcard" msgid="1644924834752791507">"Maaf, storan USB anda sibuk."</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"Ralat kad SD"</string>
-    <!-- no translation found for sdcard_error_title_nosdcard (7564338137076303931) -->
-    <skip />
+    <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"Ralat storan USB"</string>
     <string name="sdcard_error_message" msgid="4574563894036627855">"Terdapat ralat pada kad SD anda."</string>
-    <!-- no translation found for sdcard_error_message_nosdcard (4983430848526821234) -->
-    <skip />
+    <string name="sdcard_error_message_nosdcard" msgid="4983430848526821234">"Menghadapi ralat pada storan USB anda."</string>
     <string name="unknown_artist_name" msgid="5567811106415855219">"Artis tidak dikenali"</string>
     <string name="unknown_album_name" msgid="8525145988941244727">"Album tidak diketahui"</string>
     <string name="shuffle_on_notif" msgid="5453708337808483943">"Rombak dihidupkan."</string>
@@ -106,14 +96,16 @@
     <string name="repeat_all_notif" msgid="6443293055987316642">"Mengulangi semua lagu."</string>
     <string name="ringtone_menu" msgid="2737472190159134599">"Gunakan sebagai nada dering telefon"</string>
     <string name="ringtone_menu_short" msgid="3367622038867238133">"Gunakan sebagai nada dering"</string>
-    <!-- no translation found for ringtone_set (5325818347613843130) -->
-    <skip />
+    <string name="ringtone_set" msgid="5325818347613843130">"\"<xliff:g id="NAME">%s</xliff:g>\" ditetapkan sebagai nada dering telefon."</string>
     <string name="play_selection" msgid="2854921021814550018">"Main"</string>
     <string name="add_to_playlist" msgid="7110273488645072783">"Tambah ke senarai main"</string>
     <string name="queue" msgid="2937629819482787704">"Senarai main semasa"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Baru"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"Senarai main baru <xliff:g id="NUMBER">%d</xliff:g>"</string>
-    <!-- no translation found for NNNtrackstoplaylist:other (7662771987109627255) -->
+  <plurals name="NNNtrackstoplaylist">
+    <item quantity="one" msgid="422388042993582235">"1 lagu ditambah ke senarai main."</item>
+    <item quantity="other" msgid="7662771987109627255">"<xliff:g id="NUMBER">%d</xliff:g> lagu ditambahkan pada senarai main."</item>
+  </plurals>
     <string name="emptyplaylist" msgid="6711555673997896344">"Senarai main pilihan kosong."</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"Simpan"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Tulis ganti"</string>
@@ -147,8 +139,7 @@
     <string name="cancel" msgid="886559484711947520">"Batal"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"Alih keluar daripada senarai main"</string>
     <string name="streamloadingtext" msgid="3367150884806639224">"Menyambung ke <xliff:g id="HOST">%s</xliff:g>"</string>
-    <!-- no translation found for mediasearch (959222971261132292) -->
-    <skip />
+    <string name="mediasearch" msgid="959222971261132292">"Cari <xliff:g id="TERM">%s</xliff:g> menggunakan:"</string>
     <string name="working_artists" msgid="8678357432732156580">"Artis..."</string>
     <string name="working_albums" msgid="8713273699401457426">"Album..."</string>
     <string name="working_songs" msgid="2201491972050410684">"Lagu..."</string>
@@ -160,14 +151,9 @@
     <string name="music_picker_title" msgid="1561623486324013570">"Pilih trek muzik"</string>
     <string name="gadget_track" msgid="3186569295893300114">"Runut <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
     <string name="fail_to_start_stream" msgid="3605390187703912835">"Gagal memainkan strim yang diminta."</string>
-    <!-- no translation found for search_settings_description (6520975349259883368) -->
-    <skip />
-    <!-- no translation found for search_hint (3766854898072633001) -->
-    <skip />
-    <!-- no translation found for fast_scroll_alphabet (5548732936480723311) -->
-    <skip />
-    <!-- no translation found for widget_initial_text (6334545155963910952) -->
-    <skip />
-    <!-- no translation found for effectspanel (8804547581593509614) -->
-    <skip />
+    <string name="search_settings_description" msgid="6520975349259883368">"Artis, album dan lagu"</string>
+    <string name="search_hint" msgid="3766854898072633001">"Carian Muzik"</string>
+    <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
+    <string name="widget_initial_text" msgid="6334545155963910952">"Sentuh untuk memilih muzik."</string>
+    <string name="effectspanel" msgid="8804547581593509614">"Kesan bunyi"</string>
 </resources>
