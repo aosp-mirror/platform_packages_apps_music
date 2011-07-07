@@ -136,7 +136,7 @@
     <string name="videobrowserlabel" msgid="8522326678447494657">"Video"</string>
     <string name="mediapickerlabel" msgid="4549836003229914299">"Nhạc"</string>
     <string name="playback_failed" msgid="4477832192645009774">"Rất tiếc, trình phát không hỗ trợ loại tệp âm thanh này."</string>
-    <string name="cancel" msgid="886559484711947520">"Huỷ"</string>
+    <string name="cancel" msgid="886559484711947520">"Hủy"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"Xoá khỏi danh sách nhạc"</string>
     <string name="streamloadingtext" msgid="3367150884806639224">"Đang kết nối với <xliff:g id="HOST">%s</xliff:g>"</string>
     <string name="mediasearch" msgid="959222971261132292">"Tìm kiếm <xliff:g id="TERM">%s</xliff:g> sử dụng:"</string>
