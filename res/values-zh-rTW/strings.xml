@@ -31,7 +31,6 @@
     <item quantity="other" msgid="3047615499770811984">"<xliff:g id="COUNT">%d</xliff:g> 專輯"</item>
   </plurals>
     <string name="goto_start" msgid="8979658707407220934">"媒體庫"</string>
-    <string name="goto_playback" msgid="4885216161312176550">"播放內容"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"派對隨機播放"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"關閉派對隨機播放"</string>
     <string name="delete_item" msgid="3363330144534750601">"刪除"</string>
@@ -149,8 +148,6 @@
     <string name="sort_by_album" msgid="2912837715658975248">"專輯"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"演出者"</string>
     <string name="music_picker_title" msgid="1561623486324013570">"選取音樂曲目"</string>
-    <string name="gadget_track" msgid="3186569295893300114">"音軌 <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
-    <string name="fail_to_start_stream" msgid="3605390187703912835">"無法播放您要求的串流媒體。"</string>
     <string name="search_settings_description" msgid="6520975349259883368">"演出者、專輯及曲目。"</string>
     <string name="search_hint" msgid="3766854898072633001">"搜尋音樂"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>

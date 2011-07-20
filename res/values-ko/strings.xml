@@ -31,7 +31,6 @@
     <item quantity="other" msgid="3047615499770811984">"앨범 <xliff:g id="COUNT">%d</xliff:g>개"</item>
   </plurals>
     <string name="goto_start" msgid="8979658707407220934">"라이브러리"</string>
-    <string name="goto_playback" msgid="4885216161312176550">"재생"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"파티 셔플"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"파티 셔플 사용 안함"</string>
     <string name="delete_item" msgid="3363330144534750601">"삭제"</string>
@@ -149,8 +148,6 @@
     <string name="sort_by_album" msgid="2912837715658975248">"앨범"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"아티스트"</string>
     <string name="music_picker_title" msgid="1561623486324013570">"음악 트랙 선택"</string>
-    <string name="gadget_track" msgid="3186569295893300114">"트랙 <xliff:g id="TRACK_NUMBER">%d</xliff:g>"</string>
-    <string name="fail_to_start_stream" msgid="3605390187703912835">"요청한 스트림을 재생하지 못했습니다."</string>
     <string name="search_settings_description" msgid="6520975349259883368">"아티스트, 앨범 및 트랙"</string>
     <string name="search_hint" msgid="3766854898072633001">"음악 검색"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>

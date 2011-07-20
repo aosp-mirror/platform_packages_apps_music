@@ -31,7 +31,6 @@
     <item quantity="other" msgid="3047615499770811984">"<xliff:g id="COUNT">%d</xliff:g> албума"</item>
   </plurals>
     <string name="goto_start" msgid="8979658707407220934">"Библиотека"</string>
-    <string name="goto_playback" msgid="4885216161312176550">"Пускане"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"Разбъркване за купон"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"Изключване на pазбъркването за купон"</string>
     <string name="delete_item" msgid="3363330144534750601">"Изтриване"</string>
@@ -149,8 +148,6 @@
     <string name="sort_by_album" msgid="2912837715658975248">"Албуми"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"Изпълнители"</string>
     <string name="music_picker_title" msgid="1561623486324013570">"Избор на музикален запис"</string>
-    <string name="gadget_track" msgid="3186569295893300114">"Запис „<xliff:g id="TRACK_NUMBER">%d</xliff:g>“"</string>
-    <string name="fail_to_start_stream" msgid="3605390187703912835">"Заявеният поток не успя да се възпроизведе."</string>
     <string name="search_settings_description" msgid="6520975349259883368">"Изпълнители, албуми и записи"</string>
     <string name="search_hint" msgid="3766854898072633001">"Търсене на музика"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
