@@ -46,11 +46,11 @@
     <!-- no translation found for play_all (6309622568869321842) -->
     <skip />
     <string name="delete_artist_desc" msgid="1843750591006508005">"Wonke amaculo ka-<xliff:g id="ARTIST">%s</xliff:g> azosuswa ngokuphelele ekhadini le-SD."</string>
-    <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"Wonke amaculo ka-<xliff:g id="ARTIST">%s</xliff:g> azosuswa ngokuphelele ekugcineni nge-USB."</string>
+    <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"Wonke amaculo ka-<xliff:g id="ARTIST">%s</xliff:g> azosuswa ngokuphelele kwisitoreji se-USB."</string>
     <string name="delete_album_desc" msgid="535515999268177079">"I-albhamu yonke \"<xliff:g id="ALBUM">%s</xliff:g>\" izosuswa ngokuphelele ekhadini le-SD."</string>
-    <string name="delete_album_desc_nosdcard" msgid="2739690641188691896">"I-albhamu yakho yoke \"<xliff:g id="ALBUM">%s</xliff:g>\" izosuswa ngokuphelele ekugcineni nge-USB."</string>
+    <string name="delete_album_desc_nosdcard" msgid="2739690641188691896">"Yonke i-albhamu yakho \"<xliff:g id="ALBUM">%s</xliff:g>\" izosuswa unaphakade kwisitoreji se-USB."</string>
     <string name="delete_song_desc" msgid="1856800468541831408">"\"<xliff:g id="SONG">%s</xliff:g>\" izosuswa ngokuphelele ekhadini le-SD."</string>
-    <string name="delete_song_desc_nosdcard" msgid="2722621774200478721">"\"<xliff:g id="SONG">%s</xliff:g>\" izosuswa ngokuphelele kukugcina nge-USB."</string>
+    <string name="delete_song_desc_nosdcard" msgid="2722621774200478721">"\"<xliff:g id="SONG">%s</xliff:g>\" izosuswa unaphakade kwisitoreji se-USB."</string>
     <!-- no translation found for delete_confirm_button_text (7008121194944357274) -->
     <skip />
   <plurals name="NNNtracksdeleted">
@@ -59,7 +59,7 @@
   </plurals>
     <!-- no translation found for scanning (3529383847223198502) -->
     <skip />
-    <string name="scanning_nosdcard" msgid="8105284774487360148">"Iskena ukugcina nge-USB..."</string>
+    <string name="scanning_nosdcard" msgid="8105284774487360148">"Iskena isitoreji se-USB..."</string>
     <!-- no translation found for nowplaying_title (8342523844307751761) -->
     <skip />
     <!-- no translation found for partyshuffle_title (6582413231529992125) -->
@@ -111,22 +111,22 @@
     <string name="podcasts_title" msgid="4928414142496858304">"ama-Podcast"</string>
     <!-- no translation found for sdcard_missing_title (9008284946643270850) -->
     <skip />
-    <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"Akukho ukugcina nge-USB"</string>
+    <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"Asikho isitoreji se-USB"</string>
     <!-- no translation found for sdcard_missing_message (1169260755336159747) -->
     <skip />
-    <string name="sdcard_missing_message_nosdcard" msgid="4894107850080476295">"Ifoni yakho ayinakho ukugcina nge-USB"</string>
+    <string name="sdcard_missing_message_nosdcard" msgid="4894107850080476295">"Ifoni yakho ayinaso isitoreji se-USB"</string>
     <!-- no translation found for sdcard_busy_title (1162763571147174655) -->
     <skip />
-    <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"Ukugcina nge-USB akutholakali"</string>
+    <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"Isitoreji se-USB asitholakali"</string>
     <!-- no translation found for sdcard_busy_message (8071868348072728830) -->
     <skip />
-    <string name="sdcard_busy_message_nosdcard" msgid="1644924834752791507">"Uxolo, ukugcina kwakho nge-USB kumatasa."</string>
+    <string name="sdcard_busy_message_nosdcard" msgid="1644924834752791507">"Uxolo, isitoreji se-USB simatasa."</string>
     <!-- no translation found for sdcard_error_title (165682155008600643) -->
     <skip />
-    <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"Iphutha lokugcina nge-USB"</string>
+    <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"Iphutha lesitoreji se-USB"</string>
     <!-- no translation found for sdcard_error_message (4574563894036627855) -->
     <skip />
-    <string name="sdcard_error_message_nosdcard" msgid="4983430848526821234">"Iphutha livelile ekhadini lakho le-SD."</string>
+    <string name="sdcard_error_message_nosdcard" msgid="4983430848526821234">"Kuvelel iphutha kwisitoreji sakho se-USB."</string>
     <!-- no translation found for unknown_artist_name (5567811106415855219) -->
     <skip />
     <!-- no translation found for unknown_album_name (8525145988941244727) -->
