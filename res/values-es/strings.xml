@@ -33,8 +33,8 @@
     <string name="goto_start" msgid="8979658707407220934">"Biblioteca"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"Sesión aleatoria"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"Desactivar sesión aleatoria"</string>
-    <string name="delete_item" msgid="3363330144534750601">"Suprimir"</string>
-    <string name="shuffle_all" msgid="1388193611787878773">"Reproducción aleatoria"</string>
+    <string name="delete_item" msgid="3363330144534750601">"Eliminar"</string>
+    <string name="shuffle_all" msgid="1388193611787878773">"Aleatorio"</string>
     <string name="play_all" msgid="6309622568869321842">"Reproducir todo"</string>
     <string name="delete_artist_desc" msgid="1843750591006508005">"Todas las canciones de <xliff:g id="ARTIST">%s</xliff:g> se eliminarán de forma permanente de la tarjeta SD."</string>
     <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"Todas las canciones de <xliff:g id="ARTIST">%s</xliff:g> se eliminarán permanentemente del almacenamiento USB."</string>
@@ -56,8 +56,8 @@
     <string name="albums_title" msgid="8773880394961378035">"Álbumes"</string>
     <string name="tracks_menu" msgid="6942246568246092330">"Canciones"</string>
     <string name="tracks_title" msgid="3229389424532295124">"Canciones"</string>
-    <string name="playlists_menu" msgid="5382792649771928849">"Listas reprod."</string>
-    <string name="playlists_title" msgid="5094238486322957927">"Listas reprod."</string>
+    <string name="playlists_menu" msgid="5382792649771928849">"Listas"</string>
+    <string name="playlists_title" msgid="5094238486322957927">"Listas"</string>
     <string name="videos_title" msgid="2066741954354129115">"Vídeos"</string>
     <string name="all_title" msgid="6880186414437237653">"Todos los medios"</string>
     <string name="browse_menu" msgid="5248122473075843289">"Artistas"</string>
@@ -65,13 +65,13 @@
     <string name="no_tracks_title" msgid="8805805388271238471">"Ninguna canción"</string>
     <string name="no_videos_title" msgid="6218814130364793104">"Ningún vídeo"</string>
     <string name="no_playlists_title" msgid="4456351945617594418">"Ninguna lista de reproducción"</string>
-    <string name="delete_playlist_menu" msgid="8998637685583495247">"Suprimir"</string>
+    <string name="delete_playlist_menu" msgid="8998637685583495247">"Eliminar"</string>
     <string name="edit_playlist_menu" msgid="571618502105370684">"Editar"</string>
     <string name="rename_playlist_menu" msgid="3133463747389494668">"Cambiar nombre"</string>
     <string name="playlist_deleted_message" msgid="9008053828193961455">"Se ha eliminado la lista de reproducción."</string>
     <string name="playlist_renamed_message" msgid="7187580192703005990">"Se ha cambiado el nombre de la lista de reproducción."</string>
     <string name="recentlyadded" msgid="110978416756366953">"Añadidas recientemente"</string>
-    <string name="recentlyadded_title" msgid="3153322287249901914">"Añadidos recientemente"</string>
+    <string name="recentlyadded_title" msgid="3153322287249901914">"Añadido recientemente"</string>
     <string name="podcasts_listitem" msgid="8657809279717670634">"Podcasts"</string>
     <string name="podcasts_title" msgid="4928414142496858304">"Podcasts"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"Falta la tarjeta SD"</string>
@@ -93,14 +93,14 @@
     <string name="repeat_off_notif" msgid="1149406899083479716">"La repetición está desactivada."</string>
     <string name="repeat_current_notif" msgid="1227153936360904196">"Se repetirá la canción actual."</string>
     <string name="repeat_all_notif" msgid="6443293055987316642">"Se repetirán todas las canciones."</string>
-    <string name="ringtone_menu" msgid="2737472190159134599">"Utilizar como tono del teléfono"</string>
-    <string name="ringtone_menu_short" msgid="3367622038867238133">"Utilizar como tono"</string>
+    <string name="ringtone_menu" msgid="2737472190159134599">"Usar como tono"</string>
+    <string name="ringtone_menu_short" msgid="3367622038867238133">"Usar como tono"</string>
     <string name="ringtone_set" msgid="5325818347613843130">"Se ha establecido \"<xliff:g id="NAME">%s</xliff:g>\" como tono del teléfono."</string>
     <string name="play_selection" msgid="2854921021814550018">"Reproducir"</string>
     <string name="add_to_playlist" msgid="7110273488645072783">"Añadir a lista"</string>
     <string name="queue" msgid="2937629819482787704">"Lista de reproducción actual"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Nuevo"</string>
-    <string name="new_playlist_name_template" msgid="905710296728900597">"Nueva lista de reproducción <xliff:g id="NUMBER">%d</xliff:g>"</string>
+    <string name="new_playlist_name_template" msgid="905710296728900597">"Lista de reproducción <xliff:g id="NUMBER">%d</xliff:g>"</string>
   <plurals name="NNNtrackstoplaylist">
     <item quantity="one" msgid="422388042993582235">"Se ha añadido una canción a la lista de reproducción."</item>
     <item quantity="other" msgid="7662771987109627255">"Se han añadido <xliff:g id="NUMBER">%d</xliff:g> canciones a la lista de reproducción."</item>
@@ -126,7 +126,7 @@
     <item msgid="8708754966127584739">"12 semanas"</item>
   </string-array>
     <string name="weekpicker_set" msgid="7636608790418067496">"Listo"</string>
-    <string name="weekpicker_title" msgid="699535378922101701">"Establecer hora"</string>
+    <string name="weekpicker_title" msgid="699535378922101701">"Establecer período"</string>
     <string name="save_as_playlist" msgid="5180413608901885255">"Guardar como lista de reproducción"</string>
     <string name="clear_playlist" msgid="4565515100924905315">"Borrar lista de reproducción"</string>
     <string name="musicbrowserlabel" msgid="3162022214114562892">"Música"</string>
