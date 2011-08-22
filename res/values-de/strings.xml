@@ -24,7 +24,7 @@
     <item quantity="other" msgid="5798230388116542981">"<xliff:g id="COUNT">%d</xliff:g> Titel"</item>
   </plurals>
   <plurals name="Nsongscomp">
-    <item quantity="other" msgid="7162294486622945550">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> von <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> Liedern"</item>
+    <item quantity="other" msgid="7162294486622945550">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> von <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> Titeln"</item>
   </plurals>
   <plurals name="Nalbums">
     <item quantity="one" msgid="3798955510439465932">"1 Album"</item>
@@ -126,7 +126,7 @@
     <item msgid="8708754966127584739">"12 Wochen"</item>
   </string-array>
     <string name="weekpicker_set" msgid="7636608790418067496">"Fertig"</string>
-    <string name="weekpicker_title" msgid="699535378922101701">"Zeit einstellen"</string>
+    <string name="weekpicker_title" msgid="699535378922101701">"Dauer einstellen"</string>
     <string name="save_as_playlist" msgid="5180413608901885255">"Als Playlist speichern"</string>
     <string name="clear_playlist" msgid="4565515100924905315">"Playlist löschen"</string>
     <string name="musicbrowserlabel" msgid="3162022214114562892">"Musik"</string>
@@ -141,7 +141,7 @@
     <string name="mediasearch" msgid="959222971261132292">"Nach \"<xliff:g id="TERM">%s</xliff:g>\" suchen mithilfe von:"</string>
     <string name="working_artists" msgid="8678357432732156580">"Interpreten..."</string>
     <string name="working_albums" msgid="8713273699401457426">"Alben…"</string>
-    <string name="working_songs" msgid="2201491972050410684">"Lieder…"</string>
+    <string name="working_songs" msgid="2201491972050410684">"Titel…"</string>
     <string name="working_playlists" msgid="4424950806134653351">"Playlists…"</string>
     <string name="loading" msgid="3267924133697717662">"Wird geladen"</string>
     <string name="sort_by_track" msgid="7662999005554152565">"Tracks"</string>

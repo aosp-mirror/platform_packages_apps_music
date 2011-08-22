@@ -19,7 +19,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt" msgid="2379436619128383935">"פתח את המקלדת כדי לתת לפלייליסט חדש שם, או בחר ב\'שמור\' כדי לשמור אותו בשם \"<xliff:g id="PLAYLIST">%s</xliff:g>\"."</string>
-    <string name="rename_playlist_same_prompt" msgid="7777541452078260899">"פתח את המקלדת כדי לתת לפלייליסט \"<xliff:g id="PLAYLIST">%s</xliff:g>\" שם חדש."</string>
+    <string name="create_playlist_create_text_prompt" msgid="2379436619128383935">"פתח את המקלדת כדי לתת שם לפלייליסט החדש, או בחר \'שמור\' כדי לשמור אותו בשם \"<xliff:g id="PLAYLIST">%s</xliff:g>\"."</string>
+    <string name="rename_playlist_same_prompt" msgid="7777541452078260899">"פתח את המקלדת כדי לתת לפלייליסט \'<xliff:g id="PLAYLIST">%s</xliff:g>\' שם חדש."</string>
     <string name="rename_playlist_diff_prompt" msgid="900422624897120958">"פתח את המקלדת כדי לתת לפלייליסט \"<xliff:g id="PLAYLIST">%1$s</xliff:g>\" שם חדש, או בחר ב\'שמור\' כדי לשמור אותו בשם \"<xliff:g id="NAME">%2$s</xliff:g>\"."</string>
 </resources>
