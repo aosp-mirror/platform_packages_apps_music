@@ -38,9 +38,9 @@
     <string name="play_all" msgid="6309622568869321842">"הפעל הכל"</string>
     <string name="delete_artist_desc" msgid="1843750591006508005">"כל השירים של <xliff:g id="ARTIST">%s</xliff:g> יימחקו לצמיתות מכרטיס SD."</string>
     <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"כל השירים של <xliff:g id="ARTIST">%s</xliff:g> יימחקו לצמיתות מאמצעי האחסון מסוג USB."</string>
-    <string name="delete_album_desc" msgid="535515999268177079">"האלבום \'<xliff:g id="ALBUM">%s</xliff:g>\' כולו יימחק לצמיתות מכרטיס SD."</string>
+    <string name="delete_album_desc" msgid="535515999268177079">"האלבום \'<xliff:g id="ALBUM">%s</xliff:g>\' כולו יימחק לצמיתות מכרטיס ה-SD."</string>
     <string name="delete_album_desc_nosdcard" msgid="2739690641188691896">"האלבום \"<xliff:g id="ALBUM">%s</xliff:g>\" כולו יימחק לצמיתות מאמצעי האחסון מסוג USB."</string>
-    <string name="delete_song_desc" msgid="1856800468541831408">"\'<xliff:g id="SONG">%s</xliff:g>\' יימחק לצמיתות מכרטיס SD."</string>
+    <string name="delete_song_desc" msgid="1856800468541831408">"\'<xliff:g id="SONG">%s</xliff:g>\' יימחק לצמיתות מכרטיס ה-SD."</string>
     <string name="delete_song_desc_nosdcard" msgid="2722621774200478721">"\"<xliff:g id="SONG">%s</xliff:g>\" יימחק לצמיתות מאמצעי האחסון מסוג USB."</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"אישור"</string>
   <plurals name="NNNtracksdeleted">
