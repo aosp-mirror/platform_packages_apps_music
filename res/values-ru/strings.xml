@@ -19,7 +19,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="onesong" msgid="8336826100414159413">"1 композиция"</string>
+    <string name="onesong" msgid="8336826100414159413">"1 трек"</string>
   <plurals name="Nsongs">
     <item quantity="other" msgid="5798230388116542981">"Композиций: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
@@ -44,7 +44,7 @@
     <string name="delete_song_desc_nosdcard" msgid="2722621774200478721">"Композиция \"<xliff:g id="SONG">%s</xliff:g>\" будет окончательно удалена с USB-накопителя."</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"ОК"</string>
   <plurals name="NNNtracksdeleted">
-    <item quantity="one" msgid="8560276109508404217">"1 композиция удалена"</item>
+    <item quantity="one" msgid="8560276109508404217">"1 трек удален"</item>
     <item quantity="other" msgid="5156740163031225200">"Удалено композиций: <xliff:g id="SONGS_TO_DELETE">%d</xliff:g>."</item>
   </plurals>
     <string name="scanning" msgid="3529383847223198502">"Сканирование SD-карты…"</string>
@@ -102,14 +102,14 @@
     <string name="new_playlist" msgid="7588112979692632867">"Создать"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"Новый плейлист <xliff:g id="NUMBER">%d</xliff:g>"</string>
   <plurals name="NNNtrackstoplaylist">
-    <item quantity="one" msgid="422388042993582235">"1 композиция добавлена в плейлист."</item>
+    <item quantity="one" msgid="422388042993582235">"1 трек добавлен в плейлист."</item>
     <item quantity="other" msgid="7662771987109627255">"Композиций, добавленных в плейлист: <xliff:g id="NUMBER">%d</xliff:g>"</item>
   </plurals>
     <string name="emptyplaylist" msgid="6711555673997896344">"Выбранный плейлист пуст."</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"Сохранить"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Перезаписать"</string>
     <string name="service_start_error_title" msgid="8649916852210198813">"Сбой при воспроизведении"</string>
-    <string name="service_start_error_msg" msgid="3880338547260838681">"Воспроизвести композицию невозможно."</string>
+    <string name="service_start_error_msg" msgid="3880338547260838681">"Невозможно воспроизвести трек."</string>
     <string name="service_start_error_button" msgid="480888406592240723">"ОК"</string>
   <string-array name="weeklist">
     <item msgid="7005918873419323862">"1 неделя"</item>
@@ -147,7 +147,7 @@
     <string name="sort_by_track" msgid="7662999005554152565">"Дорожки"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"Альбомы"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"Артисты"</string>
-    <string name="music_picker_title" msgid="1561623486324013570">"Выбрать музыкальную дорожку"</string>
+    <string name="music_picker_title" msgid="1561623486324013570">"Выберите трек"</string>
     <string name="search_settings_description" msgid="6520975349259883368">"Исполнители, альбомы и треки"</string>
     <string name="search_hint" msgid="3766854898072633001">"Поиск музыки"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"</string>
