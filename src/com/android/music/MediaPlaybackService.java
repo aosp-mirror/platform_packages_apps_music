@@ -790,7 +790,7 @@ public class MediaPlaybackService extends Service {
             ed.putLong(MediaMetadataRetriever.METADATA_KEY_DURATION, duration());
             Bitmap b = MusicUtils.getArtwork(this, getAudioId(), getAlbumId(), false);
             if (b != null) {
-                ed.putBitmap(MetadataEditor.METADATA_KEY_ARTWORK, b);
+                ed.putBitmap(MetadataEditor.BITMAP_KEY_ARTWORK, b);
             }
             ed.apply();
         }
