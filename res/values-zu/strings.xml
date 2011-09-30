@@ -137,7 +137,7 @@
     <string name="playback_failed" msgid="4477832192645009774">"Uxolo, isidlali asisekeli loluhlobo lwefayela yomsindo."</string>
     <string name="cancel" msgid="886559484711947520">"Khansela"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"Khipha ohlwini lokudlalayo"</string>
-    <string name="streamloadingtext" msgid="3367150884806639224">" Ixhuma kwi <xliff:g id="HOST">%s</xliff:g>"</string>
+    <string name="streamloadingtext" msgid="3367150884806639224">" Ixhuma kwi-<xliff:g id="HOST">%s</xliff:g>"</string>
     <string name="mediasearch" msgid="959222971261132292">"Seshela i-<xliff:g id="TERM">%s</xliff:g> usebenzisa:"</string>
     <string name="working_artists" msgid="8678357432732156580">"Abaculi..."</string>
     <string name="working_albums" msgid="8713273699401457426">"Ama-albhamu..."</string>

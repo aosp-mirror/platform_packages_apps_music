@@ -69,7 +69,7 @@
     <string name="edit_playlist_menu" msgid="571618502105370684">"አርትዕ"</string>
     <string name="rename_playlist_menu" msgid="3133463747389494668">"እንደገና ሰይም"</string>
     <string name="playlist_deleted_message" msgid="9008053828193961455">"የጨዋታዝርዝር ተሰርዟል።"</string>
-    <string name="playlist_renamed_message" msgid="7187580192703005990">"የጨዋታዝርዝርድጋሚ ሰይም"</string>
+    <string name="playlist_renamed_message" msgid="7187580192703005990">"የጨዋታ ዝርዝርድጋሚ ሰይም"</string>
     <string name="recentlyadded" msgid="110978416756366953">"በቅርብ ጊዜ የታከለ"</string>
     <string name="recentlyadded_title" msgid="3153322287249901914">"በቅርብ ጊዜ የታከለ፡"</string>
     <string name="podcasts_listitem" msgid="8657809279717670634">"Podcasts"</string>
@@ -127,7 +127,7 @@
   </string-array>
     <string name="weekpicker_set" msgid="7636608790418067496">"ተከናውኗል"</string>
     <string name="weekpicker_title" msgid="699535378922101701">"ጊዜ አዘጋጅ"</string>
-    <string name="save_as_playlist" msgid="5180413608901885255">"እንደ ጨዋታዝርዝር አስቀምጥ"</string>
+    <string name="save_as_playlist" msgid="5180413608901885255">"እንደ ጨዋታ ዝርዝር አስቀምጥ"</string>
     <string name="clear_playlist" msgid="4565515100924905315">"የጨዋታ ዝርዝር አጥራ"</string>
     <string name="musicbrowserlabel" msgid="3162022214114562892">"ሙዚቃ"</string>
     <string name="musicshortcutlabel" msgid="2602980193508150226">"የሙዚቃ ጨዋታዝርዝር"</string>
