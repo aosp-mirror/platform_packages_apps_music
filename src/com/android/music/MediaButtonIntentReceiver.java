@@ -112,8 +112,11 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
                             mHandler.sendMessage(
                                     mHandler.obtainMessage(MSG_LONGPRESS_TIMEOUT, context));
                         }
-                    } else {
-                        // if this isn't a repeat event
+                    } else if (event.getRepeatCount() == 0) {
+                        // only consider the first event in a sequence, not the repeat events,
+                        // so that we don't trigger in cases where the first event went to
+                        // a different app (e.g. when the user ends a phone call by
+                        // long pressing the headset button)
 
                         // The service may or may not be running, but we need to send it
                         // a command.
