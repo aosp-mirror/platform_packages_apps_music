@@ -69,7 +69,7 @@
     <string name="edit_playlist_menu" msgid="571618502105370684">"አርትዕ"</string>
     <string name="rename_playlist_menu" msgid="3133463747389494668">"እንደገና ሰይም"</string>
     <string name="playlist_deleted_message" msgid="9008053828193961455">"የጨዋታዝርዝር ተሰርዟል።"</string>
-    <string name="playlist_renamed_message" msgid="7187580192703005990">"የጨዋታ ዝርዝርድጋሚ ሰይም"</string>
+    <string name="playlist_renamed_message" msgid="7187580192703005990">"የጨዋታ ዝርዝርድጋሚ ተሰይሟል።"</string>
     <string name="recentlyadded" msgid="110978416756366953">"በቅርብ ጊዜ የታከለ"</string>
     <string name="recentlyadded_title" msgid="3153322287249901914">"በቅርብ ጊዜ የታከለ፡"</string>
     <string name="podcasts_listitem" msgid="8657809279717670634">"Podcasts"</string>
