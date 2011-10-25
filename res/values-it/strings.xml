@@ -48,7 +48,7 @@
     <item quantity="other" msgid="5156740163031225200">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> brani eliminati."</item>
   </plurals>
     <string name="scanning" msgid="3529383847223198502">"Analisi scheda SD..."</string>
-    <string name="scanning_nosdcard" msgid="8105284774487360148">"Analisi dell\'archivio USB in corso…"</string>
+    <string name="scanning_nosdcard" msgid="8105284774487360148">"Analisi dell\'archivio USB..."</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"In riproduzione"</string>
     <string name="partyshuffle_title" msgid="6582413231529992125">"Party shuffle"</string>
     <string name="artists_title" msgid="8490372367259160067">"Artisti"</string>
