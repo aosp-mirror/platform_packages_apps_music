@@ -69,19 +69,19 @@
     <string name="play_all">Play all</string>
 
     <!-- Delete confirmation dialog when deleting an entire artist -->
-    <string name="delete_artist_desc">All songs by <xliff:g id="artist">%s</xliff:g> will be permanently deleted from the SD card.</string>
+    <string name="delete_artist_desc">Permanently delete all songs by <xliff:g id="artist">%s</xliff:g> from the SD card?</string>
     <!-- Delete confirmation dialog when deleting an entire artist -->
-    <string name="delete_artist_desc_nosdcard">All songs by <xliff:g id="artist">%s</xliff:g> will be permanently deleted from USB storage.</string>
+    <string name="delete_artist_desc_nosdcard">Permanently delete all songs by <xliff:g id="artist">%s</xliff:g> from USB storage?</string>
 
     <!-- Delete confirmation dialog when deleting an entire album -->
-    <string name="delete_album_desc">The entire album \"<xliff:g id="album">%s</xliff:g>\" will be permanently deleted from the SD card.</string>
+    <string name="delete_album_desc">Permanently delete the entire album \"<xliff:g id="album">%s</xliff:g>\" from the SD card?</string>
     <!-- Delete confirmation dialog when deleting an entire album -->
-    <string name="delete_album_desc_nosdcard">The entire album \"<xliff:g id="album">%s</xliff:g>\" will be permanently deleted from USB storage.</string>
+    <string name="delete_album_desc_nosdcard">Permanently delete the entire album \"<xliff:g id="album">%s</xliff:g>\" from USB storage?</string>
 
     <!-- Delete confirmation dialog when deleting a single song -->
-    <string name="delete_song_desc">\"<xliff:g id="song">%s</xliff:g>\" will be permanently deleted from the SD card.</string>
+    <string name="delete_song_desc">Permanently delete \"<xliff:g id="song">%s</xliff:g>\" from the SD card?</string>
     <!-- Delete confirmation dialog when deleting a single song -->
-    <string name="delete_song_desc_nosdcard">\"<xliff:g id="song">%s</xliff:g>\" will be permanently deleted from USB storage.</string>
+    <string name="delete_song_desc_nosdcard">Permanently delete \"<xliff:g id="song">%s</xliff:g>\" from USB storage?</string>
 
     <!-- Delete confirmation dialog, confirmation button text -->
     <string name="delete_confirm_button_text">OK</string>
@@ -153,17 +153,17 @@
     <!-- Title of screen when no sd card is present -->
     <string name="sdcard_missing_title_nosdcard">No USB storage</string>
     <!-- label underneath icon used to indicate that no sd card is present -->
-    <string name="sdcard_missing_message">Your phone does not have an SD card inserted.</string>
+    <string name="sdcard_missing_message">Your phone doesn\'t have an SD card inserted.</string>
     <!-- label underneath icon used to indicate that no sd card is present -->
-    <string name="sdcard_missing_message_nosdcard">Your phone does not have USB storage.</string>
+    <string name="sdcard_missing_message_nosdcard">Your phone doesn\'t have USB storage.</string>
     <!-- label underneath icon used to indicate that the sd card is present, but currently unavailable -->
     <string name="sdcard_busy_title">SD card unavailable</string>
     <!-- label underneath icon used to indicate that the sd card is present, but currently unavailable -->
     <string name="sdcard_busy_title_nosdcard">USB storage unavailable</string>
     <!-- label underneath icon used to indicate sd card is mounted to your computer via USB -->
-    <string name="sdcard_busy_message">Sorry, your SD card is busy.</string>
+    <string name="sdcard_busy_message">Your SD card is busy.</string>
     <!-- label underneath icon used to indicate sd card is mounted to your computer via USB -->
-    <string name="sdcard_busy_message_nosdcard">Sorry, your USB storage is busy.</string>
+    <string name="sdcard_busy_message_nosdcard">Your USB storage is busy.</string>
     <!-- Title of screen when there was an error accessing the sd card -->
     <string name="sdcard_error_title">SD card error</string>
     <!-- Title of screen when there was an error accessing the sd card -->
@@ -218,7 +218,7 @@
     <!-- Dialog box title -->
     <string name="service_start_error_title">Playback problem</string>
     <!-- Dialog box message -->
-    <string name="service_start_error_msg">Sorry, the song could not be played.</string>
+    <string name="service_start_error_msg">The song couldn\'t be played.</string>
     <!-- Dialog box button -->
     <string name="service_start_error_button">OK</string>
     <!-- Time span edit options that appear when editing system playlist "Recently added" -->
@@ -263,7 +263,7 @@
     <string name="mediapickerlabel">Music</string>
 
     <!-- Shown as a transient message whenever a file fails to play -->
-    <string name="playback_failed">Sorry, the player does not support this type of audio file.</string>
+    <string name="playback_failed">The player doesn\'t support this type of audio file.</string>
 
     <!-- Text for the "cancel" button in the "delete" and "create playlist" confirmation dialogs -->
     <string name="cancel">Cancel</string>
@@ -272,7 +272,7 @@
     <string name="remove_from_playlist">Remove from playlist</string>
 
     <!-- shown when connecting to a music stream, before it starts playing -->
-    <string name="streamloadingtext">Connecting to <xliff:g id="host">%s</xliff:g></string>
+    <string name="streamloadingtext">Connecting to <xliff:g id="host">%s</xliff:g>\u2026</string>
 
     <!-- title of contextual music search menu -->
     <string name="mediasearch">Search for <xliff:g id="term" example="Beethoven">%s</xliff:g> using:</string>
@@ -287,7 +287,7 @@
     <string name="working_playlists">Playlists\u2026</string>
 
     <!-- Shown in the music picker while loading the music database. -->
-    <string name="loading">Loading</string>
+    <string name="loading">Loading\u2026</string>
     <!-- Menu in music picker to sort the list by track/song name. -->
     <string name="sort_by_track">Tracks</string>
     <!-- Menu in music picker to sort the list by album name. -->
@@ -295,7 +295,7 @@
     <!-- Menu in music picker to sort the list by artist name. -->
     <string name="sort_by_artist">Artists</string>
     <!--  Title of the music picker activity. -->
-    <string name="music_picker_title">Select music track</string>
+    <string name="music_picker_title">Choose music track</string>
 
     <!-- The string used to describe Music as a searchable item within system search settings. -->
     <string name="search_settings_description">Artists, albums, and tracks</string>
@@ -307,7 +307,7 @@
     <string name="fast_scroll_alphabet">\u0020ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
 
     <!-- Text shown on widget when first loaded -->
-    <string name="widget_initial_text">Touch to select music.</string>
+    <string name="widget_initial_text">Touch to choose music.</string>
 
     <!-- Menu text for the item controlling the audio effects panel [CHAR LIMIT=15] -->
     <string name="effectspanel">Sound effects</string>
