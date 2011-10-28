@@ -36,12 +36,18 @@
     <string name="delete_item" msgid="3363330144534750601">"Dzēst"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"Jaukt visu"</string>
     <string name="play_all" msgid="6309622568869321842">"Atskaņot visu"</string>
-    <string name="delete_artist_desc" msgid="1843750591006508005">"Visas izpildītāja <xliff:g id="ARTIST">%s</xliff:g> dziesmas neatgriezeniski tiks dzēstas no SD kartes."</string>
-    <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"Visas izpildītāja <xliff:g id="ARTIST">%s</xliff:g> dziesmas tiks neatgriezeniski izdzēstas no USB atmiņas."</string>
-    <string name="delete_album_desc" msgid="535515999268177079">"Albums “<xliff:g id="ALBUM">%s</xliff:g>” tiks neatgriezeniski dzēsts no SD kartes."</string>
-    <string name="delete_album_desc_nosdcard" msgid="2739690641188691896">"Viss albums “<xliff:g id="ALBUM">%s</xliff:g>” tiks neatgriezeniski izdzēsts no USB atmiņas."</string>
-    <string name="delete_song_desc" msgid="1856800468541831408">"Dziesma “<xliff:g id="SONG">%s</xliff:g>” tiks neatgriezeniski dzēsta no SD kartes."</string>
-    <string name="delete_song_desc_nosdcard" msgid="2722621774200478721">"Dziesma “<xliff:g id="SONG">%s</xliff:g>” tiks neatgriezeniski izdzēsta no USB atmiņas."</string>
+    <!-- no translation found for delete_artist_desc (8665759524898379194) -->
+    <skip />
+    <!-- no translation found for delete_artist_desc_nosdcard (5729059309796497914) -->
+    <skip />
+    <!-- no translation found for delete_album_desc (8172412873562794429) -->
+    <skip />
+    <!-- no translation found for delete_album_desc_nosdcard (8612559166069885285) -->
+    <skip />
+    <!-- no translation found for delete_song_desc (1842681623848282205) -->
+    <skip />
+    <!-- no translation found for delete_song_desc_nosdcard (5064973032624148730) -->
+    <skip />
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"Labi"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one" msgid="8560276109508404217">"1 dziesma tika dzēsta."</item>
@@ -76,12 +82,12 @@
     <string name="podcasts_title" msgid="4928414142496858304">"Aplādes"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"Nav SD kartes"</string>
     <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"Nav USB atmiņas."</string>
-    <string name="sdcard_missing_message" msgid="1169260755336159747">"Tālrunī nav ievietota SD karte."</string>
-    <string name="sdcard_missing_message_nosdcard" msgid="4894107850080476295">"Tālrunim nav USB atmiņas."</string>
+    <!-- outdated translation 1169260755336159747 -->     <string name="sdcard_missing_message" msgid="2100061456003981823">"Tālrunī nav ievietota SD karte."</string>
+    <!-- outdated translation 4894107850080476295 -->     <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"Tālrunim nav USB atmiņas."</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"SD karte nav pieejama"</string>
     <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"USB atmiņa nav pieejama"</string>
-    <string name="sdcard_busy_message" msgid="8071868348072728830">"SD karte ir aizņemta."</string>
-    <string name="sdcard_busy_message_nosdcard" msgid="1644924834752791507">"Diemžēl USB atmiņa ir aizņemta."</string>
+    <!-- outdated translation 8071868348072728830 -->     <string name="sdcard_busy_message" msgid="579981082201215537">"SD karte ir aizņemta."</string>
+    <!-- outdated translation 1644924834752791507 -->     <string name="sdcard_busy_message_nosdcard" msgid="1493449756827869166">"Diemžēl USB atmiņa ir aizņemta."</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"SD kartes kļūda"</string>
     <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"USB atmiņas kļūda"</string>
     <string name="sdcard_error_message" msgid="4574563894036627855">"SD kartē radās kļūda."</string>
@@ -109,7 +115,7 @@
     <string name="create_playlist_create_text" msgid="8149755205483279143">"Saglabāt"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Pārrakstīt"</string>
     <string name="service_start_error_title" msgid="8649916852210198813">"Atskaņošanas problēma"</string>
-    <string name="service_start_error_msg" msgid="3880338547260838681">"Diemžēl šo dziesmu nevarēja atskaņot."</string>
+    <!-- outdated translation 3880338547260838681 -->     <string name="service_start_error_msg" msgid="7061754255330276478">"Diemžēl šo dziesmu nevarēja atskaņot."</string>
     <string name="service_start_error_button" msgid="480888406592240723">"Labi"</string>
   <string-array name="weeklist">
     <item msgid="7005918873419323862">"1 nedēļa"</item>
@@ -134,23 +140,24 @@
     <string name="mediaplaybacklabel" msgid="6733604841530940397">"Mūzika"</string>
     <string name="videobrowserlabel" msgid="8522326678447494657">"Video"</string>
     <string name="mediapickerlabel" msgid="4549836003229914299">"Mūzika"</string>
-    <string name="playback_failed" msgid="4477832192645009774">"Diemžēl atskaņotājs neatbalsta šādu audio failu veidu."</string>
+    <!-- outdated translation 7340707059999936922 -->     <string name="playback_failed" msgid="3811851150820251398">"Atskaņojot pieprasīto ierakstu, radās kļūda."</string>
     <string name="cancel" msgid="886559484711947520">"Atcelt"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"Noņemt no atskaņošanas saraksta"</string>
-    <string name="streamloadingtext" msgid="3367150884806639224">"Notiek savienojuma izveide ar <xliff:g id="HOST">%s</xliff:g>"</string>
+    <!-- no translation found for streamloadingtext (8842426517396356215) -->
+    <skip />
     <string name="mediasearch" msgid="959222971261132292">"Meklēt vienumu “<xliff:g id="TERM">%s</xliff:g>”, izmantojot:"</string>
     <string name="working_artists" msgid="8678357432732156580">"Izpildītāji..."</string>
     <string name="working_albums" msgid="8713273699401457426">"Albumi..."</string>
     <string name="working_songs" msgid="2201491972050410684">"Dziesmas..."</string>
     <string name="working_playlists" msgid="4424950806134653351">"Atskaņošanas saraksti..."</string>
-    <string name="loading" msgid="3267924133697717662">"Notiek ielāde"</string>
+    <!-- outdated translation 3267924133697717662 -->     <string name="loading" msgid="1991660396037155453">"Notiek ielāde"</string>
     <string name="sort_by_track" msgid="7662999005554152565">"Celiņi"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"Albumi"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"Izpildītāji"</string>
-    <string name="music_picker_title" msgid="1561623486324013570">"Mūzikas celiņa atlase"</string>
+    <!-- outdated translation 1561623486324013570 -->     <string name="music_picker_title" msgid="4143865470317360605">"Mūzikas celiņa atlase"</string>
     <string name="search_settings_description" msgid="6520975349259883368">"Izpildītāji, albumi un celiņi"</string>
     <string name="search_hint" msgid="3766854898072633001">"Meklēt mūziku"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" AĀBCČDEĒFGĢHIĪJKĶLĻMNŅOPRSŠTUŪVZŽ"</string>
-    <string name="widget_initial_text" msgid="6334545155963910952">"Pieskarieties, lai atlasītu mūziku."</string>
+    <!-- outdated translation 6334545155963910952 -->     <string name="widget_initial_text" msgid="3166878738860903586">"Pieskarieties, lai atlasītu mūziku."</string>
     <string name="effectspanel" msgid="8804547581593509614">"Skaņas efekti"</string>
 </resources>

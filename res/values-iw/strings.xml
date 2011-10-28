@@ -36,12 +36,18 @@
     <string name="delete_item" msgid="3363330144534750601">"מחק"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"ערבב הכל"</string>
     <string name="play_all" msgid="6309622568869321842">"הפעל הכל"</string>
-    <string name="delete_artist_desc" msgid="1843750591006508005">"כל השירים של <xliff:g id="ARTIST">%s</xliff:g> יימחקו לצמיתות מכרטיס SD."</string>
-    <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"כל השירים של <xliff:g id="ARTIST">%s</xliff:g> יימחקו לצמיתות מאמצעי האחסון מסוג USB."</string>
-    <string name="delete_album_desc" msgid="535515999268177079">"האלבום \'<xliff:g id="ALBUM">%s</xliff:g>\' כולו יימחק לצמיתות מכרטיס ה-SD."</string>
-    <string name="delete_album_desc_nosdcard" msgid="2739690641188691896">"האלבום \"<xliff:g id="ALBUM">%s</xliff:g>\" כולו יימחק לצמיתות מאמצעי האחסון מסוג USB."</string>
-    <string name="delete_song_desc" msgid="1856800468541831408">"\'<xliff:g id="SONG">%s</xliff:g>\' יימחק לצמיתות מכרטיס ה-SD."</string>
-    <string name="delete_song_desc_nosdcard" msgid="2722621774200478721">"\"<xliff:g id="SONG">%s</xliff:g>\" יימחק לצמיתות מאמצעי האחסון מסוג USB."</string>
+    <!-- no translation found for delete_artist_desc (8665759524898379194) -->
+    <skip />
+    <!-- no translation found for delete_artist_desc_nosdcard (5729059309796497914) -->
+    <skip />
+    <!-- no translation found for delete_album_desc (8172412873562794429) -->
+    <skip />
+    <!-- no translation found for delete_album_desc_nosdcard (8612559166069885285) -->
+    <skip />
+    <!-- no translation found for delete_song_desc (1842681623848282205) -->
+    <skip />
+    <!-- no translation found for delete_song_desc_nosdcard (5064973032624148730) -->
+    <skip />
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"אישור"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one" msgid="8560276109508404217">"שיר אחד נמחק."</item>
@@ -76,12 +82,12 @@
     <string name="podcasts_title" msgid="4928414142496858304">"פודקאסטים"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"אין כרטיס SD"</string>
     <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"אין אמצעי אחסון מסוג USB"</string>
-    <string name="sdcard_missing_message" msgid="1169260755336159747">"לא הוכנס כרטיס SD לטלפון."</string>
-    <string name="sdcard_missing_message_nosdcard" msgid="4894107850080476295">"בטלפון שלך אין אמצעי אחסון מסוג USB."</string>
+    <!-- outdated translation 1169260755336159747 -->     <string name="sdcard_missing_message" msgid="2100061456003981823">"לא הוכנס כרטיס SD לטלפון."</string>
+    <!-- outdated translation 4894107850080476295 -->     <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"בטלפון שלך אין אמצעי אחסון מסוג USB."</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"כרטיס SD לא זמין"</string>
     <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"אמצעי אחסון מסוג USB אינו זמין"</string>
-    <string name="sdcard_busy_message" msgid="8071868348072728830">"מצטערים, כרטיס SD לא פנוי."</string>
-    <string name="sdcard_busy_message_nosdcard" msgid="1644924834752791507">"מצטערים, אמצעי האחסון מסוג USB אינו פנוי."</string>
+    <!-- outdated translation 8071868348072728830 -->     <string name="sdcard_busy_message" msgid="579981082201215537">"מצטערים, כרטיס SD לא פנוי."</string>
+    <!-- outdated translation 1644924834752791507 -->     <string name="sdcard_busy_message_nosdcard" msgid="1493449756827869166">"מצטערים, אמצעי האחסון מסוג USB אינו פנוי."</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"שגיאה בכרטיס SD"</string>
     <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"שגיאה של אמצעי אחסון מסוג USB"</string>
     <string name="sdcard_error_message" msgid="4574563894036627855">"אירעה שגיאה בכרטיס SD."</string>
@@ -109,7 +115,7 @@
     <string name="create_playlist_create_text" msgid="8149755205483279143">"שמור"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"החלף"</string>
     <string name="service_start_error_title" msgid="8649916852210198813">"בעיה בהפעלה"</string>
-    <string name="service_start_error_msg" msgid="3880338547260838681">"מצטערים, אין אפשרות להשמיע את השיר."</string>
+    <!-- outdated translation 3880338547260838681 -->     <string name="service_start_error_msg" msgid="7061754255330276478">"מצטערים, אין אפשרות להשמיע את השיר."</string>
     <string name="service_start_error_button" msgid="480888406592240723">"אישור"</string>
   <string-array name="weeklist">
     <item msgid="7005918873419323862">"שבוע 1"</item>
@@ -134,23 +140,24 @@
     <string name="mediaplaybacklabel" msgid="6733604841530940397">"מוסיקה"</string>
     <string name="videobrowserlabel" msgid="8522326678447494657">"סרטוני וידאו"</string>
     <string name="mediapickerlabel" msgid="4549836003229914299">"מוסיקה"</string>
-    <string name="playback_failed" msgid="4477832192645009774">"מצטערים, הנגן לא תומך בקובץ אודיו מסוג זה."</string>
+    <!-- outdated translation 7340707059999936922 -->     <string name="playback_failed" msgid="3811851150820251398">"שגיאה בהפעלת הרצועה המבוקשת"</string>
     <string name="cancel" msgid="886559484711947520">"ביטול"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"הסר מהפלייליסט"</string>
-    <string name="streamloadingtext" msgid="3367150884806639224">"מתחבר אל <xliff:g id="HOST">%s</xliff:g>"</string>
+    <!-- no translation found for streamloadingtext (8842426517396356215) -->
+    <skip />
     <string name="mediasearch" msgid="959222971261132292">"חפש את <xliff:g id="TERM">%s</xliff:g> באמצעות:"</string>
     <string name="working_artists" msgid="8678357432732156580">"אמנים..."</string>
     <string name="working_albums" msgid="8713273699401457426">"אלבומים..."</string>
     <string name="working_songs" msgid="2201491972050410684">"שירים..."</string>
     <string name="working_playlists" msgid="4424950806134653351">"פלייליסטים..."</string>
-    <string name="loading" msgid="3267924133697717662">"טוען"</string>
+    <!-- outdated translation 3267924133697717662 -->     <string name="loading" msgid="1991660396037155453">"טוען"</string>
     <string name="sort_by_track" msgid="7662999005554152565">"רצועות"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"אלבומים"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"אמנים"</string>
-    <string name="music_picker_title" msgid="1561623486324013570">"בחר רצועת מוסיקה"</string>
+    <!-- outdated translation 1561623486324013570 -->     <string name="music_picker_title" msgid="4143865470317360605">"בחר רצועת מוסיקה"</string>
     <string name="search_settings_description" msgid="6520975349259883368">"אמנים, אלבומים ורצועות"</string>
     <string name="search_hint" msgid="3766854898072633001">"חפש ב\'מוסיקה\'"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
-    <string name="widget_initial_text" msgid="6334545155963910952">"גע לבחירת מוסיקה."</string>
+    <!-- outdated translation 6334545155963910952 -->     <string name="widget_initial_text" msgid="3166878738860903586">"גע לבחירת מוסיקה."</string>
     <string name="effectspanel" msgid="8804547581593509614">"אפקטי קול"</string>
 </resources>
