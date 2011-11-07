@@ -130,7 +130,7 @@
     <string name="save_as_playlist" msgid="5180413608901885255">"Сохранить как плейлист"</string>
     <string name="clear_playlist" msgid="4565515100924905315">"Очистить плейлист"</string>
     <string name="musicbrowserlabel" msgid="3162022214114562892">"Музыка"</string>
-    <string name="musicshortcutlabel" msgid="2602980193508150226">"Музыкальный плейлист"</string>
+    <string name="musicshortcutlabel" msgid="2602980193508150226">"Плей-лист"</string>
     <string name="mediaplaybacklabel" msgid="6733604841530940397">"Музыка"</string>
     <string name="videobrowserlabel" msgid="8522326678447494657">"Видео"</string>
     <string name="mediapickerlabel" msgid="4549836003229914299">"Музыка"</string>
