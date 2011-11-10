@@ -36,18 +36,12 @@
     <string name="delete_item" msgid="3363330144534750601">"Удалить"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"Перемешать все"</string>
     <string name="play_all" msgid="6309622568869321842">"Воспроизвести все"</string>
-    <!-- no translation found for delete_artist_desc (8665759524898379194) -->
-    <skip />
-    <!-- no translation found for delete_artist_desc_nosdcard (5729059309796497914) -->
-    <skip />
-    <!-- no translation found for delete_album_desc (8172412873562794429) -->
-    <skip />
-    <!-- no translation found for delete_album_desc_nosdcard (8612559166069885285) -->
-    <skip />
-    <!-- no translation found for delete_song_desc (1842681623848282205) -->
-    <skip />
-    <!-- no translation found for delete_song_desc_nosdcard (5064973032624148730) -->
-    <skip />
+    <string name="delete_artist_desc" msgid="8665759524898379194">"Удалить все треки исполнителя <xliff:g id="ARTIST">%s</xliff:g> с SD-карты?"</string>
+    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Удалить все треки исполнителя <xliff:g id="ARTIST">%s</xliff:g> с USB-накопителя?"</string>
+    <string name="delete_album_desc" msgid="8172412873562794429">"Удалить альбом \"<xliff:g id="ALBUM">%s</xliff:g>\" с SD-карты?"</string>
+    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"Удалить альбом \"<xliff:g id="ALBUM">%s</xliff:g>\" с USB-накопителя?"</string>
+    <string name="delete_song_desc" msgid="1842681623848282205">"Удалить трек \"<xliff:g id="SONG">%s</xliff:g>\" с SD-карты?"</string>
+    <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"Удалить трек \"<xliff:g id="SONG">%s</xliff:g>\" с USB-накопителя?"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"ОК"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one" msgid="8560276109508404217">"1 трек удален"</item>
@@ -82,12 +76,12 @@
     <string name="podcasts_title" msgid="4928414142496858304">"Подкасты"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"SD-карта отсутствует."</string>
     <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"USB-накопитель не найден"</string>
-    <!-- outdated translation 1169260755336159747 -->     <string name="sdcard_missing_message" msgid="2100061456003981823">"В телефоне отсутствует SD-карта."</string>
-    <!-- outdated translation 4894107850080476295 -->     <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"Ваш телефон не оснащен USB-накопителем."</string>
+    <string name="sdcard_missing_message" msgid="2100061456003981823">"Не удалось найти SD-карту."</string>
+    <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"USB-накопителем здесь не предусмотрен."</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"SD-карта недоступна"</string>
     <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"USB-накопитель недоступен"</string>
-    <!-- outdated translation 8071868348072728830 -->     <string name="sdcard_busy_message" msgid="579981082201215537">"SD-карта занята."</string>
-    <!-- outdated translation 1644924834752791507 -->     <string name="sdcard_busy_message_nosdcard" msgid="1493449756827869166">"USB-накопитель занят."</string>
+    <string name="sdcard_busy_message" msgid="579981082201215537">"SD-карта занята."</string>
+    <string name="sdcard_busy_message_nosdcard" msgid="1493449756827869166">"USB-накопитель занят."</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"Ошибка SD-карты"</string>
     <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"Ошибка USB-накопителя"</string>
     <string name="sdcard_error_message" msgid="4574563894036627855">"Ошибка SD-карты."</string>
@@ -115,7 +109,7 @@
     <string name="create_playlist_create_text" msgid="8149755205483279143">"Сохранить"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Перезаписать"</string>
     <string name="service_start_error_title" msgid="8649916852210198813">"Сбой при воспроизведении"</string>
-    <!-- outdated translation 3880338547260838681 -->     <string name="service_start_error_msg" msgid="7061754255330276478">"Невозможно воспроизвести трек."</string>
+    <string name="service_start_error_msg" msgid="7061754255330276478">"Не удалось воспроизвести трек."</string>
     <string name="service_start_error_button" msgid="480888406592240723">"ОК"</string>
   <string-array name="weeklist">
     <item msgid="7005918873419323862">"1 неделя"</item>
@@ -136,28 +130,27 @@
     <string name="save_as_playlist" msgid="5180413608901885255">"Сохранить как плейлист"</string>
     <string name="clear_playlist" msgid="4565515100924905315">"Очистить плейлист"</string>
     <string name="musicbrowserlabel" msgid="3162022214114562892">"Музыка"</string>
-    <string name="musicshortcutlabel" msgid="2602980193508150226">"Музыкальный плейлист"</string>
+    <string name="musicshortcutlabel" msgid="2602980193508150226">"Плей-лист"</string>
     <string name="mediaplaybacklabel" msgid="6733604841530940397">"Музыка"</string>
     <string name="videobrowserlabel" msgid="8522326678447494657">"Видео"</string>
     <string name="mediapickerlabel" msgid="4549836003229914299">"Музыка"</string>
-    <!-- outdated translation 7340707059999936922 -->     <string name="playback_failed" msgid="3811851150820251398">"Ошибка при воспроизведении выбранного трека"</string>
+    <string name="playback_failed" msgid="3811851150820251398">"Неподдерживаемый тип файла."</string>
     <string name="cancel" msgid="886559484711947520">"Отмена"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"Удалить из плейлиста"</string>
-    <!-- no translation found for streamloadingtext (8842426517396356215) -->
-    <skip />
+    <string name="streamloadingtext" msgid="8842426517396356215">"Подключение к <xliff:g id="HOST">%s</xliff:g>"</string>
     <string name="mediasearch" msgid="959222971261132292">"Искать \"<xliff:g id="TERM">%s</xliff:g>\", используя:"</string>
     <string name="working_artists" msgid="8678357432732156580">"Исполнители..."</string>
     <string name="working_albums" msgid="8713273699401457426">"Альбомы…"</string>
     <string name="working_songs" msgid="2201491972050410684">"Треки..."</string>
     <string name="working_playlists" msgid="4424950806134653351">"Плейлисты..."</string>
-    <!-- outdated translation 3267924133697717662 -->     <string name="loading" msgid="1991660396037155453">"Идет загрузка"</string>
+    <string name="loading" msgid="1991660396037155453">"Загрузка…"</string>
     <string name="sort_by_track" msgid="7662999005554152565">"Дорожки"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"Альбомы"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"Артисты"</string>
-    <!-- outdated translation 1561623486324013570 -->     <string name="music_picker_title" msgid="4143865470317360605">"Выберите трек"</string>
+    <string name="music_picker_title" msgid="4143865470317360605">"Выберите трек"</string>
     <string name="search_settings_description" msgid="6520975349259883368">"Исполнители, альбомы и треки"</string>
     <string name="search_hint" msgid="3766854898072633001">"Поиск музыки"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"</string>
-    <!-- outdated translation 6334545155963910952 -->     <string name="widget_initial_text" msgid="3166878738860903586">"Нажмите ,чтобы выбрать музыку."</string>
+    <string name="widget_initial_text" msgid="3166878738860903586">"Нажмите, чтобы выбрать музыку."</string>
     <string name="effectspanel" msgid="8804547581593509614">"Звуковые эффекты"</string>
 </resources>

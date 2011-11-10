@@ -36,18 +36,12 @@
     <string name="delete_item" msgid="3363330144534750601">"ลบ"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"สุ่มเพลงทั้งหมด"</string>
     <string name="play_all" msgid="6309622568869321842">"เล่นทั้งหมด"</string>
-    <!-- no translation found for delete_artist_desc (8665759524898379194) -->
-    <skip />
-    <!-- no translation found for delete_artist_desc_nosdcard (5729059309796497914) -->
-    <skip />
-    <!-- no translation found for delete_album_desc (8172412873562794429) -->
-    <skip />
-    <!-- no translation found for delete_album_desc_nosdcard (8612559166069885285) -->
-    <skip />
-    <!-- no translation found for delete_song_desc (1842681623848282205) -->
-    <skip />
-    <!-- no translation found for delete_song_desc_nosdcard (5064973032624148730) -->
-    <skip />
+    <string name="delete_artist_desc" msgid="8665759524898379194">"ลบทุกเพลงของ <xliff:g id="ARTIST">%s</xliff:g> จากการ์ด SD หรือไม่"</string>
+    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"ลบทุกเพลงของ <xliff:g id="ARTIST">%s</xliff:g> จากที่จัดเก็บข้อมูล USB หรือไม่"</string>
+    <string name="delete_album_desc" msgid="8172412873562794429">"ลบอัลบั้ม \"<xliff:g id="ALBUM">%s</xliff:g>\" ทั้งอัลบั้มจากการ์ด SD อย่างถาวรหรือไม่"</string>
+    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"ลบอัลบั้ม \"<xliff:g id="ALBUM">%s</xliff:g>\" ทั้งอัลบั้มจากที่จัดเก็บข้อมูล USB อย่างถาวรหรือไม่"</string>
+    <string name="delete_song_desc" msgid="1842681623848282205">"ลบ \"<xliff:g id="SONG">%s</xliff:g>\" จากการ์ด SD อย่างถาวรหรือไม่"</string>
+    <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"ลบ \"<xliff:g id="SONG">%s</xliff:g>\" จากที่จัดเก็บข้อมูล USB อย่างถาวรหรือไม่"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"ตกลง"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one" msgid="8560276109508404217">"ลบไป 1 เพลง"</item>
@@ -82,12 +76,12 @@
     <string name="podcasts_title" msgid="4928414142496858304">"พอดแคสต์"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"ไม่มีการ์ด SD"</string>
     <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"ไม่มีที่เก็บข้อมูล USB"</string>
-    <!-- outdated translation 1169260755336159747 -->     <string name="sdcard_missing_message" msgid="2100061456003981823">"โทรศัพท์ของคุณไม่ได้ใส่การ์ด SD"</string>
-    <!-- outdated translation 4894107850080476295 -->     <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"โทรศัพท์ของคุณไม่มีที่เก็บข้อมูล USB"</string>
+    <string name="sdcard_missing_message" msgid="2100061456003981823">"โทรศัพท์ของคุณไม่ได้ใส่การ์ด SD"</string>
+    <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"โทรศัพท์ของคุณไม่มีที่จัดเก็บข้อมูล USB"</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"ใช้งานการ์ด SD ไม่ได้"</string>
     <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"ที่เก็บข้อมูล USB ใช้งานไม่ได้"</string>
-    <!-- outdated translation 8071868348072728830 -->     <string name="sdcard_busy_message" msgid="579981082201215537">"ขออภัย การ์ด SD ไม่ว่าง"</string>
-    <!-- outdated translation 1644924834752791507 -->     <string name="sdcard_busy_message_nosdcard" msgid="1493449756827869166">"ขออภัย ที่เก็บข้อมูล USB ของคุณไม่ว่าง"</string>
+    <string name="sdcard_busy_message" msgid="579981082201215537">"การ์ด SD ไม่ว่าง"</string>
+    <string name="sdcard_busy_message_nosdcard" msgid="1493449756827869166">"ที่จัดเก็บข้อมูล USB ของคุณไม่ว่าง"</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"ข้อผิดพลาดการ์ด SD"</string>
     <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"ข้อผิดพลาดของที่เก็บข้อมูล USB"</string>
     <string name="sdcard_error_message" msgid="4574563894036627855">"พบข้อผิดพลาดบนการ์ด SD ของคุณ"</string>
@@ -115,7 +109,7 @@
     <string name="create_playlist_create_text" msgid="8149755205483279143">"บันทึก"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"เขียนทับ"</string>
     <string name="service_start_error_title" msgid="8649916852210198813">"ปัญหาการเล่น"</string>
-    <!-- outdated translation 3880338547260838681 -->     <string name="service_start_error_msg" msgid="7061754255330276478">"ขออภัย เล่นเพลงนี้ไม่ได้"</string>
+    <string name="service_start_error_msg" msgid="7061754255330276478">"ไม่สามารถเล่นเพลงนี้ได้"</string>
     <string name="service_start_error_button" msgid="480888406592240723">"ตกลง"</string>
   <string-array name="weeklist">
     <item msgid="7005918873419323862">"1 สัปดาห์"</item>
@@ -140,24 +134,23 @@
     <string name="mediaplaybacklabel" msgid="6733604841530940397">"เพลง"</string>
     <string name="videobrowserlabel" msgid="8522326678447494657">"วิดีโอ"</string>
     <string name="mediapickerlabel" msgid="4549836003229914299">"เพลง"</string>
-    <!-- outdated translation 7340707059999936922 -->     <string name="playback_failed" msgid="3811851150820251398">"เกิดข้อผิดพลาดในการเล่นแทร็กที่ขอ"</string>
+    <string name="playback_failed" msgid="3811851150820251398">"โปรแกรมเล่นไม่สนับสนุนไฟล์เสียงประเภทนี้"</string>
     <string name="cancel" msgid="886559484711947520">"ยกเลิก"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"นำออกจากรายการเพลง"</string>
-    <!-- no translation found for streamloadingtext (8842426517396356215) -->
-    <skip />
+    <string name="streamloadingtext" msgid="8842426517396356215">"กำลังเชื่อมต่อกับ <xliff:g id="HOST">%s</xliff:g>..."</string>
     <string name="mediasearch" msgid="959222971261132292">"ค้นหาเกี่ยวกับ <xliff:g id="TERM">%s</xliff:g> โดยใช้:"</string>
     <string name="working_artists" msgid="8678357432732156580">"ศิลปิน..."</string>
     <string name="working_albums" msgid="8713273699401457426">"อัลบั้ม..."</string>
     <string name="working_songs" msgid="2201491972050410684">"เพลง..."</string>
     <string name="working_playlists" msgid="4424950806134653351">"รายการเพลง..."</string>
-    <!-- outdated translation 3267924133697717662 -->     <string name="loading" msgid="1991660396037155453">"กำลังโหลด"</string>
+    <string name="loading" msgid="1991660396037155453">"กำลังโหลด..."</string>
     <string name="sort_by_track" msgid="7662999005554152565">"แทร็ก"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"อัลบั้ม"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"ศิลปิน"</string>
-    <!-- outdated translation 1561623486324013570 -->     <string name="music_picker_title" msgid="4143865470317360605">"เลือกแทร็กเพลง"</string>
+    <string name="music_picker_title" msgid="4143865470317360605">"เลือกแทร็กเพลง"</string>
     <string name="search_settings_description" msgid="6520975349259883368">"ศิลปิน อัลบั้ม และแทร็ก"</string>
     <string name="search_hint" msgid="3766854898072633001">"ค้นหาเพลง"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮ"</string>
-    <!-- outdated translation 6334545155963910952 -->     <string name="widget_initial_text" msgid="3166878738860903586">"แตะเพื่อเลือกเพลง"</string>
+    <string name="widget_initial_text" msgid="3166878738860903586">"แตะเพื่อเลือกเพลง"</string>
     <string name="effectspanel" msgid="8804547581593509614">"เอฟเฟ็กต์เสียง"</string>
 </resources>
