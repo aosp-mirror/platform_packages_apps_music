@@ -35,7 +35,7 @@
     <string name="party_shuffle_off" msgid="1828744483354711679">"Tắt danh sách nhạc ngẫu nhiên"</string>
     <string name="delete_item" msgid="3363330144534750601">"Xoá"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"Phát ngẫu nhiên tất cả"</string>
-    <string name="play_all" msgid="6309622568869321842">"Phát tất cả"</string>
+    <string name="play_all" msgid="6309622568869321842">"Phát tất cả"</string>
     <string name="delete_artist_desc" msgid="1843750591006508005">"Tất cả bài hát của <xliff:g id="ARTIST">%s</xliff:g> sẽ bị xoá vĩnh viễn khỏi thẻ SD."</string>
     <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"Tất cả bài hát của <xliff:g id="ARTIST">%s</xliff:g> sẽ bị xóa vĩnh viễn khỏi bộ nhớ USB."</string>
     <string name="delete_album_desc" msgid="535515999268177079">"Toàn bộ anbom \"<xliff:g id="ALBUM">%s</xliff:g>\" sẽ bị xoá vĩnh viễn khỏi thẻ SD."</string>
@@ -66,8 +66,8 @@
     <string name="no_videos_title" msgid="6218814130364793104">"Không có video nào"</string>
     <string name="no_playlists_title" msgid="4456351945617594418">"Không có danh sách nhạc nào"</string>
     <string name="delete_playlist_menu" msgid="8998637685583495247">"Xoá"</string>
-    <string name="edit_playlist_menu" msgid="571618502105370684">"Chỉnh sửa"</string>
-    <string name="rename_playlist_menu" msgid="3133463747389494668">"Đổi tên"</string>
+    <string name="edit_playlist_menu" msgid="571618502105370684">"Chỉnh sửa"</string>
+    <string name="rename_playlist_menu" msgid="3133463747389494668">"Đổi tên"</string>
     <string name="playlist_deleted_message" msgid="9008053828193961455">"Đã xoá danh sách nhạc."</string>
     <string name="playlist_renamed_message" msgid="7187580192703005990">"Đã đổi tên danh sách nhạc."</string>
     <string name="recentlyadded" msgid="110978416756366953">"Đã được thêm gần đây"</string>
@@ -96,7 +96,7 @@
     <string name="ringtone_menu" msgid="2737472190159134599">"Sử dụng làm nhạc chuông điện thoại"</string>
     <string name="ringtone_menu_short" msgid="3367622038867238133">"Sử dụng làm nhạc chuông"</string>
     <string name="ringtone_set" msgid="5325818347613843130">"\"<xliff:g id="NAME">%s</xliff:g>\" được đặt làm nhạc chuông."</string>
-    <string name="play_selection" msgid="2854921021814550018">"Phát"</string>
+    <string name="play_selection" msgid="2854921021814550018">"Phát"</string>
     <string name="add_to_playlist" msgid="7110273488645072783">"Thêm vào danh sách nhạc"</string>
     <string name="queue" msgid="2937629819482787704">"Danh sách nhạc hiện tại"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Mới"</string>
@@ -112,7 +112,7 @@
     <string name="service_start_error_msg" msgid="3880338547260838681">"Rất tiếc, không thể phát bài hát."</string>
     <string name="service_start_error_button" msgid="480888406592240723">"OK"</string>
   <string-array name="weeklist">
-    <item msgid="7005918873419323862">"1 tuần"</item>
+    <item msgid="7005918873419323862">"1 tuần"</item>
     <item msgid="7487749116155425822">"2 tuần"</item>
     <item msgid="1565338360539555185">"3 tuần"</item>
     <item msgid="2142986059836933072">"4 tuần"</item>
@@ -143,7 +143,7 @@
     <string name="working_albums" msgid="8713273699401457426">"Anbom..."</string>
     <string name="working_songs" msgid="2201491972050410684">"Bài hát…"</string>
     <string name="working_playlists" msgid="4424950806134653351">"Danh sách nhạc..."</string>
-    <string name="loading" msgid="3267924133697717662">"Đang tải"</string>
+    <string name="loading" msgid="3267924133697717662">"Đang tải"</string>
     <string name="sort_by_track" msgid="7662999005554152565">"Bài hát"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"Anbom"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"Nghệ sĩ"</string>
