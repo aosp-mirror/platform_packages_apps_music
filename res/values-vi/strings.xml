@@ -33,19 +33,19 @@
     <string name="goto_start" msgid="8979658707407220934">"Thư viện"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"Danh sách nhạc ngẫu nhiên"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"Tắt danh sách nhạc ngẫu nhiên"</string>
-    <string name="delete_item" msgid="3363330144534750601">"Xoá"</string>
+    <string name="delete_item" msgid="3363330144534750601">"Xóa"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"Phát ngẫu nhiên tất cả"</string>
     <string name="play_all" msgid="6309622568869321842">"Phát tất cả"</string>
-    <string name="delete_artist_desc" msgid="1843750591006508005">"Tất cả bài hát của <xliff:g id="ARTIST">%s</xliff:g> sẽ bị xoá vĩnh viễn khỏi thẻ SD."</string>
+    <string name="delete_artist_desc" msgid="1843750591006508005">"Tất cả bài hát của <xliff:g id="ARTIST">%s</xliff:g> sẽ bị xóa vĩnh viễn khỏi thẻ SD."</string>
     <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"Tất cả bài hát của <xliff:g id="ARTIST">%s</xliff:g> sẽ bị xóa vĩnh viễn khỏi bộ nhớ USB."</string>
-    <string name="delete_album_desc" msgid="535515999268177079">"Toàn bộ anbom \"<xliff:g id="ALBUM">%s</xliff:g>\" sẽ bị xoá vĩnh viễn khỏi thẻ SD."</string>
+    <string name="delete_album_desc" msgid="535515999268177079">"Toàn bộ anbom \"<xliff:g id="ALBUM">%s</xliff:g>\" sẽ bị xóa vĩnh viễn khỏi thẻ SD."</string>
     <string name="delete_album_desc_nosdcard" msgid="2739690641188691896">"Toàn bộ anbom \"<xliff:g id="ALBUM">%s</xliff:g>\" sẽ bị xóa vĩnh viễn khỏi bộ nhớ USB."</string>
-    <string name="delete_song_desc" msgid="1856800468541831408">"\"<xliff:g id="SONG">%s</xliff:g>\" sẽ bị xoá vĩnh viễn khỏi thẻ SD."</string>
+    <string name="delete_song_desc" msgid="1856800468541831408">"\"<xliff:g id="SONG">%s</xliff:g>\" sẽ bị xóa vĩnh viễn khỏi thẻ SD."</string>
     <string name="delete_song_desc_nosdcard" msgid="2722621774200478721">"\"<xliff:g id="SONG">%s</xliff:g>\" sẽ bị xóa vĩnh viễn khỏi bộ nhớ USB."</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"OK"</string>
   <plurals name="NNNtracksdeleted">
-    <item quantity="one" msgid="8560276109508404217">"1 bài hát đã bị xoá."</item>
-    <item quantity="other" msgid="5156740163031225200">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> bài hát đã bị xoá."</item>
+    <item quantity="one" msgid="8560276109508404217">"1 bài hát đã bị xóa."</item>
+    <item quantity="other" msgid="5156740163031225200">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> bài hát đã bị xóa."</item>
   </plurals>
     <string name="scanning" msgid="3529383847223198502">"Đang quét thẻ SD…"</string>
     <string name="scanning_nosdcard" msgid="8105284774487360148">"Đang quét bộ nhớ USB…"</string>
@@ -65,10 +65,10 @@
     <string name="no_tracks_title" msgid="8805805388271238471">"Không có bài hát nào"</string>
     <string name="no_videos_title" msgid="6218814130364793104">"Không có video nào"</string>
     <string name="no_playlists_title" msgid="4456351945617594418">"Không có danh sách nhạc nào"</string>
-    <string name="delete_playlist_menu" msgid="8998637685583495247">"Xoá"</string>
+    <string name="delete_playlist_menu" msgid="8998637685583495247">"Xóa"</string>
     <string name="edit_playlist_menu" msgid="571618502105370684">"Chỉnh sửa"</string>
     <string name="rename_playlist_menu" msgid="3133463747389494668">"Đổi tên"</string>
-    <string name="playlist_deleted_message" msgid="9008053828193961455">"Đã xoá danh sách nhạc."</string>
+    <string name="playlist_deleted_message" msgid="9008053828193961455">"Đã xóa danh sách nhạc."</string>
     <string name="playlist_renamed_message" msgid="7187580192703005990">"Đã đổi tên danh sách nhạc."</string>
     <string name="recentlyadded" msgid="110978416756366953">"Đã được thêm gần đây"</string>
     <string name="recentlyadded_title" msgid="3153322287249901914">"Đã được thêm gần đây"</string>
@@ -128,7 +128,7 @@
     <string name="weekpicker_set" msgid="7636608790418067496">"Xong"</string>
     <string name="weekpicker_title" msgid="699535378922101701">"Đặt giờ"</string>
     <string name="save_as_playlist" msgid="5180413608901885255">"Lưu dưới dạng danh sách nhạc"</string>
-    <string name="clear_playlist" msgid="4565515100924905315">"Xoá danh sách nhạc"</string>
+    <string name="clear_playlist" msgid="4565515100924905315">"Xóa danh sách nhạc"</string>
     <string name="musicbrowserlabel" msgid="3162022214114562892">"Nhạc"</string>
     <string name="musicshortcutlabel" msgid="2602980193508150226">"Danh sách nhạc"</string>
     <string name="mediaplaybacklabel" msgid="6733604841530940397">"Nhạc"</string>
@@ -136,7 +136,7 @@
     <string name="mediapickerlabel" msgid="4549836003229914299">"Nhạc"</string>
     <string name="playback_failed" msgid="4477832192645009774">"Rất tiếc, trình phát không hỗ trợ loại tệp âm thanh này."</string>
     <string name="cancel" msgid="886559484711947520">"Hủy"</string>
-    <string name="remove_from_playlist" msgid="2548577514849026354">"Xoá khỏi danh sách nhạc"</string>
+    <string name="remove_from_playlist" msgid="2548577514849026354">"Xóa khỏi danh sách nhạc"</string>
     <string name="streamloadingtext" msgid="3367150884806639224">"Đang kết nối với <xliff:g id="HOST">%s</xliff:g>"</string>
     <string name="mediasearch" msgid="959222971261132292">"Tìm kiếm <xliff:g id="TERM">%s</xliff:g> sử dụng:"</string>
     <string name="working_artists" msgid="8678357432732156580">"Nghệ sĩ..."</string>
