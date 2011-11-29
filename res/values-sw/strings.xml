@@ -36,8 +36,8 @@
     <string name="delete_item" msgid="3363330144534750601">"Futa"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"Changanya zote"</string>
     <string name="play_all" msgid="6309622568869321842">"Cheza zote"</string>
-    <string name="delete_artist_desc" msgid="8665759524898379194">"Futa nyimbo zote kabisa na <xliff:g id="ARTIST">%s</xliff:g> kutoka hifadhi ya kadi ya SD?"</string>
-    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Futa nyimbo zote kabisa na <xliff:g id="ARTIST">%s</xliff:g> kutoka hifadhi ya USB?"</string>
+    <string name="delete_artist_desc" msgid="8665759524898379194">"Futa kabisa nyimbo zote za <xliff:g id="ARTIST">%s</xliff:g> kutoka hifadhi ya kadi ya SD?"</string>
+    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Futa kabisa nyimbo zote za <xliff:g id="ARTIST">%s</xliff:g> kutoka hifadhi ya USB?"</string>
     <string name="delete_album_desc" msgid="8172412873562794429">"Futa kabisa albamu nzima \"<xliff:g id="ALBUM">%s</xliff:g>\" kutoka kwa kadi ya SD?"</string>
     <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"Futa kabisa albamu nzima \"<xliff:g id="ALBUM">%s</xliff:g>\" kutoka kwa hifadhi ya USB?"</string>
     <string name="delete_song_desc" msgid="1842681623848282205">"Futa kabisa \"<xliff:g id="SONG">%s</xliff:g>\" kutoka kwa kadi ya SD?"</string>
@@ -80,8 +80,8 @@
     <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"Simu yako haina hifadhi ya USB."</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"Kadi ya SD haipatikani"</string>
     <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"Hifadhi ya USB haipatikani"</string>
-    <string name="sdcard_busy_message" msgid="579981082201215537">"Kadi yako ya SD inashughuli"</string>
-    <string name="sdcard_busy_message_nosdcard" msgid="1493449756827869166">"Hifadhi yako ya USB inashughuli."</string>
+    <string name="sdcard_busy_message" msgid="579981082201215537">"Kadi yako ya SD ina shughuli"</string>
+    <string name="sdcard_busy_message_nosdcard" msgid="1493449756827869166">"Hifadhi yako ya USB ina shughuli."</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"Hitilafu ya kadi ya SD"</string>
     <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"Hitilafu ya hifadhi ya USB"</string>
     <string name="sdcard_error_message" msgid="4574563894036627855">"Hitilafu imetokea kwenye kadi yako ya SD."</string>
@@ -134,7 +134,7 @@
     <string name="mediaplaybacklabel" msgid="6733604841530940397">"Muziki"</string>
     <string name="videobrowserlabel" msgid="8522326678447494657">"Video"</string>
     <string name="mediapickerlabel" msgid="4549836003229914299">"Muziki"</string>
-    <string name="playback_failed" msgid="3811851150820251398">"Santuri haiauni aina hii ya faili ya sauti."</string>
+    <string name="playback_failed" msgid="3811851150820251398">"Santuri haihimili aina hii ya faili ya sauti."</string>
     <string name="cancel" msgid="886559484711947520">"Ghairi"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"Ondoa kutoka kwa orodha ya kucheza"</string>
     <string name="streamloadingtext" msgid="8842426517396356215">"Inaunganisha kwa <xliff:g id="HOST">%s</xliff:g>…"</string>

@@ -36,12 +36,12 @@
     <string name="delete_item" msgid="3363330144534750601">"Vee uit"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"Skommel almal"</string>
     <string name="play_all" msgid="6309622568869321842">"Speel alles"</string>
-    <string name="delete_artist_desc" msgid="8665759524898379194">"Vee alle liedjies deur <xliff:g id="ARTIST">%s</xliff:g> permanent uit van die SD-kaart?"</string>
-    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Vee alle liedjies deur <xliff:g id="ARTIST">%s</xliff:g> permanent uit die USB-geheue?"</string>
-    <string name="delete_album_desc" msgid="8172412873562794429">"Vee die hele album \"<xliff:g id="ALBUM">%s</xliff:g>\" permanent uit van die SD-kaart?"</string>
-    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"Vee die hele album \"<xliff:g id="ALBUM">%s</xliff:g>\" permanent uit die USB-geheue uit?"</string>
-    <string name="delete_song_desc" msgid="1842681623848282205">"Vee \"<xliff:g id="SONG">%s</xliff:g>\" permanent uit van die SD-kaart?"</string>
-    <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"Vee \"<xliff:g id="SONG">%s</xliff:g>\" permanent uit van die SD-kaart?"</string>
+    <string name="delete_artist_desc" msgid="8665759524898379194">"Skrap alle liedjies deur <xliff:g id="ARTIST">%s</xliff:g> permanent van die SD-kaart?"</string>
+    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Skrap alle liedjies deur <xliff:g id="ARTIST">%s</xliff:g> permanent van die USB-geheue?"</string>
+    <string name="delete_album_desc" msgid="8172412873562794429">"Skrap die hele album \"<xliff:g id="ALBUM">%s</xliff:g>\" permanent van die SD-kaart?"</string>
+    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"Skrap die hele album \"<xliff:g id="ALBUM">%s</xliff:g>\" permanent van die USB-geheue?"</string>
+    <string name="delete_song_desc" msgid="1842681623848282205">"Skrap \"<xliff:g id="SONG">%s</xliff:g>\" permanent van die SD-kaart?"</string>
+    <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"Skrap \"<xliff:g id="SONG">%s</xliff:g>\" permanent van die SD-kaart?"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"OK"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one" msgid="8560276109508404217">"1 liedjie is uitgevee."</item>
@@ -137,7 +137,7 @@
     <string name="playback_failed" msgid="3811851150820251398">"Die speler ondersteun nie hierdie tipe oudiolêer nie."</string>
     <string name="cancel" msgid="886559484711947520">"Kanselleer"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"Verwyder van snitlys"</string>
-    <string name="streamloadingtext" msgid="8842426517396356215">"Verbind met <xliff:g id="HOST">%s</xliff:g>..."</string>
+    <string name="streamloadingtext" msgid="8842426517396356215">"Verbind tans met <xliff:g id="HOST">%s</xliff:g>..."</string>
     <string name="mediasearch" msgid="959222971261132292">"Soek vir <xliff:g id="TERM">%s</xliff:g> met:"</string>
     <string name="working_artists" msgid="8678357432732156580">"Kunstenaars…"</string>
     <string name="working_albums" msgid="8713273699401457426">"Albums…"</string>
