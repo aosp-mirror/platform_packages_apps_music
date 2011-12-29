@@ -21,7 +21,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="onesong" msgid="8336826100414159413">"1 трек"</string>
   <plurals name="Nsongs">
-    <item quantity="other" msgid="5798230388116542981">"Композиций: <xliff:g id="COUNT">%d</xliff:g>"</item>
+    <item quantity="other" msgid="5798230388116542981">"Треков: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
   <plurals name="Nsongscomp">
     <item quantity="other" msgid="7162294486622945550">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> из <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> песен"</item>
@@ -56,8 +56,8 @@
     <string name="albums_title" msgid="8773880394961378035">"Альбомы"</string>
     <string name="tracks_menu" msgid="6942246568246092330">"Треки"</string>
     <string name="tracks_title" msgid="3229389424532295124">"Треки"</string>
-    <string name="playlists_menu" msgid="5382792649771928849">"Плейлисты"</string>
-    <string name="playlists_title" msgid="5094238486322957927">"Плейлисты"</string>
+    <string name="playlists_menu" msgid="5382792649771928849">"Плей-листы"</string>
+    <string name="playlists_title" msgid="5094238486322957927">"Плей-листы"</string>
     <string name="videos_title" msgid="2066741954354129115">"Видео"</string>
     <string name="all_title" msgid="6880186414437237653">"Все типы"</string>
     <string name="browse_menu" msgid="5248122473075843289">"Исполнители"</string>
@@ -97,7 +97,7 @@
     <string name="ringtone_menu_short" msgid="3367622038867238133">"Поставить на звонок"</string>
     <string name="ringtone_set" msgid="5325818347613843130">"Композиция \"<xliff:g id="NAME">%s</xliff:g>\" установлена в качестве мелодии звонка."</string>
     <string name="play_selection" msgid="2854921021814550018">"Воспроизвести"</string>
-    <string name="add_to_playlist" msgid="7110273488645072783">"Добавить в плейлист"</string>
+    <string name="add_to_playlist" msgid="7110273488645072783">"Добавить в плей-лист"</string>
     <string name="queue" msgid="2937629819482787704">"Текущий плейлист"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Создать"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"Новый плейлист <xliff:g id="NUMBER">%d</xliff:g>"</string>
@@ -142,7 +142,7 @@
     <string name="working_artists" msgid="8678357432732156580">"Исполнители..."</string>
     <string name="working_albums" msgid="8713273699401457426">"Альбомы…"</string>
     <string name="working_songs" msgid="2201491972050410684">"Треки..."</string>
-    <string name="working_playlists" msgid="4424950806134653351">"Плейлисты..."</string>
+    <string name="working_playlists" msgid="4424950806134653351">"Плей-листы..."</string>
     <string name="loading" msgid="1991660396037155453">"Загрузка…"</string>
     <string name="sort_by_track" msgid="7662999005554152565">"Дорожки"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"Альбомы"</string>
