@@ -394,6 +394,16 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
                 }
                 updatePlayPause();
                 return true;
+            case KeyEvent.KEYCODE_MEDIA_PLAY:
+                start();
+                updatePlayPause();
+                return true;
+            case KeyEvent.KEYCODE_MEDIA_PAUSE:
+                if (mPlayer.isPlaying()) {
+                    mPlayer.pause();
+                }
+                updatePlayPause();
+                return true;
             case KeyEvent.KEYCODE_MEDIA_FAST_FORWARD:
             case KeyEvent.KEYCODE_MEDIA_NEXT:
             case KeyEvent.KEYCODE_MEDIA_PREVIOUS:
