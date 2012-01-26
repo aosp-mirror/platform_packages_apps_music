@@ -36,12 +36,12 @@
     <string name="delete_item" msgid="3363330144534750601">"Выдаліць"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"У адвольным парадку"</string>
     <string name="play_all" msgid="6309622568869321842">"Прайграць усе"</string>
-    <string name="delete_artist_desc" msgid="1843750591006508005">"Усе песні <xliff:g id="ARTIST">%s</xliff:g> будуць назаўсёды выдаленыя з SD-карты."</string>
-    <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"Усе песні <xliff:g id="ARTIST">%s</xliff:g> будуць назаўсёды выдалены з USB-назапашвальнiка."</string>
-    <string name="delete_album_desc" msgid="535515999268177079">"Увесь альбом \"<xliff:g id="ALBUM">%s</xliff:g>\" будзе назаўсёды выдалены з SD-карты."</string>
-    <string name="delete_album_desc_nosdcard" msgid="2739690641188691896">"Увесь альбом \"<xliff:g id="ALBUM">%s</xliff:g>\" будзе канчаткова выдалены з USB-назапашвальнiка."</string>
-    <string name="delete_song_desc" msgid="1856800468541831408">"Песня \"<xliff:g id="SONG">%s</xliff:g>\" будзе назаўсёды выдаленая з SD-карты."</string>
-    <string name="delete_song_desc_nosdcard" msgid="2722621774200478721">"\"<xliff:g id="SONG">%s</xliff:g>\" будзе канчаткова выдаленая з USB-назапашвальнiка."</string>
+    <string name="delete_artist_desc" msgid="8665759524898379194">"Выдалiць назаўсёды ўсе песнi выканаўцы <xliff:g id="ARTIST">%s</xliff:g> з USB-назапашвальнiка?"</string>
+    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Выдалiць назаўсёды ўсе песнi выканаўцы <xliff:g id="ARTIST">%s</xliff:g> з USB-назапашвальнiка?"</string>
+    <string name="delete_album_desc" msgid="8172412873562794429">"Выдаліць назаўсёды ўвесь альбом \"<xliff:g id="ALBUM">%s</xliff:g>\" з SD-карты?"</string>
+    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"Выдаліць назаўсёды ўвесь альбом \"<xliff:g id="ALBUM">%s</xliff:g>\" з USB-назапашвальнiка?"</string>
+    <string name="delete_song_desc" msgid="1842681623848282205">"Выдалiць назаўсёды песню \"<xliff:g id="SONG">%s</xliff:g>\" з SD-карты?"</string>
+    <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"Выдалiць назаўсёды песню \"<xliff:g id="SONG">%s</xliff:g>\" з USB-назапашвальнiка?"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"ОК"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one" msgid="8560276109508404217">"1 песня была выдаленая."</item>
@@ -76,12 +76,12 @@
     <string name="podcasts_title" msgid="4928414142496858304">"Падкасты"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"Няма SD-карты"</string>
     <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"Няма USB-назапашвальнiка"</string>
-    <string name="sdcard_missing_message" msgid="1169260755336159747">"SD-карта не ўстаўленая ў ваш тэлефон."</string>
-    <string name="sdcard_missing_message_nosdcard" msgid="4894107850080476295">"Ваш тэлефон не мае з USB-назапашвальнiка."</string>
+    <string name="sdcard_missing_message" msgid="2100061456003981823">"SD-карта не ўстаўлена ў тэлефон."</string>
+    <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"У тэлефоне няма USB-назапашвальнiка."</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"SD-карта недаступная"</string>
     <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"USB-назапашвальнiк недаступны"</string>
-    <string name="sdcard_busy_message" msgid="8071868348072728830">"На жаль, ваша SD-карта занятая."</string>
-    <string name="sdcard_busy_message_nosdcard" msgid="1644924834752791507">"Ваш USB-назапашвальнiк заняты."</string>
+    <string name="sdcard_busy_message" msgid="579981082201215537">"На жаль, SD-карта занята."</string>
+    <string name="sdcard_busy_message_nosdcard" msgid="1493449756827869166">"USB-назапашвальнiк заняты."</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"Памылка SD-карты"</string>
     <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"памылка USB-назапашвальнiка"</string>
     <string name="sdcard_error_message" msgid="4574563894036627855">"Памылка SD-карты."</string>
@@ -109,7 +109,7 @@
     <string name="create_playlist_create_text" msgid="8149755205483279143">"Захаваць"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Замяніць"</string>
     <string name="service_start_error_title" msgid="8649916852210198813">"Праблема прайгравання"</string>
-    <string name="service_start_error_msg" msgid="3880338547260838681">"На жаль, немагчыма прайграць песню."</string>
+    <string name="service_start_error_msg" msgid="7061754255330276478">"Немагчыма прайграць кампазіцыю."</string>
     <string name="service_start_error_button" msgid="480888406592240723">"ОК"</string>
   <string-array name="weeklist">
     <item msgid="7005918873419323862">"1 тыдзень"</item>
@@ -134,23 +134,23 @@
     <string name="mediaplaybacklabel" msgid="6733604841530940397">"Музыка"</string>
     <string name="videobrowserlabel" msgid="8522326678447494657">"Відэа"</string>
     <string name="mediapickerlabel" msgid="4549836003229914299">"Музыка"</string>
-    <string name="playback_failed" msgid="4477832192645009774">"На жаль, прайгравальнік не падтрымлівае гэты тып аўдыё."</string>
+    <string name="playback_failed" msgid="3811851150820251398">"На жаль, прайгравальнік не падтрымлівае аўдыёфайлы гэтага тыпу."</string>
     <string name="cancel" msgid="886559484711947520">"Адмяніць"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"Выдаліць з плэйліста"</string>
-    <string name="streamloadingtext" msgid="3367150884806639224">"Падлучэнне да хоста <xliff:g id="HOST">%s</xliff:g>"</string>
+    <string name="streamloadingtext" msgid="8842426517396356215">"Падлучэнне да хосту <xliff:g id="HOST">%s</xliff:g>..."</string>
     <string name="mediasearch" msgid="959222971261132292">"Шукаць <xliff:g id="TERM">%s</xliff:g> праз:"</string>
     <string name="working_artists" msgid="8678357432732156580">"Выканаўцы..."</string>
     <string name="working_albums" msgid="8713273699401457426">"Альбомы..."</string>
     <string name="working_songs" msgid="2201491972050410684">"Песні..."</string>
     <string name="working_playlists" msgid="4424950806134653351">"Плэйлісты..."</string>
-    <string name="loading" msgid="3267924133697717662">"Загрузка"</string>
+    <string name="loading" msgid="1991660396037155453">"Загрузка..."</string>
     <string name="sort_by_track" msgid="7662999005554152565">"Кампазіцыі"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"Альбомы"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"Выканаўцы"</string>
-    <string name="music_picker_title" msgid="1561623486324013570">"Выберыце кампазiцыю"</string>
+    <string name="music_picker_title" msgid="4143865470317360605">"Выберыце кампазiцыю"</string>
     <string name="search_settings_description" msgid="6520975349259883368">"Выканаўцы, альбомы і кампазiцыi"</string>
     <string name="search_hint" msgid="3766854898072633001">"Шукаць у Music"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГДЕЁЖЗІЙКЛМНОПРСТУЎФХЦЧШ\'ЫЬЭЮЯ"</string>
-    <string name="widget_initial_text" msgid="6334545155963910952">"Краніце, каб выбраць музыку."</string>
+    <string name="widget_initial_text" msgid="3166878738860903586">"Дакранiцеся, каб выбраць музыку."</string>
     <string name="effectspanel" msgid="8804547581593509614">"Гукавыя эфекты"</string>
 </resources>

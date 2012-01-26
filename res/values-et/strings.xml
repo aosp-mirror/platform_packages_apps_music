@@ -36,12 +36,12 @@
     <string name="delete_item" msgid="3363330144534750601">"Kustuta"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"Kõik juhuesituses"</string>
     <string name="play_all" msgid="6309622568869321842">"Esita kõik"</string>
-    <string name="delete_artist_desc" msgid="1843750591006508005">"Kõik artisti <xliff:g id="ARTIST">%s</xliff:g> laulud kustutatakse SD-kaardilt jäädavalt."</string>
-    <string name="delete_artist_desc_nosdcard" msgid="1565010405469696133">"Kõik artisti <xliff:g id="ARTIST">%s</xliff:g> laulud kustutatakse USB-mäluseadmest jäädavalt."</string>
-    <string name="delete_album_desc" msgid="535515999268177079">"Kogu album <xliff:g id="ALBUM">%s</xliff:g> kustutatakse SD-kaardilt jäädavalt."</string>
-    <string name="delete_album_desc_nosdcard" msgid="2739690641188691896">"Kogu album „<xliff:g id="ALBUM">%s</xliff:g>” kustutatakse USB-mäluseadmest jäädavalt."</string>
-    <string name="delete_song_desc" msgid="1856800468541831408">"Laul <xliff:g id="SONG">%s</xliff:g> kustutatakse SD-kaardilt jäädavalt."</string>
-    <string name="delete_song_desc_nosdcard" msgid="2722621774200478721">"Laul „<xliff:g id="SONG">%s</xliff:g>” kustutatakse USB-mäluseadmest jäädavalt."</string>
+    <string name="delete_artist_desc" msgid="8665759524898379194">"Kas kustutada SD-kaardilt jäädavalt kõik artisti <xliff:g id="ARTIST">%s</xliff:g> lood?"</string>
+    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Kas kustutada USB-mäluseadmelt jäädavalt kõik artisti <xliff:g id="ARTIST">%s</xliff:g> lood?"</string>
+    <string name="delete_album_desc" msgid="8172412873562794429">"Kas kustutada terve album „<xliff:g id="ALBUM">%s</xliff:g>” jäädavalt SD-kaardilt?"</string>
+    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"Kas kustutada terve album „<xliff:g id="ALBUM">%s</xliff:g>” jäädavalt USB-mäluseadmelt?"</string>
+    <string name="delete_song_desc" msgid="1842681623848282205">"Kas kustutada lugu „<xliff:g id="SONG">%s</xliff:g>” jäädavalt SD-kaardilt?"</string>
+    <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"Kas kustutada lugu „<xliff:g id="SONG">%s</xliff:g>” jäädavalt USB-mäluseadmelt?"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"OK"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one" msgid="8560276109508404217">"1 laul kustutati."</item>
@@ -76,12 +76,12 @@
     <string name="podcasts_title" msgid="4928414142496858304">"Interneti-saated"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"SD-kaart puudub"</string>
     <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"Ei ole USB-mäluseadet"</string>
-    <string name="sdcard_missing_message" msgid="1169260755336159747">"SD-kaart ei ole telefoni sisestatud."</string>
-    <string name="sdcard_missing_message_nosdcard" msgid="4894107850080476295">"Teie telefonil ei ole USB-mäluseadet."</string>
+    <string name="sdcard_missing_message" msgid="2100061456003981823">"SD-kaart ei ole telefoni sisestatud."</string>
+    <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"Teie telefonil ei ole USB-mäluseadet."</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"SD-kaart pole saadaval"</string>
     <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"USB-mäluseade pole saadaval"</string>
-    <string name="sdcard_busy_message" msgid="8071868348072728830">"Kahjuks on teie SD-kaart hõivatud."</string>
-    <string name="sdcard_busy_message_nosdcard" msgid="1644924834752791507">"Kahjuks on teie USB-mäluseade hõivatud."</string>
+    <string name="sdcard_busy_message" msgid="579981082201215537">"Teie SD-kaart on hõivatud."</string>
+    <string name="sdcard_busy_message_nosdcard" msgid="1493449756827869166">"Teie USB-mäluseade on hõivatud."</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"SD-kaardi viga"</string>
     <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"USB-mäluseadme viga"</string>
     <string name="sdcard_error_message" msgid="4574563894036627855">"Teie SD-kaardil tuvastati viga."</string>
@@ -109,7 +109,7 @@
     <string name="create_playlist_create_text" msgid="8149755205483279143">"Salvesta"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Kirjuta üle"</string>
     <string name="service_start_error_title" msgid="8649916852210198813">"Taasesituse probleem"</string>
-    <string name="service_start_error_msg" msgid="3880338547260838681">"Kahjuks ei saanud seda laulu esitada."</string>
+    <string name="service_start_error_msg" msgid="7061754255330276478">"Seda lugu ei õnnestunud esitada."</string>
     <string name="service_start_error_button" msgid="480888406592240723">"OK"</string>
   <string-array name="weeklist">
     <item msgid="7005918873419323862">"1 nädal"</item>
@@ -134,23 +134,23 @@
     <string name="mediaplaybacklabel" msgid="6733604841530940397">"Muusika"</string>
     <string name="videobrowserlabel" msgid="8522326678447494657">"Videod"</string>
     <string name="mediapickerlabel" msgid="4549836003229914299">"Muusika"</string>
-    <string name="playback_failed" msgid="4477832192645009774">"Kahjuks ei toeta pleier sellist helifaili tüüpi."</string>
+    <string name="playback_failed" msgid="3811851150820251398">"Pleier ei toeta sellist helifaili tüüpi."</string>
     <string name="cancel" msgid="886559484711947520">"Tühista"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"Eemalda esitusloendist"</string>
-    <string name="streamloadingtext" msgid="3367150884806639224">"Ühendamiskoht: <xliff:g id="HOST">%s</xliff:g>"</string>
+    <string name="streamloadingtext" msgid="8842426517396356215">"Ühendamine vooga <xliff:g id="HOST">%s</xliff:g> …"</string>
     <string name="mediasearch" msgid="959222971261132292">"Otsi terminit <xliff:g id="TERM">%s</xliff:g>, kasutades:"</string>
     <string name="working_artists" msgid="8678357432732156580">"Artistid ..."</string>
     <string name="working_albums" msgid="8713273699401457426">"Albumid ..."</string>
     <string name="working_songs" msgid="2201491972050410684">"Laulud ..."</string>
     <string name="working_playlists" msgid="4424950806134653351">"Esitusloendid ..."</string>
-    <string name="loading" msgid="3267924133697717662">"Laadimine"</string>
+    <string name="loading" msgid="1991660396037155453">"Laadimine ..."</string>
     <string name="sort_by_track" msgid="7662999005554152565">"Rajad"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"Albumid"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"Artistid"</string>
-    <string name="music_picker_title" msgid="1561623486324013570">"Muusikapala valimine"</string>
+    <string name="music_picker_title" msgid="4143865470317360605">"Muusikaraja valimine"</string>
     <string name="search_settings_description" msgid="6520975349259883368">"Artistid, albumid ja rajad"</string>
     <string name="search_hint" msgid="3766854898072633001">"Otsi muusikat"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSŠZŽTUVWÕÄÖÜXY"</string>
-    <string name="widget_initial_text" msgid="6334545155963910952">"Puudutage muusika valimiseks."</string>
+    <string name="widget_initial_text" msgid="3166878738860903586">"Puudutage muusika valimiseks."</string>
     <string name="effectspanel" msgid="8804547581593509614">"Heliefektid"</string>
 </resources>
