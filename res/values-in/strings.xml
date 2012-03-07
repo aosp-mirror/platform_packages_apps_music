@@ -134,7 +134,7 @@
     <string name="mediaplaybacklabel" msgid="6733604841530940397">"Musik"</string>
     <string name="videobrowserlabel" msgid="8522326678447494657">"Video"</string>
     <string name="mediapickerlabel" msgid="4549836003229914299">"Musik"</string>
-    <string name="playback_failed" msgid="3811851150820251398">"Pemutar tidak mendukung jenis berkas audio ini."</string>
+    <string name="playback_failed" msgid="3811851150820251398">"Pemutar tidak mendukung jenis file audio ini."</string>
     <string name="cancel" msgid="886559484711947520">"Batal"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"Hapus dari daftar putar"</string>
     <string name="streamloadingtext" msgid="8842426517396356215">"Menyambung ke <xliff:g id="HOST">%s</xliff:g>..."</string>
