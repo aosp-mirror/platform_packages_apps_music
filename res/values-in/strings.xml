@@ -35,7 +35,7 @@
     <string name="party_shuffle_off" msgid="1828744483354711679">"Kocok semua mati"</string>
     <string name="delete_item" msgid="3363330144534750601">"Hapus"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"Kocok semua"</string>
-    <string name="play_all" msgid="6309622568869321842">"Putar semua"</string>
+    <string name="play_all" msgid="6309622568869321842">"Mainkan semua"</string>
     <string name="delete_artist_desc" msgid="8665759524898379194">"Hapus semua lagu oleh <xliff:g id="ARTIST">%s</xliff:g> secara permanen dari kartu SD?"</string>
     <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Hapus semua lagu oleh <xliff:g id="ARTIST">%s</xliff:g> secara permanen dari penyimpanan USB?"</string>
     <string name="delete_album_desc" msgid="8172412873562794429">"Menghapus seluruh album \"<xliff:g id="ALBUM">%s</xliff:g>\" secara permanen dari kartu SD?"</string>
