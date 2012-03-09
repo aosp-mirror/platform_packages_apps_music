@@ -1170,9 +1170,10 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
             return 500;
         try {
             long pos = mPosOverride < 0 ? mService.position() : mPosOverride;
-            long remaining = 1000 - (pos % 1000);
             if ((pos >= 0) && (mDuration > 0)) {
                 mCurrentTime.setText(MusicUtils.makeTimeString(this, pos / 1000));
+                int progress = (int) (1000 * pos / mDuration);
+                mProgress.setProgress(progress);
                 
                 if (mService.isPlaying()) {
                     mCurrentTime.setVisibility(View.VISIBLE);
@@ -1180,17 +1181,25 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                     // blink the counter
                     int vis = mCurrentTime.getVisibility();
                     mCurrentTime.setVisibility(vis == View.INVISIBLE ? View.VISIBLE : View.INVISIBLE);
-                    remaining = 500;
+                    return 500;
                 }
-
-                mProgress.setProgress((int) (1000 * pos / mDuration));
             } else {
                 mCurrentTime.setText("--:--");
                 mProgress.setProgress(1000);
             }
-            // return the number of milliseconds until the next full second, so
+            // calculate the number of milliseconds until the next full second, so
             // the counter can be updated at just the right time
-            return remaining;
+            long remaining = 1000 - (pos % 1000);
+
+            // approximate how often we would need to refresh the slider to
+            // move it smoothly
+            int width = mProgress.getWidth();
+            if (width == 0) width = 320;
+            long smoothrefreshtime = mDuration / width;
+
+            if (smoothrefreshtime > remaining) return remaining;
+            if (smoothrefreshtime < 20) return 20;
+            return smoothrefreshtime;
         } catch (RemoteException ex) {
         }
         return 500;
