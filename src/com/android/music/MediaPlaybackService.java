@@ -38,6 +38,7 @@ import android.media.AudioManager;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
 import android.media.RemoteControlClient;
 import android.media.RemoteControlClient.MetadataEditor;
 import android.net.Uri;
@@ -1833,8 +1834,8 @@ public class MediaPlaybackService extends Service {
      * other media files.
      */
     private class MultiPlayer {
-        private MediaPlayer mCurrentMediaPlayer = new MediaPlayer();
-        private MediaPlayer mNextMediaPlayer;
+        private CompatMediaPlayer mCurrentMediaPlayer = new CompatMediaPlayer();
+        private CompatMediaPlayer mNextMediaPlayer;
         private Handler mHandler;
         private boolean mIsInitialized = false;
 
@@ -1885,7 +1886,7 @@ public class MediaPlaybackService extends Service {
             if (path == null) {
                 return;
             }
-            mNextMediaPlayer = new MediaPlayer();
+            mNextMediaPlayer = new CompatMediaPlayer();
             mNextMediaPlayer.setWakeMode(MediaPlaybackService.this, PowerManager.PARTIAL_WAKE_LOCK);
             mNextMediaPlayer.setAudioSessionId(getAudioSessionId());
             setDataSource(mNextMediaPlayer, path);
@@ -1951,7 +1952,7 @@ public class MediaPlaybackService extends Service {
                     // Creating a new MediaPlayer and settings its wakemode does not
                     // require the media service, so it's OK to do this now, while the
                     // service is still being restarted
-                    mCurrentMediaPlayer = new MediaPlayer(); 
+                    mCurrentMediaPlayer = new CompatMediaPlayer(); 
                     mCurrentMediaPlayer.setWakeMode(MediaPlaybackService.this, PowerManager.PARTIAL_WAKE_LOCK);
                     mHandler.sendMessageDelayed(mHandler.obtainMessage(SERVER_DIED), 2000);
                     return true;
@@ -1986,6 +1987,53 @@ public class MediaPlaybackService extends Service {
 
         public int getAudioSessionId() {
             return mCurrentMediaPlayer.getAudioSessionId();
+        }
+    }
+
+    static class CompatMediaPlayer extends MediaPlayer implements OnCompletionListener {
+
+        private boolean mCompatMode = true;
+        private MediaPlayer mNextPlayer;
+        private OnCompletionListener mCompletion;
+
+        public CompatMediaPlayer() {
+            try {
+                MediaPlayer.class.getMethod("setNextMediaPlayer", MediaPlayer.class);
+                mCompatMode = false;
+            } catch (NoSuchMethodException e) {
+                mCompatMode = true;
+                super.setOnCompletionListener(this);
+            }
+        }
+
+        public void setNextMediaPlayer(MediaPlayer next) {
+            if (mCompatMode) {
+                mNextPlayer = next;
+            } else {
+                super.setNextMediaPlayer(next);
+            }
+        }
+
+        @Override
+        public void setOnCompletionListener(OnCompletionListener listener) {
+            if (mCompatMode) {
+                mCompletion = listener;
+            } else {
+                super.setOnCompletionListener(listener);
+            }
+        }
+
+        @Override
+        public void onCompletion(MediaPlayer mp) {
+            if (mNextPlayer != null) {
+                // as it turns out, starting a new MediaPlayer on the completion
+                // of a previous player ends up slightly overlapping the two
+                // playbacks, so slightly delaying the start of the next player
+                // gives a better user experience
+                SystemClock.sleep(50);
+                mNextPlayer.start();
+            }
+            mCompletion.onCompletion(this);
         }
     }
 
