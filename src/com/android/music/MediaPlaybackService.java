@@ -1023,24 +1023,40 @@ public class MediaPlaybackService extends Service {
             }
             stop(false);
 
-            Cursor c = getCursorForId(mPlayList[mPlayPos]);
-
-            if (c != null) {
-                mCursor = c;
-                open(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + "/" + mCursor.getLong(IDCOLIDX));
-                // go to bookmark if needed
-                if (isPodcast()) {
-                    long bookmark = getBookmark();
-                    // Start playing a little bit before the bookmark,
-                    // so it's easier to get back in to the narrative.
-                    seek(bookmark - 5000);
-                }
-                mNextPlayPos = getNextPosition(false);
-                if (mNextPlayPos >= 0) {
-                    long id = mPlayList[mNextPlayPos];
-                    mPlayer.setNextDataSource(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + "/" + id);
+            mCursor = getCursorForId(mPlayList[mPlayPos]);
+            while(!open(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + "/" + mCursor.getLong(IDCOLIDX))) {
+                if (mOpenFailedCounter++ < 10 &&  mPlayListLen > 1) {
+                    int pos = getNextPosition(false);
+                    if (pos < 0) {
+                        gotoIdleState();
+                        if (mIsSupposedToBePlaying) {
+                            mIsSupposedToBePlaying = false;
+                            notifyChange(PLAYSTATE_CHANGED);
+                        }
+                        return;
+                    }
+                    mPlayPos = pos;
+                    stop(false);
+                    mPlayPos = pos;
+                    mCursor = getCursorForId(mPlayList[mPlayPos]);
+                } else {
+                    mOpenFailedCounter = 0;
+                    if (!mQuietMode) {
+                        Toast.makeText(this, R.string.playback_failed, Toast.LENGTH_SHORT).show();
+                    }
+                    Log.d(LOGTAG, "Failed to open file for playback");
+                    return;
                 }
             }
+
+            // go to bookmark if needed
+            if (isPodcast()) {
+                long bookmark = getBookmark();
+                // Start playing a little bit before the bookmark,
+                // so it's easier to get back in to the narrative.
+                seek(bookmark - 5000);
+            }
+            setNextTrack();
         }
     }
 
@@ -1057,10 +1073,10 @@ public class MediaPlaybackService extends Service {
      *
      * @param path The full path of the file to be opened.
      */
-    public void open(String path) {
+    public boolean open(String path) {
         synchronized (this) {
             if (path == null) {
-                return;
+                return false;
             }
             
             // if mCursor is null, try to associate path with a database cursor
@@ -1099,23 +1115,12 @@ public class MediaPlaybackService extends Service {
             }
             mFileToPlay = path;
             mPlayer.setDataSource(mFileToPlay);
-            if (! mPlayer.isInitialized()) {
-                stop(true);
-                if (mOpenFailedCounter++ < 10 &&  mPlayListLen > 1) {
-                    // beware: this ends up being recursive because next() calls open() again.
-                    gotoNext(false);
-                }
-                if (! mPlayer.isInitialized() && mOpenFailedCounter != 0) {
-                    // need to make sure we only shows this once
-                    mOpenFailedCounter = 0;
-                    if (!mQuietMode) {
-                        Toast.makeText(this, R.string.playback_failed, Toast.LENGTH_SHORT).show();
-                    }
-                    Log.d(LOGTAG, "Failed to open file for playback");
-                }
-            } else {
+            if (mPlayer.isInitialized()) {
                 mOpenFailedCounter = 0;
+                return true;
             }
+            stop(true);
+            return false;
         }
     }
 
@@ -1844,11 +1849,13 @@ public class MediaPlaybackService extends Service {
         }
 
         public void setDataSource(String path) {
-            setDataSource(mCurrentMediaPlayer, path);
-            setNextDataSource(null);
+            mIsInitialized = setDataSourceImpl(mCurrentMediaPlayer, path);
+            if (mIsInitialized) {
+                setNextDataSource(null);
+            }
         }
 
-        public void setDataSource(MediaPlayer player, String path) {
+        private boolean setDataSourceImpl(MediaPlayer player, String path) {
             try {
                 player.reset();
                 player.setOnPreparedListener(null);
@@ -1861,12 +1868,10 @@ public class MediaPlaybackService extends Service {
                 player.prepare();
             } catch (IOException ex) {
                 // TODO: notify the user why the file couldn't be opened
-                mIsInitialized = false;
-                return;
+                return false;
             } catch (IllegalArgumentException ex) {
                 // TODO: notify the user why the file couldn't be opened
-                mIsInitialized = false;
-                return;
+                return false;
             }
             player.setOnCompletionListener(listener);
             player.setOnErrorListener(errorListener);
@@ -1874,7 +1879,7 @@ public class MediaPlaybackService extends Service {
             i.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, getAudioSessionId());
             i.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, getPackageName());
             sendBroadcast(i);
-            mIsInitialized = true;
+            return true;
         }
 
         public void setNextDataSource(String path) {
@@ -1889,8 +1894,14 @@ public class MediaPlaybackService extends Service {
             mNextMediaPlayer = new CompatMediaPlayer();
             mNextMediaPlayer.setWakeMode(MediaPlaybackService.this, PowerManager.PARTIAL_WAKE_LOCK);
             mNextMediaPlayer.setAudioSessionId(getAudioSessionId());
-            setDataSource(mNextMediaPlayer, path);
-            mCurrentMediaPlayer.setNextMediaPlayer(mNextMediaPlayer);
+            if (setDataSourceImpl(mNextMediaPlayer, path)) {
+                mCurrentMediaPlayer.setNextMediaPlayer(mNextMediaPlayer);
+            } else {
+                // failed to open next, we'll transition the old fashioned way,
+                // which will skip over the faulty file
+                mNextMediaPlayer.release();
+                mNextMediaPlayer = null;
+            }
         }
         
         public boolean isInitialized() {
