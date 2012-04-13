@@ -42,7 +42,7 @@
     <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"Hapus seluruh album \"<xliff:g id="ALBUM">%s</xliff:g>\" secara permanen dari penyimpanan USB?"</string>
     <string name="delete_song_desc" msgid="1842681623848282205">"Hapus \"<xliff:g id="SONG">%s</xliff:g>\" secara permanen dari kartu SD?"</string>
     <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"Hapus \"<xliff:g id="SONG">%s</xliff:g>\" secara permanen dari penyimpanan USB?"</string>
-    <string name="delete_confirm_button_text" msgid="7008121194944357274">"OK"</string>
+    <string name="delete_confirm_button_text" msgid="7008121194944357274">"Oke"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one" msgid="8560276109508404217">"1 lagu telah dihapus."</item>
     <item quantity="other" msgid="5156740163031225200">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> lagu berhasil dihapus."</item>
@@ -110,7 +110,7 @@
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Timpa"</string>
     <string name="service_start_error_title" msgid="8649916852210198813">"Masalah pemutaran ulang"</string>
     <string name="service_start_error_msg" msgid="7061754255330276478">"Lagu tidak dapat diputar."</string>
-    <string name="service_start_error_button" msgid="480888406592240723">"OK"</string>
+    <string name="service_start_error_button" msgid="480888406592240723">"Oke"</string>
   <string-array name="weeklist">
     <item msgid="7005918873419323862">"1 minggu"</item>
     <item msgid="7487749116155425822">"2 minggu"</item>
