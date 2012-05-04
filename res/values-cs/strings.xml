@@ -21,14 +21,14 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="onesong" msgid="8336826100414159413">"1 skladba"</string>
   <plurals name="Nsongs">
-    <item quantity="other" msgid="5798230388116542981">"Počet skladeb: <xliff:g id="COUNT">%d</xliff:g>"</item>
+    <item quantity="other" msgid="5798230388116542981">"Skladby: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
   <plurals name="Nsongscomp">
     <item quantity="other" msgid="7162294486622945550">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> z celkem <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> skladeb"</item>
   </plurals>
   <plurals name="Nalbums">
     <item quantity="one" msgid="3798955510439465932">"1 album"</item>
-    <item quantity="other" msgid="3047615499770811984">"Počet alb: <xliff:g id="COUNT">%d</xliff:g>"</item>
+    <item quantity="other" msgid="3047615499770811984">"Alba: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
     <string name="goto_start" msgid="8979658707407220934">"Knihovna"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"Náhodně – všechny"</string>
