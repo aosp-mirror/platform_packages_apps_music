@@ -1024,6 +1024,16 @@ public class MediaPlaybackService extends Service {
             stop(false);
 
             mCursor = getCursorForId(mPlayList[mPlayPos]);
+            if (mCursor.getCount() == 0) {
+                mCursor.close();
+                mCursor = null;
+                gotoIdleState();
+                if (mIsSupposedToBePlaying) {
+                    mIsSupposedToBePlaying = false;
+                    notifyChange(PLAYSTATE_CHANGED);
+                }
+                return;
+            }
             while(!open(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + "/" + mCursor.getLong(IDCOLIDX))) {
                 if (mOpenFailedCounter++ < 10 &&  mPlayListLen > 1) {
                     int pos = getNextPosition(false);
