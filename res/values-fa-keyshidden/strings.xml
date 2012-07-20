@@ -19,7 +19,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt" msgid="2379436619128383935">"برای اختصاص یک نام جدید به لیست پخش، صفحه کلید را باز کنید یا برای نامگذاری آن به \"<xliff:g id="PLAYLIST">%s</xliff:g>\" ذخیره را انتخاب کنید."</string>
-    <string name="rename_playlist_same_prompt" msgid="7777541452078260899">"برای اختصاص یک نام جدید به لیست پخش \"<xliff:g id="PLAYLIST">%s</xliff:g>\"، صفحه کلید را باز کنید."</string>
-    <string name="rename_playlist_diff_prompt" msgid="900422624897120958">"برای اختصاص یک نام جدید به لیست پخش \"<xliff:g id="PLAYLIST">%1$s</xliff:g>\"، صفحه کلید را باز کنید یا برای نامگذاری آن به \"<xliff:g id="NAME">%2$s</xliff:g>\" ذخیره را انتخاب کنید."</string>
+    <string name="create_playlist_create_text_prompt" msgid="2379436619128383935">"برای اختصاص یک نام جدید به لیست پخش، صفحه‌کلید را باز کنید یا برای نامگذاری آن به \"<xliff:g id="PLAYLIST">%s</xliff:g>\" ذخیره را انتخاب کنید."</string>
+    <string name="rename_playlist_same_prompt" msgid="7777541452078260899">"برای اختصاص یک نام جدید به لیست پخش \"<xliff:g id="PLAYLIST">%s</xliff:g>\"، صفحه‌کلید را باز کنید."</string>
+    <string name="rename_playlist_diff_prompt" msgid="900422624897120958">"برای اختصاص یک نام جدید به لیست پخش \"<xliff:g id="PLAYLIST">%1$s</xliff:g>\"، صفحه‌کلید را باز کنید یا برای نامگذاری آن به \"<xliff:g id="NAME">%2$s</xliff:g>\" ذخیره را انتخاب کنید."</string>
 </resources>
