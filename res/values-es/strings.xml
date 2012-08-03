@@ -144,11 +144,11 @@
     <string name="working_songs" msgid="2201491972050410684">"Canciones…"</string>
     <string name="working_playlists" msgid="4424950806134653351">"Listas de reproducción…"</string>
     <string name="loading" msgid="1991660396037155453">"Cargando..."</string>
-    <string name="sort_by_track" msgid="7662999005554152565">"Pistas"</string>
+    <string name="sort_by_track" msgid="7662999005554152565">"Canciones"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"Álbumes"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"Artistas"</string>
     <string name="music_picker_title" msgid="4143865470317360605">"Seleccionar canción"</string>
-    <string name="search_settings_description" msgid="6520975349259883368">"Artistas, álbumes y pistas"</string>
+    <string name="search_settings_description" msgid="6520975349259883368">"Artistas, álbumes y canciones"</string>
     <string name="search_hint" msgid="3766854898072633001">"Buscar música"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
     <string name="widget_initial_text" msgid="3166878738860903586">"Toca para seleccionar música."</string>
