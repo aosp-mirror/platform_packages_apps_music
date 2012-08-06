@@ -144,7 +144,7 @@
     <string name="working_songs" msgid="2201491972050410684">"Titel…"</string>
     <string name="working_playlists" msgid="4424950806134653351">"Playlists…"</string>
     <string name="loading" msgid="1991660396037155453">"Wird geladen…"</string>
-    <string name="sort_by_track" msgid="7662999005554152565">"Tracks"</string>
+    <string name="sort_by_track" msgid="7662999005554152565">"Titel"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"Alben"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"Interpreten"</string>
     <string name="music_picker_title" msgid="4143865470317360605">"Musiktrack auswählen"</string>
