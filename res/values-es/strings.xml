@@ -136,7 +136,7 @@
     <string name="mediapickerlabel" msgid="4549836003229914299">"Música"</string>
     <string name="playback_failed" msgid="3811851150820251398">"El reproductor no admite este tipo de archivo de audio."</string>
     <string name="cancel" msgid="886559484711947520">"Cancelar"</string>
-    <string name="remove_from_playlist" msgid="2548577514849026354">"Eliminar de la lista de reproducción"</string>
+    <string name="remove_from_playlist" msgid="2548577514849026354">"Quitar de la lista de reproducción"</string>
     <string name="streamloadingtext" msgid="8842426517396356215">"Estableciendo conexión con <xliff:g id="HOST">%s</xliff:g>..."</string>
     <string name="mediasearch" msgid="959222971261132292">"Buscar <xliff:g id="TERM">%s</xliff:g> con:"</string>
     <string name="working_artists" msgid="8678357432732156580">"Artistas…"</string>

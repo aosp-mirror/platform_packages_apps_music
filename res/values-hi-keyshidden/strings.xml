@@ -21,5 +21,5 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="create_playlist_create_text_prompt" msgid="2379436619128383935">"अपनी नई प्‍लेलिस्‍ट को एक नाम देने के लिए कुंजीपटल खोलें, या इसे \"<xliff:g id="PLAYLIST">%s</xliff:g>\" नाम देने के लिए सहेजें चुनें."</string>
     <string name="rename_playlist_same_prompt" msgid="7777541452078260899">"प्‍लेलिस्‍ट \"<xliff:g id="PLAYLIST">%s</xliff:g>\" को एक नया नाम देने के लिए कुंजीपटल खोलें."</string>
-    <string name="rename_playlist_diff_prompt" msgid="900422624897120958">"प्‍लेलिस्‍ट \"<xliff:g id="PLAYLIST">%1$s</xliff:g>\" को एक नया नाम देने के लिए कुंजीपटल खोलें, या इसे \"<xliff:g id="NAME">%2$s</xliff:g>\" नाम देने के लिए सहेजें का चयन करें."</string>
+    <string name="rename_playlist_diff_prompt" msgid="900422624897120958">"प्‍लेलिस्‍ट \"<xliff:g id="PLAYLIST">%1$s</xliff:g>\" को एक नया नाम देने के लिए कुंजीपटल खोलें, या इसे \"<xliff:g id="NAME">%2$s</xliff:g>\" नाम देने के लिए सहेजें को चुनें."</string>
 </resources>
