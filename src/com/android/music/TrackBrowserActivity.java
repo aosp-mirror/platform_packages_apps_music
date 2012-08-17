@@ -773,8 +773,9 @@ public class TrackBrowserActivity extends ListActivity
     // (onKeyDown never sees these events, since they are handled by the list)
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-        if (mPlaylist != null && event.getMetaState() != 0 &&
-                event.getAction() == KeyEvent.ACTION_DOWN) {
+        int curpos = mTrackList.getSelectedItemPosition();
+        if (mPlaylist != null && !mPlaylist.equals("recentlyadded") && curpos >= 0 &&
+                event.getMetaState() != 0 && event.getAction() == KeyEvent.ACTION_DOWN) {
             switch (event.getKeyCode()) {
                 case KeyEvent.KEYCODE_DPAD_UP:
                     moveItem(true);
