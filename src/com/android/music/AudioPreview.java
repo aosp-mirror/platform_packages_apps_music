@@ -333,6 +333,10 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
             if (!fromuser) {
                 return;
             }
+            // Protection for case of simultaneously tapping on seek bar and exit
+            if (mPlayer == null) {
+                return;
+            }
             mPlayer.seekTo(progress);
         }
         public void onStopTrackingTouch(SeekBar bar) {
@@ -352,6 +356,10 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
     }
 
     public void playPauseClicked(View v) {
+        // Protection for case of simultaneously tapping on play/pause and exit
+        if (mPlayer == null) {
+            return;
+        }
         if (mPlayer.isPlaying()) {
             mPlayer.pause();
         } else {
