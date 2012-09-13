@@ -47,8 +47,8 @@
     <item quantity="one" msgid="8560276109508404217">"已刪除 1 首樂曲。"</item>
     <item quantity="other" msgid="5156740163031225200">"已刪除 <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> 首樂曲。"</item>
   </plurals>
-    <string name="scanning" msgid="3529383847223198502">"掃描 SD 卡中..."</string>
-    <string name="scanning_nosdcard" msgid="8105284774487360148">"正在掃描 USB 儲存裝置..."</string>
+    <string name="scanning" msgid="3529383847223198502">"正在掃描 SD 卡…"</string>
+    <string name="scanning_nosdcard" msgid="8105284774487360148">"正在掃描 USB 儲存裝置…"</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"目前播放"</string>
     <string name="partyshuffle_title" msgid="6582413231529992125">"派對隨機播放"</string>
     <string name="artists_title" msgid="8490372367259160067">"演出者"</string>
@@ -137,13 +137,13 @@
     <string name="playback_failed" msgid="3811851150820251398">"播放器不支援這種音訊檔格式。"</string>
     <string name="cancel" msgid="886559484711947520">"取消"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"從播放清單移除"</string>
-    <string name="streamloadingtext" msgid="8842426517396356215">"正在連線至 <xliff:g id="HOST">%s</xliff:g>..."</string>
+    <string name="streamloadingtext" msgid="8842426517396356215">"正在連線至 <xliff:g id="HOST">%s</xliff:g>…"</string>
     <string name="mediasearch" msgid="959222971261132292">"透過以下工具，搜尋與「<xliff:g id="TERM">%s</xliff:g>」相符的結果："</string>
-    <string name="working_artists" msgid="8678357432732156580">"演出者..."</string>
-    <string name="working_albums" msgid="8713273699401457426">"專輯..."</string>
-    <string name="working_songs" msgid="2201491972050410684">"樂曲..."</string>
-    <string name="working_playlists" msgid="4424950806134653351">"播放清單..."</string>
-    <string name="loading" msgid="1991660396037155453">"載入中..."</string>
+    <string name="working_artists" msgid="8678357432732156580">"演出者…"</string>
+    <string name="working_albums" msgid="8713273699401457426">"專輯…"</string>
+    <string name="working_songs" msgid="2201491972050410684">"歌曲…"</string>
+    <string name="working_playlists" msgid="4424950806134653351">"播放清單…"</string>
+    <string name="loading" msgid="1991660396037155453">"載入中…"</string>
     <string name="sort_by_track" msgid="7662999005554152565">"曲目"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"專輯"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"演出者"</string>
