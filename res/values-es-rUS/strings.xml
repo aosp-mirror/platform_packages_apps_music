@@ -34,7 +34,7 @@
     <string name="party_shuffle" msgid="8213359225506006168">"Party shuffle"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"Party shuffle desactivado"</string>
     <string name="delete_item" msgid="3363330144534750601">"Eliminar"</string>
-    <string name="shuffle_all" msgid="1388193611787878773">"Aleatorio"</string>
+    <string name="shuffle_all" msgid="1388193611787878773">"Reproducción aleatoria"</string>
     <string name="play_all" msgid="6309622568869321842">"Reproducir todo"</string>
     <string name="delete_artist_desc" msgid="8665759524898379194">"¿Deseas eliminar todas las canciones de <xliff:g id="ARTIST">%s</xliff:g> de la tarjeta SD de forma permanente?"</string>
     <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"¿Deseas eliminar las canciones de <xliff:g id="ARTIST">%s</xliff:g> del almacenamiento USB de forma permanente?"</string>
