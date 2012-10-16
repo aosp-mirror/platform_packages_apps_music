@@ -1007,7 +1007,9 @@ public class MediaPlaybackService extends Service {
         Cursor c = getContentResolver().query(
                 MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                 mCursorCols, "_id=" + id , null, null);
-        c.moveToFirst();
+        if (c != null) {
+            c.moveToFirst();
+        }
         return c;
     }
 
@@ -1024,17 +1026,18 @@ public class MediaPlaybackService extends Service {
             stop(false);
 
             mCursor = getCursorForId(mPlayList[mPlayPos]);
-            if (mCursor.getCount() == 0) {
-                mCursor.close();
-                mCursor = null;
-                gotoIdleState();
-                if (mIsSupposedToBePlaying) {
-                    mIsSupposedToBePlaying = false;
-                    notifyChange(PLAYSTATE_CHANGED);
+            while(true) {
+                if (mCursor != null && mCursor.getCount() != 0 &&
+                        open(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + "/" +
+                                mCursor.getLong(IDCOLIDX))) {
+                    break;
                 }
-                return;
-            }
-            while(!open(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + "/" + mCursor.getLong(IDCOLIDX))) {
+                // if we get here then opening the file failed. We can close the cursor now, because
+                // we're either going to create a new one next, or stop trying
+                if (mCursor != null) {
+                    mCursor.close();
+                    mCursor = null;
+                }
                 if (mOpenFailedCounter++ < 10 &&  mPlayListLen > 1) {
                     int pos = getNextPosition(false);
                     if (pos < 0) {
@@ -1055,6 +1058,11 @@ public class MediaPlaybackService extends Service {
                         Toast.makeText(this, R.string.playback_failed, Toast.LENGTH_SHORT).show();
                     }
                     Log.d(LOGTAG, "Failed to open file for playback");
+                    gotoIdleState();
+                    if (mIsSupposedToBePlaying) {
+                        mIsSupposedToBePlaying = false;
+                        notifyChange(PLAYSTATE_CHANGED);
+                    }
                     return;
                 }
             }
