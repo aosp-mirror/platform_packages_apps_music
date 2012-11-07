@@ -1212,7 +1212,7 @@ public class MediaPlaybackService extends Service {
     }
 
     private void stop(boolean remove_status_icon) {
-        if (mPlayer.isInitialized()) {
+        if (mPlayer != null && mPlayer.isInitialized()) {
             mPlayer.stop();
         }
         mFileToPlay = null;
