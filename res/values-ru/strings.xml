@@ -35,7 +35,7 @@
     <string name="party_shuffle_off" msgid="1828744483354711679">"Отключить микс"</string>
     <string name="delete_item" msgid="3363330144534750601">"Удалить"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"Перемешать все"</string>
-    <string name="play_all" msgid="6309622568869321842">"Воспроизвести все"</string>
+    <string name="play_all" msgid="6309622568869321842">"Слушать все"</string>
     <string name="delete_artist_desc" msgid="8665759524898379194">"Удалить все треки исполнителя <xliff:g id="ARTIST">%s</xliff:g> с SD-карты?"</string>
     <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Удалить все треки исполнителя <xliff:g id="ARTIST">%s</xliff:g> с USB-накопителя?"</string>
     <string name="delete_album_desc" msgid="8172412873562794429">"Удалить альбом \"<xliff:g id="ALBUM">%s</xliff:g>\" с SD-карты?"</string>
@@ -144,7 +144,7 @@
     <string name="working_songs" msgid="2201491972050410684">"Треки..."</string>
     <string name="working_playlists" msgid="4424950806134653351">"Плейлисты..."</string>
     <string name="loading" msgid="1991660396037155453">"Загрузка…"</string>
-    <string name="sort_by_track" msgid="7662999005554152565">"Дорожки"</string>
+    <string name="sort_by_track" msgid="7662999005554152565">"Треки"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"Альбомы"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"Артисты"</string>
     <string name="music_picker_title" msgid="4143865470317360605">"Выберите трек"</string>

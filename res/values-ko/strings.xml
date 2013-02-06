@@ -71,7 +71,7 @@
     <string name="playlist_deleted_message" msgid="9008053828193961455">"재생목록이 삭제되었습니다."</string>
     <string name="playlist_renamed_message" msgid="7187580192703005990">"재생목록 이름이 변경되었습니다."</string>
     <string name="recentlyadded" msgid="110978416756366953">"최근 추가곡"</string>
-    <string name="recentlyadded_title" msgid="3153322287249901914">"최근 추가 목록"</string>
+    <string name="recentlyadded_title" msgid="3153322287249901914">"최근 추가"</string>
     <string name="podcasts_listitem" msgid="8657809279717670634">"Podcast"</string>
     <string name="podcasts_title" msgid="4928414142496858304">"Podcast"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"SD 카드 없음"</string>
