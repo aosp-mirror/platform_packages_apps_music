@@ -93,9 +93,9 @@
     <string name="repeat_off_notif" msgid="1149406899083479716">"Opakovanie je vypnuté."</string>
     <string name="repeat_current_notif" msgid="1227153936360904196">"Opakovanie aktuálnej skladby."</string>
     <string name="repeat_all_notif" msgid="6443293055987316642">"Opakovanie všetkých skladieb."</string>
-    <string name="ringtone_menu" msgid="2737472190159134599">"Použiť ako vyzváňací tón telefónu"</string>
-    <string name="ringtone_menu_short" msgid="3367622038867238133">"Použiť ako vyzváňací tón"</string>
-    <string name="ringtone_set" msgid="5325818347613843130">"Skladba <xliff:g id="NAME">%s</xliff:g> bola nastavená ako vyzváňací tón."</string>
+    <string name="ringtone_menu" msgid="2737472190159134599">"Použiť ako tón zvonenia telefónu"</string>
+    <string name="ringtone_menu_short" msgid="3367622038867238133">"Použiť ako tón zvonenia"</string>
+    <string name="ringtone_set" msgid="5325818347613843130">"Skladba <xliff:g id="NAME">%s</xliff:g> bola nastavená ako tón zvonenia."</string>
     <string name="play_selection" msgid="2854921021814550018">"Prehrať"</string>
     <string name="add_to_playlist" msgid="7110273488645072783">"Pridať do zoznamu skladieb"</string>
     <string name="queue" msgid="2937629819482787704">"Aktuálny zoznam skladieb"</string>
