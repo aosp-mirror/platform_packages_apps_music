@@ -33,15 +33,15 @@
     <string name="goto_start" msgid="8979658707407220934">"Bibliotecă"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"Colecţie aleatorie"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"Colecţie aleatorie dezactivată"</string>
-    <string name="delete_item" msgid="3363330144534750601">"Ştergeţi"</string>
+    <string name="delete_item" msgid="3363330144534750601">"Ștergeţi"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"Redaţi toată lista în mod aleatoriu"</string>
     <string name="play_all" msgid="6309622568869321842">"Redaţi toate"</string>
-    <string name="delete_artist_desc" msgid="8665759524898379194">"Ştergeţi definitiv toate cântecele de <xliff:g id="ARTIST">%s</xliff:g> de pe cardul SD?"</string>
-    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Ştergeţi definitiv toate cântecele de <xliff:g id="ARTIST">%s</xliff:g> de pe stocarea USB?"</string>
-    <string name="delete_album_desc" msgid="8172412873562794429">"Ştergeţi definitiv întregul album „<xliff:g id="ALBUM">%s</xliff:g>” de pe cardul SD?"</string>
-    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"Ştergeţi definitiv întregul album „<xliff:g id="ALBUM">%s</xliff:g>” de pe stocarea USB?"</string>
-    <string name="delete_song_desc" msgid="1842681623848282205">"Ştergeţi definitiv „<xliff:g id="SONG">%s</xliff:g>” de pe cardul SD?"</string>
-    <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"Ştergeţi definitiv „<xliff:g id="SONG">%s</xliff:g>” de pe stocarea USB?"</string>
+    <string name="delete_artist_desc" msgid="8665759524898379194">"Ștergeţi definitiv toate cântecele de <xliff:g id="ARTIST">%s</xliff:g> de pe cardul SD?"</string>
+    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Ștergeţi definitiv toate cântecele de <xliff:g id="ARTIST">%s</xliff:g> de pe stocarea USB?"</string>
+    <string name="delete_album_desc" msgid="8172412873562794429">"Ștergeţi definitiv întregul album „<xliff:g id="ALBUM">%s</xliff:g>” de pe cardul SD?"</string>
+    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"Ștergeţi definitiv întregul album „<xliff:g id="ALBUM">%s</xliff:g>” de pe stocarea USB?"</string>
+    <string name="delete_song_desc" msgid="1842681623848282205">"Ștergeţi definitiv „<xliff:g id="SONG">%s</xliff:g>” de pe cardul SD?"</string>
+    <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"Ștergeţi definitiv „<xliff:g id="SONG">%s</xliff:g>” de pe stocarea USB?"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"OK"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one" msgid="8560276109508404217">"1 cântec a fost şters."</item>
@@ -65,7 +65,7 @@
     <string name="no_tracks_title" msgid="8805805388271238471">"Niciun cântec"</string>
     <string name="no_videos_title" msgid="6218814130364793104">"Niciun videoclip"</string>
     <string name="no_playlists_title" msgid="4456351945617594418">"Nicio listă de redare"</string>
-    <string name="delete_playlist_menu" msgid="8998637685583495247">"Ştergeţi"</string>
+    <string name="delete_playlist_menu" msgid="8998637685583495247">"Ștergeţi"</string>
     <string name="edit_playlist_menu" msgid="571618502105370684">"Modificaţi"</string>
     <string name="rename_playlist_menu" msgid="3133463747389494668">"Redenumiţi"</string>
     <string name="playlist_deleted_message" msgid="9008053828193961455">"Listă de redare ştearsă."</string>
@@ -128,7 +128,7 @@
     <string name="weekpicker_set" msgid="7636608790418067496">"Terminat"</string>
     <string name="weekpicker_title" msgid="699535378922101701">"Setaţi ora"</string>
     <string name="save_as_playlist" msgid="5180413608901885255">"Salvaţi ca listă de redare"</string>
-    <string name="clear_playlist" msgid="4565515100924905315">"Ştergeţi lista de redare"</string>
+    <string name="clear_playlist" msgid="4565515100924905315">"Ștergeţi lista de redare"</string>
     <string name="musicbrowserlabel" msgid="3162022214114562892">"Muzică"</string>
     <string name="musicshortcutlabel" msgid="2602980193508150226">"Listă de redare muzică"</string>
     <string name="mediaplaybacklabel" msgid="6733604841530940397">"Muzică"</string>
