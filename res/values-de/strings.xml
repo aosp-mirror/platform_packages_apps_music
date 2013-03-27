@@ -148,7 +148,7 @@
     <string name="sort_by_album" msgid="2912837715658975248">"Alben"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"Interpreten"</string>
     <string name="music_picker_title" msgid="4143865470317360605">"Musiktrack auswählen"</string>
-    <string name="search_settings_description" msgid="6520975349259883368">"Interpreten, Alben und Tracks"</string>
+    <string name="search_settings_description" msgid="6520975349259883368">"Interpreten, Alben und Songs"</string>
     <string name="search_hint" msgid="3766854898072633001">"In Musik suchen"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
     <string name="widget_initial_text" msgid="3166878738860903586">"Zur Musikauswahl berühren"</string>
