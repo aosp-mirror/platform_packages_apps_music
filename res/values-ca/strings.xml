@@ -51,16 +51,16 @@
     <string name="scanning_nosdcard" msgid="8105284774487360148">"S\'està explorant l\'emmagatzematge USB…"</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"Reproducció en curs"</string>
     <string name="partyshuffle_title" msgid="6582413231529992125">"Party shuffle"</string>
-    <string name="artists_title" msgid="8490372367259160067">"Intèrprets"</string>
+    <string name="artists_title" msgid="8490372367259160067">"Artistes"</string>
     <string name="albums_menu" msgid="5807982055590211900">"Àlbums"</string>
     <string name="albums_title" msgid="8773880394961378035">"Àlbums"</string>
     <string name="tracks_menu" msgid="6942246568246092330">"Cançons"</string>
     <string name="tracks_title" msgid="3229389424532295124">"Cançons"</string>
-    <string name="playlists_menu" msgid="5382792649771928849">"Llistes de reproducció"</string>
-    <string name="playlists_title" msgid="5094238486322957927">"Llistes de reproducció"</string>
+    <string name="playlists_menu" msgid="5382792649771928849">"Llistes"</string>
+    <string name="playlists_title" msgid="5094238486322957927">"Llistes"</string>
     <string name="videos_title" msgid="2066741954354129115">"Vídeos"</string>
     <string name="all_title" msgid="6880186414437237653">"Tots els fitxers multimèdia"</string>
-    <string name="browse_menu" msgid="5248122473075843289">"Intèrprets"</string>
+    <string name="browse_menu" msgid="5248122473075843289">"Artistes"</string>
     <string name="search_title" msgid="1016971653383739344">"Cerca"</string>
     <string name="no_tracks_title" msgid="8805805388271238471">"Cap cançó"</string>
     <string name="no_videos_title" msgid="6218814130364793104">"Cap vídeo"</string>
@@ -139,16 +139,16 @@
     <string name="remove_from_playlist" msgid="2548577514849026354">"Elimina de la llista de reproducció"</string>
     <string name="streamloadingtext" msgid="8842426517396356215">"S\'està connectant a <xliff:g id="HOST">%s</xliff:g>…"</string>
     <string name="mediasearch" msgid="959222971261132292">"Cerca <xliff:g id="TERM">%s</xliff:g> mitjançant:"</string>
-    <string name="working_artists" msgid="8678357432732156580">"Intèrprets..."</string>
+    <string name="working_artists" msgid="8678357432732156580">"Artistes..."</string>
     <string name="working_albums" msgid="8713273699401457426">"Àlbums..."</string>
     <string name="working_songs" msgid="2201491972050410684">"Cançons..."</string>
     <string name="working_playlists" msgid="4424950806134653351">"Llistes de reproducció..."</string>
     <string name="loading" msgid="1991660396037155453">"S\'està carregant..."</string>
     <string name="sort_by_track" msgid="7662999005554152565">"Pistes"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"Àlbums"</string>
-    <string name="sort_by_artist" msgid="4607024967813199992">"Intèrprets"</string>
+    <string name="sort_by_artist" msgid="4607024967813199992">"Artistes"</string>
     <string name="music_picker_title" msgid="4143865470317360605">"Tria una pista de música"</string>
-    <string name="search_settings_description" msgid="6520975349259883368">"Intèrprets, àlbums i pistes"</string>
+    <string name="search_settings_description" msgid="6520975349259883368">"Artistes, àlbums i cançons"</string>
     <string name="search_hint" msgid="3766854898072633001">"Cerca a la música"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
     <string name="widget_initial_text" msgid="3166878738860903586">"Toca per triar música."</string>

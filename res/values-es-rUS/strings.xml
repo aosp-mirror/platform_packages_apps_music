@@ -125,7 +125,7 @@
     <item msgid="2727959579637914171">"11 semanas"</item>
     <item msgid="8708754966127584739">"12 semanas"</item>
   </string-array>
-    <string name="weekpicker_set" msgid="7636608790418067496">"Finalizado"</string>
+    <string name="weekpicker_set" msgid="7636608790418067496">"Finalizar"</string>
     <string name="weekpicker_title" msgid="699535378922101701">"Establecer hora"</string>
     <string name="save_as_playlist" msgid="5180413608901885255">"Guardar como lista de reproducción"</string>
     <string name="clear_playlist" msgid="4565515100924905315">"Eliminar lista de reproducción"</string>
