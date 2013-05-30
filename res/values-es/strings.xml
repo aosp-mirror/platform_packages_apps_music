@@ -30,7 +30,7 @@
     <item quantity="one" msgid="3798955510439465932">"1 álbum"</item>
     <item quantity="other" msgid="3047615499770811984">"<xliff:g id="COUNT">%d</xliff:g> álbumes"</item>
   </plurals>
-    <string name="goto_start" msgid="8979658707407220934">"Biblioteca"</string>
+    <string name="goto_start" msgid="8979658707407220934">"Música"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"Sesión aleatoria"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"Desactivar sesión aleatoria"</string>
     <string name="delete_item" msgid="3363330144534750601">"Eliminar"</string>
@@ -64,12 +64,12 @@
     <string name="search_title" msgid="1016971653383739344">"Buscar"</string>
     <string name="no_tracks_title" msgid="8805805388271238471">"Ninguna canción"</string>
     <string name="no_videos_title" msgid="6218814130364793104">"Ningún vídeo"</string>
-    <string name="no_playlists_title" msgid="4456351945617594418">"Ninguna lista de reproducción"</string>
+    <string name="no_playlists_title" msgid="4456351945617594418">"No hay playlists"</string>
     <string name="delete_playlist_menu" msgid="8998637685583495247">"Eliminar"</string>
     <string name="edit_playlist_menu" msgid="571618502105370684">"Editar"</string>
     <string name="rename_playlist_menu" msgid="3133463747389494668">"Cambiar nombre"</string>
-    <string name="playlist_deleted_message" msgid="9008053828193961455">"Se ha eliminado la lista de reproducción."</string>
-    <string name="playlist_renamed_message" msgid="7187580192703005990">"Se ha cambiado el nombre de la lista."</string>
+    <string name="playlist_deleted_message" msgid="9008053828193961455">"Se ha eliminado la playlist."</string>
+    <string name="playlist_renamed_message" msgid="7187580192703005990">"Se ha cambiado el nombre de la playlist."</string>
     <string name="recentlyadded" msgid="110978416756366953">"Añadidas recientemente"</string>
     <string name="recentlyadded_title" msgid="3153322287249901914">"Añadidas recientemente"</string>
     <string name="podcasts_listitem" msgid="8657809279717670634">"Podcasts"</string>
@@ -97,15 +97,15 @@
     <string name="ringtone_menu_short" msgid="3367622038867238133">"Usar como tono"</string>
     <string name="ringtone_set" msgid="5325818347613843130">"Se ha establecido \"<xliff:g id="NAME">%s</xliff:g>\" como tono del teléfono."</string>
     <string name="play_selection" msgid="2854921021814550018">"Reproducir"</string>
-    <string name="add_to_playlist" msgid="7110273488645072783">"Añadir a lista"</string>
-    <string name="queue" msgid="2937629819482787704">"Lista de reproducción actual"</string>
+    <string name="add_to_playlist" msgid="7110273488645072783">"Añadir a playlist"</string>
+    <string name="queue" msgid="2937629819482787704">"Playlist actual"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Nuevo"</string>
-    <string name="new_playlist_name_template" msgid="905710296728900597">"Lista <xliff:g id="NUMBER">%d</xliff:g>"</string>
+    <string name="new_playlist_name_template" msgid="905710296728900597">"Nueva playlist <xliff:g id="NUMBER">%d</xliff:g>"</string>
   <plurals name="NNNtrackstoplaylist">
-    <item quantity="one" msgid="422388042993582235">"Se ha añadido una canción a la lista de reproducción."</item>
-    <item quantity="other" msgid="7662771987109627255">"Se han añadido <xliff:g id="NUMBER">%d</xliff:g> canciones a la lista de reproducción."</item>
+    <item quantity="one" msgid="422388042993582235">"Se ha añadido una canción a la playlist."</item>
+    <item quantity="other" msgid="7662771987109627255">"Se han añadido <xliff:g id="NUMBER">%d</xliff:g> canciones a la playlist."</item>
   </plurals>
-    <string name="emptyplaylist" msgid="6711555673997896344">"La lista de reproducción seleccionada está vacía."</string>
+    <string name="emptyplaylist" msgid="6711555673997896344">"La playlist seleccionada está vacía."</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"Guardar"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Sobrescribir"</string>
     <string name="service_start_error_title" msgid="8649916852210198813">"Problema de reproducción"</string>
@@ -127,16 +127,16 @@
   </string-array>
     <string name="weekpicker_set" msgid="7636608790418067496">"Listo"</string>
     <string name="weekpicker_title" msgid="699535378922101701">"Establecer período"</string>
-    <string name="save_as_playlist" msgid="5180413608901885255">"Guardar como lista de reproducción"</string>
-    <string name="clear_playlist" msgid="4565515100924905315">"Borrar lista de reproducción"</string>
+    <string name="save_as_playlist" msgid="5180413608901885255">"Guardar como playlist"</string>
+    <string name="clear_playlist" msgid="4565515100924905315">"Borrar playlist"</string>
     <string name="musicbrowserlabel" msgid="3162022214114562892">"Música"</string>
-    <string name="musicshortcutlabel" msgid="2602980193508150226">"Lista de reproducción de música"</string>
+    <string name="musicshortcutlabel" msgid="2602980193508150226">"Playlist de música"</string>
     <string name="mediaplaybacklabel" msgid="6733604841530940397">"Música"</string>
     <string name="videobrowserlabel" msgid="8522326678447494657">"Vídeos"</string>
     <string name="mediapickerlabel" msgid="4549836003229914299">"Música"</string>
     <string name="playback_failed" msgid="3811851150820251398">"El reproductor no admite este tipo de archivo de audio."</string>
     <string name="cancel" msgid="886559484711947520">"Cancelar"</string>
-    <string name="remove_from_playlist" msgid="2548577514849026354">"Quitar de la lista de reproducción"</string>
+    <string name="remove_from_playlist" msgid="2548577514849026354">"Quitar de la playlist"</string>
     <string name="streamloadingtext" msgid="8842426517396356215">"Estableciendo conexión con <xliff:g id="HOST">%s</xliff:g>..."</string>
     <string name="mediasearch" msgid="959222971261132292">"Buscar <xliff:g id="TERM">%s</xliff:g> con:"</string>
     <string name="working_artists" msgid="8678357432732156580">"Artistas…"</string>
