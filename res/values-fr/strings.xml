@@ -97,7 +97,7 @@
     <string name="ringtone_menu_short" msgid="3367622038867238133">"Définir comme sonnerie"</string>
     <string name="ringtone_set" msgid="5325818347613843130">"\"<xliff:g id="NAME">%s</xliff:g>\" a été défini comme sonnerie."</string>
     <string name="play_selection" msgid="2854921021814550018">"Écouter"</string>
-    <string name="add_to_playlist" msgid="7110273488645072783">"Ajouter à la playlist"</string>
+    <string name="add_to_playlist" msgid="7110273488645072783">"Ajouter à une playlist"</string>
     <string name="queue" msgid="2937629819482787704">"Playlist actuelle"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Nouvelle"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"Nouvelle playlist <xliff:g id="NUMBER">%d</xliff:g>"</string>
@@ -148,7 +148,7 @@
     <string name="sort_by_album" msgid="2912837715658975248">"Albums"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"Artistes"</string>
     <string name="music_picker_title" msgid="4143865470317360605">"Sélectionner un titre"</string>
-    <string name="search_settings_description" msgid="6520975349259883368">"Artistes, albums et morceaux"</string>
+    <string name="search_settings_description" msgid="6520975349259883368">"Artistes, albums et titres"</string>
     <string name="search_hint" msgid="3766854898072633001">"Rechercher de la musique"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
     <string name="widget_initial_text" msgid="3166878738860903586">"Appuyez pour sélectionner des titres"</string>
