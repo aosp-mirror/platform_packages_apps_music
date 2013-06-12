@@ -56,20 +56,20 @@
     <string name="albums_title" msgid="8773880394961378035">"Albummer"</string>
     <string name="tracks_menu" msgid="6942246568246092330">"Sange"</string>
     <string name="tracks_title" msgid="3229389424532295124">"Sange"</string>
-    <string name="playlists_menu" msgid="5382792649771928849">"Spillelister"</string>
-    <string name="playlists_title" msgid="5094238486322957927">"Spillelister"</string>
+    <string name="playlists_menu" msgid="5382792649771928849">"Playlister"</string>
+    <string name="playlists_title" msgid="5094238486322957927">"Playlister"</string>
     <string name="videos_title" msgid="2066741954354129115">"Videoer"</string>
     <string name="all_title" msgid="6880186414437237653">"Alle medier"</string>
     <string name="browse_menu" msgid="5248122473075843289">"Kunstnere"</string>
     <string name="search_title" msgid="1016971653383739344">"Søg"</string>
     <string name="no_tracks_title" msgid="8805805388271238471">"Der er ingen sange"</string>
     <string name="no_videos_title" msgid="6218814130364793104">"Der er ingen videoer"</string>
-    <string name="no_playlists_title" msgid="4456351945617594418">"Der er ingen afspilningslister"</string>
+    <string name="no_playlists_title" msgid="4456351945617594418">"Der er ingen playlister"</string>
     <string name="delete_playlist_menu" msgid="8998637685583495247">"Slet"</string>
     <string name="edit_playlist_menu" msgid="571618502105370684">"Rediger"</string>
     <string name="rename_playlist_menu" msgid="3133463747389494668">"Omdøb"</string>
-    <string name="playlist_deleted_message" msgid="9008053828193961455">"Afspilningsliste slettet."</string>
-    <string name="playlist_renamed_message" msgid="7187580192703005990">"Afspilningslisten er omdøbt."</string>
+    <string name="playlist_deleted_message" msgid="9008053828193961455">"Playliste slettet."</string>
+    <string name="playlist_renamed_message" msgid="7187580192703005990">"Playlisten er omdøbt."</string>
     <string name="recentlyadded" msgid="110978416756366953">"Tilføjet for nylig"</string>
     <string name="recentlyadded_title" msgid="3153322287249901914">"Tilføjet for nylig"</string>
     <string name="podcasts_listitem" msgid="8657809279717670634">"Podcasts"</string>
@@ -97,15 +97,15 @@
     <string name="ringtone_menu_short" msgid="3367622038867238133">"Brug som ringetone"</string>
     <string name="ringtone_set" msgid="5325818347613843130">"\"<xliff:g id="NAME">%s</xliff:g>\" er indstillet som ringetone for telefonen."</string>
     <string name="play_selection" msgid="2854921021814550018">"Afspil"</string>
-    <string name="add_to_playlist" msgid="7110273488645072783">"Føj til afspilningsliste"</string>
-    <string name="queue" msgid="2937629819482787704">"Aktuel afspilningsliste"</string>
+    <string name="add_to_playlist" msgid="7110273488645072783">"Føj til playliste"</string>
+    <string name="queue" msgid="2937629819482787704">"Aktuel playliste"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Ny"</string>
-    <string name="new_playlist_name_template" msgid="905710296728900597">"Ny afspilningsliste <xliff:g id="NUMBER">%d</xliff:g>"</string>
+    <string name="new_playlist_name_template" msgid="905710296728900597">"Ny playliste <xliff:g id="NUMBER">%d</xliff:g>"</string>
   <plurals name="NNNtrackstoplaylist">
-    <item quantity="one" msgid="422388042993582235">"Der blev føjet 1 sang til afspilningslisten."</item>
-    <item quantity="other" msgid="7662771987109627255">"<xliff:g id="NUMBER">%d</xliff:g> sange føjet til afspilningsliste."</item>
+    <item quantity="one" msgid="422388042993582235">"Der blev føjet 1 sang til playlisten."</item>
+    <item quantity="other" msgid="7662771987109627255">"<xliff:g id="NUMBER">%d</xliff:g> sange føjet til playliste."</item>
   </plurals>
-    <string name="emptyplaylist" msgid="6711555673997896344">"Den valgte afspilningsliste er tom."</string>
+    <string name="emptyplaylist" msgid="6711555673997896344">"Den valgte playliste er tom."</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"Gem"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Overskriv"</string>
     <string name="service_start_error_title" msgid="8649916852210198813">"Afspilningsproblem"</string>
@@ -127,8 +127,8 @@
   </string-array>
     <string name="weekpicker_set" msgid="7636608790418067496">"Udfør"</string>
     <string name="weekpicker_title" msgid="699535378922101701">"Angiv tid"</string>
-    <string name="save_as_playlist" msgid="5180413608901885255">"Gem som afspilningsliste"</string>
-    <string name="clear_playlist" msgid="4565515100924905315">"Ryd afspilningsliste"</string>
+    <string name="save_as_playlist" msgid="5180413608901885255">"Gem som playliste"</string>
+    <string name="clear_playlist" msgid="4565515100924905315">"Ryd playliste"</string>
     <string name="musicbrowserlabel" msgid="3162022214114562892">"Musik"</string>
     <string name="musicshortcutlabel" msgid="2602980193508150226">"Musikafspilningsliste"</string>
     <string name="mediaplaybacklabel" msgid="6733604841530940397">"Musik"</string>
@@ -136,13 +136,13 @@
     <string name="mediapickerlabel" msgid="4549836003229914299">"Musik"</string>
     <string name="playback_failed" msgid="3811851150820251398">"Afspilleren understøtter ikke denne slags lydfiler."</string>
     <string name="cancel" msgid="886559484711947520">"Annuller"</string>
-    <string name="remove_from_playlist" msgid="2548577514849026354">"Fjern fra afspilningsliste"</string>
+    <string name="remove_from_playlist" msgid="2548577514849026354">"Fjern fra playliste"</string>
     <string name="streamloadingtext" msgid="8842426517396356215">"Opretter forbindelse til <xliff:g id="HOST">%s</xliff:g>..."</string>
     <string name="mediasearch" msgid="959222971261132292">"Søg efter <xliff:g id="TERM">%s</xliff:g> ved hjælp af:"</string>
     <string name="working_artists" msgid="8678357432732156580">"Kunstnere ..."</string>
     <string name="working_albums" msgid="8713273699401457426">"Albummer ..."</string>
     <string name="working_songs" msgid="2201491972050410684">"Sange ..."</string>
-    <string name="working_playlists" msgid="4424950806134653351">"Afspilningslister ..."</string>
+    <string name="working_playlists" msgid="4424950806134653351">"Playlister ..."</string>
     <string name="loading" msgid="1991660396037155453">"Indlæser…"</string>
     <string name="sort_by_track" msgid="7662999005554152565">"Numre"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"Albummer"</string>
