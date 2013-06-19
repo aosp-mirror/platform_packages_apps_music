@@ -31,8 +31,8 @@
     <item quantity="other" msgid="3047615499770811984">"<xliff:g id="COUNT">%d</xliff:g> อัลบั้ม"</item>
   </plurals>
     <string name="goto_start" msgid="8979658707407220934">"ไลบรารี"</string>
-    <string name="party_shuffle" msgid="8213359225506006168">"รายการเพลงสุ่ม"</string>
-    <string name="party_shuffle_off" msgid="1828744483354711679">"ปิดรายการเพลงสุ่ม"</string>
+    <string name="party_shuffle" msgid="8213359225506006168">"เพลย์ลิสต์สุ่ม"</string>
+    <string name="party_shuffle_off" msgid="1828744483354711679">"ปิดเพลย์ลิสต์สุ่ม"</string>
     <string name="delete_item" msgid="3363330144534750601">"ลบ"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"สุ่มเพลงทั้งหมด"</string>
     <string name="play_all" msgid="6309622568869321842">"เล่นทั้งหมด"</string>
@@ -50,26 +50,26 @@
     <string name="scanning" msgid="3529383847223198502">"กำลังสแกนการ์ด SD…"</string>
     <string name="scanning_nosdcard" msgid="8105284774487360148">"กำลังสแกนที่เก็บข้อมูล USB…"</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"กำลังเล่น"</string>
-    <string name="partyshuffle_title" msgid="6582413231529992125">"รายการเพลงสุ่ม"</string>
+    <string name="partyshuffle_title" msgid="6582413231529992125">"เพลย์ลิสต์สุ่ม"</string>
     <string name="artists_title" msgid="8490372367259160067">"ศิลปิน"</string>
     <string name="albums_menu" msgid="5807982055590211900">"อัลบั้ม"</string>
     <string name="albums_title" msgid="8773880394961378035">"อัลบั้ม"</string>
     <string name="tracks_menu" msgid="6942246568246092330">"เพลง"</string>
     <string name="tracks_title" msgid="3229389424532295124">"เพลง"</string>
-    <string name="playlists_menu" msgid="5382792649771928849">"รายการเพลง"</string>
-    <string name="playlists_title" msgid="5094238486322957927">"รายการเพลง"</string>
+    <string name="playlists_menu" msgid="5382792649771928849">"เพลย์ลิสต์"</string>
+    <string name="playlists_title" msgid="5094238486322957927">"เพลย์ลิสต์"</string>
     <string name="videos_title" msgid="2066741954354129115">"วิดีโอ"</string>
     <string name="all_title" msgid="6880186414437237653">"สื่อทั้งหมด"</string>
     <string name="browse_menu" msgid="5248122473075843289">"ศิลปิน"</string>
     <string name="search_title" msgid="1016971653383739344">"ค้นหา"</string>
     <string name="no_tracks_title" msgid="8805805388271238471">"ไม่มีเพลง"</string>
     <string name="no_videos_title" msgid="6218814130364793104">"ไม่มีวิดีโอ"</string>
-    <string name="no_playlists_title" msgid="4456351945617594418">"ไม่มีรายการเพลง"</string>
+    <string name="no_playlists_title" msgid="4456351945617594418">"ไม่มีเพลย์ลิสต์"</string>
     <string name="delete_playlist_menu" msgid="8998637685583495247">"ลบ"</string>
     <string name="edit_playlist_menu" msgid="571618502105370684">"แก้ไข"</string>
     <string name="rename_playlist_menu" msgid="3133463747389494668">"เปลี่ยนชื่อ"</string>
-    <string name="playlist_deleted_message" msgid="9008053828193961455">"รายการเพลงถูกลบ"</string>
-    <string name="playlist_renamed_message" msgid="7187580192703005990">"เปลี่ยนชื่อรายการเพลง"</string>
+    <string name="playlist_deleted_message" msgid="9008053828193961455">"เพลย์ลิสต์ถูกลบ"</string>
+    <string name="playlist_renamed_message" msgid="7187580192703005990">"เปลี่ยนชื่อเพลย์ลิสต์"</string>
     <string name="recentlyadded" msgid="110978416756366953">"เพิ่งเพิ่มเข้ามา"</string>
     <string name="recentlyadded_title" msgid="3153322287249901914">"เพิ่งเพิ่มเข้ามา"</string>
     <string name="podcasts_listitem" msgid="8657809279717670634">"พอดแคสต์"</string>
@@ -97,15 +97,15 @@
     <string name="ringtone_menu_short" msgid="3367622038867238133">"ใช้เป็นเสียงเรียกเข้า"</string>
     <string name="ringtone_set" msgid="5325818347613843130">"\"<xliff:g id="NAME">%s</xliff:g>\" ถูกตั้งค่าเป็นเสียงเรียกเข้าของโทรศัพท์"</string>
     <string name="play_selection" msgid="2854921021814550018">"เล่น"</string>
-    <string name="add_to_playlist" msgid="7110273488645072783">"เพิ่มในรายการเพลง"</string>
-    <string name="queue" msgid="2937629819482787704">"รายการเพลงปัจจุบัน"</string>
+    <string name="add_to_playlist" msgid="7110273488645072783">"เพิ่มในเพลย์ลิสต์"</string>
+    <string name="queue" msgid="2937629819482787704">"เพลย์ลิสต์ปัจจุบัน"</string>
     <string name="new_playlist" msgid="7588112979692632867">"ใหม่"</string>
-    <string name="new_playlist_name_template" msgid="905710296728900597">"รายการเพลงใหม่ <xliff:g id="NUMBER">%d</xliff:g>"</string>
+    <string name="new_playlist_name_template" msgid="905710296728900597">"เพลย์ลิสต์ใหม่ <xliff:g id="NUMBER">%d</xliff:g>"</string>
   <plurals name="NNNtrackstoplaylist">
-    <item quantity="one" msgid="422388042993582235">"เพิ่มในรายการเพลง 1 เพลง"</item>
-    <item quantity="other" msgid="7662771987109627255">"เพิ่ม <xliff:g id="NUMBER">%d</xliff:g> เพลงลงในรายการเพลง"</item>
+    <item quantity="one" msgid="422388042993582235">"เพิ่มในเพลย์ลิสต์ 1 เพลง"</item>
+    <item quantity="other" msgid="7662771987109627255">"เพิ่ม <xliff:g id="NUMBER">%d</xliff:g> เพลงลงในเพลย์ลิสต์"</item>
   </plurals>
-    <string name="emptyplaylist" msgid="6711555673997896344">"รายการเพลงที่เลือกไว้ว่างเปล่า"</string>
+    <string name="emptyplaylist" msgid="6711555673997896344">"เพลย์ลิสต์ที่เลือกไว้ว่างเปล่า"</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"บันทึก"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"เขียนทับ"</string>
     <string name="service_start_error_title" msgid="8649916852210198813">"ปัญหาการเล่น"</string>
@@ -127,22 +127,22 @@
   </string-array>
     <string name="weekpicker_set" msgid="7636608790418067496">"เสร็จสิ้น"</string>
     <string name="weekpicker_title" msgid="699535378922101701">"ตั้งเวลา"</string>
-    <string name="save_as_playlist" msgid="5180413608901885255">"บันทึกเป็นรายการเพลง"</string>
-    <string name="clear_playlist" msgid="4565515100924905315">"ล้างรายการเพลง"</string>
+    <string name="save_as_playlist" msgid="5180413608901885255">"บันทึกเป็นเพลย์ลิสต์"</string>
+    <string name="clear_playlist" msgid="4565515100924905315">"ล้างเพลย์ลิสต์"</string>
     <string name="musicbrowserlabel" msgid="3162022214114562892">"เพลง"</string>
-    <string name="musicshortcutlabel" msgid="2602980193508150226">"รายการเพลง"</string>
+    <string name="musicshortcutlabel" msgid="2602980193508150226">"เพลย์ลิสต์"</string>
     <string name="mediaplaybacklabel" msgid="6733604841530940397">"เพลง"</string>
     <string name="videobrowserlabel" msgid="8522326678447494657">"วิดีโอ"</string>
     <string name="mediapickerlabel" msgid="4549836003229914299">"เพลง"</string>
     <string name="playback_failed" msgid="3811851150820251398">"โปรแกรมเล่นไม่สนับสนุนไฟล์เสียงประเภทนี้"</string>
     <string name="cancel" msgid="886559484711947520">"ยกเลิก"</string>
-    <string name="remove_from_playlist" msgid="2548577514849026354">"นำออกจากรายการเพลง"</string>
+    <string name="remove_from_playlist" msgid="2548577514849026354">"นำออกจากเพลย์ลิสต์"</string>
     <string name="streamloadingtext" msgid="8842426517396356215">"กำลังเชื่อมต่อกับ <xliff:g id="HOST">%s</xliff:g>..."</string>
     <string name="mediasearch" msgid="959222971261132292">"ค้นหาเกี่ยวกับ <xliff:g id="TERM">%s</xliff:g> โดยใช้:"</string>
     <string name="working_artists" msgid="8678357432732156580">"ศิลปิน..."</string>
     <string name="working_albums" msgid="8713273699401457426">"อัลบั้ม..."</string>
     <string name="working_songs" msgid="2201491972050410684">"เพลง..."</string>
-    <string name="working_playlists" msgid="4424950806134653351">"รายการเพลง..."</string>
+    <string name="working_playlists" msgid="4424950806134653351">"เพลย์ลิสต์..."</string>
     <string name="loading" msgid="1991660396037155453">"กำลังโหลด..."</string>
     <string name="sort_by_track" msgid="7662999005554152565">"แทร็ก"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"อัลบั้ม"</string>

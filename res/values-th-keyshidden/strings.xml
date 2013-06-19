@@ -19,7 +19,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt" msgid="2379436619128383935">"เปิดแป้นพิมพ์เพื่อตั้งชื่อให้รายการเพลงใหม่หรือเลือก บันทึก เพื่อตั้งชื่อว่า  \"<xliff:g id="PLAYLIST">%s</xliff:g>\""</string>
-    <string name="rename_playlist_same_prompt" msgid="7777541452078260899">"เปิดแป้นพิมพ์เพื่อตั้งชื่อใหม่ให้รายการเพลง \"<xliff:g id="PLAYLIST">%s</xliff:g>\""</string>
-    <string name="rename_playlist_diff_prompt" msgid="900422624897120958">"เปิดแป้นพิมพ์เพื่อตั้งชื่อใหม่แก่รายการเพลง \"<xliff:g id="PLAYLIST">%1$s</xliff:g>\" หรือเลือก บันทึก เพื่อตั้งชื่อว่า \"<xliff:g id="NAME">%2$s</xliff:g>\""</string>
+    <string name="create_playlist_create_text_prompt" msgid="2379436619128383935">"เปิดแป้นพิมพ์เพื่อตั้งชื่อให้เพลย์ลิสต์ใหม่หรือเลือก บันทึก เพื่อตั้งชื่อว่า  \"<xliff:g id="PLAYLIST">%s</xliff:g>\""</string>
+    <string name="rename_playlist_same_prompt" msgid="7777541452078260899">"เปิดแป้นพิมพ์เพื่อตั้งชื่อใหม่ให้เพลย์ลิสต์ \"<xliff:g id="PLAYLIST">%s</xliff:g>\""</string>
+    <string name="rename_playlist_diff_prompt" msgid="900422624897120958">"เปิดแป้นพิมพ์เพื่อตั้งชื่อใหม่แก่เพลย์ลิสต์ \"<xliff:g id="PLAYLIST">%1$s</xliff:g>\" หรือเลือก บันทึก เพื่อตั้งชื่อว่า \"<xliff:g id="NAME">%2$s</xliff:g>\""</string>
 </resources>
