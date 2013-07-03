@@ -97,7 +97,7 @@
     <string name="ringtone_menu_short" msgid="3367622038867238133">"Použít jako vyzváněcí tón"</string>
     <string name="ringtone_set" msgid="5325818347613843130">"Skladba <xliff:g id="NAME">%s</xliff:g> byla nastavena jako vyzváněcí tón."</string>
     <string name="play_selection" msgid="2854921021814550018">"Přehrát"</string>
-    <string name="add_to_playlist" msgid="7110273488645072783">"Přidat do seznamu stop"</string>
+    <string name="add_to_playlist" msgid="7110273488645072783">"Přidat do seznamu skladeb"</string>
     <string name="queue" msgid="2937629819482787704">"Aktuální seznam stop"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Nové"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"Nový seznam stop <xliff:g id="NUMBER">%d</xliff:g>"</string>

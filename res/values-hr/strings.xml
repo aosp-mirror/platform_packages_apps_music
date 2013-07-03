@@ -69,7 +69,7 @@
     <string name="edit_playlist_menu" msgid="571618502105370684">"Uređivanje"</string>
     <string name="rename_playlist_menu" msgid="3133463747389494668">"Preimenuj"</string>
     <string name="playlist_deleted_message" msgid="9008053828193961455">"Popis za reprodukciju je izbrisan."</string>
-    <string name="playlist_renamed_message" msgid="7187580192703005990">"Popis za reprodukciju preimenovan je."</string>
+    <string name="playlist_renamed_message" msgid="7187580192703005990">"Popis pjesama preimenovan je."</string>
     <string name="recentlyadded" msgid="110978416756366953">"Nedavno dodano"</string>
     <string name="recentlyadded_title" msgid="3153322287249901914">"Nedavno dodano"</string>
     <string name="podcasts_listitem" msgid="8657809279717670634">"Podcastovi"</string>
@@ -97,15 +97,15 @@
     <string name="ringtone_menu_short" msgid="3367622038867238133">"Koristi kao zvuk zvona"</string>
     <string name="ringtone_set" msgid="5325818347613843130">"\"<xliff:g id="NAME">%s</xliff:g>\" postavi kao zvuk zvona telefona."</string>
     <string name="play_selection" msgid="2854921021814550018">"Reproduciraj"</string>
-    <string name="add_to_playlist" msgid="7110273488645072783">"Dodaj na popis za reprodukciju"</string>
+    <string name="add_to_playlist" msgid="7110273488645072783">"Dodaj na popis pjesama"</string>
     <string name="queue" msgid="2937629819482787704">"Aktualni popis za reprodukciju"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Novo"</string>
-    <string name="new_playlist_name_template" msgid="905710296728900597">"Novi popis za reprodukciju <xliff:g id="NUMBER">%d</xliff:g>"</string>
+    <string name="new_playlist_name_template" msgid="905710296728900597">"Novi popis pjesama <xliff:g id="NUMBER">%d</xliff:g>"</string>
   <plurals name="NNNtrackstoplaylist">
     <item quantity="one" msgid="422388042993582235">"Na popis za reprodukciju dodana je 1 pjesma."</item>
     <item quantity="other" msgid="7662771987109627255">"Broj pjesama dodanih na popis za reprodukciju: <xliff:g id="NUMBER">%d</xliff:g>."</item>
   </plurals>
-    <string name="emptyplaylist" msgid="6711555673997896344">"Odabrani popis za reprodukciju je prazan."</string>
+    <string name="emptyplaylist" msgid="6711555673997896344">"Odabrani popis pjesama je prazan."</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"Spremi"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Presnimi"</string>
     <string name="service_start_error_title" msgid="8649916852210198813">"Problem s reprodukcijom"</string>
@@ -127,7 +127,7 @@
   </string-array>
     <string name="weekpicker_set" msgid="7636608790418067496">"Gotovo"</string>
     <string name="weekpicker_title" msgid="699535378922101701">"Postavljanje vremena"</string>
-    <string name="save_as_playlist" msgid="5180413608901885255">"Spremi kao popis za reprodukciju"</string>
+    <string name="save_as_playlist" msgid="5180413608901885255">"Spremi kao popis pjesama"</string>
     <string name="clear_playlist" msgid="4565515100924905315">"Očisti popis za reprodukciju"</string>
     <string name="musicbrowserlabel" msgid="3162022214114562892">"Glazba"</string>
     <string name="musicshortcutlabel" msgid="2602980193508150226">"Popis za reprodukciju glazbe"</string>
@@ -136,7 +136,7 @@
     <string name="mediapickerlabel" msgid="4549836003229914299">"Glazba"</string>
     <string name="playback_failed" msgid="3811851150820251398">"Player ne podržava ovu vrstu audiodatoteka."</string>
     <string name="cancel" msgid="886559484711947520">"Odustani"</string>
-    <string name="remove_from_playlist" msgid="2548577514849026354">"Ukloni s popisa za reprodukciju"</string>
+    <string name="remove_from_playlist" msgid="2548577514849026354">"Ukloni s popisa pjesama"</string>
     <string name="streamloadingtext" msgid="8842426517396356215">"Povezivanje s hostom <xliff:g id="HOST">%s</xliff:g>…"</string>
     <string name="mediasearch" msgid="959222971261132292">"Traži pojam \"<xliff:g id="TERM">%s</xliff:g>\" koristeći:"</string>
     <string name="working_artists" msgid="8678357432732156580">"Izvođači..."</string>
