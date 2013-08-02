@@ -203,7 +203,9 @@ public class MediaPlaybackService extends Service {
                         mCursor.close();
                         mCursor = null;
                     }
-                    mCursor = getCursorForId(mPlayList[mPlayPos]);
+                    if (mPlayPos >= 0 && mPlayPos < mPlayList.length) {
+                        mCursor = getCursorForId(mPlayList[mPlayPos]);
+                    }
                     notifyChange(META_CHANGED);
                     updateNotification();
                     setNextTrack();
