@@ -1089,6 +1089,8 @@ public class MediaPlaybackService extends Service {
         if (mNextPlayPos >= 0) {
             long id = mPlayList[mNextPlayPos];
             mPlayer.setNextDataSource(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + "/" + id);
+        } else {
+            mPlayer.setNextDataSource(null);
         }
     }
 
