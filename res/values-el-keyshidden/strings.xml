@@ -19,7 +19,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt" msgid="2379436619128383935">"Ανοίξτε το πληκτρολόγιο για να δώσετε στην νέα λίστα αναπαραγωγής ένα όνομα ή επιλέξτε Αποθήκευση για να την ονομάσετε \"<xliff:g id="PLAYLIST">%s</xliff:g>\"."</string>
-    <string name="rename_playlist_same_prompt" msgid="7777541452078260899">"Ανοίξτε το πληκτρολόγιο για να δώσετε στη λίστα αναπαραγωγής \"<xliff:g id="PLAYLIST">%s</xliff:g>\" ένα νέο όνομα."</string>
-    <string name="rename_playlist_diff_prompt" msgid="900422624897120958">"Ανοίξτε το πληκτρολόγιο για να δώσετε στη λίστα αναπαραγωγής \"<xliff:g id="PLAYLIST">%1$s</xliff:g>\" ένα νέο όνομα ή επιλέξτε Αποθήκευση για να την ονομάσετε \"<xliff:g id="NAME">%2$s</xliff:g>\"."</string>
+    <string name="create_playlist_create_text_prompt" msgid="2379436619128383935">"Ανοίξτε το πληκτρολόγιο για να δώσετε στο νέο playlist ένα όνομα ή επιλέξτε Αποθήκευση για να το ονομάσετε \"<xliff:g id="PLAYLIST">%s</xliff:g>\"."</string>
+    <string name="rename_playlist_same_prompt" msgid="7777541452078260899">"Ανοίξτε το πληκτρολόγιο για να δώσετε στο playlist \"<xliff:g id="PLAYLIST">%s</xliff:g>\" ένα νέο όνομα."</string>
+    <string name="rename_playlist_diff_prompt" msgid="900422624897120958">"Ανοίξτε το πληκτρολόγιο για να δώσετε στο playlist \"<xliff:g id="PLAYLIST">%1$s</xliff:g>\" ένα νέο όνομα ή επιλέξτε Αποθήκευση για να το ονομάσετε \"<xliff:g id="NAME">%2$s</xliff:g>\"."</string>
 </resources>
