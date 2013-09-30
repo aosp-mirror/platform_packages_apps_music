@@ -135,7 +135,7 @@
     <string name="videobrowserlabel" msgid="8522326678447494657">"ቪዲዮዎች"</string>
     <string name="mediapickerlabel" msgid="4549836003229914299">"ሙዚቃ"</string>
     <string name="playback_failed" msgid="3811851150820251398">"ይቅርታ፣ ማጫወቻው የዚህ አይነት የኦዲዮ ፋይል አይደግፍም።"</string>
-    <string name="cancel" msgid="886559484711947520">"ይቅር"</string>
+    <string name="cancel" msgid="886559484711947520">"ሰርዝ"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"ከጨዋታዝርዝር አስወግድ"</string>
     <string name="streamloadingtext" msgid="8842426517396356215">"ወደ<xliff:g id="HOST">%s</xliff:g> በማገናኘት ላይ"</string>
     <string name="mediasearch" msgid="959222971261132292">" ለ<xliff:g id="TERM">%s</xliff:g> በመጠቀም ፈልግ"</string>
