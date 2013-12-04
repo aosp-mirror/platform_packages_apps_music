@@ -39,9 +39,9 @@
     <string name="delete_artist_desc" msgid="8665759524898379194">"Vil du slette alle sange af <xliff:g id="ARTIST">%s</xliff:g> permanent fra SD-kortet?"</string>
     <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Vil du slette alle sange af <xliff:g id="ARTIST">%s</xliff:g> fra USB-lagringen?"</string>
     <string name="delete_album_desc" msgid="8172412873562794429">"Vil du slette hele albummet \"<xliff:g id="ALBUM">%s</xliff:g>\" permanent fra SD-kortet?"</string>
-    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"Vil du slette hele albummet \"<xliff:g id="ALBUM">%s</xliff:g>\" permanent fra USB-lagring?"</string>
+    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"Vil du slette hele albummet \"<xliff:g id="ALBUM">%s</xliff:g>\" permanent fra USB-lager?"</string>
     <string name="delete_song_desc" msgid="1842681623848282205">"Vil du slette \"<xliff:g id="SONG">%s</xliff:g>\" permanent fra SD-kortet?"</string>
-    <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"Vil du slette \"<xliff:g id="SONG">%s</xliff:g>\" permanent fra USB-lagring?"</string>
+    <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"Vil du slette \"<xliff:g id="SONG">%s</xliff:g>\" permanent fra USB-lager?"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"OK"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one" msgid="8560276109508404217">"Der blev slettet 1 sang."</item>
@@ -77,11 +77,11 @@
     <string name="sdcard_missing_title" msgid="9008284946643270850">"Der er intet SD-kort"</string>
     <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"Intet USB-lager"</string>
     <string name="sdcard_missing_message" msgid="2100061456003981823">"Der er ikke indsat et SD-kort i din telefon."</string>
-    <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"Din telefon har ingen USB-lagring."</string>
+    <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"Din telefon har ingen USB-lager."</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"SD-kortet er ikke tilgængeligt"</string>
     <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"USB-lager utilgængeligt"</string>
     <string name="sdcard_busy_message" msgid="579981082201215537">"Dit SD-kort er optaget."</string>
-    <string name="sdcard_busy_message_nosdcard" msgid="1493449756827869166">"Din USB-lagring er optaget."</string>
+    <string name="sdcard_busy_message_nosdcard" msgid="1493449756827869166">"Din USB-lager er optaget."</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"SD-kortfejl"</string>
     <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"Fejl i USB-lager"</string>
     <string name="sdcard_error_message" msgid="4574563894036627855">"Der opstod en fejl på dit SD-kort."</string>
