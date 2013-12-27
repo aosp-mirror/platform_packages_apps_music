@@ -64,7 +64,7 @@
     <string name="search_title" msgid="1016971653383739344">"Αναζήτηση"</string>
     <string name="no_tracks_title" msgid="8805805388271238471">"Δεν υπάρχουν τραγούδια"</string>
     <string name="no_videos_title" msgid="6218814130364793104">"Δεν υπάρχουν βίντεο"</string>
-    <string name="no_playlists_title" msgid="4456351945617594418">"Δεν υπάρχουν λίστες αναπαραγωγής"</string>
+    <string name="no_playlists_title" msgid="4456351945617594418">"Δεν υπάρχουν playlist"</string>
     <string name="delete_playlist_menu" msgid="8998637685583495247">"Διαγραφή"</string>
     <string name="edit_playlist_menu" msgid="571618502105370684">"Επεξεργασία"</string>
     <string name="rename_playlist_menu" msgid="3133463747389494668">"Μετονομασία"</string>

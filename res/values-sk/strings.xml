@@ -34,7 +34,7 @@
     <string name="party_shuffle" msgid="8213359225506006168">"Náhodný výber všetkých skladieb"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"Vypnúť náhodný výber všetkých skladieb"</string>
     <string name="delete_item" msgid="3363330144534750601">"Odstrániť"</string>
-    <string name="shuffle_all" msgid="1388193611787878773">"Náhodný výber – všetko"</string>
+    <string name="shuffle_all" msgid="1388193611787878773">"Náhodne prehrávať všetko"</string>
     <string name="play_all" msgid="6309622568869321842">"Prehrať všetko"</string>
     <string name="delete_artist_desc" msgid="8665759524898379194">"Natrvalo odstrániť všetky skladby interpreta „<xliff:g id="ARTIST">%s</xliff:g>“ z karty SD?"</string>
     <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Natrvalo odstrániť všetky skladby interpreta „<xliff:g id="ARTIST">%s</xliff:g>“ z úložiska USB?"</string>
