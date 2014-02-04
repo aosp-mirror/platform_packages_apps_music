@@ -136,7 +136,7 @@
     <string name="mediapickerlabel" msgid="4549836003229914299">"Muziki"</string>
     <string name="playback_failed" msgid="3811851150820251398">"Santuri haihimili aina hii ya faili ya sauti."</string>
     <string name="cancel" msgid="886559484711947520">"Ghairi"</string>
-    <string name="remove_from_playlist" msgid="2548577514849026354">"Ondoa kutoka kwa orodha ya kucheza"</string>
+    <string name="remove_from_playlist" msgid="2548577514849026354">"Ondoa kwenye orodha ya kucheza"</string>
     <string name="streamloadingtext" msgid="8842426517396356215">"Inaunganisha kwa <xliff:g id="HOST">%s</xliff:g>…"</string>
     <string name="mediasearch" msgid="959222971261132292">"Tafuta <xliff:g id="TERM">%s</xliff:g> kwa kutumia:"</string>
     <string name="working_artists" msgid="8678357432732156580">"Wasanii..."</string>
