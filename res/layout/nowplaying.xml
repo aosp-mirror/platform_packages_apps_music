@@ -24,7 +24,9 @@
     android:focusable="true"
     android:visibility="gone"
     android:background="@drawable/music_bottom_playback_bg"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingTop="3dip"
+    android:paddingBottom="2dip">
 
     <LinearLayout
         android:layout_width="match_parent"
