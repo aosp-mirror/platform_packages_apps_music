@@ -70,8 +70,8 @@
     <string name="rename_playlist_menu" msgid="3133463747389494668">"Переименовать"</string>
     <string name="playlist_deleted_message" msgid="9008053828193961455">"Плейлист удален."</string>
     <string name="playlist_renamed_message" msgid="7187580192703005990">"Плейлист переименован."</string>
-    <string name="recentlyadded" msgid="110978416756366953">"Недавно добавленные"</string>
-    <string name="recentlyadded_title" msgid="3153322287249901914">"Недавно добавленные"</string>
+    <string name="recentlyadded" msgid="110978416756366953">"Добавили недавно"</string>
+    <string name="recentlyadded_title" msgid="3153322287249901914">"Добавили недавно"</string>
     <string name="podcasts_listitem" msgid="8657809279717670634">"Подкасты"</string>
     <string name="podcasts_title" msgid="4928414142496858304">"Подкасты"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"SD-карта отсутствует."</string>

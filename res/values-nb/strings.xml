@@ -97,7 +97,7 @@
     <string name="ringtone_menu_short" msgid="3367622038867238133">"Bruk som ringetone"</string>
     <string name="ringtone_set" msgid="5325818347613843130">"«<xliff:g id="NAME">%s</xliff:g>» valgt som telefonringetone."</string>
     <string name="play_selection" msgid="2854921021814550018">"Spill"</string>
-    <string name="add_to_playlist" msgid="7110273488645072783">"Legg til spillelisten"</string>
+    <string name="add_to_playlist" msgid="7110273488645072783">"Legg til i spillelisten"</string>
     <string name="queue" msgid="2937629819482787704">"Gjeldende spilleliste"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Ny"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"Ny spilleliste <xliff:g id="NUMBER">%d</xliff:g>"</string>
@@ -149,7 +149,7 @@
     <string name="sort_by_artist" msgid="4607024967813199992">"Artister"</string>
     <string name="music_picker_title" msgid="4143865470317360605">"Velg sang"</string>
     <string name="search_settings_description" msgid="6520975349259883368">"Artister, album og spor"</string>
-    <string name="search_hint" msgid="3766854898072633001">"Søk i musikk"</string>
+    <string name="search_hint" msgid="3766854898072633001">"Søk etter musikk"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ"</string>
     <string name="widget_initial_text" msgid="3166878738860903586">"Trykk for å velge musikk."</string>
     <string name="effectspanel" msgid="8804547581593509614">"Lydeffekter"</string>
