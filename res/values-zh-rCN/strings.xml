@@ -136,7 +136,7 @@
     <string name="mediapickerlabel" msgid="4549836003229914299">"音乐"</string>
     <string name="playback_failed" msgid="3811851150820251398">"该播放器不支持这种音频文件类型。"</string>
     <string name="cancel" msgid="886559484711947520">"取消"</string>
-    <string name="remove_from_playlist" msgid="2548577514849026354">"从播放列表中删除"</string>
+    <string name="remove_from_playlist" msgid="2548577514849026354">"从播放列表中移除"</string>
     <string name="streamloadingtext" msgid="8842426517396356215">"正在连接<xliff:g id="HOST">%s</xliff:g>..."</string>
     <string name="mediasearch" msgid="959222971261132292">"使用以下工具搜索“<xliff:g id="TERM">%s</xliff:g>”："</string>
     <string name="working_artists" msgid="8678357432732156580">"音乐人..."</string>
