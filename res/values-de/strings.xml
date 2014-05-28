@@ -31,8 +31,8 @@
     <item quantity="other" msgid="3047615499770811984">"<xliff:g id="COUNT">%d</xliff:g> Alben"</item>
   </plurals>
     <string name="goto_start" msgid="8979658707407220934">"Bibliothek"</string>
-    <string name="party_shuffle" msgid="8213359225506006168">"Party-Mix"</string>
-    <string name="party_shuffle_off" msgid="1828744483354711679">"Party-Mix aus"</string>
+    <string name="party_shuffle" msgid="8213359225506006168">"Partymix"</string>
+    <string name="party_shuffle_off" msgid="1828744483354711679">"Partymix aus"</string>
     <string name="delete_item" msgid="3363330144534750601">"Löschen"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"Alle zufällig wiedergeben"</string>
     <string name="play_all" msgid="6309622568869321842">"Alle wiedergeben"</string>
@@ -50,7 +50,7 @@
     <string name="scanning" msgid="3529383847223198502">"SD-Karte wird gelesenen..."</string>
     <string name="scanning_nosdcard" msgid="8105284774487360148">"USB-Speicher wird gescannt..."</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"Läuft gerade"</string>
-    <string name="partyshuffle_title" msgid="6582413231529992125">"Party-Mix"</string>
+    <string name="partyshuffle_title" msgid="6582413231529992125">"Partymix"</string>
     <string name="artists_title" msgid="8490372367259160067">"Interpreten"</string>
     <string name="albums_menu" msgid="5807982055590211900">"Alben"</string>
     <string name="albums_title" msgid="8773880394961378035">"Alben"</string>
