@@ -34,7 +34,7 @@
     <string name="party_shuffle" msgid="8213359225506006168">"Lecture aléatoire"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"Désactiver la lecture aléatoire"</string>
     <string name="delete_item" msgid="3363330144534750601">"Supprimer"</string>
-    <string name="shuffle_all" msgid="1388193611787878773">"Lecture aléatoire de tous les titres"</string>
+    <string name="shuffle_all" msgid="1388193611787878773">"Lecture aléatoire"</string>
     <string name="play_all" msgid="6309622568869321842">"Tout lire"</string>
     <string name="delete_artist_desc" msgid="8665759524898379194">"Supprimer définitivement tous les titres de \"<xliff:g id="ARTIST">%s</xliff:g>\" de la carte SD?"</string>
     <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Supprimer définitivement tous les titres de \"<xliff:g id="ARTIST">%s</xliff:g>\" de la mémoire de stockage USB?"</string>
