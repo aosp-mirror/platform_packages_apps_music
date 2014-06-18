@@ -97,7 +97,7 @@
     <string name="ringtone_menu_short" msgid="3367622038867238133">"Usar como toque"</string>
     <string name="ringtone_set" msgid="5325818347613843130">"\"<xliff:g id="NAME">%s</xliff:g>\" definido como toque do telefone."</string>
     <string name="play_selection" msgid="2854921021814550018">"Reproduzir"</string>
-    <string name="add_to_playlist" msgid="7110273488645072783">"Adicionar à reprodução"</string>
+    <string name="add_to_playlist" msgid="7110273488645072783">"Adicionar à playlist"</string>
     <string name="queue" msgid="2937629819482787704">"Playlist atual"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Novo"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"Nova playlist <xliff:g id="NUMBER">%d</xliff:g>"</string>
@@ -125,7 +125,7 @@
     <item msgid="2727959579637914171">"11 semanas"</item>
     <item msgid="8708754966127584739">"12 semanas"</item>
   </string-array>
-    <string name="weekpicker_set" msgid="7636608790418067496">"Concluído"</string>
+    <string name="weekpicker_set" msgid="7636608790418067496">"Concluir"</string>
     <string name="weekpicker_title" msgid="699535378922101701">"Definir o período"</string>
     <string name="save_as_playlist" msgid="5180413608901885255">"Salvar como playlist"</string>
     <string name="clear_playlist" msgid="4565515100924905315">"Limpar playlist"</string>
