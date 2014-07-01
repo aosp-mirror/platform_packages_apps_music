@@ -1395,7 +1395,8 @@ public class TrackBrowserActivity extends ListActivity
             protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
                 //Log.i("@@@", "query complete: " + cursor.getCount() + "   " + mActivity);
                 mActivity.init(cursor, cookie != null);
-                if (token == 0 && cookie != null && cursor != null && cursor.getCount() >= 100) {
+                if (token == 0 && cookie != null && cursor != null &&
+                    !cursor.isClosed() && cursor.getCount() >= 100) {
                     QueryArgs args = (QueryArgs) cookie;
                     startQuery(1, null, args.uri, args.projection, args.selection,
                             args.selectionArgs, args.orderBy);
