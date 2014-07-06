@@ -128,14 +128,14 @@
     <string name="weekpicker_set" msgid="7636608790418067496">"ተከናውኗል"</string>
     <string name="weekpicker_title" msgid="699535378922101701">"ጊዜ አዘጋጅ"</string>
     <string name="save_as_playlist" msgid="5180413608901885255">"እንደ ጨዋታ ዝርዝር አስቀምጥ"</string>
-    <string name="clear_playlist" msgid="4565515100924905315">"የጨዋታ ዝርዝር አጥራ"</string>
+    <string name="clear_playlist" msgid="4565515100924905315">"የጨዋታ ዝርዝር አጽዳ"</string>
     <string name="musicbrowserlabel" msgid="3162022214114562892">"ሙዚቃ"</string>
     <string name="musicshortcutlabel" msgid="2602980193508150226">"የሙዚቃ ጨዋታዝርዝር"</string>
     <string name="mediaplaybacklabel" msgid="6733604841530940397">"ሙዚቃ"</string>
     <string name="videobrowserlabel" msgid="8522326678447494657">"ቪዲዮዎች"</string>
     <string name="mediapickerlabel" msgid="4549836003229914299">"ሙዚቃ"</string>
     <string name="playback_failed" msgid="3811851150820251398">"ይቅርታ፣ ማጫወቻው የዚህ አይነት የኦዲዮ ፋይል አይደግፍም።"</string>
-    <string name="cancel" msgid="886559484711947520">"ሰርዝ"</string>
+    <string name="cancel" msgid="886559484711947520">"ይቅር"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"ከጨዋታዝርዝር አስወግድ"</string>
     <string name="streamloadingtext" msgid="8842426517396356215">"ወደ<xliff:g id="HOST">%s</xliff:g> በማገናኘት ላይ"</string>
     <string name="mediasearch" msgid="959222971261132292">" ለ<xliff:g id="TERM">%s</xliff:g> በመጠቀም ፈልግ"</string>

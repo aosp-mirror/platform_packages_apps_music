@@ -28,7 +28,7 @@
   </plurals>
   <plurals name="Nalbums">
     <item quantity="one" msgid="3798955510439465932">"1 album"</item>
-    <item quantity="other" msgid="3047615499770811984">"<xliff:g id="COUNT">%d</xliff:g> albummer"</item>
+    <item quantity="other" msgid="3047615499770811984">"<xliff:g id="COUNT">%d</xliff:g> album"</item>
   </plurals>
     <string name="goto_start" msgid="8979658707407220934">"Samling"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"Festmix"</string>
@@ -52,8 +52,8 @@
     <string name="nowplaying_title" msgid="8342523844307751761">"Spiller nu"</string>
     <string name="partyshuffle_title" msgid="6582413231529992125">"Festmix"</string>
     <string name="artists_title" msgid="8490372367259160067">"Kunstnere"</string>
-    <string name="albums_menu" msgid="5807982055590211900">"Albummer"</string>
-    <string name="albums_title" msgid="8773880394961378035">"Albummer"</string>
+    <string name="albums_menu" msgid="5807982055590211900">"Album"</string>
+    <string name="albums_title" msgid="8773880394961378035">"Album"</string>
     <string name="tracks_menu" msgid="6942246568246092330">"Sange"</string>
     <string name="tracks_title" msgid="3229389424532295124">"Sange"</string>
     <string name="playlists_menu" msgid="5382792649771928849">"Playlister"</string>
@@ -140,15 +140,15 @@
     <string name="streamloadingtext" msgid="8842426517396356215">"Opretter forbindelse til <xliff:g id="HOST">%s</xliff:g>..."</string>
     <string name="mediasearch" msgid="959222971261132292">"Søg efter <xliff:g id="TERM">%s</xliff:g> ved hjælp af:"</string>
     <string name="working_artists" msgid="8678357432732156580">"Kunstnere ..."</string>
-    <string name="working_albums" msgid="8713273699401457426">"Albummer ..."</string>
+    <string name="working_albums" msgid="8713273699401457426">"Album ..."</string>
     <string name="working_songs" msgid="2201491972050410684">"Sange ..."</string>
     <string name="working_playlists" msgid="4424950806134653351">"Playlister ..."</string>
     <string name="loading" msgid="1991660396037155453">"Indlæser…"</string>
     <string name="sort_by_track" msgid="7662999005554152565">"Numre"</string>
-    <string name="sort_by_album" msgid="2912837715658975248">"Albummer"</string>
+    <string name="sort_by_album" msgid="2912837715658975248">"Album"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"Kunstnere"</string>
     <string name="music_picker_title" msgid="4143865470317360605">"Vælg musiknummer"</string>
-    <string name="search_settings_description" msgid="6520975349259883368">"Kunstnere, albummer og numre"</string>
+    <string name="search_settings_description" msgid="6520975349259883368">"Kunstnere, album og numre"</string>
     <string name="search_hint" msgid="3766854898072633001">"Søg i Musik"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
     <string name="widget_initial_text" msgid="3166878738860903586">"Tryk for at vælge musik."</string>

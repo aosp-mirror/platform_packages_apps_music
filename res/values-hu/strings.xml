@@ -36,10 +36,10 @@
     <string name="delete_item" msgid="3363330144534750601">"Törlés"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"Keverés"</string>
     <string name="play_all" msgid="6309622568869321842">"Összes lejátszása"</string>
-    <string name="delete_artist_desc" msgid="8665759524898379194">"Véglegesen törli <xliff:g id="ARTIST">%s</xliff:g> összes dalát az SD-kártyáról?"</string>
-    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Véglegesen törli <xliff:g id="ARTIST">%s</xliff:g> összes dalát az USB-háttértárról?"</string>
-    <string name="delete_album_desc" msgid="8172412873562794429">"Véglegesen törli a teljes \"<xliff:g id="ALBUM">%s</xliff:g>\" albumot az SD-kártyáról?"</string>
-    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"Véglegesen törli a teljes \"<xliff:g id="ALBUM">%s</xliff:g>\" albumot az USB-háttértárról?"</string>
+    <string name="delete_artist_desc" msgid="8665759524898379194">"Véglegesen törlöd <xliff:g id="ARTIST">%s</xliff:g> összes dalát az SD-kártyáról?"</string>
+    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Véglegesen törlöd <xliff:g id="ARTIST">%s</xliff:g> összes dalát az USB-háttértárról?"</string>
+    <string name="delete_album_desc" msgid="8172412873562794429">"Véglegesen törlöd a teljes \"<xliff:g id="ALBUM">%s</xliff:g>\" albumot az SD-kártyáról?"</string>
+    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"Véglegesen törlöd a teljes \"<xliff:g id="ALBUM">%s</xliff:g>\" albumot az USB-háttértárról?"</string>
     <string name="delete_song_desc" msgid="1842681623848282205">"A(z) \"<xliff:g id="SONG">%s</xliff:g>\" végleges törlése az SD-kártyáról?"</string>
     <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"A(z) \"<xliff:g id="SONG">%s</xliff:g>\" végleges törlése az USB-háttértárról?"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"OK"</string>
@@ -77,7 +77,7 @@
     <string name="sdcard_missing_title" msgid="9008284946643270850">"Hiányzó SD-kártya"</string>
     <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"Nem található USB-tár"</string>
     <string name="sdcard_missing_message" msgid="2100061456003981823">"Nincs SD-kártya a telefonban."</string>
-    <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"Telefonjának nincs USB-háttértára."</string>
+    <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"Telefonodnak nincs USB-háttértára."</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"Az SD-kártya nem érhető el"</string>
     <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"Az USB-tár nem érhető el"</string>
     <string name="sdcard_busy_message" msgid="579981082201215537">"Az SD-kártya használatban van."</string>
@@ -151,6 +151,6 @@
     <string name="search_settings_description" msgid="6520975349259883368">"Előadók, albumok és számok"</string>
     <string name="search_hint" msgid="3766854898072633001">"Zene keresése"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
-    <string name="widget_initial_text" msgid="3166878738860903586">"Érintse meg zene kiválasztásához."</string>
+    <string name="widget_initial_text" msgid="3166878738860903586">"Érintsd meg zene kiválasztásához."</string>
     <string name="effectspanel" msgid="8804547581593509614">"Hangeffektek"</string>
 </resources>
