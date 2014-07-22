@@ -33,19 +33,19 @@
     <string name="goto_start" msgid="8979658707407220934">"ไลบรารี"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"เพลย์ลิสต์สุ่ม"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"ปิดเพลย์ลิสต์สุ่ม"</string>
-    <string name="delete_item" msgid="3363330144534750601">"นำออก"</string>
+    <string name="delete_item" msgid="3363330144534750601">"ลบ"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"สุ่มเพลงทั้งหมด"</string>
     <string name="play_all" msgid="6309622568869321842">"เล่นทั้งหมด"</string>
-    <string name="delete_artist_desc" msgid="8665759524898379194">"นำออกทุกเพลงของ <xliff:g id="ARTIST">%s</xliff:g> จากการ์ด SD หรือไม่"</string>
-    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"นำออกทุกเพลงของ <xliff:g id="ARTIST">%s</xliff:g> จากที่จัดเก็บข้อมูล USB หรือไม่"</string>
-    <string name="delete_album_desc" msgid="8172412873562794429">"นำออกอันำออกั้ม \"<xliff:g id="ALBUM">%s</xliff:g>\" ทั้งอันำออกั้มจากการ์ด SD อย่างถาวรหรือไม่"</string>
-    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"นำออกอันำออกั้ม \"<xliff:g id="ALBUM">%s</xliff:g>\" ทั้งอันำออกั้มจากที่จัดเก็บข้อมูล USB อย่างถาวรหรือไม่"</string>
-    <string name="delete_song_desc" msgid="1842681623848282205">"นำออก \"<xliff:g id="SONG">%s</xliff:g>\" จากการ์ด SD อย่างถาวรหรือไม่"</string>
-    <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"นำออก \"<xliff:g id="SONG">%s</xliff:g>\" จากที่จัดเก็บข้อมูล USB อย่างถาวรหรือไม่"</string>
+    <string name="delete_artist_desc" msgid="8665759524898379194">"ลบทุกเพลงของ <xliff:g id="ARTIST">%s</xliff:g> จากการ์ด SD หรือไม่"</string>
+    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"ลบทุกเพลงของ <xliff:g id="ARTIST">%s</xliff:g> จากที่จัดเก็บข้อมูล USB หรือไม่"</string>
+    <string name="delete_album_desc" msgid="8172412873562794429">"ลบอัลบั้ม \"<xliff:g id="ALBUM">%s</xliff:g>\" ทั้งอัลบั้มจากการ์ด SD อย่างถาวรหรือไม่"</string>
+    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"ลบอัลบั้ม \"<xliff:g id="ALBUM">%s</xliff:g>\" ทั้งอัลบั้มจากที่จัดเก็บข้อมูล USB อย่างถาวรหรือไม่"</string>
+    <string name="delete_song_desc" msgid="1842681623848282205">"ลบ \"<xliff:g id="SONG">%s</xliff:g>\" จากการ์ด SD อย่างถาวรหรือไม่"</string>
+    <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"ลบ \"<xliff:g id="SONG">%s</xliff:g>\" จากที่จัดเก็บข้อมูล USB อย่างถาวรหรือไม่"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"ตกลง"</string>
   <plurals name="NNNtracksdeleted">
-    <item quantity="one" msgid="8560276109508404217">"นำออกไป 1 เพลง"</item>
-    <item quantity="other" msgid="5156740163031225200">"เพลง <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> เพลงถูกนำออก"</item>
+    <item quantity="one" msgid="8560276109508404217">"ลบไป 1 เพลง"</item>
+    <item quantity="other" msgid="5156740163031225200">"เพลง <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> เพลงถูกลบ"</item>
   </plurals>
     <string name="scanning" msgid="3529383847223198502">"กำลังสแกนการ์ด SD…"</string>
     <string name="scanning_nosdcard" msgid="8105284774487360148">"กำลังสแกนที่เก็บข้อมูล USB…"</string>
@@ -65,10 +65,10 @@
     <string name="no_tracks_title" msgid="8805805388271238471">"ไม่มีเพลง"</string>
     <string name="no_videos_title" msgid="6218814130364793104">"ไม่มีวิดีโอ"</string>
     <string name="no_playlists_title" msgid="4456351945617594418">"ไม่มีเพลย์ลิสต์"</string>
-    <string name="delete_playlist_menu" msgid="8998637685583495247">"นำออก"</string>
+    <string name="delete_playlist_menu" msgid="8998637685583495247">"ลบ"</string>
     <string name="edit_playlist_menu" msgid="571618502105370684">"แก้ไข"</string>
     <string name="rename_playlist_menu" msgid="3133463747389494668">"เปลี่ยนชื่อ"</string>
-    <string name="playlist_deleted_message" msgid="9008053828193961455">"เพลย์ลิสต์ถูกนำออก"</string>
+    <string name="playlist_deleted_message" msgid="9008053828193961455">"เพลย์ลิสต์ถูกลบ"</string>
     <string name="playlist_renamed_message" msgid="7187580192703005990">"เปลี่ยนชื่อเพลย์ลิสต์"</string>
     <string name="recentlyadded" msgid="110978416756366953">"เพิ่งเพิ่มเข้ามา"</string>
     <string name="recentlyadded_title" msgid="3153322287249901914">"เพิ่งเพิ่มเข้ามา"</string>
@@ -136,7 +136,7 @@
     <string name="mediapickerlabel" msgid="4549836003229914299">"เพลง"</string>
     <string name="playback_failed" msgid="3811851150820251398">"โปรแกรมเล่นไม่สนับสนุนไฟล์เสียงประเภทนี้"</string>
     <string name="cancel" msgid="886559484711947520">"ยกเลิก"</string>
-    <string name="remove_from_playlist" msgid="2548577514849026354">"นำออกจากเพลย์ลิสต์"</string>
+    <string name="remove_from_playlist" msgid="2548577514849026354">"ลบจากเพลย์ลิสต์"</string>
     <string name="streamloadingtext" msgid="8842426517396356215">"กำลังเชื่อมต่อกับ <xliff:g id="HOST">%s</xliff:g>..."</string>
     <string name="mediasearch" msgid="959222971261132292">"ค้นหาเกี่ยวกับ <xliff:g id="TERM">%s</xliff:g> โดยใช้:"</string>
     <string name="working_artists" msgid="8678357432732156580">"ศิลปิน..."</string>
