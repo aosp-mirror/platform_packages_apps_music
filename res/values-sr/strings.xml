@@ -143,7 +143,7 @@
     <string name="working_albums" msgid="8713273699401457426">"Албуми…"</string>
     <string name="working_songs" msgid="2201491972050410684">"Песме..."</string>
     <string name="working_playlists" msgid="4424950806134653351">"Плејлисте…"</string>
-    <string name="loading" msgid="1991660396037155453">"Учитавање..."</string>
+    <string name="loading" msgid="1991660396037155453">"Учитава се..."</string>
     <string name="sort_by_track" msgid="7662999005554152565">"Нумере"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"Албуми"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"Извођачи"</string>
