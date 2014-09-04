@@ -103,7 +103,7 @@
     <string name="new_playlist_name_template" msgid="905710296728900597">"Нова плејлиста <xliff:g id="NUMBER">%d</xliff:g>"</string>
   <plurals name="NNNtrackstoplaylist">
     <item quantity="one" msgid="422388042993582235">"1 песма је додата на плејлисту."</item>
-    <item quantity="other" msgid="7662771987109627255">"Песме (<xliff:g id="NUMBER">%d</xliff:g>) су додате на плејлисту."</item>
+    <item quantity="other" msgid="7662771987109627255">"Песама додато на плејлисту: <xliff:g id="NUMBER">%d</xliff:g>"</item>
   </plurals>
     <string name="emptyplaylist" msgid="6711555673997896344">"Изабрана плејлиста је празна."</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"Сачувај"</string>
