@@ -51,7 +51,7 @@
     <string name="scanning_nosdcard" msgid="8105284774487360148">"در حال اسکن کردن حافظهٔ USB..."</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"در حال پخش"</string>
     <string name="partyshuffle_title" msgid="6582413231529992125">"ترتیب تصادفی گروه"</string>
-    <string name="artists_title" msgid="8490372367259160067">"هنرمندها"</string>
+    <string name="artists_title" msgid="8490372367259160067">"هنرمندان"</string>
     <string name="albums_menu" msgid="5807982055590211900">"آلبوم‌ها"</string>
     <string name="albums_title" msgid="8773880394961378035">"آلبوم‌ها"</string>
     <string name="tracks_menu" msgid="6942246568246092330">"آهنگ‌ها"</string>
@@ -60,7 +60,7 @@
     <string name="playlists_title" msgid="5094238486322957927">"لیست‌های پخش"</string>
     <string name="videos_title" msgid="2066741954354129115">"ویدئوها"</string>
     <string name="all_title" msgid="6880186414437237653">"همه رسانه"</string>
-    <string name="browse_menu" msgid="5248122473075843289">"هنرمندها"</string>
+    <string name="browse_menu" msgid="5248122473075843289">"هنرمندان"</string>
     <string name="search_title" msgid="1016971653383739344">"جستجو"</string>
     <string name="no_tracks_title" msgid="8805805388271238471">"بدون آهنگ"</string>
     <string name="no_videos_title" msgid="6218814130364793104">"ویدئویی موجود نیست"</string>
@@ -139,14 +139,14 @@
     <string name="remove_from_playlist" msgid="2548577514849026354">"حذف از لیست پخش"</string>
     <string name="streamloadingtext" msgid="8842426517396356215">"در حال اتصال به <xliff:g id="HOST">%s</xliff:g>..."</string>
     <string name="mediasearch" msgid="959222971261132292">"جستجو برای <xliff:g id="TERM">%s</xliff:g> با استفاده از:"</string>
-    <string name="working_artists" msgid="8678357432732156580">"هنرمندها..."</string>
+    <string name="working_artists" msgid="8678357432732156580">"هنرمندان..."</string>
     <string name="working_albums" msgid="8713273699401457426">"آلبوم‌ها..."</string>
     <string name="working_songs" msgid="2201491972050410684">"آهنگ‌ها..."</string>
     <string name="working_playlists" msgid="4424950806134653351">"لیست‌های پخش..."</string>
     <string name="loading" msgid="1991660396037155453">"در حال بارگیری..."</string>
     <string name="sort_by_track" msgid="7662999005554152565">"تراک‌ها"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"آلبوم‌ها"</string>
-    <string name="sort_by_artist" msgid="4607024967813199992">"هنرمندها"</string>
+    <string name="sort_by_artist" msgid="4607024967813199992">"هنرمندان"</string>
     <string name="music_picker_title" msgid="4143865470317360605">"تراک موسیقی را انتخاب کنید"</string>
     <string name="search_settings_description" msgid="6520975349259883368">"هنرمندها، آلبوم‌ها و تراک‌ها"</string>
     <string name="search_hint" msgid="3766854898072633001">"جستجوی موسیقی"</string>

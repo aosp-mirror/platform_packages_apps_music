@@ -142,7 +142,7 @@
     <string name="working_artists" msgid="8678357432732156580">"Artistas…"</string>
     <string name="working_albums" msgid="8713273699401457426">"Álbumes…"</string>
     <string name="working_songs" msgid="2201491972050410684">"Canciones…"</string>
-    <string name="working_playlists" msgid="4424950806134653351">"Listas de reproducción…"</string>
+    <string name="working_playlists" msgid="4424950806134653351">"Playlists…"</string>
     <string name="loading" msgid="1991660396037155453">"Cargando..."</string>
     <string name="sort_by_track" msgid="7662999005554152565">"Canciones"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"Álbumes"</string>
