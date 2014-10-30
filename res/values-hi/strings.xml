@@ -37,18 +37,18 @@
     <string name="shuffle_all" msgid="1388193611787878773">"सभी का क्रम बदलें"</string>
     <string name="play_all" msgid="6309622568869321842">"सभी चलाएं"</string>
     <string name="delete_artist_desc" msgid="8665759524898379194">"SD कार्ड से <xliff:g id="ARTIST">%s</xliff:g> के सभी गीत स्थायी रूप से हटाएं?"</string>
-    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"USB संग्रहण से <xliff:g id="ARTIST">%s</xliff:g> के सभी गीत स्थायी रूप से हटाएं?"</string>
+    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"USB मेमोरी से <xliff:g id="ARTIST">%s</xliff:g> के सभी गीत स्थायी रूप से हटाएं?"</string>
     <string name="delete_album_desc" msgid="8172412873562794429">"SD कार्ड से संपूर्ण एल्बम \"<xliff:g id="ALBUM">%s</xliff:g>\" स्थायी रूप से हटाएं?"</string>
-    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"USB संग्रहण से संपूर्ण एल्बम \"<xliff:g id="ALBUM">%s</xliff:g>\" स्थायी रूप से हटाएं?"</string>
+    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"USB मेमोरी से संपूर्ण एल्बम \"<xliff:g id="ALBUM">%s</xliff:g>\" स्थायी रूप से हटाएं?"</string>
     <string name="delete_song_desc" msgid="1842681623848282205">"SD कार्ड से \"<xliff:g id="SONG">%s</xliff:g>\" स्थायी रूप से हटाएं?"</string>
-    <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"USB संग्रहण से \"<xliff:g id="SONG">%s</xliff:g>\" स्थायी रूप से हटाएं?"</string>
+    <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"USB मेमोरी से \"<xliff:g id="SONG">%s</xliff:g>\" स्थायी रूप से हटाएं?"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"ठीक"</string>
   <plurals name="NNNtracksdeleted">
     <item quantity="one" msgid="8560276109508404217">"एक गीत हटा दिया गया."</item>
     <item quantity="other" msgid="5156740163031225200">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> गीत हटा दिए गए."</item>
   </plurals>
     <string name="scanning" msgid="3529383847223198502">"SD कार्ड की स्कैनिंग की जा रही है..."</string>
-    <string name="scanning_nosdcard" msgid="8105284774487360148">"USB संग्रहण स्‍कैन कर रहा है…"</string>
+    <string name="scanning_nosdcard" msgid="8105284774487360148">"USB मेमोरी स्‍कैन कर रहा है…"</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"अभी चल रहा है"</string>
     <string name="partyshuffle_title" msgid="6582413231529992125">"आंशिक शफल"</string>
     <string name="artists_title" msgid="8490372367259160067">"कलाकार"</string>
@@ -75,17 +75,17 @@
     <string name="podcasts_listitem" msgid="8657809279717670634">"पॉडकास्ट"</string>
     <string name="podcasts_title" msgid="4928414142496858304">"पॉडकास्ट"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"कोई SD कार्ड नहीं"</string>
-    <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"कोई USB संग्रहण नहीं"</string>
+    <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"कोई USB मेमोरी नहीं"</string>
     <string name="sdcard_missing_message" msgid="2100061456003981823">"आपके फ़ोन में कोई SD कार्ड नहीं डाला गया है."</string>
-    <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"आपके फ़ोन में USB संग्रहण नहीं है."</string>
+    <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"आपके फ़ोन में USB मेमोरी नहीं है."</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"SD कार्ड अनुपलब्ध"</string>
-    <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"USB संग्रहण अनुपलब्ध"</string>
+    <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"USB मेमोरी अनुपलब्ध"</string>
     <string name="sdcard_busy_message" msgid="579981082201215537">"आपका SD कार्ड व्‍यस्‍त है."</string>
-    <string name="sdcard_busy_message_nosdcard" msgid="1493449756827869166">"आपका USB संग्रहण व्‍यस्त है."</string>
+    <string name="sdcard_busy_message_nosdcard" msgid="1493449756827869166">"आपका USB मेमोरी व्‍यस्त है."</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"SD कार्ड त्रुटि"</string>
-    <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"USB संग्रहण त्रुटि"</string>
+    <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"USB मेमोरी त्रुटि"</string>
     <string name="sdcard_error_message" msgid="4574563894036627855">"आपके SD कार्ड में एक त्रुटि आई थी."</string>
-    <string name="sdcard_error_message_nosdcard" msgid="4983430848526821234">"आपके USB संग्रहण में एक त्रुटि आई थी."</string>
+    <string name="sdcard_error_message_nosdcard" msgid="4983430848526821234">"आपके USB मेमोरी में एक त्रुटि आई थी."</string>
     <string name="unknown_artist_name" msgid="5567811106415855219">"अज्ञात कलाकार"</string>
     <string name="unknown_album_name" msgid="8525145988941244727">"अज्ञात एल्बम"</string>
     <string name="shuffle_on_notif" msgid="5453708337808483943">"शफल चालू है."</string>
@@ -135,7 +135,7 @@
     <string name="videobrowserlabel" msgid="8522326678447494657">"वीडियो"</string>
     <string name="mediapickerlabel" msgid="4549836003229914299">"संगीत"</string>
     <string name="playback_failed" msgid="3811851150820251398">"प्‍लेयर इस प्रकार की ऑडियो फ़ाइल का समर्थन नहीं करता."</string>
-    <string name="cancel" msgid="886559484711947520">"रद्द करें"</string>
+    <string name="cancel" msgid="886559484711947520">"रहने दें"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"प्‍लेलिस्‍ट से निकालें"</string>
     <string name="streamloadingtext" msgid="8842426517396356215">"<xliff:g id="HOST">%s</xliff:g> से कनेक्‍ट हो रहा है…"</string>
     <string name="mediasearch" msgid="959222971261132292">"<xliff:g id="TERM">%s</xliff:g> के लिए इसका उपयोग कर खोजें:"</string>

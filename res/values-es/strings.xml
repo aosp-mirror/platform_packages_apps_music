@@ -44,7 +44,7 @@
     <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"¿Eliminar \"<xliff:g id="SONG">%s</xliff:g>\" del almacenamiento USB de forma permanente?"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"Aceptar"</string>
   <plurals name="NNNtracksdeleted">
-    <item quantity="one" msgid="8560276109508404217">"Se ha eliminado una canción."</item>
+    <item quantity="one" msgid="8560276109508404217">"Se ha eliminado 1 canción."</item>
     <item quantity="other" msgid="5156740163031225200">"Se han eliminado <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> canciones."</item>
   </plurals>
     <string name="scanning" msgid="3529383847223198502">"Examinando tarjeta SD…"</string>
@@ -102,7 +102,7 @@
     <string name="new_playlist" msgid="7588112979692632867">"Nuevo"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"Nueva playlist <xliff:g id="NUMBER">%d</xliff:g>"</string>
   <plurals name="NNNtrackstoplaylist">
-    <item quantity="one" msgid="422388042993582235">"Se ha añadido una canción a la playlist."</item>
+    <item quantity="one" msgid="422388042993582235">"Se ha añadido 1 canción a la playlist."</item>
     <item quantity="other" msgid="7662771987109627255">"Se han añadido <xliff:g id="NUMBER">%d</xliff:g> canciones a la playlist."</item>
   </plurals>
     <string name="emptyplaylist" msgid="6711555673997896344">"La playlist seleccionada está vacía."</string>
@@ -142,7 +142,7 @@
     <string name="working_artists" msgid="8678357432732156580">"Artistas…"</string>
     <string name="working_albums" msgid="8713273699401457426">"Álbumes…"</string>
     <string name="working_songs" msgid="2201491972050410684">"Canciones…"</string>
-    <string name="working_playlists" msgid="4424950806134653351">"Listas de reproducción…"</string>
+    <string name="working_playlists" msgid="4424950806134653351">"Playlists…"</string>
     <string name="loading" msgid="1991660396037155453">"Cargando..."</string>
     <string name="sort_by_track" msgid="7662999005554152565">"Canciones"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"Álbumes"</string>
