@@ -97,7 +97,7 @@
     <string name="ringtone_menu_short" msgid="3367622038867238133">"Izmantot kā zvana signālu"</string>
     <string name="ringtone_set" msgid="5325818347613843130">"“<xliff:g id="NAME">%s</xliff:g>” iestatīts kā tālruņa zvana signāls."</string>
     <string name="play_selection" msgid="2854921021814550018">"Atskaņot"</string>
-    <string name="add_to_playlist" msgid="7110273488645072783">"Pievienot atskaņošanas sarakstam"</string>
+    <string name="add_to_playlist" msgid="7110273488645072783">"Pievienot atskaņ. sarakstam"</string>
     <string name="queue" msgid="2937629819482787704">"Pašreizējais atskaņošanas saraksts"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Jauns"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"Jauns atskaņošanas saraksts Nr. <xliff:g id="NUMBER">%d</xliff:g>"</string>
