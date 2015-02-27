@@ -34,7 +34,7 @@
     <string name="party_shuffle" msgid="8213359225506006168">"Modo aleatório"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"Modo aleatório desativado"</string>
     <string name="delete_item" msgid="3363330144534750601">"Excluir"</string>
-    <string name="shuffle_all" msgid="1388193611787878773">"Reproduzir aleatoriamente"</string>
+    <string name="shuffle_all" msgid="1388193611787878773">"Aleatoriamente"</string>
     <string name="play_all" msgid="6309622568869321842">"Reproduzir tudo"</string>
     <string name="delete_artist_desc" msgid="8665759524898379194">"Excluir permanentemente todas as músicas de <xliff:g id="ARTIST">%s</xliff:g> do cartão SD?"</string>
     <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Excluir permanentemente todas as músicas de <xliff:g id="ARTIST">%s</xliff:g> do armazenamento USB?"</string>
@@ -57,14 +57,14 @@
     <string name="tracks_menu" msgid="6942246568246092330">"Músicas"</string>
     <string name="tracks_title" msgid="3229389424532295124">"Músicas"</string>
     <string name="playlists_menu" msgid="5382792649771928849">"Listas"</string>
-    <string name="playlists_title" msgid="5094238486322957927">"Listas de reprodução"</string>
+    <string name="playlists_title" msgid="5094238486322957927">"Playlists"</string>
     <string name="videos_title" msgid="2066741954354129115">"Vídeos"</string>
     <string name="all_title" msgid="6880186414437237653">"Todas as mídias"</string>
     <string name="browse_menu" msgid="5248122473075843289">"Artistas"</string>
     <string name="search_title" msgid="1016971653383739344">"Pesquisar"</string>
     <string name="no_tracks_title" msgid="8805805388271238471">"Sem músicas"</string>
     <string name="no_videos_title" msgid="6218814130364793104">"Sem vídeos"</string>
-    <string name="no_playlists_title" msgid="4456351945617594418">"Sem listas de reprodução"</string>
+    <string name="no_playlists_title" msgid="4456351945617594418">"Sem playlists"</string>
     <string name="delete_playlist_menu" msgid="8998637685583495247">"Excluir"</string>
     <string name="edit_playlist_menu" msgid="571618502105370684">"Editar"</string>
     <string name="rename_playlist_menu" msgid="3133463747389494668">"Renomear"</string>
@@ -142,7 +142,7 @@
     <string name="working_artists" msgid="8678357432732156580">"Artistas…"</string>
     <string name="working_albums" msgid="8713273699401457426">"Álbuns..."</string>
     <string name="working_songs" msgid="2201491972050410684">"Músicas…"</string>
-    <string name="working_playlists" msgid="4424950806134653351">"Listas de reprodução..."</string>
+    <string name="working_playlists" msgid="4424950806134653351">"Playlists..."</string>
     <string name="loading" msgid="1991660396037155453">"Carregando..."</string>
     <string name="sort_by_track" msgid="7662999005554152565">"Faixas"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"Álbuns"</string>

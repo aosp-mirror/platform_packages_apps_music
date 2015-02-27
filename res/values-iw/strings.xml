@@ -129,11 +129,11 @@
     <string name="weekpicker_title" msgid="699535378922101701">"הגדר שעה"</string>
     <string name="save_as_playlist" msgid="5180413608901885255">"שמור כפלייליסט"</string>
     <string name="clear_playlist" msgid="4565515100924905315">"נקה פלייליסט"</string>
-    <string name="musicbrowserlabel" msgid="3162022214114562892">"מוסיקה"</string>
-    <string name="musicshortcutlabel" msgid="2602980193508150226">"פלייליסט של מוסיקה"</string>
-    <string name="mediaplaybacklabel" msgid="6733604841530940397">"מוסיקה"</string>
+    <string name="musicbrowserlabel" msgid="3162022214114562892">"מוזיקה"</string>
+    <string name="musicshortcutlabel" msgid="2602980193508150226">"פלייליסט של מוזיקה"</string>
+    <string name="mediaplaybacklabel" msgid="6733604841530940397">"מוזיקה"</string>
     <string name="videobrowserlabel" msgid="8522326678447494657">"סרטוני וידאו"</string>
-    <string name="mediapickerlabel" msgid="4549836003229914299">"מוסיקה"</string>
+    <string name="mediapickerlabel" msgid="4549836003229914299">"מוזיקה"</string>
     <string name="playback_failed" msgid="3811851150820251398">"הנגן לא תומך בקובץ אודיו מסוג זה."</string>
     <string name="cancel" msgid="886559484711947520">"ביטול"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"הסר מהפלייליסט"</string>
@@ -147,10 +147,10 @@
     <string name="sort_by_track" msgid="7662999005554152565">"רצועות"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"אלבומים"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"אמנים"</string>
-    <string name="music_picker_title" msgid="4143865470317360605">"בחר רצועת מוסיקה"</string>
+    <string name="music_picker_title" msgid="4143865470317360605">"בחר רצועת מוזיקה"</string>
     <string name="search_settings_description" msgid="6520975349259883368">"אמנים, אלבומים ורצועות"</string>
-    <string name="search_hint" msgid="3766854898072633001">"חפש ב\'מוסיקה\'"</string>
+    <string name="search_hint" msgid="3766854898072633001">"חפש ב\'מוזיקה\'"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
-    <string name="widget_initial_text" msgid="3166878738860903586">"גע כדי לבחור מוסיקה."</string>
+    <string name="widget_initial_text" msgid="3166878738860903586">"גע כדי לבחור מוזיקה."</string>
     <string name="effectspanel" msgid="8804547581593509614">"אפקטי קול"</string>
 </resources>
