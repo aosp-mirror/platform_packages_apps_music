@@ -77,7 +77,7 @@
     <string name="sdcard_missing_title" msgid="9008284946643270850">"Geen SD-kaart"</string>
     <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"Geen USB-opslag"</string>
     <string name="sdcard_missing_message" msgid="2100061456003981823">"Er is geen SD-kaart in de telefoon geplaatst."</string>
-    <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"Uw telefoon heeft geen USB-opslag."</string>
+    <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"Je telefoon heeft geen USB-opslag."</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"SD-kaart niet beschikbaar"</string>
     <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"USB-opslag niet beschikbaar"</string>
     <string name="sdcard_busy_message" msgid="579981082201215537">"De SD-kaart is bezet."</string>
