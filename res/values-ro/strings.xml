@@ -135,7 +135,7 @@
     <string name="videobrowserlabel" msgid="8522326678447494657">"Videoclipuri"</string>
     <string name="mediapickerlabel" msgid="4549836003229914299">"Muzică"</string>
     <string name="playback_failed" msgid="3811851150820251398">"Acest tip de fişier audio nu este acceptat de player."</string>
-    <string name="cancel" msgid="886559484711947520">"Anulaţi"</string>
+    <string name="cancel" msgid="886559484711947520">"Anulați"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"Eliminaţi din lista de redare"</string>
     <string name="streamloadingtext" msgid="8842426517396356215">"Se conectează la <xliff:g id="HOST">%s</xliff:g>..."</string>
     <string name="mediasearch" msgid="959222971261132292">"Căutaţi <xliff:g id="TERM">%s</xliff:g> folosind:"</string>
