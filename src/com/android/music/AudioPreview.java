@@ -63,6 +63,7 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
     private SeekBar mSeekBar;
     private Handler mProgressRefresher;
     private boolean mSeeking = false;
+    private boolean mUiPaused = true;
     private int mDuration;
     private Uri mUri;
     private long mMediaId = -1;
@@ -122,9 +123,7 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
         } else {
             mPlayer = player;
             mPlayer.setActivity(this);
-            if (mPlayer.isPrepared()) {
-                showPostPrepareUI();
-            }
+            // onResume will update the UI
         }
 
         AsyncQueryHandler mAsyncQueryHandler = new AsyncQueryHandler(getContentResolver()) {
@@ -196,6 +195,24 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        mUiPaused = true;
+        if (mProgressRefresher != null) {
+            mProgressRefresher.removeCallbacksAndMessages(null);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mUiPaused = false;
+        if (mPlayer.isPrepared()) {
+            showPostPrepareUI();
+        }
+    }
+
+    @Override
     public Object onRetainNonConfigurationInstance() {
         PreviewPlayer player = mPlayer;
         mPlayer = null;
@@ -241,6 +258,9 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
         if (mDuration != 0) {
             mSeekBar.setMax(mDuration);
             mSeekBar.setVisibility(View.VISIBLE);
+            if (!mSeeking) {
+                mSeekBar.setProgress(mPlayer.getCurrentPosition());
+            }
         }
         mSeekBar.setOnSeekBarChangeListener(mSeekListener);
         mLoadingText.setVisibility(View.GONE);
@@ -248,7 +268,10 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
         v.setVisibility(View.VISIBLE);
         mAudioManager.requestAudioFocus(mAudioFocusListener, AudioManager.STREAM_MUSIC,
                 AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
-        mProgressRefresher.postDelayed(new ProgressRefresher(), 200);
+        if (mProgressRefresher != null) {
+            mProgressRefresher.removeCallbacksAndMessages(null);
+            mProgressRefresher.postDelayed(new ProgressRefresher(), 200);
+        }
         updatePlayPause();
     }
     
@@ -303,19 +326,21 @@ public class AudioPreview extends Activity implements OnPreparedListener, OnErro
 
     class ProgressRefresher implements Runnable {
 
+        @Override
         public void run() {
             if (mPlayer != null && !mSeeking && mDuration != 0) {
-                int progress = mPlayer.getCurrentPosition() / mDuration;
                 mSeekBar.setProgress(mPlayer.getCurrentPosition());
             }
             mProgressRefresher.removeCallbacksAndMessages(null);
-            mProgressRefresher.postDelayed(new ProgressRefresher(), 200);
+            if (!mUiPaused) {
+                mProgressRefresher.postDelayed(new ProgressRefresher(), 200);
+            }
         }
     }
     
     private void updatePlayPause() {
         ImageButton b = (ImageButton) findViewById(R.id.playpause);
-        if (b != null) {
+        if (b != null && mPlayer != null) {
             if (mPlayer.isPlaying()) {
                 b.setImageResource(R.drawable.btn_playback_ic_pause_small);
             } else {
