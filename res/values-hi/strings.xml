@@ -135,7 +135,7 @@
     <string name="videobrowserlabel" msgid="8522326678447494657">"वीडियो"</string>
     <string name="mediapickerlabel" msgid="4549836003229914299">"संगीत"</string>
     <string name="playback_failed" msgid="3811851150820251398">"प्‍लेयर इस प्रकार की ऑडियो फ़ाइल का समर्थन नहीं करता."</string>
-    <string name="cancel" msgid="886559484711947520">"रहने दें"</string>
+    <string name="cancel" msgid="886559484711947520">"अभी नहीं"</string>
     <string name="remove_from_playlist" msgid="2548577514849026354">"प्‍लेलिस्‍ट से निकालें"</string>
     <string name="streamloadingtext" msgid="8842426517396356215">"<xliff:g id="HOST">%s</xliff:g> से कनेक्‍ट हो रहा है…"</string>
     <string name="mediasearch" msgid="959222971261132292">"<xliff:g id="TERM">%s</xliff:g> के लिए इसका उपयोग कर खोजें:"</string>
