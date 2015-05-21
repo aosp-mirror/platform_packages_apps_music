@@ -136,7 +136,7 @@
     <string name="mediapickerlabel" msgid="4549836003229914299">"Música"</string>
     <string name="playback_failed" msgid="3811851150820251398">"El reproductor no és compatible amb aquest tipus de fitxer d\'àudio."</string>
     <string name="cancel" msgid="886559484711947520">"Cancel·la"</string>
-    <string name="remove_from_playlist" msgid="2548577514849026354">"Elimina de la llista de reproducció"</string>
+    <string name="remove_from_playlist" msgid="2548577514849026354">"Suprimeix de la llista de reproducció"</string>
     <string name="streamloadingtext" msgid="8842426517396356215">"S\'està connectant a <xliff:g id="HOST">%s</xliff:g>…"</string>
     <string name="mediasearch" msgid="959222971261132292">"Cerca <xliff:g id="TERM">%s</xliff:g> mitjançant:"</string>
     <string name="working_artists" msgid="8678357432732156580">"Artistes..."</string>

@@ -30,7 +30,7 @@
     <item quantity="one" msgid="3798955510439465932">"1 album"</item>
     <item quantity="other" msgid="3047615499770811984">"<xliff:g id="COUNT">%d</xliff:g> (de) albume"</item>
   </plurals>
-    <string name="goto_start" msgid="8979658707407220934">"Bibliotecă"</string>
+    <string name="goto_start" msgid="8979658707407220934">"Muzica mea"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"Colecţie aleatorie"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"Colecţie aleatorie dezactivată"</string>
     <string name="delete_item" msgid="3363330144534750601">"Ștergeţi"</string>
