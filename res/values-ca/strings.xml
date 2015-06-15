@@ -144,12 +144,12 @@
     <string name="working_songs" msgid="2201491972050410684">"Cançons..."</string>
     <string name="working_playlists" msgid="4424950806134653351">"Llistes de reproducció..."</string>
     <string name="loading" msgid="1991660396037155453">"S\'està carregant..."</string>
-    <string name="sort_by_track" msgid="7662999005554152565">"Pistes"</string>
+    <string name="sort_by_track" msgid="7662999005554152565">"Cançons"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"Àlbums"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"Artistes"</string>
     <string name="music_picker_title" msgid="4143865470317360605">"Tria una pista de música"</string>
     <string name="search_settings_description" msgid="6520975349259883368">"Artistes, àlbums i cançons"</string>
-    <string name="search_hint" msgid="3766854898072633001">"Cerca a la música"</string>
+    <string name="search_hint" msgid="3766854898072633001">"Cerca música"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
     <string name="widget_initial_text" msgid="3166878738860903586">"Toca per triar música."</string>
     <string name="effectspanel" msgid="8804547581593509614">"Efectes de so"</string>
