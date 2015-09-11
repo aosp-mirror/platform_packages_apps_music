@@ -20,16 +20,9 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="onesong" msgid="8336826100414159413">"1 dal"</string>
-  <plurals name="Nsongs">
-    <item quantity="other" msgid="5798230388116542981">"<xliff:g id="COUNT">%d</xliff:g> dal"</item>
-  </plurals>
-  <plurals name="Nsongscomp">
-    <item quantity="other" msgid="7162294486622945550">"<xliff:g id="TOTAL_COUNT">%1$d</xliff:g>/<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> dal"</item>
-  </plurals>
-  <plurals name="Nalbums">
-    <item quantity="one" msgid="3798955510439465932">"1 album"</item>
-    <item quantity="other" msgid="3047615499770811984">"<xliff:g id="COUNT">%d</xliff:g> album"</item>
-  </plurals>
+    <!-- no translation found for Nsongs (8315784110177671046) -->
+    <!-- no translation found for Nsongscomp (2294119757581588619) -->
+    <!-- no translation found for Nalbums (7947176578850672205) -->
     <string name="goto_start" msgid="8979658707407220934">"Könyvtár"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"Keverés bulihoz"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"Keverés bulihoz kikapcsolása"</string>
@@ -43,10 +36,7 @@
     <string name="delete_song_desc" msgid="1842681623848282205">"A(z) \"<xliff:g id="SONG">%s</xliff:g>\" végleges törlése az SD-kártyáról?"</string>
     <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"A(z) \"<xliff:g id="SONG">%s</xliff:g>\" végleges törlése az USB-háttértárról?"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"OK"</string>
-  <plurals name="NNNtracksdeleted">
-    <item quantity="one" msgid="8560276109508404217">"1 dal törölve."</item>
-    <item quantity="other" msgid="5156740163031225200">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> dal törlésre került."</item>
-  </plurals>
+    <!-- no translation found for NNNtracksdeleted (2499334199042190643) -->
     <string name="scanning" msgid="3529383847223198502">"Az SD-kártya beolvasása..."</string>
     <string name="scanning_nosdcard" msgid="8105284774487360148">"USB-tároló keresése..."</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"Most hallható"</string>
@@ -101,10 +91,7 @@
     <string name="queue" msgid="2937629819482787704">"Jelenlegi lejátszási lista"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Új"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"<xliff:g id="NUMBER">%d</xliff:g>. új lejátszási lista"</string>
-  <plurals name="NNNtrackstoplaylist">
-    <item quantity="one" msgid="422388042993582235">"1 dal hozzáadva a lejátszási listához."</item>
-    <item quantity="other" msgid="7662771987109627255">"<xliff:g id="NUMBER">%d</xliff:g> dal felkerült a lejátszási listára."</item>
-  </plurals>
+    <!-- no translation found for NNNtrackstoplaylist (4679501954832581077) -->
     <string name="emptyplaylist" msgid="6711555673997896344">"A kiválasztott lejátszási lista üres."</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"Mentés"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Felülírás"</string>
