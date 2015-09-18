@@ -19,7 +19,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt" msgid="2379436619128383935">"Obriu el teclat per donar un nom a la llista de reproducció nova o seleccioneu \"Desa\" per assignar-li el nom \"<xliff:g id="PLAYLIST">%s</xliff:g>\"."</string>
+    <string name="create_playlist_create_text_prompt" msgid="2379436619128383935">"Obre el teclat per donar un nom a la nova llista de reproducció o selecciona Desa per assignar-li el nom \"<xliff:g id="PLAYLIST">%s</xliff:g>\"."</string>
     <string name="rename_playlist_same_prompt" msgid="7777541452078260899">"Obriu el teclat per assignar un nom nou a la llista de reproducció \"<xliff:g id="PLAYLIST">%s</xliff:g>\"."</string>
-    <string name="rename_playlist_diff_prompt" msgid="900422624897120958">"Obriu el teclat per canviar el nom de la llista de reproducció \"<xliff:g id="PLAYLIST">%1$s</xliff:g>\" o seleccioneu \"Desa\" per assignar-li el nom \"<xliff:g id="NAME">%2$s</xliff:g>\"."</string>
+    <string name="rename_playlist_diff_prompt" msgid="900422624897120958">"Obre el teclat per canviar el nom de la llista de reproducció \"<xliff:g id="PLAYLIST">%1$s</xliff:g>\" o selecciona Desa per assignar-li el nom \"<xliff:g id="NAME">%2$s</xliff:g>\"."</string>
 </resources>
