@@ -112,7 +112,7 @@
     <item msgid="2727959579637914171">"۱۱ هفته"</item>
     <item msgid="8708754966127584739">"۱۲ هفته"</item>
   </string-array>
-    <string name="weekpicker_set" msgid="7636608790418067496">"انجام شد"</string>
+    <string name="weekpicker_set" msgid="7636608790418067496">"تمام"</string>
     <string name="weekpicker_title" msgid="699535378922101701">"تنظیم زمان"</string>
     <string name="save_as_playlist" msgid="5180413608901885255">"ذخیره به‌عنوان لیست پخش"</string>
     <string name="clear_playlist" msgid="4565515100924905315">"پاک کردن لیست پخش"</string>
