@@ -30,52 +30,52 @@
     <item quantity="one" msgid="3798955510439465932">"1 album"</item>
     <item quantity="other" msgid="3047615499770811984">"<xliff:g id="COUNT">%d</xliff:g> (de) albume"</item>
   </plurals>
-    <string name="goto_start" msgid="8979658707407220934">"Bibliotecă"</string>
-    <string name="party_shuffle" msgid="8213359225506006168">"Colecţie aleatorie"</string>
-    <string name="party_shuffle_off" msgid="1828744483354711679">"Colecţie aleatorie dezactivată"</string>
-    <string name="delete_item" msgid="3363330144534750601">"Ștergeţi"</string>
-    <string name="shuffle_all" msgid="1388193611787878773">"Redați toată lista aleatoriu"</string>
-    <string name="play_all" msgid="6309622568869321842">"Redaţi toate"</string>
-    <string name="delete_artist_desc" msgid="8665759524898379194">"Ștergeţi definitiv toate cântecele de <xliff:g id="ARTIST">%s</xliff:g> de pe cardul SD?"</string>
-    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Ștergeţi definitiv toate cântecele de <xliff:g id="ARTIST">%s</xliff:g> de pe stocarea USB?"</string>
-    <string name="delete_album_desc" msgid="8172412873562794429">"Ștergeţi definitiv întregul album „<xliff:g id="ALBUM">%s</xliff:g>” de pe cardul SD?"</string>
-    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"Ștergeţi definitiv întregul album „<xliff:g id="ALBUM">%s</xliff:g>” de pe stocarea USB?"</string>
-    <string name="delete_song_desc" msgid="1842681623848282205">"Ștergeţi definitiv „<xliff:g id="SONG">%s</xliff:g>” de pe cardul SD?"</string>
-    <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"Ștergeţi definitiv „<xliff:g id="SONG">%s</xliff:g>” de pe stocarea USB?"</string>
+    <string name="goto_start" msgid="8979658707407220934">"Muzica mea"</string>
+    <string name="party_shuffle" msgid="8213359225506006168">"Colecție aleatorie"</string>
+    <string name="party_shuffle_off" msgid="1828744483354711679">"Colecție aleatorie dezactivată"</string>
+    <string name="delete_item" msgid="3363330144534750601">"Ștergeți"</string>
+    <string name="shuffle_all" msgid="1388193611787878773">"Redați tot playlistul aleatoriu"</string>
+    <string name="play_all" msgid="6309622568869321842">"Redați toate"</string>
+    <string name="delete_artist_desc" msgid="8665759524898379194">"Ștergeți definitiv toate cântecele de <xliff:g id="ARTIST">%s</xliff:g> de pe cardul SD?"</string>
+    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Ștergeți definitiv toate cântecele de <xliff:g id="ARTIST">%s</xliff:g> de pe stocarea USB?"</string>
+    <string name="delete_album_desc" msgid="8172412873562794429">"Ștergeți definitiv întregul album „<xliff:g id="ALBUM">%s</xliff:g>” de pe cardul SD?"</string>
+    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"Ștergeți definitiv întregul album „<xliff:g id="ALBUM">%s</xliff:g>” de pe stocarea USB?"</string>
+    <string name="delete_song_desc" msgid="1842681623848282205">"Ștergeți definitiv „<xliff:g id="SONG">%s</xliff:g>” de pe cardul SD?"</string>
+    <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"Ștergeți definitiv „<xliff:g id="SONG">%s</xliff:g>” de pe stocarea USB?"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"OK"</string>
   <plurals name="NNNtracksdeleted">
-    <item quantity="one" msgid="8560276109508404217">"1 cântec a fost şters."</item>
-    <item quantity="other" msgid="5156740163031225200">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> (de) cântece au fost şterse."</item>
+    <item quantity="one" msgid="8560276109508404217">"1 cântec a fost șters."</item>
+    <item quantity="other" msgid="5156740163031225200">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> (de) cântece au fost șterse."</item>
   </plurals>
     <string name="scanning" msgid="3529383847223198502">"Se scanează cardul SD..."</string>
     <string name="scanning_nosdcard" msgid="8105284774487360148">"Se scanează stocarea USB..."</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"Acum se redă"</string>
-    <string name="partyshuffle_title" msgid="6582413231529992125">"Colecţie aleatorie"</string>
-    <string name="artists_title" msgid="8490372367259160067">"Artişti"</string>
+    <string name="partyshuffle_title" msgid="6582413231529992125">"Colecție aleatorie"</string>
+    <string name="artists_title" msgid="8490372367259160067">"Artiști"</string>
     <string name="albums_menu" msgid="5807982055590211900">"Albume"</string>
     <string name="albums_title" msgid="8773880394961378035">"Albume"</string>
     <string name="tracks_menu" msgid="6942246568246092330">"Cântece"</string>
     <string name="tracks_title" msgid="3229389424532295124">"Cântece"</string>
-    <string name="playlists_menu" msgid="5382792649771928849">"Liste de redare"</string>
-    <string name="playlists_title" msgid="5094238486322957927">"Liste de redare"</string>
+    <string name="playlists_menu" msgid="5382792649771928849">"Playlisturi"</string>
+    <string name="playlists_title" msgid="5094238486322957927">"Playlisturi"</string>
     <string name="videos_title" msgid="2066741954354129115">"Videoclipuri"</string>
-    <string name="all_title" msgid="6880186414437237653">"Tot conţinutul media"</string>
-    <string name="browse_menu" msgid="5248122473075843289">"Artişti"</string>
-    <string name="search_title" msgid="1016971653383739344">"Căutaţi"</string>
+    <string name="all_title" msgid="6880186414437237653">"Tot conținutul media"</string>
+    <string name="browse_menu" msgid="5248122473075843289">"Artiști"</string>
+    <string name="search_title" msgid="1016971653383739344">"Căutați"</string>
     <string name="no_tracks_title" msgid="8805805388271238471">"Niciun cântec"</string>
     <string name="no_videos_title" msgid="6218814130364793104">"Niciun videoclip"</string>
-    <string name="no_playlists_title" msgid="4456351945617594418">"Nicio listă de redare"</string>
-    <string name="delete_playlist_menu" msgid="8998637685583495247">"Ștergeţi"</string>
-    <string name="edit_playlist_menu" msgid="571618502105370684">"Modificaţi"</string>
-    <string name="rename_playlist_menu" msgid="3133463747389494668">"Redenumiţi"</string>
-    <string name="playlist_deleted_message" msgid="9008053828193961455">"Listă de redare ştearsă."</string>
-    <string name="playlist_renamed_message" msgid="7187580192703005990">"Listă de redare redenumită."</string>
+    <string name="no_playlists_title" msgid="4456351945617594418">"Niciun playlist"</string>
+    <string name="delete_playlist_menu" msgid="8998637685583495247">"Ștergeți"</string>
+    <string name="edit_playlist_menu" msgid="571618502105370684">"Modificați"</string>
+    <string name="rename_playlist_menu" msgid="3133463747389494668">"Redenumiți"</string>
+    <string name="playlist_deleted_message" msgid="9008053828193961455">"Playlist șters."</string>
+    <string name="playlist_renamed_message" msgid="7187580192703005990">"Playlist redenumit."</string>
     <string name="recentlyadded" msgid="110978416756366953">"Adăugat recent"</string>
     <string name="recentlyadded_title" msgid="3153322287249901914">"Adăugat recent"</string>
     <string name="podcasts_listitem" msgid="8657809279717670634">"Podcasturi"</string>
     <string name="podcasts_title" msgid="4928414142496858304">"Podcasturi"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"Niciun card SD"</string>
-    <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"Nu există spaţiu de stocare USB"</string>
+    <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"Nu există spațiu de stocare USB"</string>
     <string name="sdcard_missing_message" msgid="2100061456003981823">"Telefonul dvs. nu are un card SD introdus."</string>
     <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"Telefonul dvs. nu are stocare USB."</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"Card SD nedisponibil"</string>
@@ -83,7 +83,7 @@
     <string name="sdcard_busy_message" msgid="579981082201215537">"Cardul dvs. SD este ocupat."</string>
     <string name="sdcard_busy_message_nosdcard" msgid="1493449756827869166">"Stocarea USB este ocupată."</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"Eroare pe cardul SD"</string>
-    <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"Eroare la accesarea spaţiului de stocare USB"</string>
+    <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"Eroare la accesarea spațiului de stocare USB"</string>
     <string name="sdcard_error_message" msgid="4574563894036627855">"A apărut o eroare pe cardul dvs. SD."</string>
     <string name="sdcard_error_message_nosdcard" msgid="4983430848526821234">"A apărut o eroare pe stocarea USB."</string>
     <string name="unknown_artist_name" msgid="5567811106415855219">"Artist necunoscut"</string>
@@ -93,21 +93,21 @@
     <string name="repeat_off_notif" msgid="1149406899083479716">"Repetarea este dezactivată."</string>
     <string name="repeat_current_notif" msgid="1227153936360904196">"Se repetă cântecul curent."</string>
     <string name="repeat_all_notif" msgid="6443293055987316642">"Se repetă toate cântecele."</string>
-    <string name="ringtone_menu" msgid="2737472190159134599">"Utilizaţi ca ton de apel al telefonului"</string>
-    <string name="ringtone_menu_short" msgid="3367622038867238133">"Utilizaţi ca ton de apel"</string>
+    <string name="ringtone_menu" msgid="2737472190159134599">"Utilizați ca ton de apel al telefonului"</string>
+    <string name="ringtone_menu_short" msgid="3367622038867238133">"Utilizați ca ton de apel"</string>
     <string name="ringtone_set" msgid="5325818347613843130">"„<xliff:g id="NAME">%s</xliff:g>” setat ca ton de apel al telefonului."</string>
-    <string name="play_selection" msgid="2854921021814550018">"Redaţi"</string>
+    <string name="play_selection" msgid="2854921021814550018">"Redați"</string>
     <string name="add_to_playlist" msgid="7110273488645072783">"Adăugați la playlist"</string>
-    <string name="queue" msgid="2937629819482787704">"Lista de redare curentă"</string>
+    <string name="queue" msgid="2937629819482787704">"Playlist curent"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Nou"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"Playlist nou <xliff:g id="NUMBER">%d</xliff:g>"</string>
   <plurals name="NNNtrackstoplaylist">
-    <item quantity="one" msgid="422388042993582235">"1 cântec adăugat la lista de redare."</item>
-    <item quantity="other" msgid="7662771987109627255">"<xliff:g id="NUMBER">%d</xliff:g> (de) cântece adăugate la lista de redare."</item>
+    <item quantity="one" msgid="422388042993582235">"1 cântec adăugat la playlist."</item>
+    <item quantity="other" msgid="7662771987109627255">"<xliff:g id="NUMBER">%d</xliff:g> (de) cântece adăugate la playlist."</item>
   </plurals>
-    <string name="emptyplaylist" msgid="6711555673997896344">"Lista de redare selectată este goală."</string>
-    <string name="create_playlist_create_text" msgid="8149755205483279143">"Salvaţi"</string>
-    <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Suprascrieţi"</string>
+    <string name="emptyplaylist" msgid="6711555673997896344">"Playlistul selectat este gol."</string>
+    <string name="create_playlist_create_text" msgid="8149755205483279143">"Salvați"</string>
+    <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Suprascrieți"</string>
     <string name="service_start_error_title" msgid="8649916852210198813">"Problemă de redare"</string>
     <string name="service_start_error_msg" msgid="7061754255330276478">"Cântecul nu a putut fi redat."</string>
     <string name="service_start_error_button" msgid="480888406592240723">"OK"</string>
@@ -126,31 +126,31 @@
     <item msgid="8708754966127584739">"12 săptămâni"</item>
   </string-array>
     <string name="weekpicker_set" msgid="7636608790418067496">"Terminat"</string>
-    <string name="weekpicker_title" msgid="699535378922101701">"Setaţi ora"</string>
-    <string name="save_as_playlist" msgid="5180413608901885255">"Salvaţi ca listă de redare"</string>
-    <string name="clear_playlist" msgid="4565515100924905315">"Ștergeţi lista de redare"</string>
+    <string name="weekpicker_title" msgid="699535378922101701">"Setați ora"</string>
+    <string name="save_as_playlist" msgid="5180413608901885255">"Salvați ca playlist"</string>
+    <string name="clear_playlist" msgid="4565515100924905315">"Ștergeți playlistul"</string>
     <string name="musicbrowserlabel" msgid="3162022214114562892">"Muzică"</string>
-    <string name="musicshortcutlabel" msgid="2602980193508150226">"Listă de redare muzică"</string>
+    <string name="musicshortcutlabel" msgid="2602980193508150226">"Playlist muzică"</string>
     <string name="mediaplaybacklabel" msgid="6733604841530940397">"Muzică"</string>
     <string name="videobrowserlabel" msgid="8522326678447494657">"Videoclipuri"</string>
     <string name="mediapickerlabel" msgid="4549836003229914299">"Muzică"</string>
-    <string name="playback_failed" msgid="3811851150820251398">"Acest tip de fişier audio nu este acceptat de player."</string>
+    <string name="playback_failed" msgid="3811851150820251398">"Acest tip de fișier audio nu este acceptat de player."</string>
     <string name="cancel" msgid="886559484711947520">"Anulați"</string>
-    <string name="remove_from_playlist" msgid="2548577514849026354">"Eliminaţi din lista de redare"</string>
+    <string name="remove_from_playlist" msgid="2548577514849026354">"Eliminați din playlist"</string>
     <string name="streamloadingtext" msgid="8842426517396356215">"Se conectează la <xliff:g id="HOST">%s</xliff:g>..."</string>
-    <string name="mediasearch" msgid="959222971261132292">"Căutaţi <xliff:g id="TERM">%s</xliff:g> folosind:"</string>
-    <string name="working_artists" msgid="8678357432732156580">"Artişti..."</string>
+    <string name="mediasearch" msgid="959222971261132292">"Căutați <xliff:g id="TERM">%s</xliff:g> folosind:"</string>
+    <string name="working_artists" msgid="8678357432732156580">"Artiști..."</string>
     <string name="working_albums" msgid="8713273699401457426">"Albume..."</string>
     <string name="working_songs" msgid="2201491972050410684">"Cântece..."</string>
-    <string name="working_playlists" msgid="4424950806134653351">"Liste de redare..."</string>
+    <string name="working_playlists" msgid="4424950806134653351">"Playlisturi"</string>
     <string name="loading" msgid="1991660396037155453">"Se încarcă..."</string>
     <string name="sort_by_track" msgid="7662999005554152565">"Înregistrări"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"Albume"</string>
-    <string name="sort_by_artist" msgid="4607024967813199992">"Artişti"</string>
-    <string name="music_picker_title" msgid="4143865470317360605">"Selectaţi o melodie"</string>
-    <string name="search_settings_description" msgid="6520975349259883368">"Artişti, albume şi melodii"</string>
+    <string name="sort_by_artist" msgid="4607024967813199992">"Artiști"</string>
+    <string name="music_picker_title" msgid="4143865470317360605">"Selectați o melodie"</string>
+    <string name="search_settings_description" msgid="6520975349259883368">"Artiști, albume și melodii"</string>
     <string name="search_hint" msgid="3766854898072633001">"Caută muzică"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
-    <string name="widget_initial_text" msgid="3166878738860903586">"Atingeţi pentru a selecta muzica."</string>
+    <string name="widget_initial_text" msgid="3166878738860903586">"Atingeți pentru a selecta muzica."</string>
     <string name="effectspanel" msgid="8804547581593509614">"Efecte de sunet"</string>
 </resources>

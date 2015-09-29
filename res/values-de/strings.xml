@@ -77,11 +77,11 @@
     <string name="sdcard_missing_title" msgid="9008284946643270850">"Keine SD-Karte"</string>
     <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"Kein USB-Speicher"</string>
     <string name="sdcard_missing_message" msgid="2100061456003981823">"Es befindet sich keine SD-Karte im Telefon."</string>
-    <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"Ihr Telefon hat keinen USB-Speicher."</string>
+    <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"Dein Telefon hat keinen USB-Speicher."</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"SD-Karte nicht verfügbar"</string>
     <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"USB-Speicher nicht verfügbar"</string>
     <string name="sdcard_busy_message" msgid="579981082201215537">"SD-Karte wird benutzt."</string>
-    <string name="sdcard_busy_message_nosdcard" msgid="1493449756827869166">"Ihr USB-Speicher ist ausgelastet."</string>
+    <string name="sdcard_busy_message_nosdcard" msgid="1493449756827869166">"Dein USB-Speicher ist ausgelastet."</string>
     <string name="sdcard_error_title" msgid="165682155008600643">"SD-Kartenfehler"</string>
     <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"USB-Speicher-Fehler"</string>
     <string name="sdcard_error_message" msgid="4574563894036627855">"Bei der SD-Karte ist ein Fehler aufgetreten."</string>

@@ -35,7 +35,7 @@
     <string name="party_shuffle_off" msgid="1828744483354711679">"Вимк. переміш. всього"</string>
     <string name="delete_item" msgid="3363330144534750601">"Видалити"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"Перемішати все"</string>
-    <string name="play_all" msgid="6309622568869321842">"Відтвор. всі"</string>
+    <string name="play_all" msgid="6309622568869321842">"Слухати всі"</string>
     <string name="delete_artist_desc" msgid="8665759524898379194">"Назавжди видалити всі пісні виконавця <xliff:g id="ARTIST">%s</xliff:g> з карти SD?"</string>
     <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Назавжди видалити всі пісні виконавця <xliff:g id="ARTIST">%s</xliff:g> з пам’яті USB?"</string>
     <string name="delete_album_desc" msgid="8172412873562794429">"Назавжди видалити весь альбом \"<xliff:g id="ALBUM">%s</xliff:g>\" з карти SD?"</string>
@@ -49,15 +49,15 @@
   </plurals>
     <string name="scanning" msgid="3529383847223198502">"Сканування карти SD…"</string>
     <string name="scanning_nosdcard" msgid="8105284774487360148">"Сканування носія USB…"</string>
-    <string name="nowplaying_title" msgid="8342523844307751761">"Зараз відтвор."</string>
+    <string name="nowplaying_title" msgid="8342523844307751761">"Грає зараз"</string>
     <string name="partyshuffle_title" msgid="6582413231529992125">"Перемішати все"</string>
     <string name="artists_title" msgid="8490372367259160067">"Виконавці"</string>
     <string name="albums_menu" msgid="5807982055590211900">"Альбоми"</string>
     <string name="albums_title" msgid="8773880394961378035">"Альбоми"</string>
     <string name="tracks_menu" msgid="6942246568246092330">"Пісні"</string>
     <string name="tracks_title" msgid="3229389424532295124">"Пісні"</string>
-    <string name="playlists_menu" msgid="5382792649771928849">"Сп-ки відтвор."</string>
-    <string name="playlists_title" msgid="5094238486322957927">"Сп-ки відтвор."</string>
+    <string name="playlists_menu" msgid="5382792649771928849">"Списки відтворення"</string>
+    <string name="playlists_title" msgid="5094238486322957927">"Списки відтворення"</string>
     <string name="videos_title" msgid="2066741954354129115">"Відео"</string>
     <string name="all_title" msgid="6880186414437237653">"Усі медіа-файли"</string>
     <string name="browse_menu" msgid="5248122473075843289">"Виконавці"</string>
@@ -108,7 +108,7 @@
     <string name="emptyplaylist" msgid="6711555673997896344">"Вибраний сп-ок відтв. порожній."</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"Зберег."</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Перезапис."</string>
-    <string name="service_start_error_title" msgid="8649916852210198813">"Проблема з відтвор."</string>
+    <string name="service_start_error_title" msgid="8649916852210198813">"Помилка відтворення"</string>
     <string name="service_start_error_msg" msgid="7061754255330276478">"Цю пісню неможливо відтворити."</string>
     <string name="service_start_error_button" msgid="480888406592240723">"OK"</string>
   <string-array name="weeklist">
