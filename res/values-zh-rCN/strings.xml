@@ -22,7 +22,10 @@
     <string name="onesong" msgid="8336826100414159413">"1 首歌曲"</string>
     <!-- no translation found for Nsongs (8315784110177671046) -->
     <!-- no translation found for Nsongscomp (2294119757581588619) -->
-    <!-- no translation found for Nalbums (7947176578850672205) -->
+    <plurals name="Nalbums" formatted="false" msgid="7947176578850672205">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> 张专辑</item>
+      <item quantity="one">1 张专辑</item>
+    </plurals>
     <string name="goto_start" msgid="8979658707407220934">"音乐库"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"派对随机播放"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"关闭派对随机播放"</string>
@@ -36,7 +39,10 @@
     <string name="delete_song_desc" msgid="1842681623848282205">"要从 SD 卡中永久删除“<xliff:g id="SONG">%s</xliff:g>”吗？"</string>
     <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"要从 USB 存储设备中永久删除“<xliff:g id="SONG">%s</xliff:g>”吗？"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"确定"</string>
-    <!-- no translation found for NNNtracksdeleted (2499334199042190643) -->
+    <plurals name="NNNtracksdeleted" formatted="false" msgid="2499334199042190643">
+      <item quantity="other">已删除 <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> 首歌曲。</item>
+      <item quantity="one">已删除 1 首歌曲。</item>
+    </plurals>
     <string name="scanning" msgid="3529383847223198502">"正在扫描 SD 卡..."</string>
     <string name="scanning_nosdcard" msgid="8105284774487360148">"正在扫描 USB 存储设备..."</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"正在播放"</string>
@@ -91,7 +97,10 @@
     <string name="queue" msgid="2937629819482787704">"当前的播放列表"</string>
     <string name="new_playlist" msgid="7588112979692632867">"新建播放列表"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"新播放列表 <xliff:g id="NUMBER">%d</xliff:g>"</string>
-    <!-- no translation found for NNNtrackstoplaylist (4679501954832581077) -->
+    <plurals name="NNNtrackstoplaylist" formatted="false" msgid="4679501954832581077">
+      <item quantity="other">已将 <xliff:g id="NUMBER">%d</xliff:g> 首歌曲添加到播放列表。</item>
+      <item quantity="one">已将 1 首歌曲添加到播放列表。</item>
+    </plurals>
     <string name="emptyplaylist" msgid="6711555673997896344">"您选的播放列表是空的。"</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"保存"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"覆盖"</string>

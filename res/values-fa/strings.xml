@@ -22,7 +22,10 @@
     <string name="onesong" msgid="8336826100414159413">"1 آهنگ"</string>
     <!-- no translation found for Nsongs (8315784110177671046) -->
     <!-- no translation found for Nsongscomp (2294119757581588619) -->
-    <!-- no translation found for Nalbums (7947176578850672205) -->
+    <plurals name="Nalbums" formatted="false" msgid="7947176578850672205">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> آلبوم</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> آلبوم</item>
+    </plurals>
     <string name="goto_start" msgid="8979658707407220934">"کتابخانه"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"ترتیب تصادفی گروه"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"ترتیب تصادفی گروه خاموش است"</string>
@@ -36,7 +39,10 @@
     <string name="delete_song_desc" msgid="1842681623848282205">"\"<xliff:g id="SONG">%s</xliff:g>\" را به‌صورت دائمی از کارت SD حذف می‌کنید؟"</string>
     <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"\"<xliff:g id="SONG">%s</xliff:g>\" را به‌صورت دائمی از حافظهٔ USB حذف می‌کنید؟"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"تأیید"</string>
-    <!-- no translation found for NNNtracksdeleted (2499334199042190643) -->
+    <plurals name="NNNtracksdeleted" formatted="false" msgid="2499334199042190643">
+      <item quantity="one"><xliff:g id="SONGS_TO_DELETE">%d</xliff:g> آهنگ حذف شد.</item>
+      <item quantity="other"><xliff:g id="SONGS_TO_DELETE">%d</xliff:g> آهنگ حذف شد.</item>
+    </plurals>
     <string name="scanning" msgid="3529383847223198502">"در حال اسکن کارت SD..."</string>
     <string name="scanning_nosdcard" msgid="8105284774487360148">"در حال اسکن کردن حافظهٔ USB..."</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"در حال پخش"</string>
@@ -91,7 +97,10 @@
     <string name="queue" msgid="2937629819482787704">"لیست پخش فعلی"</string>
     <string name="new_playlist" msgid="7588112979692632867">"جدید"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"لیست پخش جدید <xliff:g id="NUMBER">%d</xliff:g>"</string>
-    <!-- no translation found for NNNtrackstoplaylist (4679501954832581077) -->
+    <plurals name="NNNtrackstoplaylist" formatted="false" msgid="4679501954832581077">
+      <item quantity="one"><xliff:g id="NUMBER">%d</xliff:g> آهنگ به فهرست پخش اضافه شد.</item>
+      <item quantity="other"><xliff:g id="NUMBER">%d</xliff:g> آهنگ به فهرست پخش اضافه شد.</item>
+    </plurals>
     <string name="emptyplaylist" msgid="6711555673997896344">"لیست پخش انتخابی خالی است."</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"ذخیره"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"رونویسی"</string>

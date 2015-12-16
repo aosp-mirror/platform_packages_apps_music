@@ -22,7 +22,12 @@
     <string name="onesong" msgid="8336826100414159413">"1 skladba"</string>
     <!-- no translation found for Nsongs (8315784110177671046) -->
     <!-- no translation found for Nsongscomp (2294119757581588619) -->
-    <!-- no translation found for Nalbums (7947176578850672205) -->
+    <plurals name="Nalbums" formatted="false" msgid="7947176578850672205">
+      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> albumy</item>
+      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> albumu</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> albumov</item>
+      <item quantity="one">1 album</item>
+    </plurals>
     <string name="goto_start" msgid="8979658707407220934">"Knižnica"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"Náhodný výber všetkých skladieb"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"Vypnúť náhodný výber všetkých skladieb"</string>
@@ -36,7 +41,12 @@
     <string name="delete_song_desc" msgid="1842681623848282205">"Natrvalo odstrániť skladbu „<xliff:g id="SONG">%s</xliff:g>“ z SD karty?"</string>
     <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"Natrvalo odstrániť skladbu „<xliff:g id="SONG">%s</xliff:g>“ z úložiska USB?"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"OK"</string>
-    <!-- no translation found for NNNtracksdeleted (2499334199042190643) -->
+    <plurals name="NNNtracksdeleted" formatted="false" msgid="2499334199042190643">
+      <item quantity="few">Boli odstránené <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> skladby.</item>
+      <item quantity="many">Bolo odstránenej <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> skladby.</item>
+      <item quantity="other">Bolo odstránených <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> skladieb.</item>
+      <item quantity="one">Bola odstránená 1 skladba.</item>
+    </plurals>
     <string name="scanning" msgid="3529383847223198502">"Prebieha vyhľadávanie na SD karte..."</string>
     <string name="scanning_nosdcard" msgid="8105284774487360148">"Prebieha vyhľadávanie v ukladacom priestore USB…"</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"Práve sa prehráva"</string>
@@ -91,7 +101,12 @@
     <string name="queue" msgid="2937629819482787704">"Aktuálny zoznam skladieb"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Nové"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"Nový zoznam skladieb <xliff:g id="NUMBER">%d</xliff:g>"</string>
-    <!-- no translation found for NNNtrackstoplaylist (4679501954832581077) -->
+    <plurals name="NNNtrackstoplaylist" formatted="false" msgid="4679501954832581077">
+      <item quantity="few">Do zoznamu skladieb boli pridané <xliff:g id="NUMBER">%d</xliff:g> skladby.</item>
+      <item quantity="many">Do zoznamu skladieb bolo pridanej <xliff:g id="NUMBER">%d</xliff:g> skladby.</item>
+      <item quantity="other">Do zoznamu skladieb bolo pridaných <xliff:g id="NUMBER">%d</xliff:g> skladieb.</item>
+      <item quantity="one">Do zoznamu skladieb bola pridaná 1 skladba.</item>
+    </plurals>
     <string name="emptyplaylist" msgid="6711555673997896344">"Vybratý zoznam skladieb je prázdny."</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"Uložiť"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Prepísať"</string>
