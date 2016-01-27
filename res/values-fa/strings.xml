@@ -104,7 +104,7 @@
     <string name="emptyplaylist" msgid="6711555673997896344">"لیست پخش انتخابی خالی است."</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"ذخیره"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"رونویسی"</string>
-    <string name="service_start_error_title" msgid="8649916852210198813">"مشکل پخش"</string>
+    <string name="service_start_error_title" msgid="8649916852210198813">"مشکل بازپخش"</string>
     <string name="service_start_error_msg" msgid="7061754255330276478">"آهنگ پخش نشد."</string>
     <string name="service_start_error_button" msgid="480888406592240723">"تأیید"</string>
   <string-array name="weeklist">
