@@ -72,8 +72,8 @@
     <string name="playlist_renamed_message" msgid="7187580192703005990">"Seznam predvajanja je preimenovan."</string>
     <string name="recentlyadded" msgid="110978416756366953">"Nedavno dodano"</string>
     <string name="recentlyadded_title" msgid="3153322287249901914">"Nedavno dodano"</string>
-    <string name="podcasts_listitem" msgid="8657809279717670634">"Podcasti"</string>
-    <string name="podcasts_title" msgid="4928414142496858304">"Podcasti"</string>
+    <string name="podcasts_listitem" msgid="8657809279717670634">"Poddaje"</string>
+    <string name="podcasts_title" msgid="4928414142496858304">"Poddaje"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"Ni kartice SD"</string>
     <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"Ni pomnilnika USB"</string>
     <string name="sdcard_missing_message" msgid="2100061456003981823">"V telefonu ni kartice SD."</string>

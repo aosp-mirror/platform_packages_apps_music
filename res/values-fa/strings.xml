@@ -139,7 +139,7 @@
     <string name="working_albums" msgid="8713273699401457426">"آلبوم‌ها..."</string>
     <string name="working_songs" msgid="2201491972050410684">"آهنگ‌ها..."</string>
     <string name="working_playlists" msgid="4424950806134653351">"لیست‌های پخش..."</string>
-    <string name="loading" msgid="1991660396037155453">"در حال بارگیری..."</string>
+    <string name="loading" msgid="1991660396037155453">"در حال بارکردن…"</string>
     <string name="sort_by_track" msgid="7662999005554152565">"تراک‌ها"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"آلبوم‌ها"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"هنرمندان"</string>
