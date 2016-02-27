@@ -26,7 +26,7 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> álbumes</item>
       <item quantity="one">1 álbum</item>
     </plurals>
-    <string name="goto_start" msgid="8979658707407220934">"Música"</string>
+    <string name="goto_start" msgid="8979658707407220934">"Mi colección"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"Sesión aleatoria"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"Desactivar sesión aleatoria"</string>
     <string name="delete_item" msgid="3363330144534750601">"Eliminar"</string>
