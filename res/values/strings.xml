@@ -23,11 +23,13 @@
     <string name="onesong">1 song</string>
     <!-- used in various places to indicate there is some number other than one songs for a given artist or album. -->
     <plurals name="Nsongs">
+        <item quantity="one"><xliff:g id="count">%d</xliff:g> song</item>
         <item quantity="other"><xliff:g id="count">%d</xliff:g> songs</item>
     </plurals>
 
     <!-- shows how many songs on the album are by the selected artist, out of how many total, if those two numbers are different -->
     <plurals name="Nsongscomp">
+        <item quantity="one"><xliff:g id="count_for_artist">%2$d</xliff:g> of <xliff:g id="total_count">%1$d</xliff:g> song</item>
         <item quantity="other"><xliff:g id="count_for_artist">%2$d</xliff:g> of <xliff:g id="total_count">%1$d</xliff:g> songs</item>
     </plurals>
 
