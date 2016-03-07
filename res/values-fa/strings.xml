@@ -20,8 +20,14 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="onesong" msgid="8336826100414159413">"1 آهنگ"</string>
-    <!-- no translation found for Nsongs (8315784110177671046) -->
-    <!-- no translation found for Nsongscomp (2294119757581588619) -->
+    <plurals name="Nsongs" formatted="false" msgid="6016461352893352675">
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> آهنگ</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> آهنگ</item>
+    </plurals>
+    <plurals name="Nsongscomp" formatted="false" msgid="4511633526221956857">
+      <item quantity="one"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> از <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> آهنگ</item>
+      <item quantity="other"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> از <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> آهنگ</item>
+    </plurals>
     <plurals name="Nalbums" formatted="false" msgid="7947176578850672205">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> آلبوم</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> آلبوم</item>
@@ -139,7 +145,7 @@
     <string name="working_albums" msgid="8713273699401457426">"آلبوم‌ها..."</string>
     <string name="working_songs" msgid="2201491972050410684">"آهنگ‌ها..."</string>
     <string name="working_playlists" msgid="4424950806134653351">"لیست‌های پخش..."</string>
-    <string name="loading" msgid="1991660396037155453">"در حال بارگیری..."</string>
+    <string name="loading" msgid="1991660396037155453">"در حال بارکردن…"</string>
     <string name="sort_by_track" msgid="7662999005554152565">"تراک‌ها"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"آلبوم‌ها"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"هنرمندان"</string>

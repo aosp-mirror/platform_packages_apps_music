@@ -20,8 +20,16 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="onesong" msgid="8336826100414159413">"1 pesma"</string>
-    <!-- no translation found for Nsongs (8315784110177671046) -->
-    <!-- no translation found for Nsongscomp (2294119757581588619) -->
+    <plurals name="Nsongs" formatted="false" msgid="6016461352893352675">
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> pesma</item>
+      <item quantity="few"><xliff:g id="COUNT_1">%d</xliff:g> pesme</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> pesama</item>
+    </plurals>
+    <plurals name="Nsongscomp" formatted="false" msgid="4511633526221956857">
+      <item quantity="one"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> od <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> pesme</item>
+      <item quantity="few"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> od <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> pesme</item>
+      <item quantity="other"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> od <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> pesama</item>
+    </plurals>
     <plurals name="Nalbums" formatted="false" msgid="7947176578850672205">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> album</item>
       <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> albuma</item>
