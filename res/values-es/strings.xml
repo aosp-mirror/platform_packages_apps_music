@@ -20,13 +20,19 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="onesong" msgid="8336826100414159413">"1 canción"</string>
-    <!-- no translation found for Nsongs (8315784110177671046) -->
-    <!-- no translation found for Nsongscomp (2294119757581588619) -->
+    <plurals name="Nsongs" formatted="false" msgid="6016461352893352675">
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> canciones</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> canción</item>
+    </plurals>
+    <plurals name="Nsongscomp" formatted="false" msgid="4511633526221956857">
+      <item quantity="other"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> de <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> canciones</item>
+      <item quantity="one"><xliff:g id="COUNT_FOR_ARTIST_0">%2$d</xliff:g> de <xliff:g id="TOTAL_COUNT_1">%1$d</xliff:g> canción</item>
+    </plurals>
     <plurals name="Nalbums" formatted="false" msgid="7947176578850672205">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> álbumes</item>
       <item quantity="one">1 álbum</item>
     </plurals>
-    <string name="goto_start" msgid="8979658707407220934">"Música"</string>
+    <string name="goto_start" msgid="8979658707407220934">"Mi colección"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"Sesión aleatoria"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"Desactivar sesión aleatoria"</string>
     <string name="delete_item" msgid="3363330144534750601">"Eliminar"</string>
