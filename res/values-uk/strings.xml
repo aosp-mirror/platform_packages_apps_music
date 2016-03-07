@@ -20,22 +20,30 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="onesong" msgid="8336826100414159413">"1 пісня"</string>
-  <plurals name="Nsongs">
-    <item quantity="other" msgid="5798230388116542981">"Пісень: <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
-  <plurals name="Nsongscomp">
-    <item quantity="other" msgid="7162294486622945550">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> з <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> пісень"</item>
-  </plurals>
-  <plurals name="Nalbums">
-    <item quantity="one" msgid="3798955510439465932">"1 альбом"</item>
-    <item quantity="other" msgid="3047615499770811984">"Альбомів: <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="Nsongs" formatted="false" msgid="6016461352893352675">
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> пісня</item>
+      <item quantity="few"> пісні</item>
+      <item quantity="many"><xliff:g id="COUNT_1">%d</xliff:g> пісень</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> пісні</item>
+    </plurals>
+    <plurals name="Nsongscomp" formatted="false" msgid="4511633526221956857">
+      <item quantity="one"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> пісня з <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g></item>
+      <item quantity="few"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> пісні з <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g></item>
+      <item quantity="many"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> пісень з <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> пісні з <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g></item>
+    </plurals>
+    <plurals name="Nalbums" formatted="false" msgid="7947176578850672205">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> альбом</item>
+      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> альбоми</item>
+      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> альбомів</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> альбому</item>
+    </plurals>
     <string name="goto_start" msgid="8979658707407220934">"Бібліотека"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"Перемішати все"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"Вимк. переміш. всього"</string>
     <string name="delete_item" msgid="3363330144534750601">"Видалити"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"Перемішати все"</string>
-    <string name="play_all" msgid="6309622568869321842">"Відтвор. всі"</string>
+    <string name="play_all" msgid="6309622568869321842">"Слухати всі"</string>
     <string name="delete_artist_desc" msgid="8665759524898379194">"Назавжди видалити всі пісні виконавця <xliff:g id="ARTIST">%s</xliff:g> з карти SD?"</string>
     <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Назавжди видалити всі пісні виконавця <xliff:g id="ARTIST">%s</xliff:g> з пам’яті USB?"</string>
     <string name="delete_album_desc" msgid="8172412873562794429">"Назавжди видалити весь альбом \"<xliff:g id="ALBUM">%s</xliff:g>\" з карти SD?"</string>
@@ -43,21 +51,23 @@
     <string name="delete_song_desc" msgid="1842681623848282205">"Назавжди видалити пісню \"<xliff:g id="SONG">%s</xliff:g>\" з карти SD?"</string>
     <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"Назавжди видалити пісню \"<xliff:g id="SONG">%s</xliff:g>\" з пам’яті USB?"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"OK"</string>
-  <plurals name="NNNtracksdeleted">
-    <item quantity="one" msgid="8560276109508404217">"1 пісню видалено."</item>
-    <item quantity="other" msgid="5156740163031225200">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> пісень видалено."</item>
-  </plurals>
+    <plurals name="NNNtracksdeleted" formatted="false" msgid="2499334199042190643">
+      <item quantity="one">Видалено <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> пісню.</item>
+      <item quantity="few">Видалено <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> пісні.</item>
+      <item quantity="many">Видалено <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> пісень.</item>
+      <item quantity="other">Видалено <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> пісні.</item>
+    </plurals>
     <string name="scanning" msgid="3529383847223198502">"Сканування карти SD…"</string>
     <string name="scanning_nosdcard" msgid="8105284774487360148">"Сканування носія USB…"</string>
-    <string name="nowplaying_title" msgid="8342523844307751761">"Зараз відтвор."</string>
+    <string name="nowplaying_title" msgid="8342523844307751761">"Грає зараз"</string>
     <string name="partyshuffle_title" msgid="6582413231529992125">"Перемішати все"</string>
     <string name="artists_title" msgid="8490372367259160067">"Виконавці"</string>
     <string name="albums_menu" msgid="5807982055590211900">"Альбоми"</string>
     <string name="albums_title" msgid="8773880394961378035">"Альбоми"</string>
     <string name="tracks_menu" msgid="6942246568246092330">"Пісні"</string>
     <string name="tracks_title" msgid="3229389424532295124">"Пісні"</string>
-    <string name="playlists_menu" msgid="5382792649771928849">"Сп-ки відтвор."</string>
-    <string name="playlists_title" msgid="5094238486322957927">"Сп-ки відтвор."</string>
+    <string name="playlists_menu" msgid="5382792649771928849">"Списки відтворення"</string>
+    <string name="playlists_title" msgid="5094238486322957927">"Списки відтворення"</string>
     <string name="videos_title" msgid="2066741954354129115">"Відео"</string>
     <string name="all_title" msgid="6880186414437237653">"Усі медіа-файли"</string>
     <string name="browse_menu" msgid="5248122473075843289">"Виконавці"</string>
@@ -101,14 +111,16 @@
     <string name="queue" msgid="2937629819482787704">"Поточ. сп-ок відтв."</string>
     <string name="new_playlist" msgid="7588112979692632867">"Нове"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"Нов. сп-ок відтв. <xliff:g id="NUMBER">%d</xliff:g>"</string>
-  <plurals name="NNNtrackstoplaylist">
-    <item quantity="one" msgid="422388042993582235">"1 пісню дод. до сп-ку відтв."</item>
-    <item quantity="other" msgid="7662771987109627255">"<xliff:g id="NUMBER">%d</xliff:g> пісень дод. до сп-ку відтв."</item>
-  </plurals>
+    <plurals name="NNNtrackstoplaylist" formatted="false" msgid="4679501954832581077">
+      <item quantity="one">У список відтворення додано <xliff:g id="NUMBER">%d</xliff:g> пісню.</item>
+      <item quantity="few">У список відтворення додано <xliff:g id="NUMBER">%d</xliff:g> пісні.</item>
+      <item quantity="many">У список відтворення додано <xliff:g id="NUMBER">%d</xliff:g> пісень.</item>
+      <item quantity="other">У список відтворення додано <xliff:g id="NUMBER">%d</xliff:g> пісні.</item>
+    </plurals>
     <string name="emptyplaylist" msgid="6711555673997896344">"Вибраний сп-ок відтв. порожній."</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"Зберег."</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Перезапис."</string>
-    <string name="service_start_error_title" msgid="8649916852210198813">"Проблема з відтвор."</string>
+    <string name="service_start_error_title" msgid="8649916852210198813">"Помилка відтворення"</string>
     <string name="service_start_error_msg" msgid="7061754255330276478">"Цю пісню неможливо відтворити."</string>
     <string name="service_start_error_button" msgid="480888406592240723">"OK"</string>
   <string-array name="weeklist">
