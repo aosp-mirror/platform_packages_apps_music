@@ -25,8 +25,8 @@
       <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> canción</item>
     </plurals>
     <plurals name="Nsongscomp" formatted="false" msgid="4511633526221956857">
-      <item quantity="other"><xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> canciones de <xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g></item>
-      <item quantity="one"><xliff:g id="TOTAL_COUNT_1">%1$d</xliff:g> canción de <xliff:g id="COUNT_FOR_ARTIST_0">%2$d</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> de <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> canciones</item>
+      <item quantity="one"><xliff:g id="COUNT_FOR_ARTIST_0">%2$d</xliff:g> de <xliff:g id="TOTAL_COUNT_1">%1$d</xliff:g> canción</item>
     </plurals>
     <plurals name="Nalbums" formatted="false" msgid="7947176578850672205">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> álbumes</item>
