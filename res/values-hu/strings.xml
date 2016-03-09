@@ -70,7 +70,7 @@
     <string name="delete_playlist_menu" msgid="8998637685583495247">"Törlés"</string>
     <string name="edit_playlist_menu" msgid="571618502105370684">"Szerkesztés"</string>
     <string name="rename_playlist_menu" msgid="3133463747389494668">"Átnevezés"</string>
-    <string name="playlist_deleted_message" msgid="9008053828193961455">"A lejátszási lista törlésre került."</string>
+    <string name="playlist_deleted_message" msgid="9008053828193961455">"Lejátszási lista törölve."</string>
     <string name="playlist_renamed_message" msgid="7187580192703005990">"A lejátszási lista átnevezése megtörtént."</string>
     <string name="recentlyadded" msgid="110978416756366953">"Nemrég hozzáadott"</string>
     <string name="recentlyadded_title" msgid="3153322287249901914">"Nemrég hozzáadott"</string>
