@@ -20,16 +20,24 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="onesong" msgid="8336826100414159413">"1 skladba"</string>
-  <plurals name="Nsongs">
-    <item quantity="other" msgid="5798230388116542981">"<xliff:g id="COUNT">%d</xliff:g> skladb"</item>
-  </plurals>
-  <plurals name="Nsongscomp">
-    <item quantity="other" msgid="7162294486622945550">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> od <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> skladb"</item>
-  </plurals>
-  <plurals name="Nalbums">
-    <item quantity="one" msgid="3798955510439465932">"1 album"</item>
-    <item quantity="other" msgid="3047615499770811984">"<xliff:g id="COUNT">%d</xliff:g> albumov"</item>
-  </plurals>
+    <plurals name="Nsongs" formatted="false" msgid="6016461352893352675">
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> skladba</item>
+      <item quantity="two"><xliff:g id="COUNT_1">%d</xliff:g> skladbi</item>
+      <item quantity="few"><xliff:g id="COUNT_1">%d</xliff:g> skladbe</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> skladb</item>
+    </plurals>
+    <plurals name="Nsongscomp" formatted="false" msgid="4511633526221956857">
+      <item quantity="one"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> od <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> skladbe</item>
+      <item quantity="two"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> od <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> skladb</item>
+      <item quantity="few"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> od <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> skladb</item>
+      <item quantity="other"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> od <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> skladb</item>
+    </plurals>
+    <plurals name="Nalbums" formatted="false" msgid="7947176578850672205">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> album</item>
+      <item quantity="two"><xliff:g id="COUNT">%d</xliff:g> albuma</item>
+      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> albumi</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> albumov</item>
+    </plurals>
     <string name="goto_start" msgid="8979658707407220934">"Knjižnica"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"Naključno predvajanje vseh skladb"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"Naključno predvajanje vseh skladb je izklopljeno"</string>
@@ -43,10 +51,12 @@
     <string name="delete_song_desc" msgid="1842681623848282205">"Ali želite skladbo »<xliff:g id="SONG">%s</xliff:g>« trajno izbrisati s kartice SD?"</string>
     <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"Ali želite skladbo »<xliff:g id="SONG">%s</xliff:g>« trajno izbrisati iz pomnilnika USB?"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"V redu"</string>
-  <plurals name="NNNtracksdeleted">
-    <item quantity="one" msgid="8560276109508404217">"1 skladba je bila izbrisana."</item>
-    <item quantity="other" msgid="5156740163031225200">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> skladb je bilo izbrisanih."</item>
-  </plurals>
+    <plurals name="NNNtracksdeleted" formatted="false" msgid="2499334199042190643">
+      <item quantity="one"><xliff:g id="SONGS_TO_DELETE">%d</xliff:g> skladba je bila izbrisana.</item>
+      <item quantity="two"><xliff:g id="SONGS_TO_DELETE">%d</xliff:g> skladbi sta bili izbrisani.</item>
+      <item quantity="few"><xliff:g id="SONGS_TO_DELETE">%d</xliff:g> skladbe so bile izbrisane.</item>
+      <item quantity="other"><xliff:g id="SONGS_TO_DELETE">%d</xliff:g> skladbe je bilo izbrisanih.</item>
+    </plurals>
     <string name="scanning" msgid="3529383847223198502">"Pregledovanje kartice SD ..."</string>
     <string name="scanning_nosdcard" msgid="8105284774487360148">"Pregledovanje pomnilnika USB ..."</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"Trenutno se predvaja"</string>
@@ -72,8 +82,8 @@
     <string name="playlist_renamed_message" msgid="7187580192703005990">"Seznam predvajanja je preimenovan."</string>
     <string name="recentlyadded" msgid="110978416756366953">"Nedavno dodano"</string>
     <string name="recentlyadded_title" msgid="3153322287249901914">"Nedavno dodano"</string>
-    <string name="podcasts_listitem" msgid="8657809279717670634">"Podcasti"</string>
-    <string name="podcasts_title" msgid="4928414142496858304">"Podcasti"</string>
+    <string name="podcasts_listitem" msgid="8657809279717670634">"Poddaje"</string>
+    <string name="podcasts_title" msgid="4928414142496858304">"Poddaje"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"Ni kartice SD"</string>
     <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"Ni pomnilnika USB"</string>
     <string name="sdcard_missing_message" msgid="2100061456003981823">"V telefonu ni kartice SD."</string>
@@ -97,14 +107,16 @@
     <string name="ringtone_menu_short" msgid="3367622038867238133">"Uporabi kot melodijo zvonjenja"</string>
     <string name="ringtone_set" msgid="5325818347613843130">"»<xliff:g id="NAME">%s</xliff:g>« je nastavljen kot melodija zvonjenja telefona."</string>
     <string name="play_selection" msgid="2854921021814550018">"Predvajaj"</string>
-    <string name="add_to_playlist" msgid="7110273488645072783">"Dodaj na seznam predvajanja"</string>
+    <string name="add_to_playlist" msgid="7110273488645072783">"Dodaj na seznam predvaj."</string>
     <string name="queue" msgid="2937629819482787704">"Trenutni seznam predvajanja"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Novo"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"Nov seznam predvajanja <xliff:g id="NUMBER">%d</xliff:g>"</string>
-  <plurals name="NNNtrackstoplaylist">
-    <item quantity="one" msgid="422388042993582235">"1 skladba je dodana na seznam predvajanja."</item>
-    <item quantity="other" msgid="7662771987109627255">"<xliff:g id="NUMBER">%d</xliff:g> skladb dodanih na seznam predvajanja."</item>
-  </plurals>
+    <plurals name="NNNtrackstoplaylist" formatted="false" msgid="4679501954832581077">
+      <item quantity="one"><xliff:g id="NUMBER">%d</xliff:g> skladba je dodana na seznam predvajanja.</item>
+      <item quantity="two"><xliff:g id="NUMBER">%d</xliff:g> skladbi sta dodani na seznam predvajanja.</item>
+      <item quantity="few"><xliff:g id="NUMBER">%d</xliff:g> skladbe so dodane na seznam predvajanja.</item>
+      <item quantity="other"><xliff:g id="NUMBER">%d</xliff:g> skladb je dodanih na seznam predvajanja.</item>
+    </plurals>
     <string name="emptyplaylist" msgid="6711555673997896344">"Izbrani seznam predvajanja je prazen."</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"Shrani"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Prepiši"</string>
@@ -149,7 +161,7 @@
     <string name="sort_by_artist" msgid="4607024967813199992">"Izvajalci"</string>
     <string name="music_picker_title" msgid="4143865470317360605">"Izberite skladbo"</string>
     <string name="search_settings_description" msgid="6520975349259883368">"Izvajalci, albumi in skladbe"</string>
-    <string name="search_hint" msgid="3766854898072633001">"Iskanje po glasbi"</string>
+    <string name="search_hint" msgid="3766854898072633001">"Poiščite glasbo"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
     <string name="widget_initial_text" msgid="3166878738860903586">"Dotaknite se, da izberete glasbo."</string>
     <string name="effectspanel" msgid="8804547581593509614">"Zvočni učinki"</string>

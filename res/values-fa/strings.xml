@@ -20,16 +20,18 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="onesong" msgid="8336826100414159413">"1 آهنگ"</string>
-  <plurals name="Nsongs">
-    <item quantity="other" msgid="5798230388116542981">"<xliff:g id="COUNT">%d</xliff:g> آهنگ"</item>
-  </plurals>
-  <plurals name="Nsongscomp">
-    <item quantity="other" msgid="7162294486622945550">"<xliff:g id="COUNT_FOR_ARTIST">%2$d</xliff:g> از <xliff:g id="TOTAL_COUNT">%1$d</xliff:g> آهنگ"</item>
-  </plurals>
-  <plurals name="Nalbums">
-    <item quantity="one" msgid="3798955510439465932">"1 آلبوم"</item>
-    <item quantity="other" msgid="3047615499770811984">"<xliff:g id="COUNT">%d</xliff:g> آلبوم"</item>
-  </plurals>
+    <plurals name="Nsongs" formatted="false" msgid="6016461352893352675">
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> آهنگ</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> آهنگ</item>
+    </plurals>
+    <plurals name="Nsongscomp" formatted="false" msgid="4511633526221956857">
+      <item quantity="one"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> از <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> آهنگ</item>
+      <item quantity="other"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> از <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> آهنگ</item>
+    </plurals>
+    <plurals name="Nalbums" formatted="false" msgid="7947176578850672205">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> آلبوم</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> آلبوم</item>
+    </plurals>
     <string name="goto_start" msgid="8979658707407220934">"کتابخانه"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"ترتیب تصادفی گروه"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"ترتیب تصادفی گروه خاموش است"</string>
@@ -43,10 +45,10 @@
     <string name="delete_song_desc" msgid="1842681623848282205">"\"<xliff:g id="SONG">%s</xliff:g>\" را به‌صورت دائمی از کارت SD حذف می‌کنید؟"</string>
     <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"\"<xliff:g id="SONG">%s</xliff:g>\" را به‌صورت دائمی از حافظهٔ USB حذف می‌کنید؟"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"تأیید"</string>
-  <plurals name="NNNtracksdeleted">
-    <item quantity="one" msgid="8560276109508404217">"1 آهنگ حذف شد."</item>
-    <item quantity="other" msgid="5156740163031225200">"<xliff:g id="SONGS_TO_DELETE">%d</xliff:g> آهنگ حذف شد."</item>
-  </plurals>
+    <plurals name="NNNtracksdeleted" formatted="false" msgid="2499334199042190643">
+      <item quantity="one"><xliff:g id="SONGS_TO_DELETE">%d</xliff:g> آهنگ حذف شد.</item>
+      <item quantity="other"><xliff:g id="SONGS_TO_DELETE">%d</xliff:g> آهنگ حذف شد.</item>
+    </plurals>
     <string name="scanning" msgid="3529383847223198502">"در حال اسکن کارت SD..."</string>
     <string name="scanning_nosdcard" msgid="8105284774487360148">"در حال اسکن کردن حافظهٔ USB..."</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"در حال پخش"</string>
@@ -101,14 +103,14 @@
     <string name="queue" msgid="2937629819482787704">"لیست پخش فعلی"</string>
     <string name="new_playlist" msgid="7588112979692632867">"جدید"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"لیست پخش جدید <xliff:g id="NUMBER">%d</xliff:g>"</string>
-  <plurals name="NNNtrackstoplaylist">
-    <item quantity="one" msgid="422388042993582235">"1 آهنگ به لیست پخش اضافه شد."</item>
-    <item quantity="other" msgid="7662771987109627255">"<xliff:g id="NUMBER">%d</xliff:g> آهنگ به لیست پخش افزوده شد."</item>
-  </plurals>
+    <plurals name="NNNtrackstoplaylist" formatted="false" msgid="4679501954832581077">
+      <item quantity="one"><xliff:g id="NUMBER">%d</xliff:g> آهنگ به فهرست پخش اضافه شد.</item>
+      <item quantity="other"><xliff:g id="NUMBER">%d</xliff:g> آهنگ به فهرست پخش اضافه شد.</item>
+    </plurals>
     <string name="emptyplaylist" msgid="6711555673997896344">"لیست پخش انتخابی خالی است."</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"ذخیره"</string>
     <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"رونویسی"</string>
-    <string name="service_start_error_title" msgid="8649916852210198813">"مشکل پخش"</string>
+    <string name="service_start_error_title" msgid="8649916852210198813">"مشکل بازپخش"</string>
     <string name="service_start_error_msg" msgid="7061754255330276478">"آهنگ پخش نشد."</string>
     <string name="service_start_error_button" msgid="480888406592240723">"تأیید"</string>
   <string-array name="weeklist">
@@ -125,7 +127,7 @@
     <item msgid="2727959579637914171">"۱۱ هفته"</item>
     <item msgid="8708754966127584739">"۱۲ هفته"</item>
   </string-array>
-    <string name="weekpicker_set" msgid="7636608790418067496">"انجام شد"</string>
+    <string name="weekpicker_set" msgid="7636608790418067496">"تمام"</string>
     <string name="weekpicker_title" msgid="699535378922101701">"تنظیم زمان"</string>
     <string name="save_as_playlist" msgid="5180413608901885255">"ذخیره به‌عنوان لیست پخش"</string>
     <string name="clear_playlist" msgid="4565515100924905315">"پاک کردن لیست پخش"</string>
@@ -143,7 +145,7 @@
     <string name="working_albums" msgid="8713273699401457426">"آلبوم‌ها..."</string>
     <string name="working_songs" msgid="2201491972050410684">"آهنگ‌ها..."</string>
     <string name="working_playlists" msgid="4424950806134653351">"لیست‌های پخش..."</string>
-    <string name="loading" msgid="1991660396037155453">"در حال بارگیری..."</string>
+    <string name="loading" msgid="1991660396037155453">"در حال بارکردن…"</string>
     <string name="sort_by_track" msgid="7662999005554152565">"تراک‌ها"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"آلبوم‌ها"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"هنرمندان"</string>
