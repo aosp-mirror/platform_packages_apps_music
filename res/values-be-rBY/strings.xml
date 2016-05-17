@@ -138,7 +138,7 @@
     <item msgid="8708754966127584739">"12 тыдняў"</item>
   </string-array>
     <string name="weekpicker_set" msgid="7636608790418067496">"Гатова"</string>
-    <string name="weekpicker_title" msgid="699535378922101701">"Усталяваць час"</string>
+    <string name="weekpicker_title" msgid="699535378922101701">"Задаць час"</string>
     <string name="save_as_playlist" msgid="5180413608901885255">"Захаваць як плэйліст"</string>
     <string name="clear_playlist" msgid="4565515100924905315">"Ачысціць плэйліст"</string>
     <string name="musicbrowserlabel" msgid="3162022214114562892">"Музыка"</string>
