@@ -77,7 +77,7 @@ public class TouchInterceptor extends ListView {
 
     public TouchInterceptor(Context context, AttributeSet attrs) {
         super(context, attrs);
-        SharedPreferences pref = context.getSharedPreferences("Music", 3);
+        SharedPreferences pref = context.getSharedPreferences("Music", 0);
         mRemoveMode = pref.getInt("deletemode", -1);
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         Resources res = getResources();
