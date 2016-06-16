@@ -20,8 +20,14 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="onesong" msgid="8336826100414159413">"1 cançó"</string>
-    <!-- no translation found for Nsongs (8315784110177671046) -->
-    <!-- no translation found for Nsongscomp (2294119757581588619) -->
+    <plurals name="Nsongs" formatted="false" msgid="6016461352893352675">
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> cançons</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> cançó</item>
+    </plurals>
+    <plurals name="Nsongscomp" formatted="false" msgid="4511633526221956857">
+      <item quantity="other"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> cançons (<xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> en total)</item>
+      <item quantity="one"><xliff:g id="COUNT_FOR_ARTIST_0">%2$d</xliff:g> cançó (<xliff:g id="TOTAL_COUNT_1">%1$d</xliff:g> en total)</item>
+    </plurals>
     <plurals name="Nalbums" formatted="false" msgid="7947176578850672205">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> àlbums</item>
       <item quantity="one">1 àlbum</item>

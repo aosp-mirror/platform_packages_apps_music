@@ -20,8 +20,18 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="onesong" msgid="8336826100414159413">"1 skladba"</string>
-    <!-- no translation found for Nsongs (8315784110177671046) -->
-    <!-- no translation found for Nsongscomp (2294119757581588619) -->
+    <plurals name="Nsongs" formatted="false" msgid="6016461352893352675">
+      <item quantity="few"><xliff:g id="COUNT_1">%d</xliff:g> skladby</item>
+      <item quantity="many"><xliff:g id="COUNT_1">%d</xliff:g> skladby</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> skladieb</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> skladba</item>
+    </plurals>
+    <plurals name="Nsongscomp" formatted="false" msgid="4511633526221956857">
+      <item quantity="few"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> z <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> skladieb</item>
+      <item quantity="many"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> z <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> skladieb</item>
+      <item quantity="other"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> z <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> skladieb</item>
+      <item quantity="one"><xliff:g id="COUNT_FOR_ARTIST_0">%2$d</xliff:g> z <xliff:g id="TOTAL_COUNT_1">%1$d</xliff:g> skladieb</item>
+    </plurals>
     <plurals name="Nalbums" formatted="false" msgid="7947176578850672205">
       <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> albumy</item>
       <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> albumu</item>
@@ -32,7 +42,7 @@
     <string name="party_shuffle" msgid="8213359225506006168">"Náhodný výber všetkých skladieb"</string>
     <string name="party_shuffle_off" msgid="1828744483354711679">"Vypnúť náhodný výber všetkých skladieb"</string>
     <string name="delete_item" msgid="3363330144534750601">"Odstrániť"</string>
-    <string name="shuffle_all" msgid="1388193611787878773">"Náhodne prehrávať všetko"</string>
+    <string name="shuffle_all" msgid="1388193611787878773">"Náhodne hrať všetko"</string>
     <string name="play_all" msgid="6309622568869321842">"Prehrať všetko"</string>
     <string name="delete_artist_desc" msgid="8665759524898379194">"Natrvalo odstrániť všetky skladby interpreta „<xliff:g id="ARTIST">%s</xliff:g>“ z SD karty?"</string>
     <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Natrvalo odstrániť všetky skladby interpreta „<xliff:g id="ARTIST">%s</xliff:g>“ z úložiska USB?"</string>

@@ -20,8 +20,18 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="onesong" msgid="8336826100414159413">"1 skladba"</string>
-    <!-- no translation found for Nsongs (8315784110177671046) -->
-    <!-- no translation found for Nsongscomp (2294119757581588619) -->
+    <plurals name="Nsongs" formatted="false" msgid="6016461352893352675">
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> skladba</item>
+      <item quantity="two"><xliff:g id="COUNT_1">%d</xliff:g> skladbi</item>
+      <item quantity="few"><xliff:g id="COUNT_1">%d</xliff:g> skladbe</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> skladb</item>
+    </plurals>
+    <plurals name="Nsongscomp" formatted="false" msgid="4511633526221956857">
+      <item quantity="one"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> od <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> skladbe</item>
+      <item quantity="two"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> od <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> skladb</item>
+      <item quantity="few"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> od <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> skladb</item>
+      <item quantity="other"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> od <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> skladb</item>
+    </plurals>
     <plurals name="Nalbums" formatted="false" msgid="7947176578850672205">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> album</item>
       <item quantity="two"><xliff:g id="COUNT">%d</xliff:g> albuma</item>
@@ -72,8 +82,8 @@
     <string name="playlist_renamed_message" msgid="7187580192703005990">"Seznam predvajanja je preimenovan."</string>
     <string name="recentlyadded" msgid="110978416756366953">"Nedavno dodano"</string>
     <string name="recentlyadded_title" msgid="3153322287249901914">"Nedavno dodano"</string>
-    <string name="podcasts_listitem" msgid="8657809279717670634">"Podcasti"</string>
-    <string name="podcasts_title" msgid="4928414142496858304">"Podcasti"</string>
+    <string name="podcasts_listitem" msgid="8657809279717670634">"Poddaje"</string>
+    <string name="podcasts_title" msgid="4928414142496858304">"Poddaje"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"Ni kartice SD"</string>
     <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"Ni pomnilnika USB"</string>
     <string name="sdcard_missing_message" msgid="2100061456003981823">"V telefonu ni kartice SD."</string>
@@ -97,7 +107,7 @@
     <string name="ringtone_menu_short" msgid="3367622038867238133">"Uporabi kot melodijo zvonjenja"</string>
     <string name="ringtone_set" msgid="5325818347613843130">"»<xliff:g id="NAME">%s</xliff:g>« je nastavljen kot melodija zvonjenja telefona."</string>
     <string name="play_selection" msgid="2854921021814550018">"Predvajaj"</string>
-    <string name="add_to_playlist" msgid="7110273488645072783">"Dodaj na seznam predvajanja"</string>
+    <string name="add_to_playlist" msgid="7110273488645072783">"Dodaj na seznam predvaj."</string>
     <string name="queue" msgid="2937629819482787704">"Trenutni seznam predvajanja"</string>
     <string name="new_playlist" msgid="7588112979692632867">"Novo"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"Nov seznam predvajanja <xliff:g id="NUMBER">%d</xliff:g>"</string>
@@ -151,7 +161,7 @@
     <string name="sort_by_artist" msgid="4607024967813199992">"Izvajalci"</string>
     <string name="music_picker_title" msgid="4143865470317360605">"Izberite skladbo"</string>
     <string name="search_settings_description" msgid="6520975349259883368">"Izvajalci, albumi in skladbe"</string>
-    <string name="search_hint" msgid="3766854898072633001">"Iskanje po glasbi"</string>
+    <string name="search_hint" msgid="3766854898072633001">"Poiščite glasbo"</string>
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
     <string name="widget_initial_text" msgid="3166878738860903586">"Dotaknite se, da izberete glasbo."</string>
     <string name="effectspanel" msgid="8804547581593509614">"Zvočni učinki"</string>
