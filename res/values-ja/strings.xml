@@ -20,8 +20,14 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="onesong" msgid="8336826100414159413">"曲（1）"</string>
-    <!-- no translation found for Nsongs (8315784110177671046) -->
-    <!-- no translation found for Nsongscomp (2294119757581588619) -->
+    <plurals name="Nsongs" formatted="false" msgid="6016461352893352675">
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> 曲</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> 曲</item>
+    </plurals>
+    <plurals name="Nsongscomp" formatted="false" msgid="4511633526221956857">
+      <item quantity="other"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g>/<xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> 曲</item>
+      <item quantity="one"><xliff:g id="COUNT_FOR_ARTIST_0">%2$d</xliff:g>/<xliff:g id="TOTAL_COUNT_1">%1$d</xliff:g> 曲</item>
+    </plurals>
     <plurals name="Nalbums" formatted="false" msgid="7947176578850672205">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> 枚のアルバム</item>
       <item quantity="one">1 枚のアルバム</item>
@@ -72,8 +78,8 @@
     <string name="podcasts_title" msgid="4928414142496858304">"ポッドキャスト"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"SDカードがありません"</string>
     <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"USBストレージなし"</string>
-    <string name="sdcard_missing_message" msgid="2100061456003981823">"SDカードが携帯端末に挿入されていません。"</string>
-    <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"携帯端末にUSBストレージがありません。"</string>
+    <string name="sdcard_missing_message" msgid="2100061456003981823">"SDカードがモバイル端末に挿入されていません。"</string>
+    <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"モバイル端末にUSBストレージがありません。"</string>
     <string name="sdcard_busy_title" msgid="1162763571147174655">"SDカードを使用できません"</string>
     <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"USBストレージ使用不可"</string>
     <string name="sdcard_busy_message" msgid="579981082201215537">"SDカードは使用中です。"</string>

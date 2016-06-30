@@ -20,8 +20,14 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="onesong" msgid="8336826100414159413">"1 dal"</string>
-    <!-- no translation found for Nsongs (8315784110177671046) -->
-    <!-- no translation found for Nsongscomp (2294119757581588619) -->
+    <plurals name="Nsongs" formatted="false" msgid="6016461352893352675">
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> szám</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> szám</item>
+    </plurals>
+    <plurals name="Nsongscomp" formatted="false" msgid="4511633526221956857">
+      <item quantity="other"><xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g>/<xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> szám</item>
+      <item quantity="one"><xliff:g id="TOTAL_COUNT_1">%1$d</xliff:g>/<xliff:g id="COUNT_FOR_ARTIST_0">%2$d</xliff:g> szám</item>
+    </plurals>
     <plurals name="Nalbums" formatted="false" msgid="7947176578850672205">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> album</item>
       <item quantity="one">1 album</item>
@@ -64,7 +70,7 @@
     <string name="delete_playlist_menu" msgid="8998637685583495247">"Törlés"</string>
     <string name="edit_playlist_menu" msgid="571618502105370684">"Szerkesztés"</string>
     <string name="rename_playlist_menu" msgid="3133463747389494668">"Átnevezés"</string>
-    <string name="playlist_deleted_message" msgid="9008053828193961455">"A lejátszási lista törlésre került."</string>
+    <string name="playlist_deleted_message" msgid="9008053828193961455">"Lejátszási lista törölve."</string>
     <string name="playlist_renamed_message" msgid="7187580192703005990">"A lejátszási lista átnevezése megtörtént."</string>
     <string name="recentlyadded" msgid="110978416756366953">"Nemrég hozzáadott"</string>
     <string name="recentlyadded_title" msgid="3153322287249901914">"Nemrég hozzáadott"</string>
