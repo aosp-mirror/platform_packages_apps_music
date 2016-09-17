@@ -60,7 +60,7 @@
     <string name="tracks_title" msgid="3229389424532295124">"آهنگ‌ها"</string>
     <string name="playlists_menu" msgid="5382792649771928849">"فهرست‌های پخش"</string>
     <string name="playlists_title" msgid="5094238486322957927">"فهرست‌های پخش"</string>
-    <string name="videos_title" msgid="2066741954354129115">"ویدیوها"</string>
+    <string name="videos_title" msgid="2066741954354129115">"ویدئوها"</string>
     <string name="all_title" msgid="6880186414437237653">"همه رسانه"</string>
     <string name="browse_menu" msgid="5248122473075843289">"هنرمندان"</string>
     <string name="search_title" msgid="1016971653383739344">"جستجو"</string>
@@ -72,8 +72,8 @@
     <string name="rename_playlist_menu" msgid="3133463747389494668">"تغییر نام"</string>
     <string name="playlist_deleted_message" msgid="9008053828193961455">"فهرست پخش حذف شد."</string>
     <string name="playlist_renamed_message" msgid="7187580192703005990">"نام فهرست پخش تغییر کرد."</string>
-    <string name="recentlyadded" msgid="110978416756366953">"اخیراً افزوده شده"</string>
-    <string name="recentlyadded_title" msgid="3153322287249901914">"اخیراً افزوده شده"</string>
+    <string name="recentlyadded" msgid="110978416756366953">"افزوده‌های اخیر"</string>
+    <string name="recentlyadded_title" msgid="3153322287249901914">"افزوده‌های اخیر"</string>
     <string name="podcasts_listitem" msgid="8657809279717670634">"پادکست ها"</string>
     <string name="podcasts_title" msgid="4928414142496858304">"پادکست ها"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"کارت SD موجود نیست"</string>
@@ -134,7 +134,7 @@
     <string name="musicbrowserlabel" msgid="3162022214114562892">"موسیقی"</string>
     <string name="musicshortcutlabel" msgid="2602980193508150226">"فهرست پخش موسیقی"</string>
     <string name="mediaplaybacklabel" msgid="6733604841530940397">"موسیقی"</string>
-    <string name="videobrowserlabel" msgid="8522326678447494657">"ویدیوها"</string>
+    <string name="videobrowserlabel" msgid="8522326678447494657">"ویدئوها"</string>
     <string name="mediapickerlabel" msgid="4549836003229914299">"موسیقی"</string>
     <string name="playback_failed" msgid="3811851150820251398">"پخش‌کننده از این نوع فایل صوتی پشتیبانی نمی‌کند."</string>
     <string name="cancel" msgid="886559484711947520">"لغو"</string>
