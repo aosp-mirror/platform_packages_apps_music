@@ -72,8 +72,8 @@
     <string name="rename_playlist_menu" msgid="3133463747389494668">"تغییر نام"</string>
     <string name="playlist_deleted_message" msgid="9008053828193961455">"فهرست پخش حذف شد."</string>
     <string name="playlist_renamed_message" msgid="7187580192703005990">"نام فهرست پخش تغییر کرد."</string>
-    <string name="recentlyadded" msgid="110978416756366953">"اخیراً افزوده شده"</string>
-    <string name="recentlyadded_title" msgid="3153322287249901914">"اخیراً افزوده شده"</string>
+    <string name="recentlyadded" msgid="110978416756366953">"افزوده‌های اخیر"</string>
+    <string name="recentlyadded_title" msgid="3153322287249901914">"افزوده‌های اخیر"</string>
     <string name="podcasts_listitem" msgid="8657809279717670634">"پادکست ها"</string>
     <string name="podcasts_title" msgid="4928414142496858304">"پادکست ها"</string>
     <string name="sdcard_missing_title" msgid="9008284946643270850">"کارت SD موجود نیست"</string>
