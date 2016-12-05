@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*
+** Copyright 2007, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License"); 
+** you may not use this file except in compliance with the License. 
+** You may obtain a copy of the License at 
+**
+**     http://www.apache.org/licenses/LICENSE-2.0 
+**
+** Unless required by applicable law or agreed to in writing, software 
+** distributed under the License is distributed on an "AS IS" BASIS, 
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+** See the License for the specific language governing permissions and 
+** limitations under the License.
+*/
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onesong" msgid="8336826100414159413">"1 首歌曲"</string>
+    <plurals name="Nsongs" formatted="false" msgid="6016461352893352675">
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> 首歌曲</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> 首歌曲</item>
+    </plurals>
+    <plurals name="Nsongscomp" formatted="false" msgid="4511633526221956857">
+      <item quantity="other"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> 首歌曲（共 <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> 首）</item>
+      <item quantity="one"><xliff:g id="COUNT_FOR_ARTIST_0">%2$d</xliff:g> 首歌曲（共 <xliff:g id="TOTAL_COUNT_1">%1$d</xliff:g> 首）</item>
+    </plurals>
+    <plurals name="Nalbums" formatted="false" msgid="7947176578850672205">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> 张专辑</item>
+      <item quantity="one">1 张专辑</item>
+    </plurals>
+    <string name="goto_start" msgid="8979658707407220934">"音乐库"</string>
+    <string name="party_shuffle" msgid="8213359225506006168">"派对随机播放"</string>
+    <string name="party_shuffle_off" msgid="1828744483354711679">"关闭派对随机播放"</string>
+    <string name="delete_item" msgid="3363330144534750601">"删除"</string>
+    <string name="shuffle_all" msgid="1388193611787878773">"全部随机播放"</string>
+    <string name="play_all" msgid="6309622568869321842">"全部播放"</string>
+    <string name="delete_artist_desc" msgid="8665759524898379194">"要从 SD 卡中永久删除<xliff:g id="ARTIST">%s</xliff:g>的所有歌曲吗？"</string>
+    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"要从 USB 存储设备中永久删除<xliff:g id="ARTIST">%s</xliff:g>的所有歌曲吗？"</string>
+    <string name="delete_album_desc" msgid="8172412873562794429">"要从 SD 卡中永久删除整张“<xliff:g id="ALBUM">%s</xliff:g>”专辑吗？"</string>
+    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"要从 USB 存储设备中永久删除整张“<xliff:g id="ALBUM">%s</xliff:g>”专辑吗？"</string>
+    <string name="delete_song_desc" msgid="1842681623848282205">"要从 SD 卡中永久删除“<xliff:g id="SONG">%s</xliff:g>”吗？"</string>
+    <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"要从 USB 存储设备中永久删除“<xliff:g id="SONG">%s</xliff:g>”吗？"</string>
+    <string name="delete_confirm_button_text" msgid="7008121194944357274">"确定"</string>
+    <plurals name="NNNtracksdeleted" formatted="false" msgid="2499334199042190643">
+      <item quantity="other">已删除 <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> 首歌曲。</item>
+      <item quantity="one">已删除 1 首歌曲。</item>
+    </plurals>
+    <string name="scanning" msgid="3529383847223198502">"正在扫描 SD 卡..."</string>
+    <string name="scanning_nosdcard" msgid="8105284774487360148">"正在扫描 USB 存储设备..."</string>
+    <string name="nowplaying_title" msgid="8342523844307751761">"正在播放"</string>
+    <string name="partyshuffle_title" msgid="6582413231529992125">"派对随机播放"</string>
+    <string name="artists_title" msgid="8490372367259160067">"音乐人"</string>
+    <string name="albums_menu" msgid="5807982055590211900">"专辑"</string>
+    <string name="albums_title" msgid="8773880394961378035">"专辑"</string>
+    <string name="tracks_menu" msgid="6942246568246092330">"歌曲"</string>
+    <string name="tracks_title" msgid="3229389424532295124">"歌曲"</string>
+    <string name="playlists_menu" msgid="5382792649771928849">"播放列表"</string>
+    <string name="playlists_title" msgid="5094238486322957927">"播放列表"</string>
+    <string name="videos_title" msgid="2066741954354129115">"视频"</string>
+    <string name="all_title" msgid="6880186414437237653">"所有媒体"</string>
+    <string name="browse_menu" msgid="5248122473075843289">"音乐人"</string>
+    <string name="search_title" msgid="1016971653383739344">"搜索"</string>
+    <string name="no_tracks_title" msgid="8805805388271238471">"无歌曲"</string>
+    <string name="no_videos_title" msgid="6218814130364793104">"无视频"</string>
+    <string name="no_playlists_title" msgid="4456351945617594418">"无播放列表"</string>
+    <string name="delete_playlist_menu" msgid="8998637685583495247">"删除"</string>
+    <string name="edit_playlist_menu" msgid="571618502105370684">"编辑"</string>
+    <string name="rename_playlist_menu" msgid="3133463747389494668">"重命名"</string>
+    <string name="playlist_deleted_message" msgid="9008053828193961455">"播放列表已删除。"</string>
+    <string name="playlist_renamed_message" msgid="7187580192703005990">"播放列表已重命名。"</string>
+    <string name="recentlyadded" msgid="110978416756366953">"最近添加的歌曲"</string>
+    <string name="recentlyadded_title" msgid="3153322287249901914">"新增歌曲"</string>
+    <string name="podcasts_listitem" msgid="8657809279717670634">"播客"</string>
+    <string name="podcasts_title" msgid="4928414142496858304">"播客"</string>
+    <string name="sdcard_missing_title" msgid="9008284946643270850">"无 SD 卡"</string>
+    <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"无 USB 存储设备"</string>
+    <string name="sdcard_missing_message" msgid="2100061456003981823">"手机中未插入 SD 卡。"</string>
+    <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"您的手机没有 USB 存储设备。"</string>
+    <string name="sdcard_busy_title" msgid="1162763571147174655">"SD 卡不可用"</string>
+    <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"不存在 USB 存储设备"</string>
+    <string name="sdcard_busy_message" msgid="579981082201215537">"您的 SD 卡正忙。"</string>
+    <string name="sdcard_busy_message_nosdcard" msgid="1493449756827869166">"您的 USB 存储设备正忙。"</string>
+    <string name="sdcard_error_title" msgid="165682155008600643">"SD 卡错误"</string>
+    <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"USB 存储设备错误"</string>
+    <string name="sdcard_error_message" msgid="4574563894036627855">"SD 卡出现错误。"</string>
+    <string name="sdcard_error_message_nosdcard" msgid="4983430848526821234">"USB 存储设备出现错误。"</string>
+    <string name="unknown_artist_name" msgid="5567811106415855219">"未知音乐人"</string>
+    <string name="unknown_album_name" msgid="8525145988941244727">"未知专辑"</string>
+    <string name="shuffle_on_notif" msgid="5453708337808483943">"随机播放已打开。"</string>
+    <string name="shuffle_off_notif" msgid="4251189610017886263">"随机播放已关闭。"</string>
+    <string name="repeat_off_notif" msgid="1149406899083479716">"重复播放已关闭。"</string>
+    <string name="repeat_current_notif" msgid="1227153936360904196">"重复播放当前歌曲。"</string>
+    <string name="repeat_all_notif" msgid="6443293055987316642">"重复播放所有歌曲。"</string>
+    <string name="ringtone_menu" msgid="2737472190159134599">"用作手机铃声"</string>
+    <string name="ringtone_menu_short" msgid="3367622038867238133">"用作铃声"</string>
+    <string name="ringtone_set" msgid="5325818347613843130">"已将“<xliff:g id="NAME">%s</xliff:g>”设为手机铃声。"</string>
+    <string name="play_selection" msgid="2854921021814550018">"播放"</string>
+    <string name="add_to_playlist" msgid="7110273488645072783">"添加到播放列表"</string>
+    <string name="queue" msgid="2937629819482787704">"当前的播放列表"</string>
+    <string name="new_playlist" msgid="7588112979692632867">"新建播放列表"</string>
+    <string name="new_playlist_name_template" msgid="905710296728900597">"新播放列表 <xliff:g id="NUMBER">%d</xliff:g>"</string>
+    <plurals name="NNNtrackstoplaylist" formatted="false" msgid="4679501954832581077">
+      <item quantity="other">已将 <xliff:g id="NUMBER">%d</xliff:g> 首歌曲添加到播放列表。</item>
+      <item quantity="one">已将 1 首歌曲添加到播放列表。</item>
+    </plurals>
+    <string name="emptyplaylist" msgid="6711555673997896344">"您选的播放列表是空的。"</string>
+    <string name="create_playlist_create_text" msgid="8149755205483279143">"保存"</string>
+    <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"覆盖"</string>
+    <string name="service_start_error_title" msgid="8649916852210198813">"播放问题"</string>
+    <string name="service_start_error_msg" msgid="7061754255330276478">"无法播放此歌曲。"</string>
+    <string name="service_start_error_button" msgid="480888406592240723">"确定"</string>
+  <string-array name="weeklist">
+    <item msgid="7005918873419323862">"1 周"</item>
+    <item msgid="7487749116155425822">"2 周"</item>
+    <item msgid="1565338360539555185">"3 周"</item>
+    <item msgid="2142986059836933072">"4 周"</item>
+    <item msgid="4332403875260507291">"5 周"</item>
+    <item msgid="3847281907869868565">"6 周"</item>
+    <item msgid="2942654998558867799">"7 周"</item>
+    <item msgid="2115529325850052227">"8 周"</item>
+    <item msgid="1396675336665198092">"9 周"</item>
+    <item msgid="3178819129208998649">"10 周"</item>
+    <item msgid="2727959579637914171">"11 周"</item>
+    <item msgid="8708754966127584739">"12 周"</item>
+  </string-array>
+    <string name="weekpicker_set" msgid="7636608790418067496">"完成"</string>
+    <string name="weekpicker_title" msgid="699535378922101701">"设置时间"</string>
+    <string name="save_as_playlist" msgid="5180413608901885255">"另存为播放列表"</string>
+    <string name="clear_playlist" msgid="4565515100924905315">"清除播放列表"</string>
+    <string name="musicbrowserlabel" msgid="3162022214114562892">"音乐"</string>
+    <string name="musicshortcutlabel" msgid="2602980193508150226">"音乐播放列表"</string>
+    <string name="mediaplaybacklabel" msgid="6733604841530940397">"音乐"</string>
+    <string name="videobrowserlabel" msgid="8522326678447494657">"视频"</string>
+    <string name="mediapickerlabel" msgid="4549836003229914299">"音乐"</string>
+    <string name="playback_failed" msgid="3811851150820251398">"该播放器不支持这种音频文件类型。"</string>
+    <string name="cancel" msgid="886559484711947520">"取消"</string>
+    <string name="remove_from_playlist" msgid="2548577514849026354">"从播放列表中移除"</string>
+    <string name="streamloadingtext" msgid="8842426517396356215">"正在连接<xliff:g id="HOST">%s</xliff:g>..."</string>
+    <string name="mediasearch" msgid="959222971261132292">"使用以下工具搜索“<xliff:g id="TERM">%s</xliff:g>”："</string>
+    <string name="working_artists" msgid="8678357432732156580">"音乐人..."</string>
+    <string name="working_albums" msgid="8713273699401457426">"专辑..."</string>
+    <string name="working_songs" msgid="2201491972050410684">"歌曲..."</string>
+    <string name="working_playlists" msgid="4424950806134653351">"播放列表..."</string>
+    <string name="loading" msgid="1991660396037155453">"正在加载..."</string>
+    <string name="sort_by_track" msgid="7662999005554152565">"曲目"</string>
+    <string name="sort_by_album" msgid="2912837715658975248">"专辑"</string>
+    <string name="sort_by_artist" msgid="4607024967813199992">"音乐人"</string>
+    <string name="music_picker_title" msgid="4143865470317360605">"选择音乐曲目"</string>
+    <string name="search_settings_description" msgid="6520975349259883368">"音乐人、专辑和曲目"</string>
+    <string name="search_hint" msgid="3766854898072633001">"搜索音乐"</string>
+    <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
+    <string name="widget_initial_text" msgid="3166878738860903586">"触摸可选择音乐。"</string>
+    <string name="effectspanel" msgid="8804547581593509614">"音效"</string>
+</resources>
