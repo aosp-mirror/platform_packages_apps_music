@@ -155,7 +155,7 @@
     <string name="working_albums" msgid="8713273699401457426">"Albumy…"</string>
     <string name="working_songs" msgid="2201491972050410684">"Utwory…"</string>
     <string name="working_playlists" msgid="4424950806134653351">"Playlisty…"</string>
-    <string name="loading" msgid="1991660396037155453">"Wczytywanie..."</string>
+    <string name="loading" msgid="1991660396037155453">"Wczytuję..."</string>
     <string name="sort_by_track" msgid="7662999005554152565">"Utwory"</string>
     <string name="sort_by_album" msgid="2912837715658975248">"Albumy"</string>
     <string name="sort_by_artist" msgid="4607024967813199992">"Wykonawcy"</string>
