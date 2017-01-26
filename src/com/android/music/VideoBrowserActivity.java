@@ -30,23 +30,18 @@ import android.widget.SimpleCursorAdapter;
 
 import java.lang.Integer;
 
-public class VideoBrowserActivity extends ListActivity implements MusicUtils.Defs
-{
-    public VideoBrowserActivity()
-    {
-    }
+public class VideoBrowserActivity extends ListActivity implements MusicUtils.Defs {
+    public VideoBrowserActivity() {}
 
     /** Called when the activity is first created. */
     @Override
-    public void onCreate(Bundle icicle)
-    {
+    public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         init();
     }
 
     public void init() {
-
         // Set the layout for this activity.  You can find it
         // in assets/res/any/layout/media_picker_activity.xml
         setContentView(R.layout.media_picker_activity);
@@ -65,43 +60,37 @@ public class VideoBrowserActivity extends ListActivity implements MusicUtils.Def
         }
 
         // Map Cursor columns to views defined in media_list_item.xml
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-                this,
-                android.R.layout.simple_list_item_1,
-                mCursor,
-                new String[] { MediaStore.Video.Media.TITLE},
-                new int[] { android.R.id.text1 });
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
+                android.R.layout.simple_list_item_1, mCursor,
+                new String[] {MediaStore.Video.Media.TITLE}, new int[] {android.R.id.text1});
 
         setListAdapter(adapter);
     }
 
     @Override
-    protected void onListItemClick(ListView l, View v, int position, long id)
-    {
+    protected void onListItemClick(ListView l, View v, int position, long id) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         mCursor.moveToPosition(position);
-        String type = mCursor.getString(mCursor.getColumnIndexOrThrow(MediaStore.Video.Media.MIME_TYPE));
-        intent.setDataAndType(ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, id), type);
-        
+        String type =
+                mCursor.getString(mCursor.getColumnIndexOrThrow(MediaStore.Video.Media.MIME_TYPE));
+        intent.setDataAndType(
+                ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, id), type);
+
         startActivity(intent);
     }
 
     private void MakeCursor() {
-        String[] cols = new String[] {
-                MediaStore.Video.Media._ID,
-                MediaStore.Video.Media.TITLE,
-                MediaStore.Video.Media.DATA,
-                MediaStore.Video.Media.MIME_TYPE,
-                MediaStore.Video.Media.ARTIST
-        };
+        String[] cols = new String[] {MediaStore.Video.Media._ID, MediaStore.Video.Media.TITLE,
+                MediaStore.Video.Media.DATA, MediaStore.Video.Media.MIME_TYPE,
+                MediaStore.Video.Media.ARTIST};
         ContentResolver resolver = getContentResolver();
         if (resolver == null) {
             System.out.println("resolver = null");
         } else {
             mSortOrder = MediaStore.Video.Media.TITLE + " COLLATE UNICODE";
             mWhereClause = MediaStore.Video.Media.TITLE + " != ''";
-            mCursor = resolver.query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
-                cols, mWhereClause , null, mSortOrder);
+            mCursor = resolver.query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, cols,
+                    mWhereClause, null, mSortOrder);
         }
     }
 
@@ -117,4 +106,3 @@ public class VideoBrowserActivity extends ListActivity implements MusicUtils.Def
     private String mWhereClause;
     private String mSortOrder;
 }
-
