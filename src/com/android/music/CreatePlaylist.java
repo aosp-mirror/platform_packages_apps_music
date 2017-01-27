@@ -35,8 +35,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class CreatePlaylist extends Activity
-{
+public class CreatePlaylist extends Activity {
     private EditText mPlaylist;
     private TextView mPrompt;
     private Button mSaveButton;
@@ -48,20 +47,20 @@ public class CreatePlaylist extends Activity
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.create_playlist);
-        getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
-                                    WindowManager.LayoutParams.WRAP_CONTENT);
+        getWindow().setLayout(
+                WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
 
-        mPrompt = (TextView)findViewById(R.id.prompt);
-        mPlaylist = (EditText)findViewById(R.id.playlist);
+        mPrompt = (TextView) findViewById(R.id.prompt);
+        mPlaylist = (EditText) findViewById(R.id.playlist);
         mSaveButton = (Button) findViewById(R.id.create);
         mSaveButton.setOnClickListener(mOpenClicked);
 
-        ((Button)findViewById(R.id.cancel)).setOnClickListener(new View.OnClickListener() {
+        ((Button) findViewById(R.id.cancel)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
             }
         });
-        
+
         String defaultname = icicle != null ? icicle.getString("defaultname") : makePlaylistName();
         if (defaultname == null) {
             finish();
@@ -74,7 +73,7 @@ public class CreatePlaylist extends Activity
         mPlaylist.setSelection(defaultname.length());
         mPlaylist.addTextChangedListener(mTextWatcher);
     }
-    
+
     TextWatcher mTextWatcher = new TextWatcher() {
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             // don't care about this one
@@ -97,12 +96,11 @@ public class CreatePlaylist extends Activity
             // don't care about this one
         }
     };
-    
+
     private int idForplaylist(String name) {
         Cursor c = MusicUtils.query(this, MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI,
-                new String[] { MediaStore.Audio.Playlists._ID },
-                MediaStore.Audio.Playlists.NAME + "=?",
-                new String[] { name },
+                new String[] {MediaStore.Audio.Playlists._ID},
+                MediaStore.Audio.Playlists.NAME + "=?", new String[] {name},
                 MediaStore.Audio.Playlists.NAME);
         int id = -1;
         if (c != null) {
@@ -114,38 +112,34 @@ public class CreatePlaylist extends Activity
         }
         return id;
     }
-    
+
     @Override
     public void onSaveInstanceState(Bundle outcicle) {
         outcicle.putString("defaultname", mPlaylist.getText().toString());
     }
-    
+
     @Override
     public void onResume() {
         super.onResume();
     }
 
     private String makePlaylistName() {
-
         String template = getString(R.string.new_playlist_name_template);
         int num = 1;
 
-        String[] cols = new String[] {
-                MediaStore.Audio.Playlists.NAME
-        };
+        String[] cols = new String[] {MediaStore.Audio.Playlists.NAME};
         ContentResolver resolver = getContentResolver();
         String whereclause = MediaStore.Audio.Playlists.NAME + " != ''";
-        Cursor c = resolver.query(MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI,
-            cols, whereclause, null,
-            MediaStore.Audio.Playlists.NAME);
+        Cursor c = resolver.query(MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI, cols,
+                whereclause, null, MediaStore.Audio.Playlists.NAME);
 
         if (c == null) {
             return null;
         }
-        
+
         String suggestedname;
         suggestedname = String.format(template, num++);
-        
+
         // Need to loop until we've made 1 full pass through without finding a match.
         // Looping more than once shouldn't happen very often, but will happen if
         // you have playlists named "New Playlist 1"/10/2/3/4/5/6/7/8/9, where
@@ -155,7 +149,7 @@ public class CreatePlaylist extends Activity
         while (!done) {
             done = true;
             c.moveToFirst();
-            while (! c.isAfterLast()) {
+            while (!c.isAfterLast()) {
                 String playlistname = c.getString(0);
                 if (playlistname.compareToIgnoreCase(suggestedname) == 0) {
                     suggestedname = String.format(template, num++);
@@ -167,7 +161,7 @@ public class CreatePlaylist extends Activity
         c.close();
         return suggestedname;
     }
-    
+
     private View.OnClickListener mOpenClicked = new View.OnClickListener() {
         public void onClick(View v) {
             String name = mPlaylist.getText().toString();
@@ -176,7 +170,8 @@ public class CreatePlaylist extends Activity
                 int id = idForplaylist(name);
                 Uri uri;
                 if (id >= 0) {
-                    uri = ContentUris.withAppendedId(MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI, id);
+                    uri = ContentUris.withAppendedId(
+                            MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI, id);
                     MusicUtils.clearPlaylist(CreatePlaylist.this, id);
                 } else {
                     ContentValues values = new ContentValues(1);
