@@ -26,13 +26,10 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 
-public class MusicBrowserActivity extends Activity
-    implements MusicUtils.Defs {
-
+public class MusicBrowserActivity extends Activity implements MusicUtils.Defs {
     private ServiceToken mToken;
 
-    public MusicBrowserActivity() {
-    }
+    public MusicBrowserActivity() {}
 
     /**
      * Called when the activity is first created.
@@ -41,14 +38,12 @@ public class MusicBrowserActivity extends Activity
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         int activeTab = MusicUtils.getIntPref(this, "activetab", R.id.artisttab);
-        if (activeTab != R.id.artisttab
-                && activeTab != R.id.albumtab
-                && activeTab != R.id.songtab
+        if (activeTab != R.id.artisttab && activeTab != R.id.albumtab && activeTab != R.id.songtab
                 && activeTab != R.id.playlisttab) {
             activeTab = R.id.artisttab;
         }
         MusicUtils.activateTab(this, activeTab);
-        
+
         String shuf = getIntent().getStringExtra("autoshuffle");
         if ("true".equals(shuf)) {
             mToken = MusicUtils.bindToService(this, autoshuffle);
@@ -79,9 +74,6 @@ public class MusicBrowserActivity extends Activity
             }
         }
 
-        public void onServiceDisconnected(ComponentName classname) {
-        }
+        public void onServiceDisconnected(ComponentName classname) {}
     };
-
 }
-

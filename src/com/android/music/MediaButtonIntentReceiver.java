@@ -25,10 +25,9 @@ import android.os.Message;
 import android.view.KeyEvent;
 
 /**
- * 
+ *
  */
 public class MediaButtonIntentReceiver extends BroadcastReceiver {
-
     private static final int MSG_LONGPRESS_TIMEOUT = 1;
     private static final int LONG_PRESS_DELAY = 1000;
 
@@ -42,7 +41,7 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
             switch (msg.what) {
                 case MSG_LONGPRESS_TIMEOUT:
                     if (!mLaunched) {
-                        Context context = (Context)msg.obj;
+                        Context context = (Context) msg.obj;
                         Intent i = new Intent();
                         i.putExtra("autoshuffle", "true");
                         i.setClass(context, MusicBrowserActivity.class);
@@ -54,7 +53,7 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
             }
         }
     };
-    
+
     @Override
     public void onReceive(Context context, Intent intent) {
         String intentAction = intent.getAction();
@@ -64,9 +63,8 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
             i.putExtra(MediaPlaybackService.CMDNAME, MediaPlaybackService.CMDPAUSE);
             context.startService(i);
         } else if (Intent.ACTION_MEDIA_BUTTON.equals(intentAction)) {
-            KeyEvent event = (KeyEvent)
-                    intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
-            
+            KeyEvent event = (KeyEvent) intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
+
             if (event == null) {
                 return;
             }
@@ -75,10 +73,10 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
             int action = event.getAction();
             long eventtime = event.getEventTime();
 
-            // single quick press: pause/resume. 
+            // single quick press: pause/resume.
             // double press: next track
             // long press: start auto-shuffle mode.
-            
+
             String command = null;
             switch (keycode) {
                 case KeyEvent.KEYCODE_MEDIA_STOP:
@@ -105,9 +103,9 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
             if (command != null) {
                 if (action == KeyEvent.ACTION_DOWN) {
                     if (mDown) {
-                        if ((MediaPlaybackService.CMDTOGGLEPAUSE.equals(command) ||
-                                MediaPlaybackService.CMDPLAY.equals(command))
-                                && mLastClickTime != 0 
+                        if ((MediaPlaybackService.CMDTOGGLEPAUSE.equals(command)
+                                    || MediaPlaybackService.CMDPLAY.equals(command))
+                                && mLastClickTime != 0
                                 && eventtime - mLastClickTime > LONG_PRESS_DELAY) {
                             mHandler.sendMessage(
                                     mHandler.obtainMessage(MSG_LONGPRESS_TIMEOUT, context));
@@ -122,8 +120,8 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
                         // a command.
                         Intent i = new Intent(context, MediaPlaybackService.class);
                         i.setAction(MediaPlaybackService.SERVICECMD);
-                        if (keycode == KeyEvent.KEYCODE_HEADSETHOOK &&
-                                eventtime - mLastClickTime < 300) {
+                        if (keycode == KeyEvent.KEYCODE_HEADSETHOOK
+                                && eventtime - mLastClickTime < 300) {
                             i.putExtra(MediaPlaybackService.CMDNAME, MediaPlaybackService.CMDNEXT);
                             context.startService(i);
                             mLastClickTime = 0;
