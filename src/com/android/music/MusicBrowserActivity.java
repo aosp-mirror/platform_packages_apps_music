@@ -16,11 +16,12 @@
 
 package com.android.music;
 
+import android.Manifest.permission;
+import android.content.pm.PackageManager;
 import com.android.music.MusicUtils.ServiceToken;
 
 import android.app.Activity;
 import android.content.ComponentName;
-import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -28,6 +29,7 @@ import android.os.RemoteException;
 
 public class MusicBrowserActivity extends Activity implements MusicUtils.Defs {
     private ServiceToken mToken;
+    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 42;
 
     public MusicBrowserActivity() {}
 
@@ -37,6 +39,16 @@ public class MusicBrowserActivity extends Activity implements MusicUtils.Defs {
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+        if (checkSelfPermission(permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[] {permission.READ_EXTERNAL_STORAGE},
+                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+            return;
+        }
+        initApp();
+    }
+
+    public void initApp() {
         int activeTab = MusicUtils.getIntPref(this, "activetab", R.id.artisttab);
         if (activeTab != R.id.artisttab && activeTab != R.id.albumtab && activeTab != R.id.songtab
                 && activeTab != R.id.playlisttab) {
@@ -76,4 +88,19 @@ public class MusicBrowserActivity extends Activity implements MusicUtils.Defs {
 
         public void onServiceDisconnected(ComponentName classname) {}
     };
+
+    @Override
+    public void onRequestPermissionsResult(
+            int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
+                if (grantResults.length == 0
+                        || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    finish();
+                    return;
+                }
+                initApp();
+            }
+        }
+    }
 }
