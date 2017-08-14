@@ -21,16 +21,16 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="onesong" msgid="8336826100414159413">"1 música"</string>
     <plurals name="Nsongs" formatted="false" msgid="6016461352893352675">
-      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> músicas</item>
       <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> música</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> músicas</item>
     </plurals>
     <plurals name="Nsongscomp" formatted="false" msgid="4511633526221956857">
-      <item quantity="other"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> de <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> músicas</item>
       <item quantity="one"><xliff:g id="COUNT_FOR_ARTIST_0">%2$d</xliff:g> de <xliff:g id="TOTAL_COUNT_1">%1$d</xliff:g> música</item>
+      <item quantity="other"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> de <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> músicas</item>
     </plurals>
     <plurals name="Nalbums" formatted="false" msgid="7947176578850672205">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> álbuns</item>
       <item quantity="one">1 álbum</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> álbuns</item>
     </plurals>
     <string name="goto_start" msgid="8979658707407220934">"Biblioteca"</string>
     <string name="party_shuffle" msgid="8213359225506006168">"Lista aleatória"</string>
@@ -46,8 +46,8 @@
     <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"Eliminar permanentemente \"<xliff:g id="SONG">%s</xliff:g>\" da memória de armazenamento USB?"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"OK"</string>
     <plurals name="NNNtracksdeleted" formatted="false" msgid="2499334199042190643">
-      <item quantity="other">Foram eliminadas <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> músicas.</item>
       <item quantity="one">Foi eliminada 1 música.</item>
+      <item quantity="other">Foram eliminadas <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> músicas.</item>
     </plurals>
     <string name="scanning" msgid="3529383847223198502">"A analisar o cartão SD..."</string>
     <string name="scanning_nosdcard" msgid="8105284774487360148">"A analisar armazenamento USB..."</string>
@@ -104,8 +104,8 @@
     <string name="new_playlist" msgid="7588112979692632867">"Novo"</string>
     <string name="new_playlist_name_template" msgid="905710296728900597">"Nova lista de reprodução <xliff:g id="NUMBER">%d</xliff:g>"</string>
     <plurals name="NNNtrackstoplaylist" formatted="false" msgid="4679501954832581077">
-      <item quantity="other"><xliff:g id="NUMBER">%d</xliff:g> músicas adicionadas à lista de reprodução.</item>
       <item quantity="one">1 música adicionada à lista de reprodução.</item>
+      <item quantity="other"><xliff:g id="NUMBER">%d</xliff:g> músicas adicionadas à lista de reprodução.</item>
     </plurals>
     <string name="emptyplaylist" msgid="6711555673997896344">"A lista de reprodução selecionada está vazia."</string>
     <string name="create_playlist_create_text" msgid="8149755205483279143">"Guardar"</string>
