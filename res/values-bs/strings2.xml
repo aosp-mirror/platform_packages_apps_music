@@ -19,7 +19,5 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt" msgid="942607395076646686">"Navn på spilleliste"</string>
-    <string name="rename_playlist_same_prompt" msgid="6311998573141605099">"Endre navn på «<xliff:g id="PLAYLIST">%s</xliff:g>» til"</string>
-    <string name="rename_playlist_diff_prompt" msgid="621210762456614321">"Endre navn på \"<xliff:g id="PLAYLIST">%s</xliff:g>\" til"</string>
+    <string name="notification_artist_album" msgid="4934081953733334979">"<xliff:g id="ALBUM">%2$s</xliff:g>\n<xliff:g id="ARTIST">%1$s</xliff:g>"</string>
 </resources>

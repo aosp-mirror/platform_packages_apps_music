@@ -19,7 +19,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt" msgid="2379436619128383935">"Åpne tastaturet for å gi den nye spillelisten et navn, eller velg Lagre for å gi den navnet «<xliff:g id="PLAYLIST">%s</xliff:g>»."</string>
-    <string name="rename_playlist_same_prompt" msgid="7777541452078260899">"Åpne tastaturet for å gi spillelisten «<xliff:g id="PLAYLIST">%s</xliff:g>» et nytt navn."</string>
-    <string name="rename_playlist_diff_prompt" msgid="900422624897120958">"Åpne tastaturet for å gi spillelisten «<xliff:g id="PLAYLIST">%1$s</xliff:g>» et nytt navn, eller velg Lagre for å gi den navnet «<xliff:g id="NAME">%2$s</xliff:g>»."</string>
+    <string name="create_playlist_create_text_prompt" msgid="942607395076646686">"Naziv popisa za reprodukciju"</string>
+    <string name="rename_playlist_same_prompt" msgid="6311998573141605099">"Preimenuj \"<xliff:g id="PLAYLIST">%s</xliff:g>\" u"</string>
+    <string name="rename_playlist_diff_prompt" msgid="621210762456614321">"Preimenuj \"<xliff:g id="PLAYLIST">%s</xliff:g>\" u"</string>
 </resources>
