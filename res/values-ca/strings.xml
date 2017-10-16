@@ -38,12 +38,12 @@
     <string name="delete_item" msgid="3363330144534750601">"Suprimeix"</string>
     <string name="shuffle_all" msgid="1388193611787878773">"Reprodueix aleatòriament"</string>
     <string name="play_all" msgid="6309622568869321842">"Reprodueix-ho tot"</string>
-    <string name="delete_artist_desc" msgid="8665759524898379194">"Vols suprimir totes les cançons de <xliff:g id="ARTIST">%s</xliff:g> de la targeta SD de manera permanent?"</string>
-    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Vols suprimir totes les cançons de <xliff:g id="ARTIST">%s</xliff:g> de l\'emmagatzematge USB de manera permanent?"</string>
-    <string name="delete_album_desc" msgid="8172412873562794429">"Vols suprimir l\'àlbum complet \"<xliff:g id="ALBUM">%s</xliff:g>\" de la targeta SD de manera permanent?"</string>
-    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"Vols suprimir l\'àlbum complet \"<xliff:g id="ALBUM">%s</xliff:g>\" de l\'emmagatzematge USB de manera permanent?"</string>
-    <string name="delete_song_desc" msgid="1842681623848282205">"Vols suprimir \"<xliff:g id="SONG">%s</xliff:g>\" de la targeta SD de manera permanent?"</string>
-    <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"Vols suprimir \"<xliff:g id="SONG">%s</xliff:g>\" de l\'emmagatzematge USB de manera permanent?"</string>
+    <string name="delete_artist_desc" msgid="8665759524898379194">"Vols suprimir totes les cançons de <xliff:g id="ARTIST">%s</xliff:g> de la targeta SD permanentment?"</string>
+    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Vols suprimir totes les cançons de <xliff:g id="ARTIST">%s</xliff:g> de l\'emmagatzematge USB permanentment?"</string>
+    <string name="delete_album_desc" msgid="8172412873562794429">"Vols suprimir l\'àlbum complet \"<xliff:g id="ALBUM">%s</xliff:g>\" de la targeta SD permanentment?"</string>
+    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"Vols suprimir l\'àlbum complet \"<xliff:g id="ALBUM">%s</xliff:g>\" de l\'emmagatzematge USB permanentment?"</string>
+    <string name="delete_song_desc" msgid="1842681623848282205">"Vols suprimir \"<xliff:g id="SONG">%s</xliff:g>\" de la targeta SD permanentment?"</string>
+    <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"Vols suprimir \"<xliff:g id="SONG">%s</xliff:g>\" de l\'emmagatzematge USB permanentment?"</string>
     <string name="delete_confirm_button_text" msgid="7008121194944357274">"D\'acord"</string>
     <plurals name="NNNtracksdeleted" formatted="false" msgid="2499334199042190643">
       <item quantity="other">S\'han suprimit <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> cançons.</item>

@@ -49,8 +49,8 @@
       <item quantity="other">已刪除 <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> 首歌曲。</item>
       <item quantity="one">已刪除 1 首歌曲。</item>
     </plurals>
-    <string name="scanning" msgid="3529383847223198502">"正在掃瞄 SD 卡..."</string>
-    <string name="scanning_nosdcard" msgid="8105284774487360148">"正在掃瞄 USB 儲存裝置..."</string>
+    <string name="scanning" msgid="3529383847223198502">"正在掃描 SD 卡..."</string>
+    <string name="scanning_nosdcard" msgid="8105284774487360148">"正在掃描 USB 儲存裝置..."</string>
     <string name="nowplaying_title" msgid="8342523844307751761">"現正播放"</string>
     <string name="partyshuffle_title" msgid="6582413231529992125">"派對隨機播放"</string>
     <string name="artists_title" msgid="8490372367259160067">"歌手/創作人"</string>
