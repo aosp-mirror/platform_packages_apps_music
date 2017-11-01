@@ -19,7 +19,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="create_playlist_create_text_prompt" msgid="2379436619128383935">"Buka keyboard untuk menamai Daftar Putar baru, atau pilih Simpan untuk menamainya \"<xliff:g id="PLAYLIST">%s</xliff:g>\"."</string>
-    <string name="rename_playlist_same_prompt" msgid="7777541452078260899">"Buka keyboard untuk memberi nama baru pada daftar putar \"<xliff:g id="PLAYLIST">%s</xliff:g>\"."</string>
-    <string name="rename_playlist_diff_prompt" msgid="900422624897120958">"Buka keyboard untuk memberi nama baru pada daftar putar \"<xliff:g id="PLAYLIST">%1$s</xliff:g>\", atau pilih Simpan untuk menamainya \"<xliff:g id="NAME">%2$s</xliff:g>\"."</string>
+    <string name="create_playlist_create_text_prompt" msgid="2379436619128383935">"Buka keyboard untuk menamai Playlist baru, atau pilih Simpan untuk menamainya \"<xliff:g id="PLAYLIST">%s</xliff:g>\"."</string>
+    <string name="rename_playlist_same_prompt" msgid="7777541452078260899">"Buka keyboard untuk memberi nama baru pada playlist \"<xliff:g id="PLAYLIST">%s</xliff:g>\"."</string>
+    <string name="rename_playlist_diff_prompt" msgid="900422624897120958">"Buka keyboard untuk memberi nama baru pada playlist \"<xliff:g id="PLAYLIST">%1$s</xliff:g>\", atau pilih Simpan untuk menamainya \"<xliff:g id="NAME">%2$s</xliff:g>\"."</string>
 </resources>
