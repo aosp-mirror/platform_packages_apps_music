@@ -17,18 +17,14 @@
 package com.android.music;
 
 import android.Manifest.permission;
-import android.content.pm.PackageManager;
-import com.android.music.MusicUtils.ServiceToken;
-
 import android.app.Activity;
-import android.content.ComponentName;
-import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.os.RemoteException;
+import com.android.music.utils.LogHelper;
 
-public class MusicBrowserActivity extends Activity implements MusicUtils.Defs {
-    private ServiceToken mToken;
+public class MusicBrowserActivity extends Activity {
+    private static final String TAG = LogHelper.makeLogTag(MusicBrowserActivity.class);
+
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 42;
 
     public MusicBrowserActivity() {}
@@ -39,6 +35,7 @@ public class MusicBrowserActivity extends Activity implements MusicUtils.Defs {
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+        LogHelper.d(TAG, "onCreate()");
         if (checkSelfPermission(permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[] {permission.READ_EXTERNAL_STORAGE},
@@ -50,44 +47,19 @@ public class MusicBrowserActivity extends Activity implements MusicUtils.Defs {
 
     public void initApp() {
         int activeTab = MusicUtils.getIntPref(this, "activetab", R.id.artisttab);
+        LogHelper.d(TAG, "initApp() activeTab = ", activeTab);
         if (activeTab != R.id.artisttab && activeTab != R.id.albumtab && activeTab != R.id.songtab
                 && activeTab != R.id.playlisttab) {
             activeTab = R.id.artisttab;
         }
         MusicUtils.activateTab(this, activeTab);
-
-        String shuf = getIntent().getStringExtra("autoshuffle");
-        if ("true".equals(shuf)) {
-            mToken = MusicUtils.bindToService(this, autoshuffle);
-        }
     }
 
     @Override
     public void onDestroy() {
-        if (mToken != null) {
-            MusicUtils.unbindFromService(mToken);
-        }
+        LogHelper.d(TAG, "onDestroy()");
         super.onDestroy();
     }
-
-    private ServiceConnection autoshuffle = new ServiceConnection() {
-        public void onServiceConnected(ComponentName classname, IBinder obj) {
-            // we need to be able to bind again, so unbind
-            try {
-                unbindService(this);
-            } catch (IllegalArgumentException e) {
-            }
-            IMediaPlaybackService serv = IMediaPlaybackService.Stub.asInterface(obj);
-            if (serv != null) {
-                try {
-                    serv.setShuffleMode(MediaPlaybackService.SHUFFLE_AUTO);
-                } catch (RemoteException ex) {
-                }
-            }
-        }
-
-        public void onServiceDisconnected(ComponentName classname) {}
-    };
 
     @Override
     public void onRequestPermissionsResult(
