@@ -84,10 +84,10 @@
     <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"USB मेमोरी अनुपलब्ध"</string>
     <string name="sdcard_busy_message" msgid="579981082201215537">"आपका SD कार्ड व्‍यस्‍त है."</string>
     <string name="sdcard_busy_message_nosdcard" msgid="1493449756827869166">"आपका USB मेमोरी व्‍यस्त है."</string>
-    <string name="sdcard_error_title" msgid="165682155008600643">"SD कार्ड त्रुटि"</string>
-    <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"USB मेमोरी त्रुटि"</string>
-    <string name="sdcard_error_message" msgid="4574563894036627855">"आपके SD कार्ड में एक त्रुटि आई थी."</string>
-    <string name="sdcard_error_message_nosdcard" msgid="4983430848526821234">"आपके USB मेमोरी में एक त्रुटि आई थी."</string>
+    <string name="sdcard_error_title" msgid="165682155008600643">"SD कार्ड गड़बड़ी"</string>
+    <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"USB मेमोरी गड़बड़ी"</string>
+    <string name="sdcard_error_message" msgid="4574563894036627855">"आपके SD कार्ड में एक गड़बड़ी आई थी."</string>
+    <string name="sdcard_error_message_nosdcard" msgid="4983430848526821234">"आपके USB मेमोरी में एक गड़बड़ी आई थी."</string>
     <string name="unknown_artist_name" msgid="5567811106415855219">"अज्ञात कलाकार"</string>
     <string name="unknown_album_name" msgid="8525145988941244727">"अज्ञात एल्बम"</string>
     <string name="shuffle_on_notif" msgid="5453708337808483943">"शफल चालू है."</string>
