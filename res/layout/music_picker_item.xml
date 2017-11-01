@@ -16,7 +16,7 @@
 ** limitations under the License.
 */
 -->
-<com.android.music.CheckableRelativeLayout
+<com.android.music.utils.CheckableRelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="64dip"
@@ -76,4 +76,4 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="6dip" />
         
-</com.android.music.CheckableRelativeLayout>
+</com.android.music.utils.CheckableRelativeLayout>

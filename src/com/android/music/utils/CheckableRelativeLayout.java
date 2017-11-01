@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.music;
+package com.android.music.utils;
 
 import android.content.Context;
 import android.util.AttributeSet;
