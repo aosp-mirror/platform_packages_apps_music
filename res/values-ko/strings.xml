@@ -155,4 +155,32 @@
     <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
     <string name="widget_initial_text" msgid="3166878738860903586">"터치하여 음악을 선택하세요."</string>
     <string name="effectspanel" msgid="8804547581593509614">"음향 효과"</string>
+    <!-- no translation found for app_name (1547991011262246112) -->
+    <skip />
+    <!-- no translation found for favorite (2091864453504556745) -->
+    <skip />
+    <!-- no translation found for error_no_metadata (7511822079537838557) -->
+    <skip />
+    <!-- no translation found for browse_genres (168885430631376076) -->
+    <skip />
+    <!-- no translation found for browse_genre_subtitle (5742064801794983376) -->
+    <skip />
+    <!-- no translation found for browse_musics_by_genre_subtitle (4446806292284991543) -->
+    <skip />
+    <!-- no translation found for random_queue_title (5872938426167363209) -->
+    <skip />
+    <!-- no translation found for error_cannot_skip (8336702251226809890) -->
+    <skip />
+    <!-- no translation found for error_loading_media (3058643768790348997) -->
+    <skip />
+    <!-- no translation found for play_item (3566994377367460852) -->
+    <skip />
+    <!-- no translation found for skip_previous (289908210366906288) -->
+    <skip />
+    <!-- no translation found for play_pause (4086482482661153614) -->
+    <skip />
+    <!-- no translation found for skip_next (2366282708688315953) -->
+    <skip />
+    <!-- no translation found for no_search_results (184247680899974161) -->
+    <skip />
 </resources>
