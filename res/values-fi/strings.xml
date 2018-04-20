@@ -51,7 +51,7 @@
     </plurals>
     <string name="scanning" msgid="3529383847223198502">"Luetaan SD-korttia…"</string>
     <string name="scanning_nosdcard" msgid="8105284774487360148">"Tarkistetaan USB-tallennustilaa…"</string>
-    <string name="nowplaying_title" msgid="8342523844307751761">"Nyt toistetaan"</string>
+    <string name="nowplaying_title" msgid="8342523844307751761">"Musiikintunnistus"</string>
     <string name="partyshuffle_title" msgid="6582413231529992125">"Bilesekoitus"</string>
     <string name="artists_title" msgid="8490372367259160067">"Esittäjät"</string>
     <string name="albums_menu" msgid="5807982055590211900">"Albumit"</string>
