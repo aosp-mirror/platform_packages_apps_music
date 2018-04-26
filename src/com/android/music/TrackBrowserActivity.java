@@ -82,7 +82,7 @@ public class TrackBrowserActivity extends ListActivity {
             MusicUtils.updateNowPlaying(this);
         } else if (intent != null) {
             LogHelper.d(TAG, "Launch by intent");
-            mParentItem = intent.getExtras().getParcelable(MusicUtils.TAG_PARENT_ITEM);
+            mParentItem = intent.getParcelableExtra(MusicUtils.TAG_PARENT_ITEM);
             mWithTabs = intent.getBooleanExtra(MusicUtils.TAG_WITH_TABS, false);
         }
         if (mParentItem == null) {
