@@ -225,6 +225,9 @@ public class MusicProvider {
         new AsyncTask<Void, Void, State>() {
             @Override
             protected State doInBackground(Void... params) {
+                if (mCurrentState == State.INITIALIZED) {
+                    return mCurrentState;
+                }
                 mCurrentState = State.INITIALIZING;
                 if (retrieveMedia()) {
                     mCurrentState = State.INITIALIZED;
