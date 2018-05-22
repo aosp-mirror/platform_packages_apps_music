@@ -54,15 +54,18 @@ public class MediaPlaybackService extends MediaBrowserService implements Playbac
     public static final String CMD_PAUSE = "CMD_PAUSE";
     public static final String CMD_REPEAT = "CMD_PAUSE";
     public static final String REPEAT_MODE = "REPEAT_MODE";
+    public static final String CMD_SHUFFLE = "CMD_SHUFFLE";
+    public static final String SHUFFLE_MODE = "SHUFFLE_MODE";
 
     public enum RepeatMode { REPEAT_NONE, REPEAT_ALL, REPEAT_CURRENT }
+    public enum ShuffleMode { SHUFFLE_NONE, SHUFFLE_RANDOM }
 
     // Music catalog manager
     private MusicProvider mMusicProvider;
     private MediaSession mSession;
     // "Now playing" queue:
     private List<MediaSession.QueueItem> mPlayingQueue = null;
-    private int mCurrentIndexOnQueue = -1;
+    private Sequence mQueueSeqence = createSequence(0);
     private MediaNotificationManager mMediaNotificationManager;
     // Indicates whether the service was started.
     private boolean mServiceStarted;
@@ -70,6 +73,8 @@ public class MediaPlaybackService extends MediaBrowserService implements Playbac
     private Playback mPlayback;
     // Default mode is repeat none
     private RepeatMode mRepeatMode = RepeatMode.REPEAT_NONE;
+    // Default mode is shuffle none
+    private ShuffleMode mShuffleMode = ShuffleMode.SHUFFLE_NONE;
     // Extra information for this session
     private Bundle mExtras;
 
@@ -89,6 +94,7 @@ public class MediaPlaybackService extends MediaBrowserService implements Playbac
         // Set extra information
         mExtras = new Bundle();
         mExtras.putInt(REPEAT_MODE, mRepeatMode.ordinal());
+        mExtras.putInt(SHUFFLE_MODE, mShuffleMode.ordinal());
         mSession.setExtras(mExtras);
         // Enable callbacks from MediaButtons and TransportControls
         mSession.setFlags(MediaSession.FLAG_HANDLES_MEDIA_BUTTONS
@@ -335,7 +341,7 @@ public class MediaPlaybackService extends MediaBrowserService implements Playbac
                 mSession.setQueue(mPlayingQueue);
                 mSession.setQueueTitle(getString(R.string.random_queue_title));
                 // start playing from the beginning of the queue
-                mCurrentIndexOnQueue = 0;
+                mQueueSeqence = createSequence(mPlayingQueue.size());
             }
 
             if (mPlayingQueue != null && !mPlayingQueue.isEmpty()) {
@@ -349,7 +355,7 @@ public class MediaPlaybackService extends MediaBrowserService implements Playbac
 
             if (mPlayingQueue != null && !mPlayingQueue.isEmpty()) {
                 // set the current index on queue from the music Id:
-                mCurrentIndexOnQueue = QueueHelper.getMusicIndexOnQueue(mPlayingQueue, queueId);
+                mQueueSeqence.setCurrent(QueueHelper.getMusicIndexOnQueue(mPlayingQueue, queueId));
                 // play the music
                 handlePlayRequest();
             }
@@ -375,15 +381,16 @@ public class MediaPlaybackService extends MediaBrowserService implements Playbac
             String queueTitle = getString(R.string.browse_musics_by_genre_subtitle,
                     MediaIDHelper.extractBrowseCategoryValueFromMediaID(mediaId));
             mSession.setQueueTitle(queueTitle);
+            mQueueSeqence = createSequence(mPlayingQueue.size());
 
             if (mPlayingQueue != null && !mPlayingQueue.isEmpty()) {
-                // set the current index on queue from the media Id:
-                mCurrentIndexOnQueue = QueueHelper.getMusicIndexOnQueue(mPlayingQueue, mediaId);
-
-                if (mCurrentIndexOnQueue < 0) {
+                // get the current index on queue from the media Id:
+                int index = QueueHelper.getMusicIndexOnQueue(mPlayingQueue, mediaId);
+                if (index < 0) {
                     LogHelper.e(TAG, "playFromMediaId: media ID ", mediaId,
                             " could not be found on queue. Ignoring.");
                 } else {
+                    mQueueSeqence.setCurrent(index);
                     // play the music
                     handlePlayRequest();
                 }
@@ -405,17 +412,20 @@ public class MediaPlaybackService extends MediaBrowserService implements Playbac
         @Override
         public void onSkipToNext() {
             LogHelper.d(TAG, "skipToNext");
-            mCurrentIndexOnQueue++;
-            if (mPlayingQueue != null && mCurrentIndexOnQueue >= mPlayingQueue.size()) {
-                // This sample's behavior: skipping to next when in last song returns to the
-                // first song.
-                mCurrentIndexOnQueue = 0;
+            if (mPlayingQueue != null && !mPlayingQueue.isEmpty()) {
+                if (!mQueueSeqence.hasNext()) {
+                    // This sample's behavior: skipping to next when in last song returns to the
+                    // first song.
+                    mQueueSeqence.reset();
+                } else {
+                    mQueueSeqence.next();
+                }
             }
-            if (QueueHelper.isIndexPlayable(mCurrentIndexOnQueue, mPlayingQueue)) {
+            if (QueueHelper.isIndexPlayable(mQueueSeqence.getCurrent(), mPlayingQueue)) {
                 handlePlayRequest();
             } else {
                 LogHelper.e(TAG,
-                        "skipToNext: cannot skip to next. next Index=" + mCurrentIndexOnQueue
+                        "skipToNext: cannot skip to next. next Index=" + mQueueSeqence.getCurrent()
                                 + " queue length="
                                 + (mPlayingQueue == null ? "null" : mPlayingQueue.size()));
                 handleStopRequest("Cannot skip");
@@ -425,18 +435,21 @@ public class MediaPlaybackService extends MediaBrowserService implements Playbac
         @Override
         public void onSkipToPrevious() {
             LogHelper.d(TAG, "skipToPrevious");
-            mCurrentIndexOnQueue--;
-            if (mPlayingQueue != null && mCurrentIndexOnQueue < 0) {
-                // This sample's behavior: skipping to previous when in first song restarts the
-                // first song.
-                mCurrentIndexOnQueue = 0;
+            if (mPlayingQueue != null && !mPlayingQueue.isEmpty()) {
+                if (!mQueueSeqence.hasPrev()) {
+                    // This sample's behavior: skipping to previous when in first song restarts the
+                    // first song.
+                    mQueueSeqence.reset();
+                } else {
+                    mQueueSeqence.prev();
+                }
             }
-            if (QueueHelper.isIndexPlayable(mCurrentIndexOnQueue, mPlayingQueue)) {
+            if (QueueHelper.isIndexPlayable(mQueueSeqence.getCurrent(), mPlayingQueue)) {
                 handlePlayRequest();
             } else {
                 LogHelper.e(TAG,
                         "skipToPrevious: cannot skip to previous. previous Index="
-                                + mCurrentIndexOnQueue + " queue length="
+                                + mQueueSeqence.getCurrent() + " queue length="
                                 + (mPlayingQueue == null ? "null" : mPlayingQueue.size()));
                 handleStopRequest("Cannot skip");
             }
@@ -457,11 +470,10 @@ public class MediaPlaybackService extends MediaBrowserService implements Playbac
 
             LogHelper.d(TAG, "playFromSearch  playqueue.length=" + mPlayingQueue.size());
             mSession.setQueue(mPlayingQueue);
+            mQueueSeqence = createSequence(mPlayingQueue.size());
 
             if (mPlayingQueue != null && !mPlayingQueue.isEmpty()) {
                 // immediately start playing from the beginning of the search results
-                mCurrentIndexOnQueue = 0;
-
                 handlePlayRequest();
             } else {
                 // if nothing was found, we need to warn the user and stop playing
@@ -478,6 +490,14 @@ public class MediaPlaybackService extends MediaBrowserService implements Playbac
                     mExtras.putInt(REPEAT_MODE, mRepeatMode.ordinal());
                     mSession.setExtras(mExtras);
                     LogHelper.d(TAG, "modified repeatMode=", mRepeatMode);
+                    break;
+                case CMD_SHUFFLE:
+                    mShuffleMode = ShuffleMode.values()[extras.getInt(SHUFFLE_MODE)];
+                    mExtras.putInt(SHUFFLE_MODE, mShuffleMode.ordinal());
+                    mSession.setExtras(mExtras);
+                    LogHelper.d(TAG, "modified shuffleMode=", mShuffleMode);
+                    // Shuffle mode was updated, need to update current sequence to reflect this
+                    updateSequence();
                     break;
                 default:
                     LogHelper.d(TAG, "Unkown action=", action);
@@ -506,9 +526,9 @@ public class MediaPlaybackService extends MediaBrowserService implements Playbac
             mSession.setActive(true);
         }
 
-        if (QueueHelper.isIndexPlayable(mCurrentIndexOnQueue, mPlayingQueue)) {
+        if (QueueHelper.isIndexPlayable(mQueueSeqence.getCurrent(), mPlayingQueue)) {
             updateMetadata();
-            mPlayback.play(mPlayingQueue.get(mCurrentIndexOnQueue));
+            mPlayback.play(mPlayingQueue.get(mQueueSeqence.getCurrent()));
         }
     }
 
@@ -542,12 +562,12 @@ public class MediaPlaybackService extends MediaBrowserService implements Playbac
     }
 
     private void updateMetadata() {
-        if (!QueueHelper.isIndexPlayable(mCurrentIndexOnQueue, mPlayingQueue)) {
+        if (!QueueHelper.isIndexPlayable(mQueueSeqence.getCurrent(), mPlayingQueue)) {
             LogHelper.e(TAG, "Can't retrieve current metadata.");
             updatePlaybackState(getResources().getString(R.string.error_no_metadata));
             return;
         }
-        MediaSession.QueueItem queueItem = mPlayingQueue.get(mCurrentIndexOnQueue);
+        MediaSession.QueueItem queueItem = mPlayingQueue.get(mQueueSeqence.getCurrent());
         String musicId =
                 MediaIDHelper.extractMusicIDFromMediaID(queueItem.getDescription().getMediaId());
         MediaMetadata track = mMusicProvider.getMusicByMediaId(musicId).getMetadata();
@@ -575,7 +595,8 @@ public class MediaPlaybackService extends MediaBrowserService implements Playbac
             AlbumArtCache.getInstance().fetch(albumUri, new AlbumArtCache.FetchListener() {
                 @Override
                 public void onFetched(String artUrl, Bitmap bitmap, Bitmap icon) {
-                    MediaSession.QueueItem queueItem = mPlayingQueue.get(mCurrentIndexOnQueue);
+                    MediaSession.QueueItem queueItem =
+                            mPlayingQueue.get(mQueueSeqence.getCurrent());
                     MediaMetadata track = mMusicProvider.getMusicByMediaId(trackId).getMetadata();
                     track = new MediaMetadata
                                     .Builder(track)
@@ -635,8 +656,8 @@ public class MediaPlaybackService extends MediaBrowserService implements Playbac
         stateBuilder.setState(state, position, 1.0f, SystemClock.elapsedRealtime());
 
         // Set the activeQueueItemId if the current index is valid.
-        if (QueueHelper.isIndexPlayable(mCurrentIndexOnQueue, mPlayingQueue)) {
-            MediaSession.QueueItem item = mPlayingQueue.get(mCurrentIndexOnQueue);
+        if (QueueHelper.isIndexPlayable(mQueueSeqence.getCurrent(), mPlayingQueue)) {
+            MediaSession.QueueItem item = mPlayingQueue.get(mQueueSeqence.getCurrent());
             stateBuilder.setActiveQueueItemId(item.getQueueId());
         }
 
@@ -656,18 +677,18 @@ public class MediaPlaybackService extends MediaBrowserService implements Playbac
         if (mPlayback.isPlaying()) {
             actions |= PlaybackState.ACTION_PAUSE;
         }
-        if (mCurrentIndexOnQueue > 0) {
+        if (mQueueSeqence.hasPrev()) {
             actions |= PlaybackState.ACTION_SKIP_TO_PREVIOUS;
         }
-        if (mCurrentIndexOnQueue < mPlayingQueue.size() - 1) {
+        if (mQueueSeqence.hasNext()) {
             actions |= PlaybackState.ACTION_SKIP_TO_NEXT;
         }
         return actions;
     }
 
     private MediaMetadata getCurrentPlayingMusic() {
-        if (QueueHelper.isIndexPlayable(mCurrentIndexOnQueue, mPlayingQueue)) {
-            MediaSession.QueueItem item = mPlayingQueue.get(mCurrentIndexOnQueue);
+        if (QueueHelper.isIndexPlayable(mQueueSeqence.getCurrent(), mPlayingQueue)) {
+            MediaSession.QueueItem item = mPlayingQueue.get(mQueueSeqence.getCurrent());
             if (item != null) {
                 LogHelper.d(TAG,
                         "getCurrentPlayingMusic for musicId=", item.getDescription().getMediaId());
@@ -690,11 +711,12 @@ public class MediaPlaybackService extends MediaBrowserService implements Playbac
         if (mPlayingQueue != null && !mPlayingQueue.isEmpty()) {
             switch (mRepeatMode) {
                 case REPEAT_ALL:
-                    // Increase the index
-                    mCurrentIndexOnQueue++;
-                    // Restart queue when reaching the end
-                    if (mCurrentIndexOnQueue >= mPlayingQueue.size()) {
-                        mCurrentIndexOnQueue = 0;
+                    if (mQueueSeqence.hasNext()) {
+                        // Increase the index
+                        mQueueSeqence.next();
+                    } else {
+                        // Restart queue when reaching the end
+                        mQueueSeqence.reset();
                     }
                     break;
                 case REPEAT_CURRENT:
@@ -702,12 +724,12 @@ public class MediaPlaybackService extends MediaBrowserService implements Playbac
                     break;
                 case REPEAT_NONE:
                 default:
-                    // Increase the index
-                    mCurrentIndexOnQueue++;
-                    // Stop the queue when reaching the end
-                    if (mCurrentIndexOnQueue >= mPlayingQueue.size()) {
+                    if (mQueueSeqence.hasNext()) {
+                        // Increase the index
+                        mQueueSeqence.next();
+                    } else {
+                        // Stop the queue when reaching the end
                         handleStopRequest(null);
-                        return;
                     }
                     break;
             }
@@ -750,6 +772,109 @@ public class MediaPlaybackService extends MediaBrowserService implements Playbac
                 service.stopSelf();
                 service.mServiceStarted = false;
             }
+        }
+    }
+
+    private Sequence createSequence(int length) {
+        // Create new sequence based on current shuffle mode
+        if (mShuffleMode == ShuffleMode.SHUFFLE_RANDOM) {
+            return new RandomSequence(length);
+        }
+        return new Sequence(length);
+    }
+
+    private void updateSequence() {
+        // Get current playing index
+        int current = mQueueSeqence.getCurrent();
+        // Create new sequence with current shuffle mode
+        mQueueSeqence = createSequence(mQueueSeqence.getLength());
+        // Restore current playing index
+        mQueueSeqence.setCurrent(current);
+    }
+
+    /*
+     * Sequence of integers 0..n-1 in order
+     */
+    private static class Sequence {
+        private final int mLength;
+        private int mCurrent;
+
+        private Sequence(int length) {
+            mLength = length;
+            mCurrent = 0;
+        }
+
+        void reset() {
+            mCurrent = 0;
+        }
+
+        int getLength() {
+            return mLength;
+        }
+
+        void setCurrent(int current) {
+            if (current < 0 || current >= mLength) {
+                throw new IllegalArgumentException();
+            }
+            mCurrent = current;
+        }
+
+        int getCurrent() {
+            return mCurrent;
+        }
+
+        boolean hasNext() {
+            return mCurrent < mLength - 1;
+        }
+
+        boolean hasPrev() {
+            return mCurrent > 0;
+        }
+
+        void next() {
+            if (!hasNext()) {
+                throw new IllegalStateException();
+            }
+            ++mCurrent;
+        }
+
+        void prev() {
+            if (!hasPrev()) {
+                throw new IllegalStateException();
+            }
+            --mCurrent;
+        }
+    }
+
+    /*
+     * Random sequence of integers 0..n-1
+     */
+    private static class RandomSequence extends Sequence {
+        private final ArrayList<Integer> mShuffledSequence;
+
+        private RandomSequence(int length) {
+            super(length);
+            mShuffledSequence = new ArrayList<>(length);
+            for (int i = 0; i < length; ++i) {
+                mShuffledSequence.add(i);
+            }
+            Collections.shuffle(mShuffledSequence);
+        }
+
+        @Override
+        void reset() {
+            super.reset();
+            Collections.shuffle(mShuffledSequence);
+        }
+
+        @Override
+        void setCurrent(int current) {
+            super.setCurrent(mShuffledSequence.indexOf(current));
+        }
+
+        @Override
+        int getCurrent() {
+            return mShuffledSequence.get(super.getCurrent());
         }
     }
 }
