@@ -188,7 +188,28 @@ public class MediaPlaybackActivity
         mShuffleButton = ((ImageButton) findViewById(R.id.shuffle));
         mShuffleButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                toggleShuffle();
+                LogHelper.d(TAG, "Shuffle button clicked");
+                if (getMediaController() == null) return;
+                Bundle extras = getMediaController().getExtras();
+                if (extras == null) return;
+                MediaPlaybackService.ShuffleMode shuffleMode =
+                        MediaPlaybackService.ShuffleMode
+                                .values()[extras.getInt(MediaPlaybackService.SHUFFLE_MODE)];
+                MediaPlaybackService.ShuffleMode nextShuffleMode;
+                switch (shuffleMode) {
+                    case SHUFFLE_NONE:
+                        nextShuffleMode = MediaPlaybackService.ShuffleMode.SHUFFLE_RANDOM;
+                        showToast(R.string.shuffle_on_notif);
+                        break;
+                    case SHUFFLE_RANDOM:
+                    default:
+                        nextShuffleMode = MediaPlaybackService.ShuffleMode.SHUFFLE_NONE;
+                        showToast(R.string.shuffle_off_notif);
+                        break;
+                }
+                setShuffleMode(nextShuffleMode);
+                // TODO(siyuanh): Should use a callback to register changes on service side
+                setShuffleButtonImage(nextShuffleMode);
             }
         });
         mRepeatButton = ((ImageButton) findViewById(R.id.repeat));
@@ -307,7 +328,7 @@ public class MediaPlaybackActivity
                     mShuffleButton.setVisibility(View.VISIBLE);
                     mQueueButton.setVisibility(View.VISIBLE);
                     setRepeatButtonImage(null);
-                    setShuffleButtonImage();
+                    setShuffleButtonImage(null);
                     setPauseButtonImage();
                     updateTrackInfo();
                     mHandler.post(new Runnable() {
@@ -602,10 +623,30 @@ public class MediaPlaybackActivity
         }
     }
 
-    private void toggleShuffle() {
-        // TODO(b/36371715): Implement shuffle for SHUFFLE_NORMAL, SHUFFLE_AUTO, SHUFFLE_NONE
-        LogHelper.d(TAG, "Shuffle not implemented yet");
-        Toast.makeText(this, "Shuffle not implemented yet", Toast.LENGTH_SHORT).show();
+    private void setShuffleMode(MediaPlaybackService.ShuffleMode shuffleMode) {
+        Bundle extras = new Bundle();
+        extras.putInt(MediaPlaybackService.SHUFFLE_MODE, shuffleMode.ordinal());
+        getMediaController().getTransportControls().sendCustomAction(
+                MediaPlaybackService.CMD_SHUFFLE, extras);
+    }
+
+    private void setShuffleButtonImage(MediaPlaybackService.ShuffleMode shuffleMode) {
+        if (getMediaController() == null) return;
+        Bundle extras = getMediaController().getExtras();
+        if (extras == null) return;
+        if (shuffleMode == null) {
+            shuffleMode = MediaPlaybackService.ShuffleMode
+                                  .values()[extras.getInt(MediaPlaybackService.SHUFFLE_MODE)];
+        }
+        switch (shuffleMode) {
+            case SHUFFLE_RANDOM:
+                mShuffleButton.setImageResource(R.drawable.ic_mp_shuffle_on_btn);
+                break;
+            case SHUFFLE_NONE:
+            default:
+                mShuffleButton.setImageResource(R.drawable.ic_mp_shuffle_off_btn);
+                break;
+        }
     }
 
     private void setRepeatMode(MediaPlaybackService.RepeatMode repeatMode) {
@@ -643,11 +684,6 @@ public class MediaPlaybackActivity
         }
         mToast.setText(resid);
         mToast.show();
-    }
-
-    private void setShuffleButtonImage() {
-        if (getMediaController() == null) return;
-        mShuffleButton.setImageResource(R.drawable.ic_mp_shuffle_off_btn);
     }
 
     private void setPauseButtonImage() {
