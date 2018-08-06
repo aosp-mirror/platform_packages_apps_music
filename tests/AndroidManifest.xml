@@ -17,9 +17,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.music.tests">
 
-    <application>
-        <uses-library android:name="android.test.runner" />
-    </application>
+    <application/>
 
     <instrumentation android:name="com.android.music.tests.MusicPlayerLaunchPerformance"
         android:targetPackage="com.google.android.music"
