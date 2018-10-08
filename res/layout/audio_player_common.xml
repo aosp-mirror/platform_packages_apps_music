@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#ffffffff" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff5a5a5a"
+        android:paddingTop="1dip"
+        android:paddingBottom="4dip"
+        android:orientation="horizontal">
+
+        <TextView android:id="@+id/currenttime"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:shadowColor="#ff000000"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="3"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:layout_width="0dip"
+            android:paddingLeft="5dip"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="1dip"
+            android:layout_marginBottom="2dip"
+            android:gravity="center">
+
+            <com.android.music.RepeatingImageButton android:id="@+id/prev" style="@android:style/MediaButton.Previous" />
+
+            <ImageButton android:id="@+id/pause" style="@android:style/MediaButton.Play" />
+
+            <com.android.music.RepeatingImageButton android:id="@+id/next" style="@android:style/MediaButton.Next" />
+
+        </LinearLayout>
+
+        <TextView android:id="@+id/totaltime"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:shadowColor="#ff000000"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="3"
+            android:gravity="right"
+            android:paddingRight="5dip"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <SeekBar android:id="@android:id/progress"
+        android:background="#ff5a5a5a"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="36dip"
+        android:paddingLeft="8dip"
+        android:paddingRight="8dip"
+        android:paddingBottom="4dip" />
+
+</merge>

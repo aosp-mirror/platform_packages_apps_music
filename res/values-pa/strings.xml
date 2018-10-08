@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*
+** Copyright 2007, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License"); 
+** you may not use this file except in compliance with the License. 
+** You may obtain a copy of the License at 
+**
+**     http://www.apache.org/licenses/LICENSE-2.0 
+**
+** Unless required by applicable law or agreed to in writing, software 
+** distributed under the License is distributed on an "AS IS" BASIS, 
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+** See the License for the specific language governing permissions and 
+** limitations under the License.
+*/
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- no translation found for onesong (8336826100414159413) -->
+    <skip />
+    <!-- no translation found for Nsongs (6016461352893352675) -->
+    <!-- no translation found for Nsongscomp (4511633526221956857) -->
+    <!-- no translation found for Nalbums (7947176578850672205) -->
+    <!-- no translation found for goto_start (8979658707407220934) -->
+    <skip />
+    <!-- no translation found for party_shuffle (8213359225506006168) -->
+    <skip />
+    <!-- no translation found for party_shuffle_off (1828744483354711679) -->
+    <skip />
+    <!-- no translation found for delete_item (3363330144534750601) -->
+    <skip />
+    <!-- no translation found for shuffle_all (1388193611787878773) -->
+    <skip />
+    <!-- no translation found for play_all (6309622568869321842) -->
+    <skip />
+    <!-- no translation found for delete_artist_desc (8665759524898379194) -->
+    <skip />
+    <!-- no translation found for delete_artist_desc_nosdcard (5729059309796497914) -->
+    <skip />
+    <!-- no translation found for delete_album_desc (8172412873562794429) -->
+    <skip />
+    <!-- no translation found for delete_album_desc_nosdcard (8612559166069885285) -->
+    <skip />
+    <!-- no translation found for delete_song_desc (1842681623848282205) -->
+    <skip />
+    <!-- no translation found for delete_song_desc_nosdcard (5064973032624148730) -->
+    <skip />
+    <!-- no translation found for delete_confirm_button_text (7008121194944357274) -->
+    <skip />
+    <!-- no translation found for NNNtracksdeleted (2499334199042190643) -->
+    <!-- no translation found for scanning (3529383847223198502) -->
+    <skip />
+    <!-- no translation found for scanning_nosdcard (8105284774487360148) -->
+    <skip />
+    <!-- no translation found for nowplaying_title (8342523844307751761) -->
+    <skip />
+    <!-- no translation found for partyshuffle_title (6582413231529992125) -->
+    <skip />
+    <!-- no translation found for artists_title (8490372367259160067) -->
+    <skip />
+    <!-- no translation found for albums_menu (5807982055590211900) -->
+    <skip />
+    <!-- no translation found for albums_title (8773880394961378035) -->
+    <skip />
+    <!-- no translation found for tracks_menu (6942246568246092330) -->
+    <skip />
+    <!-- no translation found for tracks_title (3229389424532295124) -->
+    <skip />
+    <!-- no translation found for playlists_menu (5382792649771928849) -->
+    <skip />
+    <!-- no translation found for playlists_title (5094238486322957927) -->
+    <skip />
+    <!-- no translation found for videos_title (2066741954354129115) -->
+    <skip />
+    <!-- no translation found for all_title (6880186414437237653) -->
+    <skip />
+    <!-- no translation found for browse_menu (5248122473075843289) -->
+    <skip />
+    <!-- no translation found for search_title (1016971653383739344) -->
+    <skip />
+    <!-- no translation found for no_tracks_title (8805805388271238471) -->
+    <skip />
+    <!-- no translation found for no_videos_title (6218814130364793104) -->
+    <skip />
+    <!-- no translation found for no_playlists_title (4456351945617594418) -->
+    <skip />
+    <!-- no translation found for delete_playlist_menu (8998637685583495247) -->
+    <skip />
+    <!-- no translation found for edit_playlist_menu (571618502105370684) -->
+    <skip />
+    <!-- no translation found for rename_playlist_menu (3133463747389494668) -->
+    <skip />
+    <!-- no translation found for playlist_deleted_message (9008053828193961455) -->
+    <skip />
+    <!-- no translation found for playlist_renamed_message (7187580192703005990) -->
+    <skip />
+    <!-- no translation found for recentlyadded (110978416756366953) -->
+    <skip />
+    <!-- no translation found for recentlyadded_title (3153322287249901914) -->
+    <skip />
+    <!-- no translation found for podcasts_listitem (8657809279717670634) -->
+    <skip />
+    <!-- no translation found for podcasts_title (4928414142496858304) -->
+    <skip />
+    <!-- no translation found for sdcard_missing_title (9008284946643270850) -->
+    <skip />
+    <!-- no translation found for sdcard_missing_title_nosdcard (7984839174824243958) -->
+    <skip />
+    <!-- no translation found for sdcard_missing_message (2100061456003981823) -->
+    <skip />
+    <!-- no translation found for sdcard_missing_message_nosdcard (4459620970330194881) -->
+    <skip />
+    <!-- no translation found for sdcard_busy_title (1162763571147174655) -->
+    <skip />
+    <!-- no translation found for sdcard_busy_title_nosdcard (3319125156566499501) -->
+    <skip />
+    <!-- no translation found for sdcard_busy_message (579981082201215537) -->
+    <skip />
+    <!-- no translation found for sdcard_busy_message_nosdcard (1493449756827869166) -->
+    <skip />
+    <!-- no translation found for sdcard_error_title (165682155008600643) -->
+    <skip />
+    <!-- no translation found for sdcard_error_title_nosdcard (7564338137076303931) -->
+    <skip />
+    <!-- no translation found for sdcard_error_message (4574563894036627855) -->
+    <skip />
+    <!-- no translation found for sdcard_error_message_nosdcard (4983430848526821234) -->
+    <skip />
+    <!-- no translation found for unknown_artist_name (5567811106415855219) -->
+    <skip />
+    <!-- no translation found for unknown_album_name (8525145988941244727) -->
+    <skip />
+    <!-- no translation found for shuffle_on_notif (5453708337808483943) -->
+    <skip />
+    <!-- no translation found for shuffle_off_notif (4251189610017886263) -->
+    <skip />
+    <!-- no translation found for repeat_off_notif (1149406899083479716) -->
+    <skip />
+    <!-- no translation found for repeat_current_notif (1227153936360904196) -->
+    <skip />
+    <!-- no translation found for repeat_all_notif (6443293055987316642) -->
+    <skip />
+    <!-- no translation found for ringtone_menu (2737472190159134599) -->
+    <skip />
+    <!-- no translation found for ringtone_menu_short (3367622038867238133) -->
+    <skip />
+    <!-- no translation found for ringtone_set (5325818347613843130) -->
+    <skip />
+    <!-- no translation found for play_selection (2854921021814550018) -->
+    <skip />
+    <!-- no translation found for add_to_playlist (7110273488645072783) -->
+    <skip />
+    <!-- no translation found for queue (2937629819482787704) -->
+    <skip />
+    <!-- no translation found for new_playlist (7588112979692632867) -->
+    <skip />
+    <!-- no translation found for new_playlist_name_template (905710296728900597) -->
+    <skip />
+    <!-- no translation found for NNNtrackstoplaylist (4679501954832581077) -->
+    <!-- no translation found for emptyplaylist (6711555673997896344) -->
+    <skip />
+    <!-- no translation found for create_playlist_create_text (8149755205483279143) -->
+    <skip />
+    <!-- no translation found for create_playlist_overwrite_text (2007808383561024706) -->
+    <skip />
+    <!-- no translation found for service_start_error_title (8649916852210198813) -->
+    <skip />
+    <!-- no translation found for service_start_error_msg (7061754255330276478) -->
+    <skip />
+    <!-- no translation found for service_start_error_button (480888406592240723) -->
+    <skip />
+    <!-- no translation found for weeklist:0 (7005918873419323862) -->
+    <!-- no translation found for weeklist:1 (7487749116155425822) -->
+    <!-- no translation found for weeklist:2 (1565338360539555185) -->
+    <!-- no translation found for weeklist:3 (2142986059836933072) -->
+    <!-- no translation found for weeklist:4 (4332403875260507291) -->
+    <!-- no translation found for weeklist:5 (3847281907869868565) -->
+    <!-- no translation found for weeklist:6 (2942654998558867799) -->
+    <!-- no translation found for weeklist:7 (2115529325850052227) -->
+    <!-- no translation found for weeklist:8 (1396675336665198092) -->
+    <!-- no translation found for weeklist:9 (3178819129208998649) -->
+    <!-- no translation found for weeklist:10 (2727959579637914171) -->
+    <!-- no translation found for weeklist:11 (8708754966127584739) -->
+    <!-- no translation found for weekpicker_set (7636608790418067496) -->
+    <skip />
+    <!-- no translation found for weekpicker_title (699535378922101701) -->
+    <skip />
+    <!-- no translation found for save_as_playlist (5180413608901885255) -->
+    <skip />
+    <!-- no translation found for clear_playlist (4565515100924905315) -->
+    <skip />
+    <!-- no translation found for musicbrowserlabel (3162022214114562892) -->
+    <skip />
+    <!-- no translation found for musicshortcutlabel (2602980193508150226) -->
+    <skip />
+    <!-- no translation found for mediaplaybacklabel (6733604841530940397) -->
+    <skip />
+    <!-- no translation found for videobrowserlabel (8522326678447494657) -->
+    <skip />
+    <!-- no translation found for mediapickerlabel (4549836003229914299) -->
+    <skip />
+    <!-- no translation found for playback_failed (3811851150820251398) -->
+    <skip />
+    <!-- no translation found for cancel (886559484711947520) -->
+    <skip />
+    <!-- no translation found for remove_from_playlist (2548577514849026354) -->
+    <skip />
+    <!-- no translation found for streamloadingtext (8842426517396356215) -->
+    <skip />
+    <!-- no translation found for mediasearch (959222971261132292) -->
+    <skip />
+    <!-- no translation found for working_artists (8678357432732156580) -->
+    <skip />
+    <!-- no translation found for working_albums (8713273699401457426) -->
+    <skip />
+    <!-- no translation found for working_songs (2201491972050410684) -->
+    <skip />
+    <!-- no translation found for working_playlists (4424950806134653351) -->
+    <skip />
+    <!-- no translation found for loading (1991660396037155453) -->
+    <skip />
+    <!-- no translation found for sort_by_track (7662999005554152565) -->
+    <skip />
+    <!-- no translation found for sort_by_album (2912837715658975248) -->
+    <skip />
+    <!-- no translation found for sort_by_artist (4607024967813199992) -->
+    <skip />
+    <string name="music_picker_title" msgid="4143865470317360605">"ਸੰਗੀਤ ਟਰੈਕ ਚੁਣੋ"</string>
+    <!-- no translation found for search_settings_description (6520975349259883368) -->
+    <skip />
+    <!-- no translation found for search_hint (3766854898072633001) -->
+    <skip />
+    <!-- no translation found for fast_scroll_alphabet (5548732936480723311) -->
+    <skip />
+    <!-- no translation found for widget_initial_text (3166878738860903586) -->
+    <skip />
+    <!-- no translation found for effectspanel (8804547581593509614) -->
+    <skip />
+    <!-- no translation found for app_name (1547991011262246112) -->
+    <skip />
+    <!-- no translation found for favorite (2091864453504556745) -->
+    <skip />
+    <!-- no translation found for error_no_metadata (7511822079537838557) -->
+    <skip />
+    <!-- no translation found for browse_genres (168885430631376076) -->
+    <skip />
+    <!-- no translation found for browse_genre_subtitle (5742064801794983376) -->
+    <skip />
+    <!-- no translation found for browse_musics_by_genre_subtitle (4446806292284991543) -->
+    <skip />
+    <!-- no translation found for random_queue_title (5872938426167363209) -->
+    <skip />
+    <!-- no translation found for error_cannot_skip (8336702251226809890) -->
+    <skip />
+    <!-- no translation found for error_loading_media (3058643768790348997) -->
+    <skip />
+    <!-- no translation found for play_item (3566994377367460852) -->
+    <skip />
+    <!-- no translation found for skip_previous (289908210366906288) -->
+    <skip />
+    <!-- no translation found for play_pause (4086482482661153614) -->
+    <skip />
+    <!-- no translation found for skip_next (2366282708688315953) -->
+    <skip />
+    <!-- no translation found for no_search_results (184247680899974161) -->
+    <skip />
+</resources>
