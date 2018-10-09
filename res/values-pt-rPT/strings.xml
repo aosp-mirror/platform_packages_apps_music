@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*
+** Copyright 2007, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License"); 
+** you may not use this file except in compliance with the License. 
+** You may obtain a copy of the License at 
+**
+**     http://www.apache.org/licenses/LICENSE-2.0 
+**
+** Unless required by applicable law or agreed to in writing, software 
+** distributed under the License is distributed on an "AS IS" BASIS, 
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+** See the License for the specific language governing permissions and 
+** limitations under the License.
+*/
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onesong" msgid="8336826100414159413">"1 música"</string>
+    <plurals name="Nsongs" formatted="false" msgid="6016461352893352675">
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> músicas</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> música</item>
+    </plurals>
+    <plurals name="Nsongscomp" formatted="false" msgid="4511633526221956857">
+      <item quantity="other"><xliff:g id="COUNT_FOR_ARTIST_2">%2$d</xliff:g> de <xliff:g id="TOTAL_COUNT_3">%1$d</xliff:g> músicas</item>
+      <item quantity="one"><xliff:g id="COUNT_FOR_ARTIST_0">%2$d</xliff:g> de <xliff:g id="TOTAL_COUNT_1">%1$d</xliff:g> música</item>
+    </plurals>
+    <plurals name="Nalbums" formatted="false" msgid="7947176578850672205">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> álbuns</item>
+      <item quantity="one">1 álbum</item>
+    </plurals>
+    <string name="goto_start" msgid="8979658707407220934">"Biblioteca"</string>
+    <string name="party_shuffle" msgid="8213359225506006168">"Lista aleatória"</string>
+    <string name="party_shuffle_off" msgid="1828744483354711679">"Lista aleatória desactivada"</string>
+    <string name="delete_item" msgid="3363330144534750601">"Eliminar"</string>
+    <string name="shuffle_all" msgid="1388193611787878773">"Reproduzir todas aleatoriamente"</string>
+    <string name="play_all" msgid="6309622568869321842">"Reproduzir todas"</string>
+    <string name="delete_artist_desc" msgid="8665759524898379194">"Eliminar permanentemente todas as músicas de <xliff:g id="ARTIST">%s</xliff:g> do cartão SD?"</string>
+    <string name="delete_artist_desc_nosdcard" msgid="5729059309796497914">"Eliminar permanentemente todas as músicas de <xliff:g id="ARTIST">%s</xliff:g> da memória de armazenamento USB?"</string>
+    <string name="delete_album_desc" msgid="8172412873562794429">"Eliminar permanentemente todo o álbum \"<xliff:g id="ALBUM">%s</xliff:g>\" do cartão SD?"</string>
+    <string name="delete_album_desc_nosdcard" msgid="8612559166069885285">"Eliminar permanentemente todo o álbum \"<xliff:g id="ALBUM">%s</xliff:g>\" da memória de armazenamento USB?"</string>
+    <string name="delete_song_desc" msgid="1842681623848282205">"Eliminar permanentemente \"<xliff:g id="SONG">%s</xliff:g>\" do cartão SD?"</string>
+    <string name="delete_song_desc_nosdcard" msgid="5064973032624148730">"Eliminar permanentemente \"<xliff:g id="SONG">%s</xliff:g>\" da memória de armazenamento USB?"</string>
+    <string name="delete_confirm_button_text" msgid="7008121194944357274">"OK"</string>
+    <plurals name="NNNtracksdeleted" formatted="false" msgid="2499334199042190643">
+      <item quantity="other">Foram eliminadas <xliff:g id="SONGS_TO_DELETE">%d</xliff:g> músicas.</item>
+      <item quantity="one">Foi eliminada 1 música.</item>
+    </plurals>
+    <string name="scanning" msgid="3529383847223198502">"A analisar o cartão SD..."</string>
+    <string name="scanning_nosdcard" msgid="8105284774487360148">"A analisar armazenamento USB..."</string>
+    <string name="nowplaying_title" msgid="8342523844307751761">"Em reprodução"</string>
+    <string name="partyshuffle_title" msgid="6582413231529992125">"Lista aleatória"</string>
+    <string name="artists_title" msgid="8490372367259160067">"Artistas"</string>
+    <string name="albums_menu" msgid="5807982055590211900">"Álbuns"</string>
+    <string name="albums_title" msgid="8773880394961378035">"Álbuns"</string>
+    <string name="tracks_menu" msgid="6942246568246092330">"Músicas"</string>
+    <string name="tracks_title" msgid="3229389424532295124">"Músicas"</string>
+    <string name="playlists_menu" msgid="5382792649771928849">"Listas de reprodução"</string>
+    <string name="playlists_title" msgid="5094238486322957927">"Listas de reprodução"</string>
+    <string name="videos_title" msgid="2066741954354129115">"Vídeos"</string>
+    <string name="all_title" msgid="6880186414437237653">"Todo o conteúdo multimédia"</string>
+    <string name="browse_menu" msgid="5248122473075843289">"Artistas"</string>
+    <string name="search_title" msgid="1016971653383739344">"Pesquisar"</string>
+    <string name="no_tracks_title" msgid="8805805388271238471">"Sem músicas"</string>
+    <string name="no_videos_title" msgid="6218814130364793104">"Sem vídeos"</string>
+    <string name="no_playlists_title" msgid="4456351945617594418">"Sem listas de reprodução"</string>
+    <string name="delete_playlist_menu" msgid="8998637685583495247">"Eliminar"</string>
+    <string name="edit_playlist_menu" msgid="571618502105370684">"Editar"</string>
+    <string name="rename_playlist_menu" msgid="3133463747389494668">"Mudar o nome"</string>
+    <string name="playlist_deleted_message" msgid="9008053828193961455">"Lista de reprodução eliminada."</string>
+    <string name="playlist_renamed_message" msgid="7187580192703005990">"Nome da lista de reprodução alterado."</string>
+    <string name="recentlyadded" msgid="110978416756366953">"Adicionadas recentemente"</string>
+    <string name="recentlyadded_title" msgid="3153322287249901914">"Adicionadas recentemente"</string>
+    <string name="podcasts_listitem" msgid="8657809279717670634">"Podcasts"</string>
+    <string name="podcasts_title" msgid="4928414142496858304">"Podcasts"</string>
+    <string name="sdcard_missing_title" msgid="9008284946643270850">"Sem cartão SD"</string>
+    <string name="sdcard_missing_title_nosdcard" msgid="7984839174824243958">"Sem armazenamento USB"</string>
+    <string name="sdcard_missing_message" msgid="2100061456003981823">"O telemóvel não tem um cartão SD inserido."</string>
+    <string name="sdcard_missing_message_nosdcard" msgid="4459620970330194881">"O telemóvel não dispõe de memória de armazenamento USB."</string>
+    <string name="sdcard_busy_title" msgid="1162763571147174655">"Cartão SD indisponível"</string>
+    <string name="sdcard_busy_title_nosdcard" msgid="3319125156566499501">"Armazenamento USB não disponível"</string>
+    <string name="sdcard_busy_message" msgid="579981082201215537">"O cartão SD está ocupado."</string>
+    <string name="sdcard_busy_message_nosdcard" msgid="1493449756827869166">"A memória de armazenamento USB está ocupada."</string>
+    <string name="sdcard_error_title" msgid="165682155008600643">"Erro do cartão SD"</string>
+    <string name="sdcard_error_title_nosdcard" msgid="7564338137076303931">"Erro no armazenamento USB"</string>
+    <string name="sdcard_error_message" msgid="4574563894036627855">"Ocorreu um erro com o cartão SD."</string>
+    <string name="sdcard_error_message_nosdcard" msgid="4983430848526821234">"Foi detectado um erro no armazenamento USB."</string>
+    <string name="unknown_artist_name" msgid="5567811106415855219">"Artista desconhecido"</string>
+    <string name="unknown_album_name" msgid="8525145988941244727">"Álbum desconhecido"</string>
+    <string name="shuffle_on_notif" msgid="5453708337808483943">"A reprodução aleatória está activada"</string>
+    <string name="shuffle_off_notif" msgid="4251189610017886263">"A reprodução aleatória está desactivada."</string>
+    <string name="repeat_off_notif" msgid="1149406899083479716">"A repetição está desactivada."</string>
+    <string name="repeat_current_notif" msgid="1227153936360904196">"Repetir a música actual."</string>
+    <string name="repeat_all_notif" msgid="6443293055987316642">"A repetir todas as músicas."</string>
+    <string name="ringtone_menu" msgid="2737472190159134599">"Utilizar como toque do telefone"</string>
+    <string name="ringtone_menu_short" msgid="3367622038867238133">"Utilizar como toque"</string>
+    <string name="ringtone_set" msgid="5325818347613843130">"\"<xliff:g id="NAME">%s</xliff:g>\" definida como toque do telefone."</string>
+    <string name="play_selection" msgid="2854921021814550018">"Reproduzir"</string>
+    <string name="add_to_playlist" msgid="7110273488645072783">"Adicionar à lista de reprodução"</string>
+    <string name="queue" msgid="2937629819482787704">"Lista de reprodução actual"</string>
+    <string name="new_playlist" msgid="7588112979692632867">"Novo"</string>
+    <string name="new_playlist_name_template" msgid="905710296728900597">"Nova lista de reprodução <xliff:g id="NUMBER">%d</xliff:g>"</string>
+    <plurals name="NNNtrackstoplaylist" formatted="false" msgid="4679501954832581077">
+      <item quantity="other"><xliff:g id="NUMBER">%d</xliff:g> músicas adicionadas à lista de reprodução.</item>
+      <item quantity="one">1 música adicionada à lista de reprodução.</item>
+    </plurals>
+    <string name="emptyplaylist" msgid="6711555673997896344">"A lista de reprodução selecionada está vazia."</string>
+    <string name="create_playlist_create_text" msgid="8149755205483279143">"Guardar"</string>
+    <string name="create_playlist_overwrite_text" msgid="2007808383561024706">"Substituir"</string>
+    <string name="service_start_error_title" msgid="8649916852210198813">"Problemas de reprodução"</string>
+    <string name="service_start_error_msg" msgid="7061754255330276478">"Não foi possível reproduzir a música."</string>
+    <string name="service_start_error_button" msgid="480888406592240723">"OK"</string>
+  <string-array name="weeklist">
+    <item msgid="7005918873419323862">"1 semana"</item>
+    <item msgid="7487749116155425822">"2 semanas"</item>
+    <item msgid="1565338360539555185">"3 semanas"</item>
+    <item msgid="2142986059836933072">"4 semanas"</item>
+    <item msgid="4332403875260507291">"5 semanas"</item>
+    <item msgid="3847281907869868565">"6 semanas"</item>
+    <item msgid="2942654998558867799">"7 semanas"</item>
+    <item msgid="2115529325850052227">"8 semanas"</item>
+    <item msgid="1396675336665198092">"9 semanas"</item>
+    <item msgid="3178819129208998649">"10 semanas"</item>
+    <item msgid="2727959579637914171">"11 semanas"</item>
+    <item msgid="8708754966127584739">"12 semanas"</item>
+  </string-array>
+    <string name="weekpicker_set" msgid="7636608790418067496">"Concluído"</string>
+    <string name="weekpicker_title" msgid="699535378922101701">"Definir a hora"</string>
+    <string name="save_as_playlist" msgid="5180413608901885255">"Guardar como lista de reprodução"</string>
+    <string name="clear_playlist" msgid="4565515100924905315">"Limpar a lista de reprodução"</string>
+    <string name="musicbrowserlabel" msgid="3162022214114562892">"Música"</string>
+    <string name="musicshortcutlabel" msgid="2602980193508150226">"Lista de reprodução de músicas"</string>
+    <string name="mediaplaybacklabel" msgid="6733604841530940397">"Música"</string>
+    <string name="videobrowserlabel" msgid="8522326678447494657">"Vídeos"</string>
+    <string name="mediapickerlabel" msgid="4549836003229914299">"Música"</string>
+    <string name="playback_failed" msgid="3811851150820251398">"O leitor não suporta este tipo de ficheiro de áudio."</string>
+    <string name="cancel" msgid="886559484711947520">"Cancelar"</string>
+    <string name="remove_from_playlist" msgid="2548577514849026354">"Remover da lista de reprodução"</string>
+    <string name="streamloadingtext" msgid="8842426517396356215">"A ligar a <xliff:g id="HOST">%s</xliff:g>…"</string>
+    <string name="mediasearch" msgid="959222971261132292">"Pesquisar <xliff:g id="TERM">%s</xliff:g> utilizando:"</string>
+    <string name="working_artists" msgid="8678357432732156580">"Artistas..."</string>
+    <string name="working_albums" msgid="8713273699401457426">"Álbuns..."</string>
+    <string name="working_songs" msgid="2201491972050410684">"Músicas..."</string>
+    <string name="working_playlists" msgid="4424950806134653351">"Listas de reprodução..."</string>
+    <string name="loading" msgid="1991660396037155453">"A carregar…"</string>
+    <string name="sort_by_track" msgid="7662999005554152565">"Faixas"</string>
+    <string name="sort_by_album" msgid="2912837715658975248">"Álbuns"</string>
+    <string name="sort_by_artist" msgid="4607024967813199992">"Artistas"</string>
+    <string name="music_picker_title" msgid="4143865470317360605">"Selecionar faixa de música"</string>
+    <string name="search_settings_description" msgid="6520975349259883368">"Artistas, álbuns e faixas"</string>
+    <string name="search_hint" msgid="3766854898072633001">"Pesquisar música"</string>
+    <string name="fast_scroll_alphabet" msgid="5548732936480723311">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
+    <string name="widget_initial_text" msgid="3166878738860903586">"Toque para selecionar música."</string>
+    <string name="effectspanel" msgid="8804547581593509614">"Efeitos sonoros"</string>
+    <!-- no translation found for app_name (1547991011262246112) -->
+    <skip />
+    <!-- no translation found for favorite (2091864453504556745) -->
+    <skip />
+    <!-- no translation found for error_no_metadata (7511822079537838557) -->
+    <skip />
+    <!-- no translation found for browse_genres (168885430631376076) -->
+    <skip />
+    <!-- no translation found for browse_genre_subtitle (5742064801794983376) -->
+    <skip />
+    <!-- no translation found for browse_musics_by_genre_subtitle (4446806292284991543) -->
+    <skip />
+    <!-- no translation found for random_queue_title (5872938426167363209) -->
+    <skip />
+    <!-- no translation found for error_cannot_skip (8336702251226809890) -->
+    <skip />
+    <!-- no translation found for error_loading_media (3058643768790348997) -->
+    <skip />
+    <!-- no translation found for play_item (3566994377367460852) -->
+    <skip />
+    <!-- no translation found for skip_previous (289908210366906288) -->
+    <skip />
+    <!-- no translation found for play_pause (4086482482661153614) -->
+    <skip />
+    <!-- no translation found for skip_next (2366282708688315953) -->
+    <skip />
+    <!-- no translation found for no_search_results (184247680899974161) -->
+    <skip />
+</resources>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+** Copyright 2007, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License"); 
+** you may not use this file except in compliance with the License. 
+** You may obtain a copy of the License at 
+**
+**     http://www.apache.org/licenses/LICENSE-2.0 
+**
+** Unless required by applicable law or agreed to in writing, software 
+** distributed under the License is distributed on an "AS IS" BASIS, 
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+** See the License for the specific language governing permissions and 
+** limitations under the License.
+*/
+-->
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- icon is used for albumart, the grabber in edit playlist mode, and the playlist icon in the list of playlists -->
+    <ImageView android:id="@+id/icon"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView android:id="@+id/duration"
+        android:textSize="12sp"
+        android:textColor="?android:attr/textColorTertiary"
+        android:textStyle="bold"
+        android:paddingLeft="4dip"
+        android:paddingRight="11dip"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/line1"
+        android:singleLine="true" />
+
+    <!-- The height is set to half the height of the parent, which is 64 dip -->
+    <TextView android:id="@+id/line1"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:paddingLeft="9dip"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_toRightOf="@id/icon"
+        android:layout_toLeftOf="@id/duration"
+        android:ellipsize="marquee"
+        android:singleLine="true" />
+
+    <!-- The height is set to half the height of the parent, which is 64 dip -->
+    <TextView android:id="@+id/line2" android:visibility="visible"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:paddingLeft="9dip"
+        android:scrollHorizontally="true"
+        android:layout_below="@id/line1"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_toRightOf="@id/icon"
+        android:layout_toLeftOf="@id/duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView android:id="@+id/play_indicator"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/duration"        
+        android:layout_marginTop="10dip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="12dip" />
+
+</merge>
