@@ -14,51 +14,20 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.android.music"
-          android:versionCode="2"
-          android:versionName="2.0">
-
-    <!-- Package Name -->
-    <original-package android:name="com.android.music"/>
-
-    <!-- SDK Versions -->
-    <uses-sdk android:minSdkVersion="19"
-              android:targetSdkVersion="24"/>
+	  xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Permissions -->
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.BROADCAST_STICKY"/>
 
     <!-- App Declaration -->
     <application
-            android:icon="@drawable/app_music"
-            android:label="@string/musicbrowserlabel"
-            android:taskAffinity="android.task.music"
-            android:allowTaskReparenting="true"
-            android:usesCleartextTraffic="true">
-
-        <!-- Meta Data -->
-        <meta-data android:name="com.google.android.gms.car.application"
-                   android:resource="@xml/automotive_app_desc"/>
-
-        <!-- Main Activity -->
-        <activity android:name="com.android.music.MusicBrowserActivity"
-                  android:theme="@android:style/Theme.NoTitleBar"
-                  android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-                <category android:name="android.intent.category.APP_MUSIC"/>
-            </intent-filter>
-        </activity>
+            android:allowBackup="true"
+            android:label="@string/app_name"
+            android:supportsRtl="true"
+            android:launchMode="singleTop">
 
         <activity android:name="AudioPreview" android:theme="@android:style/Theme.Dialog"
                   android:taskAffinity=""
@@ -95,108 +64,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.android.music.MusicPicker"
-                  android:label="@string/music_picker_title" android:exported="true" >
-            <!-- First way to invoke us: someone asks to get content of
-                 any of the audio types we support. -->
-            <intent-filter>
-                <action android:name="android.intent.action.GET_CONTENT" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.OPENABLE" />
-                <data android:mimeType="audio/*"/>
-                <data android:mimeType="application/ogg"/>
-                <data android:mimeType="application/x-ogg"/>
-            </intent-filter>
-            <!-- Second way to invoke us: someone asks to pick an item from
-                 some media Uri. -->
-            <intent-filter>
-                <action android:name="android.intent.action.PICK" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.OPENABLE" />
-                <data android:mimeType="vnd.android.cursor.dir/audio"/>
-            </intent-filter>
-        </activity>
-
-        <!--
-            This is the "current music playing" panel, which has special
-            launch behavior.  We clear its task affinity, so it will not
-            be associated with the main media task and if launched
-            from a notification will not bring the rest of the media app
-            to the foreground.  We make it singleTask so that when others
-            launch it (such as media) we will launch in to our own task.
-            We set clearTaskOnLaunch because the user
-            can go to a playlist from this activity, so if they later return
-            to it we want it back in its initial state.  We exclude from
-            recents since this is accessible through a notification when
-            appropriate.
-        -->
-        <activity android:name="com.android.music.MediaPlaybackActivity"
-                  android:theme="@android:style/Theme.NoTitleBar"
-                  android:label="@string/mediaplaybacklabel"
-                  android:taskAffinity=""
-                  android:launchMode="singleTask"
-                  android:clearTaskOnLaunch="true"
-                  android:excludeFromRecents="true"
-                  android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="content"/>
-                <data android:host="media"/>
-                <data android:mimeType="audio/*"/>
-                <data android:mimeType="application/ogg"/>
-                <data android:mimeType="application/x-ogg"/>
-                <data android:mimeType="application/itunes"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="com.android.music.PLAYBACK_VIEWER"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
-
-        <activity android:name="com.android.music.ArtistAlbumBrowserActivity"
-                  android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.PICK"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="vnd.android.cursor.dir/artistalbum"/>
-            </intent-filter>
-        </activity>
-
-        <activity android:name="com.android.music.AlbumBrowserActivity" android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.PICK"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="vnd.android.cursor.dir/album"/>
-            </intent-filter>
-        </activity>
-
-        <activity android:name="com.android.music.TrackBrowserActivity" android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.PICK"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="vnd.android.cursor.dir/track"/>
-            </intent-filter>
-        </activity>
-
-        <activity android:name="com.android.music.PlaylistBrowserActivity"
-                  android:label="@string/musicbrowserlabel"
-                  android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.PICK"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="vnd.android.cursor.dir/playlist"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="vnd.android.cursor.dir/playlist"/>
-            </intent-filter>
-        </activity>
-
         <service android:name="com.android.music.MediaPlaybackService"
                  android:exported="true"
-                 android:label="Android Open Source Music Player">
+                 android:label="Android Open Source Music Playback Service">
             <intent-filter>
                 <action android:name="android.media.browse.MediaBrowserService" />
             </intent-filter>
