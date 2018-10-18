@@ -19,6 +19,13 @@
           package="com.android.music"
 	  xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Package Name -->
+    <original-package android:name="com.android.music"/>
+
+    <!-- SDK Versions -->
+    <uses-sdk android:minSdkVersion="19"
+              android:targetSdkVersion="28"/>
+
     <!-- Permissions -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
