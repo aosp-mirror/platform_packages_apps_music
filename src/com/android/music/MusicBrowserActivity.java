@@ -16,63 +16,22 @@
 
 package com.android.music;
 
-import android.Manifest.permission;
 import android.app.Activity;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import com.android.music.utils.LogHelper;
 
+/**
+ * A skeleton class that provides empty implementations for Activity class.
+ */
 public class MusicBrowserActivity extends Activity {
-    private static final String TAG = LogHelper.makeLogTag(MusicBrowserActivity.class);
-
-    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 42;
-
     public MusicBrowserActivity() {}
 
-    /**
-     * Called when the activity is first created.
-     */
     @Override
-    public void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
-        LogHelper.d(TAG, "onCreate()");
-        if (checkSelfPermission(permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[] {permission.READ_EXTERNAL_STORAGE},
-                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-            return;
-        }
-        initApp();
-    }
-
-    public void initApp() {
-        int activeTab = MusicUtils.getIntPref(this, "activetab", R.id.artisttab);
-        LogHelper.d(TAG, "initApp() activeTab = ", activeTab);
-        if (activeTab != R.id.artisttab && activeTab != R.id.albumtab && activeTab != R.id.songtab
-                && activeTab != R.id.playlisttab) {
-            activeTab = R.id.artisttab;
-        }
-        MusicUtils.activateTab(this, activeTab);
-    }
+    public void onCreate(Bundle icicle) {}
 
     @Override
-    public void onDestroy() {
-        LogHelper.d(TAG, "onDestroy()");
-        super.onDestroy();
-    }
+    public void onDestroy() {}
 
     @Override
     public void onRequestPermissionsResult(
-            int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
-                if (grantResults.length == 0
-                        || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                    finish();
-                    return;
-                }
-                initApp();
-            }
-        }
-    }
+            int requestCode, String permissions[], int[] grantResults) {}
 }
