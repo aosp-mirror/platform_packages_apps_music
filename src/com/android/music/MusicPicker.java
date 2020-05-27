@@ -17,38 +17,15 @@
 package com.android.music;
 
 import android.app.ListActivity;
-import android.content.AsyncQueryHandler;
-import android.content.ContentUris;
-import android.content.Context;
 import android.content.Intent;
-import android.database.CharArrayBuffer;
-import android.database.Cursor;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.provider.MediaStore;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.SectionIndexer;
-import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
-
-import java.io.IOException;
-import java.text.Collator;
-import java.util.Formatter;
-import java.util.Locale;
 
 /**
  * A dummy class to handle android.intent.action.PICK Intent.
