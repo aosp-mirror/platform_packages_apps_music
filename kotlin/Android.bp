@@ -1,7 +1,6 @@
 android_app {
-    name: "Music",
-    srcs: ["src/**/*.java"],
-    resource_dirs: ["kotlin/res"],
+    name: "MusicKotlin",
+    srcs: ["src/**/*.kt"],
     sdk_version: "current",
     product_specific: true,
     optimize: {
