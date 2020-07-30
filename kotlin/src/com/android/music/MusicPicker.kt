@@ -27,7 +27,7 @@ import android.view.View
 import android.widget.ListView
 
 /**
- * A dummy class to handle android.intent.action.PICK Intent.
+ * A placeholder class to handle android.intent.action.PICK Intent.
  */
 class MusicPicker : ListActivity(), View.OnClickListener {
     /** Uri to the directory of all music being displayed.  */
