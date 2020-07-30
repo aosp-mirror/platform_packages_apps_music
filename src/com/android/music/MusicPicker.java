@@ -28,7 +28,7 @@ import android.view.View;
 import android.widget.ListView;
 
 /**
- * A dummy class to handle android.intent.action.PICK Intent.
+ * A placeholder class to handle android.intent.action.PICK Intent.
  */
 public class MusicPicker extends ListActivity implements View.OnClickListener {
     static final boolean DBG = false;
