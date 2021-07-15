@@ -17,14 +17,14 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.android.music"
-	  xmlns:tools="http://schemas.android.com/tools">
+          xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Package Name -->
     <original-package android:name="com.android.music"/>
 
     <!-- SDK Versions -->
     <uses-sdk android:minSdkVersion="19"
-              android:targetSdkVersion="29"/>
+              android:targetSdkVersion="30"/>
 
     <!-- Permissions -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
