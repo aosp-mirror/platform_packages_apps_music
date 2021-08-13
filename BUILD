@@ -5,5 +5,5 @@ android_binary(
     srcs = glob(["src/**/*.java"]),
     custom_package = "com.android.music",
     manifest = "AndroidManifest.xml",
-    resource_files = glob(["kotlin/res/**"]),
+    deps = ["//packages/apps/Music/kotlin:MusicResources"],
 )
