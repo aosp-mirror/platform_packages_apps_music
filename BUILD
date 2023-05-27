@@ -1,4 +1,4 @@
-load("//build/bazel/rules/android:rules.bzl", "android_binary")
+load("//build/bazel/rules/android:android_binary.bzl", "android_binary")
 
 android_binary(
     name = "Music",
